@@ -1,0 +1,56 @@
+@import 'flow-traceability-global-styles';
+
+
+#flow-date-range {
+  .dropdown-date-range-panel {
+    .btn-panel {
+      @include btn-drop-down-criteria(215px);
+
+      .material-icons {
+        color: #BCD5FF;
+        opacity: 1;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(59, 130, 246, 0.9);
+      }
+    }
+
+    .separate-date-label {
+      @apply px-2;
+      width: 34px;
+    }
+  }
+}
+
+.btn-apply {
+  width: 71px;
+  height: 34px;
+  /* UI Properties */
+  font-size: 12px !important;
+  background: var(--unnamed-color-3b82f6) 0 0% no-repeat padding-box;
+  border-radius: 5px;
+  opacity: 1;
+  color: var(--unnamed-color-ffffff);
+  text-align: center;
+}
+
+.btn-reset {
+  text-align: left;
+  font-size: 12px;
+  letter-spacing: 0;
+  color: #3B82F6;
+  opacity: 1;
+}
+
+/* end custom mat-datepicker */
+
+.btn-dropdown-label.active {
+  color: #feb037;
+}
+
+.btn-dropdown-label.active .separate-date-label {
+  // color: #feb037;
+  filter: invert(24%) sepia(81%) saturate(2077%) hue-rotate(331deg) brightness(104%) contrast(99%);
+}

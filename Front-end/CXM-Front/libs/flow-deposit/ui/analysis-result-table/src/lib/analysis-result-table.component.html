@@ -1,0 +1,135 @@
+<div class="flex flex-row">
+  <h2 class="font-bold pb-3">{{'flow.deposit.analysisResult.labelSummary' | translate}}</h2>
+  <h2 class="pl-2 pb-3 nb-doc-label">({{nbDocuments | async}} {{nbDocuments | async | i18nPlural: docCountMessageMapping}})</h2>
+</div>
+
+<div class="analysis-result-panel mb-5">
+  <div class="portal-card-panel h-portal-card">
+    <table class="table-sortable" mat-table
+           matSort
+           id="analysis-result-table"
+           [dataSource]='data$'
+           matSortDisableClear
+           (matSortChange)="sortData($event)"
+           matSortActive="document"
+           matSortDirection="asc"
+    >
+
+      <ng-container matColumnDef="document">
+
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+        >
+          {{'flow.deposit.analysisResult.analysisResultTable.document' | translate | uppercase}}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row?.document }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nbPage">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+        >
+          {{'flow.deposit.analysisResult.analysisResultTable.nbPage' | translate | uppercase}}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row?.numberOfPages }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="reception">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+        >
+          {{'flow.deposit.analysisResult.analysisResultTable.recipient' | translate | uppercase}}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row?.reception }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="resultAnalysis">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+        >
+          {{'flow.deposit.analysisResult.analysisResultTable.resultAnalyse' | translate | uppercase}}
+        </th>
+        <td mat-cell *matCellDef="let row" class='{{row?.resultAnalysis?.toLowerCase()}}'>
+            <span *ngIf="row.resultAnalysis?.toLowerCase()==='ok'">
+              {{ row.resultAnalysis.toUpperCase() }}
+            </span>
+            <span *ngIf="row.resultAnalysis?.toLowerCase()==='ko'">
+              {{'flow.deposit.analysisResult.analysisResultTable.ko' | translate}}
+            </span>
+            <span *ngIf="row.resultAnalysis?.toLowerCase()==='modify'">
+              {{'flow.deposit.analysisResult.analysisResultTable.modify' | translate}}
+            </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef='actions'>
+        <th id='actions' mat-header-cell *matHeaderCellDef
+            class='col-action'>{{'flow.deposit.analysisResult.analysisResultTable.actions' | translate | uppercase}}
+        </th>
+        <td mat-cell *matCellDef='let row' class='cell-action'>
+          <div class='flex items-center'>
+            <span (click)="accessPageClick(row.page)" class='btn-view-details'>{{'flow.deposit.analysisResult.access'| translate}}</span>
+            <span *ngIf='isCanModifyOrCorrectAddress'>
+              <button class='btn-menu-icon-panel flex justify-center' [matMenuTriggerFor]='menu'>
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            </span>
+          </div>
+          <mat-menu [class]="'action-card-panel'" #menu='matMenu'>
+            <!-- Menu modify address -->
+            <div *ngIf='isCanModifyOrCorrectAddress' class="menu-icon" mat-menu-item (click)="modifyAddress(row.docUuid,row.addresses)">
+              <span class="cxm-icon text-icon-blue " style="background-image: url('assets/icons/pencil-square.svg');"></span>
+              <span class="menu-row">{{'flow.deposit.analysisResult.modify_address'| translate}}</span>
+            </div>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="this.tableColumns; sticky: true"
+      ></tr>
+
+      <tr
+        mat-row
+        *matRowDef="let row; columns: tableColumns"
+      ></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell border-none" colspan="5">
+          {{ 'flow.deposit.analysisResult.analysisResultTable.notFound' | translate }}
+        </td>
+      </tr>
+
+    </table>
+  </div>
+</div>
+
+<div *ngIf="addressModify">
+  <label class="message-warning-label">
+    <span>{{'flow.deposit.analysisResult.address_change_made' | translate}}</span>
+  </label>
+</div>
+
+<div *ngIf="isShowPaging | async">
+  <cxm-smartflow-list-paginator
+    (page)="onChangePaging($event)"
+    [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    [length]="(nbDocuments | async) || 0"
+  ></cxm-smartflow-list-paginator>
+</div>

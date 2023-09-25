@@ -1,0 +1,30 @@
+<div class="selection-container relative">
+  <div  class="box-item mx-4 bg-white rounded-l-lg text-center">
+    <span class="counter" *ngIf="selectedItems$|async as items">{{items.length}}</span>
+  </div>
+
+  <div *ngIf="data.message">
+    <p class="text-white">{{data.message|translate}}</p>
+  </div>
+
+  <div class='ml-auto mr-4 flex'>
+    <div class="box-item ml-auto mr-12 text-center clickable" (click)="edit()" *ngIf='data.edit'>
+    <span class="cxm-icon text-icon-blue mx-auto" style="
+      background-image: url('assets/icons/pencil.svg');">
+    </span>
+    <!-- <span class="cxm-icon text-icon-blue mx-auto text-2xl"><mat-icon [inline]="true">edit</mat-icon></span> -->
+
+    <span>{{'user.list.selected_user_edit'|translate}}</span>
+  </div>
+
+    <div class="box-item mr-12 text-center clickable" (click)="delete()" *ngIf='data.delete'>
+    <span class="cxm-icon text-icon-red mx-auto" style="
+      background-image: url('assets/icons/delete.svg');"
+    ></span>
+
+    <span>{{'user.list.selected_user_delete'|translate}}</span>
+  </div>
+  </div>
+
+  <span (click)="close()" class="material-icons close-icon clickable">clear</span>
+</div>

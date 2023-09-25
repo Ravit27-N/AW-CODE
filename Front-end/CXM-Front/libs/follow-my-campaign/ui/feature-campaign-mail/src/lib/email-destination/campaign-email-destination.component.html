@@ -1,0 +1,117 @@
+<!-- Breadcrumb -->
+<div style='padding-top: 1px'>
+  <app-ng-dynamic-breadcrumb [bgColor]="'none'" symbol=">"></app-ng-dynamic-breadcrumb>
+</div>
+<!-- ./Breadcrumb -->
+
+
+
+<section [ngSwitch]="componentStage">
+  <!-- Upload file -->
+  <ng-template [ngSwitchCase]="'prepared'">
+    <!-- Card header -->
+    <div class="flex flex-row justify-between mb-4">
+      <div>
+        <cxm-smartflow-page-header>{{'cxmCampaign.followMyCampaign.campaignHeader' | translate | uppercase}}</cxm-smartflow-page-header>
+        <cxm-smartflow-page-sub-header>{{'cxmCampaign.followMyCampaign.import_campaign_subheader' | translate}}</cxm-smartflow-page-sub-header>
+      </div>
+
+      <div class="flex flex-col items-center justify-center mr-12">
+        <cxm-smartflow-toggle-switch [disabled]="true"></cxm-smartflow-toggle-switch>
+      </div>
+    </div>
+    <!-- ./Card header -->
+
+    <!-- Card body -->
+    <section class="upload-panel">
+      <div class="p-4 border-b">
+        <h3 class="mb-4">{{'cxmCampaign.followMyCampaign.import_manuel'|translate}}</h3>
+        <p>{{'cxmCampaign.followMyCampaign.import_email_instruction'|translate}}</p>
+      </div>
+
+      <div class="p-4 border-b">
+        <h3 class="mb-4">{{'cxmCampaign.followMyCampaign.import_action'|translate}}</h3>
+
+
+        <!-- Read CSV file option form -->
+        <form [formGroup]="formGroup">
+          <div class="flex flex-col space-y-2">
+            <!-- CSV has header -->
+            <label for="hasHeader">
+              <mat-checkbox disableRipple="true" formControlName="hasHeader" id='hasHeader'> <span [innerHtml]="'cxmCampaign.followMyCampaign.form_ckb_check_header'|translate|safeHtml"></span></mat-checkbox>
+            </label>
+            <!-- ./CSV has header -->
+
+            <!-- Check duplicated email -->
+            <label for="checkSameMail">
+              <mat-checkbox disableRipple="true" formControlName="checkSameMail" id='checkSameMail'> <span [innerHtml]="'cxmCampaign.followMyCampaign.form_ckb_remove_same_mail'|translate|safeHtml"></span></mat-checkbox>
+            </label>
+            <!-- ./Check duplicated email -->
+          </div>
+        </form>
+        <!-- ./Read CSV file option form -->
+
+      </div>
+
+      <!-- Drop file area -->
+      <div class="pb-4">
+        <cxm-smartflow-csv-uploader-fragement [errorMessage]="errorDownloadMessage" (ondropfile)="handleDropFile($event)" ></cxm-smartflow-csv-uploader-fragement>
+        <div><p class='text-center pt-3 limit-file-size-info'>{{'cxmCampaign.followMyCampaign.limitUploadFileSizeInfo' | translate}} {{getLimitSize(maxLimitUploadSize)}})</p></div>
+      </div>
+      <!-- ./Drop file area -->
+    </section>
+    <!-- ./Card body -->
+  </ng-template>
+  <!-- ./Upload file -->
+
+  <!-- File is uploading -->
+  <ng-template [ngSwitchCase]="'uploading'">
+
+      <div class="flex flex-row justify-between items-end mb-4">
+        <div>
+          <cxm-smartflow-page-header>{{'cxmCampaign.followMyCampaign.campaignHeader' | translate | uppercase}}</cxm-smartflow-page-header>
+        </div>
+      </div>
+
+      <cxm-smartflow-progression-line outsideBorder="none" [innerBackground]="uploadColorFail" [width]="(uploadingProgression$|async) || '0%'"></cxm-smartflow-progression-line>
+  </ng-template>
+  <!-- ./File is uploading -->
+
+  <!-- File is uploaded -->
+  <ng-template [ngSwitchCase]="'uploaded'">
+    <div class="flex flex-row justify-between items-end mb-4">
+      <div>
+        <cxm-smartflow-page-header>{{'cxmCampaign.followMyCampaign.campaignHeader' | translate | uppercase}}</cxm-smartflow-page-header>
+        <cxm-smartflow-page-sub-header>{{'cxmCampaign.followMyCampaign.imported_campaign_header' | translate}} : <span class="text-blue-600 font-bold">{{this.csvFileData?.originalName}}</span></cxm-smartflow-page-sub-header>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <p class="error-message my-2">
+      <span *ngIf="this.csvFileData.invalidCount > 0"
+        class="error-message"
+        [innerHtml]="'cxmCampaign.followMyCampaign.imported_file_has_error_line'|translate:this.csvFileData|safeHtml"></span>
+    </p>
+
+    <h4>{{'cxmCampaign.followMyCampaign.label_email_destination'|translate}} <span class="text-blue-600 font-bold text-base" [class.hidden]="!this.csvFileData">({{'cxmCampaign.followMyCampaign.label_email_destination_count'|translate:this.csvFileData}})</span></h4>
+
+    <div *ngIf="paginationFilters$ | async as itemList">
+      <cxm-smartflow-csv-table (onsort)="sortBy($event)" [columnsInfo]="columns" [showColumn]="displayedColumns" [datasource]="dataSource$" KO="cxmCampaign.followMyCampaign.email_invalid"></cxm-smartflow-csv-table>
+      <div class="mb-8"></div>
+      <cxm-smartflow-list-paginator [pageIndex]="itemList.page" [pageSize]="itemList.pageSize" [length]="itemList.total" (page)="changePagination($event)" ></cxm-smartflow-list-paginator>
+    </div>
+
+    <div class="text-right space-x-4">
+      <cxm-smartflow-common-button [type]="'Alter'" (onclick)="previous()" >{{'cxmCampaign.followMyCampaign.form_button_back_download'|translate}}</cxm-smartflow-common-button>
+      <cxm-smartflow-common-button *ngIf="canProceedNext" (onclick)="next()" >{{ (this.csvFileData.invalidCount > 0 ? 'cxmCampaign.followMyCampaign.form_button_continue' : 'cxmCampaign.followMyCampaign.form_button_next')|translate}}</cxm-smartflow-common-button>
+    </div>
+
+  </ng-template>
+  <!-- ./File is uploaded -->
+</section>
+
+
+
+
+

@@ -1,0 +1,9 @@
+<mat-stepper #stepper [disableRipple]="true" (selectionChange)="attempToNavigate($event)">
+  <ng-template matStepperIcon="edit" let-index="index">
+    {{index+1}}
+  </ng-template>
+
+  <mat-step *ngFor="let s of steps" [completed]="s.completed" [editable]="true">
+    <ng-template matStepLabel><span class="stepper-label" [class.done]="s.active || s.completed" >{{s.name|translate}}</span></ng-template>
+  </mat-step>
+</mat-stepper>

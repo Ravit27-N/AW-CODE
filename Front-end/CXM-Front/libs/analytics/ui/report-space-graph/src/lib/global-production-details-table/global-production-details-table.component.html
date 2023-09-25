@@ -1,0 +1,23 @@
+<mat-card class='relative'>
+  <cxm-smartflow-spinner *ngIf='(loading$ | async)' [inline]='true'></cxm-smartflow-spinner>
+  <mat-card-content>
+    <cxm-smartflow-card-header-title>{{'cxm_analytics.table_production_detail_title' | translate }}</cxm-smartflow-card-header-title>
+
+    <div *ngIf='(loading$ | async) === false'>
+      <table mat-table [dataSource]='datasource'>
+        <ng-container *ngFor='let m of metadata' [matColumnDef]='m.col'>
+          <th mat-header-cell *matHeaderCellDef>{{ m.label | translate }}</th>
+          <td mat-cell *matCellDef='let row;'>
+            <span *ngIf='m.type !== "percent"'>{{ row[m.col] }}</span>
+            <span *ngIf='m.type === "percent"'>
+              {{ row[m.col] | percentFormat }}
+            </span>
+          </td>
+        </ng-container>
+
+        <tr class='header-row-style' mat-header-row *matHeaderRowDef='displayColumns'></tr>
+        <tr mat-row *matRowDef='let row; columns: displayColumns'></tr>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>

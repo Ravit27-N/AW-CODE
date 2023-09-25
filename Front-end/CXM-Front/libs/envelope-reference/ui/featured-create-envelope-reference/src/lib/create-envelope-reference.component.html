@@ -1,0 +1,23 @@
+<div class="flex flex-row justify-between">
+  <div>
+    <app-ng-dynamic-breadcrumb symbol=">"></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{
+      'envelope_reference.create.title' | translate | uppercase
+    }}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header small>{{
+      'envelope_reference.create.subTitle' | translate
+    }}</cxm-smartflow-page-sub-header>
+  </div>
+
+  <div class="flex flex-col justify-end"></div>
+</div>
+<hr class="horizontal-line" />
+<article class="create-profile-container">
+  <h2 class="create-profile-page-title">
+    {{ 'envelope_reference.create.description' | translate }}
+  </h2>
+  <cxm-smartflow-envelope-reference-form
+    (cancelForm)="cancelForm()"
+  >
+  </cxm-smartflow-envelope-reference-form>
+</article>

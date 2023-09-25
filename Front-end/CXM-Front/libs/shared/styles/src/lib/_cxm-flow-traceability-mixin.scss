@@ -1,0 +1,51 @@
+@mixin btn-drop-down-criteria($min-width) {
+  min-width: $min-width;
+  height: 40px;
+  padding-left: 16px;
+  padding-right: 10px;
+  transition: all 0.3s ease;
+
+  /* UI Properties */
+  background: var(--unnamed-color-3b82f6) 0 0% no-repeat padding-box;
+  box-shadow: 0 3px 6px #9DB2BF1A;
+  border-radius: 20px;
+  opacity: 1;
+}
+
+@mixin flow-status-panel($background, $color) {
+  // style background
+  @apply px-4 text-center relative;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background: $background;
+  border-radius: 10px;
+
+  // style text
+  color: $color;
+  font: normal normal normal 14px/17px Rubik;
+  letter-spacing: 0;
+}
+
+@mixin for-size($size) {
+  @if ($size) == laptop {
+    @media (min-width: 1280px) {
+      @content;
+    }
+  } @else if $size == tablet {
+    @media (max-width: 1280px) {
+      @content
+    }
+  } @else if $size == desktop-up {
+    @media (min-width: 1365px) {
+      @content;
+    }
+  } @else if $size == big-desktop-up {
+    @media (min-width: 1765px) {
+      @content;
+    }
+  } @else if $size == xl-desktop-up {
+    @media (min-width: 2065px) {
+      @content;
+    }
+  }
+}

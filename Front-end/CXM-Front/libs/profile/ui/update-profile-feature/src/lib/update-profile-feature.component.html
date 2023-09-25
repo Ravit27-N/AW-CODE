@@ -1,0 +1,11 @@
+<div id="modify-profile">
+  <cxm-smartflow-profile-header type='modifyProfile'>
+    <cxm-smartflow-rich-button *ngIf="canDeleteProfile$ | async" [isRounded]='true'
+                               [type]='"error"'
+                               (click)="onDeleteProfile()"
+                               [class]="'btn-delete'">
+      {{'button.delete' | translate}}
+    </cxm-smartflow-rich-button>
+  </cxm-smartflow-profile-header>
+  <cxm-smartflow-user-profile-permission-form [isEditMode]='true'></cxm-smartflow-user-profile-permission-form>
+</div>

@@ -1,0 +1,39 @@
+<div
+  class="common-input-selection__panel"
+  (click)="setCustomStyle()"
+  cxmSmartflowCxmTooltip
+  [tooltipText]="errorMsg"
+  [showTooltip]="isShowError"
+  cdkDropList (cdkDropListDropped)='order($event);'
+>
+  <ng-container *ngFor="let item of selectionCriteria">
+    <div class="source-selected" cdkDrag>
+      {{ item.value || '' }}
+      <mat-icon (click)="remove(item.key)">close</mat-icon>
+    </div>
+  </ng-container>
+  <button
+    class="add-source-item"
+    (menuOpened)='mainMenuOpen()' (menuClosed)='mainMenuClose()'
+    [matMenuTriggerFor]="inputSelectionDialog"
+    [class.error]="isShowError"
+  >
+    {{ addSourceBtn }}
+  </button>
+</div>
+<mat-menu #inputSelectionDialog>
+  <div class="input-selection__list-item__panel">
+    <div
+      class="input-selection__item"
+      *ngFor="let item of getDropdownItems()"
+      [class.active]="getIsActive(item.key) || datasource.length === 1"
+      (click)="select(item.key)"
+      [title]="item.value"
+    >
+      {{ item.value }}
+    </div>
+    <div class="no-data-present" *ngIf="datasource.length === 0">
+      {{ 'user.form.button.noAnyService' | translate }}
+    </div>
+  </div>
+</mat-menu>

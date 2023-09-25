@@ -1,0 +1,41 @@
+<div class='custom-drop-filter-user'>
+<!--  panel button-->
+  <span class='flex align-middle items-center btn-users-panel justify-between ' [matMenuTriggerFor]='filterMenu'
+        (menuOpened)='mainMenuOpen()' (menuClosed)='mainMenuClose()'>
+    <span class="flex items-center flex-row align-middle">
+      <img src="assets/icons/utilisateurs.svg" alt="utilisateurs or user icon">
+      <span [class.highlight]="useUserFilter" class='btn-dropdown-label'>{{'filterCriteria.user' | translate}}</span>
+    </span>
+    <mat-icon class='expand_more'>expand_more</mat-icon>
+  </span>
+<!--  end panel button-->
+
+<!--  toggle button-->
+  <mat-menu #filterMenu='matMenu' class='custom-user-filter-drop-down'>
+    <!--    title & reset button-->
+    <section>
+      <button mat-menu-item style='width: 100%; display: flex; justify-content: space-between'
+              (click)='$event.stopPropagation()' [disableRipple]='true'>
+        <span>
+          <span class='label-mode'>{{'filterCriteria.user' | translate}}</span>
+          <span class="sort-icon-panel">
+            <span class="sort-icon-{{sortDirection}}" (click)='changeDirection()'></span>
+          </span>
+        </span>
+        <span class='btn-reset' (click)='reset()'>{{'filterCriteria.reset' | translate}}</span>
+      </button>
+    </section>
+    <!--    end title & reset button-->
+
+    <button mat-menu-item class='custom-category-item' (click)='$event.stopPropagation()' [disableRipple]='true'>
+      <div class='category-panel'>
+        <div class='category-box'>
+          <cxm-smartflow-multi-check [subItems]='(users$ | async) || []'
+                                     (itemCheckEvent)='itemCheckEvent($event)'></cxm-smartflow-multi-check>
+        </div>
+      </div>
+    </button>
+  </mat-menu>
+<!--  end toggle button-->
+</div>
+

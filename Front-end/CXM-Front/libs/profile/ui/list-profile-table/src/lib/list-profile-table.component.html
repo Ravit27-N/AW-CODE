@@ -1,0 +1,116 @@
+<div class='list-profile-table-wrapper common-cxm-table-container'>
+  <table
+    matSortDisableClear
+    mat-table
+    matSort
+    [dataSource]='dataSource$'
+    (matSortChange)='sortEvent($event)'
+    [matSortActive]="sortAction"
+    [matSortDirection]="sortDirection"
+  >
+
+    <ng-container matColumnDef='name'>
+      <th id='name' class="col-name" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{
+        'profile.list.table.header.name' | translate
+        }}
+      </th>
+
+      <td id="_{{row?.id}}" mat-cell *matCellDef='let row; let i = index;' class='relative text-truncate'
+          (mousemove)="showTooltip('#_' + row?.id, row?.name)"
+          [title]="showTooltip('#_' + row?.id, row?.name)">
+        {{row?.name}}
+      </td>
+    </ng-container>
+
+    <!-- Display name container -->
+    <ng-container matColumnDef='displayName'>
+      <th id='displayName' class="col-role" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{
+        'profile.list.table.header.displayName' | translate
+        }}
+      </th>
+
+      <td id="_role_{{row?.id}}" mat-cell *matCellDef='let row; let i = index;' class='relative text-truncate'
+          (mousemove)="showTooltip('#_role_' + row?.id, row?.displayName)"
+          [title]="showTooltip('#_' + row?.id, row?.displayName)">
+        {{row?.displayName}}
+      </td>
+    </ng-container>
+
+    <!-- Modified container -->
+    <ng-container matColumnDef='lastModified'>
+      <th id='modified' class="col-modified" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{
+        'profile.list.table.header.modified' | translate
+        }}
+      </th>
+      <td class="cursor-pointer" mat-cell *matCellDef='let row'>
+        {{row?.modifiedOn | date: 'dd/MM/yyyy HH:mm:ss'}}
+      </td>
+    </ng-container>
+
+    <!-- Client name container -->
+    <ng-container *ngIf="this.isAdmin$ | async" matColumnDef='clientName'>
+      <th id='clientName' class="col-clientName" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{
+        'profile.list.table.header.clientName' | translate
+        }}
+      </th>
+      <td class="cursor-pointer" mat-cell *matCellDef='let row'>
+        {{row?.clientName}}
+      </td>
+    </ng-container>
+
+    <!-- Created container -->
+    <ng-container matColumnDef='createdAt'>
+      <th id='created' class="col-created" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{
+        'profile.list.table.header.created' | translate
+        }}
+      </th>
+      <td class="cursor-pointer" mat-cell *matCellDef='let row'>
+        {{row?.createdOn | date: 'dd/MM/yyyy HH:mm:ss'}}
+      </td>
+    </ng-container>
+
+    <!-- Actions container -->
+    <ng-container matColumnDef='actions'>
+      <th id='actions' mat-header-cell *matHeaderCellDef class='col-action overflow-hidden'>
+        {{
+        'profile.list.table.header.actions' | translate
+        }}
+      </th>
+      <td mat-cell *matCellDef='let row'>
+        <span (click)='navigateToModify(row?.name, row?.id, row?.createdBy, row?.clientId)'
+              *ngIf='row?.can?.includes(canEdit)'
+              class="consult-action"> {{ 'profile.list.table.consult' | translate }}</span>
+      </td>
+
+    </ng-container>
+
+    <tr
+      mat-header-row
+      *matHeaderRowDef='this.tableColumns; sticky: true'
+    ></tr>
+
+    <tr
+      mat-row
+      *matRowDef='let row; columns: tableColumns'
+    ></tr>
+
+    <tr class='mat-row border-none' *matNoDataRow></tr>
+  </table>
+</div>
+
+<!-- Pagination -->
+<div class="mt-6">
+  <cxm-smartflow-list-paginator
+    *ngIf='dataSource$ |async as items'
+    (page)='paginationChange($event)'
+    [withCriteria]='isHasFilter'
+    [pageIndex]='pageIndex'
+    [pageSize]='pageSize'
+    [length]='total'>
+  </cxm-smartflow-list-paginator>
+</div>

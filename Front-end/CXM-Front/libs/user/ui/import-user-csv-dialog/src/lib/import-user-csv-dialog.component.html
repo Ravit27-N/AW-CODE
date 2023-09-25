@@ -1,0 +1,34 @@
+<div class='confirmation-popup-container' *ngIf='config.status === "done"'>
+  <div class='w-6 h-6 ml-auto cursor-pointer'>
+    <mat-icon class="icon-blue" (click)='closeDialog()'>close</mat-icon>
+  </div>
+
+  <div class='content text-center space-y-4 mb-5' [class.success--without-error]='config.content?.errorCount === 0'>
+
+    <!-- LOGO -->
+    <div class='logo' *ngIf='config.content?.errorCount'>
+      <div class="mx-auto h-14 w-14">
+        <img class="w-full" src="assets/icons/alert-red.png" alt="warning">
+      </div>
+    </div>
+
+    <!-- DATA -->
+    <div class='data'>
+      <span [innerHTML]='getTranslation(config.content?.errorCount === 0? "user.all_users_have_been_created" : "user.not_all_users_could_be_created") | async'></span>
+      <div class='text-left content__value' style='padding-left: 75px;'>
+        <span [innerHTML]='getTranslation("user.number_of_line_created", config.content?.successCount?.toString()) | async'></span>
+        <span *ngIf='config.content?.errorCount' [innerHTML]='getTranslation("user.number_of_line_error", config.content.errorCount?.toString()) | async'></span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class='flex flex-row justify-center'>
+    <cxm-smartflow-rich-button [isRounded]='true' style='min-width: 180px !important; padding: 0.45rem 1rem !important;' (click)='closeDialog()'>{{ "user.close_btn" | translate }}</cxm-smartflow-rich-button>
+  </div>
+</div>
+
+<div class='confirmation-popup-loader' *ngIf='config.status === "in_progress"'>
+  <mat-spinner class="custom-spinner"></mat-spinner>
+</div>

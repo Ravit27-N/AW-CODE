@@ -1,0 +1,21 @@
+<div>
+      
+  <h1>{{ 'demo.title' | translate }}</h1>
+
+  <!-- translation: translation pipe -->
+  <p>{{ 'demo.text' | translate }}</p>
+
+  <!-- translation: directive (key as attribute)-->
+  <p [translate]="'demo.text'"></p>
+  <!-- translation: directive (key as content of element) -->
+
+</div>
+
+
+<div class="box-action">
+  <cxm-smartflow-button [backgroundColor]="'#0072BB'" [label]=modelButton.return [labelColor]="'#fff'" [borderRadius]="'48px'">
+  </cxm-smartflow-button>
+  <cxm-smartflow-button [backgroundColor]="'#0072BB'" [label]=modelButton.next [labelColor]="'#fff'" [borderRadius]="'48px'"
+    (onClick)="onNext()"></cxm-smartflow-button>
+</div>
+

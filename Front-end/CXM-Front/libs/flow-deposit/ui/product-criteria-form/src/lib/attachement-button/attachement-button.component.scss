@@ -1,0 +1,26 @@
+span {
+  display: inline-block;
+  max-width: 180px;
+  width: 180px;
+  height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+input {
+  background: #FFFFFF 0 0 no-repeat padding-box;
+  // border: 0.5px solid #8194B4;
+  // border-radius: 5px;
+  opacity: 1;
+  @apply border-solid p-2;
+  outline: none;
+}
+
+.btn-browse {
+  background: #3B82F6 0 0 no-repeat padding-box;
+  border-radius: 5px;
+}
+
+.icon-center {
+  line-height: 40px;
+}

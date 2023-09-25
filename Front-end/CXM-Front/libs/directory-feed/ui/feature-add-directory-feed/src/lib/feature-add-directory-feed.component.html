@@ -1,0 +1,91 @@
+<article class='flex flex-row justify-between'>
+
+  <header>
+    <app-ng-dynamic-breadcrumb symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{ 'directory.directory_feed_add_one_line_title' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header small>{{ 'directory.directory_feed_add_one_line_subtitle' | translate}}</cxm-smartflow-page-sub-header>
+  </header>
+</article>
+<mat-divider class="common-mat-divider"></mat-divider>
+<div class="flex flex-row">
+  <h2 class="font-bold pb-3">{{'directory.insert_directory_feed.field_to_complete' | translate}}</h2>
+</div>
+<section class="form_directory_feed">
+  <form class="directory_feed_contain space-y-3 py-5" [formGroup]="formGroupDirectory">
+
+    <div class="mx-auto p-5 part_one">
+      <div *ngFor="let data of directoryFiled">
+
+        <section class="flex control-group items-center directory_feed_item">
+          <div class="marks_key">
+            <span class='material-icons-outlined draggable-icon' *ngIf="data.key">key</span>
+          </div>
+          <label class='label_form'>{{data.field}}</label>
+          <div class="input-form" *ngIf="data.type.toLowerCase() === 'string'">
+            <input
+              [formControlName]="data.id"
+              type="text"
+              cxmSmartflowCxmTooltip
+              [tooltipText]='getErrorMessage((formGroupDirectory.controls[data.id]?.errors?.message || "") | translate,data.option?.length,data?.id, data.option?.mask)'
+              [showTooltip]='formGroupDirectory.controls[data.id]?.errors !== null && (error$ | async)'
+            >
+          </div>
+
+          <div class="input-form" *ngIf="data.type.toLowerCase() === 'number'">
+            <input
+              [formControlName]="data.id"
+              class="input_type_number"
+              type="number"
+              cxmSmartflowCxmTooltip
+              [tooltipText]='getErrorMessage((formGroupDirectory.controls[data.id]?.errors?.message || "") | translate,data.option?.length,data?.id , data.option?.mask)'
+              [showTooltip]='formGroupDirectory.controls[data.id]?.errors !== null && (error$ | async)'
+            >
+          </div>
+
+          <div class="input-form" *ngIf="data.type.toLowerCase() === 'integer'">
+            <input
+              [formControlName]="data.id"
+              class="input_type_number"
+              type="number"
+              cxmSmartflowCxmTooltip
+              [tooltipText]='getErrorMessage((formGroupDirectory.controls[data.id]?.errors?.message || "") | translate,data.option?.length,data?.id, data.option?.mask)'
+              [showTooltip]='formGroupDirectory.controls[data.id]?.errors !== null && (error$ | async)'
+            >
+          </div>
+
+          <div class="field_checkbox" *ngIf="data.type.toLowerCase() === 'boolean'">
+            <cxm-smartflow-common-checkbox  [formControlName]="data.id"></cxm-smartflow-common-checkbox>
+          </div>
+
+          <div class="field_date_time" *ngIf="data.type.toLowerCase() === 'date'">
+            <cxm-smartflow-cxm-date-time-picker
+              (dateTimeChange)='this.dateTimeChange($event,data.id)'
+              [accessTimeSecondPicker]="true"></cxm-smartflow-cxm-date-time-picker>
+          </div>
+          <div class="marks">
+            <span style="color:red" *ngIf="data.require">*</span>
+          </div>
+
+        </section>
+      </div>
+
+
+    </div>
+
+    <div class="flex flex-col p-5 part_two">
+      <div class="flex w-full">
+        <span class='material-icons-outlined draggable-icon marks'>key</span>
+        <span class="marks_text ml-5">{{ 'directory.insert_directory_feed.directory_key' | translate}}</span>
+      </div>
+      <div class="flex w-full mt-3">
+        <span class="marks" style="color:red">*</span>
+        <span class="marks_text ml-5">{{ 'directory.insert_directory_feed.mandatory_field' | translate}}</span>
+      </div>
+    </div>
+  </form>
+</section>
+
+<div class="space-x-4 mt-6 flex justify-end" >
+  <cxm-smartflow-rich-button (click)="cancel()" [isRounded]='true' >{{ 'directory.feed.list.button.cancel' | translate}}</cxm-smartflow-rich-button>
+  <cxm-smartflow-rich-button (click)="submit()"  >{{'directory.feed.list.button.insert' | translate}}</cxm-smartflow-rich-button>
+</div>

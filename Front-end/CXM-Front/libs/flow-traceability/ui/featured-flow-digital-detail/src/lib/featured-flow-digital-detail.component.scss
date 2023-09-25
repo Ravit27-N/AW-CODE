@@ -1,0 +1,121 @@
+@import 'flow-traceability-global-styles';
+
+cxm-smartflow-rich-button {
+  margin-left: 10px;
+}
+
+main.content {
+  @apply mt-6;
+  border-top: 1px solid #a8abbc;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ===== Information Board ==== */
+.information-board-wrapper {
+
+  h4 {
+    color: var(--unnamed-color-1a214d);
+    text-align: left;
+    font: normal normal 500 16px/19px Rubik;
+    margin: 15px 0;
+  }
+
+  height: 144px;
+}
+
+/* ==== Deliver-ability rate ==== */
+.deliverability-rate {
+  margin-top: 90px;
+
+  h4 {
+    color: var(--unnamed-color-1a214d);
+    text-align: left;
+    font: normal normal 500 16px/19px Rubik;
+    margin: 15px 0;
+  }
+
+  height: 182px;
+}
+
+/*==== Campaign rate ====*/
+.campaign-rate {
+
+  height: 383px;
+
+  h4 {
+    color: var(--unnamed-color-1a214d);
+    text-align: left;
+    font: normal normal 500 16px/19px Rubik;
+    margin: 15px 0;
+  }
+
+}
+
+.aside-left {
+
+  @include for-size(laptop) {
+    width: calc(50% - 35px);
+  }
+
+  @include for-size(desktop-up) {
+    width: 405px;
+  }
+
+  @include for-size(big-desktop-up) {
+    width: calc(40% - 35px);
+  }
+
+  @include for-size(xl-desktop-up) {
+    width: calc(40% - 35px);
+  }
+
+  @include for-size(tablet) {
+    width: calc(40% - 35px);
+  }
+}
+
+.aside-right {
+  @include for-size(laptop) {
+    width: calc(50% - 35px);
+  }
+
+  @include for-size(desktop-up) {
+    width: 763px;
+  }
+
+  @include for-size(big-desktop-up) {
+    width: calc(60% - 35px);
+  }
+
+  @include for-size(xl-desktop-up) {
+    width: calc(60% - 35px);
+  }
+
+  @include for-size(tablet) {
+    width: calc(60% - 35px);
+  }
+}
+
+.action-button {
+  @apply flex justify-end;
+  margin-top: 58px;
+}
+
+@media screen and (min-height: 967px)  {
+  .campaign-rate {
+    height: 453px !important;
+  }
+
+  .deliverability-rate {
+    height: 250px;
+  }
+
+  .action-button {
+    margin-top: 63px;
+  }
+
+  .information-board-wrapper .wrapper {
+    height: 150px !important;
+  }
+}

@@ -1,0 +1,10 @@
+<div class='reject-mail-container'>
+
+  <div class='header'><mat-icon (click)='dialogRef.close(false)'>close</mat-icon></div>
+
+  <div class='content'>
+    <p><b>{{data.totalRejected}} {{'cxmCampaign.followMyCampaign.recipientSelection.nRejectPopUp.addressReject' | translate }} </b> {{'cxmCampaign.followMyCampaign.recipientSelection.nRejectPopUp.line' | translate }} {{data.lineRejected}}</p>
+  </div>
+
+  <div class='action'><button (click)='this.dialogRef.close(false)'>Close</button></div>
+</div>

@@ -1,0 +1,80 @@
+<cxm-smartflow-spinner *ngIf='showSpinner.value'></cxm-smartflow-spinner>
+
+<div class='container'>
+
+  <div class='box-cover'>
+    <img src='assets/images/cover5.jpg' alt='Cover' height='auto' />
+  </div>
+
+  <div class='box-login relative bg-white md:bg-transparent'>
+    <mat-card class='m-auto md:bg-none'>
+
+      <mat-card-title class="text-center">
+        <strong>{{ 'login.label' | translate }}</strong>
+      </mat-card-title>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-content>
+        <form [formGroup]='this.signIn' (ngSubmit)='this.login()'>
+          <div class='form-control'>
+            <mat-label>
+              <strong>{{ 'login.form.username.label' | translate }}</strong>
+            </mat-label>
+            <br />
+            <input type='text' id='username' formControlName='username' (keyup.enter)='this.login()' />
+            <mat-error *ngIf=" this.signIn.controls['username']?.touched && this.signIn.controls['username']?.invalid">
+              {{ 'login.form.username.error' | translate }}
+            </mat-error>
+          </div>
+
+          <div class='form-control'>
+            <mat-label>
+              <strong> {{ 'login.form.password.label' | translate }}</strong>
+            </mat-label>
+
+            <div class="relative input-ctr">
+              <input
+              id='password'
+              formControlName='password'
+              [type]=" showPassword ?  'text' : 'password'"
+              (keyup.enter)='this.login()'
+            />
+            <mat-icon (click)="togglerShowPw()" *ngIf="showPassword && getPassword.length > 0" class="showhide-icon">visibility_off</mat-icon>
+            <mat-icon (click)="togglerShowPw()" *ngIf="!showPassword && getPassword.length > 0" class="showhide-icon">visibility</mat-icon>
+            </div>
+
+            <mat-error
+              *ngIf="
+                this.signIn.controls['password']?.touched &&
+                this.signIn.controls['password']?.invalid
+              "
+            >
+              {{ 'login.form.password.error' | translate }}
+            </mat-error>
+          </div>
+
+          <div class='button-login'>
+            <cxm-smartflow-button
+              [primary]='true'
+              [backgroundColor]="'#0072bb'"
+              label="{{ 'login.button.login' | translate }}"
+              [width]="'80%'"
+              [fontSize]="'16px'"
+              [disable]='this.signIn.invalid'
+              (onClick)='this.login()'
+            >
+            </cxm-smartflow-button>
+          </div>
+
+          <div class='forgetPass'>
+            <a routerLink="/forgot-password" class='text-blue-500'>
+              {{ 'login.form.forgotPassword' | translate }}
+            </a>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

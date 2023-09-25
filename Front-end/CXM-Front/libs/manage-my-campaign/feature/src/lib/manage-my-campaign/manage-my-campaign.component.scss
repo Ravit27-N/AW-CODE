@@ -1,0 +1,41 @@
+.manage-compaign-container{
+  width: 90%;
+  margin: auto;
+}
+
+.manage-compaign-container .header{
+  width: 100%;
+  padding: 0px 20px;
+  margin: auto;
+}
+
+.manage-compaign-container > .content{
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+}
+
+.content .sidebar{
+  width: 15%;
+  padding: 0px 20px;
+}
+
+.content .sub-content{
+  width: 85%;
+
+}
+
+.pageTitle{
+  color: #1a214d;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.pageTitle {
+  text-align: left;
+  font: normal normal 800 24px/29px Montserrat;
+  letter-spacing: 0;
+  color: #1A214D;
+  text-transform: uppercase;
+  opacity: 1;
+}

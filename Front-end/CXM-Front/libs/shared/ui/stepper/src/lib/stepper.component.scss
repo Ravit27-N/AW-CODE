@@ -1,0 +1,109 @@
+
+mat-stepper {
+  min-width: 450px;
+}
+
+::ng-deep {
+  .mat-horizontal-content-container {
+    display:  none !important;
+    padding: 0;
+    margin: 0;
+  }
+
+  .mat-step-header {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .mat-horizontal-stepper-header:not(:last-child) {
+    padding: 0 16px 0 16px !important;
+  }
+
+  .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+    background-color: #0060A5 !important;
+  }
+
+  .mat-stepper-horizontal {
+    background-color: transparent !important;
+  }
+
+  .mat-stepper-horizontal-line {
+    border-top-width: 4px;
+    height: 20px !important;
+    margin: 0 -50px !important;
+  }
+
+  .mat-step-icon {
+    border-radius: 0.25rem !important;
+  }
+
+  .stepper-label, .mat-step-icon {
+    font-weight: 500;
+    color: rgba(128, 128, 128, 0.3);
+  }
+
+  .stepper-label.done {
+    color: #0060A5 !important;
+  }
+
+  .mat-step-icon {
+    background: #6c6c6c !important;
+  }
+
+  // .mat-stepper-horizontal-line {
+  //   border-top-color: #0060A5 !important;
+
+  // }
+
+  // mat-step-header[ng-reflect-selected="true"] + .mat-stepper-horizontal-line {
+  //   border-top-color: gray !important;
+
+  // }
+}
+
+:host {
+  ::ng-deep {
+
+    // reset stepper style as default
+    .mat-step-header {
+      .mat-step-icon {
+        background: #6c6c6c !important;
+      }
+
+      .stepper-label {
+        color: #cfcfcf !important;
+      }
+
+    }
+
+    .mat-step-header:hover {
+      cursor: context-menu;
+      background: none !important;
+    }
+
+    .cdk-focused {
+      background: transparent !important;
+    }
+
+    // active step
+    .active-step {
+      .mat-step-icon {
+        background: #0060a5 !important;
+      }
+
+      .stepper-label {
+        color: #0c63a6 !important;
+      }
+    }
+
+    .active-step:hover, .can-move:hover {
+      cursor: pointer;
+      background: rgba(199, 199, 199, 0.31) !important;
+    }
+
+    // active line
+    .active-line {
+      border-top: 2px solid #0c63a6 !important;
+    }
+  }
+}

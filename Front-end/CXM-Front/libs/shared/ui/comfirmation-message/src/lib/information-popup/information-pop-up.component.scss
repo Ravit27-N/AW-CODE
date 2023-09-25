@@ -1,0 +1,57 @@
+.information-pop-up .mat-dialog-container{
+  padding: 0 0 30px !important;
+  background-color: #EDEDED;
+  overflow:hidden;
+}
+
+.box-title{
+  direction: rtl;
+
+  .material-icons{
+    font-size: 30px;
+    cursor: pointer;
+    color: #3B82F6;
+  }
+}
+
+.title{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.message{
+  color: black;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.information-container {
+  display: grid;
+  grid-auto-flow: row;
+  grid-row-gap: 20px;
+  margin-bottom: 35px;
+  margin-left: 20px;
+
+  .information-content {
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: 10px;
+  }
+
+  .information-message-container {
+
+    .information-message {
+      font-size: 14px;
+      border: solid 1.5px rgb(129, 148, 180);
+    }
+
+    div {
+      padding-left: 15px;
+      img {
+        -webkit-tap-highlight-color: transparent;
+      }
+    }
+  }
+}
+
+

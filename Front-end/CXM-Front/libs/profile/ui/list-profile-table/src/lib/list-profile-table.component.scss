@@ -1,0 +1,42 @@
+@import 'cxm-profile-global-style';
+
+.list-profile-table-wrapper {
+  background: #FFFFFF 0 0 no-repeat padding-box;
+  box-shadow: 0 1px 9px #8DC2E548;
+  border-radius: 10px;
+}
+
+.col-name, .col-role, .col-modified, .col-created, .clientName {
+  width: 20%;
+  overflow: hidden;
+}
+
+.col-action{
+  width: 110px;
+}
+
+.text-truncate {
+  @apply pr-3;
+  max-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.consult-action {
+  @apply cursor-pointer;
+  color: var(--unnamed-color-3b82f6);
+  text-align: left;
+  font: normal normal normal 14px/17px Rubik;
+  letter-spacing: 0;
+}
+
+th.mat-header-cell:last-of-type {
+  @apply pl-7;
+  border-left: 2px solid #0072BB;
+}
+
+.mat-cell:last-child {
+  @apply pl-7;
+  border-left: 2px solid #0072BB;
+}

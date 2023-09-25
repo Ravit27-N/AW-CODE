@@ -1,0 +1,139 @@
+@mixin for-size($size) {
+  @if ($size) == laptop {
+    @media (min-width: 1280px) {
+      @content;
+    }
+  } @else if $size == tablet {
+    @media (max-width: 1280px) {
+      @content;
+    }
+  } @else if $size == desktop-up {
+    @media (min-width: 1365px) {
+      @content;
+    }
+  } @else if $size == big-desktop-up {
+    @media (min-width: 1765px) {
+      @content;
+    }
+  } @else if $size == xl-desktop-up {
+    @media (min-width: 2065px) {
+      @content;
+    }
+  }
+}
+
+cxm-smartflow-rich-button {
+  margin-left: 10px;
+  position: relative;
+}
+
+img {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+}
+
+main {
+  @apply mt-6;
+  border-top: 1px solid #a8abbc;
+  height: 410px;
+  padding: 23px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-button {
+  margin-top: 4px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.event-history-container {
+  h4 {
+    color: var(--unnamed-color-1a214d);
+    text-align: left;
+    font: normal normal 500 16px/19px Rubik;
+    letter-spacing: 0;
+    margin-bottom: 15px;
+  }
+
+  .wrapper {
+    height: 325px !important;
+    overflow-y: auto;
+  }
+
+  @include for-size(laptop) {
+    width: calc(50% - 35px);
+  }
+
+  @include for-size(desktop-up) {
+    width: 391px;
+  }
+
+  @include for-size(big-desktop-up) {
+    width: calc(40% - 35px);
+  }
+
+  @include for-size(xl-desktop-up) {
+    width: calc(40% - 35px);
+  }
+
+  @include for-size(tablet) {
+    width: calc(40% - 35px);
+  }
+}
+
+.flow-info-container {
+  height: 325px;
+
+  h4 {
+    color: var(--unnamed-color-1a214d);
+    text-align: left;
+    font: normal normal 500 16px/19px Rubik;
+    letter-spacing: 0;
+    margin-bottom: 15px;
+  }
+
+  @include for-size(laptop) {
+    width: 50%;
+  }
+
+  @include for-size(desktop-up) {
+    width: 785px;
+  }
+
+  @include for-size(big-desktop-up) {
+    width: 60%;
+  }
+
+  @include for-size(xl-desktop-up) {
+    width: 60%;
+  }
+
+  @include for-size(tablet) {
+    width: 60%;
+  }
+}
+
+@media screen and (min-height: 967px) {
+  .event-history-container .wrapper {
+    height: 435px !important;
+  }
+
+  .flow-info-container .wrapper {
+    height: 435px !important;
+  }
+
+  .action-button {
+    margin-top: 115px !important;
+  }
+}
+
+.remove-border {
+  border: none !important;
+  padding: 16px 0 !important;
+}

@@ -1,0 +1,21 @@
+<div class="flex justify-between box-title">
+  <span class="material-icons" (click)='close()'>
+    clear
+  </span>
+</div>
+
+<div mat-dialog-content class="box-content">
+  <div class="information-container">
+    <h2 class="title">{{this.informationData?.title}}</h2>
+    <div class="information-content py-2">
+      <p class="message py-2">{{this.informationData?.label}}</p>
+      <div class="information-message-container flex flex-row justify-start items-center">
+        <span class="p-2 pr-3 rounded information-message">{{this.informationData?.message}}</span>
+        <div class="ml-2">
+          <img (click)="copyClipboard(this.informationData?.message)" class="cursor-pointer" src='assets/icons/copy-clipboard.svg' alt='copy clipboard icon'>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

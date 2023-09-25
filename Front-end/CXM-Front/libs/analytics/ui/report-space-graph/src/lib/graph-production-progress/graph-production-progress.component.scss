@@ -1,0 +1,93 @@
+mat-card {
+  height: 280px;
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+  padding-bottom: 2rem;
+  border-radius: 0.75rem;
+  background: #fff;
+  color: rgba(0,0,0,.87);
+}
+
+:host ::ng-deep {
+  .reading-block {
+    display: none;
+  }
+
+  .indicator-overlay {
+    z-index: 999 !important;
+  }
+
+}
+
+.gauge-label {
+  top: 44%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 15px;
+  color: var(--unnamed-color-2e2e2e);
+}
+
+.gauge-title {
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: var(--unnamed-color-2e2e2e);
+  font-weight: 500;
+}
+
+::ng-deep .graph-production-tooltip {
+  white-space: pre-line !important;
+  text-align: center !important;
+  font-size: 12px !important;
+  color: rgba(255, 255, 255) !important;
+  background-color: rgba(0,0,0,.7) !important;
+}
+
+.gauge-component {
+  position: relative;
+}
+
+.gauge-component::before {
+  width: 0;
+  height: 0;
+  content: '';
+  position: absolute;
+  margin-top: -0.88rem;
+  margin-left: -0.625rem;
+  border-left: 0.625rem solid transparent;
+  border-right: 0.625rem solid transparent;
+  border-top: 0.625rem solid rgba(0,0,0,.7);
+  color: rgba(0,0,0,.7);
+  z-index: 1;
+}
+
+.gauge-component::after {
+  content:'';
+  position: absolute;
+  top: -1.25rem;
+  left: -0.625rem;
+  width: 1.25rem;
+  height: auto;
+  text-align: center;
+  font-size: .8em;
+  color: var(--unnamed-color-ffffff);
+  background-color: rgba(0,0,0,.7);
+  padding: .2em .4em;
+  white-space: normal;
+  z-index: -1;
+  box-shadow: -0.0625rem -0.0625rem #00000080,-0.125rem -0.125rem #00000060,-3px -3px #00000040,-4px -4px #00000020,-5px -5px #00000010,-6px -6px #00000005,-7px -7px #00000002,-8px -8px #00000001;}
+
+
+::ng-deep .chart-contain {
+  canvas {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .gauge-label {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

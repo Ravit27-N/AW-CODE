@@ -1,0 +1,16 @@
+
+.storybook-button {
+  border: 0;
+  border-radius: 3em;
+  display: inline-block;
+  line-height: 1;
+}
+.storybook-link-button {
+  color: #0072bb;
+  background-color: white;
+  box-shadow:#0072bb 0px 0px 0px 2px inset;
+}
+.storybook-link-button:hover{
+  color: white;
+  background-color: #0072bb;
+}

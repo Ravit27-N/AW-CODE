@@ -1,0 +1,39 @@
+<div class="flex flex-row justify-between">
+  <div>
+    <app-ng-dynamic-breadcrumb symbol=">"></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{ 'cxm_setting.list_title' | translate | uppercase }}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header small>{{ 'cxm_setting.list_sub_title' | translate }}</cxm-smartflow-page-sub-header>
+  </div>
+
+  <div class="flex flex-col justify-end self-center" style='align-self: center'>
+    <cxm-smartflow-header-button icon='add' (click)="createUserEvent()" width="204px" height="48px" *ngIf="isCanCreate">
+      {{ 'cxm_setting.add_resource_btn' | translate }}
+      </cxm-smartflow-header-button>
+  </div>
+</div>
+
+<mat-divider class="common-mat-divider"></mat-divider>
+
+<!-- Filter box-->
+<section class='flex mb-8 mt-6 justify-between' id='flow-filter-criteria-panel'>
+  <cxm-smartflow-filter-box [filterBoxName]='"cxm_setting.type" | translate'
+                            [filterBoxDataSource]='resourceCriteria$ | async'
+                            [selectedItemIds]="[]"
+                            [scaleIcon]='0.8'
+                            filterBoxIconUrl='assets/icons/canal.svg'
+                            (filterChange)='filterClientBoxChange($event)'>
+
+  </cxm-smartflow-filter-box>
+
+  <cxm-smartflow-search-box [placeholder]="'input.placeholder.search' | translate"
+                            [isError]='isFilterBoxError$ | async'
+                            (searchBoxChange)='searchTermChanged($event)'
+                            [value]='(searchBoxValue$ | async) || ""'
+                            [errorMsg]="'cxmCampaign.followMyCampaign.list.tableHeader.notFound' | translate">
+  </cxm-smartflow-search-box>
+</section>
+<!-- Filter box-->
+
+<section class="common-mt-table">
+  <cxm-smartflow-feature-list-resource-table></cxm-smartflow-feature-list-resource-table>
+</section>

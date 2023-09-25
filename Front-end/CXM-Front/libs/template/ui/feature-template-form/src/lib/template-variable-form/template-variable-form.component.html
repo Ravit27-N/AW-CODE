@@ -1,0 +1,77 @@
+<section>
+  <div class='form-wrapper h-full'>
+    <form [formGroup]='formGroup' (ngSubmit)='submit()' class='h-full'>
+      <div class='form-content-wrapper h-full mb-2 flex flex-col'>
+        <h2 class='mb-4'>{{ 'template.variableForm.title' | translate }}</h2>
+        <p class='mb-6'>{{ 'template.variableForm.subTitle' | translate }}</p>
+
+        <div class='variable'>
+          <div
+            cdkDropList
+            class='drag-drop-list'
+            (cdkDropListDropped)='drop($event)'
+            formArrayName='variables'
+          >
+            <div
+              class='box-drag-drop'
+              *ngFor='let variableCtrl of variables.controls; let i = index'
+              cdkDrag
+            >
+              <div class='flex flex-row items-center'>
+                <label
+                  class='input-handler bg-white flex-grow flex items-center'
+                  cxmSmartflowCxmTooltip
+                  [tooltipText]='
+                    getTooltipVariableMessage(
+                      variableCtrl,
+                      indexDuplicated?.includes(i)
+                    )
+                  '
+                  [showTooltip]='showVarTooltip$ | async'
+                  [showBackgroundEl]='showVarBackgroundTooltip'
+                  [ngClass]='!checkIsModifiable(variables.controls, variableCtrl.value, i) ? "disable-input" : ""'
+                >
+                  <img
+                    class='image-icon'
+                    src='assets/images/2022-06-28_16h46_24.png'
+                    alt=''
+                  />
+                  <input
+                    class='cursor-pointer w-0 flex-grow'
+                    [formControlName]='i'
+                  />
+                </label>
+                <mat-icon
+                  class='ml-2'
+                  *ngIf='
+                    (this.disabledForm$ | async) === false &&
+                    checkIsModifiable(variables.controls, variableCtrl?.value, i)
+                  '
+                  (click)='removeVariable(variables.controls, variableCtrl?.value, i)'
+                >remove_circle_outline
+                </mat-icon>
+              </div>
+            </div>
+          </div>
+          <div
+            class='add-variable'
+            (click)="addVariable('')"
+            *ngIf='(this.disabledForm$ | async) === false'
+          >
+            <a>+ {{ 'template.variableForm.btnAdd' | translate }}</a>
+          </div>
+
+          <div *ngIf='(this.disabledForm$ | async) === false' class='description'>
+            <p>{{ 'template.variableForm.description' | translate }}</p>
+          </div>
+        </div>
+
+        <div class='action mt-auto' *ngIf='(disabledForm$ | async) === false'>
+          <button type='submit' class='mt-8' [ngClass]="btnSubmitStyle">
+            {{ 'template.variableForm.btnSubmit' | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

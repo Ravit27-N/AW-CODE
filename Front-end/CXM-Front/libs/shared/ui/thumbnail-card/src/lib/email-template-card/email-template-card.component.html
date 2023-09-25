@@ -1,0 +1,133 @@
+<mat-card (click)='onClickCard.emit($event)'
+          (mouseover)='isShowTools$.next(true)'
+          (mouseleave)='isSettingOptionOpen$.next(false); isShowTools$.next(false)'
+          [ngClass]="!isSidebar? 'cursor-pointer' : 'cursor-default'"
+          [ngStyle]="{width: width ? width : '100%', border: border}">
+  <mat-card-content
+    class='mat-card-container'
+    [ngStyle]='{height: height}'>
+    <!-- Thumbnail Image -->
+    <div class='cxm-thumbnail-image'>
+      <!-- For Test Storybook -->
+      <img
+        *ngIf='src'
+        [ngClass]="['object-cover', 'object-top', 'w-full', 'px-8']"
+        [ngStyle]='{height: height}'
+        [src]='src'
+        loading='lazy'
+        alt='thumbnail' />
+      <!-- Implement with API -->
+      <cxm-smartflow-image
+        *ngIf='imageURL'
+        [cxmStyle]='{height: height}'
+        [imageURL]='imageURL'>
+      </cxm-smartflow-image>
+    </div>
+
+    <!-- EDIT CARD MODE -->
+    <div class='edit-card-container' *ngIf='isNoAllPrivilege$.value && isShowTools$.value || isFocus'>
+      <div class='edit-card-shadow' (click)='isSettingOptionOpen$.next(false)'></div>
+      <!-- setting -->
+      <div class='setting-box-container'
+           *ngIf='isSettingOptionOpen$.value && isShowTools$.value || isFocus'
+           (click)='toggleSettingOption()'>
+      </div>
+      <div class='setting-container'>
+        <div class='setting-icon'
+             [class.bg-gray]='isSettingOptionOpen$.value && isShowTools$.value || isFocus'
+             (click)='toggleSettingOption()'>
+          <mat-icon>{{ iconProps.setting }}</mat-icon>
+        </div>
+        <!-- setting option -->
+        <ul *ngIf='isSettingOptionOpen$.value && isShowTools$.value'
+            class='setting-option-container'>
+          <!-- edit -->
+          <li class='setting-option-item'
+              *ngIf='isCanEdit$ | async'
+              (click)='toggleSettingOption(); onClickEdit.emit($event)'>
+            <mat-icon>{{ iconProps.edit }}</mat-icon>
+            <span>{{'template.card.option.edit' | translate}}</span>
+          </li>
+          <!-- end edit -->
+          <!-- duplicate -->
+          <li class='setting-option-item'
+              *ngIf='isCanDuplicate$ | async'
+              (click)='toggleSettingOption(); onClickCopy.emit($event)'>
+            <mat-icon>{{ iconProps.contentCopy }}</mat-icon>
+            <span>{{'template.card.option.duplicate' | translate}}</span>
+          </li>
+          <!-- end duplicate -->
+          <!-- modify -->
+          <li class='setting-option-item'
+              *ngIf='isCanModify$ | async'
+              (click)='toggleSettingOption(); onClickSettings.emit($event)'>
+            <mat-icon>{{ iconProps.modify }}</mat-icon>
+            <span>{{'template.card.option.modify' | translate}}</span>
+          </li>
+          <!-- end modify -->
+          <!-- delete -->
+          <li class='setting-option-item'
+              *ngIf='isCanDelete$ | async'
+              (click)='toggleSettingOption(); onClickDelete.emit($event)'>
+            <mat-icon>{{ iconProps.delete }}</mat-icon>
+            <span>{{'template.card.option.delete' | translate}}</span>
+          </li>
+          <!-- end delete -->
+          <!-- select -->
+          <li class='setting-option-item'
+              *ngIf='isCanSelect$ | async'
+              (click)='toggleSettingOption(); clickSelect.emit($event)'>
+            <mat-icon>{{ iconProps.select }}</mat-icon>
+            <span>{{'template.card.option.select' | translate}}</span>
+          </li>
+          <!-- end select -->
+          <!-- visible -->
+          <li class='setting-option-item'
+              *ngIf='isCanVisible$ | async'
+              (click)='toggleSettingOption(); clickVisible.emit($event)'>
+            <mat-icon>{{ iconProps.visibility }}</mat-icon>
+            <span>{{'template.card.option.visible' | translate}}</span>
+          </li>
+          <!-- end visible -->
+        </ul>
+        <!-- end setting option -->
+      </div>
+      <!-- end setting -->
+      <!-- action button -->
+      <div class='action-button-container'>
+        <!-- edit -->
+        <div class='edit-button'
+             *ngIf='isCanEdit$ | async'
+             (click)='onClickEdit.emit($event)'>
+          {{'template.card.editButton' | translate}}
+        </div>
+        <!-- end edit -->
+
+        <!-- select -->
+        <div class='edit-button'
+             *ngIf='isCanSelect$ | async'
+             (click)='clickSelect.emit($event)'>
+          {{'template.card.selectButton' | translate}}
+        </div>
+        <!-- end select -->
+      </div>
+      <!-- end action button -->
+    </div>
+    <!-- END EDIT CARD MODE -->
+  </mat-card-content>
+
+  <!-- CARD TITLE -->
+  <div class='mt-4'>
+    <mat-card-title class='cxm-title'>
+      <p [ngStyle]="{'font-size': fontSize,'font-weight': fontWeight}">
+        <span [title]='title'>{{title}}</span>
+        <time
+          class='created-at'
+          [dateTime]='createdAt | date: "dd/MM/yyyy HH:mm"'>
+          {{createdAt | date: 'dd/MM/yyyy HH:mm'}}
+        </time>
+      </p>
+    </mat-card-title>
+  </div>
+</mat-card>
+<!-- END CARD TITLE -->

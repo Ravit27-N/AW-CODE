@@ -1,0 +1,45 @@
+<main class='content-wrapper'>
+
+  <!-- Distribution criteria -->
+    <header class='panel-title'>
+      <h3>{{ 'flux_criteria.distribute_criteria' | translate }}</h3>
+    </header>
+  <div class='wrapper'>
+
+    <div class="distribute-criteria-container">
+      <form [formGroup]='formGroupCategory'>
+        <table>
+          <tr  *ngFor="let distributeCriteria of datasource" class='relative'>
+            <td class="">
+              <!-- Toggle options -->
+              <div class="flex flex-row pl-2 py-4">
+                <cxm-smartflow-common-slide-toggle
+                  [disabled]='!distributeCriteria.enabled'
+                  [toggleChecked]='distributeCriteria.active'
+                  (slideToggle)="distributeCriteriaChange($event, distributeCriteria)">
+                </cxm-smartflow-common-slide-toggle>
+                <span class="pl-5 flex items-center justify-center">{{ distributeCriteria.key | translate }}</span>
+              </div>
+
+              <!-- Checkbox options -->
+              <div class='checkbox-option-container'>
+                <cxm-smartflow-common-checkbox *ngFor='let category of distributeCriteria.categories'
+                                               class="profile-filter-style"
+                                               [formControlName]='category.key'
+                                               (checkValueChanged)='categoryChanged($event, category)'>{{ category.key | translate }}
+                </cxm-smartflow-common-checkbox>
+              </div>
+            </td>
+
+            <td class="manage-panel-label manage-panel-align">
+            <span [class.cursor-not-allowed]='!distributeCriteria.manageable' [class.cursor-allowed]='distributeCriteria.manageable'
+                  class="inline-block align-middle absolute manage-btn"
+                  (click)='manage(distributeCriteria)'>{{'client.button.manage' | translate}}</span>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+  </div>
+</main>

@@ -1,0 +1,50 @@
+<div class='flex flex-row justify-between'>
+  <div>
+    <app-ng-dynamic-breadcrumb [bgColor]="'none'" symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{'client.headerTitle' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header>{{'client.configuration_file_client' | translate}} <strong
+      class='client-name-sub-heading'>{{ clientName }}</strong></cxm-smartflow-page-sub-header>
+  </div>
+</div>
+
+<div class='config-container'>
+  <div class='content-wrapper version-tracking'>
+    <div class='version-history-container'>
+      <header>
+        <h4>{{'client.configuration_history_tracking' | translate}}</h4>
+      </header>
+      <cxm-smartflow-version-history [configurationVersion]='(configurationVersion$ | async) || []'
+                                     (onViewEvent)='onViewConfigurationVersion($event)'
+                                     (onPreviousEvent)='onPreviousConfigurationVersion($event)'
+                                     (onCurrentEvent)='onCurrentVersion($event)'>
+      </cxm-smartflow-version-history>
+    </div>
+  </div>
+
+  <div class='content-wrapper ini-config'>
+    <div class='version-history-container'>
+
+      <header class='title-container flex justify-between'>
+        <h4>{{'client.configuration_file_config' | translate}}</h4>
+
+        <cxm-smartflow-rich-button [isRounded]='true' (click)='downloadINI()'>
+          <img src='assets/icons/export-svg.svg' alt='export file' />
+          <span class='export-file-btn'>{{ 'client.configuration_drag_export' | translate }}</span>
+        </cxm-smartflow-rich-button>
+      </header>
+      <cxm-smartflow-file-config *ngIf='configurations$ | async as configurations'
+                                 [configurations]='configurations' (orderModel)='orderModel($event)'
+                                 (addModel)='addModel(configurations)'
+                                 (modifyModel)='modifyModel($event, configurations)' (deleteModel)='deleteModel($event)'
+                                 [disableButtonAddConfig]='isPreviewConfigurationMode'>
+      </cxm-smartflow-file-config>
+    </div>
+  </div>
+</div>
+
+<div class='space-x-4 action-buttons flex justify-end relative'>
+  <cxm-smartflow-rich-button [isRounded]='true'
+                             (click)='back()'>{{ "client.configuration_return" | translate }}</cxm-smartflow-rich-button>
+  <cxm-smartflow-rich-button [disabled]='disableSubmitButton'
+                             (click)='register(!disableSubmitButton)'>{{ "client.configuration_register" | translate}}</cxm-smartflow-rich-button>
+</div>

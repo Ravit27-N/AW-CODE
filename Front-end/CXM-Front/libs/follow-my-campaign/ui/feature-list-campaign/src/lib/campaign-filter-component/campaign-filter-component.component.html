@@ -1,0 +1,35 @@
+<form [formGroup]='filterFormGroup' class='custom-filter-campaign'>
+  <label class='flex align-middle items-center filter-box' [matMenuTriggerFor]='filterMenu' (menuOpened)='menuOpen()' (menuClosed)='menuClose()'>
+    <img class="collapse-categories-icon" src="assets/icons/collapse-categories.svg" alt="collapse category icon">
+    <span [class.hightlight]="usingFilter" class='sortValue'>{{'cxmCampaign.followMyCampaign.list.filterComponent.defaultTitle' | translate}}</span>
+    <mat-icon class='expand_more'>expand_more</mat-icon>
+  </label>
+
+  <mat-menu #filterMenu='matMenu' class='custom-dropdown'>
+    <button mat-menu-item style='width: 100%; display: flex; justify-content: space-between'
+            (click)='$event.stopPropagation()' [disableRipple]='true'>
+      <span class='mode'>{{'cxmCampaign.followMyCampaign.list.filterComponent.label.mode' | translate}}</span>
+      <span class='reset' (click)='resetForm()'>{{'cxmCampaign.followMyCampaign.list.filterComponent.label.reset' | translate}}</span>
+    </button>
+
+    <button mat-menu-item (click)='$event.stopPropagation()' [disableRipple]='true'>
+      <div style='width: 100%; display: flex; justify-content: start'>
+        <mat-checkbox formControlName='manual' style='margin-right: 10px;'>{{'cxmCampaign.followMyCampaign.list.filterComponent.label.manual' | translate}}</mat-checkbox>
+        <mat-checkbox formControlName='automated'>{{'cxmCampaign.followMyCampaign.list.filterComponent.label.automated' | translate}}</mat-checkbox>
+      </div>
+    </button>
+
+    <button mat-menu-item class='custom-category-item' (click)='$event.stopPropagation()' [disableRipple]='true'>
+
+      <mat-divider></mat-divider>
+
+      <div>
+        <span><b>{{'cxmCampaign.followMyCampaign.list.filterComponent.label.category' | translate}}</b></span>
+        <div class='category-box'>
+          <mat-checkbox formControlName='email'>{{'cxmCampaign.followMyCampaign.list.filterComponent.label.email' | translate}}</mat-checkbox>
+          <mat-checkbox formControlName='sms'>{{'cxmCampaign.followMyCampaign.list.filterComponent.label.sms' | translate}}</mat-checkbox>
+        </div>
+      </div>
+    </button>
+  </mat-menu>
+</form>

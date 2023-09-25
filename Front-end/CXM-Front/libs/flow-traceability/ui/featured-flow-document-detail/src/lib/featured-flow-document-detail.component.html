@@ -1,0 +1,126 @@
+<main>
+  <!-- Header -->
+  <header class='header'>
+    <cxm-smartflow-flow-traceability-page-header [type]='"postalDocumentDetail"' [fileName]='fileName'>
+
+      <cxm-smartflow-flow-document-navigator *ngIf="flowDocumentDetail?.channel === 'Postal'"></cxm-smartflow-flow-document-navigator>
+
+      <!-- Associated element -->
+      <cxm-smartflow-rich-button [isRounded]='true'
+                                 (click)='toggleAssociateDocumentPopup(); loadAssociateDocument()'
+                                 *ngIf='isAssociateButtonVisible && canDownloadAssociate'>
+        {{'flow.document.actionButtons.elementAssociation' | translate}}
+      </cxm-smartflow-rich-button>
+      <!-- ./Associated element -->
+
+   <!-- ./Document navigation arrows -->
+   <div class="flex items-center justify-center align-middle navigate-size no-select">
+    
+    <!-- Previous Button -->
+    <span class="material-icons-round" 
+          [class.invisible]="currentDocumentIndex <= 1"
+          (click)="previousDocument()"
+          aria-label="Document précédent">
+        navigate_before
+    </span>
+
+    <!-- Current Index / Total -->
+    <div class="navigate-text">
+        <span>{{currentDocumentIndex}}</span>
+        <span>/</span>
+        <span>{{totalDocuments}}</span>
+    </div>
+
+    <!-- Next Button -->
+    <span class="material-icons-round" 
+          [class.invisible]="currentDocumentIndex >= totalDocuments"
+          (click)="nextDocument()" 
+          aria-label="Document suivant">
+        navigate_next
+    </span>
+</div>
+
+    <!-- ./Document navigation arrows -->
+
+      <!-- Export document -->
+      <cxm-smartflow-rich-button [isRounded]='true'
+                                 (click)='downloadFeed()'
+                                 *ngIf='canDownloadFeed'>
+        <img src='assets/icons/export-svg.svg' alt='export file'>
+        <span>{{'flow.document.actionButtons.exportDocument' | translate}}</span>
+      </cxm-smartflow-rich-button>
+      <!-- ./Export document -->
+    </cxm-smartflow-flow-traceability-page-header>
+  </header>
+  <!-- ./Header -->
+
+
+  <!-- Content -->
+  <section class='content'>
+    <!-- Event history -->
+    <div class='event-history-container'>
+      <h4>{{'flow.document.labels.historyOfEvent' | translate}}</h4>
+      <div class='wrapper' style='height: 164px'>
+        <cxm-smartflow-flow-event-history [eventHistories]='eventHistories' (viewStatusInfo)='viewStatus()'></cxm-smartflow-flow-event-history>
+      </div>
+    </div>
+    <!-- ./Event history -->
+
+    <!-- Recipient -->
+    <div class='recipient'>
+      <h4>{{'flow.document.labels.recipient' | translate}}</h4>
+      <div class='wrapper' style='height: 164px'>
+        <cxm-smartflow-recipient [recipient]='recipient'></cxm-smartflow-recipient>
+      </div>
+    </div>
+    <!-- ./Recipient -->
+  </section>
+  <!-- ./Content -->
+
+  <!-- Document detail -->
+  <section class='document-detail'>
+    <div class='document-detail-container'>
+      <h4>{{'flow.document.labels.documentDetail' | translate}}</h4>
+      <div class='wrapper' style='min-height: 315px'>
+        <cxm-smartflow-document-detail [flowDocumentDetail]='flowDocumentDetail'></cxm-smartflow-document-detail>
+      </div>
+    </div>
+  </section>
+  <!-- ./Document detail -->
+
+  <!-- Associated element -->
+  <section class='action-button-wrapper flex justify-end'>
+    <cxm-smartflow-rich-button (click)='back()'>
+      {{'flow.document.actionButtons.return' | translate}}
+    </cxm-smartflow-rich-button>
+  </section>
+  <!-- ./Associated element -->
+</main>
+
+<!-- Association document popup -->
+<div class='associate-document-container' [class.popup-block]='showPopup' (click)='toggleAssociateDocumentPopup()'></div>
+<div class='association-document-box' [class.popup-block]='showPopup'>
+
+
+  <main class='popup-box'>
+    <div class='popup-box__close-btn'><mat-icon (click)='toggleAssociateDocumentPopup()'>close</mat-icon></div>
+    <header>
+      <h4 class='popup-box--title'>{{'flow.document.associateDocument.title' | translate}}</h4>
+    </header>
+    <section class='popup-box--content'>
+
+      <!-- Image box -->
+      <ng-container *ngFor ='let item of associateDocuments'>
+        <div class='popup-box--image' (click)='toggleAssociateDocumentPopup(); downloadAssociateDocument(item)'>
+          <img [src]='item?.src || ""' alt='icon'>
+          <div class='popup-box--caption'>
+            <span>{{item?.description?.line1}} <br> {{item?.description?.line2}}</span>
+          </div>
+        </div>
+      </ng-container>
+
+      <span class='absolute not-found' *ngIf='associateDocuments?.length === 0'>{{'flow.associate.notFound' | translate}}</span>
+    </section>
+  </main>
+</div>
+<!-- ./Association document popup -->

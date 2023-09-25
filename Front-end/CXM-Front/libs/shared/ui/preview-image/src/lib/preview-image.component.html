@@ -1,0 +1,7 @@
+<div class='wrapper' *ngIf='loading$ | async'>
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class='image-preview-container' *ngIf='(loading$ | async) === false'>
+  <img [src]='(imageSource$ | async)' alt='image-preview'>
+</div>

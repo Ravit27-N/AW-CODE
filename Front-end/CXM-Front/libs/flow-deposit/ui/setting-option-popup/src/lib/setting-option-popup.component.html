@@ -1,0 +1,169 @@
+<ng-container *ngIf="selectTranslationMessages$ | async as messages">
+
+  <div class='w-full flex flex-row justify-end'>
+    <mat-icon mat-dialog-close class='close-icon' (click)='closeModal()'>close</mat-icon>
+  </div>
+
+  <!-- Title -->
+  <h1 class="mb-6">{{messages.title | translate}}</h1>
+
+  <div class="flex flex-row wf-form" [class.hidden]='config === "Watermark" '>
+    <div>
+      <div class="space-y-4">
+
+        <!-- Resource type -->
+        <div class="flex control-group items-center">
+          <label class='whitespace-nowrap'>{{messages.addType | translate}} </label>
+          <cxm-smartflow-input-selection
+            (selectedSource)="selectionTypeChange($event)"
+            [lockModifyOverlayContainer]='true'
+            [selectSourceKey]="(selectedResourceType$ | async) || ''"
+            [datasource]="(resourceTypes$ | async) || []">
+          </cxm-smartflow-input-selection>
+        </div>
+
+        <!-- Choice of attachment -->
+        <div class="flex control-group items-center" *ngIf="isHideUploadingArea$ | async">
+          <label class='whitespace-nowrap'>{{messages.choiceOfAttachment | translate}} </label>
+          <cxm-smartflow-input-selection
+            (selectedSource)="selectResource($event)"
+            [lockModifyOverlayContainer]='true'
+            [selectSourceKey]="(selectedResource$ | async) || ''"
+            [isDisabled]='!isCanUsingLibrary'
+            [datasource]="(resources$ | async) || []">
+          </cxm-smartflow-input-selection>
+        </div>
+
+        <!-- Uploading area -->
+        <div class="relative" *ngIf="!(isHideUploadingArea$ | async)">
+          <p class="file-caption relative" [style.top]="'35px'" [class.hidden]="(fileName$ | async)" >{{ messages.uploadingInstruction | translate}}</p>
+          <cxm-smartflow-uploading-fragment width="433px" [fileName]="(fileName$ | async) || ''" [offsetX]="15"
+                                            [truncateFilenameWidth]='0.45'
+                                            [fileSize]="(fileSize$ | async) || ''"
+                                            (fileChange)="handleFileChange($event)"
+                                            [isDisabled]='!isCanUpload'
+                                            [icon]='icon'
+                                            [uploadedIcon]='updatedIcon'
+                                            [acceptExtension]='acceptExtension'
+                                            (resetUploadFile)="resetUploadingForm()">
+          </cxm-smartflow-uploading-fragment>
+          <p class="file-caption relative" [class.hidden]="(fileName$ | async)" [style.top]="'-15px'">{{ messages.formatDocument | translate}}</p>
+          <p class="file-caption relative" [class.hidden]="(fileName$ | async) && messages.maxPageOfDocument" [style.top]="'-10px'">{{ messages.maxPageOfDocument | translate}}</p>
+        </div>
+
+        <!-- Position -->
+        <div class="flex control-group items-center" [class.hidden]='config === "Signature" '>
+          <label>{{'flow.deposit.setting_option_popup_position'|translate}}</label>
+          <cxm-smartflow-input-selection
+            (selectedSource)="positionChanged($event)"
+            [datasource]="(positions$ | async) || []"
+            [lockModifyOverlayContainer]='true'
+            [isDisabled]='(!isCanUpload && this.formGroup.controls["sourceFrom"].value === "2") || (!isCanUsingLibrary && this.formGroup.controls["sourceFrom"].value === "1")'
+            [selectSourceKey]="(selectedPosition$ | async) || ''">
+          </cxm-smartflow-input-selection>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-grow wf-cover">
+      <cxm-smartflow-setting-option-preview-file [base64]="(pdfInBase64$ | async) || ''" [type]='config === "Signature"? "img" : "pdf"'>
+      </cxm-smartflow-setting-option-preview-file>
+    </div>
+  </div>
+
+  <div class="flex flex-row wf-form water-mark mt-5" [class.hidden]='config !== "Watermark" '>
+    <form [formGroup]="watermarkFormGroup" class="form-water-mark">
+      <div>
+        <div class="space-y-4">
+
+          <!-- Resource type -->
+          <div class="flex control-group items-center">
+            <label class='whitespace-nowrap'>{{messages.textWaterMark | translate}} :</label>
+            <div>
+              <input
+                formControlName="text"
+                type="text"
+                cxmSmartflowCxmTooltip
+                required
+                [tooltipText]='(watermarkFormGroup.controls["text"]?.errors?.message || "") | translate'
+                [showTooltip]='watermarkFormGroup.controls["text"]?.errors !== null && (error$ | async)'
+              >
+            </div>
+          </div>
+
+          <!-- Position -->
+          <div class="flex control-group items-center">
+            <label>{{'flow.deposit.setting_option_popup_position'|translate}} </label>
+            <cxm-smartflow-input-selection
+              [datasource]="(positions$ | async) || []"
+              [lockModifyOverlayContainer]='true'
+              (selectedSource)="positionWaterMarkChanged($event)"
+              [selectSourceKey]="(selectWatermarkPosition$ | async) || ''">
+            </cxm-smartflow-input-selection>
+          </div>
+
+
+          <!-- Text size -->
+          <div class="flex control-group items-center">
+            <label class='whitespace-nowrap'>{{messages.textSize | translate}} :</label>
+            <div class="input-number">
+              <input
+                type="number"
+                formControlName="size"
+                cxmSmartflowCxmTooltip
+                required
+                min="1"
+                [tooltipText]='(watermarkFormGroup.controls["size"]?.errors?.message || "") | translate'
+                [showTooltip]='watermarkFormGroup.controls["size"]?.errors !== null && (error$ | async)'
+              />
+            </div>
+          </div>
+
+          <!-- Rotation -->
+          <div class="flex control-group items-center">
+            <label class='whitespace-nowrap'>{{messages.textRotation | translate}} :</label>
+            <div class="input-number">
+              <input
+                type="number"
+                formControlName="rotation"
+                cxmSmartflowCxmTooltip
+                required
+                max="360"
+                min="-360"
+                [tooltipText]='(watermarkFormGroup.controls["rotation"]?.errors?.message || "") | translate'
+                [showTooltip]='watermarkFormGroup.controls["rotation"]?.errors !== null && (error$ | async)'
+              />
+            </div>
+          </div>
+
+          <!-- Resource type -->
+          <div class="flex control-group items-center">
+            <label class='whitespace-nowrap'>{{messages.textColor | translate}} :</label>
+            <div class="color-picker-cancel" *ngIf="isColorPicker" (click)="toggle()"></div>
+            <div class="color-display relative" (click)="onRightClick($event)"
+                 [style.background-color]="watermarkFormGroup.getRawValue()?.color">
+              <mat-icon class="input-icon">brush</mat-icon>
+
+              <div class="container-picker" >
+                <input type="text" (click)="toggle()">
+                <div class="color-picker-contain" *ngIf="isColorPicker" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y">
+                  <div *ngFor="let color of colorPreset; index as i">
+                    <div class="color-picker" (click)="colorChange(color)" [style.background-color]="color"></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+  <div class='w-full flex flex-row justify-end mt-4'>
+    <cxm-smartflow-rich-button (click)="submitForm()">{{messages.addBtn | translate}}</cxm-smartflow-rich-button>
+  </div>
+</ng-container>

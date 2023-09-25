@@ -1,0 +1,16 @@
+.email-template-container {
+  display: flex;
+  flex-direction: row;
+
+  .left {
+    height: calc(100vh - 360px);
+    width: 365px;
+    overflow-y: auto;
+  }
+
+  .right {
+    height: calc(100vh - 360px);
+    width: 100%;
+    background-color: white;
+  }
+}

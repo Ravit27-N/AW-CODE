@@ -1,0 +1,5 @@
+<div class="flex justify-center">
+  <embed *ngIf="base64 && type === 'pdf'" [src]="href|safeHtml: 'url'" type="application/pdf">
+  <img *ngIf='type === "img" && base64' [src]="href|safeHtml: 'url'" class='img'>
+  <div class="iframe" *ngIf="!base64"></div>
+</div>

@@ -1,0 +1,13 @@
+$padding-dialog-content: 25px;
+
+.mat-dialog-content {
+  padding-top: $padding-dialog-content;
+  padding-bottom: $padding-dialog-content;
+}
+
+.cxm-img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}

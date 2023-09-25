@@ -1,0 +1,51 @@
+.iframe-render-html-container {
+  @apply mt-1;
+  padding: 15px;
+  overflow-y: auto;
+  //min-height: 518px;
+  min-height: 500px;
+}
+
+img {
+  display: inline-block;
+}
+
+.iframe-render__wrapper > .email-contain {
+  //width: 30vw;
+  zoom: 0.88;
+}
+
+.iframe-render__wrapper > .batch-contain {
+  //min-height: 200vh !important;
+  zoom: 0.5 !important;
+  -moz-transform: scale(0.5) !important;
+}
+
+.iframe-render-html-spinner {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  position: relative !important;
+}
+
+.iframe-render-html-spinner .indicator-overlay {
+  background: transparent !important;
+
+  margin: 0 !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  -ms-transform: translate(-50%, -50%) !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.cxm-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

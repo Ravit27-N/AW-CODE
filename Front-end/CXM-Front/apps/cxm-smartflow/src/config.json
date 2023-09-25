@@ -1,0 +1,72 @@
+{
+  "apiGateway": "<Smartflow gateway url>",
+  "keycloak": "<keycloak realm url>",
+  "clientId": "<Keycloak client id>",
+  "dummyClientSecret": "<Keycloak client secret>",
+  "apps": [
+    {
+      "name": "Campaign",
+      "remoteEntry": "<URL to remoteEntry.js>",
+
+      "routePath": "cxm-campaign",
+      "ngModuleName": "CxmCampaignModule",
+      "remoteName": "cxmCampaign"
+    },
+    {
+      "name": "Template",
+      "remoteEntry": "<URL to remoteEntry.js>",
+
+      "routePath": "cxm-template",
+      "ngModuleName": "CxmTemplateModule",
+      "remoteName": "cxmTemplate"
+    },
+    {
+      "name": "Traceability",
+      "remoteEntry": "<URL to remoteEntry.js>",
+
+      "routePath": "cxm-flow-traceability",
+      "ngModuleName": "CxmFlowTraceabilityModule",
+      "remoteName": "cxmFlowTraceability"
+    },
+    {
+      "name": "Deposit",
+      "remoteEntry": "<URL to remoteEntry.js>",
+
+      "routePath": "cxm-deposit",
+      "ngModuleName": "CxmDepositModule",
+      "remoteName": "cxmDeposit"
+    },
+    {
+      "name": "Profile",
+      "remoteEntry": "<URL to remoteEntry.js>",
+
+      "routePath": "cxm-profile",
+      "ngModuleName": "CxmProfileModule",
+      "remoteName": "cxmProfile"
+    },
+    {
+      "name": "Directory",
+      "remoteEntry": "<URL to remoteEntry.js>",
+
+      "routePath": "cxm-directory",
+      "ngModuleName": "CxmDirectoryModule",
+      "remoteName": "cxmDirectory"
+    },
+    {
+      "remoteEntry": "<URL to remoteEntry.js>",
+
+      "name": "Setting",
+      "routePath": "cxm-setting",
+      "ngModuleName": "CxmSettingModule",
+      "remoteName": "cxmSetting"
+    },
+    {
+      "remoteEntry": "<URL to remoteEntry.js>",
+
+      "name": "Analytics",
+      "routePath": "cxm-analytics",
+      "ngModuleName": "CxmAnalyticsModule",
+      "remoteName": "cxmAnalytics"
+    }
+  ]
+}

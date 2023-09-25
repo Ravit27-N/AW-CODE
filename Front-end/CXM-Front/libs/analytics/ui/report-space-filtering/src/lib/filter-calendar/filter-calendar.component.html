@@ -1,0 +1,34 @@
+<label class="flex align-middle items-center filters-button relative" (click)="picker.open()" style="min-width: 215px;">
+  <!-- Date range display -->
+  <span *ngIf="calendarFormGroup.controls['isOpening'].value" class='calendar-wrapper flex align-middle items-center'>
+        <span><img src='assets/icons/calendar.svg' alt='dates icon'></span>
+        <span class='sortValue'>{{'espace.listFlowDocument.table.dates'|translate}}</span>
+      </span>
+
+  <!-- Selected date range display -->
+  <span *ngIf="!calendarFormGroup.controls['isOpening'].value" class='calendar-wrapper flex align-middle items-center'>
+        <span class='pr-2'><img src='assets/icons/calendar.svg' alt='dates icon'></span>
+        <span [class.hightlight]="true">{{ calendarFormGroup.controls['startDateLabel'].value }}</span>
+        <span><img class='separate-date-label' [class.hightlight]="true" src='assets/icons/right-arrow.png' alt='right arrow icon'></span>
+        <span [class.hightlight]="true">{{calendarFormGroup.controls['endDateLabel'].value}}</span>
+      </span>
+
+  <mat-icon class='expand_more ml-auto'>expand_more</mat-icon>
+
+  <div class="absolute top-10 left-0">
+    <mat-date-range-input hidden class="h-0 w-0" [formGroup]="dateFormGroup" [rangePicker]="picker" style="visibility: hidden;">
+      <input hidden matStartDate formControlName="startDate">
+      <input hidden matEndDate formControlName="endDate">
+    </mat-date-range-input>
+
+    <mat-date-range-picker xPosition="start" yPosition="below" #picker panelClass="common-cxm-datime-picker"
+                           [calendarHeaderComponent]="customCxmDatetimeHeaderComponent"
+                           (closed)='mainMenuClose(); closeCalendar()' (opened)='mainMenuOpen(); openCalendar();'>
+      <mat-date-range-picker-actions>
+        <button (click)="resetCalendar()" class="datetimeButton datetime-reset mx-2" matDateRangePickerCancel>{{'flowTraceability.table.filter.reset' | translate}}</button>
+        <button (click)="applyCalendar()" class="datetimeButton" matDateRangePickerApply>{{'flowTraceability.table.filter.apply' | translate}}</button>
+      </mat-date-range-picker-actions>
+    </mat-date-range-picker>
+  </div>
+
+</label>

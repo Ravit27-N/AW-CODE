@@ -1,0 +1,12 @@
+<div class="common-slide-toggle">
+  <label class="switch">
+    <input
+      [checked]="toggleChecked"
+      [(ngModel)]="toggleChecked"
+      (change)="toggle()"
+      type="checkbox"
+      [disabled]='disabled'
+    />
+    <div class="slider round"></div>
+  </label>
+</div>

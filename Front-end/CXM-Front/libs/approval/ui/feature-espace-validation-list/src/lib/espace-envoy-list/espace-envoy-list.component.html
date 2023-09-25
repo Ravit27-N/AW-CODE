@@ -1,0 +1,141 @@
+<div class="common-cxm-table-wrapper">
+
+<div class="flex mb-8 justify-between">
+
+  <cxm-smartflow-common-criteria-filter-component *ngIf="filterComponentConfig" [config]="filterComponentConfig"
+  (criteriaChanged)="criteriaChanged($event)" [dateCriteria]="dateCriteria" (resetCriteria)="resetCriteria($event)" [restoreFilterCriteria]="getLocalStorageFilterCriteria()">
+
+  </cxm-smartflow-common-criteria-filter-component>
+
+  <div class='ml-auto'>
+    <cxm-smartflow-search-box [isError]='(isShowErrorTooltip() | async) || false'
+                              (searchBoxChange)='searchTermChanged($event)'
+                              [value]='filters?.filter || ""'>
+    </cxm-smartflow-search-box>
+  </div>
+</div>
+
+
+<div class="common-cxm-table-container">
+  <table mat-table [dataSource]="flows" matSortDisableClear matSort >
+
+    <!-- Checkbox -->
+    <ng-container matColumnDef='checkbox'>
+      <th mat-header-cell *matHeaderCellDef class='column-checkbox col-checkbox'>
+        <cxm-smartflow-common-checkbox class='cxm-checkbox-style' disableRipple='true'
+                                       (ngModelChange)='masterToggle()'
+                                       [ngModel]='isAllSelected()'
+                                       [disabled]="isNoSelectable()"
+        >
+        </cxm-smartflow-common-checkbox>
+      </th>
+
+      <td mat-cell *matCellDef='let row' id='selectCheckBox' class='column-checkbox col-checkbox'>
+        <label class='cursor-pointer'>
+          <cxm-smartflow-common-checkbox class='cxm-checkbox-style' disableRipple='true'
+                                         (ngModelChange)='selection.toggle(row)'
+                                         [ngModel]='selection.isSelected(row)'
+                                         [disabled]="!row._editable">
+          </cxm-smartflow-common-checkbox>
+        </label>
+      </td>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef='flowName' id='flowName'>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-name">
+        {{'espace.table.colName' | translate}}
+      </th>
+      <td mat-cell *matCellDef='let row' [title]='row?.flowName' class="col-name">
+        {{row?.flowName}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef='fullName' id='fullName'>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-user">
+        {{'espace.table.colUser' | translate}}
+      </th>
+      <td mat-cell *matCellDef='let row' [title]='row?.fullName' class="col-user">
+        {{row?.fullName}}
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef='createdAt' id='createdAt'>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-createdat">
+        {{'espace.table.createdAt' | translate}}
+      </th>
+      <td mat-cell *matCellDef='let row' [title]='row?.createdAt|cxmdate' class="col-createdat">
+        {{row?.createdAt|cxmdate}}
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef='channel' id='channel'>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-channel">
+        {{'espace.table.channel' | translate}}
+      </th>
+      <td mat-cell *matCellDef='let row' [title]='row?.channel' class="col-channel">
+        {{row?.channel}}
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef='subChannel' id='subChannel'>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-category">
+        {{'espace.table.category' | translate}}
+      </th>
+      <td mat-cell *matCellDef='let row' [title]='row?.subChannel' class="col-category">
+        {{row?.subChannel}}
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef='totalRemainingValidationDocument' id='totalRemainingValidationDocument'>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="has-right-border col-envoy has-text-right-header">
+        {{'espace.table.envoy' | translate}}
+      </th>
+      <td mat-cell *matCellDef='let row' [title]='row?.totalRemainingValidationDocument' class="has-right-border col-envoy">
+        {{row?.totalRemainingValidationDocument}}&#47;{{row?.totalDocument}}
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef='actions' id='selectActions'>s
+      <th mat-header-cell *matHeaderCellDef class="col-actions ">
+        {{'espace.table.actions' | translate}}
+      </th>
+      <td mat-cell *matCellDef='let row' class="col-actions">
+        <button (click)="handleConsult(row)" >{{'espace.table.consult'|translate}}</button>
+      </td>
+    </ng-container>
+    
+
+  <ng-container matColumnDef='modelName' id='modelName'>
+    <th mat-header-cell *matHeaderCellDef class="col-modelName ">
+      {{'espace.table.modelName' | translate}}
+    </th>
+    <td mat-cell *matCellDef='let row' [title]='row?.modelName' class="col-modelName">
+	{{row?.modelName}}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef='this.displayedColumns; sticky: true'></tr>
+  <tr mat-row *matRowDef='let row; let i = index; columns: displayedColumns' [class.row-selected]='selection.isSelected(row)' [class.row-disabled]="!row._editable"></tr>
+  <tr class='mat-row no-data-row' *matNoDataRow>
+    <td class='mat-cell no-data-cell' [colSpan]='this.displayedColumns.length'></td>
+  </tr>
+</table>
+</div>
+
+
+<div class='mt-6' ></div>
+
+<cxm-smartflow-list-paginator *ngIf="pagination$|async as pagination" [pageIndex]="pagination.page" [pageSize]="pagination.pageSize" [length]="pagination.total"
+  (page)="paginationUpdate($event)"
+  [withCriteria]="true" [withFilter]="usingFilters"
+  >
+  </cxm-smartflow-list-paginator>
+
+</div>

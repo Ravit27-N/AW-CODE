@@ -1,0 +1,15 @@
+<br>
+
+<mat-card>
+  <div class="box-chat">
+    <div *ngFor="let message of chatService.messages">
+      <span>{{message.message}}</span>
+    </div>
+  </div>
+  <div class="text-center">
+    <mat-form-field class="example-full-width">
+      <input matInput #text name="text" placeholder="messagee">
+    </mat-form-field>
+    <button mat-stroked-button color="primary" (click)="sendMessage(text.value)">Send</button>
+  </div>
+</mat-card>

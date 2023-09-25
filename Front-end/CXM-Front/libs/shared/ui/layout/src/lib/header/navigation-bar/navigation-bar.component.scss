@@ -1,0 +1,194 @@
+$default-color: #1a214d;
+$sub-menu-hover: #dddee4;
+
+/* ============= NAVBAR ============== */
+.navbar__container {
+  margin: 0;
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  color: white;
+  font: normal normal medium 16px/19px Rubik;
+}
+
+.navbar__menu-bar .menu-bar__arrow-down-icon {
+  font-size: 14px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.navbar__menu-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.navbar__menu-bar ul {
+  display: inline-flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+/* ============= MENU ============== */
+
+.menu-bar__arrow-down-icon {
+  @apply ml-1;
+}
+
+.menu-bar--parent-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.navbar__menu-bar ul li {
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* ============= DEPOSIT ============== */
+.navbar__menu-bar .menu-bar__deposit {
+  width: 119px;
+  text-align: center;
+}
+
+.sub-menu-1 {
+  top: 80px;
+  left: 0;
+}
+
+.navbar__menu-bar .menu-bar__deposit:hover .sub-menu-1 {
+  margin-left: -50px !important;
+  width: 285px !important;
+  max-height: 79px !important;
+}
+
+.navbar__menu-bar .menu-bar__depot:hover .sub-menu-1 li:last-child {
+  border-top: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+.navbar__menu-bar .menu-bar__template {
+  width: 147px;
+  text-align: center;
+}
+
+.navbar__menu-bar .menu-bar__template:hover .sub-menu-1 {
+  margin-left: -20px !important;
+  width: 185px !important;
+  max-height: 79px !important;
+}
+
+/* ============= MONITORING ============== */
+.navbar__menu-bar .menu-bar__monitoring {
+  width: 95px;
+  text-align: center;
+}
+
+.navbar__menu-bar .menu-bar__monitoring:hover .sub-menu-1 {
+  margin-left: -40px !important;
+  width: 180px;
+  max-height: 120px;
+}
+
+.navbar__menu-bar .menu-bar__analytics {
+  width: 120px;
+  max-height: 120px;
+}
+
+/* ============= SETTING ============== */
+.navbar__menu-bar .menu-bar__setting {
+  width: 157px;
+  text-align: center;
+}
+
+.navbar__menu-bar .menu-bar__setting:hover .sub-menu-1 {
+  width: 205px;
+  box-shadow: 0 3px 6px #39393929;
+}
+
+.menu-bar__setting .sub-menu-1 .hover-submenu:hover .sub-menu-2 {
+  margin-left: 210px !important;
+  width: 180px;
+  white-space: nowrap;
+}
+
+.navbar__container .navbar__menu-bar ul li:hover {
+  background: var(--unnamed-color-3b82f6) 0% 0% no-repeat padding-box;
+}
+
+/* ============= SUBMENU LEVEL 1 ============== */
+.navbar__container .navbar__menu-bar .sub-menu-1 {
+  display: none;
+}
+
+.navbar__container .navbar__menu-bar ul li:hover .sub-menu-1 {
+  display: block;
+  position: absolute;
+  z-index: 1000;
+  background: #ffffff;
+  color: $default-color;
+}
+
+.navbar__container .navbar__menu-bar ul li:hover .sub-menu-1 ul {
+  display: block;
+}
+
+.navbar__container .navbar__menu-bar ul li:hover .sub-menu-1 ul li {
+  padding: 8px 20px;
+  text-align: left;
+  box-shadow: 0 0 15px #0000000d;
+  background: #ffffff;
+}
+
+.navbar__container .navbar__menu-bar ul li:hover .sub-menu-1 ul li:hover {
+  background-color: $sub-menu-hover !important;
+  cursor: pointer;
+}
+
+/* ============= SUBMENU LEVEL 2 ============== */
+.hover-submenu .arrow-right-icon {
+  float: right;
+}
+
+.hover-submenu .sub-menu-2 {
+  display: none;
+}
+
+.hover-submenu:hover .sub-menu-2 {
+  display: block;
+  position: absolute;
+  margin-top: -32px;
+  z-index: 1000;
+  background-color: #f0f3f6;
+  color: $default-color;
+  box-shadow: 0 0 15px #0000000d;
+}
+
+.hover-submenu:hover .sub-menu-2 ul {
+  display: block;
+}
+
+.hover-submenu:hover .sub-menu-2 ul li {
+  padding: 8px 20px !important;
+  text-align: left !important;
+  box-shadow: 0 0 15px #0000000d !important;
+}
+
+.hover-submenu:hover .sub-menu-2 ul li:hover {
+  background-color: $sub-menu-hover;
+  cursor: pointer;
+}
+
+/* ============= MODIFIABLE CLASS ============== */
+.menu-bar__monitoring--en {
+  width: 100px !important;
+}
+
+.active-menu {
+  background: var(--unnamed-color-3b82f6) 0% 0% no-repeat padding-box;
+}

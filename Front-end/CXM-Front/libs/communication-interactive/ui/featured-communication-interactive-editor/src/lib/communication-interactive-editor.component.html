@@ -1,0 +1,6 @@
+<div class='wrapper'>
+  <div class='content-wrapper'>
+    <cxm-smartflow-communication-interactive-editor-placeholder *ngIf='loading$|async'></cxm-smartflow-communication-interactive-editor-placeholder>
+    <cxm-smartflow-communication-interactive-iframe (onloaded)="handleAfterFrameLoaded()" (onclosed)="handleClose()" [ticketUrl]="ticketUrl$|async"></cxm-smartflow-communication-interactive-iframe>
+  </div>
+</div>

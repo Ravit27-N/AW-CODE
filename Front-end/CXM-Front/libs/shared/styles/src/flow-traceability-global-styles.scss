@@ -1,0 +1,106 @@
+@import "./lib/flow-traceability-variables";
+@import "./lib/flow-traceability-styles";
+@import "./lib/cxm-flow-traceability-mixin";
+@import "./global-styles";
+
+.flow-dialog-panel {
+  @apply bg-black bg-transparent bg-opacity-50;
+}
+
+.flow-dialog-backdrop {
+  @apply bg-transparent;
+}
+
+::ng-deep .flow-dialog-panel .mat-dialog-container {
+  @apply bg-opacity-20;
+  background-color: rgba(207, 207, 207, 0.75);
+  padding: 8px;
+}
+
+:host ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+  opacity: 0.03 !important;
+  background-color: $flow-text-primary !important;
+}
+
+:host ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: $flow-text-primary !important;
+}
+
+.clickable-button {
+  @apply opacity-70 hover:opacity-100;
+}
+
+.flow-traceability-card-panel {
+  background: #FFFFFF 0 0 no-repeat padding-box;
+  box-shadow: 0 1px 9px #8DC2E548;
+  border-radius: 10px;
+}
+
+.flow-checkbox-panel {
+  height: 22px;
+  box-sizing: border-box;
+  line-height: 22px;
+
+  .checkbox-input {
+    display: none;
+    &:checked + label .custom-checkbox {
+      &:after {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+  }
+
+  .custom-checkbox {
+    @apply cursor-pointer;
+    background: #FFFFFF 0 0 no-repeat padding-box;
+    border: 0.5px solid #BCD5FF;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: relative;
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 16px;
+      height: 16px;
+      background-color: #3B82F6;
+      border-radius: 3px;
+      transition: 0.3s;
+    }
+  }
+}
+
+.flow-mode {
+  /* UI Properties */
+  font-family: Rubik, serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--unnamed-color-2e2e2e);
+  text-align: left;
+  opacity: 1;
+}
+
+.flow-reset {
+  cursor: pointer;
+  font-family: Rubik, serif;
+  font-size: 14px;
+  color: #3B82F6;
+  opacity: 1;
+}
+
+.btn-dropdown-label {
+  /* UI Properties */
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-17) var(--unnamed-font-family-rubik);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-ffffff);
+  //text-align: left;
+  opacity: 1;
+  padding-left: 11px;
+  padding-right: 5px;
+}

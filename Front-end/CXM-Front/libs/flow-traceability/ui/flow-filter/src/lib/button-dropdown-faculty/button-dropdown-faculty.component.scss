@@ -1,0 +1,22 @@
+@import 'flow-traceability-global-styles';
+
+.dropdown-faculty-panel {
+  .btn-faculty-panel {
+    @include btn-drop-down-criteria(126px);
+
+    .material-icons {
+      color: #BCD5FF;
+      opacity: 1;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(59, 130, 246, 0.9);
+    }
+  }
+}
+
+
+.btn-dropdown-label.active {
+  color: #feb037;
+}

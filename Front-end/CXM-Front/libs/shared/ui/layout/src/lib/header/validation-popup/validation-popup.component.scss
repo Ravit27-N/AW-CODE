@@ -1,0 +1,47 @@
+.notification-popup-container {
+  background: #3b82f6;
+  width: 380px;
+  height: 150px;
+  padding: 5px 30px 5px 25px;
+  position: relative;
+  border-radius: 5px;
+
+  .close-btn mat-icon {
+    cursor: pointer;
+    color: var(--unnamed-color-ffffff);
+    font-weight: 500;
+    position: absolute;
+    right: 24px;
+    top: 14px;
+  }
+
+  .close-btn mat-icon:hover {
+    font-weight: bold;
+  }
+
+  p {
+    font: normal normal 600 18px/26px Rubik;
+    letter-spacing: 0;
+    color: #FFFFFF;
+    opacity: 1;
+    white-space: pre-wrap;
+    margin: auto;
+    padding-top: 14px;
+  }
+
+  button {
+    border-radius: 10px;
+    background: var(--unnamed-color-ffffff) 0 0 no-repeat padding-box;
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16)/var(--unnamed-line-spacing-19) var(--unnamed-font-family-rubik);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-3b82f6);
+    text-align: center;
+    transition: all .3s ease;
+    padding: 12px;
+    margin-top: 22px;
+  }
+
+  button:hover {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.25);
+  }
+}

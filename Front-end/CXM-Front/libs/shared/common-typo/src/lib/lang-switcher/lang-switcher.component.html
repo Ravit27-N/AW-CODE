@@ -1,0 +1,10 @@
+
+<span [mat-menu-trigger-for]="langmenu"  class="lang-switcher cursor-pointer space-x-1">
+  <span>{{_language}}</span>
+  <!-- <mat-icon>expand_more</mat-icon> -->
+  <span class="material-icons">expand_more</span>
+</span>
+
+<mat-menu #langmenu="matMenu" xPosition="before">
+  <button [class.activated]="l.name === _language" *ngFor="let l of supportLangs" mat-menu-item (click)="switchTo(l)">{{l.name}}</button>
+</mat-menu>

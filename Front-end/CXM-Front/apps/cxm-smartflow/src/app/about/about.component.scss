@@ -1,0 +1,48 @@
+:host {
+  background-color: white;
+}
+
+
+.about-container {
+  // width: 1366px;
+  padding-top: 80px;
+  padding-bottom: 70px;
+  // display: flex;
+  width: 1260px;
+
+  // overflow-y: auto;
+  overflow-x: hidden;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.about-logo {
+  @apply mx-auto;
+  width: 600px;
+  height: auto;
+  display: block;
+  position: relative;
+}
+
+p {
+  max-width: 625px;
+  line-height: 1.875rem;
+}
+
+
+.version-logo {
+  right: 255px;
+  bottom: -23px;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  font-size: 21px;
+  font-weight: bold;
+  // background-image: linear-gradient(90deg,#0069b0 0%,#007abe 20%,#8e559f 40%,#ee5d84 80%,#f2868f 100%);
+  // color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @apply rounded-full;
+}

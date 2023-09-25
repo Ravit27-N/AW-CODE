@@ -1,0 +1,42 @@
+<div *ngIf='isHidden === false' #fragmentContainer [class.disabled]='isDisabled' class='fragment_container'>
+
+  <div class='container' *ngIf='!showName' (fileDropped)='onDropFile($event)' cxmSmartflowDnd
+       (dragover)='handleDragover($event, false)' (dragleave)='handleDragover($event, true)' [style]="fragmentStyles">
+    <input class='hidden' [accept]='acceptExtension' (change)='onFileSelected($event)' type='file' #fileUpload />
+    <div class='upload-panel'>
+
+      <!-- before file upload -->
+      <div onmousedown='return false' class='upload-container' [style.width]='width'>
+        <div onmousedown='return false' class='drag-file-info absolute'
+             [ngStyle]='{"left": titleOffsetX, "opacity": dragOpacity}'>
+          <img onmousedown='return false' draggable='false' class='pdf-icon' [src]='icon'
+               alt='PDF file format' loading='lazy'>
+          <span onmousedown='return false'>{{'shared.uploading_fragment.drop_here'| translate}}</span>
+          <span onmousedown='return false'>{{ replaceExtension('shared.uploading_fragment.mention_file'| translate)}}</span>
+        </div>
+
+        <div onmousedown='return false' class='title-wrapper'
+             [ngStyle]='{"opacity": dragOpacity, "left": buttonOffsetX}'>
+          <span onmousedown='return false' class='or'>{{'flow.deposit.acquisition.label.or'| translate}}</span>
+          <button onmousedown='return false' class='btn-upload' (click)='fileUpload.click()'>
+            {{'flow.deposit.acquisition.label.uploadButton'| translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Format accepted file. -->
+  <div class='wrapper' *ngIf='showName'>
+    <div class='content-wrapper flex items-center justify-between relative oe' [style.width]='width' #container>
+      <div filename [style.width]='width'>
+        <img [src]='uploadedIcon' class='mr-2' alt='PDF'>
+        <span [style.width]='getWidth(container)' class='text-truncate' [title]='fileName'>{{fileName}}</span>
+        <span class='file-size'>({{fileSize}})</span>
+      </div>
+
+      <mat-icon class='text-red cursor-pointer close-icon mr-2' (click)='reset()'>close</mat-icon>
+    </div>
+  </div>
+
+</div>

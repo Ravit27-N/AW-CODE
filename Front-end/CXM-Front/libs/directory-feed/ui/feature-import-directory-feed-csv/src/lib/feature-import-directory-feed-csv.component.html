@@ -1,0 +1,63 @@
+<article class="import__container">
+  <header>
+    <section class="popup__control">
+      <button class="close__btn" (click)="closeDialogEvent()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </section>
+
+    <section class="popup__title">
+      <h3>{{ 'directory.directory_feed_import_csv_title' | translate }}</h3>
+    </section>
+  </header>
+
+  <main>
+    <!-- Instruction  -->
+    <section class="content__instruction">
+      <p>
+        {{ 'directory.directory_feed_import_csv_instruction' | translate }}
+      </p>
+    </section>
+
+    <!-- Adjustment -->
+    <section class="content__adjustment">
+      <h4>{{ 'directory.directory_feed_import_csv_select_option_title' | translate }}</h4>
+
+      <form [formGroup]="formGroup">
+        <div class="adjustment__group">
+          <div class="adjustment__item">
+            <mat-checkbox disableRipple="true" [disabled]="fileId !== ''" formControlName="ignoreHeader"></mat-checkbox>
+            <span [innerHtml]="'directory.directory_feed_import_csv_ignore_csv' | translate | safeHtml"></span>
+          </div>
+
+          <div class="adjustment__item">
+            <mat-checkbox disableRipple="true" [disabled]="fileId !== ''" formControlName="removeDuplicatedField"></mat-checkbox>
+            <span [innerHtml]="('directory.directory_feed_import_csv_remove_duplicated' | translate)?.replace('${labelFieldKey}', labelFieldKey) | safeHtml"></span>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- Uploading fragment -->
+    <section class="{{this.fileId ? 'content__uploading_fragment': ''}}">
+      <cxm-smartflow-uploading-fragment acceptExtension=".csv"
+                                        icon="assets/icons/csv-upload.svg"
+                                        uploadedIcon="assets/icons/csv-upload.svg"
+                                        [fragmentStyles]="'padding: 23px 0;'"
+                                        [isIncludeExtension]="true"
+                                        [fileName]="fileName"
+                                        [fileSize]="fileSize"
+                                        (resetUploadFile)="resetUploadFileEvent()"
+                                        (fileChange)="uploadFileEvent($event)">
+      </cxm-smartflow-uploading-fragment>
+    </section>
+
+    <!-- file caption -->
+    <span class="content__uploading__info " [innerHTML]="'directory.directory_feed_limit_max_csv_file_size' | translate | safeHtml"></span>
+
+    <!-- Action control -->
+    <section class="action__control">
+      <cxm-smartflow-rich-button (click)="importEvent()">{{ 'directory.directory_feed_import_csv_import' | translate }}</cxm-smartflow-rich-button>
+    </section>
+  </main>
+</article>

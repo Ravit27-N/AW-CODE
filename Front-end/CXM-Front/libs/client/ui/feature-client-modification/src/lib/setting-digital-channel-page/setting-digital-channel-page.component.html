@@ -1,0 +1,76 @@
+<div class='flex flex-row justify-between'>
+  <div>
+    <app-ng-dynamic-breadcrumb [bgColor]="'none'" symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{'client.canal_digital_header' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header>{{'client.canal_digital_sub_title' | translate}}</cxm-smartflow-page-sub-header>
+  </div>
+</div>
+
+<main class='content-wrapper'>
+  <!-- Email meta data management -->
+  <div class='content'>
+    <header class='email-meta-header'>
+     {{ 'client.metadata_email_title' | translate }}
+    </header>
+
+    <div class='email-meta-container'>
+      <!-- Sender name -->
+      <div class='sender-name-container'>
+        <div class='label'>{{'client.metadata_email_sender_name' | translate}} :</div>
+        <div class='view-btn' (click)='modifySenderNameMetadata()'>{{'client.metadata_consult_btn' | translate}}</div>
+      </div>
+
+      <!-- Sender email -->
+      <div class='sender-email-container'>
+        <div class='label'>{{'client.metadata_email_sender_email' | translate}} :</div>
+        <div class='view-btn' (click)='modifySenderEmailMetadata()'>{{'client.metadata_consult_btn' | translate}}</div>
+      </div>
+
+      <!-- Unsubscribe link -->
+      <div class='unsubscribe-link-container'>
+        <div class='label'>{{'client.metadata_email_unsubscribe_link' | translate}} :</div>
+        <div class='view-btn' (click)='modifyUnsubscribeLinkMetadata()'>{{'client.metadata_consult_btn' | translate}}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SMS meta data management -->
+  <div class='content'>
+    <header class='sms-meta-header'>
+      {{ 'client.metadata_sms_title' | translate }}
+    </header>
+
+    <div class='sms-meta-container'>
+      <!-- Sender labels -->
+      <div class='sender-name-container'>
+        <div class='label'>{{'client.metadata_sms_sender_label' | translate}} :</div>
+        <div class='view-btn' (click)='modifySenderLabelMetadata()'>{{'client.metadata_consult_btn' | translate}}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hub distribution -->
+  <div class='content'>
+    <header class='hub-distribution-header'>
+      {{ 'client.hub_distribution' | translate }}
+    </header>
+
+    <div class='hub-distribution-container'>
+      <!-- Access parameter -->
+      <div class='sender-name-container'>
+        <div class='label'>{{'client.metadata_hub_distribute_access_parameter' | translate}} :</div>
+        <div class='view-btn' (click)='modifyHubAccount()'>{{'client.metadata_consult_btn' | translate}}</div>
+      </div>
+
+      <!-- Service provider -->
+      <div class='service-provider-container'>
+        <div class='label'>{{'client.metadata_hub_distribute_service_provider' | translate}} :</div>
+        <div class='view-btn' (click)='modifyServiceProvider()'>{{'client.metadata_consult_btn' | translate}}</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="space-x-4 action-buttons flex justify-end relative">
+  <cxm-smartflow-rich-button [isRounded]='true' (click)='back()'>{{ "client.configuration_return" | translate}}</cxm-smartflow-rich-button>
+</div>

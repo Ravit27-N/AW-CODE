@@ -1,0 +1,35 @@
+<form class="cxm-template-popup" (ngSubmit)="submit()" [formGroup]="formGroup">
+  <div class="header">
+    <h2>{{ 'template.popup.create.title' | translate }}</h2>
+    <mat-icon (click)="this.dialogRef.close(false)">close</mat-icon>
+  </div>
+
+  <hr class="line-1" />
+
+  <div class="content">
+    <div class="row-input">
+      <div class="box-label">
+        <label
+          >{{ 'template.popup.create.form.modelName' | translate }}:
+        </label>
+      </div>
+      <input
+        formControlName="modelName"
+        cxmSmartflowCxmTooltip
+        [tooltipText]="tooltipMessage"
+        [showTooltip]="showTooltip$ | async"
+      />
+    </div>
+  </div>
+
+  <hr class="line-2" />
+
+  <div class="action">
+    <button
+      type="submit"
+      [ngClass]="isModelNameDuplicated$.value ? 'btn-disable' : 'btn-active'"
+    >
+      {{ 'template.popup.create.form.actionButton.create' | translate }}
+    </button>
+  </div>
+</form>

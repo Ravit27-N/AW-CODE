@@ -1,0 +1,29 @@
+<mat-card>
+  <cxm-smartflow-card-header-title>{{'dashboard.title_shipment_process'|translate}}</cxm-smartflow-card-header-title>
+  <div *ngIf="!isError" class="center-display ">
+    <ngx-charts-line-chart
+      [gradient]="false"
+      [legend]="legend"
+      [scheme]="schemas"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxis]="xAxis"
+      [yAxis]="yAxis"
+      [curve]="curve"
+      [timeline]="timeline"
+      [results]="multi"
+      [yScaleMax]="customVolume"
+      [yAxisTickFormatting]="formatYAxisToInteger"
+      (window:resize)="onResize($event)"
+      [view]="view"
+    >
+      <ng-template #tooltipTemplate let-model="model">
+        <div style="padding: 0.5rem;font-size: 14px;">
+          <p>{{ model.series }} . {{ model.name|cxmdate:'YYYY-MM-DD':'dd/MM/yyyy' }} </p>
+          <p>{{ model.value }}</p>
+        </div>
+      </ng-template>
+    </ngx-charts-line-chart>
+  </div>
+
+</mat-card>

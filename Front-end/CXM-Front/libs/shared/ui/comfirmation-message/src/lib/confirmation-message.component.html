@@ -1,0 +1,24 @@
+<div class='flex justify-between box-title'>
+  <span>{{this.confirmationData.heading}}</span>
+  <span class='material-icons' (click)='close()'>
+    clear
+  </span>
+</div>
+
+<div mat-dialog-content class='box-content' [class.warning-style]="this.confirmationData?.type==='Warning'">
+  <div class='box-icon'>
+       <span class='material-icons-outlined'>
+      {{confirmationData.icon}}
+      </span>
+  </div>
+
+  <div>
+    <h2 class='title'>{{this.confirmationData.title}}</h2>
+    <p class='message'>{{this.confirmationData.message}}</p>
+  </div>
+</div>
+
+<div mat-dialog-actions class='box-action'>
+  <button *ngIf="this.confirmationData.cancelButton" (click)='dialogRef.close(false)'>{{this.confirmationData.cancelButton}}</button>
+  <button *ngIf="this.confirmationData.confirmButton" (click)='dialogRef.close(true)'>{{this.confirmationData.confirmButton}}</button>
+</div>

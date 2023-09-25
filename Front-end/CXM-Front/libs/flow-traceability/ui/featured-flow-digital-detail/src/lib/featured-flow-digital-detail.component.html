@@ -1,0 +1,46 @@
+<!-- Header -->
+<cxm-smartflow-flow-traceability-page-header [fileName]='fileName' [type]="campaignType === 'SMS' ? 'digitalSMSFlowHistory' : 'digitalFlowHistory'">
+  <cxm-smartflow-rich-button *ngIf="this.isViewFlowDocumentButtonVisible" [isRounded]='true' (click)='viewDocument(flow)'>{{'flow.history.actionButtons.viewDocument' | translate}}</cxm-smartflow-rich-button>
+  <cxm-smartflow-rich-button [class]="'disabled'" [isRounded]='true' *ngIf='isNonOperationButtonVisible'>{{'flow.history.actionButtons.referToNonOperator' | translate}}</cxm-smartflow-rich-button>
+</cxm-smartflow-flow-traceability-page-header>
+
+<!-- Content -->
+<main class='content'>
+
+  <aside class='aside-left'>
+    <!-- Information board -->
+    <section class='information-board-wrapper'>
+      <h4>{{'flow.history.label.information' | translate}}</h4>
+      <div class='wrapper' style='height: 144px'>
+        <cxm-smartflow-information-board [informationBoard]='informationBoard'></cxm-smartflow-information-board>
+      </div>
+    </section>
+
+    <!-- Deliver-ability rate -->
+    <section class='deliverability-rate' *ngIf='isDeliveryStatisticComponentVisible'>
+      <h4>{{'flow.history.label.deliverabilityRate' | translate}}</h4>
+      <cxm-smartflow-deliverability-rate [deliverabilityRate]='deliverabilityRate'></cxm-smartflow-deliverability-rate>
+    </section>
+  </aside>
+
+  <aside class='aside-right'>
+    <!-- Campaign rate -->
+    <section class='campaign-rate'>
+      <h4>{{'flow.history.label.campaignRate' | translate}}</h4>
+      <cxm-smartflow-campaign-rate [campaignRate]='campaignRate'></cxm-smartflow-campaign-rate>
+    </section>
+  </aside>
+
+</main>
+<!-- Action button. -->
+<div class='action-button'>
+  <cxm-smartflow-rich-button (click)='cancelFlow(flow)'
+                             [type]='"error"'
+                             *ngIf='isCancelFlowButtonVisible'
+                             [isRounded]='true'
+                             style='width: 131px !important;
+                               min-height: 48px !important;
+                               padding: 0!important;
+                               min-width: 131px !important;'>{{'flow.history.actionButtons.cancelFlow' | translate}}</cxm-smartflow-rich-button>
+  <cxm-smartflow-rich-button (click)='backToFlow()'>{{'flow.history.actionButtons.back' | translate}}</cxm-smartflow-rich-button>
+</div>

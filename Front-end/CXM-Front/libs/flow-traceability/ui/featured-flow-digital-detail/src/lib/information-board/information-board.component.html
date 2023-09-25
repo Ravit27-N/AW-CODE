@@ -1,0 +1,32 @@
+<div class='information-board-container space-y-1.5'>
+  <!-- created date -->
+  <div class='created-date'>
+    <p>{{'flow.history.digitalInformationLabel.createdDate' | translate}} :</p> <span>{{informationBoard?.createdDate}}</span>
+  </div>
+
+  <!-- created by -->
+  <div class='created-by'>
+    <p>{{'flow.history.digitalInformationLabel.createdBy' | translate}} :</p> <span>{{informationBoard?.createdBy}}</span>
+  </div>
+
+  <!-- division/service -->
+  <div class='division-service truncate'>
+    <p>{{'flow.history.digitalInformationLabel.division' | translate}} / {{'flow.history.digitalInformationLabel.service' | translate}} :</p>
+    <span id="_division-service"
+          [title]="showTooltip(informationBoard?.division + ' / ' + informationBoard?.service)"
+    >{{ getDivisionService(informationBoard?.division, informationBoard?.service )}}
+    </span>
+  </div>
+
+  <hr class='horizontal-line'>
+
+  <!-- sent date -->
+  <div class='sent-date'>
+    <p>{{'flow.history.digitalInformationLabel.sentDate' | translate}} :</p> <span>{{informationBoard?.sentDate}}</span>
+  </div>
+
+  <!-- status -->
+  <div class='status'>
+    <p>{{'flow.history.digitalInformationLabel.status' | translate}} :</p> <span [class]='informationBoard?.type'>{{informationBoard?.status}}</span>
+  </div>
+</div>

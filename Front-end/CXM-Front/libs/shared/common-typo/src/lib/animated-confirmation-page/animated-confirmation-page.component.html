@@ -1,0 +1,48 @@
+<div class='wrapper'>
+  <!-- icon -->
+  <div class="check-icon check-icon-animation" [ngClass]='{"icon-change-size": animation3$ | async, "icon-original-size": animation4$ | async}' *ngIf='animation2$ | async'>
+    <img class="w-full h-full " src="assets/icons/circle-check2.svg" alt="circle check icon">
+  </div>
+
+  <!-- wrapper -->
+  <section class='content-panel'
+           [ngClass]='{
+             "wrapper-change-position": animation4$ | async,
+              "no-sub-main": !options?.isShowSubContent
+            }'>
+  </section>
+
+  <!-- content -->
+  <main class='wrapper-panel'
+        [ngClass]='{
+          "wrapper-panel-change-position": animation4$ | async,
+          "wrapper-change-position-no-sub-main": !options?.isShowSubContent
+        }'>
+    <!-- main-content -->
+    <div style="width:666px" class="text-center pt-4" *ngIf="options">
+      <div class='text-center'>
+        <h1 (click)="click()" class="my-5">{{options.title}}</h1>
+
+        <p [class.hidden]="!options.subtitle" class="mb-5 break-normal" [innerHTML]='options.subtitle'></p>
+      </div>
+      <div class="mb-5 space-x-8">
+        <button (click)="onactions.emit('Main')" *ngIf="options.mainButton" class="button-main">{{options.mainButton}}</button>
+
+        <span *ngIf="options.mainButton && options.alterButton">{{options.or}}</span>
+
+        <button (click)="onactions.emit('Alter')" *ngIf="options.alterButton"  class="button-alter">{{options.alterButton}}</button>
+      </div>
+    </div>
+
+    <!-- sub-content -->
+    <div class="border-t pt-8 mt-12" *ngIf='!options?.isShowSubContent'>
+      <div style="width:666px" class="mx-auto text-center" >
+        <ng-content [select]="subcontent"></ng-content>
+      </div>
+    </div>
+
+  </main>
+
+
+  <div class="relative" *ngIf='animation1$ | async'></div>
+</div>

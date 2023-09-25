@@ -1,0 +1,55 @@
+.fragment-field__group {
+  margin: 7px 0;
+
+  // ========= Label =========.
+  label {
+    color: var(--unnamed-color-1a214d);
+    text-align: left;
+    font: normal normal 500 16px/19px Rubik;
+    display: inline-block;
+    line-height: 38px;
+    width: 320px;
+  }
+
+  // ========= Input =========.
+  input {
+    width: 385px;
+    height: 38px;
+    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+    border: 0.5px solid var(--unnamed-color-8194b4);
+    border-radius: 5px;
+    padding: 10px 20px 10px 10px;
+    color: #000000;
+  }
+
+  input::placeholder {
+    text-align: left;
+    font: normal normal 300 16px/19px Rubik;
+    color: #C3C3C3;
+  }
+
+  input:focus {
+    outline: 1px solid var(--unnamed-color-8194b4);
+  }
+
+  input.disabled {
+    pointer-events: none;
+    border: 1px solid #adadad !important;
+    color: #adadad !important;
+  }
+
+  // ========= Select box =========.
+  .field-select {
+    width: 326px;
+    height: 38px;
+  }
+}
+
+.fragment-field__error-message {
+  color: #E50A0A !important;
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 8px;
+  margin-bottom: 20px;
+  user-select: none;
+}

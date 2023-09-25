@@ -1,0 +1,55 @@
+<main class='popup-layout relative'>
+  <header>
+    <h3>{{'client.'.concat(translationKey) | translate}}</h3>
+  </header>
+  <div class='close-icon'><mat-icon (click)='closeModal()'>close</mat-icon></div>
+  <div class='mt-6'></div>
+
+  <div class='wrapper'>
+
+    <div class='form-container' cdkDropList (cdkDropListDropped)='order($event);'>
+      <div>
+        <div>
+        <!-- Metadata -->
+          <div class='metadata-list-group' *ngFor='let metadata of metadataCollection; let i = index' cdkDrag>
+            <div class='metadata-list-item'>
+              <form [formGroup]='formGroup'>
+                <cxm-smartflow-meta-data-draggable [metadata]='metadata'
+                                                   (metadataRemove)='removeMetadata(i)'
+                                                   [formControlName]='metadata.order'
+                                                   [isLowercase]='validateType === "email"'
+                                                   [errorMessage]='formGroup.controls[metadata.order.toString()].errors?.message'
+                                                   [errorDisplay]='formGroup.controls[metadata.order.toString()].invalid && showError$.value'>
+                </cxm-smartflow-meta-data-draggable>
+              </form>
+            </div>
+          </div>
+
+          <!-- Add new a new metadata -->
+          <div class='metadata-list-group'>
+            <div class='metadata-list-item'>
+              <div class='add-metadata' (click)="add()">
+                <a>+ {{ 'client.metadata_popup_add' | translate }}</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metadata form description -->
+          <div class='metadata-list-group'>
+            <div class='metadata-list-item'>
+              <p class='whitespace-pre-wrap text-center description'>{{ 'client.metadata_popup_description' | translate }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class='mb-6'></div>
+
+  <!-- Action button -->
+  <section class='action-btn flex justify-end'>
+    <cxm-smartflow-rich-button (click)='register()' style='min-width: 200px !important;'> {{'client.hub_distribute_register_btn' | translate}}</cxm-smartflow-rich-button>
+  </section>
+</main>

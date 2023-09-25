@@ -1,0 +1,6 @@
+<div class="list-none flex items-stretch">
+  <a class="tab" [class.tab-active]="item.active" *ngFor="let item of (activatedTabs$|async)"
+      (click)="navigateTo(item)">
+      <div>{{item.name|translate}}</div>
+  </a>
+</div>

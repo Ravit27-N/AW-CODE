@@ -1,0 +1,36 @@
+<div class='flex flex-row justify-between'>
+  <div>
+    <app-ng-dynamic-breadcrumb symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>
+      {{((mode) === userFormUpdateMode.UPDATE_MULTIPLE ? 'user.update.titleBatch' : 'user.update.title') | translate | uppercase }}
+    </cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header small>{{'user.update.subTitle' | translate}}</cxm-smartflow-page-sub-header>
+  </div>
+
+  <div class='flex flex-col justify-end'>
+    <cxm-smartflow-rich-button [isRounded]='true'
+                               *ngIf='userFormControlService.isCanDelete && (mode) === userFormUpdateMode.UPDATE_SINGLE'
+                               (click)='delete()'
+                               [type]='"error"'
+                               [style]='"width: 260px; height: 48px; font-weight: 600 !important;"'>
+      {{'user.form.button.delete' | translate}}
+    </cxm-smartflow-rich-button>
+  </div>
+</div>
+
+<hr class='horizontal-line'>
+<article class='update-profile-container'>
+  <h2 class='update-profile-page-title'>{{'user.update.description' | translate}}</h2>
+  <cxm-smartflow-user-form
+    [userDetail]='userDetail'
+    [isAdmin]='(isAdmin$ | async) || false'
+    [clients]='(clientWrapper$ | async) || []'
+    [divService]='(divServiceWrapper$ | async) || []'
+    [profiles]='(combinedProfiles$ | async) || []'
+    [isDisabled]="true"
+    (submitForm)='update($event)'
+    (clientChange)='clientChangeEvent($event)'
+    (serviceIdChange)='changeServiceId($event)'
+    (cancelForm)='cancel()'>
+  </cxm-smartflow-user-form>
+</article>

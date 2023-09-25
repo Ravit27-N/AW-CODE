@@ -1,0 +1,31 @@
+<mat-card class="relative">
+  <cxm-smartflow-spinner *ngIf="fetching" [inline]="true"></cxm-smartflow-spinner>
+  <mat-card-content>
+    <cxm-smartflow-card-header-title>{{'dashboard.title_channel_deposit'|translate }}</cxm-smartflow-card-header-title>
+    <div></div>
+    <div *ngIf="!fetching" class="flex items-start justify-center">
+      <div class="flex flex-row space-x-4 mx-auto">
+        <div [style.width]="view[0]+'px'" [style.height]="view[1]+'px'" *ngIf="!isEmptyValue" >
+          <ngx-charts-pie-chart
+          [view]="view"
+          [scheme]="schemas"
+          [results]="data"
+          [legend]="false"
+          [labels]="false"
+          [doughnut]="true"
+          [tooltipText]="customFormatTooltip">
+          </ngx-charts-pie-chart>
+        </div>
+
+        <cxm-smartflow-empty-pie-chart *ngIf="isEmptyValue" [view]="view" [doughnut]="true"></cxm-smartflow-empty-pie-chart>
+
+        <div [style.width]="view[0]+'px'" [style.min-height]="view[1]+'px'" class="flex flex-col justify-center space-y-4" >
+          <cxm-smartflow-chart-legends
+          *ngFor="let color of schemas.domain; let i = index;" [color]="color">
+          {{ data[i].name }}
+          </cxm-smartflow-chart-legends>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

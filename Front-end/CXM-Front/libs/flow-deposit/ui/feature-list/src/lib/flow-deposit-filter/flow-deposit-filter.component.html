@@ -1,0 +1,20 @@
+<form class='flex justify-between'>
+  <div class='flex flex-row space-x-5'>
+    <cxm-smartflow-dropdown-filter-channel (formChangeEvent)='channelWithSubChannelEventChange($event)'
+                                           [subChannel]='filterCriteria.subChannel || []'
+                                           [useChannelFilter]="usingChannelFilter"
+                                           ></cxm-smartflow-dropdown-filter-channel>
+
+    <cxm-smartflow-dropdown-filter-user [users]='users' [useUserFilter]="usingUserFilter"
+                                        (formChangeEvent)='onUsersChange($event)'></cxm-smartflow-dropdown-filter-user>
+
+    <cxm-smartflow-dropdown-filter-deposit-mode [depositMode]='filterCriteria.depositMode || []'
+                                                [useModeFilter]="usingModeFilter"
+                                                (formChangeEvent)='onDepositModeChange($event)'></cxm-smartflow-dropdown-filter-deposit-mode>
+  </div>
+
+  <cxm-smartflow-search-box [isError]='(showTooltip$ | async) || false'
+                            (searchBoxChange)='searchTermChanged($event)'
+                            [value]='(this.searchTerm$ | async) || ""'>
+  </cxm-smartflow-search-box>
+</form>

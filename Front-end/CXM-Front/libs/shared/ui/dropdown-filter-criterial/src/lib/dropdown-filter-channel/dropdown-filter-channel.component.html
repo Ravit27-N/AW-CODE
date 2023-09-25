@@ -1,0 +1,68 @@
+<div class='custom-dropdown-filter-channel'>
+  <!--  panel button-->
+  <span class='flex align-middle items-center btn-channel-panel justify-between' [matMenuTriggerFor]='filterMenu'
+        (menuOpened)='mainMenuOpen()' (menuClosed)='mainMenuClose()'>
+    <span class='flex items-center flex-row align-middle'>
+      <img src='assets/icons/canal.svg' alt='canal or channel icon'>
+      <span [class.highlight]="useChannelFilter" class='btn-channel-label'>{{'filterCriteria.channel' | translate}}</span>
+    </span>
+    <mat-icon class='expand_more'>expand_more</mat-icon>
+  </span>
+  <!--  end panel button-->
+
+  <!--  toggle button-->
+  <mat-menu #filterMenu='matMenu' class='channel-custom-dropdown'>
+    <!--    title & reset button-->
+    <section>
+      <button mat-menu-item style='width: 100%; display: flex; justify-content: space-between'
+              (click)='$event.stopPropagation()' [disableRipple]='true'>
+        <span class='label-mode'>{{'filterCriteria.channel' | translate}}</span>
+        <span class='btn-reset'
+              (click)='channelFormGroup.reset()'>{{'filterCriteria.reset' | translate}}</span>
+      </button>
+    </section>
+    <!--    end title & reset button-->
+
+    <!--    channels path-->
+    <section>
+      <button mat-menu-item (click)='$event.stopPropagation()' [disableRipple]='true'>
+        <form [formGroup]='channelFormGroup' class='w-full flex justify-start'>
+          <div class='channel-checkbox-panel flex-1'>
+            <div class='flex flex-row justify-items-center'>
+              <input formControlName='postal' type='checkbox' class='checkbox-input' id='checkbox-postal'>
+              <label for='checkbox-postal'>
+                <span class='custom-checkbox'></span>
+              </label>
+              <label class='ml-2'>{{'filterCriteria.postal' |translate}}</label>
+            </div>
+          </div>
+
+          <div class='channel-checkbox-panel flex-1'>
+            <div class='flex flex-row justify-items-center'>
+              <input formControlName='digital' type='checkbox' class='checkbox-input' id='checkbox-digital'>
+              <label for='checkbox-digital'>
+                <span class='custom-checkbox'></span>
+              </label>
+              <label class='ml-2'>{{'filterCriteria.digital' |translate}}</label>
+            </div>
+          </div>
+        </form>
+      </button>
+    </section>
+    <!--    end channels-->
+
+    <!--    sub channels-->
+    <button mat-menu-item class='custom-sub-channel' (click)='$event.stopPropagation()' [disableRipple]='true'>
+      <mat-divider></mat-divider>
+      <span><b>{{'filterCriteria.category' | translate}}</b></span>
+      <div class='sub-channel-panel'>
+        <div class='sub-channel-box'>
+          <cxm-smartflow-multi-check [subItems]='(this.subChannel$ | async) || []'
+                                     (itemCheckEvent)='subChannelEvent($event)'></cxm-smartflow-multi-check>
+        </div>
+      </div>
+    </button>
+    <!--    end sub channels-->
+  </mat-menu>
+  <!--  end toggle button-->
+</div>

@@ -1,0 +1,47 @@
+<div class='pt-16'>
+  <div class='header-container pb-4'>
+    <cxm-smartflow-header pageTitle='flow.deposit.title' subTitle='flow.deposit.productionCriteria.title'></cxm-smartflow-header>
+<!--    <cxm-smartflow-file-info></cxm-smartflow-file-info>-->
+  </div>
+  <hr class='line-separator' />
+  <div class="grid grid-flow-row grid-cols-2 gap-4 pt-2">
+    <div>
+      <div class="pt-2 flex flex-row w-full justify-between">
+        <cxm-smartflow-identification-table></cxm-smartflow-identification-table>
+      </div>
+      <div class="portal-card-panel mt-5">
+        <div class="pt-5 pl-5">
+          <div class="flex flex-row justify-start h48">
+            <div [class.active]="!isOption" *ngIf="!isReadonly"
+                 (click)="openOption(false)">{{'flow.deposit.productionCriteria.criteria' | translate}}</div>
+            <div class="pl-5" [class.active]="isOption"
+                 (click)="openOption(true)">{{'flow.deposit.productionCriteria.options.title' | translate}}</div>
+          </div>
+        </div>
+
+        <div class="w-full">
+          <div [class.hidden]="isOption || isReadonly" class="w-full">
+            <cxm-smartflow-criteria-form class="flex-grow" [defaultConfiguration]='defaultConfiguration'></cxm-smartflow-criteria-form>
+          </div>
+          <div [class.hidden]="!isOption" class="w-full">
+            <cxm-smartflow-criteria-options class="flex-grow" [defaultConfiguration]='defaultConfiguration' [openOptions]="isOption"></cxm-smartflow-criteria-options>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="pt-2">
+        <cxm-smartflow-pdf-viewer></cxm-smartflow-pdf-viewer>
+      </div>
+    </div>
+
+    <!-- Row two-->
+    <div></div>
+    <div>
+      <cxm-smartflow-deposit-nav-control (nextClick)="goNext()"
+                                         (prevClick)="goPrev()"></cxm-smartflow-deposit-nav-control>
+    </div>
+
+  </div>
+</div>

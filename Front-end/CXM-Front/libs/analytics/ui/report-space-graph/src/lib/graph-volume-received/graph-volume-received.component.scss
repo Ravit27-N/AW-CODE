@@ -1,0 +1,52 @@
+mat-card {
+  height: 350px;
+  @apply rounded-xl;
+  padding-bottom: 12px;
+  width: 100%;
+}
+
+.center-display {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  @apply justify-evenly;
+}
+
+:host ::ng-deep {
+
+  .pie-label {
+    font-size: 15px;
+  }
+
+  .indicator-overlay {
+    z-index: 999 !important;
+  }
+
+}
+
+.go-up {
+  transform: translate(37px, -60px)
+}
+
+.simply {
+  transform: translate(25px, 15px);
+}
+
+.no-data {
+  transform: translate(60px, 16px);
+}
+
+ngx-charts-chart {
+  margin: 0 auto;
+  display: block;
+}
+.legend-custom-contain{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.legend-custom{
+  height: 200px;
+  margin: 10px;
+  overflow-y: auto;
+}

@@ -1,0 +1,42 @@
+<!-- Navigation -->
+<div class='navigation-wrapper mt-5'>
+  <cxm-smartflow-report-space-navigation type='Email' [navigationVisible]='analyticsReportTabs$ | async'></cxm-smartflow-report-space-navigation>
+</div>
+
+<!-- Report filters -->
+<div class='report-filters'>
+  <cxm-smartflow-report-space-filtering [config]='filteringConfig$ | async'
+                                        [fillers]='(fillers$ | async) || []'
+                                        [visibilityItem]='["date-picker", "fillers-group"]'
+                                        type='Email'
+                                        (criteriaOptionChange)='getCriteriaOptionChange($event)'>
+  </cxm-smartflow-report-space-filtering>
+
+  <div class='refresh-date'>
+    <span>{{'cxm_analytics.refresh_analytics_date' | translate}} {{ (refreshDate$ | async) | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
+  </div>
+</div>
+
+<div class='volume-info'>
+  <!-- Graph -->
+
+  <div class="volume-info-container">
+    <main class='graph-table-container'>
+      <div class="table-container" [style]="{'display: inline-table;': productionDetails$ }">
+        <cxm-smartflow-table-production-detail
+          [customClass]="'email-mat-card-content'"
+          [productionDetails]='(productionDetails$ | async) || {metaData: [], data: [], total: {}, loading: true}'></cxm-smartflow-table-production-detail>
+      </div>
+      <div class='graph-container'>
+        <div class='distribution-info'>
+          <cxm-smartflow-graph-volume-received class="graph-distribution" [title]="'cxm_analytics.distribution_volume_received.title' | translate" [graph]='(distribution_volume_receive$ | async)'></cxm-smartflow-graph-volume-received>
+          <div class='mt-4'></div>
+        </div>
+        <div class='graph-area-pnd mt-4'>
+          <cxm-smartflow-graph-donut [spinner]='distributionLoading$ | async' class="graph" [title]="'cxm_analytics.mails_by_status.title' | translate" [graph]='distribution_PND$ | async' chartType="EMAIL" ></cxm-smartflow-graph-donut>
+        </div>
+      </div>
+    </main>
+  </div>
+
+</div>

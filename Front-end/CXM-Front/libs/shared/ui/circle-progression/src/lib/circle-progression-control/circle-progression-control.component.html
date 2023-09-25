@@ -1,0 +1,42 @@
+<div
+  [class]="'content-progress '.concat(types)"
+  [style]="{ width: size + 'px', height: size + 'px' }"
+>
+  <div class="outer" [style]="{ width: size + 'px', height: size + 'px' }">
+    <div
+      class="inner"
+      [style]="{
+        width: size - strokeWidth + 'px',
+        height: size - strokeWidth + 'px'
+      }"
+    >
+      <div class="number">{{ displayPercentage }}%</div>
+    </div>
+  </div>
+
+  <svg [attr.height]="size" [attr.width]="size">
+    <circle
+      [class.hidden-item]="percentage === 0"
+      [attr.cx]="size / 2"
+      [attr.cy]="size / 2"
+      [attr.r]="r"
+      [attr.stroke-width]="strokeWidth / 2"
+      stroke="darkorange"
+      fill="none"
+      pathLength="100"
+      stroke-linecap="round"
+      [attr.stroke-dasharray]="100"
+      [attr.stroke-dashoffset]="strokeDashoffset"
+    ></circle>
+  </svg>
+
+  <!-- Progression title -->
+  <div class="progression--title">
+    <h4>{{ progressTitle }}</h4>
+  </div>
+
+  <!-- Progression message -->
+  <div class="progression-message">
+    <p>{{ progressMessage }}</p>
+  </div>
+</div>

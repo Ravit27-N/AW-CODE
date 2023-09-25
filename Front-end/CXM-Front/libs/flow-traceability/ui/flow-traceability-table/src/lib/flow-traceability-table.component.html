@@ -1,0 +1,148 @@
+<div id="flow-traceability-table-container">
+  <div class="mb-10">
+    <cxm-smartflow-flow-traceability-filter></cxm-smartflow-flow-traceability-filter>
+  </div>
+
+  <div class='flow-traceability-panel flow-traceability-card-panel'>
+    <table id='flow-traceability-table'
+           mat-table
+           matSort
+           [dataSource]='data$'
+           class='table-sortable'
+           matSortDisableClear
+           [matSortActive]="sortAction"
+           [matSortDirection]="sortDirection"
+           (matSortChange)='sortEvent($event)'
+    >
+      <!-- Flow Name -->
+      <ng-container matColumnDef='flowName'>
+        <th id='flowName' mat-header-cell *matHeaderCellDef mat-sort-header
+            class='col-flow-name'>{{'flowTraceability.table.header.flowName'|translate}}</th>
+        <td id='_{{row?.id}}' mat-cell *matCellDef='let row; let i = index;'
+            class='relative text-truncate td-flow-name'
+            (mousemove)="showTooltip('#_' + row?.id, row.flowName)"
+            [title]="showTooltip('#_' + row?.id, row.flowName)">{{row.flowName}}</td>
+      </ng-container>
+
+      <!-- Created By -->
+      <ng-container matColumnDef='createdBy'>
+        <th id='createdBy' mat-header-cell *matHeaderCellDef class='col-created-by'
+            mat-sort-header>{{'flowTraceability.table.header.user'|translate}}</th>
+        <td mat-cell *matCellDef='let row'>{{row.fullName}}</td>
+      </ng-container>
+
+      <!-- Created At-->
+      <ng-container matColumnDef='createdAt'>
+        <th id="createdAt" mat-header-cell *matHeaderCellDef mat-sort-header
+            class='col-created-at'>{{'flowTraceability.table.header.createdAt'|translate}}</th>
+        <td mat-cell *matCellDef='let row'>{{row?.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+      </ng-container>
+
+      <!-- Channel -->
+      <ng-container matColumnDef='channel'>
+        <th id='channel' mat-header-cell *matHeaderCellDef
+            mat-sort-header class='col-channel'>{{'flowTraceability.table.header.channel'|translate}}</th>
+        <td mat-cell *matCellDef='let row'>{{row.channel |translate}}</td>
+      </ng-container>
+
+      <!-- Sub-channel -->
+      <ng-container matColumnDef='subChannel'>
+        <th id="subChannel" class='col-sub-channel' mat-header-cell *matHeaderCellDef
+            mat-sort-header>{{'flowTraceability.table.header.category'|translate}}</th>
+        <td mat-cell *matCellDef='let row'>{{ row?.category }}</td>
+      </ng-container>
+
+      <!-- Deposit Mode -->
+      <ng-container matColumnDef='depositMode'>
+        <th id='depositMode' class='col-deposit-mode' mat-header-cell mat-sort-header
+            *matHeaderCellDef>{{'flowTraceability.table.header.modeDeposit' | translate}}</th>
+        <td mat-cell *matCellDef='let row'>{{row.flowDepositMode.statusLabel | translate}}</td>
+      </ng-container>
+
+      <!-- Status -->
+      <ng-container matColumnDef='status'>
+        <th id="status" class='col-status' mat-header-cell *matHeaderCellDef
+            mat-sort-header>{{'flowTraceability.table.header.status'|translate}}</th>
+        <td mat-cell *matCellDef='let row'>
+          <span class="flow-status-{{row?.flowStatus?.statusLabelReplacement}}">
+            {{row.flowStatus?.statusLabel | translate}}
+          </span>
+        </td>
+      </ng-container>
+
+      <!-- Model Name -->
+      <ng-container matColumnDef='modelName'>
+        <th id='modelName' class='col-modelName' mat-header-cell mat-sort-header
+            *matHeaderCellDef>{{'flowTraceability.table.header.modelName' | translate}}</th>
+        <td mat-cell *matCellDef='let row'>{{row.flowDepositMode.modelName | translate}}</td>
+      </ng-container>
+
+      <!-- Actions -->
+      <ng-container matColumnDef='actions'>
+        <th id='actions' mat-header-cell *matHeaderCellDef
+            class='col-action'>{{'flowTraceability.table.header.actions'|translate}}
+        </th>
+
+        <!-- Column Action -->
+        <td mat-cell *matCellDef='let row' class='cell-action'>
+          <div class='flex items-center'>
+            <span (click)='navigateToFlowDetails(row?.id, row?.channel, row?.depositType, row?.fileId)'
+                  class='btn-view-details'>
+              {{'flow.traceability.visitAction'| translate}}</span>
+
+            <span *ngIf='row?.privilege?.canShowToggleButton'>
+              <button class='btn-menu-icon-panel flex justify-center' [matMenuTriggerFor]='menu'
+                      (click)='addCustomCssClass()'>
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            </span>
+            <span *ngIf='!row?.privilege?.canShowToggleButton' class='none-action-icon'></span>
+          </div>
+
+          <!-- Menu Action button -->
+          <mat-menu [class]="'action-card-panel'" #menu='matMenu'>
+
+            <!-- Menu view icon -->
+            <div *ngIf='row?.privilege?.canViewDetail' mat-menu-item
+                 (click)='navigateToDocumentTraceability($event,row)'>
+              <img class='btn-menu-icon' src='assets/icons/open-eye.png' alt='icon view'>
+              <span>
+                {{'flowTraceability.table.action.view' | translate}}
+              </span>
+            </div>
+
+            <!-- Menu download icon -->
+            <div *ngIf='row?.privilege?.canDownload' mat-menu-item (click)='downloadFeed($event, row)'>
+              <img class='btn-menu-icon' src='assets/icons/download.png' alt='icon download'>
+              <span>
+                {{'flowTraceability.table.action.download' | translate}}
+              </span>
+            </div>
+
+            <!-- Menu delete icon -->
+            <div *ngIf='row?.privilege?.canCancel' (click)='this.cancelFlowTraceability($event, row)' mat-menu-item>
+              <img class='btn-menu-icon' id='icon-delete' src='assets/icons/delete-red.png' alt='icon delete'>
+              <span class='label-cancel'>
+                {{'flowTraceability.table.action.delete' | translate}}
+              </span>
+            </div>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef='this.tableColumns; sticky: true' class='flow-table-header'></tr>
+      <tr mat-row *matRowDef='let row; columns: tableColumns;'></tr>
+      <tr class="mat-row" *matNoDataRow></tr>
+    </table>
+  </div>
+
+  <div class="mt-5">
+    <cxm-smartflow-list-paginator
+      [withCriteria]="true"
+      (page)="paginationChange($event)"
+      [pageIndex]="this.page"
+      [pageSize]="pageSize"
+      [length]="total"
+    ></cxm-smartflow-list-paginator>
+  </div>
+</div>

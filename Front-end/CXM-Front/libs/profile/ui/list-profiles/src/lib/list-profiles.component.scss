@@ -1,0 +1,38 @@
+.listProfileContainer{
+  background-color: white;
+  padding: 15px;
+  min-height: 50vh;
+  border-width: 1px;
+  border-color: #1A214D;
+}
+
+.action-button-group {
+  display: flex;
+  flex-direction: row;
+}
+
+:host ::ng-deep {
+  & .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary{
+    margin-right: 10px;
+  }
+}
+
+#refreshed-date{
+  color: #CCCCCC;
+}
+
+.vl{
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 57px;
+  border-left: 2px solid #1A214D;
+}
+
+h1{
+  color: #1A214D;
+  font-weight: bold;
+}
+
+cxm-smartflow-round-action-button{
+  margin-right: 10px;
+}

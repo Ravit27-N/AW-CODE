@@ -1,0 +1,37 @@
+<div id="flow-date-range" [class]='customCssClass'>
+  <div id="btn-dropdown-date-range" class='dropdown-date-range-panel'>
+
+  <span class='flex align-middle items-center btn-panel justify-between' (click)='picker.open(); addCustomCssClass()'>
+    <span class="flex align-middle items-center">
+       <span class='material-icons' matPrefix><img src="assets/icons/calendar.svg" alt="calendar icon"></span>
+
+  <span *ngIf="isDisplayDateLabel"
+      class='btn-dropdown-label'>{{'flowTraceability.table.filter.date' | translate}}</span>
+<!-- <h1>[class.active]="(dateRangeType==='flowDocument' || (!isDisplayDateLabel && dateRangeType==='viewDocumentShipment'))"</h1> -->
+      <span *ngIf="!isDisplayDateLabel" class="flex flex-row btn-dropdown-label"
+            [class.active]="!isDisplayDateLabel"
+            >
+        <span>{{startDateLabel}}</span>
+        <span>
+          <img class="separate-date-label" src="assets/icons/right-arrow.png" alt="right arrow icon">
+        </span>
+        <span>{{endDateLabel}}</span>
+      </span>
+    </span>
+    <span class='material-icons' matSuffix>expand_more</span>
+  </span>
+    <mat-date-range-input [formGroup]="range" class="h-0 w-0" hidden [rangePicker]="picker">
+      <input hidden matStartDate formControlName="start" (dateChange)="dateRangeChanged($event)" #startDate>
+      <input hidden matEndDate formControlName="end" (dateChange)="dateRangeChanged($event)" #endDate>
+    </mat-date-range-input>
+    <mat-date-range-picker xPosition="end" yPosition="below" aria-placeholder="flow traceability date range" (closed)="dateRangeClosed()" (opened)="dateRangeOpened()" #picker
+                           panelClass='flow-custom-mat-datepicker'
+                           [calendarHeaderComponent]="customDateRangeHeader">
+      <mat-date-range-picker-actions>
+        <button (click)="resetDateRange()" matDateRangePickerCancel
+                class='btn-reset mr-5'>{{'flowTraceability.table.filter.reset' | translate}}</button>
+        <button (click)="onApply()" matDateRangePickerApply class='btn-apply'>{{'flowTraceability.table.filter.apply' | translate}}</button>
+      </mat-date-range-picker-actions>
+    </mat-date-range-picker>
+  </div>
+</div>

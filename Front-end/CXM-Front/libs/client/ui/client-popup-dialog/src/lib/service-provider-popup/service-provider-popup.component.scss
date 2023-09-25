@@ -1,0 +1,69 @@
+.popup-layout {
+  padding: 8px 14px 0;
+}
+
+.close-icon {
+  position: absolute;
+  right: 16px;
+  top: -2px;
+  cursor: pointer;
+  color: #3b82f6;
+}
+
+header h3 {
+  text-align: left;
+  font: normal normal 600 17px/5px Rubik;
+  letter-spacing: 0;
+  color: var(--unnamed-color-1a214d);
+}
+
+.form-container {
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+
+.form-container input {
+  width: 50%;
+  height: 38px;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  border: 0.5px solid var(--unnamed-color-8194b4);
+  border-radius: 5px;
+  padding: 10px 20px 10px 10px;
+  color: #000000;
+  outline: none;
+}
+
+.form-container label {
+  text-align: left;
+  font: normal normal 600 16px/5px Rubik;
+  letter-spacing: 0;
+  width: 50%;
+  white-space: nowrap;
+}
+
+.common-mat-divider {
+  border-top-color: var(--unnamed-color-3b82f6);
+  opacity: 0.3;
+  margin-bottom: 0 !important;
+}
+
+
+.email-service-provider,
+.sms-service-provider {
+  width: 55%;
+  min-height: 39px;
+}
+
+.email-service-provider-label,
+.sms-service-provider-label {
+  width: 45%;
+  height: auto;
+  padding-left: 14px;
+}
+
+.form-description {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  padding-left: 14px;
+}

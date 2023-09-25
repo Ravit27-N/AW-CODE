@@ -1,0 +1,100 @@
+<!-- Header -->
+<section class='header'>
+  <cxm-smartflow-flow-traceability-page-header
+    [fileName]='fileName'
+    [type]="'postalFlowHistory'">
+
+    <!-- View flow -->
+    <cxm-smartflow-rich-button
+      [isRounded]='true'
+      (click)='viewFlowListDocuments(flow)'
+      *ngIf='this.flow?.privilege?.canViewDetail'
+      style='
+        width: 225px !important;
+        min-height: 48px !important;
+        padding: 0 !important;
+        min-width: 225px !important;
+      '>
+      {{ 'flow.history.actionButtons.viewDocument' | translate }}
+    </cxm-smartflow-rich-button>
+
+    <!-- Edit flow -->
+    <cxm-smartflow-rich-button
+      *ngIf='this.flow?.privilege?.canModify'
+      [isRounded]='true'
+      (click)='finalizeFlow(flow)'
+      style='
+        width: 203px !important;
+        height: 48px !important;
+        padding: 0 !important;
+        min-width: 203px !important;
+      '>
+      {{ 'flow.history.actionButtons.edit' | translate }}
+    </cxm-smartflow-rich-button>
+
+    <!-- Export document -->
+    <cxm-smartflow-rich-button
+      [isRounded]='true'
+      (click)='downloadFeed()'
+      style='
+        height: 48px !important;
+        padding: 0 !important;
+      '
+      *ngIf='this.flow?.privilege?.canDownload'>
+      <img src='assets/icons/export-svg.svg' alt='export file' />
+      <span>{{ 'flow.history.actionButtons.exportFile' | translate }}</span>
+    </cxm-smartflow-rich-button>
+  </cxm-smartflow-flow-traceability-page-header>
+</section>
+<!-- End header -->
+
+<!-- Content -->
+<main class='content' [class.remove-border]='isFlowFinished'>
+  <!-- Flow event history -->
+  <div class='event-history-container'>
+    <h4>{{ 'flow.history.label.history' | translate }}</h4>
+    <div class='wrapper' style='height: 325px'>
+      <cxm-smartflow-flow-event-history
+        [eventHistories]='eventHistories'>
+      </cxm-smartflow-flow-event-history>
+    </div>
+  </div>
+
+  <!-- Flow information -->
+  <div class='flow-info-container'>
+    <h4>{{ 'flow.history.label.information' | translate }}</h4>
+    <div class='wrapper' style='height: 325px'>
+      <cxm-smartflow-flow-portal-infomartion-board [flowInfo]='flowInfo'></cxm-smartflow-flow-portal-infomartion-board>
+    </div>
+  </div>
+</main>
+<!-- End content -->
+
+<!-- Action button -->
+<section class='action-button'>
+  <cxm-smartflow-rich-button
+    [type]="'error'"
+    [isRounded]='true'
+    (click)='cancelFlow(flow)'
+    *ngIf='this.flow?.privilege?.canCancel'
+    style='
+      width: 131px !important;
+      min-height: 48px !important;
+      padding: 0 !important;
+      min-width: 131px !important;
+    '>
+    {{ 'flow.history.actionButtons.cancelFlow' | translate }}
+  </cxm-smartflow-rich-button>
+
+  <cxm-smartflow-rich-button
+    style='
+      width: 260px !important;
+      min-height: 48px !important;
+      padding: 0 !important;
+      min-width: 131px !important;
+    '
+    (click)='backToList()'>
+    {{ 'flow.history.actionButtons.back' | translate }}
+  </cxm-smartflow-rich-button>
+</section>
+<!-- End action button -->

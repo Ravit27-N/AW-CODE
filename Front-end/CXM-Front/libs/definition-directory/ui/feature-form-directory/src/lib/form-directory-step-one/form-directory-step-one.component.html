@@ -1,0 +1,32 @@
+<article class='content-wrapper'>
+  <header class='content'>
+    <header class='form-directory__header'>
+      {{ 'directory.definition_directory_create_step_1_section_field_to_complete' | translate }}
+    </header>
+
+    <form [formGroup]="stepOneFormGroup" class='field-container'>
+      <!-- Field name -->
+      <section class='field-item'>
+        <label class='field-item__label'>{{'directory.definition_directory_create_step_1_field_name' | translate}}</label>
+        <input type="text" formControlName="name" class="field-item__input" [placeholder]="'directory.definition_directory_create_step_1_field_name_placeholder' | translate"
+               cxmSmartflowCxmTooltip
+               [tooltipText]='(stepOneFormGroup.controls["name"]?.errors?.message || "") | translate'
+               [showTooltip]='(stepOneFormGroup.controls["name"]?.errors !== null) && (stepOneFormGroup.controls["name"].touched || showError)'>
+      </section>
+
+      <!-- Field display name -->
+      <section class='field-item'>
+        <label class='field-item__label'>{{'directory.definition_directory_create_step_1_field_display_name' | translate}}</label>
+        <input type="text" formControlName="displayName" class="field-item__input" [placeholder]="'directory.definition_directory_create_step_1_field_display_name_placeholder' | translate"
+               cxmSmartflowCxmTooltip
+               [tooltipText]='(stepOneFormGroup.controls["displayName"]?.errors?.message || "") | translate'
+               [showTooltip]='(stepOneFormGroup.controls["displayName"]?.errors !== null) && (stepOneFormGroup.controls["displayName"].touched || showError)'>
+      </section>
+    </form>
+  </header>
+</article>
+
+<div class="space-x-4 action-buttons flex justify-end relative">
+  <cxm-smartflow-rich-button (click)="navigateToPreviousPageEvent()" [isRounded]='true' >{{ "directory.definition_directory_create_step_1_btn_cancel" | translate}}</cxm-smartflow-rich-button>
+  <cxm-smartflow-rich-button (click)="navigateToNextTwoEvent()">{{ "directory.definition_directory_create_step_1_btn_next" | translate}}</cxm-smartflow-rich-button>
+</div>

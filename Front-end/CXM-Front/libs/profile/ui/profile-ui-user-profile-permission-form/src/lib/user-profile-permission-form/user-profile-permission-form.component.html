@@ -1,0 +1,235 @@
+<form [formGroup]="form" class="user-profile-permission-form" *ngIf="formloaded">
+  <!--form  name and display name-->
+  <section>
+    <h2>{{ 'profile.form.label.formTitle' | translate }}</h2>
+
+    <div class="property-form flex flex-col space-y-4" [style.height]='isAdmin? "186px": "131px"'>
+      <div class="flex flex-row items-center" *ngIf='isAdmin'>
+        <label>{{ 'profile.form.label.client' | translate }} :</label>
+        <cxm-smartflow-input-selection class='select-input'
+                                       paddingLeft='10px'
+                                       [errorMsg]='(clientErrorMsg$ | async) || ""'
+                                       [isShowError]='(isShowError$ | async) || false'
+                                       (selectedSource)='selectClient($event)'
+                                       [selectSourceKey]='(clientId$ | async) || 0'
+                                       [isDisabled]="isEditMode"
+                                       [datasource]='(clients$ | async) || []'>
+        </cxm-smartflow-input-selection>
+      </div>
+
+      <div class="flex flex-row items-center">
+        <label>{{ 'profile.form.label.name' | translate }} :</label>
+        <input
+          [placeholder]="'profile.form.label.namePlaceholder' | translate"
+          class="profile-name"
+          formControlName="name"
+          name="name"
+          cxmSmartflowCxmTooltip
+          [tooltipText]="nameErrorTooltipLabel"
+          [showTooltip]="showNameTooltip$ | async"
+          [showBackgroundEl]="showTooltipBackground"
+          [normalBorderColorEl]="'0.5px solid #8194b4'"
+        />
+      </div>
+
+      <div class="flex flex-row items-center">
+        <label>{{ 'profile.form.label.displayname' | translate }} :</label>
+        <input
+          [placeholder]="
+            'profile.form.label.displayNamePlaceholder' | translate
+          "
+          class="name"
+          formControlName="displayName"
+          name="displayName"
+          cxmSmartflowCxmTooltip
+          [tooltipText]="displayNameErrorTooltipLabel"
+          [showTooltip]="showDisplayNameTooltip$ | async"
+          [showBackgroundEl]="showTooltipBackground"
+          [normalBorderColorEl]="'0.5px solid #8194b4'"
+        />
+      </div>
+    </div>
+  </section>
+  <!--  end -->
+
+  <!--  functionalities -->
+  <div class="functionality-container">
+    <ul>
+      <li *ngFor="let row of formStructure">
+        <!--        title-functionality-->
+        <div class="flex flex-row justify-between items-center title-functionality">
+          <div class="checkbox-container flex flex-row items-center">
+            <div class="checkbox-box flex flex-row items-center">
+              <input
+                type="checkbox"
+                [formControlName]="row.code + 'Ck'"
+                (change)="checkboxChanged($event, row)"
+                [id]="row.code + '-checkbox-main'"
+                class="checkbox-input" #allowedCheckRef/>
+
+              <label [for]="row.code + '-checkbox-main'"
+                ><span class="custom-checkbox" [class.disabled]="allowedCheckRef.disabled"></span
+              ></label>
+            </div>
+
+            <input type="hidden" [formControlName]="row.code + 'ID'" />
+            <label style="padding-left: 10px">{{ row.name | translate }}</label>
+          </div>
+
+          <a (click)="toggleShowHide(row.code)">{{
+            (showHidePrivilege[row.code]
+              ? 'profile.form.label.seeLess'
+              : 'profile.form.label.seeMore'
+            ) | translate
+          }}</a>
+        </div>
+        <!--        end title-functionality-->
+        <hr />
+        <!--      main  functionalities-->
+        <div class="flex flex-row items-center main-functionality"
+             [class.only-can-access]='!row.visibility && !row.modification'
+             [class.hidden]='showHidePrivilege[row.code] && !row.visibility && !row.modification'
+        >
+          <div
+            class="flex flex-col select-level"
+            [class.hide-select-level]="row.visibility === undefined"
+          >
+            <label>{{ 'profile.form.label.visibility' | translate }} :</label>
+            <select
+              [formControlName]="row.code + 'Vis'"
+              (ngModelChange)="functionVisibilityChanged($event, row)"
+            >
+              <option value="user" [class.hidden]="!(row.v !== undefined && row.v >= 1)">
+                {{ 'profile.form.options.user' | translate }}
+              </option>
+              <option value="service" [class.hidden]="!(row.v !== undefined  && row.v >= 2)">
+                {{ 'profile.form.options.service' | translate }}
+              </option>
+              <option value="division" [class.hidden]="!(row.v !== undefined  && row.v >= 3)">
+                {{ 'profile.form.options.division' | translate }}
+              </option>
+              <option value="client" [class.hidden]="!(row.v !== undefined  && row.v >= 4)">
+                {{ 'profile.form.options.client' | translate }}
+              </option>
+              <option value="specific">
+                {{ 'profile.form.options.specific' | translate }}
+              </option>
+            </select>
+          </div>
+
+          <div
+            class="flex flex-col select-level"
+            [class.hide-select-level]="row.modification === undefined"
+          >
+            <label>{{ 'profile.form.label.modification' | translate }} :</label>
+            <select
+              [formControlName]="row.code + 'Modi'"
+              (ngModelChange)="functionModificationChange($event, row)"
+            >
+              <option value="owner" [class.hidden]="!(row.m !== undefined  && row.m >= 1)">
+                {{ 'profile.form.options.owner' | translate }}
+              </option>
+              <option value="service" [class.hidden]="!(row.m !== undefined  && row.m >= 2)">
+                {{ 'profile.form.options.service' | translate }}
+              </option>
+              <option value="division" [class.hidden]="!(row.m !== undefined  && row.m >= 3)">
+                {{ 'profile.form.options.division' | translate }}
+              </option>
+              <option value="client" [class.hidden]="!(row.m !== undefined  && row.m >= 4)">
+                {{ 'profile.form.options.client' | translate }}
+              </option>
+              <option value="specific">
+                {{ 'profile.form.options.specific' | translate }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <!--        end main functionalities -->
+
+        <!--        sub functionalities-->
+        <ul
+          class="flex flex-col items-center sub-functionality"
+          [class.hide-sub-functionalities]="!showHidePrivilege[row.code]"
+        >
+          <li *ngFor="let func of row.func" class="flex flex-row items-center">
+            <div class="flex flex-row items-center select-sub-level">
+              <div class="title-container flex flex-row items-center">
+                <div class="check-box flex flex-row items-center">
+                  <input
+                    type="checkbox"
+                    [formControlName]="func.code + 'Ck'"
+                    (change)="shouldUpdateFuncControl($event, row, func)"
+                    [id]="func.code + '-checkbox-sub'"
+                    class="checkbox-input" #allowedCheckFuncRef
+                  />
+                  <label [for]="func.code + '-checkbox-sub'" 
+                    ><span class="custom-checkbox"  [class.disabled]="allowedCheckFuncRef.disabled"></span
+                  ></label>
+                </div>
+
+                <label style="padding-left: 10px !important ; width: 350px;">{{
+                  func.name | translate
+                }}</label>
+              </div>
+            </div>
+
+            <div
+              class="flex flex-col select-sub-level"
+              [class.hide-select-level]="func.visibility === undefined"
+            >
+              <label>{{ 'profile.form.label.visibility' | translate }} :</label>
+              <select [formControlName]="func.code + 'Vis'" [ngClass] = "{'disabled-select-box' : this.form.get(row.code + 'Vis')?.value !== 'specific'}">
+                <option value="user" [class.hidden]="!(func.v !== undefined && func.v >= 1)">
+                  {{ 'profile.form.options.user' | translate }}
+                </option>
+                <option value="service" [class.hidden]="!(func.v !== undefined && func.v >= 2)">
+                  {{ 'profile.form.options.service' | translate }}
+                </option>
+                <option value="division" [class.hidden]="!(func.v !== undefined && func.v >= 3)">
+                  {{ 'profile.form.options.division' | translate }}
+                </option>
+                <option value="client" [class.hidden]="!(func.v !== undefined && func.v >= 4)">
+                  {{ 'profile.form.options.client' | translate }}
+                </option>
+              </select>
+            </div>
+
+            <div
+              class="flex flex-col select-sub-level"
+              [class.hide-select-level]="func.modification === undefined"
+            >
+              <label
+                >{{ 'profile.form.label.modification' | translate }} :</label
+              >
+              <select [formControlName]="func.code + 'Modi'" [ngClass] = "{'disabled-select-box' : this.form.get(row.code + 'Modi')?.value !== 'specific'}">
+                <option value="owner" [class.hidden]="!(func.m && func.m >= 1)">
+                  {{ 'profile.form.options.owner' | translate }}
+                </option>
+                <option value="service" [class.hidden]="!(func.m && func.m >= 2)">
+                  {{ 'profile.form.options.service' | translate }}
+                </option>
+                <option value="division" [class.hidden]="!(func.m && func.m >= 3)">
+                  {{ 'profile.form.options.division' | translate }}
+                </option>
+                <option value="client" [class.hidden]="!(func.m && func.m >= 4)">
+                  {{ 'profile.form.options.client' | translate }}
+                </option>
+              </select>
+            </div>
+          </li>
+        </ul>
+        <!--        end sub functionalities-->
+      </li>
+    </ul>
+  </div>
+  <!--  end functionalities-->
+
+  <div class="flex flex-row justify-end action-container">
+    <button type="button" class="btn-cancel" (click)="cancel()">
+      {{ 'profile.form.label.button.cancel' | translate }}
+    </button>
+    <button *ngIf='isCanModify || !isEditMode' type="submit" class="btn-submit" (click)="submit()">
+      {{ 'profile.form.label.button.' + btnSubmitLabel | translate }}
+    </button>
+  </div>
+</form>

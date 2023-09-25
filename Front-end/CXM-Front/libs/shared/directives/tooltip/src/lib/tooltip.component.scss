@@ -1,0 +1,59 @@
+:host {
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.cxm-tooltip-content {
+  @apply rounded px-3 inline-block;
+}
+
+
+.cxm-tooltip-content::after {
+  content: " ";
+  position: absolute;
+  top: 90%; /* At the bottom of the tooltip */
+  left: 15px;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.mode-success.cxm-tooltip-content {
+  background-color: #88C672;
+  color: white;
+}
+
+.mode-error.cxm-tooltip-content   {
+  background-color: #DD1C1C;
+  color: white;
+}
+
+.mode-success.cxm-tooltip-content::after {
+  border-color: #88C672 transparent transparent transparent;
+}
+
+.mode-error.cxm-tooltip-content::after {
+  border-color: #DD1C1C transparent transparent transparent;
+}
+
+.rich-tooltip {
+  font-style:  italic;
+  font-family: initial;
+  font-size: 12px;
+  min-width: 900px;
+  padding: .5rem 1rem;
+  @apply border bg-white border-blue-900 rounded-md;
+}
+
+.rich-tooltip::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 15px;
+  margin-left: -5px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: gray transparent transparent transparent;
+}

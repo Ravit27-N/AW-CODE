@@ -1,0 +1,55 @@
+<div class="flex relative">
+  <div class="list-panel byHoursPanel relative">
+    <p class="panel-title">{{ 'client.form.titleOffloadByHours' | translate }}</p>
+    <form [formGroup]="form" class="flex flex-row space-x-2">
+
+      <div *ngFor="let item of formModel" class="day-item">
+        <label [for]="item.label" [title]="'client.form.days.'+item.label |translate">
+          <cxm-smartflow-common-checkbox [formControlName]="item.label"> {{ 'client.form.days.'+item.label |translate}} </cxm-smartflow-common-checkbox>
+        </label>
+
+        <div class="day-item-text text-center space-y-1 pb-2" [class.item-disable]="item.check===false">
+          <p class="day-item-hour my-1" *ngFor="let h of item.hours; index as i" [title]="h">
+            {{ h }}
+            <span (click)="removeTime(item,i)" class="cxm-icon cursor-pointer" style="background-image: url('assets/icons/delete.svg');"></span>
+          </p>
+
+          <p *ngIf="item.check && item.hours.length < 4" [matMenuTriggerFor]="changeTime" [matMenuTriggerData]="item" class="day-item-action my-1">{{'client.form.add_hours'|translate}}</p>
+          <p *ngIf="item.check===false && item.hours.length < 4" class="day-item-action my-1">{{'client.form.add_hours'|translate}}</p>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="list-panel byHoliday ml-12 relative">
+    <p class="panel-title">{{ 'client.form.titleOffloadHoliday' | translate }}</p>
+    <form [formGroup]="holidayForm" class="flex flex-row flex-wrap">
+
+      <div class="w-1/2 space-y-1">
+        <label *ngFor="let item of firstHalf;let i=index" [for]="item.label" [title]="item.holidayTooltip">
+          <cxm-smartflow-common-checkbox [formControlName]="item.label"> {{ 'client.form.days.'+item.label |translate}} </cxm-smartflow-common-checkbox>
+        </label>
+      </div>
+
+      <div class="w-1/2 space-y-1">
+        <label *ngFor="let item of secondHalf;let i=index" [for]="item.label" [title]="item.holidayTooltip">
+          <cxm-smartflow-common-checkbox [formControlName]="item.label"> {{ 'client.form.days.'+item.label |translate}} </cxm-smartflow-common-checkbox>
+        </label>
+      </div>
+
+      <!-- <div *ngFor="let item of holidayFormModel;let i=index" class="w-1/2 my-1">
+        <label [for]="item.label" [title]="item.holidayTooltip">
+          <cxm-smartflow-common-checkbox [formControlName]="item.label"> {{ 'client.form.days.'+item.label |translate}} </cxm-smartflow-common-checkbox>
+        </label>
+      </div> -->
+
+    </form>
+  </div>
+</div>
+
+<mat-menu #changeTime="matMenu">
+  <ng-template matMenuContent let-name="label">
+    <cxm-smartflow-common-time-picker (oncloseRequest)="closeChangeTime()" (onvalidate)="updateChangeTime(name, $event)" ></cxm-smartflow-common-time-picker>
+  </ng-template>
+</mat-menu>

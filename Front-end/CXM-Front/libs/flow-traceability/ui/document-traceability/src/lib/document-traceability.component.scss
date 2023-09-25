@@ -1,0 +1,26 @@
+@import 'flow-traceability-global-styles';
+
+:host {
+  display: block;
+}
+
+.d-block {
+  display: block;
+}
+
+$df-color: #005C9F;
+
+.btn-return {
+  width: 260px !important;
+  min-height: 48px !important;
+  padding: 0!important;
+  min-width: 131px !important;
+}
+
+.breadcrumb {
+  margin: 15px 0;
+}
+
+.header {
+  margin-bottom: 30px;
+}

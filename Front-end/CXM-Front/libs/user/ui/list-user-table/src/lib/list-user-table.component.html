@@ -1,0 +1,195 @@
+<article class='list-user-table-wrapper'>
+  <section class='flex mb-8 justify-start'>
+
+    <!-- Client list filter -->
+    <cxm-smartflow-list-user-client-filter *ngIf='userClientList$ | async as clientList' [clients]='clientList'
+    [usingFilter]="usingClientFilter"
+    [restoreFilterFunction]="restoreClientFunction"
+    (onchange)='onFilterChangedClient($event)'></cxm-smartflow-list-user-client-filter>
+
+       <!-- division list filter -->
+    <cxm-smartflow-list-user-division-filter *ngIf='userDivisionList$ | async as divisionList' [divisions]='divisionList'
+    [usingFilter]="usingDivisionFilter"
+    [restoreFilterFunction]="restoreDivisionFunction"
+    (onchange)='onFilterChangedDiv($event)'></cxm-smartflow-list-user-division-filter>
+
+       <!-- service list filter -->
+    <cxm-smartflow-list-user-service-filter *ngIf='userServiceList$ | async as serviceList' [services]='serviceList'
+    [usingFilter]="usingServiceFilter"
+    [restoreFilterFunction]="restoreServiceFunction"
+    (onchange)='onFilterChangedServ($event)'></cxm-smartflow-list-user-service-filter>
+
+        <!-- profile list filter -->
+    <cxm-smartflow-list-user-profile-filter *ngIf='userProfileList$ | async as profileList' [profiles]='profileList'
+    [usingFilter]="usingProfileFilter"
+    [restoreFilterFunction]="restoreProfileFunction"
+    (onchange)='onFilterChanged($event)'></cxm-smartflow-list-user-profile-filter>
+
+
+    <cxm-smartflow-list-admin-user-filter *ngIf="isAdmin" (onchange)="onAdminFilterChange($event)"
+    [usingFilter]="usingAdminUserFilter"
+    [restoreFilterFunction]="restoreUserAdminFunction" class="ml-4"></cxm-smartflow-list-admin-user-filter>
+
+    <div class='ml-auto flex align-middle items-center'>
+      <cxm-smartflow-search-box [isError]='(showTooltip$ | async) || false'
+                                (searchBoxChange)='searchTermChanged($event)'
+                                [value]='filters?.filter || ""'>
+      </cxm-smartflow-search-box>
+    </div>
+
+  </section>
+  <div class="common-cxm-table-container">
+    <table mat-table matSort [dataSource]='users' matSortDisableClear>
+
+      <!-- Checkbox -->
+      <ng-container matColumnDef='select'>
+        <th mat-header-cell *matHeaderCellDef class='column-checkbox col-checkbox has-right-border'>
+          <cxm-smartflow-common-checkbox class='cxm-checkbox-style' disableRipple='true'
+                                         (ngModelChange)='masterToggle()'
+                                         [ngModel]='isAllSelected()'
+
+          ></cxm-smartflow-common-checkbox>
+        </th>
+        <td mat-cell *matCellDef='let row' id='selectCheckBox' class='column-checkbox col-checkbox has-right-border '>
+          <label class='cursor-pointer'>
+            <cxm-smartflow-common-checkbox class='cxm-checkbox-style' disableRipple='true'
+                                           (ngModelChange)='selection.toggle(row)'
+                                           [ngModel]='selection.isSelected(row)'
+
+            ></cxm-smartflow-common-checkbox>
+          </label>
+        </td>
+      </ng-container>
+
+      <!-- NAME COLUMN -->
+      <ng-container matColumnDef='firstName' id='selectFirstname'>
+        <th id='first_name' mat-header-cell *matHeaderCellDef mat-sort-header class='column-name col-firstname'
+            arrowPosition='after'>
+          {{'user.list.table.header.firstname' | translate}}
+        </th>
+        <td mat-cell *matCellDef='let row' id='firstname' class='column-name col-firstname' [title]='row?.firstName'
+            cxmSmartflowCxmTooltip
+            [tooltipText]='"user.list.table.noProfile" | translate'
+            [showTooltip]='row.profiles.length === 0'
+            [isRemoveBorder]='true' [showBackgroundEl]='false'>
+          <a class='hover:no-underline'>
+
+            <div class="flex flex-row items-center ">
+              <span>{{row?.firstName}}</span>
+              <span *ngIf="row.admin && isAdmin" class="table-row-icon pl-1">
+              <span [title]="row?.firstName" class="cxm-icon text-icon-red mr-2" style="background-image: url('assets/icons/admin-icon.png');"></span>
+            </span>
+            </div>
+
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef='lastName' id='selectLastname'>
+        <th id='last_name' mat-header-cell *matHeaderCellDef mat-sort-header class='column-name col-firstname'
+            arrowPosition='after'>
+          {{'user.list.table.header.lastname' | translate}}
+        </th>
+        <td mat-cell *matCellDef='let row' id='lastname' class='column-name col-firstname' [title]='row?.lastName'
+            cxmSmartflowCxmTooltip
+            [tooltipText]='"user.list.table.noProfile" | translate'
+            [showTooltip]='row.profiles.length === 0'
+            [isRemoveBorder]='true' [showBackgroundEl]='false'>
+          <a class='hover:no-underline'>{{row?.lastName}}</a>
+        </td>
+      </ng-container>
+      <!-- END NAME COLUMN -->
+
+      <!-- Email -->
+      <ng-container matColumnDef='email' id='selectEmail'>
+        <th id='email' mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition='after' class='col-email'>
+          {{'user.list.table.header.email' | translate}}
+        </th>
+        <td mat-cell *matCellDef='let row' class='col-email' [title]='row?.email' cxmSmartflowCxmTooltip
+            [tooltipText]='"user.list.table.noProfile" | translate'
+            [showTooltip]='row.profiles.length === 0'
+            [isRemoveBorder]='true' [showBackgroundEl]='false'>
+          {{row?.email}}
+        </td>
+      </ng-container>
+
+      <!-- client  add new-->
+      <ng-container *ngIf="this.isAdmin$ | async" matColumnDef='client' id='selectClient' >
+        <th id='email' mat-header-cell *matHeaderCellDef mat-sort-header class='col-client' >
+          {{'user.list.table.header.client' | translate}}
+        </th>
+        <td mat-cell *matCellDef='let row' class='col-client' [title]='row?.service.clientName' cxmSmartflowCxmTooltip
+            [tooltipText]='"user.list.table.noProfile" | translate'
+            [showTooltip]='row.profiles.length === 0'
+            [isRemoveBorder]='true' [showBackgroundEl]='false'>
+          {{row?.service.clientName}}
+        </td>
+      </ng-container>
+
+      <!-- Division -->
+      <ng-container matColumnDef='division' id='selectDivision'>
+        <th id='email' mat-header-cell *matHeaderCellDef mat-sort-header class='col-division'>
+          {{'user.list.table.header.division' | translate}}
+        </th>
+        <td mat-cell *matCellDef='let row' class='col-division' [title]='row?.service.divisionName' cxmSmartflowCxmTooltip
+            [tooltipText]='"user.list.table.noProfile" | translate'
+            [showTooltip]='row.profiles.length === 0'
+            [isRemoveBorder]='true' [showBackgroundEl]='false'>
+          {{row?.service.divisionName}}
+        </td>
+      </ng-container>
+
+      <!-- Service -->
+      <ng-container matColumnDef='service' id='selectSevice'>
+        <th id='email' mat-header-cell *matHeaderCellDef mat-sort-header class='col-service'>
+          {{'user.list.table.header.service' | translate}}
+        </th>
+        <td mat-cell *matCellDef='let row' class='col-service' [title]='row?.service.name' cxmSmartflowCxmTooltip
+            [tooltipText]='"user.list.table.noProfile" | translate'
+            [showTooltip]='row.profiles.length === 0'
+            [isRemoveBorder]='true' [showBackgroundEl]='false'>
+          {{row?.service.name}}
+        </td>
+      </ng-container>
+
+      <!-- Profile -->
+      <ng-container matColumnDef='userProfiles' id='selectProfile'>
+        <th id='userProfiles' mat-header-cell mat-sort-header *matHeaderCellDef class='col-profile'>
+          {{'user.list.table.header.profile' | translate}}
+        </th>
+        <td mat-cell *matCellDef='let row;' id='noProfile' class='col-profile' [title]='showProfile(row.profiles)'
+            [ngStyle]="{'text-align': row.profiles.length > 0? '': 'left'}" cxmSmartflowCxmTooltip
+            [tooltipText]='"user.list.table.noProfile" | translate'
+            [showTooltip]='row.profiles.length === 0'
+            [isRemoveBorder]='true' [showBackgroundEl]='false'>
+          {{row.profiles.length > 0 ? showProfile(row.profiles) : ""}}
+          <mat-icon class='text-red-600' *ngIf='row.profiles.length === 0'>person</mat-icon>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef='this.tableColumns; sticky: true'></tr>
+
+      <tr
+        mat-row
+        *matRowDef='let row; let i = index; columns: tableColumns'
+        [class.row-selected]='selection.isSelected(row)'>
+      </tr>
+
+      <tr class='mat-row no-data-row' *matNoDataRow>
+        <td class='mat-cell no-data-cell' [colSpan]='this.tableColumns.length'></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class='mt-6'></div>
+  <cxm-smartflow-list-paginator
+    *ngIf='pagination'
+    [withFilter]='usingProfileFilter || usingAdminUserFilter'
+    [withCriteria]='(searchValue$ | async) || usingProfileFilter || usingAdminUserFilter'
+    (page)='paginationUpdated($event)'
+    [pageIndex]='pagination.page'
+    [pageSize]='pagination.pageSize'
+    [length]='pagination.total'>
+  </cxm-smartflow-list-paginator>
+
+</article>

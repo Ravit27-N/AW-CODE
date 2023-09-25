@@ -1,0 +1,75 @@
+.listUserContainer{
+  background-color: white;
+  padding: 15px;
+  min-height: 50vh;
+  border-width: 1px;
+  border-color: #1A214D;
+}
+
+.action-button-group {
+  display: flex;
+  flex-direction: row;
+}
+
+:host ::ng-deep {
+  & .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary{
+    margin-right: 10px;
+  }
+}
+
+#refreshed-date{
+  color: #CCCCCC;
+}
+
+.vl{
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 57px;
+  border-left: 2px solid #1A214D;
+}
+
+h1{
+  color: #1A214D;
+  font-weight: bold;
+}
+
+cxm-smartflow-round-action-button{
+  margin-right: 10px;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.import-title-wrapper {
+  position: relative;
+}
+
+.import-title-wrapper img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  position: absolute;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.overlay{
+height:75vh;
+width:100%;
+background-color:rgb(0 0 0 / 57%);
+z-index:    10;
+top:        0; 
+left:       0; 
+position:   fixed;
+}

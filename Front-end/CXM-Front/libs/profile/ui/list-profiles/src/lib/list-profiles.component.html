@@ -1,0 +1,30 @@
+<cxm-smartflow-profile-header>
+  <cxm-smartflow-header-button *ngIf='this.canCreateProfile$ | async' icon='add' width='156px' height='48px' minWidth='156px' (onclick)='onCreateNewProfile()'>
+    {{'profile.list.buttonCreate' | translate}}
+  </cxm-smartflow-header-button>
+</cxm-smartflow-profile-header>
+
+<!-- Filter box-->
+<section class='flex mb-8 mt-6' [ngClass]="{'justify-between': isAdmin, 'justify-end' : !isAdmin }" id='flow-filter-criteria-panel'>
+  <cxm-smartflow-filter-box [filterBoxName]='"profile.filter.client" | translate'
+                            *ngIf='isAdmin'
+                            [filterBoxDataSource]='(datasource$ | async) || []'
+                            [selectedItemIds]="(restoreSelectedClientIds$ | async) || []"
+                            (filterChange)='filterClientBoxChange($event)'>
+
+  </cxm-smartflow-filter-box>
+
+  <cxm-smartflow-search-box [placeholder]="'input.placeholder.search' | translate"
+                            [isError]='(isFilterError$ | async) || false'
+                            (searchBoxChange)='searchTermChanged($event)'
+                            [value]='(searchBoxValue$ | async) || ""'
+                            [errorMsg]="'cxmCampaign.followMyCampaign.list.tableHeader.notFound' | translate">
+  </cxm-smartflow-search-box>
+</section>
+<!-- Filter box-->
+
+<div *ngIf="canListProfile$ | async">
+  <div class="common-mt-table">
+    <cxm-smartflow-list-profile-table [isHasFilter]='(hasFilter$ | async) || false'></cxm-smartflow-list-profile-table>
+  </div>
+</div>

@@ -1,0 +1,711 @@
+{
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "cxm-smartflow",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "MWNmYWJlMDItN2IyYi00MTY2LWE0OTQtNGRlMGZmZTVlODM5fHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
+    }
+  },
+  "projects": {
+    "cxm-smartflow": {
+      "tags": []
+    },
+    "cxm-smartflow-e2e": {
+      "tags": [],
+      "implicitDependencies": ["cxm-smartflow"]
+    },
+    "cxm-campaign": {
+      "tags": []
+    },
+    "cxm-campaign-e2e": {
+      "tags": [],
+      "implicitDependencies": ["cxm-campaign"]
+    },
+    "cxm-template": {
+      "tags": []
+    },
+    "cxm-template-e2e": {
+      "tags": [],
+      "implicitDependencies": ["cxm-template"]
+    },
+    "auth-data-access": {
+      "tags": []
+    },
+    "auth-util": {
+      "tags": []
+    },
+    "auth-feature": {
+      "tags": []
+    },
+    "follow-my-campaign-feature": {
+      "tags": []
+    },
+    "follow-my-campaign-data-access": {
+      "tags": []
+    },
+    "follow-my-campaign-util": {
+      "tags": []
+    },
+    "manage-my-campaign-util": {
+      "tags": []
+    },
+    "manage-my-campaign-feature": {
+      "tags": []
+    },
+    "manage-my-campaign-data-access": {
+      "tags": []
+    },
+    "shared-utils": {
+      "tags": []
+    },
+    "shared-material": {
+      "tags": []
+    },
+    "manage-my-campaign-ui-feature-setting": {
+      "tags": []
+    },
+    "manage-my-campaign-ui-feature-model": {
+      "tags": []
+    },
+    "manage-my-campaign-ui-feature-": {
+      "tags": []
+    },
+    "manage-my-campaign-ui-feature-destination": {
+      "tags": []
+    },
+    "shared-ui-card-side-bar": {
+      "tags": []
+    },
+    "shared-storybook": {
+      "tags": []
+    },
+    "shared-storybook-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shared-storybook"]
+    },
+    "shared-ui-button": {
+      "tags": []
+    },
+    "shared-ui-button-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shared-ui-button"]
+    },
+    "follow-my-campaign-ui-feature-list-of-campaign": {
+      "tags": []
+    },
+    "shared-data-access-api": {
+      "tags": []
+    },
+    "shared-data-access-model": {
+      "tags": []
+    },
+    "shared-ui-input": {
+      "tags": []
+    },
+    "shared-ui-input-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shared-ui-input"]
+    },
+    "shared-app-config": {
+      "tags": []
+    },
+    "shared-ui-paginator": {
+      "tags": []
+    },
+    "shared-ui-paginator-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shared-ui-paginator"]
+    },
+    "shared-ui-search": {
+      "tags": []
+    },
+    "shared-ui-search-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shared-ui-search"]
+    },
+    "shared-ui-input-test": {
+      "tags": []
+    },
+    "manage-my-campaign-ui-show-comfirmation": {
+      "tags": []
+    },
+    "shared-ui-spinner": {
+      "tags": []
+    },
+    "shared-chat": {
+      "tags": []
+    },
+    "shared-ui-message": {
+      "tags": []
+    },
+    "shared-ui-show-information": {
+      "tags": []
+    },
+    "shared-assets-theme": {},
+    "shared-ui-thumbnail-card": {
+      "tags": []
+    },
+    "shared-ui-thumbnail-card-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shared-ui-thumbnail-card"]
+    },
+    "email-template-ui-feature--email-template": {
+      "tags": []
+    },
+    "shared-data-access-services": {
+      "tags": []
+    },
+    "shared-comfirm-dialog": {
+      "tags": []
+    },
+    "shared-ui-image": {
+      "tags": []
+    },
+    "follow-my-campaign-ui-feature--of-campaign": {
+      "tags": []
+    },
+    "shared-ui-date-picker": {
+      "tags": []
+    },
+    "shared-ui-date-time-picker": {
+      "tags": []
+    },
+    "shared-styles": {
+      "tags": []
+    },
+    "shared-ui-comfirmation-message": {
+      "tags": []
+    },
+    "shared-ui-progression-circle": {
+      "tags": []
+    },
+    "shared-pipes": {
+      "tags": []
+    },
+    "follow-my-campaign-ui-send-mail-dialog": {
+      "tags": []
+    },
+    "cxm-flow-traceability": {
+      "tags": []
+    },
+    "cxm-flow-traceability-e2e": {
+      "tags": [],
+      "implicitDependencies": ["cxm-flow-traceability"]
+    },
+    "flow-traceability-data-access": {
+      "tags": []
+    },
+    "flow-traceability-feature": {
+      "tags": []
+    },
+    "flow-traceability-ui-flow-traceability-table": {
+      "tags": []
+    },
+    "flow-traceability-util": {
+      "tags": []
+    },
+    "flow-traceability-ui-document-traceability": {
+      "tags": []
+    },
+    "flow-traceability-ui-document-traceability-table": {
+      "tags": []
+    },
+    "cxm-deposit": {
+      "tags": []
+    },
+    "cxm-deposit-e2e": {
+      "tags": [],
+      "implicitDependencies": ["cxm-deposit"]
+    },
+    "flow-deposit-data-access": {
+      "tags": []
+    },
+    "flow-deposit-feature": {
+      "tags": []
+    },
+    "flow-deposit-ui-pre-analysis": {
+      "tags": []
+    },
+    "flow-deposit-ui-identification-table": {
+      "tags": []
+    },
+    "flow-deposit-ui-analysis-result": {
+      "tags": []
+    },
+    "flow-deposit-ui-analysis-variant": {
+      "tags": []
+    },
+    "flow-deposit-ui-analysis-result-table": {
+      "tags": []
+    },
+    "flow-deposit-ui-finished": {
+      "tags": []
+    },
+    "flow-deposit-ui-acquisition": {
+      "tags": []
+    },
+    "flow-deposit-ui-upload-progression": {
+      "tags": []
+    },
+    "shared-directives-drag-drop": {
+      "tags": []
+    },
+    "flow-deposit-ui-production-criteria": {
+      "tags": []
+    },
+    "flow-deposit-ui-product-criteria-form": {
+      "tags": []
+    },
+    "flow-deposit-ui-deposit-navigator": {
+      "tags": []
+    },
+    "cxm-profile": {
+      "tags": []
+    },
+    "cxm-profile-e2e": {
+      "tags": [],
+      "implicitDependencies": ["cxm-profile"]
+    },
+    "profile-data-access": {
+      "tags": []
+    },
+    "profile-feature": {
+      "tags": []
+    },
+    "profile-util": {
+      "tags": []
+    },
+    "profile-ui-list-profiles": {
+      "tags": []
+    },
+    "profile-ui-list-profile-table": {
+      "tags": []
+    },
+    "shared-ui-round-button": {
+      "tags": []
+    },
+    "shared-directives-tooltip": {
+      "tags": []
+    },
+    "profile-ui-profile-navigator": {
+      "tags": []
+    },
+    "auth-ui-login": {
+      "tags": []
+    },
+    "shared-directives-can-delete": {
+      "tags": []
+    },
+    "shared-directives-can-visibility": {
+      "tags": []
+    },
+    "shared-directives-can-modification": {
+      "tags": []
+    },
+    "user-feature": {
+      "tags": []
+    },
+    "user-data-access": {
+      "tags": []
+    },
+    "user-ui-list-users": {
+      "tags": []
+    },
+    "user-ui-list-user-table": {
+      "tags": []
+    },
+    "cxm-directory": {
+      "tags": []
+    },
+    "cxm-directory-e2e": {
+      "tags": [],
+      "implicitDependencies": ["cxm-directory"]
+    },
+    "definition-directory-feature": {
+      "tags": []
+    },
+    "definition-directory-data-access": {
+      "tags": []
+    },
+    "directory-feed-feature": {
+      "tags": []
+    },
+    "directory-feed-ui-feature-list-directory-feed-table": {
+      "tags": []
+    },
+    "directory-feed-ui-feature-directory-feed-navigator": {
+      "tags": []
+    },
+    "directory-feed-ui-feature-list-directory-feed": {
+      "tags": []
+    },
+    "directory-feed-data-access": {
+      "tags": []
+    },
+    "directory-feed-ui-directory-feed-form-table": {
+      "tags": []
+    },
+    "dashboard-feature": {
+      "tags": []
+    },
+    "dashboard-ui-dashboard-card": {
+      "tags": []
+    },
+    "shared-common-typo": {
+      "tags": []
+    },
+    "user-util": {
+      "tags": []
+    },
+    "definition-directory-util": {
+      "tags": []
+    },
+    "directory-feed-util": {
+      "tags": []
+    },
+    "follow-my-campaign-ui-feature-campaign-mail": {
+      "tags": []
+    },
+    "follow-my-campaign-ui-preview-email-template": {
+      "tags": []
+    },
+    "shared-ui-stepper": {
+      "tags": []
+    },
+    "flow-deposit-ui-pdf-viewer": {
+      "tags": []
+    },
+    "shared-ui-iframely-embed": {
+      "tags": []
+    },
+    "follow-my-campaign-ui-feature-campaign-sms": {
+      "tags": []
+    },
+    "shared-directives-can-access": {
+      "tags": []
+    },
+    "forgot-password": {
+      "tags": []
+    },
+    "blocked-account": {
+      "tags": []
+    },
+    "template-data-access": {
+      "tags": []
+    },
+    "template-feature": {
+      "tags": []
+    },
+    "template-util": {
+      "tags": []
+    },
+    "template-ui-feature-list-template": {
+      "tags": []
+    },
+    "template-ui-feature-create-update-template-popup": {
+      "tags": []
+    },
+    "template-ui-feature-template-form": {
+      "tags": []
+    },
+    "shared-ui-step": {
+      "tags": []
+    },
+    "flow-deposit-ui-header": {
+      "tags": []
+    },
+    "flow-deposit-ui-file-info": {
+      "tags": []
+    },
+    "shared-ui-progression-line": {
+      "tags": []
+    },
+    "flow-deposit-ui-validate-result": {
+      "tags": []
+    },
+    "follow-my-campaign-ui-feature-campaign": {
+      "tags": []
+    },
+    "follow-my-campaign-ui-feature-csv-upload": {
+      "tags": []
+    },
+    "follow-my-campaign-ui-feature-list-campaign": {
+      "tags": []
+    },
+    "flow-deposit-guard-pending-change": {
+      "tags": []
+    },
+    "flow-traceability-ui-flow-filter": {
+      "tags": []
+    },
+    "flow-traceability-ui-flow-traceability-content": {
+      "tags": []
+    },
+    "flow-traceability-ui-flow-info": {
+      "tags": []
+    },
+    "shared-ui-cxm-datetime-picker": {
+      "tags": []
+    },
+    "flow-traceability-ui-featured-flow-document-detail": {
+      "tags": []
+    },
+    "flow-traceability-ui-featured-flow-digital-detail": {
+      "tags": []
+    },
+    "shared-info-tooltip": {
+      "tags": []
+    },
+    "shared-directives-info-tooltip": {
+      "tags": []
+    },
+    "shared-ui-circle-progression": {
+      "tags": []
+    },
+    "flow-traceability-ui-flow-traceability-shipment": {
+      "tags": []
+    },
+    "shared-ui-layout": {
+      "tags": []
+    },
+    "flow-traceability-ui-featured-flow-event-history": {
+      "tags": []
+    },
+    "flow-traceability-ui-featured-flow-portal-detail": {
+      "tags": []
+    },
+    "flow-traceability-ui-featured-flow-page-header": {
+      "tags": []
+    },
+    "user-ui-featured-create-user": {
+      "tags": []
+    },
+    "user-ui-featured-update-user": {
+      "tags": []
+    },
+    "user-ui-featured-user-form": {
+      "tags": []
+    },
+    "communication-interactive-data-access": {
+      "tags": []
+    },
+    "communication-interactive-util": {
+      "tags": []
+    },
+    "communication-interactive-feature": {
+      "tags": []
+    },
+    "communication-interactive-ui-featured-choose-template": {
+      "tags": []
+    },
+    "communication-interactive-ui-featured-communication-interactive-editor": {
+      "tags": []
+    },
+    "communication-interactive-ui-featured-communication-interactive-success-page": {
+      "tags": []
+    },
+    "profile-ui-create-profile-feature": {
+      "tags": []
+    },
+    "profile-ui-update-profile-feature": {
+      "tags": []
+    },
+    "profile-ui-profile-header": {
+      "tags": []
+    },
+    "approval-feature": {
+      "tags": []
+    },
+    "approval-data-access": {
+      "tags": []
+    },
+    "approval-ui": {
+      "tags": []
+    },
+    "approval-ui-feature-espace-validation-list": {
+      "tags": []
+    },
+    "profile-ui-profile-ui-user-profile-permission-form": {
+      "tags": []
+    },
+    "flow-deposit-ui-feature-list": {
+      "tags": []
+    },
+    "shared-common-criteria": {
+      "tags": []
+    },
+    "client-feature": {
+      "tags": []
+    },
+    "client-data-access": {
+      "tags": []
+    },
+    "client-ui-feature-client-list": {
+      "tags": []
+    },
+    "client-ui-feature-client-modification": {
+      "tags": []
+    },
+    "shared-ui-dropdown-filter-criterial": {
+      "tags": []
+    },
+    "shared-ui-form-input-selection": {
+      "tags": []
+    },
+    "auth-ui-feature-change-password": {
+      "tags": []
+    },
+    "shared-ui-pdfview": {
+      "tags": []
+    },
+    "shared-ui-preview-document": {
+      "tags": []
+    },
+    "shared-directives-toggle-element": {
+      "tags": []
+    },
+    "shared-ui-filter-box": {
+      "tags": []
+    },
+    "shared-ui-search-box": {
+      "tags": []
+    },
+    "shared-translate": {
+      "tags": []
+    },
+    "cxm-setting": {
+      "tags": []
+    },
+    "cxm-setting-e2e": {
+      "tags": [],
+      "implicitDependencies": ["cxm-setting"]
+    },
+    "setting-data-access": {
+      "tags": []
+    },
+    "setting-feature": {
+      "tags": []
+    },
+    "setting-ui": {
+      "tags": []
+    },
+    "setting-util": {
+      "tags": []
+    },
+    "setting-ui-featured-list-resource": {
+      "tags": []
+    },
+    "dashboard-data-access": {
+      "tags": []
+    },
+    "shared-ui-uploading-fragment": {
+      "tags": []
+    },
+    "client-ui-client-popup-dialog": {
+      "tags": []
+    },
+    "flow-deposit-ui-setting-option-popup": {
+      "tags": []
+    },
+    "shared-ui-preview-image": {
+      "tags": []
+    },
+    "cxm-analytics": {
+      "tags": []
+    },
+    "cxm-analytics-e2e": {
+      "tags": [],
+      "implicitDependencies": ["cxm-analytics"]
+    },
+    "analytics-data-access": {
+      "tags": []
+    },
+    "analytics-feature": {
+      "tags": []
+    },
+    "analytics-util": {
+      "tags": []
+    },
+    "analytics-ui-feature-reporting-space": {
+      "tags": []
+    },
+    "analytics-ui-report-space-navigation": {
+      "tags": []
+    },
+    "analytics-ui-report-space-filtering": {
+      "tags": []
+    },
+    "analytics-ui-report-space-graph": {
+      "tags": []
+    },
+    "analytics-ui-feature-reporting-postal": {
+      "tags": []
+    },
+    "analytics-ui-feature-reporting-email": {
+      "tags": []
+    },
+    "analytics-ui-feature-reporting-sms": {
+      "tags": []
+    },
+    "user-ui-import-user-csv-dialog": {
+      "tags": []
+    },
+    "flow-deposit-util": {
+      "tags": []
+    },
+    "shared-directives-title-case": {
+      "tags": []
+    },
+    "flow-deposit-ui-address-destination-popup": {
+      "tags": []
+    },
+    "shared-fragments-return-address": {
+      "tags": []
+    },
+    "definition-directory-ui-feature-list-directories": {
+      "tags": []
+    },
+    "definition-directory-ui-feature-create-directory": {
+      "tags": []
+    },
+    "definition-directory-ui-feature-form-directory": {
+      "tags": []
+    },
+    "definition-directory-ui-feature-edit-directory": {
+      "tags": []
+    },
+    "definition-directory-ui-feature-view-directory": {
+      "tags": []
+    },
+    "shared-ui-router-loading": {
+      "tags": []
+    },
+    "directory-feed-ui-feature-directory-feed-details": {
+      "tags": []
+    },
+    "directory-feed-ui-feature-add-directory-feed": {
+      "tags": []
+    },
+    "directory-feed-ui-feature-list-directory-feeds": {
+      "tags": []
+    },
+    "directory-feed-ui-feature-import-directory-feed-csv": {
+      "tags": []
+    }
+  }
+}

@@ -1,0 +1,113 @@
+<div class='container'>
+  <div>
+    <div>
+      <form [formGroup]='formGroup' class='sms-template-edit-form'>
+        <div class='bg-white flex model-name'>
+          <input
+            type='text'
+            class='outline-none flex-grow'
+            formControlName='modelName'
+            cxmSmartflowCxmTooltip
+            [tooltipText]='tooltipMessage'
+            [showTooltip]='showTooltip$ | async'
+            normalBorderColorEl='0px solid #FFFFFF'
+          />
+          <button
+            class='cursor-pointer'
+            matSuffix
+            mat-icon-button
+            aria-label='Clear mr-8'
+          >
+            <mat-icon class='icon-close' (click)='cancel()'>close</mat-icon>
+          </button>
+        </div>
+
+        <div [class.hidden]='isPreview || isReadonly' style='border: 1px solid #707070; height: 100vh !important;'>
+          <div class='flex flex-row mb-2'>
+            <div class='box-text-editor'>
+              <textarea
+                cxmSmartflowCxmTooltip
+                [tooltipText]="'cxmTemplate.smsEditor.maxLength' | translate"
+                [showTooltip]="isEditable"
+                name='body'
+                formControlName='body'
+                class='text-editor'
+                (keyup)='textChanged($event)'
+                (change)='textChanged($event)'
+                (contextmenu)='onRightClick($event)'
+                #texteditor>
+                </textarea>
+
+              <span
+              >{{ 'template.sms.sms_char_counter' | translate }}
+                {{ texteditor.value.length }} / 612</span
+              >
+            </div>
+
+            <div class='box-iphone-preview'>
+              <div style="background: url('assets/images/iphone-sms.png');
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        background-position: center center;"
+                   class='iphone-preview'
+              >
+                <div class='message-container'>
+                  <div
+                    class='sms-content'
+                    [innerHTML]='texteditor.value | preview'
+                    *ngIf='texteditor.value.length > 0'
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div [class.hidden]='!isPreview' class='box-iphone-not-preview'>
+      <div style="background: url('assets/images/iphone-sms.png');
+       background-size: cover;
+       background-repeat: no-repeat;
+       background-position: center center;"
+           class='iphone-not-preview'
+      >
+        <div class='message-container'>
+          <div
+            class='sms-content'
+            [innerHTML]='texteditor.value | preview'
+            *ngIf='texteditor.value.length > 0'
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class='hidden-context'
+    [style.left.px]='topLeftPos.x'
+    [style.top.px]='topLeftPos.y'
+    [matMenuTriggerFor]='rightMenu'
+  >
+    <mat-menu
+      #rightMenu='matMenu'
+      class='mat-elevation-z0 border'
+      (close)='closeMenuContext()'
+    >
+      <ng-template class='border-0' matMenuContent let-item='item'>
+        <div disableRipple class='border-2 p-2 cursor-default'>
+          {{ 'template.sms.sms_menu_context_vars' | translate }}
+        </div>
+        <button
+          disableRipple
+          (mouseover)='insertAfterCursor(v)'
+          (click)='submitInsertAfterCusor(v)'
+          mat-menu-item
+          *ngFor='let v of vars'
+        >
+          {{ v }}
+        </button>
+      </ng-template>
+    </mat-menu>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+.custom-drop-down-filter-deposit-mode-panel {
+  .btn-panel {
+    min-width: 175px;
+    height: 40px;
+    padding-left: 16px;
+    padding-right: 10px;
+    transition: all 0.3s ease;
+
+    /* UI Properties */
+    background: var(--unnamed-color-3b82f6) 0 0% no-repeat padding-box;
+    box-shadow: 0 3px 6px #9DB2BF1A;
+    border-radius: 20px;
+    opacity: 1;
+
+    .btn-dropdown-label {
+      /* UI Properties */
+      font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-17) var(--unnamed-font-family-rubik);
+      letter-spacing: var(--unnamed-character-spacing-0);
+      color: var(--unnamed-color-ffffff);
+      //text-align: left;
+      opacity: 1;
+      padding-left: 11px;
+      padding-right: 5px;
+    }
+
+    .material-icons {
+      color: #BCD5FF;
+      opacity: 1;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(59, 130, 246, 0.9);
+    }
+  }
+}
+
+::ng-deep {
+  .custom-drop-down-filter-deposit-mode {
+    margin-top: 10px !important;
+
+    width: 260px;
+    height: 205px;
+
+    /* UI Properties */
+    background: var(--unnamed-color-ffffff) 0 0 no-repeat padding-box;
+    box-shadow: 0 3px 6px #00000029;
+    border: 1px solid #F5F5F5;
+    border-radius: 5px;
+    opacity: 1;
+
+    .custom-category-item {
+      height: auto !important;
+    }
+
+    .mat-menu-item:hover {
+      cursor: default;
+      background-color: initial !important;
+    }
+
+    .flow-mode {
+      /* UI Properties */
+      font-family: Rubik, serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: var(--unnamed-color-2e2e2e);
+      text-align: left;
+      opacity: 1;
+    }
+
+    .flow-reset {
+      cursor: pointer;
+      font-family: Rubik, serif;
+      font-size: 14px;
+      color: #3B82F6;
+      opacity: 1;
+    }
+  }
+}
+
+span.highlight {
+  color: #feb037 !important;
+}

@@ -1,0 +1,79 @@
+::ng-deep{
+  .mat-snack-bar-handset .mat-snack-bar-container {
+    padding: 0 !important;
+    border-radius: 10px;
+    width: 351px;
+    max-width: 100%;
+  }
+
+  .classic-style.mat-snack-bar-container {
+    border-radius: 4px !important;
+    padding: 14px 16px !important;
+  }
+
+  .cxm-snackbar-bottom-right {
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 10px;
+    position: absolute;
+    right: 1vw;
+    bottom: 1vh;
+  }
+
+  .custom-cxm-snackbar{
+    .success, .info, .error{
+      max-width: 351px;
+      padding: 1vh 1vh 2vh;
+      border-radius: 10px;
+      opacity: 1;
+    }
+
+    .success{
+      /* UI Properties */
+      background: #04C60B 0 0 no-repeat padding-box;
+    }
+
+   .info{
+     background: #3B82F6 0 0 no-repeat padding-box;
+   }
+
+    .error{
+      background: #E50909 0 0 no-repeat padding-box;
+    }
+
+    .icon{
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      .material-icons{
+        cursor: pointer;
+        color: var(--unnamed-color-ffffff);
+        font-weight: 500;
+        opacity: 1;
+      }
+    }
+
+    .message{
+      width: 258px;
+
+      /* UI Properties */
+      font: normal normal 600 18px/22px Rubik;
+      letter-spacing: 0;
+      color: #FFFFFF;
+      opacity: 1;
+      word-break: break-word;
+      margin: auto;
+    }
+  }
+
+  p.snackbar-details {
+    text-align: left;
+    // width: 285px;
+    width: 321px;
+    font: normal normal normal 16px/19px Rubik;
+    letter-spacing: 0;
+    color: var(--unnamed-color-ffffff);
+    opacity: 1;
+  }
+}

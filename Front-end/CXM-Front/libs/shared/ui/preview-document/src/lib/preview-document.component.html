@@ -1,0 +1,47 @@
+<div class="wrapper" *ngIf="loading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="pdf-view-container" *ngIf="(base64$ | async)">
+  <ngx-extended-pdf-viewer
+    [base64Src]="base64$ | async"
+    [showBorders]="false"
+    [showOpenFileButton]="false"
+    [backgroundColor]="'#FFFFFF'"
+    [showFindButton]="false"
+    [zoom]="'page-fit'"
+    [theme]="'dark'"
+    [filenameForDownload]='fileName'
+    [customToolbar]="additionalButtons"
+  >
+  </ngx-extended-pdf-viewer>
+</div>
+
+<ng-template #additionalButtons>
+  <div id="toolbarViewer">
+    <!-- Tool bar viewer left -->
+    <div id="toolbarViewerLeft">
+      <pdf-toggle-sidebar></pdf-toggle-sidebar>
+      <div class="toolbarButtonSpacer"></div>
+      <pdf-paging-area></pdf-paging-area>
+    </div>
+
+    <!-- Tool bar viewer middle -->
+    <div id="toolbarViewerMiddle">
+      <pdf-zoom-out></pdf-zoom-out>
+      <pdf-zoom-dropdown [zoomLevels]="zoomLevels"></pdf-zoom-dropdown>
+      <pdf-zoom-in></pdf-zoom-in>
+      <pdf-presentation-mode></pdf-presentation-mode>
+    </div>
+
+    <!-- Tool bar viewer right -->
+    <div id="toolbarViewerRight">
+      <pdf-rotate-page></pdf-rotate-page>
+      <pdf-download></pdf-download>
+      <pdf-print></pdf-print>
+      <pdf-bookmark></pdf-bookmark>
+      <div class="verticalToolbarSeparator hiddenSmallView"></div>
+      <pdf-toggle-secondary-toolbar></pdf-toggle-secondary-toolbar>
+    </div>
+  </div>
+</ng-template>

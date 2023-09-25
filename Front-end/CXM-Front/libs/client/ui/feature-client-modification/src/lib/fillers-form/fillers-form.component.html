@@ -1,0 +1,17 @@
+<div class="flex relative">
+  <div class="list-panel  relative">
+    <p class="panel-title">{{ 'client.form.titleFillers' | translate }}</p>
+    <form [formGroup]="form" class="flex flex-col space-y-4">
+
+      <div *ngFor="let item of initFormModel; let i=index;" class="flex flex-row items-center">
+        <cxm-smartflow-common-checkbox [ngModelOptions]="{standalone: true}" [ngModel]="item.enabled" (ngModelChange)="checkboxChanged($event, item.key)">
+          {{ 'client.form.filler'|translate }} {{ i+1 }}
+        </cxm-smartflow-common-checkbox>
+        <input [formControlName]="item.key"
+          cxmSmartflowCxmTooltip [tooltipText]="'client.messages.fillNameLimit'|translate"
+         [showTooltip]="form.controls[item.key]?.errors?.maxlength!==null"/>
+      </div>
+
+    </form>
+  </div>
+</div>

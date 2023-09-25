@@ -1,0 +1,17 @@
+mat-card {
+  @apply rounded-lg align-middle px-4 p-2;
+  background: #0060A5;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+  @apply space-x-4 flex flex-row items-center;
+  margin-bottom: 25px;
+
+}
+
+.filter {
+  font-size: 14px;
+  display: inline-block;
+  font-weight: bold;
+
+}

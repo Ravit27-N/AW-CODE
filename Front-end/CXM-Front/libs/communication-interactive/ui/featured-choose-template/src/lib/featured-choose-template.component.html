@@ -1,0 +1,63 @@
+<div class='communication-interactive-container'>
+  <!-- Page header -->
+  <header class='page-header'>
+    <app-ng-dynamic-breadcrumb symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>
+      {{'communicationInteractive.title' | translate | uppercase}}
+    </cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header small>{{'communicationInteractive.subTitle' | translate}}
+    </cxm-smartflow-page-sub-header>
+  </header>
+
+  <!-- Horizontal line -->
+  <!--<hr class='horizontal-line'>-->
+  <mat-divider></mat-divider>
+
+  <!-- Choose model -->
+  <main class='content-wrapper'>
+    <div class='label mb-2'>{{'communicationInteractive.chooseModel' | translate }}</div>
+
+    <!-- <label class="selection-menu flex align-middle items-center cursor-pointer" [matMenuTriggerFor]="selectionMenu" (menuOpened)="onmenuOpened(searchInput)"> -->
+      <label class="selection-menu flex align-middle items-center cursor-pointer" [matMenuTriggerFor]="selectionMenu" [title]="selectedTemplate?.displayName?.trim() || selectedTemplate?.name || ''">
+      <!-- <mat-icon *ngIf="!selectedTemplate" class="expand_more">remove</mat-icon> -->
+      <div class='remove-icon' *ngIf="!selectedTemplate"></div>
+      <span style="display: block;" class="ml-2 sortValue">{{selectedTemplate?.displayName?.trim() || selectedTemplate?.name}}</span>
+      <mat-icon class="expand_more ml-auto">arrow_drop_down</mat-icon>
+    </label>
+
+
+    <mat-menu class="interactive-choose-model" #selectionMenu="matMenu" xPosition="after">
+      <div class="selection-menu-content" (click)='$event.stopPropagation()'>
+        <!-- Seach input -->
+        <!-- <label mat-menu-item disableRipple="true" class="hover:bg-white" style="padding: 0 0;" (click)='$event.stopPropagation()'>
+          <div class="w-full h-full text-gray-800 px-2 bg-gray-100 border-b-2 flex flex-row items-center">
+            <mat-icon class="search-icon">search</mat-icon>
+          <input #searchInput
+            (keyup)="onsearchChanged($event)"
+            class="w-full h-full outline-none flex-grow text-gray-800 bg-gray-100"
+            type="text" [placeholder]="'input.placeholder.search'|translate" />
+          </div>
+        </label> -->
+
+        <div *ngIf="templateResponse$|async as templateResponse" class="result-content">
+
+          <button [class.activated]="selectedTemplate && (item.id === selectedTemplate.id)" disableRipple class="selectable" [title]="selectedTemplate?.displayName?.trim() || selectedTemplate?.name"
+          mat-menu-item *ngFor='let item of templateResponse.contents' (click)="chooseTemplate(item)">{{item.displayName?.trim() || item.name}}</button>
+
+          <button disabled disableRipple mat-menu-item *ngIf='templateResponse.contents.length === 0' (click)='$event.stopPropagation()'>
+            {{'user.form.button.noAnyService' | translate}}
+          </button>
+
+        </div>
+      </div>
+    </mat-menu>
+
+  </main>
+
+  <!-- Action button -->
+  <footer class='action-button-wrapper'>
+    <cxm-smartflow-rich-button
+      (click)='navigateURL()'
+      [style]='"width: 240px; height: 48px;"'>{{'communicationInteractive.next' | translate }}</cxm-smartflow-rich-button>
+  </footer>
+</div>

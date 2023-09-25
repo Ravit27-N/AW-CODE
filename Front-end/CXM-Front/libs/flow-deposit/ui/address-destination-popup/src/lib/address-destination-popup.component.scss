@@ -1,0 +1,54 @@
+h1 {
+  color: var(--unnamed-color-1a214d);
+  font: normal normal 600 18px/19px Rubik;
+}
+
+label {
+  width: 150px;
+  color: var(--unnamed-color-1a214d);
+  font: normal normal 500 16px/19px Rubik;
+  margin:0 150px 0 0;
+}
+
+.input-form {
+
+  input {
+    height: 38px;
+    line-height: 38px;
+    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+    border: 0.5px solid var(--unnamed-color-8194b4);
+    border-radius: 5px;
+    padding: 10px 25px 10px 20px;
+    outline: none;
+    width: 400px;
+  }
+
+  input:focus {
+    outline: 1px solid var(--unnamed-color-8194b4);
+  }
+
+  input::placeholder {
+    font: normal normal 300 16px/19px Rubik;
+    color: #C3C3C3;
+  }
+
+  input:disabled {
+    pointer-events: none;
+    border: 1px solid #adadad !important;
+    color: #adadad !important;
+  }
+}
+
+
+.message-error-label {
+  color: #E50A0A;
+}
+::ng-deep .cancel-button{
+  min-width: 240px;
+}
+
+::ng-deep .address-pop-up-dialog{
+  form{
+    padding-left: 0 !important;
+  }
+}

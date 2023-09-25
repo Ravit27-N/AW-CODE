@@ -1,0 +1,65 @@
+<main class='content-wrapper'>
+  <!-- Deposit mode -->
+  <div class='wrapper'>
+    <header class='panel-title'>
+      <h3>{{ 'flux_criteria.deposit_mode' | translate }}</h3>
+    </header>
+
+    <div class="deposit-container">
+      <form action="">
+        <table>
+          <tr *ngFor="let mode of formDepositModes">
+            <td class="">
+              <div class="flex flex-row pl-2 py-4">
+                <cxm-smartflow-common-slide-toggle
+                  [disabled]='mode.disabled'
+                  [toggleChecked]="mode.scanActivation"
+                  (slideToggle)="onDepositModesChange($event, mode)"
+                ></cxm-smartflow-common-slide-toggle>
+                <span class="pl-5 flex items-center justify-center">{{ mode.key | translate }}</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+
+  <!-- Identification mode -->
+  <div class='wrapper'>
+      <header class='panel-title'>
+        <h3>{{ 'flux_criteria.identification_mode' | translate }}</h3>
+      </header>
+
+    <div class='deposit-container'>
+      <form action="">
+        <table>
+          <tr>
+            <td class="">
+              <div class="flex flex-row pl-2 py-4">
+                <cxm-smartflow-common-slide-toggle
+                  [disabled]='formIdentificationModes.disabled'
+                  [toggleChecked]="formIdentificationModes.checked"
+                  (slideToggle)="onIdentificationModesChange($event)"
+                ></cxm-smartflow-common-slide-toggle>
+                <span class="pl-5 flex items-center justify-center">{{ formIdentificationModes.key | translate }}</span>
+              </div>
+            </td>
+
+            <td class="manage-panel-label manage-panel-align">
+              <span [class.cursor-not-allowed]='!formIdentificationModes.checked' [class.cursor-allowed]='formIdentificationModes.checked'
+                    class="inline-block align-middle" (click)='manageConfigurationFile()'>{{'client.button.manage' | translate}}</span>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+
+</main>
+
+<!-- Distribute criteria -->
+<div class='distribute-criteria-wrapper mt-7'>
+  <cxm-smartflow-distribute-criteria [distributesCriteria]='distributesCriteria' (criteriaChanged)='criteriaChanged($event)' (manageDistributeCriteria)='manageDistribute($event)'>
+  </cxm-smartflow-distribute-criteria>
+</div>

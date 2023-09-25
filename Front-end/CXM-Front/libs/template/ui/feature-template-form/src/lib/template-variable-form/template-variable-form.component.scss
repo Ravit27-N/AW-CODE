@@ -1,0 +1,209 @@
+.mat-error {
+  font-size: 16px;
+}
+
+h2 {
+  /* UI Properties */
+  font-size: 19px;
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-19) / var(--unnamed-line-spacing-23) var(--unnamed-font-family-rubik);
+  text-align: left;
+  letter-spacing: 0;
+  color: #1a214d;
+  opacity: 1;
+}
+
+p {
+  /* UI Properties */
+  font-size: 14px;
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) /
+    var(--unnamed-line-spacing-17) var(--unnamed-font-family-rubik);
+  text-align: left;
+  letter-spacing: 0;
+  color: #2e2e2e;
+  opacity: 1;
+}
+
+.variable {
+  /* UI Properties */
+  background: var(--unnamed-color-3b82f6) 0 0% no-repeat padding-box;
+  box-shadow: 0 0 3px #b6cef539;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 15px;
+  padding-right: 10px;
+  padding-left: 10px;
+  opacity: 1;
+
+  .drag-drop-list {
+    .box-drag-drop {
+      margin-top: 1vh;
+      width: 221px;
+
+      :hover {
+        cursor: move;
+      }
+
+      input:focus {
+        outline: none;
+      }
+
+      .input-handler {
+        // width: 100%;
+        height: 36px;
+        color: #3b82f6;
+        border-radius: 5px;
+      }
+
+      input {
+        /* UI Properties */
+        font: var(--unnamed-font-style-normal) normal 600 var(--unnamed-font-size-16) / var(--unnamed-line-spacing-19) var(--unnamed-font-family-rubik);
+        letter-spacing: var(--unnamed-character-spacing-0);
+        text-align: left;
+        color: #3b82f6;
+        // border-radius: 5px;
+        // padding: 5px;
+        opacity: 1;
+      }
+
+      .disable-input{
+        pointer-events: none;
+      }
+
+      .remove {
+        width: 20px;
+        height: 36px;
+        margin-left: 5px;
+        display: table;
+
+        .material-icons {
+          display: table-cell;
+          vertical-align: middle;
+          color: #ffffff;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+      .material-icons {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .add-variable {
+    width: 232px;
+    padding: 0.3rem;
+    margin-top: 15px;
+    text-align: center;
+
+    /* UI Properties */
+    border: 1px dashed var(--unnamed-color-ffffff);
+    border-radius: 5px;
+    opacity: 1;
+
+    a {
+      /* UI Properties */
+      font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) /
+        var(--unnamed-line-spacing-17) var(--unnamed-font-family-rubik);
+      letter-spacing: var(--unnamed-character-spacing-0);
+      color: var(--unnamed-color-ffffff);
+      text-align: center;
+      opacity: 1;
+    }
+  }
+
+  .description {
+    height: 34px;
+    margin-top: 43px;
+    text-align: center;
+
+    p {
+      font-size: 14px;
+      /* UI Properties */
+      font: normal normal normal 14px/17px Rubik;
+      letter-spacing: var(--unnamed-character-spacing-0);
+      color: var(--unnamed-color-ffffff);
+      text-align: center;
+      opacity: 0.8;
+    }
+  }
+}
+
+.action {
+  // margin-top: 5vh;
+  width: 100%;
+
+  button {
+    width: 254px;
+    height: 48px;
+    font-size: 16px;
+    letter-spacing: 0;
+    color: #ffffff;
+    border-radius: 10px;
+    text-align: center;
+    opacity: 1;
+  }
+
+  .btn-active {
+    /* UI Properties */
+    background: var(--unnamed-color-3b82f6) 0 0% no-repeat padding-box;
+    transition: all 0.3s ease;
+  }
+
+  .btn-active:hover {
+    background-color: rgba(59, 130, 246, 0.9);
+  }
+
+  .btn-disabled {
+    background-color: #7ba8f5;
+    cursor: not-allowed;
+  }
+}
+
+// }
+// }
+
+.form-wrapper {
+  max-width: 365px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-content-wrapper {
+  width: 254px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 1rem;
+  font-family: 'Rubik';
+  font-size: 14px;
+  color: var(--unnamed-color-2e2e2e);
+}
+
+.form-content-wrapper h1 {
+  font-size: var(--unnamed-font-size-19) / var(--unnamed-line-spacing-23);
+  color: var(--unnamed-color-1a214d);
+}
+
+.form-content-wrapper p {
+  color: var(--unnamed-color-2e2e2e);
+  font-size: var(--unnamed-font-size-14) / var(--unnamed-line-spacing-17);
+}
+
+section {
+  height: calc(100vh - 64px - 80px - 10px);
+  overflow-y: auto;
+  padding-bottom: 64px;
+}
+
+.image-icon {
+  top: 260px;
+  left: 102px;
+  width: 12px;
+  height: 18px;
+  margin-right: 0.8rem;
+  margin-left: 0.2rem;
+}

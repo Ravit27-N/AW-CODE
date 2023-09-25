@@ -1,0 +1,42 @@
+<div class='flex'>
+
+  <cxm-smartflow-filter-filler-radio [fillers]='fillerGroupDisplay[0].fillerItems'
+                                     [fillerTitle]='fillerGroupDisplay[0].fillerName'
+                                     [fillersSelected]='fillerGroupDisplay[0].fillerSelectedItem'
+                                     [fillersSearchTermInput]='fillerGroupDisplay[0].fillerSearchTerms'
+                                     [disabledFillerKeys]='fillerGroupDisplay[0].fillerDisabledItems'
+                                     [hiddenFillerKeys]='fillerGroupDisplay[0].fillerHiddenItems'
+                                     [isDisabled]='fillerGroupDisplay[0].isDisabled'
+                                     (searchTermChange)='searchTermChange(0, $event)'
+                                     (fillersChange)='filterBoxChanges(0, $event)'
+                                     (click)='alertAnnounceMessage(fillerGroupDisplay[0].isDisabled)'
+                                     class='mx-1'>
+  </cxm-smartflow-filter-filler-radio>
+
+  <cxm-smartflow-filter-filler-radio [fillers]='fillerGroupDisplay[1].fillerItems'
+                                     [fillerTitle]='fillerGroupDisplay[1].fillerName'
+                                     [fillersSelected]='fillerGroupDisplay[1].fillerSelectedItem'
+                                     [fillersSearchTermInput]='fillerGroupDisplay[1].fillerSearchTerms'
+                                     [disabledFillerKeys]='fillerGroupDisplay[1].fillerDisabledItems'
+                                     [hiddenFillerKeys]='fillerGroupDisplay[1].fillerHiddenItems'
+                                     [isDisabled]='fillerGroupDisplay[1].isDisabled'
+                                     (searchTermChange)='searchTermChange(1, $event)'
+                                     (fillersChange)='filterBoxChanges(1, $event)'
+                                     (click)='alertAnnounceMessage(fillerGroupDisplay[1].isDisabled)'
+                                     class='mx-1'>
+  </cxm-smartflow-filter-filler-radio>
+
+  <cxm-smartflow-filter-filler-radio [fillers]='fillerGroupDisplay[2].fillerItems'
+                                     [fillerTitle]='fillerGroupDisplay[2].fillerName'
+                                     [fillersSelected]='fillerGroupDisplay[2].fillerSelectedItem'
+                                     [fillersSearchTermInput]='fillerGroupDisplay[2].fillerSearchTerms'
+                                     [disabledFillerKeys]='fillerGroupDisplay[2].fillerDisabledItems'
+                                     [hiddenFillerKeys]='fillerGroupDisplay[2].fillerHiddenItems'
+                                     [isDisabled]='fillerGroupDisplay[2].isDisabled'
+                                     (searchTermChange)='searchTermChange(2, $event)'
+                                     (fillersChange)='filterBoxChanges(2, $event)'
+                                     (click)='alertAnnounceMessage(fillerGroupDisplay[2].isDisabled)'
+                                     class='mx-1'>
+  </cxm-smartflow-filter-filler-radio>
+
+</div>

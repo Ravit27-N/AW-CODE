@@ -1,0 +1,332 @@
+@media screen and (min-width: 1765px) {
+  .cxm-list-campaign {
+    .col-model-name {
+      width: 140px !important;
+    }
+
+    .col-creation-date {
+      width: 140px !important;
+    }
+
+    .col-action {
+      width: 7% !important;
+      padding-left: 35px !important;
+    }
+  }
+}
+
+.cxm-list-campaign {
+  width: 100%;
+  margin-top: 2vh;
+
+  .col-name {
+    width: 225px;
+  }
+
+  .col-model-name {
+    width: 130px;
+  }
+
+  .col-creation-date {
+    width: 200px;
+  }
+
+  .col-channel {
+    width: 115px;
+  }
+
+  .col-category {
+    width: 155px;
+  }
+
+  .col-mode {
+    width: 125px;
+  }
+
+  .col-status {
+    width: 150px;
+  }
+
+  .row-status {
+    a {
+      padding: 2px 15px;
+      border-radius: 10px;
+
+      /* UI Properties */
+      text-align: center;
+      font: normal normal normal 14px/17px Rubik;
+      background-color: #D9D9D9;
+      letter-spacing: 0;
+      color: #2E2E2E;
+      opacity: 1;
+    }
+  }
+
+  .col-action {
+    width: 100px;
+    text-align: left !important;
+  }
+
+  .row-action {
+    a {
+      cursor: pointer;
+      margin-right: 10px;
+
+      //UI Properties
+      text-align: left;
+      font: normal normal normal 14px/17px Rubik;
+      letter-spacing: 0;
+      color: #3B82F6;
+      opacity: 1;
+    }
+
+    .add-left-space {
+      margin-left: 67px !important;
+    }
+
+    .mat-icon-button {
+      width: 1px;
+
+      cursor: pointer;
+      font: normal normal normal 14px/17px Rubik;
+      letter-spacing: 0;
+      color: #3B82F6;
+      opacity: 1;
+    }
+  }
+
+  .no-data-row {
+    height: 59px;
+    border-top: 1px solid #BCD5FF;
+  }
+}
+
+.text-truncate {
+  @apply pr-3;
+  max-width: 0;
+  width: 23%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+:host ::ng-deep {
+  .mat-table {
+    background: #FFFFFF 0 0 no-repeat padding-box;
+    box-shadow: 0 1px 9px #8DC2E548;
+    border-collapse: collapse;
+    width: 100%;
+    max-height: 265px;
+    overflow: auto;
+    border-radius: 10px !important;
+
+    th.mat-header-cell {
+      border-bottom: 0;
+    }
+
+    th:first-child {
+      border-radius: 10px 0 0 0;
+      -moz-border-radius: 10px 0 0 0;
+      -webkit-border-radius: 10px 0 0 0;
+    }
+
+    th:last-child {
+      border-radius: 0 10px 0 0;
+      -moz-border-radius: 0 10px 0 0;
+      -webkit-border-radius: 0 10px 0 0;
+    }
+
+    tr:last-child td /*To remove the last border*/
+    {
+      border-bottom-left-radius: 10px !important;
+      border-bottom-right-radius: 10px !important;
+    }
+  }
+
+  .mat-header-row {
+    height: 60px;
+    background: #E0ECFF 0 0 no-repeat padding-box;
+
+    /* UI Properties */
+    text-align: left;
+    font: normal normal normal 14px/17px Rubik;
+    letter-spacing: 0;
+    color: #696969;
+    text-transform: uppercase;
+    opacity: 1;
+  }
+
+  .mat-row {
+    height: 59px;
+    border-top: 1px solid #BCD5FF;
+
+    &:first-child {
+      border: none;
+    }
+
+    &:last-child {
+      border-top: 1px solid #BCD5FF;
+    }
+  }
+
+  .mat-cell {
+    border-bottom-width: 0;
+    border-bottom-style: none !important;
+
+    &:last-child {
+      text-align: center;
+      padding-left: 10px;
+      border-left: 2px solid #0072BB;
+    }
+  }
+
+  th.mat-header-cell:last-of-type {
+    padding-left: 10px;
+    text-align: center;
+    border-left: 2px solid #0072BB;
+  }
+
+  .mat-sort-header-arrow[style] {
+    // Hide default arrow stem
+    .mat-sort-header-stem {
+      display: none;
+
+      &:hover {
+        transform: none !important;
+      }
+    }
+
+    .mat-sort-header-indicator {
+      opacity: 1;
+      transform: none !important;
+
+      // Hide default arrow as its composed of left, right and middle
+      .mat-sort-header-pointer-left,
+      .mat-sort-header-pointer-right,
+      .mat-sort-header-pointer-middle {
+        display: none;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+  }
+
+  // custom ascending arrow
+  [aria-sort='ascending'] {
+    ::ng-deep .mat-sort-header-arrow {
+      transform: none !important;
+      opacity: 1 !important;
+
+      .mat-sort-header-indicator {
+        &:hover {
+          transform: none !important;
+        }
+
+        &::before {
+          @apply pl-2;
+          content: '\2191';
+          top: -0em;
+          position: absolute;
+          color: #3B82F6;
+          font-size: 15px;
+          line-height: 10px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  // custom descending arrow
+  [aria-sort='descending'] {
+    ::ng-deep .mat-sort-header-arrow {
+      transform: none !important;
+      opacity: 1 !important;
+
+      .mat-sort-header-indicator {
+        &::before {
+          @apply pl-2;
+          content: '\2193';
+          top: -5px;
+          position: absolute;
+          color: #3B82F6;
+          font-size: 15px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+
+  // custom none sorting
+  [aria-sort='none'] {
+    ::ng-deep .mat-sort-header-arrow {
+      transform: none !important;
+      opacity: 1 !important;
+
+      .mat-sort-header-indicator {
+        &::before {
+          @apply pl-2 font-bold;
+          content: '\2193';
+          top: -5px;
+          position: absolute;
+          color: #A8A8A8;
+          height: 10px !important;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .custom-menu {
+    margin-right: -35px;
+    margin-top: -7px;
+    border-radius: 5px !important;
+
+    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+    box-shadow: 0 1px 9px #7492C447 !important;
+    opacity: 1;
+
+    .mat-menu-item {
+      width: 200px !important;
+      height: 41px;
+
+      span {
+        /* UI Properties */
+        color: var(--unnamed-color-65666e);
+        text-align: left;
+        font: normal normal normal 14px/17px Rubik;
+        opacity: 1;
+      }
+
+      .material-icons {
+        margin-right: 2px !important;
+        font-size: 18px;
+      }
+
+      .cancel-icon {
+        color: #C70000;
+      }
+    }
+  }
+}
+
+.pencil-square-icon, .download-icon, .delete-icon {
+  width: 14px;
+  height: 11px;
+}
+
+mat-divider {
+  margin-bottom: 1rem !important;
+  margin-top: 1rem !important;
+}
+
+.no-data-row {
+  height: 25px;
+}
+
+.no-data-cell {
+  border-left: none !important;
+}

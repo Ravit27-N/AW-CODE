@@ -1,0 +1,66 @@
+<article class="fragment__return-address--container">
+
+  <label class="fragment-field__error-message mb-5" *ngIf="errorMessage$ | async">
+    <span>{{((errorMessage$ | async) || "") | translate }}</span>
+  </label>
+
+  <form [formGroup]="fragmentForm" class="fragment__return-address--content">
+
+    <section class="fragment-field__group">
+      <label for="field_line1" class="field-line1__label">{{ 'client.fragment_return_address_field_line1' | translate }}</label>
+      <input id="field_line1" type="text" class="field-line1__input" formControlName="line1"
+             cxmSmartflowCxmTooltip
+             [tooltipText]='(fragmentForm.controls["line1"]?.errors?.message || "") | translate'
+             [showTooltip]='(fragmentForm.controls["line1"]?.errors !== null) && (errorMessage$ | async) !== ""'>
+    </section>
+
+    <section class="fragment-field__group">
+      <label for="field_line2" class="field-line2__label">{{ 'client.fragment_return_address_field_line2' | translate }}</label>
+      <input id="field_line2" type="text" class="field-line2__input" formControlName="line2"
+             cxmSmartflowCxmTooltip
+             [tooltipText]='(fragmentForm.controls["line2"]?.errors?.message || "") | translate'
+             [showTooltip]='(fragmentForm.controls["line2"]?.errors !== null) && (errorMessage$ | async) !== ""'>
+    </section>
+
+    <section class="fragment-field__group">
+      <label for="field_line3" class="field-line3__label">{{ 'client.fragment_return_address_field_line3' | translate }}</label>
+      <input id="field_line3" type="text" class="field-line3__input" formControlName="line3"
+             cxmSmartflowCxmTooltip
+             [tooltipText]='(fragmentForm.controls["line3"]?.errors?.message || "") | translate'
+             [showTooltip]='(fragmentForm.controls["line3"]?.errors !== null) && (errorMessage$ | async) !== ""'>
+    </section>
+
+    <section class="fragment-field__group">
+      <label for="field_line4" class="field-line4__label">{{ 'client.fragment_return_address_field_line4' | translate }}</label>
+      <input id="field_line4" type="text" class="field-line4__input" formControlName="line4"
+             cxmSmartflowCxmTooltip
+             [tooltipText]='(fragmentForm.controls["line4"]?.errors?.message || "") | translate'
+             [showTooltip]='(fragmentForm.controls["line4"]?.errors !== null) && (errorMessage$ | async) !== ""'>
+    </section>
+
+    <section class="fragment-field__group">
+      <label for="field_line5" class="field-line5__label">{{ 'client.fragment_return_address_field_line5' | translate }}</label>
+      <input id="field_line5" type="text" class="field-line5__input" formControlName="line5"
+             cxmSmartflowCxmTooltip
+             [tooltipText]='(fragmentForm.controls["line5"]?.errors?.message || "") | translate'
+             [showTooltip]='(fragmentForm.controls["line5"]?.errors !== null) && (errorMessage$ | async) !== ""'>
+    </section>
+
+    <section class="fragment-field__group">
+      <label for="field_zipcode" class="field-zipcode__label">{{ 'client.fragment_return_address_field_zipcode' | translate }}</label>
+      <input id="field_zipcode" type="text" class="field-zipcode__input" formControlName="line6"
+             cxmSmartflowCxmTooltip
+             [tooltipText]='(fragmentForm.controls["line6"]?.errors?.message || "") | translate'
+             [showTooltip]='(fragmentForm.controls["line6"]?.errors !== null) && (errorMessage$ | async) !== ""'>
+    </section>
+
+    <section class="fragment-field__group">
+      <label for="field_country" class="field-country__label">{{ 'client.fragment_return_address_field_country' | translate }}</label>
+      <input id="field_country" type="text" class="field-country__input" formControlName="line7"
+             cxmSmartflowCxmTooltip
+             [tooltipText]='(fragmentForm.controls["line7"]?.errors?.message || "") | translate'
+             [showTooltip]='(fragmentForm.controls["line7"]?.errors !== null) && (errorMessage$ | async) !== ""'>
+    </section>
+
+  </form>
+</article>

@@ -1,0 +1,20 @@
+@import 'cxm-profile-global-style.scss';
+
+hr.horizontal-line {
+  display: block;
+  border-bottom: 1.5px solid #a8abbc;
+  margin: 22.5px 0 27px;
+}
+
+article.update-profile-container {
+  h2.update-profile-page-title {
+    color: var(--unnamed-color-1a214d);
+    text-align: left;
+    font: normal normal 500 18px/22px Rubik;
+    margin-bottom: 8px;
+  }
+}
+
+.white-space {
+  margin-bottom: 12px;
+}

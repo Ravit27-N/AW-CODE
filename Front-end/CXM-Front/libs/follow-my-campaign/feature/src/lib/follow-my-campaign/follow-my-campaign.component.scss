@@ -1,0 +1,20 @@
+@import 'cxm-campaign-global-styles';
+
+.pageTitle{
+  color: $header-title-color;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.wrapper-header {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb {
+  margin: 15px 0;
+}
+
+.header {
+  margin-bottom: 30px;
+}

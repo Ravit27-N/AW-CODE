@@ -1,0 +1,12 @@
+<main class='wrapper'>
+  <div class="mb-7 mt-3">
+    <div>
+      <div class="flex flex-row justify-start flow-switch-tab">
+        <div [class.active]="type === 'global'" (click)='navigateTo("global")'>{{'cxm_analytics.navigation_global' | translate}}</div>
+        <div class="pl-5" *ngIf='navigationVisible.includes("Postal")' [class.active]="type === 'Postal'" (click)="navigateTo('Postal')">{{'cxm_analytics.navigation_postal' | translate}}</div>
+        <div class="pl-5" *ngIf='navigationVisible.includes("Email")' [class.active]="type === 'Email'" (click)="navigateTo('Email')">{{'cxm_analytics.navigation_email' | translate}}</div>
+        <div class="pl-5" *ngIf='navigationVisible.includes("Sms")' [class.active]="type === 'Sms'" (click)="navigateTo('Sms')">{{'cxm_analytics.navigation_sms' | translate}}</div>
+      </div>
+    </div>
+  </div>
+</main>

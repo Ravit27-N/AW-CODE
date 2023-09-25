@@ -1,0 +1,48 @@
+<p style="min-width:700px; width: 70%;" class="mx-auto my-2 error-message">{{errorMessage}}</p>
+
+<div class='container mx-auto' [class.invisible-container]='isUploading$.value || isLoadProgress$.value'>
+  <div class='upload-panel'>
+    <!-- Upload -->
+    <div class='upload-container' cxmSmartflowDnd
+         (dragover)='handleDragover($event)'
+         (dragleave)='handleDragover($event, true)'
+         (fileDropped)='onFileDrop($event)'>
+
+
+        <div style="width: 700px;" class="relative flex justify-center items-center">
+
+          <div ondragstart='return false' class='drag-file-info relative' [ngStyle]='{"right": titleOffsetX}'>
+            <img ondragstart='return false' class='pdf-icon' src='assets/icons/csv-upload.svg' [ngStyle]='{"opacity": dragOpacity}' alt='CSV file format' loading='lazy'>
+            <span ondragstart='return false'>{{'flow.deposit.acquisition.label.dragHere'|translate}}</span>
+            <span ondragstart='return false'>{{'cxmCampaign.followMyCampaign.form_drop_csv_here'|translate}}</span>
+          </div>
+
+          <div ondragstart='return false' [ngStyle]='{"opacity": dragOpacity}'>
+            <span ondragstart='return false' class='or'>{{'flow.deposit.acquisition.label.or'|translate}}</span>
+          </div>
+
+          <div ondragstart='return false' [ngStyle]='{"opacity": dragOpacity, "right": buttonOffsetX}'>
+            <button ondragstart='return false' class='btn-upload' (click)='fileUpload.click()'>{{'flow.deposit.acquisition.label.uploadButton'|translate}}</button>
+          </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- uploaded -->
+    <!-- <div class='upload-container'>
+      <div class='drag-file-info ready-upload'>
+        <div class='wrapper' [class.d-none]='isUploading$ | async'>
+          <img class='upload-icon' [class.visible-icon]='isUploaded$ | async' src='assets/icons/upload.svg' alt='PDF file format' loading='lazy'>
+          <span [ngClass]='{"d-block": isUploaded$ | async}'>{{'flow.deposit.acquisition.label.dragHere'|translate}}</span>
+          <span [ngClass]='{"d-block": isUploaded$ | async}'>{{'flow.deposit.acquisition.label.yourPdf'|translate}}</span>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+</div>
+
+
+<input class='hidden' accept='.csv' (change)='onFileSelected($event)' type='file' #fileUpload />

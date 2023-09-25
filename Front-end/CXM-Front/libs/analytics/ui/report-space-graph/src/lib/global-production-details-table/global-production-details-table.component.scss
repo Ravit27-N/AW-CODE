@@ -1,0 +1,56 @@
+mat-card {
+  height: 276px;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+  padding-bottom: 2rem;
+  border-radius: 0.75rem;
+  background: #fff;
+  color: rgba(0, 0, 0, .87);
+}
+
+table {
+  width: 100% !important;
+}
+
+
+tr.mat-row {
+  @apply border-t-0;
+  height: 36px;
+}
+
+.mat-cell {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, .6);
+}
+
+.header-row-style {
+  height: 42px;
+}
+
+.header-row-style .mat-header-cell {
+  font-weight: 500 !important;
+  font-size: 16px;
+  color: #1A214D;
+  border: none;
+}
+
+tr:last-child .mat-cell {
+  color: rgba(0, 0, 0, 1);
+}
+
+mat-card {
+  padding-bottom: 2rem;
+  @apply rounded-xl;
+  width: 100%;
+}
+
+:host ::ng-deep {
+  .reading-block {
+    display: none;
+  }
+
+  .indicator-overlay {
+    z-index: 999 !important;
+  }
+
+}

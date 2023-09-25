@@ -1,0 +1,25 @@
+<div class="flex flex-row justify-between mb-8">
+  <div>
+    <app-ng-dynamic-breadcrumb [bgColor]="'none'" symbol=">"></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{'cxmCampaign.followMyCampaign.campaignHeader' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header>{{'cxmCampaign.followMyCampaign.select_campaignSubheader' | translate}}</cxm-smartflow-page-sub-header>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+
+
+<section class="flex mb-8 justify-between">
+  <cxm-smartflow-common-list-filter (valueChanged)="filterChanged($event)" ></cxm-smartflow-common-list-filter>
+
+  <cxm-smartflow-search-box [isError]='(showTooltip$ | async) || false'
+                            (searchBoxChange)='searchTermChanged($event)'
+                            [value]='filters?.filter || ""'>
+  </cxm-smartflow-search-box>
+</section>
+
+
+<cxm-smartflow-grid-list-template-selection
+(onpaginationChanged)="requestPagination($event)"
+(oncardevent)="handleCardEvent($event)"
+></cxm-smartflow-grid-list-template-selection>

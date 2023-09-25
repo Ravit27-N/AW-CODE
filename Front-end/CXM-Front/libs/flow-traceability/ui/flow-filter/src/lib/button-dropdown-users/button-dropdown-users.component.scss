@@ -1,0 +1,41 @@
+@import 'flow-traceability-global-styles';
+
+.dropdown-users-panel {
+  .btn-users-panel {
+    @include btn-drop-down-criteria(209px);
+
+    .material-icons {
+      color: #BCD5FF;
+      opacity: 1;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(59, 130, 246, 0.9);
+    }
+  }
+}
+
+.sort-icon-panel {
+  color: var(--unnamed-color-3b82f6);
+  font-size: 15px;
+  font-weight: 900;
+
+  .sort-icon {
+    &-asc:before {
+      @apply px-2 cursor-pointer;
+      content: "\2191";
+    }
+
+    &-desc:before {
+      @apply px-2 cursor-pointer;
+      content: '\2193';
+    }
+  }
+
+
+}
+
+.btn-dropdown-label.active {
+  color: #feb037;
+}

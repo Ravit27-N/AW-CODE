@@ -1,0 +1,103 @@
+@media screen and (max-width: 1366px){
+  section {
+    column-gap: 1rem !important;
+  }
+}
+
+:host {
+  @apply mx-auto;
+  display: block;
+  margin-top: 50px;
+}
+
+section {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 1rem;
+  column-gap: 5rem;
+}
+
+cxm-smartflow-graph-deposit-mode,
+cxm-smartflow-campaign-report-evolution,
+cxm-smartflow-graph-channel-envoy,
+cxm-smartflow-campaign-report-table-card {
+  display: flex;
+}
+
+mat-divider {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+cxm-smartflow-page-sub-header {
+  opacity: 0.8;
+}
+
+.filters-button {
+  /* UI Properties */
+  background: var(--unnamed-color-3b82f6) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #9DB2BF1A;
+  border-radius: 20px;
+  opacity: 1;
+  // width: 126px;
+  height: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+  transition: all 0.3s ease;
+  min-width: 215px;
+
+  .material-icons{
+    color: #BCD5FF;
+    opacity: 1;
+  }
+
+  &:hover{
+    cursor: pointer;
+    background-color: rgba(59, 130, 246, 0.9);
+  }
+}
+
+.sortValue {
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-17) var(--unnamed-font-family-rubik);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-ffffff);
+  opacity: 1;
+  padding-left: 11px;
+  padding-right: 5px;
+}
+
+.menu-content {
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  border: 1px solid var(--unnamed-color-f5f5f5);
+  border-radius: 5px;
+  padding: 1rem;
+  width: 500px !important;
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.common-filter-menu-panel {
+  max-width: 500px !important;
+}
+
+.calendar-wrapper {
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-17) var(--unnamed-font-family-rubik);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-ffffff);
+  // padding-left: 11px;
+}
+
+.separate-date-label {
+  @apply px-2;
+  width: 34px;
+}
+
+span.hightligh {
+  color: #feb037;
+}
+img.hightligh {
+  filter: invert(24%) sepia(81%) saturate(2077%) hue-rotate(331deg) brightness(104%) contrast(99%)
+}

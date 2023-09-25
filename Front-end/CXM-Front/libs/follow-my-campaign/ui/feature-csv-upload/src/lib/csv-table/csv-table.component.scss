@@ -1,0 +1,173 @@
+:host ::ng-deep {
+  .mat-table {
+    box-shadow: 1px 1px 1px 1px #D1E3FF48;
+    border-collapse: collapse;
+    width: 100%;
+
+    border-radius: 10px 10px 0 0 !important;
+    -moz-border-radius: 10px !important;
+    -webkit-border-radius: 10px !important;
+  }
+
+  .mat-header-row {
+    height: 60px;
+    background: #E0ECFF 0 0 no-repeat padding-box;
+
+    /* UI Properties */
+    text-align: left;
+    font: normal normal normal 14px/17px Rubik;
+    letter-spacing: 0;
+    color: #696969;
+    text-transform: uppercase;
+    opacity: 1;
+  }
+
+  .mat-row {
+    height: 62px;
+    border-top: 1px solid #BCD5FF;
+    cursor: pointer;
+
+    &:first-child {
+      border: none;
+    }
+
+    &:last-child {
+      border-top: 1px solid #BCD5FF;
+    }
+  }
+
+  .mat-cell {
+    border-bottom-width: 0;
+    border-bottom-style: none !important;
+
+    &:last-child{
+      padding-left: 10px;
+      // border-left: 2px solid #0072BB;
+    }
+
+  }
+
+  th.mat-header-cell {
+    border-bottom-width: 0px;
+    border-top-width: 0px;
+    z-index: auto!important;
+  }
+
+  th.mat-header-cell:last-of-type{
+    padding-left: 10px;
+    // border-left: 2px solid #0072BB;
+    border-top-right-radius: 10px;
+  }
+
+  th.mat-header-cell:first-of-type {
+    border-top-left-radius: 10px;
+  }
+
+  .mat-sort-header-arrow[style] {
+    // Hide default arrow stem
+    .mat-sort-header-stem {
+      display: none;
+
+      &:hover {
+        transform: none !important;
+      }
+    }
+
+    .mat-sort-header-indicator {
+      opacity: 1;
+      transform: none !important;
+
+      // Hide default arrow as its composed of left, right and middle
+      .mat-sort-header-pointer-left,
+      .mat-sort-header-pointer-right,
+      .mat-sort-header-pointer-middle {
+        display: none;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+  }
+
+  // custom ascending arrow
+  [aria-sort='ascending'] {
+    ::ng-deep .mat-sort-header-arrow {
+      transform: none !important;
+      opacity: 1 !important;
+      .mat-sort-header-indicator {
+        &:hover {
+          transform: none !important;
+        }
+        &::before {
+          @apply pl-2;
+          content: '\2191';
+          top: -0em;
+          position: absolute;
+          color: #3B82F6;
+          font-size: 15px;
+          line-height: 10px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  // custom descending arrow
+  [aria-sort='descending'] {
+    ::ng-deep .mat-sort-header-arrow {
+      transform: none !important;
+      opacity: 1 !important;
+      .mat-sort-header-indicator {
+        &::before {
+          @apply pl-2;
+          content: '\2193';
+          top: -5px;
+          position: absolute;
+          color: #3B82F6;
+          font-size: 15px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+
+  // custom none sorting
+  [aria-sort='none'] {
+    ::ng-deep .mat-sort-header-arrow {
+      transform: none !important;
+      opacity: 1 !important;
+
+      .mat-sort-header-indicator {
+        &::before {
+          @apply pl-2 font-bold;
+          content: '\2193';
+          top: -5px;
+          position: absolute;
+          color: #A8A8A8;
+          height: 10px !important;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+}
+
+.bg-has-error {
+  background: #FFCCCC 0% 0% no-repeat padding-box;
+  color: #B70000;
+}
+
+
+
+.no-data-row {
+  height: 25px;
+}
+
+.no-data-cell {
+  border-left: none !important;
+}
+
+.cell-padding {
+  padding: 1px 8px;
+}

@@ -1,0 +1,86 @@
+<cxm-smartflow-spinner *ngIf='loading$ | async'></cxm-smartflow-spinner>
+
+<div class='flex flex-row justify-between mb-8 items-center'>
+  <div>
+    <app-ng-dynamic-breadcrumb [bgColor]="'none'" symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{'cxmCampaign.followMyCampaign.campaignHeader' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header>{{ 'cxmCampaign.followMyCampaign.generateEmail.subHeader' | translate }}</cxm-smartflow-page-sub-header>
+  </div>
+</div>
+
+<div class='sms-envoy-container flex flex-row'>
+  <div class='content-left'>
+    <div class='summary-content'>
+      <div class='flex flex-row w-full justify-between'>
+        <h2>{{ 'cxmCampaign.followMyCampaign.generateEmail.title' | translate }}</h2>
+        <img (click)="navigateBack()" class="pencil-square-icon" src="assets/icons/pencil-square.svg" alt="pencil-square icon">
+      </div>
+
+      <div class='flex flex-row mt-6'>
+        <label>{{ 'cxmCampaign.followMyCampaign.generateEmail.label.campaignName' | translate }}</label>
+        <span class="break-words">{{campaign?.campaignName}}</span>
+      </div>
+
+      <div class='flex flex-row mt-5'>
+        <label>{{ 'cxmCampaign.followMyCampaign.generateEmail.label.sender' | translate }}</label>
+        <span class="break-words">{{campaign?.senderName}}</span>
+      </div>
+      <div class='flex flex-row mt-5'>
+        <label>{{ 'cxmCampaign.followMyCampaign.generateEmail.label.recipient.text' | translate }}</label>
+        <span class="break-words">{{this.campaign?.details?.csvRecordCount || 0 }}</span>
+      </div>
+
+    </div>
+
+    <form class='send-test-content mt-5 flex flex-col' [formGroup]='sendTestFormGroup' (ngSubmit)='submitSentTest()'>
+      <h2 class="mb-7">{{'cxmCampaign.followMyCampaign.generateEmail.label.variableForm.title' | translate}}
+        <span  class='question-mark'
+               cxmSmartflowInfoTooltip
+               [tooltipMessage]="'cxmCampaign.followMyCampaign.generateEmail.label.variableForm.messageSmsInfo'| translate">
+          <span class='item'>?</span>
+        </span>
+      </h2>
+      <label>{{'cxmCampaign.followMyCampaign.generateEmail.label.variableForm.smsSubTitle' | translate}}</label>
+      <div class='overflow-y-auto'>
+        <div class='flex flex-col box-border mt-1' formArrayName='recipients' style='width: 439px'>
+          <div class='flex flex-row items-center mt-3' *ngFor='let recipient of recipientsCtr?.controls; index as i'>
+            <input [formControlName]='i' placeholder='06 xx xx xx xx'
+                   cxmSmartflowCxmTooltip
+                   [tooltipText]='getVariableTooltip(recipient, i)'
+                   [showTooltip]='(recipient?.invalid && sendTestHasSubmit) || isDuplicateSMS(i)'
+                   [showBackgroundEl]='showVariableBgTooltip'>
+            <mat-icon class='ml-2' (click)='removeRecipient(i)' *ngIf='i > 0'>remove_circle_outline</mat-icon>
+          </div>
+
+          <a *ngIf='!isAddBtnInvisible' (click)='addRecipient()'>{{'cxmCampaign.followMyCampaign.generateEmail.label.variableForm.smsBtnAdd' | translate}}</a>
+        </div>
+
+        <div class='flex flex-row w-full justify-end  mt-auto'>
+          <button class='btn-send-test' type='submit' *ngIf='(canSendTest$ | async)'>{{'cxmCampaign.followMyCampaign.generateEmail.label.bat.button' | translate}}</button>
+        </div>
+      </div>
+    </form>
+
+    <form class='schedule-content' [formGroup]='smsFormGroup'>
+      <h2 class="mb-4">{{'cxmCampaign.followMyCampaign.generateEmail.label.programmingSending' | translate}}</h2>
+      <div class='mt-5'>
+        <cxm-smartflow-cxm-date-time-picker (dateTimeChange)='dateTimeChange($event)' [dateTime]='sendingSchedule?.value'></cxm-smartflow-cxm-date-time-picker>
+      </div>
+    </form>
+  </div>
+
+  <div class='content-right'>
+    <h1 class="text-lg py-4 w-8/12 mt-auto mx-auto text-center phone-title">{{'cxmCampaign.followMyCampaign.generateEmail.label.preview'|translate}}</h1>
+
+    <div class="sms-preview-wrapper mx-auto">
+        <cxm-smartflow-preview-sms-template [smsContent]="previewFirstRecord" smsContentMaxHeight='270px' smsContentMinHeight='183px'></cxm-smartflow-preview-sms-template>
+    </div>
+
+    <p class="text-right mb-2 mt-6 px-2">{{'Page 1 / 1'}}</p>
+  </div>
+</div>
+
+<div class='actions'>
+  <button class='mr-5' (click)="navigateBack()" [class.disabled-button]="!navigation.prev" [disabled]="!navigation.prev">{{ 'cxmCampaign.followMyCampaign.generateEmail.button.previous' | translate }}</button>
+  <button class='btn-active' (click)="navigateNext()"  [class.disabled-button]="!navigation.next" [disabled]="!navigation.next">{{ 'cxmCampaign.followMyCampaign.generateEmail.button.validate' | translate }}</button>
+</div>

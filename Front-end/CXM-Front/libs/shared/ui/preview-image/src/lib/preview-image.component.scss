@@ -1,0 +1,20 @@
+:focus {
+  outline: none !important;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 20vh);
+}
+
+.image-preview-container{
+  margin: 0 auto;
+  width: 1024px;
+  height: calc(100vh - 10vh);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 1px 9px #8dc2e548 !important;
+  overflow: hidden;
+}

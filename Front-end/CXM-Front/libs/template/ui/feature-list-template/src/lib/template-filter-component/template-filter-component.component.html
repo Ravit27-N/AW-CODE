@@ -1,0 +1,53 @@
+<label class="flex align-middle items-center cursor-pointer" [matMenuTriggerFor]="filterMenu"
+       (menuOpened)='openMainMenu()' (menuClosed)='closeMainMenu()'>
+  <span class="mr-2 sortby"
+    >{{ 'template.sort_by.label' | translate }}&nbsp;&nbsp;:</span
+  >
+  <span class="mr-16 sortValue">{{ _value | translate }}</span>
+  <mat-icon class="expand_more">expand_more</mat-icon>
+</label>
+
+<mat-menu #filterMenu="matMenu" xPosition="before">
+  <div *ngIf="!isSecondsLevel">
+    <button  [class.activated]="_value === 'template.sort_by.lastModified'"
+      mat-menu-item
+      (click)="
+        filterValueChange(
+          'template.sort_by.lastModified',
+          'lastModified',
+          'desc'
+        )
+      "
+    >
+      <span>{{ 'template.sort_by.lastModified' | translate }}</span>
+    </button>
+    <button [class.activated]="_value === 'template.sort_by.modelName'"
+      mat-menu-item
+      (click)="
+        filterValueChange('template.sort_by.modelName', 'modelName', 'asc')
+      "
+    >
+      <span>{{ 'template.sort_by.modelName' | translate }}</span>
+    </button>
+  </div>
+
+  <div *ngIf="isSecondsLevel">
+    <button mat-menu-item (click)="openNameFilter($event)">
+      <span>{{ 'template.sort_by.lastestAdd' | translate }}</span>
+    </button>
+    <button
+      mat-menu-item
+      (click)="
+        filterValueChange('template.sort_by.modelName', 'modelName', 'desc')
+      "
+    >
+      <span>{{ 'template.sort_by.modelName' | translate }}</span>
+    </button>
+    <button
+      mat-menu-item
+      (click)="filterValueChange('template.sort_by.asc', 'modelName', 'asc')"
+    >
+      <span>{{ 'template.sort_by.asc' | translate }}</span>
+    </button>
+  </div>
+</mat-menu>

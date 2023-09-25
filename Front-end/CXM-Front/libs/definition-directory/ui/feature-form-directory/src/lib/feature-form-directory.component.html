@@ -1,0 +1,43 @@
+<article class='flex flex-row justify-between'>
+
+  <header>
+    <app-ng-dynamic-breadcrumb symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{ formDirectoryTitle | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header small>{{ formDirectorySubTitle | translate}}</cxm-smartflow-page-sub-header>
+  </header>
+
+</article>
+<mat-divider class="common-mat-divider"></mat-divider>
+
+<cxm-smartflow-form-directory-step-one
+  [stepOneFormValue]="formStep1"
+  [stepOneMode]="formDirectoryMode"
+  [oldName]="oldName"
+  (stepOneNextPageEvent)="goNextStep(1)"
+  (stepOnePreviousPageEvent)="goPreviousStep(1)"
+  (stepOneValueChangeEvent)="stepOneValueChangedEvent($event)"
+  *ngIf="formDirectoryStep === 1">
+</cxm-smartflow-form-directory-step-one>
+
+<cxm-smartflow-form-directory-step-two
+  (stepTwoPreviousPageEvent)="goPreviousStep(2)"
+  (stepTwoNextPageEvent)="goNextStep(2)"
+  [fieldValues]="formStep2"
+  [alreadyFeed]="alreadyFeed"
+  [formMode]='formDirectoryMode'
+  [formStep2Editor]="formStep2Editor"
+  (fieldListItemValueChangesEvent)="fieldListItemChangeEvent($event)"
+  (formStep2EditorChangeEvent)="formStep2EditorChangeEvent($event)"
+  *ngIf="formDirectoryStep === 2">
+</cxm-smartflow-form-directory-step-two>
+
+<cxm-smartflow-form-directory-step-three
+  (stepThreePreviousPageEvent)="goPreviousStep(3)"
+  (selectClientEvent)="selectClientEvent($event)"
+  (removeClientEvent)="removeClientEvent($event)"
+  [step3SelectedClient]="step3SelectedClient"
+  [selectOwnerId]='ownerId'
+  [formMode]='formDirectoryMode'
+  (submitFormEvent)="goNextStep(3)"
+  *ngIf="formDirectoryStep === 3">
+</cxm-smartflow-form-directory-step-three>

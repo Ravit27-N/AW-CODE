@@ -1,0 +1,83 @@
+@import "flow-traceability-global-styles";
+
+
+.flow-switch-tab  {
+  border-bottom: 1px solid rgb(168, 168, 168, 0.48);
+
+  div {
+    @apply text-left px-5 pb-2 cursor-pointer;
+    color: #9d9d9d;
+    vertical-align: middle;
+    margin-bottom: -4px;
+  }
+
+  div.active {
+    @apply font-bold;
+    border-bottom: 4px solid var(--unnamed-color-3b82f6) ;
+    color: var(--unnamed-color-3b82f6);
+    text-align: left;
+    font: normal normal 500 16px/19px Rubik;
+    letter-spacing: 0;
+    opacity: 1;
+  }
+}
+
+section.header {
+  margin-bottom: 23px;
+}
+.listUserContainer{
+  background-color: white;
+  padding: 15px;
+  min-height: 50vh;
+  border-width: 1px;
+  border-color:#1A214D ;
+}
+
+.action-button-group {
+  display: flex;
+  flex-direction: row;
+}
+
+:host ::ng-deep {
+  & .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary{
+    margin-right: 10px;
+  }
+}
+
+#refreshed-date{
+  color: #1A214D;
+}
+
+.vl{
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 57px;
+  border-left: 2px solid white;
+}
+
+h1{
+  color: white;
+  font-weight: bold;
+}
+
+cxm-smartflow-round-action-button{
+  margin-right: 10px;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.import-title-wrapper {
+  position: relative;
+}
+
+.import-title-wrapper img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  position: absolute;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+}

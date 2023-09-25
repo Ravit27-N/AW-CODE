@@ -1,0 +1,22 @@
+<div class='flex flex-row justify-between'>
+
+  <div>
+    <app-ng-dynamic-breadcrumb symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{'envelope_reference.list.title' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header small>{{'envelope_reference.list.subTitle' | translate}}</cxm-smartflow-page-sub-header>
+  </div>
+
+  <div class='flex flex-col justify-end'>
+    <div class='flex justify-end'>
+      <cxm-smartflow-header-button icon='add' (onclick)='createEnvelopeReferenceEvent()' width='204px' height='48px' minWidth='230px' *ngIf='_canCreateCreate'>
+        {{'envelope_reference.list.button.create' | translate}}
+      </cxm-smartflow-header-button>
+
+    </div>
+  </div>
+</div>
+<mat-divider class="common-mat-divider"></mat-divider>
+
+<section class="common-mt-table">
+  <cxm-smartflow-list-envelope-reference-table></cxm-smartflow-list-envelope-reference-table>
+</section>

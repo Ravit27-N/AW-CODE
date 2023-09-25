@@ -1,0 +1,75 @@
+@import 'flow-traceability-global-styles';
+
+.content {
+  width: 100%;
+  height: 100%;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  box-shadow: 0 1px 9px #8dc2e548;
+  border-radius: 10px;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  padding: 15px 25px 0;
+}
+
+.wrapper {
+  width: 100%;
+}
+
+.group-info {
+  p {
+    color: var(--unnamed-color-2e2e2e);
+    text-align: left;
+    font: normal normal normal 14px/17px Rubik;
+    letter-spacing: 0;
+    margin-bottom: 16px;
+  }
+
+  .title-label {
+    color: var(--unnamed-color-1a214d);
+    font: normal normal 500 14px/17px Rubik;
+    width: 180px;
+    display: inline-block;
+  }
+
+  span.status.info {
+    @include flow-status-panel(rgba(59, 130, 246, 0.14), var(--unnamed-color-3b82f6));
+  }
+
+  span.status.danger {
+    @include flow-status-panel(rgba(229, 10, 10, 0.14), var(--unnamed-color-e50a0a));
+  }
+
+  span.status.success {
+    @include flow-status-panel(rgba(130, 226, 134, 0.14), var(--unnamed-color-04c60b));
+  }
+
+  span.status.secondary {
+    @include flow-status-panel(rgba(26, 33, 77, 0.14), var(--unnamed-color-1a214d));
+  }
+
+  span.status.primary {
+    @include flow-status-panel(rgba(149, 75, 151, 0.14), var(--unnamed-color-954b97));
+  }
+
+  span.status.gray {
+    @include flow-status-panel(rgba(46, 46, 46, 0.14), var(--unnamed-color-2e2e2e));
+  }
+}
+
+hr {
+  border-top: 1px solid #d1e0fd;
+  margin-bottom: 16px;
+}
+
+@media screen and (min-height: 967px) {
+  .group-info p {
+    margin-bottom: 23px;
+  }
+}
+
+@media screen and (max-height: 967px) {
+  .content {
+    padding: 60px 25px 10px !important;
+  }
+}

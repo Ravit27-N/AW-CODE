@@ -1,0 +1,122 @@
+<div id="directoryFeedForm" (scroll)="hideShowActionColumn($event.target)" class='mt-5 table-container'>
+  <table mat-table matSort
+         (matSortChange)='onTableSorting($event)'
+         [dataSource]='datasource$' [matSortDisableClear]="true"
+         [matSortActive]="selectedItems$.value.length > 0 ? '' : sortAction"
+         [matSortDirection]="sortDirection">
+    <ng-container [matColumnDef]='"custom_checkbox"'>
+      <th mat-header-cell *matHeaderCellDef style='border-right: 2px solid #0072BB !important; padding-right: 13px !important'>
+        <cxm-smartflow-common-checkbox [ngModel]='isAllSelected()'
+                                       (ngModelChange)='masterToggle()'
+                                       [disabled]='!_canDeleteLine || cellRecordModified.size > 0 || disableChecked()'>
+        </cxm-smartflow-common-checkbox>
+      </th>
+
+      <td mat-cell *matCellDef='let row' style='border-right: 2px solid #0072BB !important; padding-right: 13px !important'>
+        <cxm-smartflow-common-checkbox (click)="$event.stopPropagation()" disableRipple='true'
+                                       (ngModelChange)='singleToggle(row)'
+                                       [ngModel]='isSelected(row)'
+                                       [disabled]='!_canDeleteLine || cellRecordModified.size > 0'>
+        </cxm-smartflow-common-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]='"first_empty_column"'>
+      <th mat-header-cell *matHeaderCellDef style='border-right: 2px solid #0072BB !important; padding-right: 13px !important'></th>
+      <td mat-cell *matCellDef='let row' style='border-right: 2px solid #0072BB !important; padding-right: 13px !important'></td>
+    </ng-container>
+
+    <ng-container  matColumnDef="action" stickyEnd>
+      <th class="{{isShowAction ? '' : 'hidden__column'}}" mat-header-cell *matHeaderCellDef>...</th>
+      <td class="{{isShowAction ? '' : 'hidden__column'}}" mat-cell *matCellDef="let element">...</td>
+    </ng-container>
+
+    <div *ngFor='let column of columns; let colIndex = index;'>
+      <ng-container [matColumnDef]='column.field'>
+        <th class="field__column" title="{{column.field}}" mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="selectedItems$.value.length > 0">
+          <span class="text__truncate">{{column.field}}</span>
+          <mat-icon style='color: #010103 !important; padding-left: 5px !important;' *ngIf='column.key'>vpn_key</mat-icon>
+        </th>
+
+        <td mat-cell *matCellDef='let row;'>
+          <div *ngIf='column.type === "String"'>
+            <input type='text'
+                   #textElement
+                   [ngModel]='cellRecordValues.get(generateCellName(row?.lineNumber, colIndex))'
+                   name='{{generateCellName(row?.lineNumber, colIndex)}}'
+                   (ngModelChange)='onModelChange(row?.lineNumber, colIndex, textElement.value, row)'
+
+                   cxmSmartflowStringValidation
+                   (onError)='onError($event, row?.lineNumber, colIndex)'
+                   [fieldProperty]="column.properties"
+
+                   cxmSmartflowCxmTooltip
+                   [showTooltip]='cellErrors.get(generateCellName(row?.lineNumber, colIndex))?.value'
+                   [tooltipText]='cellErrors.get(generateCellName(row?.lineNumber, colIndex))?.message || ""'
+
+                   [disabled]='(disableForm$ | async) || false'
+
+                   [class.cell-modified]="cellRecordModified.has(generateCellName(row?.lineNumber, colIndex)) && !cellErrors.get(generateCellName(row?.lineNumber, colIndex))?.value">
+          </div>
+
+          <div *ngIf='column.type === "Integer" || column.type === "Number"'>
+            <input type='text'
+                   #numberElement
+                   [ngModel]='cellRecordValues.get(generateCellName(row?.lineNumber, colIndex))'
+                   name='{{generateCellName(row?.lineNumber, colIndex)}}'
+                   (ngModelChange)='onModelChange(row?.lineNumber, colIndex, numberElement.value, row)'
+
+                   cxmSmartflowNumberValidation
+                   (onError)='onError($event, row?.lineNumber, colIndex)'
+                   [fieldProperty]="column.properties"
+                   [dataType]="column.type"
+
+
+                   cxmSmartflowCxmTooltip
+                   [showTooltip]='cellErrors.get(generateCellName(row?.lineNumber, colIndex))?.value'
+                   [tooltipText]='cellErrors.get(generateCellName(row?.lineNumber, colIndex))?.message || ""'
+
+                   [disabled]='(disableForm$ | async) || false'
+
+                   [class.cell-modified]="cellRecordModified.has(generateCellName(row?.lineNumber, colIndex)) && !cellErrors.get(generateCellName(row?.lineNumber, colIndex))?.value">
+          </div>
+
+          <div *ngIf='column.type === "Date"'>
+            <input type='text'
+                   #dateElement
+                   [ngModel]='cellRecordValues.get(generateCellName(row?.lineNumber, colIndex))'
+                   name='{{generateCellName(row?.lineNumber, colIndex)}}'
+
+                   (ngModelChange)='onModelChange(row?.lineNumber, colIndex, dateElement.value, row)'
+
+                   [disabled]='(disableForm$ | async) || false'
+
+                   cxmSmartflowDateValidation
+                   (onError)='onError($event, row?.lineNumber, colIndex)'
+                   [fieldProperty]="column.properties"
+
+                   cxmSmartflowCxmTooltip
+                   [showTooltip]='cellErrors.get(generateCellName(row?.lineNumber, colIndex))?.value'
+                   [tooltipText]='cellErrors.get(generateCellName(row?.lineNumber, colIndex))?.message || ""'
+
+                   [class.cell-modified]="cellRecordModified.has(generateCellName(row?.lineNumber, colIndex)) && !cellErrors.get(generateCellName(row?.lineNumber, colIndex))?.value">
+          </div>
+
+          <div *ngIf='column.type === "Boolean"' class="td__center">
+            <cxm-smartflow-common-checkbox
+                    [ngModel]='toBoolean(cellRecordValues.get(generateCellName(row?.lineNumber, colIndex)))'
+                    name='{{generateCellName(row?.lineNumber, colIndex)}}'
+                    (ngModelChange)='onModelChange(row?.lineNumber, colIndex, $event, row)'
+
+                    [disabled]='(disableForm$ | async) || false'>
+            </cxm-smartflow-common-checkbox>
+          </div>
+        </td>
+      </ng-container>
+    </div>
+
+    <tr mat-header-row *matHeaderRowDef='columnDisplayed; sticky: true'></tr>
+    <tr [class.row-selected]='isSelected(row)' mat-row *matRowDef='let row; columns: columnDisplayed;'></tr>
+    <tr class='mat-row no-data-row' *matNoDataRow></tr>
+  </table>
+</div>

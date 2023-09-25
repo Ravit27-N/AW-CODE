@@ -1,0 +1,59 @@
+$df-color: #3b82f6;
+
+.previewer {
+  width: auto;
+  //height: calc(100vh - 480px);
+  height: calc(100vh - 64px - 80px - 10px);
+}
+
+.view-screen {
+  // height: calc(100% - 48px);
+}
+
+.h48 {
+  height: 48px;
+  align-items: center;
+}
+
+.h48 div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  vertical-align: middle;
+  text-align: center;
+  width: 168px;
+  @apply border;
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.3);
+}
+
+.h48 div.active {
+  border-top: 4px solid #1a214d;
+  background-color: white;
+}
+
+.input-content-wrapper {
+  /* UI Properties */
+  text-align: left;
+  font: normal normal normal 18px/22px Rubik;
+  letter-spacing: 0;
+  color: #2E2E2E;
+  opacity: 1;
+
+  @apply pt-3 pb-3 pl-3;
+  padding-right: 4rem;
+
+  input {
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+  .icon-close {
+    color: $df-color;
+    font-size: 30px !important;
+    font-weight: bold !important;
+    height: 30px !important;
+    width: 30px !important;
+  }
+}

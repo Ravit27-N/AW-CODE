@@ -1,0 +1,26 @@
+/*
+*  Syntax of definding variables for app (cxm-campaign)
+*  prefix: cp-
+*  e.g. cp-header-title-color: red;
+*  tb: table
+*  bg: background-color
+*  pg: pagination
+*/
+
+//title
+$cp-title-size: 22px;
+$cp-title-color: #1a214d;
+
+// sub title
+$cp-sub-title-size: 20px;
+$cp-sub-title-color: #0072bb;
+
+// data table
+$cp-tb-bg-th: #E3E3E3;
+$cp-tb-border-table-td-th: 1px solid #DBDBDB;
+$cp-tb-bg-tr-odd: #FFFFFF;
+$cp-tb-bg-tr-even: #F5F5F5;
+$cp-tb-bg-tr-hover: #8CB0CB;
+
+// pagination
+$cp-pg-bg:  #ECECEC;

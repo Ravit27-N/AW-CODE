@@ -1,0 +1,62 @@
+<main class='container'>
+  <div class='event-container'>
+    <ng-container *ngFor='let event of eventHistories'>
+      <div [class]='getClasses(event)' [ngClass]='event?.createdBy ? "event-add-height" : "event-remove-height"'>
+
+        <!-- Event tracking line -->
+        <div class='event-trace'>
+          <div class='circle'></div>
+          <div class='line' [ngClass]='event?.createdBy ? "add-line-height" : "remove-line-height"'></div>
+        </div>
+        <!-- ./Event tracking line -->
+        <!-- Event information -->
+        <div class='data' [class.move-up]='event?.eventHistoryInfo'>
+          <h4 class='status'>
+            <span [innerHTML]='(event?.status || "") | translate'></span>
+
+            <!-- Question mark -->
+            <span class='question-mark'
+                  *ngIf='event.eventHistoryInfo'
+                  cxmSmartflowInfoTooltip
+                  width='265px'
+                  [showLoader]='getIsShowSpinner(event)'
+                  (mouseenter)='viewStatus(event)'
+                  [tooltipMessage]="getTooltipMsg(event)">
+              <span class='item' style='color: #fff !important;'>?</span>
+            </span>
+            <!-- ./Question mark -->
+            <span class='question-mark'
+                  *ngIf='event.comment'
+                  cxmSmartflowInfoTooltip
+                  width='225px'
+                  [showLoader]='getIsShowSpinner(event)'
+                  (mouseenter)='viewStatus(event)'
+                  [tooltipMessage]="event.comment">
+              <span class='item' style='color: #fff !important;'>?</span>
+            </span>
+
+            <!-- ./Question mark -->
+            <span class='question-mark'
+                  *ngIf='event.flowCommentStatus'
+                  cxmSmartflowInfoTooltip
+                  width='220px'
+                  [showLoader]='getIsShowSpinner(event)'
+                  (mouseenter)='viewStatus(event)'
+                  [tooltipMessage]="'flow.document.contain_comment' | translate">
+              <span class='item' style='color: #fff !important;'>?</span>
+            </span>
+
+          </h4>
+
+          <!-- Status description -->
+          <p class='user'>{{ event?.createdBy }}</p>
+          <p class='date'>{{ event?.dateStatus }}</p>
+          <!-- ./Status description -->
+
+        </div>
+        <!-- ./Event information -->
+
+      </div>
+    </ng-container>
+  </div>
+</main>

@@ -1,0 +1,18 @@
+<div class="confirm_revert_content__wrapper pb-8">
+  <div class='flex justify-end'>
+    <span class='material-icons cursor-pointer btn__close' (click)="closeConfirmRevertPopup()">clear</span>
+  </div>
+
+  <div mat-dialog-content class='box-content'>
+    <div class="flex flex-col align-middle items-center py-8">
+      <h2 class="font-bold mb-5 text-lg">{{ 'client.configuration_revert_title' | translate }}</h2>
+      <p>{{ 'client.configuration_revert_message' | translate }}</p>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class='flex justify-evenly'>
+    <cxm-smartflow-rich-button [isRounded]="true" (click)="closeConfirmRevertPopup()">{{ 'client.configuration_revert_cancel' | translate }}</cxm-smartflow-rich-button>
+    <cxm-smartflow-rich-button (click)="confirmRevert()">{{ 'client.configuration_revert_confirm' | translate }}</cxm-smartflow-rich-button>
+  </div>
+
+</div>

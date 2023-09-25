@@ -1,0 +1,46 @@
+<div  class="dropdown-filler-panel">
+  <button class="button-filter flex align-middle items-center cursor-pointer px-4"
+          [matMenuTriggerFor]="menu" (menuOpened)='mainMenuOpen()' (menuClosed)='mainManuClose()'>
+    <span class="cxm-icon text-icon-red mr-2" style="background-image: url('assets/icons/canal.svg');"></span>
+    <span class="mr-auto" [class.active]="isUseFilter" >{{'client.fillers_tab'|translate}}</span>
+    <mat-icon>expand_more</mat-icon>
+  </button>
+
+
+  <mat-menu class="user-profile-filter-menu" #menu="matMenu"  xPosition="after">
+    <form [formGroup]="fillerFormGroup"  (click)="$event.stopPropagation();">
+      <div class="filter-wrapper document-filler-wrapper" >
+        <p class="flex flex-row justify-between mb-4">
+          <span class="f-text-2">{{'flowTraceability.table.filter.search'|translate}}</span>
+          <button type='button' class="f-text-1" (click)='resetForm()'>{{'cxmCampaign.followMyCampaign.list.filterComponent.label.reset'|translate}}</button>
+        </p>
+
+        <label class='cxm-search-input flex align-middle items-center'>
+          <mat-icon class='mx-1 search-icon'>search</mat-icon>
+          <input formControlName="keyTerm" [placeholder]="'input.placeholder.search' | translate" class='outline-none'/>
+        </label>
+
+        <div class="my-1"></div>
+        <mat-divider></mat-divider>
+        <div class="my-1"></div>
+
+        <p class="flex flex-row justify-between mb-4">
+          <span class="f-text-2">{{'client.fillers_tab'|translate}}</span>
+        </p>
+
+        <div class="filler-panel">
+          <div class="filler-box">
+            <ng-container *ngIf='fillersDisplay$ | async as filterDisplay'>
+              <div *ngFor="let item of filterDisplay" class="my-2">
+                <cxm-smartflow-common-checkbox [formControlName]="item.id + ''" (click)='emitData()'>
+                  <span [title]="item.value">{{ item.value }}</span>
+                </cxm-smartflow-common-checkbox>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </mat-menu>
+</div>

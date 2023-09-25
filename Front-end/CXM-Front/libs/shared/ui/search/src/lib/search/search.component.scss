@@ -1,0 +1,32 @@
+.storybook-input--primary {
+  font-size: 14px;
+  border: none;
+}
+
+.storybook-input--secondary {
+  font-size: 14px;
+  border: none;
+}
+
+input {
+  outline: none;
+  width: 100%;
+  display: inline;
+}
+
+.searchComponent {
+  display: flex;
+  margin-top: 3px;
+  padding: 3px 9px;
+  border: 1px solid rgba(134, 133, 133, 0.5);
+}
+
+mat-icon {
+  vertical-align: middle;
+  float: right;
+  color: rgba(179, 175, 175);;
+}
+
+mat-icon:hover {
+  cursor: pointer;
+}

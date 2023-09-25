@@ -1,0 +1,113 @@
+<form class='custom-datetime-picker-container flex flex-row' [formGroup]='formGroup'>
+
+    <mat-form-field class='w-4/5 custom-mat-form-field' (click)='picker.open()'>
+      <mat-label class='label-tooltip'>{{'cxmMatDatetimePicker.dateTooltip' | translate}}</mat-label>
+      <span class='material-icons' matPrefix>date_range</span>
+      <input type="text" matInput formControlName='date' readonly [matDatepicker]="picker">
+      <span class='material-icons' matSuffix>expand_more</span>
+      <mat-datepicker #picker panelClass='custom-mat-datepicker'>
+        <mat-datepicker-actions>
+          <button matDatepickerApply class='btn-validator'>{{'cxmMatDatetimePicker.btnApply' | translate}}</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+    </mat-form-field>
+
+  <div class='cxm-custom-time-picker ml-7' *ngIf="!accessTimeSecondPicker" [class.hidden]='toggleTime' (click)='onToggleTime()'>
+      <div class='flex flex-row items-center'>
+        <div class='schedule'><mat-icon class='mr-5'>schedule</mat-icon></div>
+        <div class='flex flex-col'>
+          <span class='time-picker-tooltip'>{{'cxmMatDatetimePicker.timeTooltip' | translate}}</span>
+          <label>{{timeLabel | async}}</label>
+        </div>
+      </div>
+  </div>
+
+  <div class='cxm-custom-time-picker-toggle ml-7' *ngIf='toggleTime' >
+    <div class='flex flex-row justify-between'>
+      <div class='flex flex-row items-center pt-2'>
+        <mat-icon class='mr-3 schedule-icon' style='color: #2E2E2E'>schedule</mat-icon>
+        <span>{{'cxmMatDatetimePicker.timeTooltip' | translate}}</span>
+      </div>
+      <mat-icon (click)='reset()' id='close-icon'>close</mat-icon>
+    </div>
+
+    <div class='flex flex-row mt-5'>
+      <div class='w-full flex flex-col text-center items-center'>
+        <div class='hour-minute-container'>
+          <input type='number' [max]='this.maxHour' min='0' formControlName='hour' onchange="let hr = parseInt(this.value); if (hr > 23 || hr < 0) { let currentHour = new Date().getHours(); if (currentHour > 10) this.value = currentHour.toString(10); else if(currentHour < 10 && currentHour > 0) this.value = '0' + currentHour.toString(10);} else if ( hr > 0 && hr < 10) this.value= '0' + this.value; else if (hr === 0) this.value = '00';">
+        </div>
+        <span>{{'cxmMatDatetimePicker.hourLabel' | translate}}</span>
+      </div>
+
+      <div class='w-full flex flex-col text-center items-center'>
+        <div class='hour-minute-container'>
+          <input type='number' [max]='this.maxMinute' min='0' formControlName='minute' onchange="let mn = parseInt(this.value,10); if (mn > 59 || mn < 0) { let currentMinute = new Date().getMinutes(); if (currentMinute > 10) this.value = currentMinute.toString(10); else if(currentMinute < 10 && currentMinute > 0) this.value = '0' + currentMinute.toString(10); else if(currentMinute <= 0) this.value = '00';} else if ( mn > 0 && mn < 10) this.value= '0' + this.value; else if (mn === 0) this.value = '00';">
+        </div>
+        <span>{{'cxmMatDatetimePicker.minuteLabel' | translate}}</span>
+      </div>
+
+    </div>
+
+    <div class='w-full flex flex-row justify-end mt-5'>
+      <button class='btn-validate' (click)='onToggleTime()' #validateButton>
+        {{'cxmMatDatetimePicker.btnApply' | translate}}
+      </button>
+    </div>
+  </div>
+
+  <div class='cxm-custom-time-second-picker ml-7' *ngIf="accessTimeSecondPicker" [class.hidden]='toggleTimeSecond'
+       (click)='onToggleTimeSecond()'>
+    <div class='flex flex-row items-center'>
+      <div class='schedule'>
+        <mat-icon class='mr-5'>schedule</mat-icon>
+      </div>
+      <div class='flex flex-col'>
+        <span class='time-picker-tooltip'>{{'cxmMatDatetimePicker.timeTooltip' | translate}}</span>
+        <label>{{timeSecondLabel | async}}</label>
+      </div>
+    </div>
+  </div>
+
+  <div class='cxm-custom-time-second-picker-toggle ml-7' *ngIf='toggleTimeSecond' >
+    <div class='flex flex-row justify-between'>
+      <div class='flex flex-row items-center pt-2'>
+        <mat-icon class='mr-3 schedule-icon' style='color: #2E2E2E'>schedule</mat-icon>
+        <span>{{'cxmMatDatetimePicker.timeTooltip' | translate}}</span>
+      </div>
+      <mat-icon (click)='resetTimeSecond()' id='close-icon'>close</mat-icon>
+    </div>
+
+    <div class='flex flex-row mt-5'>
+      <div class='w-full flex flex-col text-center items-center'>
+        <div class='hour-minute-container'>
+          <input type='number' [max]='this.maxHour' min='0' formControlName='hour' onchange="let hr = parseInt(this.value); if (hr > 23 || hr < 0) { let currentHour = new Date().getHours(); if (currentHour > 10) this.value = currentHour.toString(10); else if(currentHour < 10 && currentHour > 0) this.value = '0' + currentHour.toString(10);} else if ( hr > 0 && hr < 10) this.value= '0' + this.value; else if (hr === 0) this.value = '00';">
+        </div>
+        <span>{{'cxmMatDatetimePicker.hourLabel' | translate}}</span>
+      </div>
+
+      <div class='w-full flex flex-col text-center items-center'>
+        <div class='hour-minute-container'>
+          <input type='number' [max]='this.maxMinute' min='0' formControlName='minute' onchange="let mn = parseInt(this.value,10); if (mn > 59 || mn < 0) { let currentMinute = new Date().getMinutes(); if (currentMinute > 10) this.value = currentMinute.toString(10); else if(currentMinute < 10 && currentMinute > 0) this.value = '0' + currentMinute.toString(10); else if(currentMinute <= 0) this.value = '00';} else if ( mn > 0 && mn < 10) this.value= '0' + this.value; else if (mn === 0) this.value = '00';">
+        </div>
+        <span>{{'cxmMatDatetimePicker.minuteLabel' | translate}}</span>
+      </div>
+
+      <div class='w-full flex flex-col text-center items-center'>
+        <div class='hour-minute-container'>
+          <input type='number' [max]='this.maxSecond' min='0' formControlName='second' onchange="let ss = parseInt(this.value,10); if (ss > 59 || ss < 0) { let currentSecond = new Date().getSeconds(); if (currentSecond > 10) this.value = currentSecond.toString(10); else if(currentSecond < 10 && currentSecond > 0) this.value = '0' + currentSecond.toString(10); else if(currentSecond <= 0) this.value = '00';} else if ( ss > 0 && ss < 10) this.value= '0' + this.value; else if (ss === 0) this.value = '00';">
+        </div>
+        <span>{{'cxmMatDatetimePicker.secondLabel' | translate}}</span>
+      </div>
+
+    </div>
+
+    <div class='w-full flex flex-row justify-end mt-5'>
+      <button class='btn-validate' (click)='onToggleTimeSecond()' #validateButton>
+        {{'cxmMatDatetimePicker.btnApply' | translate}}
+      </button>
+    </div>
+  </div>
+
+
+
+</form>

@@ -1,0 +1,39 @@
+.confirmation-popup-loader {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+
+  mat-spinner {
+    display: flex;
+    align-self: center;
+  }
+}
+
+
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #adadad;
+}
+
+
+.confirmation-popup-container {
+  .data {
+    white-space: pre-wrap;
+  }
+}
+
+.icon-blue {
+  color: #3B82F6;
+}
+
+.success--without-error {
+  text-align: left;
+  padding-left: 42px;
+
+  div.content__value {
+    padding-left: 2px !important;
+  }
+
+  .data {
+    padding-top: 25px;
+  }
+}

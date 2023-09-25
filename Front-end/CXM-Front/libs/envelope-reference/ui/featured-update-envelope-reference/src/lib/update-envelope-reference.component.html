@@ -1,0 +1,23 @@
+<div class='flex flex-row justify-between'>
+  <div>
+    <app-ng-dynamic-breadcrumb symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>
+      {{((mode) === envelopeReferenceFormUpdateMode.UPDATE_MULTIPLE ? 'envelope_reference.update.titleBatch' : 'envelope_reference.update.title') | translate | uppercase }}
+    </cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header small>{{'envelope_reference.update.subTitle' | translate}}</cxm-smartflow-page-sub-header>
+  </div>
+</div>
+
+<hr class='horizontal-line'>
+<article class="create-profile-container">
+  <h2 class="create-profile-page-title">
+    {{ 'envelope_reference.create.description' | translate }}
+  </h2>
+  <cxm-smartflow-envelope-reference-form
+    [envelopeReferenceDetail]='updateEnvelopeReference'
+    [ids]='ids'
+    [mode]='envelopeReferenceFormUpdateMode.CREATE'
+    (cancelForm)="cancel()"
+  >
+  </cxm-smartflow-envelope-reference-form>
+</article>

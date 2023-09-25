@@ -1,0 +1,8 @@
+<div class="notification-popup-container">
+  <div class='close-btn'>
+    <mat-icon (click)='dismiss(false)'>close</mat-icon>
+  </div>
+  <p>{{ 'dashboard.alert_shipment_waiting_for_validate' | translate }}</p>
+
+  <button (click)='dismiss(true)'>{{ 'dashboard.alert_shipment_waiting_for_validate_btn' | translate }}</button>
+</div>

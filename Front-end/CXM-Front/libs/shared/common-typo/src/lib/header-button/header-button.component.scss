@@ -1,0 +1,18 @@
+.button-blue-tessi {
+  border-radius: 10px;
+  background: var(--unnamed-color-3b82f6) 0% 0% no-repeat padding-box;
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16)/var(--unnamed-line-spacing-19) var(--unnamed-font-family-rubik);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-ffffff);
+  //text-align: left;
+  // padding: 0.75rem 1rem;
+  // padding: 0.9rem 1.95rem;
+  //min-width: 242px;
+  //height: 48px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.button-blue-tessi:hover {
+  background-color: rgba(59, 130, 246, 0.9);
+}

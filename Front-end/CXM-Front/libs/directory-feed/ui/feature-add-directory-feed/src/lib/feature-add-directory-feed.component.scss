@@ -1,0 +1,145 @@
+.form_directory_feed {
+  background: var(--unnamed-color-ffffff) 0 0% no-repeat padding-box;
+  border-radius: 5px;
+  box-shadow: 0 1px 9px #8dc2e548;
+}
+
+.directory_feed_contain {
+  display: flex;
+  justify-content: space-between;
+
+  .part_two {
+    width: 50%;
+    margin: 0;
+    .marks {
+      width: 30px;
+      text-align: right;
+    }
+
+    .marks_text {
+      font: normal normal 400 16px/19px Rubik;
+    }
+  }
+
+  .part_one {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    margin: 0;
+    .marks {
+      margin-left: 10px;
+    }
+
+    .marks_key {
+      width: 30px;
+      margin-right: 5px;
+    }
+
+    .directory_feed_item {
+      margin: 7px 0;
+      width: 100%;
+
+      .label_form {
+        white-space: nowrap;
+        width: 350px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .label_form:after {
+        content: " :";
+      }
+
+      label {
+        width: 150px;
+        color: var(--unnamed-color-1a214d);
+        font: normal normal 500 16px/19px Rubik;
+        margin: 0 150px 0 0;
+      }
+
+      .input-form {
+        input {
+          height: 38px;
+          line-height: 38px;
+          background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+          border: 0.5px solid var(--unnamed-color-8194b4);
+          border-radius: 5px;
+          padding: 10px 25px 10px 20px;
+          outline: none;
+          width: 400px;
+        }
+
+        .input_type_number {
+          padding: 10px 5px 10px 20px;
+        }
+
+        input:focus {
+          outline: 1px solid var(--unnamed-color-8194b4);
+        }
+
+        input::placeholder {
+          font: normal normal 300 16px/19px Rubik;
+          color: #C3C3C3;
+        }
+
+        input:disabled {
+          pointer-events: none;
+          border: 1px solid #adadad !important;
+          color: #adadad !important;
+        }
+      }
+
+      .field_checkbox{
+        display: flex;
+      }
+    }
+  }
+
+}
+
+::ng-deep .part_one{
+  .custom-mat-form-field {
+    width: 200px !important;
+  }
+
+  .mat-form-field-wrapper {
+    height: 55px;
+  }
+
+  .custom-mat-form-field .mat-form-field-infix{
+    height: 55px !important;
+  }
+}
+
+@media screen and (max-width: 2240px) and (min-width: 2060px) {
+  .part_one {
+    width: 60% !important;
+  }
+
+  .part_two {
+    width: 40% !important;
+  }
+}
+
+@media screen and (max-width: 2060px) {
+  .part_one {
+    width: 65% !important;
+  }
+
+  .part_two {
+    width: 35% !important;
+  }
+}
+
+@media screen and (max-width: 1765px) {
+  .part_one {
+    width: 80% !important;
+  }
+
+  .part_two {
+    width: 20% !important;
+  }
+}
+
+
+

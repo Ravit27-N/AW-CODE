@@ -1,0 +1,17 @@
+<div class='directory-step3-container'>
+  <h2>{{'directory.definition.client-directory-form.title' | translate}}</h2>
+
+  <cxm-smartflow-client-form [clientForm]='(clientForm$ | async) || []'
+                             [ownerId]='(this.ownerId$ | async) || 0'
+                             [clientSources]='(clientSource$ | async) || []'
+                             [formMode]='formMode'
+                             (onSelect)='onSelectClient($event)'
+                             (onRemove)='onRemoveClient($event)'
+                             (onDuplicate)='onDuplicateClient($event)'>
+  </cxm-smartflow-client-form>
+
+  <div class="space-x-4 action-buttons flex justify-end relative mt-6">
+    <cxm-smartflow-rich-button [isRounded]='true' (click)='onPrevious()'>{{ "directory.definition_directory_create_step_3_btn_cancel" | translate}}</cxm-smartflow-rich-button>
+    <cxm-smartflow-rich-button *ngIf='formMode !== "view"' (click)='onSubmit()' [disabled]='hasDuplicate'>{{ "directory.definition_directory_create_step_1_btn_next" | translate}}</cxm-smartflow-rich-button>
+  </div>
+</div>

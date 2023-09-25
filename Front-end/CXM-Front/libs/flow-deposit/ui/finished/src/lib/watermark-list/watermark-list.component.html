@@ -1,0 +1,6 @@
+<ng-container *ngIf="watermark$|async as watermark">
+  <div class='pt-5 grid gap-x-4 gap-y-4 grid-cols-2' [class.hidden]="!watermark">
+    <div class='label'> {{'background.messages.watermark'|translate}} :</div>
+    <div class='value'>{{ watermark }}</div>
+  </div>
+</ng-container>

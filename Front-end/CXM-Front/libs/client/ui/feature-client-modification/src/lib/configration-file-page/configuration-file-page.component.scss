@@ -1,0 +1,53 @@
+.client-name-sub-heading {
+  color: var(--unnamed-color-3b82f6);
+}
+
+.version-history-container {
+  height: 100%;
+}
+
+.version-history-container h4 {
+  color: var(--unnamed-color-1a214d);
+  text-align: left;
+  font: normal normal 500 16px/19px Rubik;
+  letter-spacing: 0;
+  margin-bottom: 15px;
+  line-height: 48px;
+  transform: translateY(13px);
+}
+
+.config-container {
+  grid-template-columns: 30% calc(70% - 48px);
+  display: grid;
+  column-gap: 48px;
+}
+
+cxm-smartflow-rich-button {
+  margin-left: 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+}
+
+header {
+  height: 48px;
+  margin-bottom: 15px;
+}
+
+.action-buttons {
+  margin-top: 88px;
+}
+
+.export-file-btn {
+  display: block;
+  transform: translateY(-3px);
+}

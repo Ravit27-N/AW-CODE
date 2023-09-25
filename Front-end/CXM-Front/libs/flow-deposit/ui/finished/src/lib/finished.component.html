@@ -1,0 +1,90 @@
+<div class='pt-16'>
+  <div class='header-container pb-4'>
+    <cxm-smartflow-header pageTitle='flow.deposit.title' subTitle='flow.deposit.finished.title'></cxm-smartflow-header>
+<!--    <cxm-smartflow-file-info></cxm-smartflow-file-info>-->
+  </div>
+  <hr class='line-separator' />
+  <div>
+
+    <div class='grid gap-x-8 gap-y-4 grid-cols-2'>
+      <div class=''>
+        <div class='py-5'>
+          <cxm-smartflow-identification-table></cxm-smartflow-identification-table>
+        </div>
+        <div class='card rounded-none'>
+          <div class='synthesis grid grid-rows-1'>
+            <div class='grid gap-x-4 gap-y-4 grid-cols-2'>
+              <div class='title'>{{'flow.deposit.synthesis.title'|translate}}</div>
+              <div class="justify-self-end">
+                <img (click)="goPrev()" class="pencil-square-icon" src="assets/icons/pencil-square.svg" alt="pencil-square icon">
+              </div>
+            </div>
+            <div class='pt-5 grid gap-x-4 gap-y-4 grid-cols-2'>
+              <div class='label'>{{'flow.deposit.synthesis.filename'|translate}}&nbsp;:</div>
+              <div class='value'>{{this.filename | async}}</div>
+            </div>
+            <div class='pt-5 grid gap-x-4 gap-y-4 grid-cols-2'>
+              <div class='label'>{{'flow.deposit.productionCriteria.form.label.postage'|translate}}&nbsp;:</div>
+              <div class='value'>{{this.urgency | async}}</div>
+            </div>
+            <div class='pt-5 grid gap-x-4 gap-y-4 grid-cols-2'>
+              <div class='label'>{{'flow.deposit.productionCriteria.form.label.color'|translate}}&nbsp;:</div>
+              <div class='value'>{{(this.color | async | cxmColor | translate)}}</div>
+            </div>
+            <div class='pt-5 grid gap-x-4 gap-y-4 grid-cols-2'>
+              <div class='label'>{{'flow.deposit.productionCriteria.form.label.impression'|translate}}&nbsp;:</div>
+              <div class='value'>{{this.recto | async}}</div>
+            </div>
+            <div class='pt-5 grid gap-x-4 gap-y-4 grid-cols-2'>
+              <div class='label'>{{'flow.deposit.productionCriteria.form.label.evenlope'|translate}}&nbsp;:</div>
+              <div class='value'>{{this.wrap | async}}</div>
+            </div>
+            <div class='pt-5 grid gap-x-4 gap-y-4 grid-cols-2'>
+              <div class='label'>{{'flow.deposit.productionCriteria.form.label.leaflet'|translate}}&nbsp;:</div>
+              <div class='value'>Non</div>
+            </div>
+
+            <cxm-smartflow-background-list></cxm-smartflow-background-list>
+            <cxm-smartflow-attachment-list></cxm-smartflow-attachment-list>
+            <cxm-smartflow-signature-list></cxm-smartflow-signature-list>
+            <cxm-smartflow-watermark-list></cxm-smartflow-watermark-list>
+            <!-- <div>
+              <hr class='line-center-style'>
+            </div> -->
+            <div class='pt-5 grid gap-x-4 gap-y-4 grid-cols-2'>
+              <div class='label'>{{'flow.deposit.synthesis.nbPages'|translate}}&nbsp;:</div>
+              <div class='value'>{{this.selectOKDocumentProcessed.nbPage}}</div>
+            </div>
+            <div class='pt-5 grid gap-x-4 gap-y-4 grid-cols-2'>
+              <div class='label'>{{'flow.deposit.synthesis.nbDocuments'|translate}}&nbsp;:</div>
+              <div class='value'>{{this.selectOKDocumentProcessed.nbDocument}}</div>
+            </div>
+
+            <div class='pt-5 grid gap-x-4 gap-y-4 grid-cols-2' *ngIf="summeryDoc$|async as summeryDoc">
+              <div class='label'>{{'flow.deposit.synthesis.nbDocumentsKO'|translate}}&nbsp;:</div>
+              <div class='value'>{{summeryDoc.KO}}</div>
+            </div>
+
+            <!--<div class='pt-5 grid gap-x-8 gap-y-4 grid-cols-2 gap-2'>
+              <div class='label'>{{'flow.deposit.synthesis.nbSheets'|translate}}:</div>
+              <div>{{ caculatedSheet }}</div>
+            </div>-->
+          </div>
+        </div>
+      </div>
+
+      <div class='py-4 z-20'>
+        <cxm-smartflow-pdf-viewer [isFinishStep]='true' [nbDocuments]='this.selectOKDocumentProcessed.nbDocument'
+                                  [currentDocument]='1'></cxm-smartflow-pdf-viewer>
+      </div>
+    </div>
+    <!-- Navigate Buttons -->
+    <div class='p-4 pr-0 pl-0 flex space-x-4 justify-end'>
+      <cxm-smartflow-rich-button [isRounded]='true' (click)='goPrev()'>{{'flow.deposit.button.prev'|translate}}</cxm-smartflow-rich-button>
+      <cxm-smartflow-rich-button (click)='goBackToDeposit()'>{{'flow.deposit.button.validate'|translate}}</cxm-smartflow-rich-button>
+    </div>
+  </div>
+
+
+
+</div>

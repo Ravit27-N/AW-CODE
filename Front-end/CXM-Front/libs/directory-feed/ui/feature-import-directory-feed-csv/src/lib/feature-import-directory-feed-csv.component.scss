@@ -1,0 +1,112 @@
+:host ::ng-deep {
+  .mat-checkbox-inner-container {
+    width: 14px !important;
+    height: 14px !important;
+  }
+}
+
+
+.import__container {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.popup__control {
+  display: flex;
+  @apply justify-end;
+
+  mat-icon {
+    cursor: pointer;
+    color: #3b82f6;
+  }
+
+  mat-icon:hover {
+    font-weight: bold;
+  }
+}
+
+.popup__title {
+  h3 {
+    font: normal normal 600 18px/19px Rubik;
+    color: var(--unnamed-color-1a214d);
+    margin-bottom: 30px;
+  }
+}
+
+.content__instruction {
+  p {
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-2e2e2e);
+    text-align: left;
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-17) var(--unnamed-font-family-rubik);
+  }
+}
+
+.content__adjustment {
+  h4 {
+    font: normal normal 600 16px/19px Rubik;
+    color: var(--unnamed-color-1a214d);
+    margin: 25px 0;
+  }
+
+  .adjustment__item {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    height: 30px;
+
+    mat-checkbox {
+      margin-right: 14px;
+    }
+
+    span {
+      transform: translateY(1px);
+      font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-17) var(--unnamed-font-family-rubik);
+    }
+  }
+}
+
+.adjustment__group {
+  margin-bottom: 23px;
+}
+
+.action__control {
+  margin-top: 30px;
+  display: flex;
+  @apply justify-end;
+}
+
+.content__uploading_fragment {
+  margin-bottom: 30px;
+}
+
+.content__uploading__info {
+  @apply text-center relative;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  color: #373636b3;
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-17) var(--unnamed-font-family-rubik);
+}
+
+:host ::ng-deep {
+  .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element, .mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+  .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #1a214d;
+  }
+
+  .mat-checkbox-inner-container .mat-checkbox-ripple {
+    position: fixed;
+    left: inherit;
+    top: inherit;
+    transform: translate(-12px, -12px);
+  }
+
+  .mat-checkbox .mat-checkbox-frame {
+    transform: scale(1.23);
+    border: 1px solid #bcd5ff;
+  }
+
+  .mat-checkbox-checked .mat-checkbox-background {
+    transform: scale(1.23);
+  }
+}

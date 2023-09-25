@@ -1,0 +1,35 @@
+@import 'cxm-directory-global-styles.scss';
+
+.directory-feed-container {
+  background-color: white;
+  padding: 15px;
+  min-height: 50vh;
+  border: 1px solid $flow-text-primary;
+  position: relative;
+  padding-bottom: 45px;
+}
+
+.vl {
+  border-left: 2px solid $flow-text-primary;
+}
+
+h1 {
+  color: $flow-text-primary;
+  @apply font-bold;
+}
+
+.submit-button-group {
+  position: absolute;
+  bottom: 0;
+  right: 40px;
+  border: 0;
+}
+
+button {
+  @apply border bg-white px-8 py-1 rounded-sm border-gray-400;
+}
+
+.clickable {
+  background-color: $flow-text-primary;
+  color: white;
+}

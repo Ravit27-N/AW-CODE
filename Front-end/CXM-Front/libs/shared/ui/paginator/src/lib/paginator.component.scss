@@ -1,0 +1,15 @@
+:host ::ng-deep {
+  // disble bg-color of card paginator
+  .mat-paginator {
+    background-color: transparent !important;
+    font-style: italic;
+  }
+
+  // Mat Select box on paginator
+  .mat-form-field-infix > mat-select {
+    background-color: #ffffff;
+    padding: 5px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+  }
+}

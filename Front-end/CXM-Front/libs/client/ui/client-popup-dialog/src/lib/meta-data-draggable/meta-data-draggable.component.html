@@ -1,0 +1,28 @@
+<form [formGroup]='formGroup'>
+  <div class='box-drag-drop' [title]='addTitle(inputElement)'>
+    <div>
+      <div class='flex flex-row items-center container-wrapper'>
+
+        <label class='label-wrapper bg-white flex-grow flex items-center model'
+               cxmSmartflowCxmTooltip
+               [tooltipText]="errorMessage | translate"
+               [showTooltip]="errorDisplay">
+          <img class='image-icon' src='assets/images/2022-06-28_16h46_24.png' alt=''/>
+          <input #inputElement
+                 matInput
+                 formControlName="metadata"
+                 [class.invalid-form]='errorDisplay'
+                 [class.lowercase]='isLowercase'
+                 [class.dragging]='dragging && errorDisplay'
+                 (mouseover)='dragging = true'
+                 (mouseout)='dragging = false'
+                 class='cursor-pointer w-0 flex-grow text-truncate'
+          />
+        </label>
+
+        <img class='delete-btn' src='assets/icons/delete.svg' alt='remove btn' (click)='removeMetadata()'/>
+      </div>
+    </div>
+  </div>
+
+</form>

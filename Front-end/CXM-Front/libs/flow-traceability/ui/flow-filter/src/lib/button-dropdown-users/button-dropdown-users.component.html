@@ -1,0 +1,50 @@
+<div id="dropdown-users-panel" class="dropdown-users-panel">
+  <span class='flex align-middle items-center btn-users-panel justify-between ' [matMenuTriggerFor]='filterMenu'
+        (click)='addCustomCssClass()' (menuOpened)='mainMenuOpen()' (menuClosed)='mainMenuClose()'>
+    <!-- User box -->
+    <span class="flex items-center flex-row align-middle">
+      <img src="assets/icons/utilisateurs.svg" alt="utilisateurs or user icon">
+      <span class='btn-dropdown-label' [class.active]="usingUserFilter">{{'flowTraceability.table.filter.user' | translate}}</span>
+    </span>
+    <!-- ./User box -->
+
+
+    <!-- Expand icon -->
+    <mat-icon class='expand_more'>expand_more</mat-icon>
+    <!-- ./Expand icon -->
+  </span>
+
+  <mat-menu #filterMenu='matMenu' class='users-custom-dropdown'>
+
+    <!-- Card header -->
+    <section id="users-label-header">
+      <button mat-menu-item style='width: 100%; display: flex; justify-content: space-between' (click)='$event.stopPropagation()' [disableRipple]='true'>
+        <span>
+          <span class='flow-mode'>{{'flowTraceability.table.filter.user' | translate}}</span>
+          <span class="sort-icon-panel">
+            <span class="sort-icon-{{sortDirection}}" (click)="changeDirection()"></span>
+          </span>
+        </span>
+        <!-- Reset button -->
+        <span class='flow-reset' (click)="resetUserDropdownForm()">{{'flowTraceability.table.filter.reset' | translate}}</span>
+        <!-- ./Reset button -->
+      </button>
+    </section>
+    <!-- ./Card header -->
+
+    <!-- Card body -->
+    <button mat-menu-item class='custom-category-item' (click)='$event.stopPropagation()' [disableRipple]='true'>
+      <div class='category-panel'>
+        <div class="category-box">
+          <!-- Checkbox -->
+          <cxm-smartflow-multi-selector-check
+                                              [isShowTooltip]="true" [items]="users"
+                                              (checkedItems)="selectCheckbox($event)">
+          </cxm-smartflow-multi-selector-check>
+          <!-- ./Checkbox -->
+        </div>
+      </div>
+    </button>
+    <!-- Card body -->
+  </mat-menu>
+</div>

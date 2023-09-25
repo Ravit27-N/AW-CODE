@@ -1,0 +1,137 @@
+<article class='list-user-table-wrapper'>
+    <section class='flex mb-8 justify-start'>
+      <div class='ml-auto flex align-middle items-center'>
+        <cxm-smartflow-search-box [isError]='(showTooltip$ | async) || false'
+                                  (searchBoxChange)='searchTermChanged($event)'
+                                  [value]='filters?.filter || ""'>
+        </cxm-smartflow-search-box>
+      </div>
+    </section>
+  <div class="common-cxm-table-container">
+    <table mat-table matSort [dataSource]='envelopeReferences' matSortDisableClear >
+      <!-- Checkbox -->
+      <ng-container matColumnDef='select'>
+        <th mat-header-cell *matHeaderCellDef class='column-checkbox col-checkbox has-right-border'>
+          <cxm-smartflow-common-checkbox class='cxm-checkbox-style' disableRipple='true'
+                                         (ngModelChange)='masterToggle()'
+                                         [ngModel]='isAllSelected()'
+
+          ></cxm-smartflow-common-checkbox>
+        </th>
+        <td mat-cell *matCellDef='let row' id='selectCheckBox' class='column-checkbox col-checkbox has-right-border'>
+          <label class='cursor-pointer'>
+            <cxm-smartflow-common-checkbox class='cxm-checkbox-style' disableRipple='true'
+                                           (ngModelChange)='selection.toggle(row)'
+                                           [ngModel]='selection.isSelected(row)'
+
+            ></cxm-smartflow-common-checkbox>
+          </label>
+        </td>
+      </ng-container>
+      <!-- REFERENCE COLUMN -->
+      <ng-container matColumnDef='reference' id='selectReference'>
+        <th id='_reference' mat-header-cell *matHeaderCellDef mat-sort-header class='column-name col-reference'
+            arrowPosition='after'>
+          {{'envelope_reference.list.table.header.reference' | translate}}
+        </th>
+        <td mat-cell *matCellDef='let row' id='reference' class='column-name col-reference' [title]='row?.reference'
+            cxmSmartflowCxmTooltip
+            [tooltipText]='"envelope_reference.list.table.noProfile" | translate'
+
+            [isRemoveBorder]='true' [showBackgroundEl]='false'>
+          <a class='hover:no-underline'>
+
+            <div class="flex flex-row items-center ">
+              <span>{{row?.reference}}</span>
+            </div>
+
+          </a>
+        </td>
+      </ng-container>
+      <!-- FORMAT COLUMN -->
+      <ng-container matColumnDef='format' id='selectFormat'>
+        <th id='_format' mat-header-cell *matHeaderCellDef mat-sort-header class='column-name col-reference'
+            arrowPosition='after'>
+          {{'envelope_reference.list.table.header.format' | translate}}
+        </th>
+        <td mat-cell *matCellDef='let row' id='format' class='column-name col-reference' [title]='row?.format'
+            cxmSmartflowCxmTooltip
+            [tooltipText]='"envelope_reference.list.table.noProfile" | translate'
+
+            [isRemoveBorder]='true' [showBackgroundEl]='false'>
+          <a class='hover:no-underline'>
+            <div class="flex flex-row items-center ">
+              <span>{{row?.format}}</span>
+            </div>
+
+          </a>
+        </td>
+      </ng-container>
+      <!-- DESCRIPTION COLUMN -->
+      <ng-container matColumnDef='description' id='selectDescription'>
+        <th id='_description' mat-header-cell *matHeaderCellDef mat-sort-header class='column-name col-description'
+            arrowPosition='after'>
+          {{'envelope_reference.list.table.header.description' | translate}}
+        </th>
+        <td mat-cell *matCellDef='let row' id='description' class='column-name col-reference' [title]='row?.description'
+            cxmSmartflowCxmTooltip
+            [tooltipText]='"envelope_reference.list.table.noProfile" | translate'
+
+            [isRemoveBorder]='true' [showBackgroundEl]='false'>
+          <a class='hover:no-underline'>
+            <div class="flex flex-row items-center ">
+              <span>{{row?.description}}</span>
+            </div>
+
+          </a>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef='active' id='selectActive'>
+        <th id='_active' mat-header-cell *matHeaderCellDef class='column-name col-reference '
+            arrowPosition='after'>
+          {{'envelope_reference.list.table.header.active' | translate}}
+        </th>
+        <td mat-cell *matCellDef='let row' id='active' class='column-name col-reference' [title]='row?.active'
+            cxmSmartflowCxmTooltip
+            [tooltipText]='"envelope_reference.list.table.noProfile" | translate'
+
+            [isRemoveBorder]='true' [showBackgroundEl]='false'>
+          <a class='hover:no-underline'>
+            <div class="flex flex-row items-center ">
+              <span *ngIf="row?.active">{{ 'envelope_reference.form.label.yes'| translate  }}</span>
+              <span *ngIf="!row?.active">{{ 'envelope_reference.form.label.no'| translate  }}</span>
+            </div>
+
+          </a>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef='actions'>
+        <th mat-header-cell *matHeaderCellDef class="col-actions ">{{'client.table.action'|translate}}</th>
+        <td mat-cell *matCellDef='let row' class="col-actions">
+          <button class="mr-2  col-edit" (click)="handleConsult(row)" *ngIf='true'>{{'envelope_reference.list.action.edit'|translate}}</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef='this.tableColumns; sticky: true'></tr>
+      <tr
+        mat-row
+        *matRowDef='let row; let i = index; columns: tableColumns'
+        [class.row-selected]='selection.isSelected(row)'>
+      </tr>
+      <tr class='mat-row no-data-row' *matNoDataRow>
+        <td class='mat-cell no-data-cell' [colSpan]='this.tableColumns.length'></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class='mt-6'></div>
+  <cxm-smartflow-list-paginator
+    *ngIf='pagination'
+    [withFilter]='usingProfileFilter '
+    [withCriteria]='(searchValue$ | async) || usingProfileFilter '
+    (page)='paginationUpdated($event)'
+    [pageIndex]='pagination.page'
+    [pageSize]='pagination.pageSize'
+    [length]='pagination.total'>
+  </cxm-smartflow-list-paginator>
+
+</article>

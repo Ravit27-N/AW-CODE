@@ -1,0 +1,633 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "strictPropertyInitialization": false,
+    "baseUrl": ".",
+    "paths": {
+      "@cxm-smartflow/envelope-reference/data-access": [
+        "libs/envelope-reference/data-access/src/index.ts"
+      ],
+      "@cxm-smartflow/envelope-reference/ui/featured-create-envelope-reference": [
+        "libs/envelope-reference/ui/featured-create-envelope-reference/src/index.ts"
+      ],
+      "@cxm-smartflow/envelope-reference/ui/featured-update-envelope-reference": [
+        "libs/envelope-reference/ui/featured-update-envelope-reference/src/index.ts"
+      ],
+      "@cxm-smartflow/envelope-reference/ui/list-envelope-references": [
+        "libs/envelope-reference/ui/list-envelope-references/src/index.ts"
+      ],
+      "@cxm-smartflow/envelope-reference/feature": [
+        "libs/envelope-reference/feature/src/index.ts"
+      ],
+      "@cxm-smartflow/envelope-reference/util": [
+        "libs/envelope-reference/util/index.ts"
+      ],
+      "@cxm-smartflow/auth/data-access": ["libs/auth/data-access/src/index.ts"],
+      "@cxm-smartflow/auth/util": ["libs/auth/util/src/index.ts"],
+      "@cxm-smartflow/auth/feature": ["libs/auth/feature/src/index.ts"],
+      "@cxm-smartflow/follow-my-campaign/feature": [
+        "libs/follow-my-campaign/feature/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/data-access": [
+        "libs/follow-my-campaign/data-access/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/util": [
+        "libs/follow-my-campaign/util/src/index.ts"
+      ],
+      "@cxm-smartflow/manage-my-campaign/util": [
+        "libs/manage-my-campaign/util/src/index.ts"
+      ],
+      "@cxm-smartflow/manage-my-campaign/feature": [
+        "libs/manage-my-campaign/feature/src/index.ts"
+      ],
+      "@cxm-smartflow/manage-my-campaign/data-access": [
+        "libs/manage-my-campaign/data-access/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/utils": ["libs/shared/utils/src/index.ts"],
+      "@cxm-smartflow/shared/material": ["libs/shared/material/src/index.ts"],
+      "@cxm-smartflow/manage-my-campaign/ui/feature-setting": [
+        "libs/manage-my-campaign/ui/feature-setting/src/index.ts"
+      ],
+      "@cxm-smartflow/manage-my-campaign/ui/feature-model": [
+        "libs/manage-my-campaign/ui/feature-model/src/index.ts"
+      ],
+      "@cxm-smartflow/manage-my-campaign/ui/feature-summary": [
+        "libs/manage-my-campaign/ui/feature-summary/src/index.ts"
+      ],
+      "@cxm-smartflow/manage-my-campaign/ui/feature-destination": [
+        "libs/manage-my-campaign/ui/feature-destination/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/card-side-bar": [
+        "libs/shared/ui/card-side-bar/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/storybook": ["libs/shared/storybook/src/index.ts"],
+      "@cxm-smartflow/shared/ui/button": ["libs/shared/ui/button/src/index.ts"],
+      "@cxm-smartflow/follow-my-campaign/ui/feature-detail-of-campaign": [
+        "libs/follow-my-campaign/ui/feature-detail-of-campaign/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/ui/feature-list-of-campaign": [
+        "libs/follow-my-campaign/ui/feature-list-of-campaign/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/data-access/api": [
+        "libs/shared/data-access/api/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/data-access/model": [
+        "libs/shared/data-access/model/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/input": ["libs/shared/ui/input/src/index.ts"],
+      "@cxm-smartflow/shared/app-config": [
+        "libs/shared/app-config/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/paginator": [
+        "libs/shared/ui/paginator/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/search": ["libs/shared/ui/search/src/index.ts"],
+      "@cxm-smartflow/shared/ui/input-test": [
+        "libs/shared/ui/input-test/src/index.ts"
+      ],
+      "@cxm-smartflow/manage-my-campaign/ui/show-comfirmation": [
+        "libs/manage-my-campaign/ui/show-comfirmation/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/spinner": [
+        "libs/shared/ui/spinner/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/chat": ["libs/shared/chat/src/index.ts"],
+      "@cxm-smartflow/shared/ui/message": [
+        "libs/shared/ui/message/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/show-information": [
+        "libs/shared/ui/show-information/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/thumbnail-card": [
+        "libs/shared/ui/thumbnail-card/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/websocket": ["libs/shared/websocket/src/index.ts"],
+      "@cxm-smartflow/email-template/ui/feature-summary-email-template": [
+        "libs/email-template/ui/feature-summary-email-template/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/data-access/services": [
+        "libs/shared/data-access/services/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/comfirm-dialog": [
+        "libs/shared/comfirm-dialog/src/index.ts"
+      ],
+      "@cxm-smartflow/email-template/ui/feature-email-template-composition": [
+        "libs/email-template/ui/feature-email-template-composition/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/image": ["libs/shared/ui/image/src/index.ts"],
+      "@cxm-smartflow/shared/ui/date-picker": [
+        "libs/shared/ui/date-picker/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/ui/feature-campaign-destination": [
+        "libs/follow-my-campaign/ui/feature-campaign-destination/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/ui/feature-summary-of-campaign": [
+        "libs/follow-my-campaign/ui/feature-summary-of-campaign/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/date-time-picker": [
+        "libs/shared/ui/date-time-picker/src/index.ts"
+      ],
+      "@env-cxm-campaign": [
+        "libs/shared/app-config/src/lib/cxm-campaign/environment.ts"
+      ],
+      "@env-cxm-template": [
+        "libs/shared/app-config/src/lib/cxm-template/environment.ts"
+      ],
+      "@env-flow-traceability": [
+        "libs/shared/app-config/src/lib/cxm-flow-traceability/environment.ts"
+      ],
+      "@env-flow-deposit": [
+        "libs/shared/app-config/src/lib/cxm-deposit/environment.ts"
+      ],
+      "@env-cxm-profile": [
+        "libs/shared/app-config/src/lib/cxm-profile/environment.ts"
+      ],
+      "@env-cxm-smartflow": [
+        "libs/shared/app-config/src/lib/cxm-smartflow/environment.ts"
+      ],
+      "@env-cxm-directory": [
+        "libs/shared/app-config/src/lib/cxm-directory/environment.ts"
+      ],
+      "@env-cxm-setting": [
+        "libs/shared/app-config/src/lib/cxm-setting/environment.ts"
+      ],
+      "@env-cxm-analytics": [
+        "libs/shared/app-config/src/lib/cxm-analytics/environment.ts"
+      ],
+      "@env-cxm-file-manager": [
+        "libs/shared/app-config/src/lib/cxm-file-manager/environment.ts"
+      ],
+      "@cxm-smartflow/shared/styles": ["libs/shared/styles/src/index.ts"],
+      "@cxm-smartflow/shared/ui/comfirmation-message": [
+        "libs/shared/ui/comfirmation-message/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/ui/view-email-template-dialog": [
+        "libs/follow-my-campaign/ui/view-email-template-dialog/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/ui/destination-email-campaign-dialog": [
+        "libs/follow-my-campaign/ui/destination-email-campaign-dialog/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/progression-circle": [
+        "libs/shared/ui/progression-circle/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/pipes": ["libs/shared/pipes/src/index.ts"],
+      "@cxm-smartflow/follow-my-campaign/ui/send-mail-dialog": [
+        "libs/follow-my-campaign/ui/send-mail-dialog/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-traceability/data-access": [
+        "libs/flow-traceability/data-access/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-traceability/feature": [
+        "libs/flow-traceability/feature/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-traceability/ui/flow-traceability-table": [
+        "libs/flow-traceability/ui/flow-traceability-table/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-traceability/util": [
+        "libs/flow-traceability/util/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-traceability/ui/document-traceability": [
+        "libs/flow-traceability/ui/document-traceability/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-traceability/ui/document-traceability-table": [
+        "libs/flow-traceability/ui/document-traceability-table/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/data-access": [
+        "libs/flow-deposit/data-access/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/feature": [
+        "libs/flow-deposit/feature/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/pre-analysis": [
+        "libs/flow-deposit/ui/pre-analysis/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/identification-table": [
+        "libs/flow-deposit/ui/identification-table/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/analysis-result": [
+        "libs/flow-deposit/ui/analysis-result/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/analysis-variant": [
+        "libs/flow-deposit/ui/analysis-variant/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/analysis-result-table": [
+        "libs/flow-deposit/ui/analysis-result-table/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/finished": [
+        "libs/flow-deposit/ui/finished/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/acquisition": [
+        "libs/flow-deposit/ui/acquisition/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/upload-progression": [
+        "libs/flow-deposit/ui/upload-progression/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/directives/drag-drop": [
+        "libs/shared/directives/drag-drop/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/production-criteria": [
+        "libs/flow-deposit/ui/production-criteria/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/product-criteria-form": [
+        "libs/flow-deposit/ui/product-criteria-form/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/deposit-navigator": [
+        "libs/flow-deposit/ui/deposit-navigator/src/index.ts"
+      ],
+      "@cxm-smartflow/profile/data-access": [
+        "libs/profile/data-access/src/index.ts"
+      ],
+      "@cxm-smartflow/profile/feature": ["libs/profile/feature/src/index.ts"],
+      "@cxm-smartflow/profile/util": ["libs/profile/util/src/index.ts"],
+      "@cxm-smartflow/profile/ui/list-profiles": [
+        "libs/profile/ui/list-profiles/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/round-button": [
+        "libs/shared/ui/round-button/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/directives/tooltip": [
+        "libs/shared/directives/tooltip/src/index.ts"
+      ],
+      "@cxm-smartflow/profile/ui/list-profile-table": [
+        "libs/profile/ui/list-profile-table/src/index.ts"
+      ],
+      "@cxm-smartflow/profile/ui/user-profile-permission-form": [
+        "libs/profile/ui/user-profile-permission-form/src/index.ts"
+      ],
+      "@cxm-smartflow/profile/ui/profile-navigator": [
+        "libs/profile/ui/profile-navigator/src/index.ts"
+      ],
+      "@cxm-smartflow/auth/ui/login": ["libs/auth/ui/login/src/index.ts"],
+      "@cxm-smartflow/shared/directives/can-delete": [
+        "libs/shared/directives/can-delete/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/directives/can-edit": [
+        "libs/shared/directives/can-edit/src/index.ts"
+      ],
+      "@cxm-smartflow/user/feature": ["libs/user/feature/src/index.ts"],
+      "@cxm-smartflow/user/data-access": ["libs/user/data-access/src/index.ts"],
+      "@cxm-smartflow/user/ui/list-users": [
+        "libs/user/ui/list-users/src/index.ts"
+      ],
+      "@cxm-smartflow/user/ui/list-user-table": [
+        "libs/user/ui/list-user-table/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/directives/can-visibility": [
+        "libs/shared/directives/can-visibility/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/directives/can-modification": [
+        "libs/shared/directives/can-modification/src/index.ts"
+      ],
+      "@cxm-smartflow/definition-directory/feature": [
+        "libs/definition-directory/feature/src/index.ts"
+      ],
+      "@cxm-smartflow/definition-directory/data-access": [
+        "libs/definition-directory/data-access/src/index.ts"
+      ],
+      "@cxm-smartflow/directory-feed/feature": [
+        "libs/directory-feed/feature/src/index.ts"
+      ],
+      "@cxm-smartflow/directory-feed/ui/feature-list-directory-feed-table": [
+        "libs/directory-feed/ui/feature-list-directory-feed-table/src/index.ts"
+      ],
+      "@cxm-smartflow/directory-feed/ui/feature-directory-feed-navigator": [
+        "libs/directory-feed/ui/feature-directory-feed-navigator/src/index.ts"
+      ],
+      "@cxm-smartflow/directory-feed/ui/feature-list-directory-feed": [
+        "libs/directory-feed/ui/feature-list-directory-feed/src/index.ts"
+      ],
+      "@cxm-smartflow/directory-feed/data-access": [
+        "libs/directory-feed/data-access/src/index.ts"
+      ],
+      "@cxm-smartflow/directory-feed/ui/directory-feed-form-table": [
+        "libs/directory-feed/ui/directory-feed-form-table/src/index.ts"
+      ],
+      "@cxm-smartflow/dashboard/feature": [
+        "libs/dashboard/feature/src/index.ts"
+      ],
+      "@cxm-smartflow/dashboard/ui/dashboard-card": [
+        "libs/dashboard/ui/dashboard-card/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/common-typo": [
+        "libs/shared/common-typo/src/index.ts"
+      ],
+      "@cxm-smartflow/user/util": ["libs/user/util/src/index.ts"],
+      "@cxm-smartflow/definition-directory/util": [
+        "libs/definition-directory/util/src/index.ts"
+      ],
+      "@cxm-smartflow/directory-feed/util": [
+        "libs/directory-feed/util/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/ui/feature-campaign-mail": [
+        "libs/follow-my-campaign/ui/feature-campaign-mail/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/ui/feature-list-choice-of-model": [
+        "libs/follow-my-campaign/ui/feature-list-choice-of-model/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/ui/feature-list-emailing-choice-of-model": [
+        "libs/follow-my-campaign/ui/feature-list-emailing-choice-of-model/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/ui/preview-email-template": [
+        "libs/follow-my-campaign/ui/preview-email-template/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/stepper": [
+        "libs/shared/ui/stepper/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/pdf-viewer": [
+        "libs/flow-deposit/ui/pdf-viewer/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/iframely-embed": [
+        "libs/shared/ui/iframely-embed/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/ui/feature-list-sms-model": [
+        "libs/follow-my-campaign/ui/feature-list-sms-model/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/ui/feature-campaign-sms": [
+        "libs/follow-my-campaign/ui/feature-campaign-sms/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/directives/can-access": [
+        "libs/shared/directives/can-access/src/index.ts"
+      ],
+      "@cxm-smartflow/forgot-password": ["libs/forgot-password/src/index.ts"],
+      "@cxm-smartflow/blocked-account": ["libs/blocked-account/src/index.ts"],
+      "@cxm-smartflow/template/data-access": [
+        "libs/template/data-access/src/index.ts"
+      ],
+      "@cxm-smartflow/template/feature": ["libs/template/feature/src/index.ts"],
+      "@cxm-smartflow/template/util": ["libs/template/util/src/index.ts"],
+      "@cxm-smartflow/template/ui/feature-list-template": [
+        "libs/template/ui/feature-list-template/src/index.ts"
+      ],
+      "@cxm-smartflow/template/ui/feature-create-update-template-popup": [
+        "libs/template/ui/feature-create-update-template-popup/src/index.ts"
+      ],
+      "@cxm-smartflow/template/ui/feature-template-form": [
+        "libs/template/ui/feature-template-form/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/step": ["libs/shared/ui/step/src/index.ts"],
+      "@cxm-smartflow/flow-deposit/ui/header": [
+        "libs/flow-deposit/ui/header/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/file-info": [
+        "libs/flow-deposit/ui/file-info/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/progression-line": [
+        "libs/shared/ui/progression-line/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/validate-result": [
+        "libs/flow-deposit/ui/validate-result/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/ui/feature-campaign": [
+        "libs/follow-my-campaign/ui/feature-campaign/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/ui/feature-csv-upload": [
+        "libs/follow-my-campaign/ui/feature-csv-upload/src/index.ts"
+      ],
+      "@cxm-smartflow/follow-my-campaign/ui/feature-list-campaign": [
+        "libs/follow-my-campaign/ui/feature-list-campaign/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/guard/pending-change": [
+        "libs/flow-deposit/guard/pending-change/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-traceability/ui/flow-filter": [
+        "libs/flow-traceability/ui/flow-filter/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-traceability/ui/flow-traceability-content": [
+        "libs/flow-traceability/ui/flow-traceability-content/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-traceability/ui/flow-info": [
+        "libs/flow-traceability/ui/flow-info/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/cxm-datetime-picker": [
+        "libs/shared/ui/cxm-datetime-picker/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-traceability/ui/featured-flow-document-detail": [
+        "libs/flow-traceability/ui/featured-flow-document-detail/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-traceability/ui/featured-flow-digital-detail": [
+        "libs/flow-traceability/ui/featured-flow-digital-detail/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/info-tooltip": [
+        "libs/shared/info-tooltip/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/directives/info-tooltip": [
+        "libs/shared/directives/info-tooltip/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/circle-progression": [
+        "libs/shared/ui/circle-progression/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-traceability/ui/flow-traceability-shipment": [
+        "libs/flow-traceability/ui/flow-traceability-shipment/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/layout": ["libs/shared/ui/layout/src/index.ts"],
+      "@cxm-smartflow/flow-traceability/ui/featured-flow-event-history": [
+        "libs/flow-traceability/ui/featured-flow-event-history/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-traceability/ui/featured-flow-portal-detail": [
+        "libs/flow-traceability/ui/featured-flow-portal-detail/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-traceability/ui/featured-flow-page-header": [
+        "libs/flow-traceability/ui/featured-flow-page-header/src/index.ts"
+      ],
+      "@cxm-smartflow/user/ui/featured-create-user": [
+        "libs/user/ui/featured-create-user/src/index.ts"
+      ],
+      "@cxm-smartflow/user/ui/featured-update-user": [
+        "libs/user/ui/featured-update-user/src/index.ts"
+      ],
+      "@cxm-smartflow/user/ui/featured-user-form": [
+        "libs/user/ui/featured-user-form/src/index.ts"
+      ],
+      "@cxm-smartflow/communication-interactive/data-access": [
+        "libs/communication-interactive/data-access/src/index.ts"
+      ],
+      "@cxm-smartflow/communication-interactive/util": [
+        "libs/communication-interactive/util/src/index.ts"
+      ],
+      "@cxm-smartflow/communication-interactive/feature": [
+        "libs/communication-interactive/feature/src/index.ts"
+      ],
+      "@cxm-smartflow/communication-interactive/ui/featured-choose-template": [
+        "libs/communication-interactive/ui/featured-choose-template/src/index.ts"
+      ],
+      "@cxm-smartflow/communication-interactive/ui/featured-communication-interactive-editor": [
+        "libs/communication-interactive/ui/featured-communication-interactive-editor/src/index.ts"
+      ],
+      "@cxm-smartflow/communication-interactive/ui/featured-communication-interactive-success-page": [
+        "libs/communication-interactive/ui/featured-communication-interactive-success-page/src/index.ts"
+      ],
+      "@cxm-smartflow/profile/ui/create-profile-feature": [
+        "libs/profile/ui/create-profile-feature/src/index.ts"
+      ],
+      "@cxm-smartflow/profile/ui/update-profile-feature": [
+        "libs/profile/ui/update-profile-feature/src/index.ts"
+      ],
+      "@cxm-smartflow/profile/ui/profile-header": [
+        "libs/profile/ui/profile-header/src/index.ts"
+      ],
+      "@cxm-smartflow/approval/feature": ["libs/approval/feature/src/index.ts"],
+      "@cxm-smartflow/approval/data-access": [
+        "libs/approval/data-access/src/index.ts"
+      ],
+      "@cxm-smartflow/approval/ui": ["libs/approval/ui/src/index.ts"],
+      "@cxm-smartflow/approval/ui/feature-espace-validation-list": [
+        "libs/approval/ui/feature-espace-validation-list/src/index.ts"
+      ],
+      "@cxm-smartflow/profile/ui/profile-ui-user-profile-permission-form": [
+        "libs/profile/ui/profile-ui-user-profile-permission-form/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/feature-list": [
+        "libs/flow-deposit/ui/feature-list/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/common-criteria": [
+        "libs/shared/common-criteria/src/index.ts"
+      ],
+      "@cxm-smartflow/client/feature": ["libs/client/feature/src/index.ts"],
+      "@cxm-smartflow/client/data-access": [
+        "libs/client/data-access/src/index.ts"
+      ],
+      "@cxm-smartflow/client/ui/feature-client-list": [
+        "libs/client/ui/feature-client-list/src/index.ts"
+      ],
+      "@cxm-smartflow/client/ui/feature-client-modification": [
+        "libs/client/ui/feature-client-modification/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/dropdown-filter-criterial": [
+        "libs/shared/ui/dropdown-filter-criterial/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/form-input-selection": [
+        "libs/shared/ui/form-input-selection/src/index.ts"
+      ],
+      "@cxm-smartflow/auth/ui/feature-change-password": [
+        "libs/auth/ui/feature-change-password/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/pdfview": [
+        "libs/shared/ui/pdfview/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/preview-document": [
+        "libs/shared/ui/preview-document/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/directives/toggle-element": [
+        "libs/shared/directives/toggle-element/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/filter-box": [
+        "libs/shared/ui/filter-box/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/search-box": [
+        "libs/shared/ui/search-box/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/translate": ["libs/shared/translate/src/index.ts"],
+      "@cxm-smartflow/setting/data-access": [
+        "libs/setting/data-access/src/index.ts"
+      ],
+      "@cxm-smartflow/setting/feature": ["libs/setting/feature/src/index.ts"],
+      "@cxm-smartflow/setting/ui": ["libs/setting/ui/src/index.ts"],
+      "@cxm-smartflow/setting/util": ["libs/setting/util/src/index.ts"],
+      "@cxm-smartflow/setting/ui/featured-list-resource": [
+        "libs/setting/ui/featured-list-resource/src/index.ts"
+      ],
+      "@cxm-smartflow/dashboard/data-access": [
+        "libs/dashboard/data-access/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/uploading-fragment": [
+        "libs/shared/ui/uploading-fragment/src/index.ts"
+      ],
+      "@cxm-smartflow/client/ui/client-popup-dialog": [
+        "libs/client/ui/client-popup-dialog/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/setting-option-popup": [
+        "libs/flow-deposit/ui/setting-option-popup/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/preview-image": [
+        "libs/shared/ui/preview-image/src/index.ts"
+      ],
+      "@cxm-smartflow/analytics/data-access": [
+        "libs/analytics/data-access/src/index.ts"
+      ],
+      "@cxm-smartflow/analytics/feature": [
+        "libs/analytics/feature/src/index.ts"
+      ],
+      "@cxm-smartflow/analytics/util": ["libs/analytics/util/src/index.ts"],
+      "@cxm-smartflow/analytics/ui/feature-reporting-space": [
+        "libs/analytics/ui/feature-reporting-space/src/index.ts"
+      ],
+      "@cxm-smartflow/analytics/ui/report-space-navigation": [
+        "libs/analytics/ui/report-space-navigation/src/index.ts"
+      ],
+      "@cxm-smartflow/analytics/ui/report-space-filtering": [
+        "libs/analytics/ui/report-space-filtering/src/index.ts"
+      ],
+      "@cxm-smartflow/analytics/ui/report-space-graph": [
+        "libs/analytics/ui/report-space-graph/src/index.ts"
+      ],
+      "@cxm-smartflow/analytics/ui/feature-reporting-postal": [
+        "libs/analytics/ui/feature-reporting-postal/src/index.ts"
+      ],
+      "@cxm-smartflow/analytics/ui/feature-reporting-email": [
+        "libs/analytics/ui/feature-reporting-email/src/index.ts"
+      ],
+      "@cxm-smartflow/analytics/ui/feature-reporting-sms": [
+        "libs/analytics/ui/feature-reporting-sms/src/index.ts"
+      ],
+      "@cxm-smartflow/user/ui/import-user-csv-dialog": [
+        "libs/user/ui/import-user-csv-dialog/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/util": [
+        "libs/flow-deposit/util/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/directives/title-case": [
+        "libs/shared/directives/title-case/src/index.ts"
+      ],
+      "@cxm-smartflow/flow-deposit/ui/address-destination-popup": [
+        "libs/flow-deposit/ui/address-destination-popup/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/fragments/return-address": [
+        "libs/shared/fragments/return-address/src/index.ts"
+      ],
+      "@cxm-smartflow/definition-directory/ui/feature-list-directories": [
+        "libs/definition-directory/ui/feature-list-directories/src/index.ts"
+      ],
+      "@cxm-smartflow/definition-directory/ui/feature-create-directory": [
+        "libs/definition-directory/ui/feature-create-directory/src/index.ts"
+      ],
+      "@cxm-smartflow/definition-directory/ui/feature-form-directory": [
+        "libs/definition-directory/ui/feature-form-directory/src/index.ts"
+      ],
+      "@cxm-smartflow/definition-directory/ui/feature-edit-directory": [
+        "libs/definition-directory/ui/feature-edit-directory/src/index.ts"
+      ],
+      "@cxm-smartflow/definition-directory/ui/feature-view-directory": [
+        "libs/definition-directory/ui/feature-view-directory/src/index.ts"
+      ],
+      "@cxm-smartflow/shared/ui/router-loading": [
+        "libs/shared/ui/router-loading/src/index.ts"
+      ],
+      "@cxm-smartflow/directory-feed/ui/feature-directory-feed-details": [
+        "libs/directory-feed/ui/feature-directory-feed-details/src/index.ts"
+      ],
+      "@cxm-smartflow/directory-feed/ui/feature-add-directory-feed": [
+        "libs/directory-feed/ui/feature-add-directory-feed/src/index.ts"
+      ],
+      "@cxm-smartflow/directory-feed/ui/feature-list-directory-feeds": [
+        "libs/directory-feed/ui/feature-list-directory-feeds/src/index.ts"
+      ],
+      "@cxm-smartflow/directory-feed/ui/feature-import-directory-feed-csv": [
+        "libs/directory-feed/ui/feature-import-directory-feed-csv/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

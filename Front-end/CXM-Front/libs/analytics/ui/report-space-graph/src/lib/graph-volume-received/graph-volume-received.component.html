@@ -1,0 +1,37 @@
+<mat-card class="relative">
+  <cxm-smartflow-spinner *ngIf="displayGraph.fetching" [inline]="true"></cxm-smartflow-spinner>
+  <mat-card-content>
+    <cxm-smartflow-card-header-title>{{title}}</cxm-smartflow-card-header-title>
+    <div></div>
+    <div class="flex items-start justify-center contain-graph" *ngIf="!displayGraph.fetching">
+      <div class="flex flex-row space-x-4 mx-auto" [class.go-up]='!displayGraph.empty' [class.simply]='displayGraph.empty' [class.hidden]='displayGraph.empty && displayGraph.results.length === 0'>
+        <div [style.width]="displayGraph.view[0]+'px'" [style.height]="displayGraph.view[1] +'px'" *ngIf="!displayGraph.empty">
+          <ngx-charts-pie-chart
+            [view]="displayGraph.view"
+            [scheme]="displayGraph.scheme"
+            [results]="displayGraph.results"
+            [legend]="displayGraph.legend"
+            [labels]="displayGraph.labels"
+            [maxLabelLength]='50'
+            [arcWidth]="0.5"
+            [labelFormatting]='labelFormatting'
+            [tooltipDisabled]="disabledTooltip"
+            [doughnut]="displayGraph.doughnut" [tooltipText]="customFormatTooltip">
+          </ngx-charts-pie-chart>
+        </div>
+
+        <cxm-smartflow-empty-pie-chart *ngIf="displayGraph.empty" [view]="view" [doughnut]="displayGraph.doughnut"></cxm-smartflow-empty-pie-chart>
+
+        <div class="legend-custom-contain">
+          <div [style.width]="(displayGraph.view[0] - 260)+'px'" [style.min-height]="(displayGraph.view[1] - 260)+'px'" class="legend-custom flex flex-col justify-center space-y-4" >
+            <cxm-smartflow-chart-legends
+              *ngFor="let color of displayGraph.scheme.domain; let i = index;" [color]="color">
+              {{ displayGraph.graphLabels[i] }}
+            </cxm-smartflow-chart-legends>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

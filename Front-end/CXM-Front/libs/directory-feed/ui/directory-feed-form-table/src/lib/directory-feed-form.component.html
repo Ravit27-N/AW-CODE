@@ -1,0 +1,22 @@
+<cxm-smartflow-page-header>{{'directory.feed.detail.title' | translate | uppercase}}</cxm-smartflow-page-header>
+
+<div class="directory-feed-container">
+  <h1>{{displayName}}</h1>
+
+  <div class="flex space-x-2 mx-2 mt-3 my-4">
+    <cxm-smartflow-round-action-button [hint]="'directory.feed.list.button.import'|translate" (click)="validateImport(fileupload)" [disabled]='!isCanImport'>description</cxm-smartflow-round-action-button>
+    <cxm-smartflow-round-action-button [hint]="'directory.feed.list.button.import_schemas'|translate" (click)="exportSchema()" [disabled]='!isCanImport'>watch</cxm-smartflow-round-action-button>
+    <div class="vl"></div>
+    <cxm-smartflow-round-action-button [hint]="'directory.feed.list.button.export'|translate" (click)="exportData()" [disabled]='!isCanExport'>insert_drive_file</cxm-smartflow-round-action-button>
+  </div>
+
+  <cxm-smartflow-feed-table-form></cxm-smartflow-feed-table-form>
+
+  <!-- <div class="p-4 pr-0 border flex justify-end space-x-4 submit-button-group ">
+    <button class="border" (click)="submit()" >{{'directory.feed.list.button.ok'|translate}}</button>
+    <button class="border clickable" (click)="cancel()" >{{'directory.feed.list.button.cancel'|translate}}</button>
+  </div> -->
+
+</div>
+
+<input class="hidden" type="file" name="file" #fileupload (change)="importData($event)" />

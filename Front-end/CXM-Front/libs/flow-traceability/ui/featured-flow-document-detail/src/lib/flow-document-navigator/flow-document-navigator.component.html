@@ -1,0 +1,15 @@
+<div class="flex items-center justify-center align-middle navigate-size no-select" *ngIf="selectDocNavigator$|async as selectDocNavigator">
+  <span class="material-icons-round" [class.invisible]="!selectDocNavigator.hasPrev" (click)="prevDoc()">navigate_before</span>
+
+  <div class="navigate-text">
+    <span>{{selectDocNavigator.currentIndex+1}}</span>
+    <span>/</span>
+    <span>{{selectDocNavigator.totalDoc}}</span>
+  </div>
+
+  <span class="material-icons-round" [class.invisible]="!selectDocNavigator.hasNext" (click)="nextDoc()">
+    navigate_next
+  </span>
+
+</div>
+

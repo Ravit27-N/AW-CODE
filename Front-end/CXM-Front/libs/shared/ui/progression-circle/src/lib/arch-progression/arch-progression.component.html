@@ -1,0 +1,15 @@
+
+<p>{{label}}</p>
+<ngx-gauge
+  [type]="'semi'"
+  [value]="value"
+  [thick]="15"
+  [size]="130"
+  backgroundColor="transparent"
+  [foregroundColor]="color"
+>
+  <ngx-gauge-value>{{value}}%</ngx-gauge-value>
+  <ngx-gauge-label *ngIf="counter>0">{{counter}}</ngx-gauge-label>
+
+
+</ngx-gauge>

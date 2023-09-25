@@ -1,0 +1,207 @@
+@import "./cxm-flow-traceability-mixin";
+
+@mixin for-size($size) {
+  @if $size == desktop-up {
+    @media (min-width: 1365px) { @content; }
+  } @else if $size == big-desktop-up {
+    @media (min-width: 1765px) { @content; }
+  }
+  @else if $size == xl-desktop-up {
+    @media (min-width: 2065px) { @content; }
+  }
+}
+
+.flow-traceability-panel {
+  ::ng-deep {
+    .mat-header-row {
+      height: 60px;
+      background: #E0ECFF 0 0 no-repeat padding-box;
+      text-align: left;
+      font: normal normal normal 14px/17px Rubik;
+      letter-spacing: 0;
+      color: #696969;
+      text-transform: uppercase;
+      opacity: 1;
+    }
+
+    .mat-row {
+      height: 59px;
+    }
+
+    tr {
+      border-bottom: 0.5px solid #BCD5FF;
+    }
+
+    tr:last-child{
+      border-bottom: none;
+    }
+
+    .mat-cell {
+      border-bottom-width: 0;
+      border-bottom-style: none !important;
+
+      &:last-child {
+        padding-left: 20px;
+        padding-right: 0;
+        border-left: 2px solid #0072BB;
+      }
+
+      &:first-child {
+        border: none;
+      }
+    }
+
+    th.mat-header-cell:last-of-type {
+      @apply pl-5;
+      border-left: 2px solid #0072BB;
+      width: 10%;
+
+      @include for-size(big-desktop-up) {
+        width: 8.3333%;
+      }
+    }
+
+    .mat-table {
+      box-shadow: inset 5px 0 10px #D1E3FF48;
+      border-radius: 10px 10px 0 0 !important;
+    }
+  }
+
+  ::ng-deep .mat-sort-header-arrow[style] {
+    // Hide default arrow stem
+    .mat-sort-header-stem {
+      display: none;
+
+      &:hover {
+        transform: none !important;
+      }
+    }
+
+    .mat-sort-header-indicator {
+      opacity: 1;
+      transform: none !important;
+
+      // Hide default arrow as its composed of left, right and middle
+      .mat-sort-header-pointer-left,
+      .mat-sort-header-pointer-right,
+      .mat-sort-header-pointer-middle {
+        display: none;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+  }
+
+  // custom ascending arrow
+  [aria-sort='ascending'] {
+    ::ng-deep .mat-sort-header-arrow {
+      transform: none !important;
+      opacity: 1 !important;
+
+      .mat-sort-header-indicator {
+        &:hover {
+          transform: none !important;
+        }
+
+        &::before {
+          @apply pl-2;
+          content: '\2191';
+          top: -0em;
+          position: absolute;
+          color: #3B82F6;
+          font-size: 15px;
+          font-weight: 900;
+          line-height: 10px;
+        }
+      }
+    }
+  }
+
+  // custom descending arrow
+  [aria-sort='descending'] {
+    ::ng-deep .mat-sort-header-arrow {
+      transform: none !important;
+      opacity: 1 !important;
+
+      .mat-sort-header-indicator {
+        &::before {
+          @apply pl-2;
+          content: '\2193';
+          top: -5px;
+          position: absolute;
+          color: #3B82F6;
+          font-size: 15px;
+          font-weight: 900;
+        }
+      }
+    }
+  }
+
+  // custom none sorting
+  [aria-sort='none'] {
+    ::ng-deep .mat-sort-header-arrow {
+      transform: none !important;
+      opacity: 1 !important;
+
+      .mat-sort-header-indicator {
+        &::before {
+          @apply pl-2 font-bold;
+          content: '\2193';
+          top: -5px;
+          position: absolute;
+          color: #A8A8A8;
+          height: 10px !important;
+          font-size: 15px;
+          font-weight: 900;
+        }
+      }
+    }
+  }
+
+}
+
+.flow-status {
+  &-creation {
+    background-color: $flow-status-creation;
+  }
+
+  &-validate {
+    background-color: $flow-status-warn;
+  }
+
+  &-scheduled, &-scheduling, &-deposited, &-treatment {
+    @include flow-status-panel(rgba(59, 130, 246, 0.14), var(--unnamed-color-3b82f6));
+  }
+
+  &-canceled, &-refuse-document {
+    @include flow-status-panel(rgba(26, 33, 77, 0.14), var(--unnamed-color-1a214d));
+  }
+
+  &-error, &-in-error {
+    @include flow-status-panel(rgba(229, 10, 10, 0.14), var(--unnamed-color-e50a0a));
+  }
+
+  &-to-finalize {
+    @include flow-status-panel(rgba(46, 46, 46, 0.14), var(--unnamed-color-2e2e2e));
+  }
+
+  &-completed, &-done, &-ended, &-stamped, &-sent, &-unclaimed, &-npai, &-refused, &-distributed, &-soft_bounce, &-hard_bounce, &-clicked, &-lu {
+    @include flow-status-panel(rgba(130, 226, 134, 0.14), var(--unnamed-color-04c60b));
+  }
+
+  &-in-process, &-in-progress, &-in-production{
+    @include flow-status-panel(rgba(149, 75, 151, 0.14), var(--unnamed-color-954b97));
+  }
+
+  &-to-validate {
+    @include flow-status-panel(#fdf4db, $flow-status-warn);
+  }
+}
+
+.text-truncate {
+  @apply pr-3;
+  max-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,22 @@
+<div class="functionality-container">
+  <form action="">
+    <table>
+      <tr *ngFor="let functionality of functionalities">
+        <td class="">
+          <div class="flex flex-row pl-2 py-4">
+            <cxm-smartflow-common-slide-toggle
+              [toggleChecked]="functionality?.checked"
+              (slideToggle)="onSlideToggle($event, functionality?.value)"
+            ></cxm-smartflow-common-slide-toggle>
+            <span class="pl-5 flex items-center justify-center">{{ functionality?.t }}</span>
+          </div>
+        </td>
+        <td class="manage-panel-label manage-panel-align">
+          <span class="cursor-not-allowed inline-block align-middle">{{
+            'client.button.manage' | translate
+          }}</span>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>

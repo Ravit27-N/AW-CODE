@@ -1,0 +1,31 @@
+<div class='confirmation-popup-container'>
+  <div class='w-6 h-6 ml-auto cursor-pointer'>
+    <mat-icon class="icon-blue" (click)='close()'>close</mat-icon>
+  </div>
+
+  <div class='content text-center space-y-4 mb-12'>
+    <!-- <mat-icon [ngClass]='confirmationData.type === "Warning" ? "icon-warning" : "icon-active"'>{{confirmationData?.icon}}</mat-icon> -->
+
+    <div class="mx-auto h-14 w-14">
+      <img class="w-full" *ngIf="confirmationData.type === 'Warning' || confirmationData.type === 'Secondary'" src="assets/icons/alert-red.png" alt="warning">
+      <img class="w-full" *ngIf="confirmationData.type !== 'Warning' && confirmationData.type !== 'Secondary'" src="assets/icons/alert-blue.png" alt="info">
+    </div>
+
+    <h1>{{confirmationData?.title}}</h1>
+
+    <div class="mx-auto" style="width: 580px; line-break: strict; word-break: break-word;">
+      <p [innerHTML]='confirmationData?.message'></p>
+      <strong *ngIf="confirmationData?.importanceWorld" >&laquo;&nbsp;{{ confirmationData?.importanceWorld }}&nbsp;&raquo; {{confirmationData?.importanceWordSuffix }}</strong>
+      <p *ngIf='confirmationData?.paragraph' class='mt-4'>{{ confirmationData?.paragraph }}</p>
+    </div>
+
+
+  </div>
+
+
+  <div class='flex flex-row justify-center my-8 space-x-4'>
+    <button *ngIf="confirmationData?.cancelButton" (click)='dialogRef.close(false)' [ngClass]='confirmationData.type === "Warning" ? "btn-cancel-warning" : "btn-cancel-active"'>{{confirmationData?.cancelButton}}</button>
+
+    <button *ngIf="confirmationData?.confirmButton" (click)='dialogRef.close(true)' [ngClass]='confirmationData.type === "Warning" ? "btn-submit-warning" : "btn-submit-active"'>{{confirmationData?.confirmButton}}</button>
+  </div>
+</div>

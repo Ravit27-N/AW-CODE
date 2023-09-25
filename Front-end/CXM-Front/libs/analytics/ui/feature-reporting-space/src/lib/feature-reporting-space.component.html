@@ -1,0 +1,33 @@
+<!-- Navigation -->
+<div class='navigation-wrapper mt-5'>
+  <cxm-smartflow-report-space-navigation type='global' [navigationVisible]='analyticsReportTabs$ | async'></cxm-smartflow-report-space-navigation>
+</div>
+
+<!-- Report filters -->
+<div class='report-filters'>
+  <cxm-smartflow-report-space-filtering [config]='filteringConfig$ | async'
+                                        [disabledCategory]='analyticsDisabledCategory$ | async'
+                                        [disabledChannel]='analyticsDisabledChannel$ | async'
+                                        [visibilityItem]='["channel-category", "date-picker", "fillers"]'
+                                        [fillers]='(fillers$ | async) || []'
+                                        (criteriaOptionChange)='getCriteriaOptionChange($event)'>
+  </cxm-smartflow-report-space-filtering>
+
+  <div class='refresh-date'>
+    <span>{{'cxm_analytics.refresh_analytics_date' | translate}} {{ (refreshDate$ | async) | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
+  </div>
+</div>
+
+<!-- Graph -->
+
+<main class='graph-container mt-10'>
+  <div class='production-info'>
+    <cxm-smartflow-graph-production-progress [productionProgress]='(productionProgress$ | async)'></cxm-smartflow-graph-production-progress>
+    <div class='mt-4'></div>
+    <cxm-smartflow-global-production-details-table [data]='(globalProductionDetails$ | async) || {metaData: [], result: [], loading: true}'></cxm-smartflow-global-production-details-table>
+  </div>
+
+  <div class='volume-info'>
+    <cxm-smartflow-graph-volume-received [disabledTooltip]="false" [title]="'cxm_analytics.graph_volume_received' | translate" [graph]='volumeReceiveGraph$ | async'></cxm-smartflow-graph-volume-received>
+  </div>
+</main>

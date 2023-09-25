@@ -1,0 +1,71 @@
+@import 'flow-traceability-global-styles';
+
+.information-board-container {
+  background: var(--unnamed-color-ffffff) 0 0 no-repeat padding-box;
+  box-shadow: 0 1px 9px #8DC2E548;
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.created-date p,
+.division-service p,
+.created-by p,
+.sent-date p,
+.status p
+{
+  color: var(--unnamed-color-1a214d);
+  text-align: left;
+  font: normal normal 500 14px/17px Rubik;
+  letter-spacing: 0;
+  width: 183px;
+  display: inline-block;
+  margin-left: 20px;
+  margin-top: 2px;
+}
+
+.created-date span,
+.created-by span,
+.division-service span,
+.sent-date span{
+  color: var(--unnamed-color-2e2e2e);
+  text-align: left;
+  font: normal normal normal 14px/17px Rubik !important;
+  letter-spacing: 0;
+}
+
+
+hr.horizontal-line {
+  border: 0.5px solid #BCD5FF;
+  margin: 7px 0;
+}
+
+.success {
+  @include flow-status-panel(rgba(130, 226, 134, 0.14), var(--unnamed-color-04c60b));
+}
+
+.info {
+  @include flow-status-panel(rgba(59, 130, 246, 0.14), var(--unnamed-color-3b82f6));
+}
+
+.danger {
+  @include flow-status-panel(rgba(229, 10, 10, 0.14), var(--unnamed-color-e50a0a));
+}
+
+.secondary {
+  @include flow-status-panel(rgba(26, 33, 77, 0.14), var(--unnamed-color-1a214d));
+}
+
+.primary {
+  @include flow-status-panel(rgba(149, 75, 151, 0.14), var(--unnamed-color-954b97));
+}
+
+@media screen and (min-height: 967px)  {
+  .information-board-container {
+    padding: 7px 0;
+
+    div {
+      margin: 4px 0;
+    }
+  }
+}

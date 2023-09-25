@@ -1,0 +1,17 @@
+<section class='header'>
+  <cxm-smartflow-flow-traceability-page-header></cxm-smartflow-flow-traceability-page-header>
+</section>
+
+<div class="mb-7 mt-3">
+  <div class="">
+    <div class="flex flex-row justify-start flow-switch-tab">
+      <div [class.active]="true">{{'flowTraceability.switchTab.flowTraceability' | translate}}</div>
+      <div class="pl-5" [class.active]="false"
+           (click)="navigateToFlowDocument()">{{'flowTraceability.switchTab.flowDocument' | translate}}</div>
+    </div>
+    </div>
+</div>
+
+<div class="w-full">
+  <cxm-smartflow-flow-traceability-table class="flex-grow"></cxm-smartflow-flow-traceability-table>
+</div>

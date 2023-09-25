@@ -1,0 +1,30 @@
+<div class='container'>
+  <form [formGroup]='formGroup'>
+    <div class='bg-white flex input-content-wrapper'>
+      <input
+        type='text'
+        class='outline-none flex-grow'
+        formControlName='modelName'
+        cxmSmartflowCxmTooltip
+        [tooltipText]='tooltipMessage'
+        [showTooltip]='showTooltip$ | async'
+        normalBorderColorEl='0px solid #FFFFFF'
+      />
+      <button
+        class='cursor-pointer'
+        matSuffix
+        mat-icon-button
+        aria-label='Clear mr-8'
+      >
+        <mat-icon class='icon-close' (click)='cancel()'>close</mat-icon>
+      </button>
+    </div>
+  </form>
+
+  <div class='w-full'>
+    <div [class.hidden]='isPreview || isReadonly' class='border w-full' id='gjs'></div>
+    <div [class.hidden]='!isPreview' class='border previewer'>
+      <div [innerHTML]='previewHTML | safeHtml' class='w-full h-full overflow-auto'></div>
+    </div>
+  </div>
+</div>

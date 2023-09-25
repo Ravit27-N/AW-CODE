@@ -1,0 +1,103 @@
+/*
+*  This file used to shared styles (class, id, etc) to another apps (cxm-campaign, cxm-template, and cxm-smartflow)
+*/
+
+@import "./variables";
+@import './mixins';
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+/*
+* Card
+*/
+.mat-card {
+  padding: 0;
+  border-radius: 8px;
+
+  &-header {
+    // background-color: #fff;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+  }
+
+  &-header &-title {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: smaller;
+  }
+
+  &-content {
+    padding: 25px;
+    // background-color: #f6f6f6;
+    // border-radius: 0 0 8px 8px;
+  }
+}
+
+/*
+* Host & Ng Deep
+*/
+:host ::ng-deep {
+  .mat-tab-label {
+    width: 100%;
+    &-active {
+      width: 100%;
+    }
+  }
+}
+
+/*
+* Button
+*/
+
+.cxm-btn {
+
+  display: inline-block;
+  font-weight: $btn-font-weight;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: $btn-border-width solid transparent;
+  @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-line-height, $btn-border-radius);
+  @include transition($btn-transition);
+
+  // Share hover and focus styles
+  @include hover-focus {
+    text-decoration: none;
+  }
+
+  &:focus,
+  &.focus {
+    outline: 0;
+    //box-shadow: $btn-focus-box-shadow;
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    opacity: $btn-disabled-opacity;
+    @include box-shadow(none);
+  }
+
+  // Opinionated: add "hand" cursor to non-disabled .btn elements
+  &:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active {
+    background-image: none;
+    @include box-shadow($btn-active-box-shadow);
+
+    &:focus {
+      @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
+    }
+  }
+}
+
+.cxm-btn-primary {
+  background-color: $btn-bg-color;
+  color: $btn-title-color;
+}
+
+
+

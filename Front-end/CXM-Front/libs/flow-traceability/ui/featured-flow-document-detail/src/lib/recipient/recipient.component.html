@@ -1,0 +1,21 @@
+<main class='recipient-wrapper'>
+
+  <section class='address' *ngIf="recipient?.channel === 'Postal'">
+    <p class='inline-block'><span class='label'>{{'flow.document.recipient.address' | translate}} :</span></p>
+    <span class='address-value-container'>
+      <ng-container *ngFor='let item of recipient.address'>
+        <span class='value'>{{getAddress(item)}}</span>
+        <br  *ngIf='getAddress(item, true).includes(",")'>
+      </ng-container>
+    </span>
+  </section>
+
+  <section class='email' *ngIf="recipient?.channel === 'Digital' && recipient?.subChannel === 'Email'">
+    <p><span class='label'>{{'flow.document.recipient.email' | translate}} :</span> {{recipient?.email}}</p>
+  </section>
+
+  <section class='telephone' *ngIf="recipient?.channel === 'Digital' && recipient?.subChannel === 'SMS'">
+    <p><span class='label'>{{'flow.document.recipient.telephone' | translate}} :</span> {{recipient?.telephone}}</p>
+  </section>
+
+</main>

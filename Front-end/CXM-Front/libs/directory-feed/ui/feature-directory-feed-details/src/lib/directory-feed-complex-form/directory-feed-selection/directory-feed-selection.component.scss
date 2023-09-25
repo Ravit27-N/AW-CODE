@@ -1,0 +1,56 @@
+.selection-container {
+  width: 1135px;
+  height: 97px;
+  background: #1A214D 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 10px #5582CC86;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction:  row;
+  align-items: center;
+
+  .box-item {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    .counter {
+      color: var(--unnamed-color-3b82f6);
+      text-align: center;
+      font: normal normal 500 20px/24px Rubik;
+    }
+  }
+
+  .close-icon {
+    position: absolute;
+    right: 10px;
+    top: 4px;
+  }
+
+  .clickable:hover {
+    color: white;
+    cursor: pointer;
+  }
+
+  .cxm-icon {
+    // margin-right: 16px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: contain;
+    line-height: 27px;
+    height: 20px;
+    width: 20px;
+  }
+
+
+  .cxm-icon.text-icon-red {
+    filter: invert(10%) sepia(96%) saturate(5339%) hue-rotate(0deg)
+    brightness(88%) contrast(114%);
+  }
+
+  .cxm-icon.text-icon-blue {
+    filter: invert(38%) sepia(97%) saturate(561%) hue-rotate(182deg) brightness(106%) contrast(93%);
+  }
+}

@@ -1,0 +1,27 @@
+<div class='profile-filter-wrapper'>
+  <button class="button-filter flex align-middle items-center cursor-pointer px-4" [matMenuTriggerFor]="menu" (menuOpened)='mainMenuOpen()' (menuClosed)='mainMenuClose()'>
+    <span class="cxm-icon text-icon-red mr-2" style="background-image: url('assets/icons/profile.png');"></span>
+
+    <span class="mr-auto" [class.highlight]="usingFilter">{{'user.list.button.profile'|translate}}</span>
+    <mat-icon>expand_more</mat-icon>
+  </button>
+
+  <mat-menu class="user-profile-filter-menu" #menu="matMenu"  xPosition="after">
+    <form [formGroup]="formGroup" (click)="$event.stopPropagation();" >
+      <div class="filter-wrapper profile-filter-wrapper">
+        <p class="flex flex-row justify-between">
+          <span class="f-text-2">{{'user.list.button.profile'|translate}} <span [class]='"sort-icon-".concat(sortDirection)' (click)='sort()'></span></span>
+          <button class="f-text-1" type="reset" (click)="reset()">{{'cxmCampaign.followMyCampaign.list.filterComponent.label.reset'|translate}}</button>
+        </p>
+
+        <div class="checkbox-group space-y-3">
+          <label class="f-text-3" *ngFor="let item of profiles" [for]="item.id" [title]="item.name">
+            <!-- <mat-checkbox disableRipple="true" [formControlName]="item.id" [value]="item.id">{{ item.name | uppercase }}</mat-checkbox> -->
+            <cxm-smartflow-common-checkbox class="profile-filter-style" [value]="item.id" [formControlName]="item.id" >{{ item.name }}</cxm-smartflow-common-checkbox>
+          </label>
+        </div>
+
+      </div>
+    </form>
+  </mat-menu>
+</div>

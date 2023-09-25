@@ -1,0 +1,19 @@
+<div class="flex items-center justify-between">
+  <div>
+    <p
+      *ngIf="isShowFoundItems"
+      innerHTML="{{ getItemsFoundLabel(length) }}"
+    ></p>
+  </div>
+  <mat-paginator
+    [pageIndex]="pageIndex"
+    [length]="length || 0"
+    [pageSize]="pageSize || 10"
+    [showTotalPages]="3"
+    [pageSizeOptions]="
+      pageSizeOptions ? pageSizeOptions : paginatorProps.pageSizeOptions
+    "
+    (page)="Page($event)"
+  >
+  </mat-paginator>
+</div>

@@ -1,0 +1,13 @@
+mat-card {
+  padding-bottom: 0;
+  @apply rounded-xl;
+  height: 100%;
+}
+
+
+.center-display {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  @apply justify-evenly mt-2;
+}

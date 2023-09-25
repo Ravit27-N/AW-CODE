@@ -1,0 +1,117 @@
+@import 'flow-deposit-global-styles';
+
+:host {
+  display: block;
+}
+
+
+.text-label {
+  @apply font-bold;
+  color: $flow-text-primary;
+}
+
+.d-block {
+  display: block;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.form-criteria-panel {
+  max-width: 545px;
+}
+
+form {
+  @apply p-3;
+}
+
+.mat-radio-label-content {
+  max-width: 320px;
+}
+
+.select-panel {
+  @apply border-solid border-2 p-2;
+  background: #FFFFFF 0 0 no-repeat padding-box;
+  border: 0.5px solid #8194B4;
+  border-radius: 5px;
+  max-width: 326px;
+}
+
+.checkbox-panel {
+  height: 22px;
+  box-sizing: border-box;
+  line-height: 22px;
+}
+
+.checkbox-input {
+  display: none;
+  &:checked + label .checkbox {
+    &:after {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}
+
+.checkbox {
+  background: #FFFFFF 0 0 no-repeat padding-box;
+  border: 0.5px solid #BCD5FF;
+  border-radius: 3px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  position: relative;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 16px;
+    height: 16px;
+    background-color: #3B82F6;
+    border-radius: 3px;
+    transition: 0.3s;
+  }
+}
+
+// Prefill color for default configuration.
+$df-configuration: #ffc075;
+
+.postage-mat-option{
+  color: $df-configuration !important;
+}
+
+.postage-mat-option-gray {
+  color: gray !important;
+}
+
+.has-applied-default-config{
+  color: $df-configuration !important;
+}
+
+::ng-deep {
+  .postage-mat-select .mat-select-value {
+    color: $df-configuration !important;
+  }
+
+  .color-mat-radio {
+    .mat-radio-button.mat-accent .mat-radio-inner-circle {
+      background-color: $df-configuration !important;
+    }
+  }
+
+  .recto-mat-radio{
+    .mat-radio-button.mat-accent .mat-radio-inner-circle {
+      background-color: $df-configuration !important;
+    }
+  }
+
+  .wrap-mat-radio{
+    .mat-radio-button.mat-accent .mat-radio-inner-circle {
+      background-color: $df-configuration !important;
+    }
+  }
+}

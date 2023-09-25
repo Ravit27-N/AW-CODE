@@ -1,0 +1,38 @@
+<div class="selection-container comments relative p-4">
+
+  <div class="flex flex-row justify-between w-full">
+    <div *ngIf="data.message">
+      <p class="text-white"><span *ngIf="selectedItems$|async as items">{{items.length}} </span>{{data.message|translate}}</p>
+    </div>
+    <span (click)="close()" class="material-icons clickable">clear</span>
+  </div>
+
+
+  <div class="w-full flex flex-row flex-grow items-end" [formGroup]="commentForm" >
+
+    <label for="comment" class="comment-label">
+        <textarea (change)="handleCommentChanged($event)" formControlName="comment"
+                  [placeholder]="(data.comment || '')|translate" class="comment-input" row="3" id="comment"
+                  name="comment" cxmSmartflowCxmTooltip
+                  errorBorderColorEl= '2px solid red'
+                  (ngModelChange)="textIncreaseValidation()"
+                  [tooltipText]='(commentForm.controls["comment"]?.errors?.message || "") | translate'
+                  [showTooltip]='commentForm.controls["comment"]?.errors !== null && (error$ | async)'></textarea>
+    </label>
+
+    <div class="flex flex-row ml-auto pr-8 space-x-8">
+      <div class="box-plate-button text-center clickable" (click)="doAlter()" *ngIf='data.alter'>
+        <!-- <span class="cxm-icon text-icon-red mx-auto" style="background-image: url('assets/icons/delete.svg');"></span> -->
+        <mat-icon class="cxm-icon mx-auto" style="transform: rotateZ(90deg)">block</mat-icon>
+        <span>{{ data.alterName | translate}}</span>
+      </div>
+
+      <div class="box-plate-button text-center clickable" (click)="doMain()" *ngIf='data.main'>
+        <!-- <span class="cxm-icon text-icon-red mx-auto" style="background-image: url('assets/icons/delete.svg');"></span> -->
+        <mat-icon class="cxm-icon mx-auto">done</mat-icon>
+        <span>{{ data.mainName | translate}}</span>
+      </div>
+    </div>
+
+  </div>
+</div>

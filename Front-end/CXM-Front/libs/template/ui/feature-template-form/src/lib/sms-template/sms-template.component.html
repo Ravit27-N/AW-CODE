@@ -1,0 +1,10 @@
+<section class="fixed top-0 left-0 mt-20 h-full w-full flex flex-col flex-grow">
+  <div class="flex flex-grow justify-end" *ngIf='(isLoading$ | async)  === false'>
+    <cxm-smartflow-template-variable-form
+      style="width: 365px"
+    ></cxm-smartflow-template-variable-form>
+    <cxm-smartflow-sms-template-editor
+      class="flex-grow"
+    ></cxm-smartflow-sms-template-editor>
+  </div>
+</section>

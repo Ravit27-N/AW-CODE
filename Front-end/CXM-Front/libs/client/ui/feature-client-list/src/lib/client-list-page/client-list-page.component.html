@@ -1,0 +1,19 @@
+<div class='flex flex-row justify-between'>
+  <div>
+    <app-ng-dynamic-breadcrumb [bgColor]="'none'" symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{'client.headerTitle' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header>{{'client.headerSubititle' | translate}} </cxm-smartflow-page-sub-header>
+  </div>
+
+  <div class='flex flex-col justify-end'>
+    <cxm-smartflow-header-button
+      *ngIf='isAdmin'
+      icon='add'
+      (onclick)="createClientHandler()">{{'client.createClient' | translate}}
+    </cxm-smartflow-header-button>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+
+<cxm-smartflow-client-list></cxm-smartflow-client-list>

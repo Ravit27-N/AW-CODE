@@ -1,0 +1,69 @@
+<div class='delivery-rate-wrapper'>
+  <header class='title'>
+    <h4>{{deliverabilityRate?.totalMail}}</h4>
+    <p>{{'flow.history.deliveryAbilityRate.total_'.concat(deliverabilityRate?.type || "email") | translate}}</p>
+  </header>
+
+  <main class='relative flex'>
+
+    <!-- Sending progress number. -->
+    <section class='sending-progress-number'>
+      <div class='title-box'>
+        <h4>{{deliverabilityRate?.deliveredPercentage}}%</h4>
+        <p>{{'flow.history.deliveryAbilityRate.delivered' | translate}}</p>
+        <p class='total-mail'>{{deliverabilityRate?.totalDeliveredMail}} {{'flow.history.deliveryAbilityRate.'.concat(deliverabilityRate?.type || "email") | translate}}</p>
+      </div>
+    </section>
+
+    <!-- Sending progress detail. -->
+    <section class='sending-progress-detail'>
+      <div class='description-box' *ngIf="(deliverabilityRate?.type === 'email') || (deliverabilityRate?.type?.toLowerCase() === 'batch')">
+        <p>{{deliverabilityRate?.rates?.block}}% {{'flow.history.deliveryAbilityRate.block' | translate}}
+          <span class='question-mark'
+                cxmSmartflowInfoTooltip
+                [tooltipMessage]="'flow.history.deliveryAbilityRate.tooltips.'.concat(deliverabilityRate?.type?.toLowerCase() || 'email').concat('.block') | translate">
+            <span class='item'>?</span>
+          </span>
+        </p>
+        <p>{{deliverabilityRate?.rates?.temporaryError}}% {{'flow.history.deliveryAbilityRate.temporaryError' | translate}}
+          <span class='question-mark'
+                cxmSmartflowInfoTooltip
+                [tooltipMessage]="'flow.history.deliveryAbilityRate.tooltips.'.concat(deliverabilityRate?.type?.toLowerCase() || 'email').concat('.temporaryError') | translate">
+            <span class='item'>?</span>
+          </span>
+        </p>
+        <p>{{deliverabilityRate?.rates?.permanentError}}% {{'flow.history.deliveryAbilityRate.permanentError' | translate}}
+          <span class='question-mark'
+                cxmSmartflowInfoTooltip
+                [tooltipMessage]="'flow.history.deliveryAbilityRate.tooltips.'.concat(deliverabilityRate?.type?.toLowerCase() || 'email').concat('.permanentError') | translate">
+            <span class='item'>?</span>
+          </span>
+        </p>
+        <p>{{deliverabilityRate?.rates?.dismissal}}% {{'flow.history.deliveryAbilityRate.dismissal' | translate}}
+          <span class='question-mark'
+                cxmSmartflowInfoTooltip
+                [tooltipMessage]="'flow.history.deliveryAbilityRate.tooltips.'.concat(deliverabilityRate?.type?.toLowerCase() || 'email').concat('.dismissal') | translate">
+            <span class='item'>?</span>
+          </span>
+        </p>
+      </div>
+
+      <div class='description-box sms-box' *ngIf="(deliverabilityRate?.type === 'sms')">
+        <p>{{deliverabilityRate?.rates?.smsTotalError}}% {{'flow.history.deliveryAbilityRate.permanentError' | translate}}
+          <span class='question-mark'
+                cxmSmartflowInfoTooltip
+                [tooltipMessage]="'flow.history.deliveryAbilityRate.tooltips.sms.permanentError' | translate">
+            <span class='item'>?</span>
+          </span>
+        </p>
+        <p>{{deliverabilityRate?.rates?.canceled}}% {{'flow.history.deliveryAbilityRate.cancel' | translate}}
+          <span class='question-mark'
+                cxmSmartflowInfoTooltip
+                [tooltipMessage]="'flow.history.deliveryAbilityRate.tooltips.sms.cancelError' | translate">
+            <span class='item'>?</span>
+          </span>
+        </p>
+      </div>
+    </section>
+  </main>
+</div>

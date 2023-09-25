@@ -1,0 +1,7 @@
+<div class="sms-wrapper" [ngClass]="isHasBackground ? 'bg-white' : ''">
+  <div style="background: url('assets/images/iphone-sms.png'); background-size: cover; background-repeat: no-repeat;" class="iphone mx-auto text-center relative" [ngStyle]="{'width': width}">
+    <div class="sms-content-wrapper">
+      <div class="sms-content" [innerHTML]="transformHTML(smsContent)" *ngIf="smsContent.length > 0"></div>
+    </div>
+  </div>
+</div>

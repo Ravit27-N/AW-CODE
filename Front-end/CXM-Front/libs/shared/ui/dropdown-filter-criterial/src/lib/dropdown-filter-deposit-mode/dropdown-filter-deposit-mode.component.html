@@ -1,0 +1,22 @@
+<div class='custom-drop-down-filter-deposit-mode-panel'>
+  <span class='flex align-middle items-center btn-panel justify-between' [matMenuTriggerFor]='filterMenu'
+        (menuOpened)='mainMenuOpen()' (menuClosed)='mainMenuClose()'>
+    <span class="flex items-center flex-row align-middle">
+      <img src="assets/icons/mode-depot.svg" alt="deposit mode icon">
+      <span [class.highlight]="useModeFilter" class='btn-dropdown-label'>{{'filterCriteria.depositModeTitle' | translate}}</span>
+    </span><mat-icon class='expand_more'>expand_more</mat-icon></span>
+
+  <mat-menu #filterMenu='matMenu' class='custom-drop-down-filter-deposit-mode'>
+    <section id="deposit-mode-label-header">
+      <button mat-menu-item style='width: 100%; display: flex; justify-content: space-between'
+              (click)='$event.stopPropagation()' [disableRipple]='true'>
+        <span class='flow-mode'>{{'filterCriteria.depositMode' | translate}}</span>
+        <span class='flow-reset' (click)='reset()'>{{'filterCriteria.reset' | translate}}</span>
+      </button>
+    </section>
+
+    <button mat-menu-item class='custom-category-item' (click)='$event.stopPropagation()' [disableRipple]='true'>
+      <cxm-smartflow-multi-check [subItems]='(depositMode$ | async) || []' (itemCheckEvent)='checkEvent($event)'></cxm-smartflow-multi-check>
+    </button>
+  </mat-menu>
+</div>

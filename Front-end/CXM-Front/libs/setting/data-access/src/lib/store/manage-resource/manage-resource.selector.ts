@@ -1,0 +1,24 @@
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { manageResourceReducerKey } from './manage-resource.reducer';
+import { ManageResourceInitialState } from '../../model';
+
+const manageResourceSelector = createFeatureSelector<any>(manageResourceReducerKey);
+export const selectResourceList = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.resources));
+export const selectResourceListCriteria = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.listCriteria));
+export const selectPageIndex = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.listCriteria.page));
+export const selectPageSize = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.listCriteria.pageSize));
+export const selectLength = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.listCriteria.length));
+export const selectIsManageResourceHasFilter = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.isHasFilter));
+export const selectIsSearchBoxError = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.isSearchBoxError));
+export const selectResourceCriteria = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.resourceCriteria));
+export const selectSortColumnActive = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.listCriteria.sortByField));
+export const selectSortDirection = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.listCriteria.sortDirection));
+export const selectMessages = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.messages));
+export const selectUploadPopupFileName = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.popupForm.fileName));
+export const selectUploadPopupFileSize = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.popupForm.fileSize));
+export const selectPopupForm = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.popupForm));
+export const selectUploadedFiles = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.popupForm.files));
+export const selectIsLabelDuplicate = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.popupForm.isLabelDuplicate));
+export const selectIsCloseModal = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.isCloseModal));
+export const selectDeleteFileId = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state.deleteFileId));
+export const selectResourceAllStates = createSelector(manageResourceSelector, (state: ManageResourceInitialState) => (state));

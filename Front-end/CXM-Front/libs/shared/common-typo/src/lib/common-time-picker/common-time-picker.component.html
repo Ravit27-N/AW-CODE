@@ -1,0 +1,52 @@
+<form [formGroup]="changeTimeForm" (click)='$event.stopPropagation()'>
+  <div class='cxm-custom-time-picker-toggle' >
+    <div class='flex flex-row justify-between'>
+      <div class='flex flex-row items-center pt-2'>
+        <mat-icon class='mr-3 schedule-icon' style='color: #2E2E2E'>schedule</mat-icon>
+        <span>{{'cxmMatDatetimePicker.timeTooltip' | translate}}</span>
+      </div>
+      <mat-icon id='close-icon' (click)="closeChangeTime()">close</mat-icon>
+    </div>
+
+    <div class='flex flex-row mt-5'>
+      <div class='w-full flex flex-col text-center items-center'>
+        <div class='hour-minute-container relative disable-select'>
+          <input #hourInput type="hidden" max="23" min="0" formControlName='hour'/>
+          <cxm-smartflow-inplace-input #hourEditor (valueChanged)="hourChanged($event)" [value]="hourInput.value" [max]="23" [min]="'0'">
+            <span class="__arrowupdown">
+              <span class="__arrowupdown_item" (click)="increaseH(hourInput.value)">🞁</span>
+              <span class="__arrowupdown_item" (click)="decreaseH(hourInput.value)">🞃</span>
+            </span>
+
+            <label class="input-mimic" (click)="hourEditor.toggle()">{{ hourInput.value|number: '2.0-0' }}</label>
+          </cxm-smartflow-inplace-input>
+
+
+        </div>
+        <span>{{'cxmMatDatetimePicker.hourLabel' | translate}}</span>
+      </div>
+
+      <div class='w-full flex flex-col text-center items-center'>
+        <div class='hour-minute-container relative disable-select'>
+          <input #minuteInput type="hidden" max="59" min="0" formControlName='minute'/>
+          <cxm-smartflow-inplace-input #minuteEditor (valueChanged)="minutesChange($event)" [value]="minuteInput.value" [max]="59" [min]="'0'">
+            <span class="__arrowupdown">
+              <span class="__arrowupdown_item" (click)="increaseM(minuteInput.value)">🞁</span>
+              <span class="__arrowupdown_item" (click)="decreaseM(minuteInput.value)">🞃</span>
+            </span>
+
+            <label class="input-mimic" (click)="minuteEditor.toggle()">{{ minuteInput.value|number: '2.0-0' }}</label>
+          </cxm-smartflow-inplace-input>
+
+        </div>
+        <span>{{'cxmMatDatetimePicker.minuteLabel' | translate}}</span>
+      </div>
+    </div>
+
+    <div class='w-full flex flex-row justify-end mt-5'>
+      <button type="button" class='btn-validate' style="z-index: 105;" #validateButton (click)="onValidate()">
+        {{'cxmMatDatetimePicker.btnApply' | translate}}
+      </button>
+    </div>
+  </div>
+</form>

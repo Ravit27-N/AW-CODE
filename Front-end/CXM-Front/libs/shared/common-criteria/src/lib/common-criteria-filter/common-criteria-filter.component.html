@@ -1,0 +1,118 @@
+<div class="common-cxm-datetime-component">
+  <div class="flex flex-row space-x-2">
+    <label class="flex align-middle items-center filters-button" [matMenuTriggerFor]="channelMenu" style="min-width: 126px;" (menuOpened)='mainMenuOpen()' (menuClosed)='mainMenuClose()'>
+      <span><img src="assets/icons/canal.svg" alt="channel icon"></span>
+      <span class='sortValue' [class.hightligh]="_useChannelFilter">{{'espace.listFlowDocument.table.canal'|translate}}</span>
+      <mat-icon class='expand_more ml-auto'>expand_more</mat-icon>
+    </label>
+
+    <label class="flex align-middle items-center filters-button relative" (click)="picker.open()" style="min-width: 215px;">
+      <span *ngIf='isOpening' class='calendar-wrapper flex align-middle items-center'>
+        <span><img src='assets/icons/calendar.svg' alt='dates icon'></span>
+        <span class='sortValue'>{{'espace.listFlowDocument.table.dates'|translate}}</span>
+      </span>
+
+      <span *ngIf='!isOpening' class='calendar-wrapper flex align-middle items-center'>
+        <span class='pr-2'><img src='assets/icons/calendar.svg' alt='dates icon'></span>
+        <span [class.hightligh]="_useDateFilter">{{startDateLabel}}</span>
+        <span>
+          <img class='separate-date-label' [class.hightligh]="_useDateFilter" src='assets/icons/right-arrow.png' alt='right arrow icon'>
+        </span>
+        <span [class.hightligh]="_useDateFilter">{{endDateLabel}}</span>
+      </span>
+      <mat-icon class='expand_more ml-auto'>expand_more</mat-icon>
+
+      <div class="absolute top-10 left-0">
+        <mat-date-range-input hidden class="h-0 w-0" [formGroup]="datetimeForm" [rangePicker]="picker" style="visibility: hidden;">
+          <input hidden matStartDate formControlName="start"  #startDate>
+          <input hidden matEndDate formControlName="end"  #endDate>
+        </mat-date-range-input>
+
+        <mat-date-range-picker xPosition="start" yPosition="below" #picker
+        panelClass="common-cxm-datime-picker"
+        [calendarHeaderComponent]="customCxmDatetimeHeaderComponent" (closed)='mainMenuClose();isOpening=false;' (opened)='mainMenuOpen();isOpening=true;'>
+          <mat-date-range-picker-actions>
+            <button (click)="resetCalendar()" class="datetimeButton datetime-reset mx-2" matDateRangePickerCancel>{{'flowTraceability.table.filter.reset' | translate}}</button>
+            <button (click)="applyCalendar()" class="datetimeButton"  matDateRangePickerApply>{{'flowTraceability.table.filter.apply' | translate}}</button>
+          </mat-date-range-picker-actions>
+        </mat-date-range-picker>
+      </div>
+    </label>
+
+
+    <label class="flex align-middle items-center filters-button" [matMenuTriggerFor]="usersMenu" style="min-width: 209px;" (menuOpened)='mainMenuOpen()' (menuClosed)='mainMenuClose()'>
+      <span><img src="assets/icons/utilisateurs.svg" alt="utilisateurs or user icon"></span>
+      <span class='sortValue' [class.hightligh]="_useUserFilter">{{'espace.listFlowDocument.table.users'|translate}}</span>
+      <mat-icon class='expand_more ml-auto'>expand_more</mat-icon>
+    </label>
+  </div>
+</div>
+
+
+<mat-menu #channelMenu="matMenu" xPosition="after" class="common-filter-menu-panel">
+  <!-- <form [formGroup]="channelForm"> -->
+  <div class="menu-content channel-menu-content flex flex-col space-y-4" (click)='$event.stopPropagation()'>
+
+     <div class="flex flex-row justify-between">
+      <label class="menu-label">{{'espace.listFlowDocument.table.canal'|translate}}</label>
+      <span class="text-reset cursor-pointer" (click)="restFilter()">{{'flowTraceability.table.filter.reset'|translate}}</span>
+     </div>
+
+     <form [formGroup]="channelFilterForm">
+      <div class="flex flex-row space-x-4">
+        <cxm-smartflow-common-checkbox formControlName="postal" >{{ 'flow.traceability.channel.postal'|translate }}</cxm-smartflow-common-checkbox>
+        <cxm-smartflow-common-checkbox formControlName="digital">{{ 'flow.traceability.channel.digital'|translate }}</cxm-smartflow-common-checkbox>
+      </div>
+    </form>
+
+     <div class="border-b"></div>
+
+     <label class="menu-label">{{'espace.listFlowDocument.table.categories'|translate}}</label>
+     <form [formGroup]="channelForm">
+     <div class="category-content" style="margin-top: auto;">
+      <div class="p-2 category-content-inner pb-6 space-y-4">
+        <div *ngIf="!checkDigital && !checkPostal">
+          <span style="display: block;" class="py-2" *ngFor="let item of postalUI.concat(digitalUI)" [title]="item">
+            <cxm-smartflow-common-checkbox [formControlName]="item">{{ item }}</cxm-smartflow-common-checkbox>
+          </span>
+        </div>
+        <div *ngIf="checkPostal">
+          <span style="display: block;" class="py-2" *ngFor="let item of postalUI" [title]="item">
+            <cxm-smartflow-common-checkbox [formControlName]="item">{{ item }}</cxm-smartflow-common-checkbox>
+          </span>
+        </div>
+        <div *ngIf="checkDigital" style="margin-top: 0;">
+          <span style="display: block;" class="py-2" *ngFor="let item of digitalUI" [title]="item">
+          <cxm-smartflow-common-checkbox [formControlName]="item">{{ item }}</cxm-smartflow-common-checkbox>
+        </span>
+        </div>
+      </div>
+     </div>
+     </form>
+  </div>
+<!-- </form> -->
+</mat-menu>
+
+
+
+<mat-menu #usersMenu="matMenu" xPosition="after" class="common-filter-menu-panel">
+  <form [formGroup]="usersForm">
+    <div class="menu-content users-menu-content flex flex-col space-y-4" (click)='$event.stopPropagation()'>
+      <div class="flex flex-row justify-between">
+        <label class="menu-label">{{'espace.listFlowDocument.table.users'|translate}}
+          <span class="sort-icon-panel"><span class="sort-icon-{{userDirections}}" (click)="onChangeDirection()"></span></span>
+        </label>
+        <span class="text-reset cursor-pointer" (click)="resetUserFilter()">{{'flowTraceability.table.filter.reset'|translate}}</span>
+       </div>
+
+      <div class="users-content" style="margin-top: auto;">
+        <div class="px-2 py-1 category-content-inner category-content-inner-user space-y-4">
+          <span style="display: block;" class="mb-2" *ngFor="let item of users" [matTooltip]="item.email">
+            <cxm-smartflow-common-checkbox [formControlName]="item.id">{{ item.firstName }} {{item.lastName}}</cxm-smartflow-common-checkbox>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</mat-menu>

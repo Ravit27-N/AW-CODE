@@ -1,0 +1,49 @@
+<div id="flow-filter-criteria-panel" class="flex flex-row justify-between">
+  <div class="flex flex-row space-x-5">
+    <cxm-smartflow-button-dropdown-faculty [isFlowDocument]="!isFlowCriteria" [forComponentType]="dateRangeType.value"
+                                           [customCssClass]='"cxm-flow-traceability--list"'
+                                           (categoriesChange)="categoryChange($event)">
+    </cxm-smartflow-button-dropdown-faculty>
+
+    <!-- Filter flow by status -->
+    <cxm-smartflow-button-dropdown-status [isFlowDocument]="!isFlowCriteria" [forComponentType]="dateRangeType.value"
+                                          [customCssClass]='"cxm-flow-traceability--list"'
+                                          (statusChange)="statusChange($event)">
+    </cxm-smartflow-button-dropdown-status>
+    <!-- ./Filter flow by status -->
+
+    <!-- Filter by date range -->
+    <cxm-smartflow-date-range [dateRangeType]="dateRangeType.value"  (dateRangeChange)="dateRangeChange($event)"
+                              [customCssClass]='"cxm-flow-traceability--list"'>
+    </cxm-smartflow-date-range>
+    <!-- ./Filter by date range -->
+
+    <!-- Filter flow by flow's createdBy -->
+    <cxm-smartflow-button-dropdown-users *ngIf="isFlowCriteria"
+                                         [customCssClass]='"cxm-flow-traceability--list"'
+                                         (userChange)="userChange($event)">
+    </cxm-smartflow-button-dropdown-users>
+    <!-- Filter flow by flow's createdBy -->
+
+    <!-- Filter flow by deposit mode -->
+    <cxm-smartflow-button-dropdown-deposit-mode *ngIf="isFlowCriteria"
+                                                [customCssClass]='"cxm-flow-traceability--list"'
+                                                (depositModeChange)="depositModeChange($event)">
+    </cxm-smartflow-button-dropdown-deposit-mode>
+    <!-- Filter flow by deposit mode -->
+
+    <div *ngIf="clientFillerConfig$|async  as clientFillerConfig"  >
+      <cxm-smartflow-button-filler [fillersConfig]="clientFillerConfig" [forComponentType]="dateRangeType.value"
+      (fillerChanged)="clientFillerChange($event)" *ngIf="!isFlowCriteria && clientFillerConfig.fillers.length > 0">
+    </cxm-smartflow-button-filler>
+    </div>
+
+  </div>
+
+  <div>
+    <cxm-smartflow-search-box [isError]='(showTooltip$ | async) || false'
+                              (searchBoxChange)='searchTermChanged($event)'
+                              [value]='filter || ""'>
+    </cxm-smartflow-search-box>
+  </div>
+</div>

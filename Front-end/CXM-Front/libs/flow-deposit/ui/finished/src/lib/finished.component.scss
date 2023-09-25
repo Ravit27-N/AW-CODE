@@ -1,0 +1,168 @@
+@import 'flow-deposit-global-styles';
+
+.finished-container {
+  // margin: 0 auto;
+  // border: 2px solid $default-color;
+  // background-color: #FFFFFF;
+  min-height: 50vh;
+  @apply py-2 px-4  border bg-white;
+  border-color: $flow-text-primary;
+
+  // h1{
+  //   color: $default-color;
+  //   font-weight: bold;
+  //   margin-bottom: 1vh;
+  // }
+
+  // #ruler-line{
+  //   width: 100%;
+  //   border: 1px solid #E1E2E0;
+  // }
+}
+
+.btn-tick {
+  cursor: pointer;
+  padding: 20px 10px 10px 10px;
+  border-top: 1px solid rgba(#1A214D, 0.5);
+  border-bottom: 1px solid rgba(#1A214D, 0.5);
+  border-right: 2px solid $flow-text-primary;
+  border-left: 2px solid $flow-text-primary;
+
+  .mat-icon {
+    font-size: 25px;
+    color: $flow-text-primary;
+  }
+
+  &:hover {
+    background-color: $flow-text-primary;
+  }
+
+  &:hover .mat-icon {
+    color: white;
+  }
+
+}
+
+mat-card-content {
+  margin-bottom: 0;
+  min-height: 545px;
+  height: calc(100vh - 360px);
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 60% auto;
+  @apply gap-14;
+}
+
+button {
+  background: #D6D6D6;
+  @apply border-solid px-8 py-2 rounded-sm;
+}
+
+form {
+  @apply p-3 border;
+}
+
+
+.synthesis-panel {
+  border-color: #EEEEEE;
+  border-radius: 0.75rem; /* 12px */
+  @apply border-solid border-2 w-full mt-2;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-start;
+
+  cxm-smartflow-rich-button {
+    margin: 0 10px;
+  }
+
+}
+
+.padding-bottom-80 {
+  padding-bottom: 80px;
+  background: #F5F8FC 0 0 no-repeat padding-box;
+  opacity: 1;
+}
+
+.line-center-style {
+  width: 99%;
+  border: 1px solid #BCD5FF;
+  opacity: 0.48;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.spacing {
+  line-height: 18.4px;
+  vertical-align: baseline;
+  letter-spacing: normal;
+  word-spacing: 0;
+  margin: 0;
+  padding: 0;
+}
+
+p,
+mat-select,
+mat-checkbox, .spacing,
+.font {
+  //font-family: adobe-clean, sans-serif;
+  font-size: 16px !important;
+}
+
+
+.card {
+  border-radius: theme('borderRadius.lg');
+  padding: theme('spacing.1');
+  background: #FFFFFF 0 0 no-repeat padding-box;
+  box-shadow: 0 0 6px #AFCDFFB1;
+  opacity: 1;
+}
+
+.card .synthesis {
+  padding: 1.25rem;
+}
+
+.card .synthesis .title {
+  width: 101px;
+  height: 27px;
+  text-align: left;
+  font: normal normal 500 22px/27px Rubik;
+  letter-spacing: 0;
+  color: #1A214D;
+  opacity: 1;
+}
+
+.card .synthesis .label {
+  text-align: left;
+  font: normal normal 500 16px/19px Rubik;
+  letter-spacing: 0;
+  color: #1A214D;
+  opacity: 1;
+}
+
+.card .synthesis .value {
+  text-align: left;
+  font: normal normal normal 16px/19px Rubik;
+  letter-spacing: 0;
+  color: #2E2E2E;
+  opacity: 1;
+  line-break: anywhere;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+cxm-smartflow-file-info {
+  padding-top: 52px;
+}
+
+.pencil-square-icon {
+  @apply cursor-pointer;
+  filter: invert(48%) sepia(93%) saturate(3628%) hue-rotate(205deg) brightness(103%);
+  width: 23px;
+  height: 23px;
+}

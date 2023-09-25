@@ -1,0 +1,38 @@
+.col-reference  {
+  width: 18%;
+  // width: 230px;
+  max-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.col-description  {
+  width: 12%;
+  // width: 230px;
+  max-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+cxm-smartflow-common-checkbox {
+  position: relative;
+  right: 10%;
+  transform: translate(-50%, -50%);
+}
+
+.table-row-icon {
+  font-size: 20px;
+}
+
+
+.cxm-icon {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 16px;
+  width: 16px;
+}
+
+.col-edit{
+  color: #0c63a6;
+}

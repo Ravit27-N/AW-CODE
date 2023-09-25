@@ -1,0 +1,19 @@
+<div class="flex flex-row justify-between mb-8">
+  <div>
+    <app-ng-dynamic-breadcrumb [bgColor]="'none'" symbol=">"></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{'cxmCampaign.followMyCampaign.campaignHeader' | translate | uppercase}}</cxm-smartflow-page-header>
+    <!-- <cxm-smartflow-page-sub-header>{{'cxmCampaign.followMyCampaign.campaignSubheader' | translate}}</cxm-smartflow-page-sub-header> -->
+    <cxm-smartflow-page-sub-header>{{'cxmCampaign.followMyCampaign.campaignSubheader' | translate}}</cxm-smartflow-page-sub-header>
+<!--    <p class="selection-subheader">{{'cxmCampaign.followMyCampaign.campaignSubheader' | translate}}</p>-->
+  </div>
+</div>
+
+
+<section class="flex flex-col mb-8 justify-center ">
+
+  <div class="flex mx-auto space-x-4">
+    <div *ngIf="canCreateSms" (click)="toSms()" class="box"><img src="assets/icons/SMS.png" alt="sms"><span>{{'SMS'|translate}}</span></div>
+    <div *ngIf="canCreateEmail" (click)="toEmailing()" class="box"><img class="mb-2" src="assets/icons/mail.png" alt="Emailing"><span>{{'Emailing'|translate}}</span></div>
+  </div>
+
+</section>

@@ -1,0 +1,124 @@
+<div class='flex flex-row justify-between mb-8'>
+  <div>
+    <app-ng-dynamic-breadcrumb [bgColor]="'none'" symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{'espace.consultHeader' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header>{{'espace.consultSubtitle' | translate}} <span class="filename" *ngIf="flowsName$|async as flowName">{{flowName}}</span></cxm-smartflow-page-sub-header>
+  </div>
+</div>
+
+<article class='common-cxm-table-wrapper'>
+  <div class="common-cxm-table-container">
+    <table mat-table matSort [dataSource]='documents' matSortDisableClear>
+      <!-- Checkbox -->
+      <ng-container matColumnDef='checkbox'>
+        <th mat-header-cell *matHeaderCellDef class='column-checkbox col-checkbox'>
+          <cxm-smartflow-common-checkbox class='cxm-checkbox-style' disableRipple='true'
+                                         (ngModelChange)='masterToggle()'
+                                         [disabled]='isNoSelectable()'
+                                         [ngModel]='isAllSelected()'>
+          </cxm-smartflow-common-checkbox>
+        </th>
+
+        <td mat-cell *matCellDef='let row' class='column-checkbox col-checkbox'>
+          <cxm-smartflow-common-checkbox class='cxm-checkbox-style' disableRipple='true'
+                                         (ngModelChange)='selection.toggle(row)'
+                                         [ngModel]='selection.isSelected(row)' [disabled]="!row._editable" >
+          </cxm-smartflow-common-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Name -->
+      <ng-container matColumnDef='docName'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class='column-name' arrowPosition='after'>
+          {{'espace.listFlowDocument.table.name' | translate}}
+        </th>
+
+        <td mat-cell *matCellDef='let row' class='column-name col-name' [title]='row.docName'>
+          <a class='hover:no-underline'>{{row.docName}}</a>
+        </td>
+      </ng-container>
+
+      <!-- Recipient -->
+      <ng-container matColumnDef='recipient'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class='column-user' arrowPosition='after'>
+          {{'espace.listFlowDocument.table.recipient' | translate}}
+        </th>
+
+        <td mat-cell *matCellDef='let row' class='column-user' [title]='row.recipient'>
+          {{row.recipient}}
+        </td>
+      </ng-container>
+
+      <!-- Created at -->
+      <ng-container matColumnDef='createdAt'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class='column-user' arrowPosition='after'>
+          {{'espace.listFlowDocument.table.createdAt' | translate}}
+        </th>
+
+        <td mat-cell *matCellDef='let row' class='column-user' [title]='row.depositDate'>
+          {{row.depositDate}}
+        </td>
+      </ng-container>
+
+      <!-- Canal -->
+      <ng-container matColumnDef='channel'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class='column-channel' arrowPosition='after'>
+          {{'espace.listFlowDocument.table.canal' | translate}}
+        </th>
+
+        <td mat-cell *matCellDef='let row' class='column-channel' [title]='row.channel'>
+          {{row.channel}}
+        </td>
+      </ng-container>
+
+      <!-- Category -->
+      <ng-container matColumnDef='subChannel'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class='column-subchannel' arrowPosition='after'>
+          {{'espace.listFlowDocument.table.category' | translate}}
+        </th>
+
+        <td mat-cell *matCellDef='let row' class='column-subchannel' [title]='row.subChannel'>
+          <a class='hover:no-underline'>{{row.subChannel}}</a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef='actions'>
+        <th mat-header-cell *matHeaderCellDef class='col-action'>{{'espace.listFlowDocument.table.actions' | translate | uppercase}}</th>
+
+        <td mat-cell *matCellDef='let row'>
+          <a class='btn-consult' routerLink='/preview-document' routerLinkActive='active' ariaCurrentWhenActive="page" target='_blank'
+             [queryParams]='{"docName": row.docName, "fileId": row.fileId, apiType: apiType.FLOW_TRACEABILITY}'>
+            {{'espace.listFlowDocument.table.btnConsult' | translate}}
+          </a>
+
+          <button mat-icon-button [matMenuTriggerFor]='menu' class='btn-toggle'>
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu='matMenu' class='toggle-actions'>
+            <button mat-menu-item (click)='downloadFile(row?.fileId, row?.docName)'>
+              <div class='flex flex-row justify-start items-center'>
+                <img class='download-icon mr-2' src='assets/icons/download.svg' alt='download icon'>
+                <span>{{'espace.listFlowDocument.table.btnDownload' | translate}}</span>
+              </div>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <!-- List table -->
+      <tr mat-header-row *matHeaderRowDef='tableColumns; sticky: true'></tr>
+      <tr mat-row *matRowDef='let row; let i = index; columns: tableColumns' [class.row-selected]='selection.isSelected(row)' [class.row-disabled]="!row._editable"></tr>
+      <tr class='mat-row no-data-row' *matNoDataRow>
+        <td class='mat-cell no-data-cell' [colSpan]='this.tableColumns'></td>
+      </tr>
+    </table>
+  </div>
+
+  <cxm-smartflow-list-paginator *ngIf="pagination$|async as pagination" [pageIndex]="pagination.page" [pageSize]="pagination.pageSize" [length]="pagination.total"
+  (page)="paginationUpdate($event)">
+  </cxm-smartflow-list-paginator>
+
+  <div class="flex justify-end mt-8">
+    <cxm-smartflow-rich-button  (click)="handleReturn()" >{{'button.return'|translate}}</cxm-smartflow-rich-button>
+  </div>
+</article>

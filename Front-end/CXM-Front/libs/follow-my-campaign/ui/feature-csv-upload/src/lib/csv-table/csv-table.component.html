@@ -1,0 +1,27 @@
+<table mat-table matSort [dataSource]="datasource" matSortDisableClear (matSortChange)="sort($event)" matSortActive='lineNumber' matSortDirection='asc'>
+
+  <ng-container cdkColumnDef="valid">
+    <th class="px-1 state-column text-white cell-padding" mat-header-cell *cdkHeaderCellDef mat-sort-header>{{'cxmCampaign.followMyCampaign.csv_table_col_etat'|translate}}</th>
+    <td mat-cell *cdkCellDef="let row" class="px-1 cell-padding" [class.bg-has-error]="row.valid === 'false'">
+      <span class="text-green-600" *ngIf="row.valid === 'true'">OK</span>
+      <span class="text-red-600" *ngIf="row.valid === 'false'">{{KO|translate}}</span>
+    </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="lineNumber">
+    <th class="px-1 state-column text-white cell-padding" mat-header-cell *cdkHeaderCellDef mat-sort-header>{{'cxmCampaign.followMyCampaign.csv_table_col_line'|translate}}</th>
+    <td mat-cell *cdkCellDef="let row" class="px-1 cell-padding">{{row.lineNumber}}</td>
+  </ng-container>
+
+  <ng-container *ngFor="let column of columnsInfo;  index as idx" [cdkColumnDef]="column.header">
+    <th class="px-1 text-white cell-padding" mat-header-cell *cdkHeaderCellDef mat-sort-header>{{getColumnHeader(column.header)}}</th>
+    <td class="px-1 cell-padding" mat-cell *cdkCellDef="let row">{{column.cell(row)}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="showColumn; sticky: true" class="header-table"></tr>
+  <tr mat-row *matRowDef="let row; columns: showColumn;"></tr>
+
+  <tr class="mat-row no-data-row" *matNoDataRow>
+    <td class="mat-cell no-data-cell" [colSpan]="this.showColumn.length"></td>
+  </tr>
+</table>

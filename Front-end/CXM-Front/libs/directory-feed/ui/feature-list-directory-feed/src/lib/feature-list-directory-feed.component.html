@@ -1,0 +1,40 @@
+<div class='header'>
+  <cxm-smartflow-page-header>{{'directory.feed.list.title' | translate | uppercase}}</cxm-smartflow-page-header>
+</div>
+
+<div class="listDirectoryFeedContainer">
+
+  <div class="flex justify-between mx-2 my-3">
+    <div class="action-button-group">
+      <!-- REFRESH BUTTON -->
+      <cxm-smartflow-round-action-button
+        [hint]="'directory.feed.list.button.refresh' | translate"
+        (click)="refreshEvent()"
+        >update
+      </cxm-smartflow-round-action-button>
+      <!-- END REFRESH BUTTON -->
+
+      <div class="vl"></div>
+
+      <!-- OPEN DIRECTORY BUTTON -->
+      <cxm-smartflow-round-action-button
+        [hint]="'directory.feed.list.button.openDirectory' | translate"
+        [disabled]="!isCanOpen"
+        (click)="navigateToFeed()"
+        >
+        open_in_browser
+      </cxm-smartflow-round-action-button>
+      <!-- OPEN DIRECTORY POPULATE BUTTON -->
+    </div>
+
+    <!-- LAST REQUEST API TO LIST DIRECTORY FEED DATE LABEL -->
+    <span id="refreshed-date">
+      {{ 'directory.feed.list.refreshDateLabel' | translate }}
+      : {{ this.refreshedDate$.value | cxmdate: 'dd/MM/yyyy HH:mm:ss':'dd/MM/yyyy HH:mm:ss' }}
+    </span>
+    <!-- END LAST REQUEST API TO LIST DIRECTORY FEED DATE LABEL -->
+  </div>
+  <!-- DIRECTORY FEED TABLE -->
+  <cxm-smartflow-feature-directory-feed-table></cxm-smartflow-feature-directory-feed-table>
+  <!-- END DIRECTORY FEED TABLE -->
+</div>

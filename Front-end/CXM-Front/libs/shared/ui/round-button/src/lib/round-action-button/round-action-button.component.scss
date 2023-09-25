@@ -1,0 +1,30 @@
+:host {
+  position: relative;
+}
+
+.mat-cxm-button-blue {
+  background-color: white;
+  border: 1px solid #1A214D;
+}
+
+.mat-cxm-button-blue.mat-button-disabled {
+  background-color: white;
+  opacity: .5;
+}
+
+.mat-cxm-button-blue.mat-button-disabled:hover, .mat-cxm-button-blue.mat-button-disabled:hover .mat-icon {
+  background-color: white;
+  color: #1A214D;
+}
+
+.mat-cxm-button-blue .mat-icon {
+  color: #1A214D;
+}
+
+.mat-cxm-button-blue:hover {
+  background-color: #1A214D;
+}
+
+.mat-cxm-button-blue:hover .mat-icon {
+  color: white;
+}

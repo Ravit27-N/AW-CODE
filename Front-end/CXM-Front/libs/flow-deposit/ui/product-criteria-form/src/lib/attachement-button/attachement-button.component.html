@@ -1,0 +1,7 @@
+<div class="flex flex-row py-1 w-full">
+  <button [disabled]="disabled" type="button" class="px-4 btn-browse mr-1 text-white"
+          [ngClass]="disabled? 'opacity-75' : ''" (click)="doAttach()">
+    <mat-icon class="icon-center">folder_open</mat-icon>
+  </button>
+  <input [placeholder]="placeholder" readonly class="w-full text-opacity-70 font-thin">
+</div>

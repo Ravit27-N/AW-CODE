@@ -1,0 +1,41 @@
+<label class="flex align-middle items-center filters-button"
+       [matMenuTriggerFor]="channelMenu"
+       style="min-width: 126px;"
+       (menuOpened)='mainMenuOpen()'
+       (menuClosed)='mainMenuClose()'
+       (click)='addCustomCssClass()'>
+  <span><img src="assets/icons/canal.svg" alt="channel icon"></span>
+  <span class='sortValue' [class.hightligh]="channelHasFilter">{{'espace.listFlowDocument.table.canal' | translate}}</span>
+  <mat-icon class='expand_more ml-auto'>expand_more</mat-icon>
+</label>
+
+<!-- Channel dialog -->
+<mat-menu #channelMenu="matMenu" xPosition="after" class="common-filter-menu-panel">
+  <div class="menu-content channel-menu-content flex flex-col space-y-4" (click)='$event.stopPropagation()'>
+
+    <div class="flex flex-row justify-between">
+      <label class="menu-label">{{'espace.listFlowDocument.table.canal'|translate}}</label>
+      <span class="text-reset cursor-pointer" (click)="resetChannel()">{{'flowTraceability.table.filter.reset'|translate}}</span>
+    </div>
+
+    <form [formGroup]="channelFormGroup">
+      <div class="flex flex-row space-x-4">
+        <cxm-smartflow-common-checkbox formControlName="Postal" [disabled]='this.disabledChannel.includes("Postal")'>{{ 'flow.traceability.channel.postal'|translate }}</cxm-smartflow-common-checkbox>
+        <cxm-smartflow-common-checkbox formControlName="Digital" [disabled]='this.disabledChannel.includes("Digital")'>{{ 'flow.traceability.channel.digital'|translate }}</cxm-smartflow-common-checkbox>
+      </div>
+    </form>
+
+    <div class="border-b"></div>
+
+    <label class="menu-label">{{'espace.listFlowDocument.table.categories'|translate}}</label>
+    <form [formGroup]='categoryFormGroup'>
+      <div class="category-content" style="margin-top: auto;">
+        <div class="p-2 category-content-inner pb-6 space-y-4">
+        <span style="display: block;" class="mb-2" *ngFor="let channelCategory of channelCategories" [title]="channelCategory.name">
+          <cxm-smartflow-common-checkbox [formControlName]="channelCategory.name">{{ channelCategory.name }}</cxm-smartflow-common-checkbox>
+        </span>
+        </div>
+      </div>
+    </form>
+  </div>
+</mat-menu>

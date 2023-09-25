@@ -1,0 +1,87 @@
+@import 'cxm-campaign-global-styles';
+
+.box-form {
+  margin-top: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.sender {
+  width: 97%;
+  display: flex;
+  flex-direction: row;
+}
+
+.sender mat-icon {
+  margin-top: 3px;
+  margin-left: 10px;
+  margin-right: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+  color: #0072BB;
+  font-size: 30px;
+  box-sizing: border-box;
+}
+
+.datetime {
+  width: 40%;
+}
+
+.box-action {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.mat-raised-button {
+  background-color: #0072BB;
+  border-radius: 20px;
+}
+
+.link {
+  color: #0072BB;
+  font-weight: bold;
+}
+
+:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.mat-card-title {
+  color: #1a214d;
+  font-size: 14px;
+}
+
+label {
+  color: #1a214d;
+}
+
+div {
+  padding-top: 5px;
+  padding-bottom: 15px;
+}
+
+cxm-smartflow-input {
+  width: 100% !important;
+}
+
+cxm-smartflow-button {
+  margin-right: 5px;
+}
+
+mat-form-field:focus {
+  border: 0px;
+  border: 1px rgba(1, 24, 26, 0.2) solid;
+  border-radius: 5px;
+  outline: none 0px;
+}
+
+input:focus{
+  border:0px;
+  border-radius: 5px;
+  outline: none 0px !important;
+}

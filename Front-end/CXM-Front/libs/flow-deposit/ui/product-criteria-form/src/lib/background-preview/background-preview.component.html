@@ -1,0 +1,5 @@
+<div class="flex justify-center">
+  <!-- <iframe scrolling="no" *ngIf="image" [src]="href|safeHtml: 'url'"></iframe> -->
+  <embed *ngIf="image" [src]="href|safeHtml: 'url'" type="application/pdf">
+  <div class="iframe" *ngIf="!image"></div>
+</div>

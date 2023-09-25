@@ -1,0 +1,73 @@
+<div>
+  <section *ngIf='isFinishStep'>
+    <div class='w-pdf-panel pdf-doc-panel'>
+      <div class='bg-document '>
+        <div class='py-2'>
+          <div class='flex justify-center'>
+            <div class='flex h-doc-panel flex-row text-white'>
+              <button class='font-bold' matTooltip='View previous document' [disabled]='currentDocument === 1'
+                      (click)='this.onClickPrev()'>
+                <mat-icon>navigate_before</mat-icon>
+              </button>
+              <div class='px-3'>
+                <label>Document {{this.currentDocument}} / {{this.nbDocuments}}</label>
+              </div>
+              <button class='font-bold' matTooltip='View next document' [disabled]='this.canNextDocument()'
+                      (click)='this.onClickNext()'>
+                <mat-icon>navigate_next</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class='portal-card-panel'>
+    <div class='pdf-panel'>
+      <ngx-extended-pdf-viewer [base64Src]='this.base64$ | async'
+                               (pageChange)='onChangePage($event)'
+                               [showBorders]='false'
+                               [page]="pageAccess"
+                               [showOpenFileButton]='false'
+                               [backgroundColor]="'#FFFFFF'"
+                               [showFindButton]='false'
+                               [zoom]="'page-fit'"
+                               [theme]="'dark'"
+                               [customToolbar]="additionalButtons"
+                               (pagesLoaded)='loadNbPages($event)'>
+      </ngx-extended-pdf-viewer>
+    </div>
+  </div>
+</div>
+
+<ng-template #additionalButtons>
+  <div id="toolbarViewer">
+    <!-- Tool bar viewer left -->
+    <div id="toolbarViewerLeft">
+      <pdf-toggle-sidebar></pdf-toggle-sidebar>
+      <div class="toolbarButtonSpacer"></div>
+      <pdf-paging-area></pdf-paging-area>
+    </div>
+
+    <!-- Tool bar viewer middle -->
+    <div id="toolbarViewerMiddle">
+      <pdf-zoom-out></pdf-zoom-out>
+      <pdf-zoom-dropdown [zoomLevels]="zoomLevels"></pdf-zoom-dropdown>
+      <pdf-zoom-in></pdf-zoom-in>
+      <pdf-presentation-mode></pdf-presentation-mode>
+    </div>
+
+    <!-- Tool bar viewer right -->
+    <div id="toolbarViewerRight">
+      <pdf-rotate-page></pdf-rotate-page>
+      <pdf-download></pdf-download>
+      <pdf-print></pdf-print>
+      <pdf-bookmark></pdf-bookmark>
+      <div class="verticalToolbarSeparator hiddenSmallView"></div>
+      <pdf-toggle-secondary-toolbar></pdf-toggle-secondary-toolbar>
+    </div>
+  </div>
+</ng-template>
+
+
+

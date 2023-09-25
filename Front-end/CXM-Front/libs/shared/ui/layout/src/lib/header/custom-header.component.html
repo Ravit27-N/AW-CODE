@@ -1,0 +1,38 @@
+<header class='w-full flex flex-row items-center fixed top-0 left-0 right-0'>
+  <img src='assets/images/cxm-logo/digitalexperience.png' alt='CXM SMARTFLOW' routerLink='/cxm-analytics/dashboard' />
+
+  <cxm-smartflow-navigation-bar *ngIf="{ userLogged: isLogged | async, activeAccount: this.hasActiveAccount$ | async} as logged"></cxm-smartflow-navigation-bar>
+
+  <span class='spacer'></span>
+
+  <div class='user-login-nav flex flex-row items-center justify-between' *ngIf=' this.hasActiveAccount$ | async'>
+
+    <mat-icon *ngIf='isLogged | async'>account_circle</mat-icon>
+
+    <div class='username flex flex-col whitespace-nowrap' >
+
+      <!-- Profile feature -->
+            <span *ngIf='isLogged | async' [matMenuTriggerFor]='belowMenu'>{{(user$ | async)}}</span>
+            <mat-menu #belowMenu='matMenu' yPosition='below' xPosition='after'>
+              <button mat-menu-item (click)='changePassword()'>{{ 'login.userInfo.profile' | translate }}</button>
+              <button mat-menu-item (click)='logout()'>{{ 'login.button.logout' | translate }}</button>
+            </mat-menu>
+      <!-- ./Profile feature -->
+
+      <!--      Switch languages feature-->
+      <div class='text-right toggle-select-container'>
+        <label (click)='toggleSelectLang()'>{{this.label?.toUpperCase()}}<span
+          class='material-icons-outlined'>keyboard_arrow_down</span></label>
+
+        <div *ngIf='toggleSelect | async' class='toggle-dropdown'>
+          <ul>
+            <li *ngFor='let item of languages' (click)='changeLocale(item)'>{{item.viewValue}}</li>
+          </ul>
+        </div>
+
+        <div class='custom-header-container' (click)='toggleSelect.next(false)' *ngIf='toggleSelect | async'></div>
+      </div>
+      <!--      End switch languages feature-->
+    </div>
+  </div>
+</header>

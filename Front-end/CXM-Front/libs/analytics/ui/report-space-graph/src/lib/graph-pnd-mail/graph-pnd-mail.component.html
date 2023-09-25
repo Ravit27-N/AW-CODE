@@ -1,0 +1,10 @@
+<mat-card class="relative">
+  <cxm-smartflow-spinner *ngIf="spinning" [inline]="true"></cxm-smartflow-spinner>
+  <mat-card-content>
+    <cxm-smartflow-card-header-title>{{'cxm_analytics.processed_mail.title'|translate }}</cxm-smartflow-card-header-title>
+    <div class='apex-cart-container' [class.hidden]="spinning">
+      <div class="chart" #chart></div>
+    </div>
+
+  </mat-card-content>
+</mat-card>

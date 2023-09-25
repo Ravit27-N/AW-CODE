@@ -1,0 +1,65 @@
+<main class="content">
+  <div class="wrapper">
+    <section class="group-info">
+      <p>
+        <span class='title-label'>{{ 'flow.history.informationLabel.modelName' | translate }} : </span>{{ flowInfo?.modelName }}
+      </p>
+      <p>
+        <span class='title-label'>{{ 'flow.history.informationLabel.flowType' | translate }} : </span>{{ flowInfo?.flowType }}
+      </p>
+      <p>
+        <span class="title-label"
+          >{{ 'flow.history.informationLabel.category' | translate }} : </span
+        >{{ flowInfo?.category }}
+      </p>
+      <p>
+        <span class="title-label">{{ 'flow.history.informationLabel.model' | translate }} : </span
+        >{{ flowInfo?.mode }}
+      </p>
+      <p>
+        <span class="title-label"
+          >{{
+            'flow.history.informationLabel.createdDate' | translate
+          }}
+          : </span
+        >{{ flowInfo?.dateStatus }}
+      </p>
+
+      <p *ngIf='flowInfo?.showUnloadingDate'>
+        <span class="title-label">{{'flow.history.informationLabel.unloadingDate' | translate}} : </span>{{ flowInfo?.unloadingDate? flowInfo?.unloadingDate: 'flow.history.informationLabel.undetermined' | translate }}
+      </p>
+    </section>
+
+    <hr class="hl" />
+
+    <section class="group-info">
+      <p>
+        <span class="title-label"
+          >{{ 'flow.history.informationLabel.username' | translate }} : </span
+        >{{ flowInfo?.user }}
+      </p>
+      <p>
+        <span class="title-label"
+          >{{
+            'flow.history.informationLabel.division' | translate
+          }} / {{
+            'flow.history.informationLabel.userService' | translate
+          }}
+          : </span
+        >{{ getDivisionService(flowInfo?.division, flowInfo?.service) }}
+      </p>
+    </section>
+
+    <hr class="hl" />
+
+    <section class="group-info">
+      <p class="flex flex-row justify-items-center">
+        <span class="title-label">{{ 'flow.history.informationLabel.status' | translate }} : </span>
+        <span
+          [class]="'status flow-status-' + flowInfo?.statusStyle?.toLowerCase()?.replace(' ', '-')"
+          >{{ flowInfo?.status }}</span
+        >
+      </p>
+    </section>
+  </div>
+</main>

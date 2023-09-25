@@ -1,0 +1,68 @@
+<main class='envelope-reference-form-container'>
+  <article class='envelope-reference-info-form'>
+
+    <form class='envelope-reference-info-form-wrapper'
+          autocomplete='off'
+          [class.envelope-reference-info-form-wrapper-create]='mode === EnvelopeReferenceFormUpdateMode.CREATE' [formGroup]='formGroup'>
+
+
+      <section class='form-group ' *ngIf='isAdmin && (mode === EnvelopeReferenceFormUpdateMode.CREATE || mode === EnvelopeReferenceFormUpdateMode.UPDATE_SINGLE)' >
+        <label for='reference'>{{'envelope_reference.form.label.reference' | translate}} :</label>
+        <input type='text' id='reference' formControlName='reference' [attr.disabled]="mode === EnvelopeReferenceFormUpdateMode.UPDATE_SINGLE ? true : null" placeholder='RS55524' cxmSmartflowCxmTooltip
+               oninput="this.value = this.value.toUpperCase()"
+               [tooltipText]='referenceErrorMessage | translate'
+               [showTooltip]='errorFormControl.includes(envelopeReferenceFormProperties.REFERENCE)'>
+        <span class="error-message" *ngIf="errorFormControl.includes(envelopeReferenceFormProperties.REFERENCE)">
+                 {{referenceErrorMessage | translate}}
+        </span>
+      </section>
+
+
+      <section class="fragment-field__group flex">
+        <label class="field-return-address__label">{{  'envelope_reference.form.label.format' | translate }}</label>
+        <div class="field-select">
+          <cxm-smartflow-input-selection
+            [datasource]="formats || []"
+            [errorMsg] = 'formatErrorMessage | translate'
+            [isShowError] = 'errorFormControl.includes(envelopeReferenceFormProperties.FORMAT)'
+            (selectedSource)="returnFormatChanged($event)"
+            [selectSourceKey]="this.formGroup.value.format">
+          </cxm-smartflow-input-selection>
+        </div>
+        <span class="error-message" *ngIf="errorFormControl.includes(envelopeReferenceFormProperties.FORMAT)">
+                 {{formatErrorMessage | translate}}
+        </span>
+      </section>
+
+      <section class='form-group description-col-ma' *ngIf='isAdmin && (mode === EnvelopeReferenceFormUpdateMode.CREATE || mode === EnvelopeReferenceFormUpdateMode.UPDATE_SINGLE)'>
+        <label for='description'>{{'envelope_reference.form.label.description' | translate}} :</label>
+        <input type='text' id='description' formControlName='description' placeholder='Example Description' cxmSmartflowCxmTooltip
+               oninput='this.value = this.value.toString()'
+               [tooltipText]='descriptionErrorMessage | translate'
+               [showTooltip]='errorFormControl.includes(envelopeReferenceFormProperties.DESCRIPTION)'>
+        <span class="error-message" *ngIf="errorFormControl.includes(envelopeReferenceFormProperties.DESCRIPTION)">
+                 {{descriptionErrorMessage | translate}}
+        </span>
+      </section>
+
+
+      <section class="form-group flex flex-row items-center" >
+        <label>{{ 'envelope_reference.form.label.active' | translate }} :</label>
+        <mat-radio-group class="flex" formControlName="active">
+          <mat-radio-button class="flex-1 mr-12" [value]="true">{{ 'envelope_reference.form.label.yes' | translate }}</mat-radio-button>
+          <mat-radio-button class="flex-1" [value]="false">{{ 'envelope_reference.form.label.no' | translate }}</mat-radio-button>
+        </mat-radio-group>
+      </section>
+    </form>
+
+  </article>
+</main>
+
+<!-- Action button. -->
+<section class='action-button-container'>
+  <button class='cancel-btn' (click)='cancelForm.emit()'>{{'envelope_reference.form.button.cancel' | translate}}</button>
+  <button class='submit-btn' (click)='beforeSubmit()'
+          *ngIf='mode === EnvelopeReferenceFormUpdateMode.CREATE && envelopeReferenceFormControlService.isCanCreate'>{{'envelope_reference.form.button.create' | translate}}</button>
+  <button class='submit-btn' (click)='beforeSubmit()'
+           *ngIf='mode !== EnvelopeReferenceFormUpdateMode.CREATE && envelopeReferenceFormControlService.isCanModify'>{{'envelope_reference.form.button.modify' | translate}}</button>
+</section>

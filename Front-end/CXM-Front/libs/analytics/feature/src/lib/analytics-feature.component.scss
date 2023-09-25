@@ -1,0 +1,16 @@
+cxm-smartflow-rich-button {
+  position: relative;
+
+  img {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
+  }
+
+  span {
+    margin-left: 10px;
+  }
+}

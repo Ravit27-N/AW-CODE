@@ -1,0 +1,158 @@
+<div class='content-wrapper flex justify-between'>
+
+  <!-- List field items. -->
+  <article class='content content-list'>
+    <header class='form-directory__header'>
+      {{ 'directory.definition_directory_create_step_2_section_field' | translate }}
+    </header>
+
+    <form class='field-container field-part' cdkDropList (cdkDropListDropped)='fieldListItemsOrdersEvent($event)'>
+      <ng-container *ngFor="let fieldItem of fieldListItems; let i = index">
+        <cxm-smartflow-component-field-item [fieldItemTitle]="fieldItem?.field || ''"
+                                            [fieldItemPrimary]="fieldItem?.key || false"
+                                            [fieldItemSelected]="fieldItem._selected"
+                                            [fieldItemDraggable]="fieldItem._draggable"
+                                            [fieldItemDeletable]="fieldItem._deletable"
+                                            *ngIf="!fieldItem._draggable"
+                                            (click)="selectFieldEvent(i)"
+                                            (fieldItemDeleteEvent)="deleteFieldEvent(i)">
+        </cxm-smartflow-component-field-item>
+
+        <cxm-smartflow-component-field-item [fieldItemTitle]="fieldItem?.field || ''"
+                                            cdkDrag
+                                            [fieldItemPrimary]="fieldItem?.key || false"
+                                            [fieldItemSelected]="fieldItem._selected"
+                                            [fieldItemDraggable]="fieldItem._draggable"
+                                            [fieldItemDeletable]="fieldItem._deletable"
+                                            *ngIf="fieldItem._draggable"
+                                            (click)="selectFieldEvent(i)"
+                                            (fieldItemDeleteEvent)="deleteFieldEvent(i)">
+        </cxm-smartflow-component-field-item>
+      </ng-container>
+
+      <button *ngIf='this.formMode !== "view"' class="btn__add-more-field" type="button" (click)="addMoreFieldEvent()">{{ 'directory.definition_directory_create_step_2_section_field_btn_add_field' | translate }}</button>
+    </form>
+  </article>
+
+  <!-- Field item editor. -->
+  <article class='content content-editor'>
+    <header class='form-directory__header'>
+      {{ 'directory.definition_directory_create_step_2_section_field_properties' | translate }}
+    </header>
+
+    <form class='field-container field-properties' [formGroup]="stepTwoFormPropertiesFormGroup" *ngIf="formDirectoryFieldPropertiesSelected">
+      <!-- Display name -->
+      <section class="field-item field__display-name flex">
+        <label for="field__display-name">{{ 'directory.definition_directory_create_step_2_section_field_properties_display_name' | translate }}</label>
+        <input type="text" id="field__display-name" formControlName="displayName"
+               cxmSmartflowCxmTooltip
+               [tooltipText]='(stepTwoFormPropertiesFormGroup.controls["displayName"]?.errors?.message || "") | translate'
+               [showTooltip]='(stepTwoFormPropertiesFormGroup.controls["displayName"]?.errors !== null) && showError'>
+      </section>
+
+      <!-- Data type -->
+      <section class="field-item field__data-type flex">
+        <label>{{ 'directory.definition_directory_create_step_2_section_field_properties_data_type' | translate }}</label>
+        <div class="field-select">
+          <cxm-smartflow-input-selection
+            [datasource]="fieldPropertyDataType"
+            [isDisabled]="stepTwoFormPropertiesFormGroup.controls['dataType'].disabled"
+            [isShowError]='(stepTwoFormPropertiesFormGroup.controls["dataType"]?.errors !== null) && showError'
+            [errorMsg]='(stepTwoFormPropertiesFormGroup.controls["dataType"]?.errors?.message || "") | translate'
+            (selectedSource)="selectDataTypeEvent($event)"
+            [selectSourceKey]="preFillsFormValue.dataType">
+          </cxm-smartflow-input-selection>
+        </div>
+      </section>
+
+      <!-- Key -->
+      <section class="field-item field__key flex" *ngIf="fieldKeyVisible && !showWarning">
+        <label>{{ 'directory.definition_directory_create_step_2_section_field_properties_key' | translate }}</label>
+        <div class="field_checkbox">
+          <cxm-smartflow-common-checkbox formControlName="key"></cxm-smartflow-common-checkbox>
+        </div>
+      </section>
+
+      <!-- Data -->
+      <section class="field-item field__data flex">
+        <label>{{ 'directory.definition_directory_create_step_2_section_field_properties_data' | translate }}</label>
+        <div class="field-select">
+          <cxm-smartflow-input-selection
+            [isShowError]='(stepTwoFormPropertiesFormGroup.controls["data"]?.errors !== null) && showError'
+            [errorMsg]='(stepTwoFormPropertiesFormGroup.controls["data"]?.errors?.message || "") | translate'
+            [datasource]="fieldPropertyData"
+            [isDisabled]='stepTwoFormPropertiesFormGroup.controls["data"].disabled'
+            (selectedSource)="selectDataEvent($event)"
+            [selectSourceKey]="preFillsFormValue.data">
+          </cxm-smartflow-input-selection>
+        </div>
+      </section>
+
+      <!-- Presence -->
+      <section class="field-item field__presence flex">
+        <label>{{ 'directory.definition_directory_create_step_2_section_field_properties_presence' | translate }}</label>
+        <div class="field-select">
+          <cxm-smartflow-input-selection
+            [datasource]="fieldPropertyPresence"
+            (selectedSource)="selectPresenceEvent($event)"
+            [selectSourceKey]="preFillsFormValue.presence"
+            [isDisabled]='disablePresent'
+          >
+          </cxm-smartflow-input-selection>
+        </div>
+      </section>
+
+      <mat-divider class="field-properties__divider" *ngIf="MaxLengthVisible || MaskDateVisible"></mat-divider>
+
+      <!-- Maximum length -->
+      <section class="field-item field__maximum-length flex" *ngIf="MaxLengthVisible">
+        <label for="field__maximum-length">
+          <cxm-smartflow-common-checkbox formControlName="maxLengthEnabled" [class.disabled-click]="stepTwoFormPropertiesFormGroup.controls['maxLengthEnabled'].value"></cxm-smartflow-common-checkbox>
+          {{ 'directory.definition_directory_create_step_2_section_field_properties_max_length' | translate }}
+        </label>
+
+        <input type="number" id="field__maximum-length"
+               cxmSmartflowCxmTooltip
+               [tooltipText]='(stepTwoFormPropertiesFormGroup.controls["maxLength"]?.errors?.message || "") | translate'
+               [showTooltip]='(stepTwoFormPropertiesFormGroup.controls["maxLength"]?.errors !== null) && showError'
+               [class.input-disabled]="stepTwoFormPropertiesFormGroup.controls['maxLength'].disabled"
+               formControlName="maxLength">
+      </section>
+
+      <!-- Mask -->
+      <section class="field-item field__mask flex rela" *ngIf="MaskDateVisible">
+        <label for="field__mask">
+          <cxm-smartflow-common-checkbox formControlName="maskEnabled" [class.disabled-click]="stepTwoFormPropertiesFormGroup.controls['maskEnabled'].value"></cxm-smartflow-common-checkbox>
+          {{ 'directory.definition_directory_create_step_2_section_field_properties_mask' | translate }}
+        </label>
+        <input type="text" id="field__mask"
+               cxmSmartflowCxmTooltip
+               [tooltipText]='(stepTwoFormPropertiesFormGroup.controls["mask"]?.errors?.message || "") | translate'
+               [showTooltip]='(stepTwoFormPropertiesFormGroup.controls["mask"]?.errors !== null) && showError'
+               [class.input-disabled]="stepTwoFormPropertiesFormGroup.controls['mask'].disabled"
+               formControlName="mask">
+      </section>
+
+      <p *ngIf='showWarning' class='has-applied-default-config pt-3'>
+        {{ 'directory.definition.create.warningMessage' | translate }}
+      </p>
+
+      <section class="action__btn flex" *ngIf='formMode !== "view"'>
+        <div style="width: 385px; display: inline-block; "></div>
+        <div style="width: 490px; display: inline-block; text-align: right">
+          <button type="button" (click)="validateFieldPropertiesEvent()">{{ "directory.definition_directory_create_step_2_section_field_properties_btn_validate" | translate}}</button>
+        </div>
+      </section>
+
+    </form>
+
+    <form class="field-container field-properties"  *ngIf="!formDirectoryFieldPropertiesSelected">
+      <span>{{ 'directory.definition_directory_create_step_2_section_field_properties_no_field_selected' | translate }}</span>
+    </form>
+  </article>
+</div>
+
+<div class="space-x-4 action-buttons flex justify-end relative">
+  <cxm-smartflow-rich-button (click)="goPreviousStep()" [isRounded]='true' >{{ "directory.definition_directory_create_step_2_btn_cancel" | translate}}</cxm-smartflow-rich-button>
+  <cxm-smartflow-rich-button (click)="goNextStep()">{{ "directory.definition_directory_create_step_2_btn_next" | translate}}</cxm-smartflow-rich-button>
+</div>

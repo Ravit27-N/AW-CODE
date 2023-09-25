@@ -1,0 +1,14 @@
+<cxm-smartflow-custom-header *ngIf='this.hasActiveAccount$ | async'></cxm-smartflow-custom-header>
+<cxm-smartflow-router-loading></cxm-smartflow-router-loading>
+<div class="container">
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<cxm-smartflow-footer *ngIf='this.hasActiveAccount$ | async'
+  (downloadPrivacyDoc)="downloadPrivacyDoc($event)"
+  [leftFooters]="leftFooters"
+  [rightFooters]="rightFooters"
+>
+</cxm-smartflow-footer>

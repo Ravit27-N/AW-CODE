@@ -1,0 +1,18 @@
+<article>
+  <header>
+    <h1>{{ 'client.popup_return_address_title' | translate }}</h1>
+
+    <section class="close-btn" (click)="closePopup()">
+      <mat-icon>close</mat-icon>
+    </section>
+  </header>
+
+  <main>
+    <cxm-smartflow-fragment-return-address [fragmentReturnAddress]="returnAddressForm" (valueChangeEvent)="updateReturnAddress($event)" #returnAddressElement></cxm-smartflow-fragment-return-address>
+  </main>
+
+  <footer>
+    <cxm-smartflow-rich-button [isRounded]="true" (click)="closePopup()">{{ 'client.popup_return_address_cancel_btn' | translate }}</cxm-smartflow-rich-button>
+    <cxm-smartflow-rich-button (click)="validateAndSubmit()">{{ 'client.popup_return_address_validate_btn' | translate }}</cxm-smartflow-rich-button>
+  </footer>
+</article>

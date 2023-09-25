@@ -1,0 +1,74 @@
+<div class="list-feed-table-container">
+  <div class="scroll-able">
+    <table
+      class="list-feed"
+      aria-hidden="true"
+      mat-table
+      matSort
+      [dataSource]="directoryFeedTable"
+      (matSortChange)="sortDefinition($event)"
+    >
+      <!-- DEFINITION DIRECTORY DISPLAY NAME -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header id="name">
+          {{ 'directory.feed.list.table.directory' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row" id='definition' >
+          <span [class.directory-link]='isUnderline' (mouseover)='validateModification(row)' (click)="navigateTo(row)">{{ row?.displayName }}</span>
+        </td>
+      </ng-container>
+      <!-- END DEFINITION DIRECTORY DISPLAY NAME -->
+
+      <!-- CREATED AT -->
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef id="createdAt">
+          {{ 'directory.feed.list.table.dateCreated' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row?.createdAt | date: 'dd/MM/yyyy HH:mm:ss' }}
+        </td>
+      </ng-container>
+      <!-- END CREATED AT -->
+
+      <!-- UPDATED AT -->
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef id="updatedAt">
+          {{ 'directory.feed.list.table.dateModification' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row?.lastModified | date: 'dd/MM/yyyy HH:mm:ss' }}
+        </td>
+      </ng-container>
+      <!-- END UPDATED AT -->
+
+      <!-- THEAD -->
+      <tr
+        mat-header-row
+        *matHeaderRowDef="this.directoryFeedTableColumn; sticky: true"
+      ></tr>
+      <!-- END THEAD -->
+      <!-- TBODY -->
+      <tr
+        mat-row
+        *matRowDef="
+          let row;
+          let i = index;
+          columns: directoryFeedTableColumn"
+        (click)='selectDirectoryFeed(i, row)'
+        [ngClass]='i === selectRow ? "select-row": ""'
+      ></tr>
+      <!-- END TBODY -->
+    </table>
+  </div>
+
+</div>
+
+<!-- PAGINATION -->
+<cxm-smartflow-paginator
+  [pageIndex]="pageIndex - 1"
+  [pageSize]="pageSize"
+  [length]="totalDirectoryFeed"
+  (page)="onPageChange($event)"
+>
+</cxm-smartflow-paginator>
+<!-- END PAGINATION -->

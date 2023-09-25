@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let item of this.dataSource"  [routerLink]="item.link"
+        routerLinkActive="active-link" class="text-center">
+        <mat-icon>{{item.icon}}</mat-icon>
+        <mat-label>{{item.text}}</mat-label>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

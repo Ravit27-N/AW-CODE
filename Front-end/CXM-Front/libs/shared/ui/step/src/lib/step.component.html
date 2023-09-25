@@ -1,0 +1,13 @@
+<div class='step'>
+  <div class='step-container'>
+    <div class='step-item'  *ngFor='let s of steps; let i = index;' >
+      <span (click)='attemptToNavigate(i)' [class.active-step]='s.completed || s.active || i < activeStep'>{{i + 1}}. {{s.name|translate}}</span>
+    </div>
+  </div>
+  <div class='progress-line-container'>
+    <div class='progress-line'
+         [ngStyle]="{'width': totalProgress$ | async}">
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,73 @@
+{
+
+  "apiGateway": "http://10.2.50.142:8090",
+  "keycloak": "http://10.2.50.142:8020/auth/realms/tessi-cxm-service-gateway",
+  "clientId": "angular",
+  "dummyClientSecret": "cc312e4d-d993-450e-b67d-cecd488f903c",
+  "apps": [
+    {
+      "remoteEntry": "http://localhost:3000/remoteEntry.js",
+
+      "name": "Campaign",
+      "routePath": "cxm-campaign",
+      "ngModuleName": "CxmCampaignModule",
+      "remoteName": "cxmCampaign"
+    },
+    {
+      "remoteEntry": "http://localhost:3002/remoteEntry.js",
+
+      "name": "Template",
+      "routePath": "cxm-template",
+      "ngModuleName": "CxmTemplateModule",
+      "remoteName": "cxmTemplate"
+    },
+    {
+      "remoteEntry": "http://localhost:3004/remoteEntry.js",
+
+      "name": "Traceability",
+      "routePath": "cxm-flow-traceability",
+      "ngModuleName": "CxmFlowTraceabilityModule",
+      "remoteName": "cxmFlowTraceability"
+    },
+    {
+      "remoteEntry": "http://localhost:3006/remoteEntry.js",
+
+      "name": "Deposit",
+      "routePath": "cxm-deposit",
+      "ngModuleName": "CxmDepositModule",
+      "remoteName": "cxmDeposit"
+    },
+    {
+      "remoteEntry": "http://localhost:3008/remoteEntry.js",
+
+      "name": "Profile",
+      "routePath": "cxm-profile",
+      "ngModuleName": "CxmProfileModule",
+      "remoteName": "cxmProfile"
+    },
+    {
+      "remoteEntry": "http://localhost:3010/remoteEntry.js",
+
+      "name": "Directory",
+      "routePath": "cxm-directory",
+      "ngModuleName": "CxmDirectoryModule",
+      "remoteName": "cxmDirectory"
+    },
+    {
+      "remoteEntry": "http://localhost:3012/remoteEntry.js",
+
+      "name": "Setting",
+      "routePath": "cxm-setting",
+      "ngModuleName": "CxmSettingModule",
+      "remoteName": "cxmSetting"
+    },
+    {
+      "remoteEntry": "http://localhost:3014/remoteEntry.js",
+
+      "name": "Analytics",
+      "routePath": "cxm-analytics",
+      "ngModuleName": "CxmAnalyticsModule",
+      "remoteName": "cxmAnalytics"
+    }
+  ]
+}

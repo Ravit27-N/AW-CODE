@@ -1,0 +1,47 @@
+.inner-sub-item-panel {
+  height: 22px;
+  box-sizing: border-box;
+  line-height: 22px;
+
+  .checkbox-input {
+    display: none;
+    &:checked + label .custom-checkbox {
+      &:after {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+  }
+
+  .custom-checkbox {
+    @apply cursor-pointer;
+    background: #FFFFFF 0 0 no-repeat padding-box;
+    border: 0.5px solid #BCD5FF;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: relative;
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 16px;
+      height: 16px;
+      background-color: #3B82F6;
+      border-radius: 3px;
+      transition: 0.3s;
+    }
+  }
+
+  .selector-value {
+    width: 218px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+  }
+}

@@ -1,0 +1,23 @@
+<cxm-smartflow-animated-confirmation-page
+  (onactions)="handleEvent($event)"
+  [options]="animationConfig"
+>
+  <div subcontent class="flex flex-col items-center space-x-5">
+    <cxm-smartflow-page-header>{{
+      'template.template_success_page.subcontent_title' | translate
+    }}</cxm-smartflow-page-header>
+
+    <p>{{ 'template.template_success_page.subcontent_line1' | translate }}</p>
+
+    <p *ngIf="contentType === 'EMAILING'" class="breadcrum">
+      {{ 'template.template_success_page.subcontent_line2' | translate }}
+    </p>
+    <p *ngIf="contentType === 'SMS'" class="breadcrum">
+      {{ 'template.template_success_page.subcontent_line4' | translate }}
+    </p>
+
+    <p class="mt-4">
+      {{ 'template.template_success_page.subcontent_line3' | translate }}
+    </p>
+  </div>
+</cxm-smartflow-animated-confirmation-page>

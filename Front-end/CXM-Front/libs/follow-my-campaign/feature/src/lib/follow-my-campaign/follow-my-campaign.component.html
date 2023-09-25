@@ -1,0 +1,8 @@
+<div [class.hidden]="(show$|async) === false" class="fixed top-0 left-0 mt-20 w-full flex flex-col flex-grow z-30">
+  <cxm-smartflow-step [steps]='(steps$|async)' (stepClick)='navigateTo($event)'></cxm-smartflow-step>
+</div>
+
+<div [class.hidden]="(show$|async) === false" class="mb-16"></div>
+
+<router-outlet (activate)='routeOutletEvent($event)'></router-outlet>
+<cxm-smartflow-spinner *ngIf='(isLoading$ | async) || (isSMSLoading$ | async)'></cxm-smartflow-spinner>

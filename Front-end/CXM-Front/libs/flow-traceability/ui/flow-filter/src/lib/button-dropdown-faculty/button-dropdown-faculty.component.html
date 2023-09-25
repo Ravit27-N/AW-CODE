@@ -1,0 +1,63 @@
+<div id="btn-dropdown-faculty" class='dropdown-faculty-panel'>
+  <span class='flex align-middle items-center btn-faculty-panel justify-between' [matMenuTriggerFor]='filterMenu' (click)='addCustomCssClass()'
+  (menuOpened)='mainMenuOpen()' (menuClosed)='mainMenuClose()'>
+    <span class="flex items-center flex-row align-middle">
+      <img src="assets/icons/canal.svg" alt="canal or channel icon">
+      <span class='btn-dropdown-label' [class.active]="isUsingFilter">{{'flowTraceability.table.filter.channel' | translate}}</span>
+    </span>
+    <mat-icon class='expand_more'>expand_more</mat-icon>
+  </span>
+
+  <mat-menu #filterMenu='matMenu' class='faculty-custom-dropdown'>
+    <section id="faculty-label-header">
+      <button mat-menu-item style='width: 100%; display: flex; justify-content: space-between'
+              (click)='$event.stopPropagation()' [disableRipple]='true'>
+        <span class='flow-mode'>{{'flowTraceability.table.filter.channel' | translate}}</span>
+        <span class='flow-reset' (click)="onReset()">{{'flowTraceability.table.filter.reset' | translate}}</span>
+      </button>
+    </section>
+
+    <section id="faculty-channel">
+      <button mat-menu-item (click)='$event.stopPropagation()' [disableRipple]='true'>
+        <form [formGroup]='modeForm' class="w-full flex justify-items-start">
+          <div class="flow-checkbox-panel flex-1">
+            <div class="flex flex-row justify-items-center">
+              <input formControlName='postal' type="checkbox" class="checkbox-input" id="checkbox-postal"
+                     (change)="onCheckPostalAndDigital()">
+              <label for="checkbox-postal">
+                <span class="custom-checkbox">
+                </span>
+              </label>
+              <label class="ml-2">{{'flowTraceability.table.filter.postal' |translate}}</label>
+            </div>
+          </div>
+
+          <div class="flow-checkbox-panel flex-1">
+            <div class="flex flex-row justify-items-center">
+              <input formControlName='digital' type="checkbox" class="checkbox-input" id="checkbox-digital"
+                     (change)="onCheckPostalAndDigital()">
+              <label for="checkbox-digital">
+                <span class="custom-checkbox">
+                </span>
+              </label>
+              <label class="ml-2">{{'flowTraceability.table.filter.digital' |translate}}</label>
+            </div>
+          </div>
+        </form>
+      </button>
+    </section>
+
+    <button mat-menu-item class='custom-category-item' (click)='$event.stopPropagation()' [disableRipple]='true'>
+
+      <mat-divider></mat-divider>
+
+      <span><b>{{'cxmCampaign.followMyCampaign.list.filterComponent.label.category' | translate}}</b></span>
+      <div class='category-panel'>
+        <div class="category-box">
+          <cxm-smartflow-multi-selector-check (checkedItems)="checkedItems($event)"
+                                              [items]="subChannel$.value"></cxm-smartflow-multi-selector-check>
+        </div>
+      </div>
+    </button>
+  </mat-menu>
+</div>

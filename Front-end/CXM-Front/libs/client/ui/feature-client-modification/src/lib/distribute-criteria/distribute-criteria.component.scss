@@ -1,0 +1,74 @@
+.distribute-criteria-container {
+  background: var(--unnamed-color-ffffff) 0 0% no-repeat padding-box;
+  border-radius: 10px;
+  width: calc(50% - 22px);
+  padding-bottom: 50px;
+
+  table, row {
+    width: 100%;
+  }
+
+  tr {
+    border-top: 0.5px solid #dedede;
+  }
+
+  tr:first-child {
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+  }
+
+  tr:last-child {
+    border-bottom-color: transparent;
+  }
+
+  .manage-panel {
+    &-label {
+      color: var(--unnamed-color-3b82f6);
+      font: normal normal medium 14px/17px Rubik;
+      letter-spacing: 0;
+    }
+
+    &-align {
+      width: 17%;
+    }
+  }
+
+}
+
+.panel-title {
+  margin-bottom: 25px;
+  text-align: left;
+  font: normal normal 600 17px/8px Rubik;
+  letter-spacing: 0;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cursor-allowed {
+  cursor: pointer;
+}
+
+.cursor-allowed:hover {
+  font-weight: 500;
+}
+.wrapper {
+  width: 100%;
+  background: var(--unnamed-color-ffffff) 0 0% no-repeat padding-box;
+  border-radius: 10px;
+}
+
+.manage-btn {
+  top: 21px;
+}
+
+.checkbox-option-container {
+  padding-left: 77px;
+}
+
+cxm-smartflow-common-checkbox {
+  font-weight: 500;
+}

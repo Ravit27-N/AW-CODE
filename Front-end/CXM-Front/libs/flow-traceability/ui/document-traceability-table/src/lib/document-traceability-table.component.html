@@ -1,0 +1,165 @@
+<div id='flow-document-table-container'>
+
+  <div class='flow-traceability-card-panel flow-traceability-panel'>
+    <table
+      id='flow-document-table'
+      aria-hidden='true'
+      mat-table
+      matSort
+      class='flow-table'
+      [dataSource]='data$'
+      (matSortChange)='sortEvent($event)'
+      [matSortDirection]='sortDirection'
+      [matSortActive]='sortAction'
+      matSortDisableClear
+    >
+      <ng-container matColumnDef='document'>
+        <th
+          id='document'
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class='col-document-name'
+        >
+          {{'flowTraceability.documentTraceability.table.header.document'| translate }}
+        </th>
+        <!-- Document name / NOM-->
+        <td id='_{{row?.id}}'
+            (mouseover)="showTooltip('#_' + row?.id, row?.document)"
+            [title]="showTooltip('#_' + row?.id, row?.document)" mat-cell
+            *matCellDef='let row; let i = index;' class='relative text-truncate'>
+          {{ row.document }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef='destination'>
+        <th
+          id='destination'
+          class='col-destination'
+          mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{
+          'flowTraceability.documentTraceability.table.header.destination'
+            | translate
+          }}
+        </th>
+        <!-- Recipient -->
+        <td mat-cell *matCellDef='let row'>{{ row.recipient }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef='sendingDate'>
+        <th
+          id='sendingDate'
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class='col-sending-date'
+        >
+          {{ 'flowTraceability.documentTraceability.table.header.sendingDate' | translate }}
+        </th>
+        <td mat-cell *matCellDef='let row'>
+          {{ row?.canShowDateStatus ? (row.sendingDate | date: 'dd/MM/yyyy HH:mm') : '' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef='channel'>
+        <th
+          id='channel'
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class='col-channel'
+        >
+          {{
+          'flowTraceability.documentTraceability.table.header.channel'
+            | translate
+          }}
+        </th>
+        <!-- Channel -->
+        <td mat-cell *matCellDef='let row'>
+          {{ row?.channel | translate }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef='subChannel'>
+        <th id='subChannel' class='col-sub-channel' mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'flowTraceability.documentTraceability.table.header.category' | translate }}
+        </th>
+
+        <!-- Sub-channel / Category -->
+        <td mat-cell *matCellDef='let row'>
+          {{row?.category}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef='status'>
+        <th id='status' class='col-status' style='padding-left: 5px;' mat-header-cell *matHeaderCellDef
+            mat-sort-header>
+          {{
+          'flowTraceability.documentTraceability.table.header.status'
+            | translate
+          }}
+        </th>
+        <!-- Status -->
+        <td mat-cell *matCellDef='let row' style='padding-right: 15px'>
+          <span [innerHTML]='row?.documentStatus?.statusLabel | translate'
+                class='flow-status-{{row?.statusLabelReplacement}} whitespace-nowrap'>>
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef='action'>
+        <th id='action' mat-header-cell *matHeaderCellDef class='col-action'>
+          {{
+          'flowTraceability.documentTraceability.table.header.action'
+            | translate
+          }}
+        </th>
+        <td mat-cell *matCellDef='let row' class='cell-action'>
+          <div class='flex flex-row items-center'>
+            <span (click)='navigateToDocDetail(row)'
+                  class='btn-view-details'>{{'flow.traceability.visitAction'| translate}}</span>
+
+            <span *ngIf='row?.privilege?.canShowToggleButton'>
+              <button
+                class='btn-menu-icon-panel flex justify-center' [matMenuTriggerFor]='menuActionDoc'
+                (click)='addCustomCssClass()'>
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            </span>
+            <span *ngIf='!row?.privilege?.canShowToggleButton' class='none-action-icon'></span>
+          </div>
+
+          <!-- Menu Action button -->
+          <mat-menu [class]="'action-card-panel'" #menuActionDoc='matMenu'>
+            <!-- Menu download icon -->
+            <div mat-menu-item (click)='downloadDoc($event, row)' *ngIf='row?.privilege?.canDownload'>
+              <img class='btn-menu-icon' src='assets/icons/download.png' alt='icon download'>
+              <span>
+                {{'flowTraceability.table.action.download' | translate}}
+              </span>
+            </div>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef='this.tableColumns; sticky: true'
+        class='flow-table-header'
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef='let row; columns: tableColumns'
+      ></tr>
+      <tr class='mat-row' *matNoDataRow></tr>
+    </table>
+  </div>
+
+    <cxm-smartflow-list-paginator
+      [withCriteria]='true'
+      (page)='paginationChange($event)'
+      [pageIndex]='page'
+      [pageSize]='pageSize'
+      [length]='(total$ | async) || 0'
+    ></cxm-smartflow-list-paginator>
+</div>

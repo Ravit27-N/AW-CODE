@@ -1,0 +1,113 @@
+<div class='flex flex-row justify-between mb-8 items-center'>
+  <div>
+    <app-ng-dynamic-breadcrumb [bgColor]="'none'" symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{'cxmCampaign.followMyCampaign.campaignHeader' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header>{{'cxmCampaign.followMyCampaign.settingParameter.subHeader' | translate}}</cxm-smartflow-page-sub-header>
+  </div>
+</div>
+
+<div class='email-campaign-parameter-container'>
+  <form [formGroup]='formGroup' (ngSubmit)='submit()'>
+
+    <div class='form-content'>
+      <div class='flex flex-row row items-center mt-2'>
+        <div class='col-1'>
+          <label>{{'cxmCampaign.followMyCampaign.settingParameter.campaignName.label' | translate}}</label></div>
+        <div class='col-2'>
+          <input formControlName='campaignName'
+                 placeholder="{{'cxmCampaign.followMyCampaign.settingParameter.campaignName.placeholder' | translate}}"
+                 cxmSmartflowCxmTooltip
+                 [tooltipText]='campaignNameTooltip'
+                 [showTooltip]='(campaignName?.invalid && hasSubmit)'
+                 [showBackgroundEl]='showTooltipBackground'
+                 onkeydown="return event.key != 'Enter';"
+                 >
+        </div>
+      </div>
+
+      <div class='flex flex-row row items-center mt-6'>
+        <div class='col-1'>
+          <label>{{'cxmCampaign.followMyCampaign.settingParameter.subjectMail.label' | translate}}</label>
+        </div>
+        <div class='object-mail-input relative'
+             cxmSmartflowCxmTooltip
+             [tooltipText]='subjectMailTooltip'
+             [showTooltip]='(subjectMail?.invalid && hasSubmit)'
+             [showBackgroundEl]='showTooltipBackground'>
+          <input placeholder="{{'cxmCampaign.followMyCampaign.settingParameter.subjectMail.placeholder' | translate}}"
+                 formControlName='subjectMail' onkeydown="return event.key != 'Enter';">
+          <select formControlName='variableTmp' class='top-0 right-0 absolute'>
+            <option value='' hidden>{{'cxmCampaign.followMyCampaign.settingParameter.subjectMail.defaultSelect' | translate}}</option>
+            <option *ngFor='let item of variables' [value]='item'>{{item}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class='flex flex-row mt-6'>
+        <div class='col-1 flex flex-col'>
+            <label>{{'cxmCampaign.followMyCampaign.settingParameter.attachment.label' | translate}}</label>
+            <span class='sub-label'>{{'cxmCampaign.followMyCampaign.settingParameter.attachment.description' | translate}}</span>
+        </div>
+
+        <div class='col-browse-input'>
+          <cxm-smartflow-common-multiple-browse-input [filePropertiesOfAPI]='(internalAttachment$ | async) || []'
+                                                      [fileValidator]='fileValidator'
+                                                      [acceptType]='acceptableType'
+                                                      (removingFile)='removeFile($event)'
+                                                      (choosingMultipleFile)='choosingMultipleFiles($event)'>
+
+          </cxm-smartflow-common-multiple-browse-input>
+        </div>
+      </div>
+
+      <div class='flex flex-row row items-center mt-6'>
+        <div class='col-1'>
+          <label>{{'cxmCampaign.followMyCampaign.settingParameter.senderEmail.label' | translate}}</label></div>
+          <div class='col-2 selection__container'>
+            <cxm-smartflow-input-selection
+              [errorMsg]='(formGroup.controls["senderMail"]?.errors?.message || "") | translate'
+              [isShowError]='(senderMail?.invalid || false) && hasSubmit'
+              [selectSourceKey]='(selectedSenderMail$ | async) || ""'
+              (selectedSource)='selectSenderMail($event)'
+              [datasource]='(senderEmail$ | async) || []'>
+            </cxm-smartflow-input-selection>
+          </div>
+      </div>
+
+      <div class='flex flex-row row items-center mt-6'>
+        <div class='col-1'>
+          <label>{{'cxmCampaign.followMyCampaign.settingParameter.senderName.label' | translate}}</label></div>
+          <div class='col-2 selection__container'>
+            <cxm-smartflow-input-selection
+              [errorMsg]='(formGroup.controls["senderName"]?.errors?.message || "") | translate'
+              [isShowError]='(senderName?.invalid || false) && hasSubmit'
+              [selectSourceKey]='(selectedSenderName$ | async) || ""'
+              (selectedSource)='selectSenderName($event)'
+              [datasource]='(senderName$ | async) || []'>
+            </cxm-smartflow-input-selection>
+          </div>
+      </div>
+
+      <div class='flex flex-row row items-center mt-6'>
+        <div class='col-1'>
+          <label>{{'cxmCampaign.followMyCampaign.settingParameter.unsubscribeLink.label' | translate}}</label></div>
+          <div class='col-2 selection__container'>
+            <cxm-smartflow-input-selection
+              [errorMsg]='(formGroup.controls["unsubscribeLink"]?.errors?.message || "") | translate'
+              [isShowError]='(unsubscribeLink?.invalid || false) && hasSubmit'
+              [selectSourceKey]='(selectedUnsubscribeLink$ | async) || ""'
+              (selectedSource)='selectUnsubscribe($event)'
+              [datasource]='(unsubscribeLink$ | async) || []'>
+            </cxm-smartflow-input-selection>
+          </div>
+      </div>
+    </div>
+
+    <div class='flex flex-row w-full justify-end mt-10'>
+      <button class='mr-5'
+              (click)='previousStep()'>{{'cxmCampaign.followMyCampaign.settingParameter.actionButton.previous' | translate}}</button>
+      <button class='btn-active'
+              type='submit'>{{'cxmCampaign.followMyCampaign.settingParameter.actionButton.next' | translate}}</button>
+    </div>
+  </form>
+</div>

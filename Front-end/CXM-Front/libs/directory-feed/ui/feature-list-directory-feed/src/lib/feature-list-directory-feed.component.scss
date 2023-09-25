@@ -1,0 +1,45 @@
+.listDirectoryFeedContainer {
+  background-color: white;
+  padding: 15px;
+  min-height: 50vh;
+  border-width: 1px;
+  border-color: #1a214d;
+}
+
+.action-button-group {
+  display: flex;
+  flex-direction: row;
+}
+
+:host ::ng-deep {
+  & .mat-flat-button.mat-primary,
+  .mat-raised-button.mat-primary,
+  .mat-fab.mat-primary,
+  .mat-mini-fab.mat-primary {
+    margin-right: 10px;
+  }
+}
+
+#refreshed-date {
+  color: #cccccc;
+}
+
+.vl {
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 57px;
+  border-left: 2px solid #1a214d;
+}
+
+h1 {
+  color: #1a214d;
+  font-weight: bold;
+}
+
+cxm-smartflow-round-action-button {
+  margin-right: 10px;
+}
+
+.header {
+  margin-bottom: 30px;
+}

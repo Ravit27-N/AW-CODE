@@ -1,0 +1,23 @@
+<!-- Header -->
+<div class="flex flex-row justify-between">
+  <div>
+    <app-ng-dynamic-breadcrumb symbol=">"></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{'cxm_analytics.title' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header small>{{'cxm_analytics.sub_title' | translate}}</cxm-smartflow-page-sub-header>
+  </div>
+
+  <div class="flex flex-col justify-end self-end">
+    <cxm-smartflow-rich-button
+      (click)="onExportReport()"
+      width="204px"
+      height="48px"
+      [isRounded]='true'
+      [class.hidden]="isCanExport$ | async"
+    >
+      <img src='assets/icons/export-svg.svg' alt='export file'/>
+      <span>{{ 'cxm_analytics.export_btn' | translate }}</span>
+    </cxm-smartflow-rich-button>
+  </div>
+</div>
+<router-outlet></router-outlet>
+

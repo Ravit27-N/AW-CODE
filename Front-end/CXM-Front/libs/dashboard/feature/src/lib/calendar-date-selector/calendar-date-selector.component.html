@@ -1,0 +1,20 @@
+<div class="flex flex-row">
+  <div class="flex flex-col">
+    <button class="calendar-button-options mb-1" *ngFor="let options of customRanges; index as i"
+      (click)="dateOptionsChaneged(options, i)"
+      [class.active]="isSameRange(options)">
+      {{ options.name | translate}}
+    </button>
+    <button class="calendar-button-options mb-1"
+    [class.active]="!isSomeRange()">
+      {{ 'dashboard.calendar.custom_date'|translate }}
+    </button>
+  </div>
+
+  <div style="width: 280px;">
+    <cxm-smartflow-calendar-content [(selectedRangeValue)]="selectedDateranged" [headerComponent]="customCxmDatetimeHeaderComponent"></cxm-smartflow-calendar-content>
+    <div class="calendar-action-buttons flex justify-end px-2">
+      <button (click)="applyCalendar()" class="calendar-button active">{{'dashboard.button_save' | translate}}</button>
+    </div>
+  </div>
+</div>

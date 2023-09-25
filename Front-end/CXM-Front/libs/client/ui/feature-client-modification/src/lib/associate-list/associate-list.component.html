@@ -1,0 +1,86 @@
+<form [formGroup]='formGroup'>
+
+<div class="flex mb-4 header">
+  <p style="width: 577px;" class="flex-grow">{{ 'client.form.titleDivision' | translate }}</p>
+  <p class="flex-grow ml-12" style="width: 577px;">{{ 'client.form.titleService' | translate }}</p>
+</div>
+
+<div class="flex relative">
+
+  <div class="list-panel flex-grow relative">
+    <div class="relative top-0 left-0 list-content-clipper">
+      <mat-selection-list #division [multiple]="false" (selectionChange)="handleDivisionChanged($event);"  (click)="$event.stopPropagation()" disableRipple>
+        <mat-list-option *ngFor="let item of divisions" [value]="item" [selected]="this.selectedDivision?.name === item.name" (click)="handleDivisionServiceError(item.name, $event); selectDivision(item.name)">
+          <!-- inline editing in list -->
+          <cxm-smartflow-inline-input (keydown)="$event.stopPropagation()" #currentInput [value]="item.name"
+                                      (eventBlur)="onClick($event, item.name, currentInput, true)"
+                                      (valueChanged)='validateModifyDivision($event, item.name, currentInput)'
+                                      (pressEnter)="editDivision($event, item.name, currentInput)"
+                                      [placeholder]="'client.form.enterDivision'">
+            <div class="flex list__item" [class.selected-item-name]="this.selectedDivision?.name === item.name">
+              <span class="item-name">{{ item.name }}</span>
+              <span class="ml-auto space-x-4 flex items-center list-item-button-g " >
+                <span style="transform: translateY(2px);"><mat-icon (click)="modifyDivisionReturnAddress(item?.address, item.name)">home</mat-icon></span>
+                <span class="cxm-icon mx-auto text-icon-blue" style="background-image: url('assets/icons/pencil-square.svg');" (click)="currentInput.toggle()"></span>
+                <span class="cxm-icon mx-auto cursor-pointer" style="background-image: url('assets/icons/delete.svg');" (click)="removeDivisionClickHandler($event, item)"></span>
+              </span>
+            </div>
+          </cxm-smartflow-inline-input>
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+
+    <div class="space-y-4 list-panel-new-wrapper">
+      <input type="text" #divisionNameInput  [placeholder]="'client.form.enterDivision' | translate" (keydown.enter)="handleAddDivisionEnter($event)" formControlName = 'division'
+             (focusout)='removeDivisionError()'
+             cxmSmartflowCxmTooltip [tooltipText]="divisionErrorMsg | translate" [showTooltip]="errorDivision"/>
+      <p class="button-click cursor-pointer" (click)="handleAddDivisionClick(divisionNameInput)"> + {{ 'client.form.addDivision' | translate }}</p>
+    </div>
+
+  </div>
+
+  <div class="list-panel ml-12 relative flex-grow">
+    <div *ngIf="selectedDivision" class="relative">
+
+      <div class="relative top-0 left-0 list-content-clipper">
+        <mat-selection-list #service [multiple]="false" disableRipple (click)="$event.stopPropagation()">
+          <mat-list-option *ngFor="let serviceItem of selectedDivision.services" [value]="serviceItem"
+                           (click)="selectService(serviceItem.name)"
+                           [class.bg-white]="serviceItem?.name !== selectedServiceName"
+                           [class.bg-primary]="serviceItem?.name === selectedServiceName">
+            <!-- inline editing in list -->
+            <cxm-smartflow-inline-input (keydown)="$event.stopPropagation()" #currentInput [value]="serviceItem.name"
+                                        (eventBlur)="onClick($event, serviceItem, currentInput)"
+                                        (valueChanged)='validateModifyService($event, serviceItem, currentInput)'
+                                        (pressEnter)="handleEditServices($event, serviceItem, currentInput)"
+                                        [placeholder]="'client.form.enterService'" >
+              <div class="flex" [class.selected-item-name]="">
+                <span class="item-name">{{ serviceItem.name }}</span>
+                <span class="ml-auto space-x-4 flex items-center list-item-button-g" [class.flex-important]="serviceItem?.name === selectedServiceName">
+                  <span style="transform: translateY(2px);"><mat-icon (click)="modifyServiceReturnAddress(serviceItem?.address, serviceItem?.name)">home</mat-icon></span>
+                  <span class="cxm-icon mx-auto text-icon-blue cursor-pointer" style="background-image: url('assets/icons/pencil-square.svg');" (click)="currentInput.toggle()"></span>
+                  <span class="cxm-icon mx-auto cursor-pointer" style="background-image: url('assets/icons/delete.svg');" (click)="removeServiceClickHandler(serviceItem)"></span>
+                </span>
+              </div>
+            </cxm-smartflow-inline-input>
+
+          </mat-list-option>
+        </mat-selection-list>
+      </div>
+
+      <div class="space-y-4 list-panel-new-wrapper">
+        <input type="text"  #serviceNameInput [placeholder]="'client.form.enterService' | translate" (keydown.enter)="handleAddServiceEnter($event, division.selectedOptions.selected[0]?.value)" formControlName = 'service'
+               (focusout)='removeServiceError()'
+               cxmSmartflowCxmTooltip [tooltipText]="serviceErrorMsg | translate" [showTooltip]="errorService"/>
+        <p class="button-click cursor-pointer" (click)="handleAddServiceClick(serviceNameInput, division.selectedOptions.selected[0]?.value)">+ {{ 'client.form.addService' | translate }}</p>
+      </div>
+    </div>
+
+    <div *ngIf="!selectedDivision" class="p-4 space-y-4 text-service-info">
+      <p>{{ 'client.form.noAvailableField' | translate }}</p>
+      <p></p>
+      <p>{{ 'client.form.addAssociate' | translate }} <span style="font-weight: 600; color: #3b82f6;">services</span>.</p>
+    </div>
+  </div>
+</div>
+</form>

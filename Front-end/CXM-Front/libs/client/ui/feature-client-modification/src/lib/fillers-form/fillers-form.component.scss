@@ -1,0 +1,52 @@
+.list-panel {
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 9px #8DC2E547;
+  border-radius: 10px;
+  margin-top: 2.2rem;
+  min-height: 335px;
+  padding: 15px 2.5rem;
+  width: 100%;
+}
+
+.panel-title {
+  position: relative;
+  top: -3.2rem;
+  left: -2.5rem;
+  color: var(--unnamed-color-1a214d);
+  font: normal normal 500 16px/19px Rubik;
+}
+
+
+input {
+  height: 38px;
+  line-height: 38px;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  border: 0.5px solid var(--unnamed-color-8194b4);
+  border-radius: 5px;
+  padding: 10px 25px 10px 20px;
+  outline: none;
+
+  width: 26rem;
+}
+
+
+input:focus {
+  outline: 1px solid var(--unnamed-color-8194b4);
+}
+
+input::placeholder {
+  font: normal normal 300 16px/19px Rubik;
+  color: #C3C3C3;
+}
+
+input:disabled {
+  border: 1px solid #adadad !important;
+  color: #adadad !important;
+  cursor: not-allowed;
+}
+
+cxm-smartflow-common-checkbox {
+  width: 16rem;
+  font-weight: 500;
+  color: var(--unnamed-color-1a214d);
+}

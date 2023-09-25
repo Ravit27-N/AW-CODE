@@ -1,0 +1,58 @@
+<div>
+  <div class='table-header-container whitespace-nowrap'>
+    <cxm-smartflow-card-header-title
+      [styleLeft]='true'>{{ HeaderTitle | translate }}</cxm-smartflow-card-header-title>
+  </div>
+  <mat-card class='relative'>
+    <cxm-smartflow-spinner *ngIf="(loading$ | async)" [inline]="true"></cxm-smartflow-spinner>
+    <mat-card-content [class]="customClass">
+      <div class='table-container'>
+        <table mat-table [dataSource]='dataSource' *ngIf="(loading$ | async) === false">
+          <ng-container *ngFor='let m of metadata; let col = index;' [matColumnDef]='m.col'>
+            <th mat-header-cell *matHeaderCellDef>{{ m.label | translate }}</th>
+            <td mat-cell *matCellDef='let data;'>
+              <!--            first column-->
+              <div *ngIf='col === 0'>
+                <button mat-icon-button
+                        disableRipple
+                        [style.visibility]="!data.expandable ? 'hidden' : ''"
+                        [style.marginLeft.px]='data.level * 15'
+                        (click)='treeControl.toggle(data)'>
+                  <mat-icon class='material-icons-outlined'>
+                    {{treeControl.isExpanded(data) ? 'indeterminate_check_box' : 'add_box'}}
+                  </mat-icon>
+                </button>
+                {{data[m.col]}}
+              </div>
+              <!--            Second to N columns-->
+              <div *ngIf='col > 0'>
+                <span *ngIf='m.type !== "percent"'>{{data[m.col]}}</span>
+                <span *ngIf='m.type === "percent"'>{{data[m.col] | percentFormat }}</span>
+              </div>
+            </td>
+
+            <!--          Total  -->
+            <td mat-footer-cell *matFooterCellDef>
+              <div *ngIf='(showTotal$ | async)'>
+                <div *ngIf='col === 0'>
+                  {{ total(m.col) | translate}}
+                </div>
+
+                <div *ngIf='col > 0'>
+                  <span *ngIf='m.type !== "percent"'>{{ total(m.col) }}</span>
+                  <span *ngIf='m.type === "percent"'>{{ total(m.col) | percentFormat}}</span>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef='displayedColumns; sticky: true'></tr>
+          <tr mat-footer-row *matFooterRowDef="displayedColumns" [ngClass]='{"custom-mat-footer-row": (showTotal$ | async)}'></tr>
+          <tr mat-row *matRowDef='let row; columns: displayedColumns;' [ngClass]='{"row-level1": row?.level === 0, "row-level2": row?.level === 1}'></tr>
+        </table>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+

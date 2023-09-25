@@ -1,0 +1,98 @@
+<div class="navbar__container">
+  <!-- MENU -->
+  <div class="navbar__menu-bar" style="width: 100%">
+    <ul class="menu-bar__section-first">
+      <!-- TEMPLATE -->
+      <li
+        class="menu-bar__template menu-bar--parent-menu"
+        [class.active-menu]="presentedMenu?.template?.active"
+        *ngIf="presentedMenu?.template"
+      >
+        {{ presentedMenu?.template?.text }}
+        <i class="material-icons menu-bar__arrow-down-icon">
+          keyboard_arrow_down
+        </i>
+        <div class="sub-menu-1">
+          <ul>
+            <li
+              *ngFor="let subMenu of presentedMenu?.template?.subMenu"
+              [routerLink]="subMenu?.link"
+            >
+              {{ subMenu?.text }}
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <!-- DEPOSIT -->
+      <li
+        *ngIf="presentedMenu?.deposits"
+        class="menu-bar__deposit menu-bar--parent-menu"
+        [class.active-menu]="presentedMenu?.deposits?.active"
+      >
+        {{ presentedMenu?.deposits?.text }}
+        <i class="material-icons menu-bar__arrow-down-icon">
+          keyboard_arrow_down
+        </i>
+        <div class="sub-menu-1">
+          <ul>
+            <li
+              *ngFor="let subMenu of presentedMenu?.deposits?.subMenu"
+              [routerLink]="subMenu?.link"
+            >
+              {{ subMenu?.text }}
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <!-- MONITORING -->
+      <li
+        *ngIf="presentedMenu?.suivis"
+        class="menu-bar__monitoring menu-bar--parent-menu"
+        [class.active-menu]="presentedMenu?.suivis?.active"
+        [class.menu-bar__monitoring--en]="isEnglishLocale"
+        [routerLink]="presentedMenu?.suivis?.link"
+      >
+        {{ presentedMenu?.suivis?.text }}
+      </li>
+
+      <!-- Statistic -->
+      <li
+        *ngIf="presentedMenu?.analytics"
+        class="menu-bar__analytics menu-bar--parent-menu"
+        [class.active-menu]="presentedMenu?.analytics?.active"
+        [routerLink]="presentedMenu?.analytics?.link"
+      >
+        {{ presentedMenu?.analytics?.text }}
+      </li>
+    </ul>
+
+    <span class="spacer"></span>
+
+    <ul class="menu-bar__section-first">
+      <!-- SETTING -->
+      <li
+        *ngIf="presentedMenu?.parameters"
+        class="menu-bar__setting menu-bar--parent-menu"
+        [class.active-menu]="presentedMenu?.parameters?.active"
+      >
+        {{ presentedMenu?.parameters?.text }}
+        <i class="material-icons menu-bar__arrow-down-icon">
+          keyboard_arrow_down
+        </i>
+        <div class="sub-menu-1">
+          <ul>
+            <li
+              *ngFor="let subMenu1 of presentedMenu?.parameters?.subMenu"
+              [ngClass]="subMenu1?.subMenu ? 'hover-submenu' : ''"
+              [routerLink]="subMenu1?.link"
+            >
+              {{ subMenu1?.text }}
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

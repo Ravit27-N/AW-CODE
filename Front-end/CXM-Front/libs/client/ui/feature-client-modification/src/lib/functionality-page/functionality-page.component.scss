@@ -1,0 +1,35 @@
+.functionality-container {
+  width: 642px;
+  background: var(--unnamed-color-ffffff) 0 0% no-repeat padding-box;
+  border-radius: 10px;
+
+  table,
+  row {
+    width: 100%;
+  }
+
+  tr {
+    border-top: 0.5px solid #dedede;
+  }
+
+  tr:first-child {
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+  }
+
+  tr:last-child {
+    border-bottom-color: transparent;
+  }
+
+  .manage-panel {
+    &-label {
+      color: var(--unnamed-color-3b82f6);
+      font: normal normal medium 14px/17px Rubik;
+      letter-spacing: 0;
+    }
+
+    &-align {
+      width: 17%;
+    }
+  }
+}

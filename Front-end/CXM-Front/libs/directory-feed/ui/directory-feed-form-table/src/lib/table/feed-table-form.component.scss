@@ -1,0 +1,75 @@
+@import 'cxm-directory-global-styles.scss';
+
+:host {
+  width: 100%;
+  overflow: hidden;
+}
+
+.feed-table-container {
+  min-height: calc(50vh - 209px);
+}
+
+table {
+  width: 100%;
+}
+
+table th {
+  background-color: $flow-bg-primary;
+  color: #cac4c4;
+  @apply text-sm;
+}
+
+th, tr, td {
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  border-collapse: collapse;
+}
+
+.hoverable-row:hover {
+  cursor: pointer;
+  background-color: #e6edf0;
+}
+
+.selected-row {
+  background-color: #d1e0e8;
+  @apply shadow-sm;
+}
+
+.selected-cell {
+
+}
+
+.none-style {
+  border-color: transparent !important;
+  background: transparent !important;
+  width: 0 !important;
+  margin: 0px !important;
+}
+
+.clickable {
+  cursor: pointer;
+  color: $flow-bg-primary;
+}
+
+.feed-cell {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.feed-cell.editable {
+  border: 2px solid $flow-bg-primary;
+  @apply rounded-sm;
+}
+
+.feed-input {
+  display: none;
+
+}
+
+.feed-cell.editable .feed-input {
+  display: block;
+}
+
+.feed-cell.editable .feed-value {
+  display: none;
+}

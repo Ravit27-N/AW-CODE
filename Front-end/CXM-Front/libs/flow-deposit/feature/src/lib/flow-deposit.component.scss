@@ -1,0 +1,28 @@
+@import "flow-deposit-global-styles";
+
+:host {
+  display: block;
+}
+
+.d-block {
+  display: block;
+}
+
+.text-primary {
+  color: $flow-text-primary;
+}
+
+.wrapper-header {
+  display: flex;
+  align-items: center;
+}
+
+.stepper {
+  width: 100%;
+}
+
+cxm-smartflow-step {
+  top: 0;
+  position: relative;
+  z-index: 99999;
+}

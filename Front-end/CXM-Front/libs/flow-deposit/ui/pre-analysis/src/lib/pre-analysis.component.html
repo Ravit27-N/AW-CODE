@@ -1,0 +1,39 @@
+<div class='pt-16'>
+  <cxm-smartflow-header pageTitle='flow.deposit.title' subTitle='flow.deposit.preAnalysis.title'></cxm-smartflow-header>
+  <div>
+    <div class="w-full flex flex-col justify-items-center channel-sending-panel p-10">
+      <div class="flex items-center space-x-5 mx-auto main-panel text-center">
+        <label>
+          <input type='radio' name='test' [(ngModel)]="selectedChannel" value='Postal' (click)='this.onCheckbookChangeEvent("Postal")'>
+          <div class='radio-button-icon'>
+            <div>
+              <mat-icon>
+                <img src='assets/icons/mailbox.png' [ngClass]="selectedChannel.toLowerCase() === 'postal' ? 'selected-channel-img' : ''"  alt="mailbox icon"/>
+              </mat-icon>
+            </div>
+            <div>
+              <span [ngClass]="selectedChannel.toLowerCase() === 'postal' ? 'selected-channel-text' : ''" class=' mt-2 inline-block'>{{'flow.deposit.preAnalysis.checkbook.postal' | translate}}</span>
+            </div>
+          </div>
+        </label>
+        <label>
+          <input type='radio' name='test' value='digital' (change)='this.onCheckbookChangeEvent("digital")'>
+          <div class='radio-button-icon'>
+            <div>
+              <mat-icon class='mat-icon'>
+                <img src='assets/icons/mail-notification-outline.png' [ngClass]="selectedChannel.toLowerCase() === 'digital' ? 'selected-channel-img' : ''"  alt='mail-notification-outline icon'/>
+              </mat-icon>
+            </div>
+            <div>
+              <span [ngClass]="selectedChannel.toLowerCase() === 'digital' ? 'selected-channel-text' : ''" class='mt-2 inline-block'>{{'flow.deposit.preAnalysis.checkbook.digital' | translate}}</span>
+            </div>
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-2 right-10 hidden">
+    <cxm-smartflow-deposit-nav-control [positionStart]="true"></cxm-smartflow-deposit-nav-control>
+  </div>
+</div>

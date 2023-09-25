@@ -1,0 +1,9 @@
+<div class="p-4 pr-0 pl-0 flex space-x-4" [ngClass]="positionStart ? 'justify-start' : 'justify-end'">
+  <cxm-smartflow-rich-button [isRounded]='true' [class.clickable]="canPrev" (click)="onPrevClick()" *ngIf='!hideCanPrev && !showCancelFlow'>{{'flow.deposit.button.prev'|translate}}</cxm-smartflow-rich-button>
+
+  <cxm-smartflow-rich-button [isRounded]='true' (click)='onCancelFlow()' *ngIf='showCancelFlow'>{{'flow.deposit.button.cancelFlowBtn'|translate}}</cxm-smartflow-rich-button>
+
+  <cxm-smartflow-rich-button [class.clickable]="canNext && isCanIdentify$.value" (click)="onNextClick()" *ngIf='!hideCanNext && !hasPartialError'>{{'flow.deposit.button.next'|translate}}</cxm-smartflow-rich-button>
+
+  <cxm-smartflow-rich-button [class.clickable]="canNext && isCanIdentify$.value" (click)="onNextClick()" *ngIf='hasPartialError'>{{'flow.deposit.button.hasPartialError'|translate}}</cxm-smartflow-rich-button>
+</div>

@@ -1,0 +1,28 @@
+.report-filters {
+  display: flex;
+  justify-content: space-between;
+
+  .refresh-date {
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-2e2e2e);
+    text-align: left;
+    font: normal normal normal 16px/19px Rubik;
+    opacity: 1;
+  }
+}
+
+
+.graph-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  .production-info {
+    width: 55%;
+  }
+
+  .volume-info {
+    width: 40%;
+    margin: auto 0 auto 60px;
+  }
+}

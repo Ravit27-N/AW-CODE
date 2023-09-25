@@ -1,0 +1,62 @@
+<div class='pt-16'>
+  <!-- HEADER -->
+  <cxm-smartflow-header pageTitle='flow.deposit.title'
+                        [subTitle]='isLoadProgress$.value || isUploadFail$.value? "" : "flow.deposit.acquisition.title"'>
+  </cxm-smartflow-header>
+
+  <!-- PROGRESS BAR -->
+  <div class='uploading-container' [class.upload-container-block]='isLoadProgress$ | async'>
+    <cxm-smartflow-upload-progression></cxm-smartflow-upload-progression>
+  </div>
+
+  <!-- ERROR MESSAGES -->
+  <div class='error-message-container' *ngIf='isUploadFail$.value'>
+    <p class='error-message'>{{errorMessage$.value | translate}}</p>
+  </div>
+
+  <!-- UPLOAD FILE CONTAINER -->
+  <div class='container' [class.invisible-container]='isUploading$.value || isLoadProgress$.value'>
+    <div class='upload-panel'>
+      <!-- BEFORE UPLOAD FILE -->
+      <div class='upload-container' [class.d-none]='fileUploadState.prepared && isUploadFail$.value' cxmSmartflowDnd
+           (dragover)='handleDragover($event)'
+           (dragleave)='handleDragover($event, true)'
+           (fileDropped)='onFileDrop($event)'>
+        <div class='drag-file-info absolute' [ngStyle]='{"right": titleOffsetX}'>
+          <img draggable="false" class='pdf-icon' src='assets/icons/icon-file-pdf.png' [ngStyle]='{"opacity": dragOpacity}'
+               alt='PDF file format' loading='lazy'>
+          <span>{{'flow.deposit.acquisition.label.dragHere'|translate}}</span>
+          <span>{{'flow.deposit.acquisition.label.yourPdf'|translate}}</span>
+        </div>
+        <div class='title-wrapper'
+             [ngStyle]='{"opacity": dragOpacity, "right": buttonOffsetX}'>
+          <span class='or'>{{'flow.deposit.acquisition.label.or'|translate}}</span>
+          <button class='btn-upload'
+                  (click)='fileUpload.click()'>{{'flow.deposit.acquisition.label.uploadButton'|translate}}</button>
+        </div>
+      </div>
+
+      <!-- AFTER UPLOAD FILE -->
+      <div class='upload-container'>
+        <div class='drag-file-info ready-upload'>
+          <div class='wrapper' [class.d-none]='isUploading$ | async'>
+            <img draggable="false" class='upload-icon' [class.visible-icon]='isUploaded$ | async' src='assets/icons/upload.svg'
+                 alt='PDF file format' loading='lazy'>
+            <span
+              [ngClass]='{"d-block": isUploaded$ | async}'>{{'flow.deposit.acquisition.label.dragHere'|translate}}</span>
+            <span
+              [ngClass]='{"d-block": isUploaded$ | async}'>{{'flow.deposit.acquisition.label.yourPdf'|translate}}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="limitUploadFileSize$|async as sizeLimit" [class.invisible-container]='isUploading$.value || isLoadProgress$.value'>
+    <p class="text-center pt-4 limit-file-size-info"> {{'flow.deposit.acquisition.label.limitUploadFileSize'|translate: {sizeLimit: getLimitSize(sizeLimit)} }}</p>
+  </div>
+
+  <input class='hidden' accept='.pdf' (change)='onFileSelected($event)' type='file' #fileUpload />
+
+</div>

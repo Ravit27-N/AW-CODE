@@ -1,0 +1,6 @@
+<ng-container *ngIf="signature$|async as signature">
+  <div class='pt-5 grid gap-x-4 gap-y-4 grid-cols-2' [class.hidden]="!signature">
+    <div class='label'> {{'background.messages.signature'|translate}}</div>
+    <div class='value'>{{ signature }}</div>
+  </div>
+</ng-container>

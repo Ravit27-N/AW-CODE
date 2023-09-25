@@ -1,0 +1,3509 @@
+{
+  "router_loading": {
+    "title": "Error",
+    "message": "Fail to access to this feature",
+    "cancel": "Cancel",
+    "confirm": "OK"
+  },
+  "cannotAccess": "You have no privilege to proceed with this process!",
+  "cxmTemplate": {
+    "cannotModify": "You have no privilege to proceed with this process!",
+    "emailingTemplate": {
+      "headerTitle": "Design an emailing",
+      "create": {
+        "createButton": "Create a new template",
+        "cardTitle": {
+          "parameterTitle": "Creation of a model",
+          "summaryTitle": "Summary",
+          "compositionTitle": "Composition of a model"
+        },
+        "parameter": {
+          "propertiesModel": {
+            "title": "Properties",
+            "modelName": {
+              "label": "Name of model*",
+              "placeholder": "MODEL TEST",
+              "required": "This field is required !",
+              "maxLength": "This field must be smaller or equal to 128 characters !",
+              "isExist": "The model name already exists !",
+              "notValid": "Please enter a valid model name !"
+            },
+            "subjectMail": {
+              "label": "Subject of mail*",
+              "placeholder": "",
+              "required": "This field is required !",
+              "maxLength": "This field must be smaller or equal to 128 characters !",
+              "isValid": "Please enter a valid subject mail !",
+              "isMatched": "Subject mail does not match with the variable fields !"
+            },
+            "senderEmail": {
+              "label": "Email of the sender*",
+              "placeholder": "",
+              "required": "This field is required !",
+              "maxLength": "This field must be smaller or equal to 128 characters !",
+              "isValid": "Please enter a valid mail !"
+            },
+            "senderName": {
+              "label": "Name of the sender*",
+              "placeholder": "",
+              "required": "This field is required !"
+            },
+            "unsubscribeLink": {
+              "label": "Unsubscribe link",
+              "placeholder": "mailto:se.desabonner@tessi.fr",
+              "required": "This field is required !",
+              "isValid": "Please enter a valid UnSubscribeLink (URL or mailto:test@gmail.com) !"
+            }
+          },
+          "variableField": {
+            "title": "Variable fields",
+            "description": "The variable fields use to link with the column headers of the CSV file, and it is used as input when sending an email using this template. The name defined must correspond to the label of the associated column. The declared fields will be available in the template design as dynamic data.",
+            "empty": "This field cannot be empty!",
+            "defaultValue": "Variable field must contains at least a value equal to email or mail !",
+            "duplicate": "This variable already exists !",
+            "required": "This field cannot be empty !",
+            "delete": "This variable field is used in the composition. Its deletion is impossible!"
+          },
+          "grapeJs": {
+            "unSubscribePage": "Unsubscribe page",
+            "mirrorPage": "Mirror page",
+            "removeAssetSuccess": "The asset was removed successfully.",
+            "removeAssetFail": "Fail to remove the asset!"
+          }
+        },
+        "summary": {
+          "label": {
+            "modelName": "Name of model",
+            "subjectMail": "Subject of mail",
+            "senderEmail": "Email of the sender",
+            "senderName": "Name of the sender",
+            "unsubscribeLink": "Unsubscribe link",
+            "variableFields": "Variable fields"
+          },
+          "required": "This field is required !"
+        },
+        "dialog": {
+          "title": "Warning",
+          "body": "Error, failed to create model !"
+        }
+      },
+      "update": {
+        "cardTitle": {
+          "parameterTitle": "Update of a model",
+          "summaryTitle": "Summary",
+          "compositionTitle": "Composition of a model"
+        },
+        "label": {}
+      },
+      "list": {
+        "button": {
+          "createModel": "Create a model"
+        },
+        "title": "emailing templates",
+        "smsTitle": "SMS templates",
+        "subtitle": "Design and manage your own templates"
+      },
+      "sideBar": [
+        {
+          "icon": "settings",
+          "text": "Parameters",
+          "link": "feature-create-email-template"
+        },
+        {
+          "icon": "edit",
+          "text": "Composition",
+          "link": "feature-edit-email-template"
+        },
+        {
+          "icon": "description",
+          "text": "Summary",
+          "link": "feature-summary-email-template"
+        }
+      ],
+      "button": {
+        "accessComposition": "Access to the composition"
+      }
+    },
+    "smsEditor": {
+      "maxLength": "This field must be smaller or equal to 612 characters !"
+    }
+  },
+  "template": {
+    "filterType": {
+      "filterBy": "Filter by :",
+      "modelType": "Model Type"
+    },
+    "template_type": {
+      "default": "Type",
+      "emailing": "Emailing",
+      "direct_mail": "Direct mail",
+      "sms": "Sms"
+    },
+    "source": "Any",
+    "sort_by": {
+      "label": "Sort by",
+      "name": "Name",
+      "modelName": "Name",
+      "created_at": "Creation Date",
+      "lastModified": "Date",
+      "asc": "Ascendant",
+      "desc": "Descendant",
+      "lastestAdd": "Last added"
+    },
+    "card": {
+      "editButton": "Edit",
+      "selectButton": "Select",
+      "overviewButton": "Overview",
+      "option": {
+        "edit": "Modify",
+        "duplicate": "Duplicate",
+        "downloadHtml": "Download format",
+        "modify": "Modify",
+        "delete": "Remove",
+        "select": "Select",
+        "visible": "View"
+      }
+    },
+    "popup": {
+      "create": {
+        "title": "Choose a name for your new model",
+        "form": {
+          "modelName": "Name of the model",
+          "modelType": "Model type :",
+          "source": "Source :",
+          "input": {
+            "type": "Type",
+            "emailing": "Emailing",
+            "direct_mail": "Direct mail",
+            "sms": "Sms"
+          },
+          "actionButton": {
+            "cancel": "Cancel",
+            "create": "Create"
+          }
+        }
+      },
+      "errors": {
+        "duplicatedModelName": "A template with this name already exists. Define a unique name.",
+        "modelNameRequired": "Enter a model name.",
+        "modelNameLimitCharacter": "The model name can have only 128 characters",
+        "modelTypeRequired": "The model type cannot be empty!",
+        "maxLength": "A template must be less than or equal to 128 characters."
+      }
+    },
+    "variableForm": {
+      "title": "Variable fields :",
+      "subTitle": "The order of the variable fields must correspond to that of the CSV file that will be imported when the campaign is set up.",
+      "btnAdd": "Add a variable field",
+      "description": "Please select and drag the fields to order them",
+      "btnSubmit": "Register"
+    },
+    "sms": {
+      "sms_template_header_title": "SMS template",
+      "email_template_header_title": "Email template",
+      "sms_template_form_label_name": "Name of the model :",
+      "sms_template_form_label_var": "Variable fields :",
+      "sms_template_button_register": "Register",
+      "sms_template_button_return": "Back",
+      "sms_add_var": "Add field",
+      "sms_char_counter": "Number of characters :",
+      "sms_tab_conception": "Design",
+      "sms_tab_preview": "Preview",
+      "sms_menu_context_vars": "Variable fields",
+      "sms_template_back_warning_title": "Quit without saving?",
+      "sms_template_back_warning_message": "Warning, your design has not been saved and will be lost.",
+      "sms_template_back_warning_okButton": "Quit",
+      "sms_template_back_warning_cancelButton": "Cancel"
+    },
+    "message": {
+      "createdSuccess": "The design has been saved.",
+      "updatedSuccess": "The design has been saved",
+      "createError": "The template cannot be create",
+      "updateError": "The template cannot be update",
+      "maxLength": "The variable field must be smaller or equal to 128 characters.",
+      "variableEmpty": "The variable field cannot be empty",
+      "variableDuplicate": "This variable field already exists",
+      "smsRequiredVariable": "The template must contain at least one variable field \"{}\"",
+      "emailingRequiredVariable": "The template must contain at least one variable field \"{}\"",
+      "variableAlreadyUsed": "This variable field is used in the design, it cannot be deleted.",
+      "unknownError": "Impossible to execute the action.",
+      "userAccessDenied": "",
+      "unauthorizeAccess": "The template does not exist.",
+      "unauthorize": "Unauthorized access",
+      "unauthorizeLeave": "Leave",
+      "unauthorizeCancel": "Cancel",
+      "campaignNotFound": "The campaign does not exist",
+      "notFoundTemplateTitle": "Not found",
+      "notFoundMessage": "This model does not exist.",
+      "unauthorizedRemoveAsset": "You don't have permission to proceed with this process.",
+      "removeAssetFail": "Fail to remove asset composition."
+    },
+    "words": {
+      "copy": "Copy"
+    },
+    "template_success_page": {
+      "or": "or",
+      "title": "Your template is saved!",
+      "subtitle": "It will be available when setting up a campaign.",
+      "alterButton": "View my templates",
+      "mainButton": "Create email campaign",
+      "mainButton2": "Create SMS campaign",
+      "subcontent_title": "Can I modify this template?",
+      "subcontent_line1": "Once saved in the templates, you can modify it from the:",
+      "subcontent_line2": "Templates > Emailing",
+      "subcontent_line4": "Templates > SMS",
+      "subcontent_line3": "Be sure to save the changes so they can be applied to your next campaigns. Please note that updating a template will not impact campaigns that already use that template."
+    }
+  },
+  "campaign": {
+    "status": {
+      "pending": "Pending",
+      "scheduling": "Scheduling",
+      "in_progress": "In Progress",
+      "delivered": "Delivered",
+      "canceled": "Canceled"
+    },
+    "mode": {
+      "manual": "Manual",
+      "automated": "Automatic"
+    },
+    "type": {
+      "sms": "SMS",
+      "email": "EMAIL"
+    }
+  },
+  "cxmCampaign": {
+    "followMyCampaign": {
+      "smsHeaderTitle": "SMS campaign",
+      "emailHeaderTitle": "Email campaign",
+      "campaignTitle": "Campaigns",
+      "headerTitle": "Campaign Monitoring",
+      "campaignHeader": "CAMPAIGNS",
+      "campaignSubheader": "Please select the type of campaign",
+      "campaignListSubHeader": "View the list of campaigns to send",
+      "select_campaignSubheader": "Select the template of your choice",
+      "import_campaign_subheader": "Please select the import mode of the recipients",
+      "imported_campaign_header": "Please check the list of recipients of the file",
+      "limitSizeLoadFailed": "Failed to load maximum upload file size",
+      "limitUploadFileSizeInfo": "Accepted formats: .csv (maximum size",
+      "list": {
+        "title": "List of campaigns",
+        "buttonCreateCampaign": "Create a campaign",
+        "tableHeader": {
+          "creationDate": "Creation date",
+          "name": "Name",
+          "model": "Model",
+          "status": "Status",
+          "dateOfStatus": "Date of status",
+          "percentage": "%",
+          "actions": "Actions",
+          "notFound": "No match found",
+          "type": "Type",
+          "channel": "Channel",
+          "category": "Category",
+          "mode": "MODE",
+          "edit": "Modify",
+          "download": "Download the file",
+          "cancel": "Cancel",
+          "delete": "Delete"
+        },
+        "filterComponent": {
+          "defaultTitle": "Filter",
+          "newTitle": "Branch",
+          "label": {
+            "mode": "Mode",
+            "reset": "Reset",
+            "manual": "Manual",
+            "manuel": "Manual",
+            "automated": "Automated",
+            "category": "Category",
+            "email": "Emailing",
+            "sms": "SMS"
+          }
+        },
+        "downloadCsv": {
+          "message": {
+            "success": "The file has been downloaded successfully",
+            "fail": "The file could not be downloaded"
+          }
+        },
+        "message": {
+          "failToFetchData": "Fail to fetch data!"
+        }
+      },
+      "cancelEmailCampaignPopUp": {
+        "header": "Delete the draft?",
+        "message": "Are you sure you want to delete the draft? This action is irreversible.",
+        "cancelButton": "Cancel",
+        "confirmButton": "Delete",
+        "successMessage": "The campaign status was updated.",
+        "errorMessage": "The Campaign status cannot updated."
+      },
+      "destinationEmailCampaignPopUp": {
+        "tableHeader": {
+          "contact": "Contact"
+        },
+        "notFound": "Destination contact of campaign not found.",
+        "remove_campaign_file": "Remove the file?",
+        "remove_campaign_info": "Are you sure you want to cancel the campaign upload? You will be redirected to the upload a file step.",
+        "remove_campaign_cancel": "Cancel",
+        "remove_campaign_ok": "Remove the campaign",
+        "title_file_container_error": "The file has {{invalidCount}} error(s)",
+        "message_file_container_error": "Do you wish to continue? When proceeding to the next step, the lines in error will be ignored.",
+        "action_continue": "Continue the campaign"
+      },
+      "detail": {
+        "title": "Detail of a campaign : ",
+        "label": {
+          "campaignName": "Name of the campaign ",
+          "status": "Status",
+          "statusDate": "Status date",
+          "creationDate": "Creation date",
+          "createdBy": "Created by",
+          "numberOfShipment": "Number of sendings",
+          "sendingTime": "Date / time of sendings",
+          "sent": "Open",
+          "clicked": "Clicked",
+          "errors": "Errors",
+          "spam": "Spam"
+        },
+        "button": {
+          "seeMail": "View mail",
+          "viewContract": "View contracts",
+          "viewSms": "View sms"
+        }
+      },
+      "choiceOfModel": {
+        "header": "Please select the model for your campaign:",
+        "titleUpdate": "Update of a campaign (1/4): choice of model",
+        "title": "Creation of a campaign (1/4): choice of model",
+        "description": "Please select the template for your campaign :",
+        "message": {
+          "withoutSelectTemplate": "Please select a template."
+        }
+      },
+      "settingParameter": {
+        "subHeader": "Please fill in the parameters of your campaign",
+        "titleUpdate": "Update of a campaign (2/4): Definition of parameters",
+        "title": "Creation of a campaign (2/4): Definition of parameters",
+        "linkEdit": "Edit template settings",
+        "selectedModel": {
+          "label": "Selected model*:",
+          "placeholder": ""
+        },
+        "campaignName": {
+          "label": "Campaign Name:",
+          "placeholder": "Enter a campaign name",
+          "maxLength": "This field must be smaller or equal to 128 characters!"
+        },
+        "subjectMail": {
+          "label": "Subject mail :",
+          "placeholder": "Insert the subject of the email",
+          "defaultSelect": "Insert a variable",
+          "maxLength": "This field must be smaller or equal to 128 characters!"
+        },
+        "senderEmail": {
+          "label": "Sender email :",
+          "placeholder": "tessipost@tessi.fr",
+          "invalid": "Please, enter a valid email!"
+        },
+        "senderName": {
+          "label": "Sender name :",
+          "smsLabel": "Sender label",
+          "placeholder": "The Tessi team"
+        },
+        "smsSenderName": {
+          "label": "Sender label :",
+          "smsLabel": "Sender label",
+          "placeholder": "The Tessi team"
+        },
+        "unsubscribeLink": {
+          "label": "Unsubscribe link :",
+          "placeholder": "The Tessi team",
+          "invalid": "Please, enter a valid unsubscribe link!",
+          "messageInfo": "Example: \"mailto:p.dupont@example.com\", or \"https://www.example.com\""
+        },
+        "sendingSchedule": {
+          "label": "Sending schedule :",
+          "placeholder": ""
+        },
+        "actionButton": {
+          "previous": "Previous",
+          "next": "Next"
+        },
+        "attachment": {
+          "label": "Attachment(s) :",
+          "description": "Maximum total weight 5Mb",
+          "validation": {
+            "fileLimit": "Download error. The allowed limit is 4 attachments.",
+            "fileSize": "Download error. The total size of all attachments cannot exceed 5 MB.",
+            "fileExtension": "Download error. Only Pdf, Word, Excel, Zip or Images files are allowed.",
+            "fileDuplicate": "Download error. A file with the same name already exists."
+          },
+          "message": {
+            "uploadFail": "Failed to upload file."
+          }
+        },
+        "validation": {
+          "required": "This field is required",
+          "maxLength": "This field must be smaller or equal to 128 characters!"
+        }
+      },
+      "summaryEmailTemplateDetailPopUp": {
+        "header": "View model",
+        "modelName": "Model name: ",
+        "variableField": "Variable fields: ",
+        "title": "Template preview",
+        "closeButton": "Close"
+      },
+      "recipientSelection": {
+        "titleUpdate": "Update of a campaign (3/4): recipients",
+        "title": "Creation of a campaign (3/4): recipients",
+        "checkBox": "Check if files contain the header",
+        "tableHeader": {
+          "email": "Email",
+          "lastName": "Last name",
+          "firstName": "First name",
+          "amount": "Amount"
+        },
+        "nRejectPopUp": {
+          "addressReject": "address rejected : ",
+          "line": "lines ",
+          "leaveButton": "Leave"
+        },
+        "messageText": {
+          "success": "The file conforms to the variables defined in the model.",
+          "error": "The file does not conform to the variables defined in the template."
+        },
+        "fileException": {
+          "readError": "Error is occurred while reading file!",
+          "format": "Can not open the file because the file format or file extension is not valid",
+          "invalidContent": "The csv does not have content value, please insert them before import.",
+          "uploaded": "The file ${file.name} has been saved.",
+          "observableError": "Quelque chose d'horrible est arrivé; Veuillez réessayer plus tard.",
+          "occurred": "Une erreur s'est produite :",
+          "fileSize": "Uploading file ${file.name} of size ${file.size}.",
+          "surprising": "File ${file.name} surprising upload event:"
+        },
+        "totalDestinations": "Total ${totalItems} destinations found."
+      },
+      "generateEmail": {
+        "subHeader": "Please check the fields below and schedule the shipment.",
+        "title": "Synthesis",
+        "label": {
+          "selectedModel": "Selected model: ",
+          "campaignName": "Name of campaign: ",
+          "fileName": "Filename: ",
+          "subjectMail": "Subject mail: ",
+          "sender": "Sender: ",
+          "sendingSchedule": "Sending schedule: ",
+          "programmingSending": "Schedule the shipment",
+          "recipient": {
+            "text": "Recipients: ",
+            "value": "destinations loaded from file",
+            "recipientCount": "{{recipientCount}} recipients"
+          },
+          "variableForm": {
+            "title": "Send a proof",
+            "subTitle": "Recipients of the test emails (5 recipients maximum)",
+            "btnAdd": "+ Add an email address",
+            "placeholder": "exemple@email.com",
+            "smsSubTitle": "Recipients of the test SMS (5 recipients maximum)",
+            "smsBtnAdd": "+ Add a SMS address",
+            "messageSmsInfo": "You can send a ready sms template to the recipients of your choice by entering their telephone numbers below.",
+            "messageEmailInfo": "You can send a ready email template to the recipients of your choice by entering their email addresses below."
+          },
+          "bat": {
+            "label": "Generate proof:",
+            "button": "Send a proof"
+          },
+          "preview": "Preview with the data of the 1st recipient"
+        },
+        "dialog": {
+          "cardTitle": "Send one B.A.T.",
+          "title": "List of destinators",
+          "description": "Variable fields are powered with the data of the first recipient.",
+          "smsDescription": "The variable fields will be fed with the data of the first recipient.",
+          "cancel": "Cancel",
+          "send": "Send test",
+          "add": "Add address",
+          "addPhoneNumber": "Add number",
+          "message": {
+            "success": "Email(s) has been sent successfully.",
+            "successes": "Email(s) has been sent successfully.",
+            "fail": "Email(s) has not been sent!",
+            "fails": "Email(s) has not been sent!",
+            "warning": "All mandatory fields are not filled in.",
+            "required": "Please enter a valid email address",
+            "phoneRequired": "Please enter a valid telephone number",
+            "invalidPhoneNumber": "Please enter a valid telephone number",
+            "atLeastOnNumber": "A telephone number must be filled in to send a BAT.",
+            "inValid": "Please enter a valid email address.",
+            "empty": "At least have an email address!",
+            "smsSuccess": "SMS(s) has been sent successfully.",
+            "smsSuccesses": "SMS(s) has been sent successfully.",
+            "smsFail": "The SMS has not been sent.",
+            "smsFails": "SMS(s) has not been sent.",
+            "duplicate": "This recipient is already filled in."
+          }
+        },
+        "button": {
+          "send": "Send",
+          "sendTest": "Send test",
+          "preview": "Preview",
+          "validate": "Validate",
+          "previous": "Previous"
+        },
+        "message": {
+          "createSuccess": "The campaign has been saved successfully.",
+          "createFail": "The campaign has not been saved!",
+          "updateSuccess": "The campaign has been updated successfully.",
+          "updateFail": "The campaign has not been updated!"
+        }
+      },
+      "button": {
+        "createCampaign": "Create a campaign",
+        "viewMail": "View the email",
+        "viewContact": "View contacts",
+        "browse": "Browse"
+      },
+      "tooltip": {
+        "must_format_csv": "The file to import must be in CSV format.",
+        "must_match_size_csv": "The number and order of columns in the .csv file must match the variable fields defined in the template.",
+        "import_suggestion": "We recommend that you only import contact files for which you know the source. Running campaigns on non-validated addresses can lower your deliverability rate.",
+        "import_var": "The variable fields of the model can be used surrounded by the characters \"{\" and \"}\" in this area.",
+        "paramter_tooltop_vars": "The variable fields of the model can be used surrounded by the characters \"{\" and \"}\" in this area."
+      },
+      "label_email_destination": "Recipients",
+      "label_email_destination_count": "{{count}} recipient(s)",
+      "form_select_file": "File in .csv format",
+      "form_button_upload": "Browse",
+      "form_ckb_check_header": "Ignore the first line of <span tessi-g-span>header</span>.",
+      "form_ckb_remove_same_mail": "Delete <span tessi-g-span>duplicates</span> from the « Email » field",
+      "form_ckb_remove_same_telephone": "Delete <span tessi-g-span>duplicates</span> from the « Telephone number » field",
+      "form_button_prev": "Previous",
+      "form_button_next": "Next",
+      "form_button_continue": "Continue",
+      "form_button_plan": "Plan",
+      "form_button_back_download": "Upload a new file",
+      "form_drop_csv_here": "your .csv file",
+      "csv_fail_reupload": "Please proceed with a new upload.",
+      "csv_tooltop_success": "The CSV file is correctly added",
+      "csv_tooltop_fail": "The .csv file contains more or less columns than expected.",
+      "csv_container_column_not_expected": "The .csv file does not contain the expected number of columns.",
+      "csv_contain_more_column_tooltip": "The .csv file contains more columns than the expected number.",
+      "csv_contain_fewer_column_tooltip": "The .csv file contains fewer columns than expected.",
+      "at_least_one_recipient_with_a_valid_email": "Please import a file with at least one recipient with a valid email address.",
+      "import_compliant_file_message": "Please import a compliant file.",
+      "file_not_csv_tooltip": "The imported file is not a csv file.",
+      "import_file_in_csv_format_message": "The imported file is not in CSV format.",
+      "import_file_in_csv_empty_records": "The imported file is empty.",
+      "csv_file_no_valid_line_tooltip": "The imported file has no valid line (no recipient).",
+      "import_file_at_least_one_recipient_message": "Please import a file with at least one recipient with a valid email address.",
+      "import_file_upload_fail": "Upload error",
+      "imported_file_has_error_line": "See below <span tessi-b-span>{{invalidCount}} error(s)</span> to correct in your .csv file",
+      "imported_file_has_error": "The .csv file has {{invalidCount}} error(s)",
+      "imported_file_has_error_instruction": "Upload a new corrected file or continue creating the campaign ignoring errors.<br/>(Recipients in error will be ignored)",
+      "imported_file_success": "Your .csv file is successfully imported",
+      "csv_table_col_etat": "State",
+      "csv_table_col_line": "Line",
+      "stepper": {
+        "model": "Choice of model",
+        "destination": "Recipients",
+        "parameter": "Parameters",
+        "sending": "Test & Planning"
+      },
+      "lockable-form": {
+        "popup": {
+          "message": {
+            "heading": "Campaign not finalised",
+            "message": "Are you sure you want to leave?\nThe campaign will be saved as \"Draft\" and you can finalise it later.",
+            "cancelBtn": "Cancel",
+            "confirmBtn": "Quit"
+          }
+        }
+      },
+      "import_sms_instruction": "The number and order of columns in your .csv file should match the variable fields defined in the template. We recommend that you only import contact files that you know the source and that have validated numbers to ensure optimal deliverability.",
+      "import_email_instruction": "The number and order of columns in your .csv file must match the variable fields defined in the template. We recommend that you only import contact files that you know the source of and have validated addresses to ensure optimal deliverability.",
+      "import_manuel": "MANUAL",
+      "import_action": "Actions on the file",
+      "email_invalid": "Invalid email address",
+      "sms_invalid": "Invalid phone number",
+      "campaign_success_page": {
+        "or": "or",
+        "title": "Your campaign is planned!",
+        "subtitle": "Find all the information about your campaign at any time in the follow-up section.",
+        "alterButton": "Create a new campaign",
+        "mainButton": "Track my campaigns"
+      }
+    },
+    "manageMyCampaign": {
+      "headerTitle": "Manage my campaigns",
+      "choiceOfModel": {
+        "title": "Creation of a campaign (1/4): choice of model"
+      },
+      "settingParameter": {
+        "title": "Creation of a campaign (2/4): Definition of parameters",
+        "linkEdit": "Edit template settings",
+        "selectedModel": {
+          "label": "Selected model",
+          "placeholder": ""
+        },
+        "campaignName": {
+          "label": "Name of the campaign",
+          "placeholder": ""
+        },
+        "subjectMail": {
+          "label": "Subject of mail",
+          "placeholder": ""
+        },
+        "sender": {
+          "label": "Sender",
+          "placeholder": ""
+        },
+        "sendingSchedule": {
+          "label": "Sending schedule",
+          "placeholder": ""
+        }
+      },
+      "recipientSelection": {
+        "title": "Creation of a campaign (3/4): recipients",
+        "tableHeader": {
+          "email": "Email",
+          "lastName": "Last name",
+          "firstName": "First name",
+          "amount": "Amount"
+        }
+      },
+      "generateEmail": {
+        "title": "Creation of a campaign (4/4): Summary",
+        "label": {
+          "selectedModel": "Selected model: ",
+          "subjectMail": "Subject of mail: ",
+          "sender": "Sender: ",
+          "sendingSchedule": "Sending schedule: ",
+          "recipient": "Recipients: ",
+          "bat": "B.A.T."
+        },
+        "dialog": {
+          "cardTitle": "Send one B.A.T.",
+          "title": "List of destinators",
+          "description": "Variable fields are powered with the data of the first recipient."
+        },
+        "button": {
+          "send": "Send",
+          "sendTest": "Send test",
+          "preview": "Preview",
+          "validate": "Validate"
+        }
+      }
+    },
+    "choiceOfModel": {
+      "headerTitle": "Email campaign"
+    },
+    "message": {
+      "unknownError": "Impossible to execute the action.",
+      "unauthorizedTitle": "Unauthorized access",
+      "unauthorizedMessage": "You are not authorized to access this campaign.",
+      "notFoundCampaignDetailTitle": "Not found",
+      "notFoundViewCampaignDetailMessage": "This campaign does not exist.",
+      "unauthorizedLeave": "Leave"
+    }
+  },
+  "button": {
+    "summary": "Summary",
+    "overview": "Overview",
+    "save": "Save",
+    "return": "Return",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "validate": "Validate",
+    "confirmDelete": "Yes, delete it!",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "create": "Create",
+    "modify": "Modifier"
+  },
+  "input": {
+    "placeholder": {
+      "search": "Search"
+    },
+    "tooltip": {
+      "searchNotFound": "No match found"
+    }
+  },
+  "table": {
+    "itemsFounded": "Total ${totalItems} items found",
+    "paginator": {
+      "itemsPerPageLabel": "Results per page: ",
+      "nextPageLabel": "Next page",
+      "previousPageLabel": "Previous page",
+      "ofLabel": "on"
+    }
+  },
+  "dialog": {
+    "cxmTemplate": {
+      "emailTemplate": {
+        "confirmDelete": {
+          "title": "",
+          "body": "Do you confirm the deletion of this template ?"
+        },
+        "composition": {
+          "popUpConfirmation": {
+            "title": "Show Confirmation",
+            "body": "Your changes have not been saved!"
+          }
+        }
+      }
+    }
+  },
+  "menuBars": {
+    "template": {
+      "text": "Template",
+      "link": "cxm-template",
+      "access": "cxm_template",
+      "activeMenu": "cxm-template",
+      "subMenu": [
+        {
+          "text": "Email",
+          "link": "/cxm-template/design-model/feature-list-email-template/email",
+          "access": "cxm_template_list"
+        },
+        {
+          "text": "SMS",
+          "link": "/cxm-template/design-model/feature-list-email-template/sms",
+          "access": "cxm_sms_template_list"
+        }
+      ]
+    },
+    "deposits": {
+      "text": "Shipments",
+      "link": "cxm-deposit",
+      "access": "",
+      "activeMenu": "cxm-deposit, cxm-campaign, cxm-flow-traceability/espace",
+      "subMenu": [
+        {
+          "text": "From a PDF file",
+          "link": "/cxm-deposit/list",
+          "access": "cxm_flow_deposit"
+        },
+        {
+          "text": "From a model",
+          "link": "/cxm-campaign/follow-my-campaign/campaign-list",
+          "access": "cxm_campaign_list,cxm_sms_campaign_list"
+        },
+        {
+          "text": "Interactive communication",
+          "link": "/cxm-deposit/communication-interactive",
+          "access": "cxm_communication_interactive,cxm_communication_interactive_list"
+        },
+        {
+          "text": "Validation area",
+          "link": "/cxm-flow-traceability/espace",
+          "access": "cxm_espace_validation_list"
+        }
+      ]
+    },
+    "suivis": {
+      "text": "Monitoring",
+      "link": "cxm-flow-traceability/list",
+      "access": "/cxm_flow_traceability_list, cxm_flow_traceability_view_document",
+      "activeMenu": "cxm-flow-traceability",
+      "inActiveMenu": "cxm-flow-traceability/espace"
+    },
+    "analytics": {
+      "text": "Statistics",
+      "link": "/cxm-analytics",
+      "access": "cxm_statistic_report_generate_statistic",
+      "activeMenu": "cxm-analytics",
+      "inActiveMenu": "cxm-analytics/dashboard"
+    },
+    "parameters": {
+      "text": "Settings",
+      "link": "",
+      "access": "",
+      "activeMenu": "cxm-directory, cxm-profile, cxm-setting",
+      "subMenu": [
+        {
+          "text": "Profiles",
+          "link": "/cxm-profile/list-profiles",
+          "access": "cxm_user_management_list_profile",
+          "isAdmin": "true"
+        },
+        {
+          "text": "Users",
+          "link": "/cxm-profile/users/list-user",
+          "access": "cxm_user_management_list_user",
+          "isAdmin": "true"
+        },
+        {
+          "text": "Clients",
+          "link": "/cxm-profile/client/list",
+          "access": "cxm_client_management_list",
+          "isAdmin": "true"
+        },
+        {
+          "text": "References Envelopes",
+          "link": "/cxm-profile/enveloppes/list",
+          "access": "cxm_setting_up_consumables_list",
+          "isAdmin": "true"
+        },
+        {
+          "text": "Resources",
+          "link": "/cxm-setting",
+          "access": "cxm_management_library_resource_list"
+        },
+        {
+          "text": "Definition directory",
+          "link": "/cxm-directory/list-definition-directory",
+          "access": "cxm_directory_definition_list_directory",
+          "isAdmin": "true"
+        },
+        {
+          "text": "Directory feed",
+          "link": "/cxm-directory/directory-feed",
+          "access": "cxm_directory_feed_list_directory",
+          "isAdmin": "true"
+        },
+        {
+          "text": "Manage feeds",
+          "link": "",
+          "access": ""
+        },
+        {
+          "text": "Set up document templates",
+          "link": "",
+          "access": ""
+        },
+        {
+          "text": "Configure composition",
+          "link": "",
+          "access": ""
+        },
+        {
+          "text": "Set up production",
+          "link": "",
+          "access": ""
+        },
+        {
+          "text": "Set up pre-invoicing",
+          "link": "",
+          "access": ""
+        },
+        {
+          "text": "Download virtual printer",
+          "link": "",
+          "access": ""
+        },
+        {
+          "text": "Envelope Reference",
+          "link": "/cxm-setting/envelope-references/list",
+          "access": "cxm_management_library_resource_list"
+        }
+      ]
+    }
+  },
+  "footerLogin": {
+    "left": [
+      {
+        "text": "© 2022 Tessi - All rights reserved - Version $version$",
+        "link": "/about"
+      }
+    ],
+    "right": [
+      {
+        "text": "Cookie Management Policy",
+        "link": ""
+      }
+    ]
+  },
+  "footerAll": {
+    "left": [
+      {
+        "text": "© 2022 Tessi - All rights reserved - Version $version$",
+        "link": "/about"
+      }
+    ],
+    "right": [
+      {
+        "text": "Personal Data Policy",
+        "link": "",
+        "download": true
+      },
+      {
+        "text": "Cookie Management Policy",
+        "link": ""
+      }
+    ]
+  },
+  "errorCases": {
+    "messages": {
+      "notBeenSaved": "Your changes have not been saved. If you wish to proceed it will be lost.",
+      "noMatchFound": "No match found.",
+      "required": "All required fields are not filled in.",
+      "cannotBePerformed": "This variable field is used in the publication. Its removal is impossible.",
+      "invalidProperties": "There is an invalid input in the properties",
+      "cannotIdentifyDocument": "The document model for this flow could not be identified."
+    },
+    "cxmTemplate": {
+      "emailTemplate": {
+        "saveSuccess": "The model has been saved.",
+        "updateSuccess": "The model has been updated.",
+        "deleteSuccess": "Model {{modelName}} has been deleted.",
+        "deleteFail": "Unable to perform the action.",
+        "loadFail": "Impossible d'exécuter l'action.",
+        "composition": {
+          "saveSuccess": "The model composition has been saved.",
+          "notSuccess": "Error, failed to save the model composition!",
+          "uploadAssetSuccess": "An asset was upload successfully.",
+          "uploadAssetFail": "An asset has been uploaded fail!",
+          "removeAssetSuccess": "An asset has been removed successfully.",
+          "removeAssetFail": "An asset has been removed fail!"
+        }
+      }
+    }
+  },
+  "login": {
+    "label": "Login",
+    "form": {
+      "username": {
+        "placeholder": "Example@mail.com",
+        "label": "Email address:",
+        "error": "Please enter an email address",
+        "required": "Please enter your email address",
+        "invalid": "Please enter a valid email address",
+        "notexisted": "Incorrect email address and/or password(s)",
+        "blockedaccount": "Compte bloqué"
+      },
+      "password": {
+        "placeholder": "",
+        "label": "Password",
+        "error": "Please enter a password",
+        "required": "Please enter your password",
+        "invalid": "Incorrect password. Try again or click on \"Forgot Password\" to reset it"
+      },
+      "forgotPassword": "Forgot your password?"
+    },
+    "information": {
+      "descriptionTitle": "Welcome",
+      "description": "Until now, when implementing micro-frontends, you had to dig a little into the bag of tricks. One reason is sure that current build tools and frameworks do not know this concept. Module Federation initiates a change of course here."
+    },
+    "button": {
+      "login": "Login",
+      "logout": "Logout"
+    },
+    "message": {
+      "loginSuccess": "Login Success!",
+      "invalidUsernameOrPassword": "Invalid Username or Password !"
+    },
+    "userInfo": {
+      "profile": "Profile"
+    },
+    "loadProfileFail": "Unable to connect service gateway!"
+  },
+  "flowTraceability": {
+    "table": {
+      "header": {
+        "dateDeposit": "Date deposit",
+        "modeDeposit": "Mode",
+        "flowName": "Flow name",
+        "user": "User",
+        "channelType": "Channel",
+        "serviceName": "Service",
+        "shipmentFilter": "Sub-Channel",
+        "treatmentStatus": "Processing Status",
+        "status": "Status",
+        "dateStatus": "Status Date",
+        "actions": "Actions",
+        "category": "Category",
+        "channel": "Channel",
+        "createdAt": "Date of creation",
+        "notFound": "No match found",
+        "modelName": "Model"
+      },
+      "notFound": "No match found!",
+      "criteriaNotFound": "No data",
+      "criteriaResultZero": "Results: 0",
+      "filter": {
+        "postal": "Postal",
+        "digital": "Digital",
+        "faculty": "Faculty",
+        "flux": "Flux",
+        "date": "Dates",
+        "depositeStart": "Deposit between",
+        "depositeEnd": "and",
+        "statusStart": "Status between",
+        "statusEnd": "and",
+        "user": "User",
+        "search": "Search",
+        "channel": "Channel",
+        "status": "Status",
+        "reset": "Reset",
+        "depositMode": "Deposit method",
+        "depositModeTitle": "Deposit mode",
+        "calender": "Calender",
+        "apply": "Apply"
+      },
+      "action": {
+        "edit": "Modify",
+        "delete": "Cancel",
+        "download": "Download the file",
+        "view": "See shipments"
+      }
+    },
+    "confirmationPopUp": {
+      "cancelButton": "Cancel",
+      "confirmButton": "Confirm",
+      "title": "Change Status",
+      "cancelledBody": "You are about to remove the further processing of this flow",
+      "returnOfDeposit": "Confirm deposit return",
+      "depositValidateBody": "You are about to return to the deposit interface",
+      "message": {
+        "cancelSuccess": "The flow has been canceled.",
+        "cancelFail": "Failed to cancel the flow.",
+        "validateSuccess": "The flow has been validated",
+        "validateFail": "Failed to validate the flow."
+      }
+    },
+    "tab": {
+      "flowTraceability": "Flow traceability",
+      "documentTraceability": "Document traceability",
+      "documentDetail": "Document detail"
+    },
+    "switchTab": {
+      "flowTraceability": "Batch shipments",
+      "flowDocument": "Individual shipments",
+      "export-suivi-csv":"Export data"
+    },
+    "history": {
+      "table": {
+        "status": "Status",
+        "event": "Event",
+        "user": "User",
+        "server": "Server",
+        "date": "Date/hours"
+      },
+      "notfound": "No events"
+    },
+    "documentTraceability": {
+      "table": {
+        "header": {
+          "document": "Document",
+          "lot": "N˚ lot",
+          "dateCreated": "Date created",
+          "nbpage": "Nb pages",
+          "nbfilter": "Nb sheets",
+          "subchannel": {
+            "value1": "Channel ",
+            "value2": "(and sub-channel)"
+          },
+          "destination": "Recipient",
+          "status": "Status",
+          "statusDate": "Date status",
+          "substate": "Sub-status",
+          "element": "Associated elements",
+          "action": "Actions",
+          "channel": "Channel",
+          "category": "Category",
+          "sendingDate": "Sending date"
+        },
+        "action": {
+          "download": "Download the file"
+        },
+        "notFound": "No match found!"
+      },
+      "filter": {
+        "filter": "Sector:",
+        "postal": "Postal",
+        "digital": "Digital",
+        "document": "Document:",
+        "date": "Dates:",
+        "createFrom": "Creation between",
+        "statusFrom": "Status between",
+        "to": "and",
+        "option": {
+          "subchannel": "Sub-sector",
+          "treatment": "Processing status",
+          "substatus": "Sub status"
+        }
+      },
+      "summaryData": {
+        "flux": "Flux name",
+        "filter": "Filter and sub-filter",
+        "analyze": "Analyze",
+        "page": "pages",
+        "done": "folds including",
+        "error": "Error (s)",
+        "bytes": "Bytes",
+        "kb": "Kb",
+        "mb": "Mb",
+        "gb": "Gb",
+        "tb": "Tb"
+      }
+    },
+    "pageTitle": "Tracking area",
+    "subTitlePageHeader": {
+      "listOfFlow": "Consult the list of shipments",
+      "postalFlowHistory": "Detail of the lot",
+      "digitalFlowHistory": "Emailing campaign statistics",
+      "digitalSMSFlowHistory": "SMS campaign statistics",
+      "postalDocumentDetail": "Unit shipment details",
+      "digitalDocumentDetail": "Unit shipment details"
+    }
+  },
+  "flow": {
+    "traceability": {
+      "visitAction": "Consult",
+      "status": {
+        "treatment": "Processing",
+        "default": "Processing status",
+        "deposited": "Deposited",
+        "in_process": "In process",
+        "completed": "Completed",
+        "canceled": "Canceled",
+        "in_error": "Error",
+        "scheduled": "Planned",
+        "to_validate": "To validate",
+        "to_finalize": "Draft",
+        "finalized": "Finalized",
+        "refused": "Refused",
+        "validated": "Validated",
+        "in_progress": "In Progress",
+        "refuse_document": "Refused"
+      },
+      "sub-channel": {
+        "none": "",
+        "multiple": ""
+      },
+      "subChannel": {
+        "default": "Sub-channel",
+        "postal": "",
+        "digital": "",
+        "multiple": ""
+      },
+      "deposit": {
+        "mode": {
+          "default": "Deposit mode",
+          "virtualPrinter": "IV",
+          "iv": "Virtual Printer",
+          "portal": "Portal",
+          "api": "API",
+          "batch": "Batch"
+        },
+        "identification_mode": {
+          "configuration_file": "Configuration file"
+        }
+      },
+      "user": {
+        "default": "Nom"
+      },
+      "service": {
+        "default": "Service"
+      },
+      "channel": {
+        "postal": "Postal",
+        "digital": "Digital",
+        "multiple": "Multiple",
+        "none": ""
+      },
+      "confirmPopups": {
+        "finalizeFlowDeposit": {
+          "title": "Modify the shipment?",
+          "message": "You are about to modify the shipment",
+          "cancelButton": "Cancel",
+          "confirmButton": "Modify the shipment"
+        },
+        "cancelFlow": {
+          "title": "Cancel the shipment?",
+          "message": "Are you sure you want to cancel the shipment",
+          "paragraph": "This action is irreversible",
+          "cancelButton": "Cancel",
+          "confirmButton": "Confirm"
+        }
+      },
+      "message": {
+        "cancelFlowSuccess": "The flow has been canceled.",
+        "cancelFlowFail": "Failed to cancel the flow."
+      }
+    },
+    "history": {
+      "actionButtons": {
+        "viewDocument": "View unit shipments",
+        "edit": "Modify",
+        "exportFile": "Export the file",
+        "cancelFlow": "Cancel",
+        "back": "Back",
+        "referToNonOperator": "Referring to non-operators",
+        "overview_email": "Overview of the email",
+        "overview_sms": "Overview of the SMS",
+        "overview_batch": "Overview of the email",
+        "export": "Export"
+      },
+      "export_csv_success_result": "Your CSV file has been successfully generated",
+      "label": {
+        "history": "History of events",
+        "information": "Information",
+        "deliverabilityRate": "Deliverability rates",
+        "campaignRate": "Campaign rate"
+      },
+      "digitalInformationLabel": {
+        "createdDate": "Creation date",
+        "createdBy": "Created by",
+        "sentDate": "Date sent",
+        "status": "Status",
+        "service": "Service",
+        "division": "Division"
+      },
+      "informationLabel": {
+        "model": "Mode of deposit",
+        "flowType": "Channel",
+        "category": "Category",
+        "createdDate": "Date of creation",
+        "unloadingDate": "Date of unloading",
+        "undetermined": "Undetermined",
+        "unloadingLabel": "(Planned)",
+        "modelName": "Documentary model",
+        "username": "User",
+        "userService": "Service",
+        "status": "Status",
+        "division": "Division"
+      },
+      "flowErrorMessage": {
+        "failToLoadFlowId": "Unable to see flow details",
+        "cancelFail": "Failed to cancel the flow."
+      },
+      "flowSuccessMessage": {
+        "cancelSuccess": "The flow has been canceled."
+      },
+      "status": {
+        "treatment": "<span>Processing</span>",
+        "deposited": "<span>Deposited</span>",
+        "in_error": "<span>Error</span>",
+        "to_validate": "<span>To validate</span>",
+        "validated": "<span>Validated</span>",
+        "to_finalize": "<span>To finalize</span> ",
+        "canceled": "<span>Cancel</span>",
+        "finalized": "<span>Finalized</span>",
+        "scheduled": "<span>Planned</span>",
+        "in_process": "<span>In process</span>",
+        "completed": "<span>Completed</span>",
+        "refused": "<span>Refused</span>",
+        "refuse_document": "<span>Refused</span>"
+      },
+      "eventHistory": {
+        "by": "by",
+        "on": "on",
+        "at": "at",
+        "outOf": "out of"
+      },
+      "confirmCancelDialog": {
+        "title": "Cancel the shipment?",
+        "message": "Are you sure you want to cancel the shipment",
+        "paragraph": "This action is irreversible",
+        "cancelButton": "Cancel",
+        "confirmButton": "Cancel sending"
+      },
+      "confirmCancelCampaignDialog": {
+        "title": "Delete the campaign?",
+        "message": "Are you sure you want to suppress the campaign",
+        "paragraph": "This action is irreversible",
+        "cancelButton": "Cancel",
+        "confirmButton": "Delete the campaign"
+      },
+      "confirmFinalizeDialog": {
+        "title": "Modify the shipment?",
+        "message": "You are about to modify the shipment",
+        "cancelButton": "Cancel",
+        "confirmButton": "Modify the shipment"
+      },
+      "deliveryAbilityRate": {
+        "total_email": "Emails in total",
+        "total_sms": "SMS in total",
+        "total_batch": "Emails in total",
+        "delivered": "Delivered",
+        "email": "emails",
+        "sms": "SMS",
+        "batch": "emails",
+        "block": "Blocked",
+        "temporaryError": "Temporary error",
+        "permanentError": "  Permanent error",
+        "dismissal": "Dismissal",
+        "cancel": "Cancelled",
+        "tooltips": {
+          "sms": {
+            "block": "We identify and block SMS that have no chance to reach the recipient's inbox. inbox of the recipient.",
+            "temporaryError": "A temporary problem has occurred on the destination. These recipients will not be automatically excluded from from future SMS.",
+            "permanentError": "An error occurred while processing the SMS.",
+            "dismissal": "SMS rejected by the by the recipient's server. We will try again to send the email during 24 hours. If the error persists, the SMS will be reported as a temporary temporary error.",
+            "cancelError": "The SMS was cancelled before it was distributed."
+          },
+          "email": {
+            "block": "We identify and block emails that have no chance to reach the recipient's inbox. inbox of the recipient.",
+            "temporaryError": "A temporary problem has occurred on the destination. These recipients will not be automatically excluded from from future mailings.",
+            "permanentError": "A permanent sending error may be due to an invalid address (incorrectly entered, non-existent destination server...). Permanent errors can damage your reputation as a sender and are automatically blocked.",
+            "dismissal": "Emails rejected by the by the recipient's server. We will try again to send the email during 24 hours. If the error persists, the email will be reported as a temporary temporary error."
+          },
+          "batch": {
+            "block": "We identify and block emails that have no chance to reach the recipient's inbox. inbox of the recipient.",
+            "temporaryError": "A temporary problem has occurred on the destination. These recipients will not be automatically excluded from from future mailings.",
+            "permanentError": "A permanent sending error may be due to an invalid address (incorrectly entered, non-existent destination server...). Permanent errors can damage your reputation as a sender and are automatically blocked.",
+            "dismissal": "Emails rejected by the by the recipient's server. We will try again to send the email during 24 hours. If the error persists, the email will be reported as a temporary temporary error."
+          }
+        }
+      },
+      "campaignRate": {
+        "open": "Open",
+        "clicked": "Clicked",
+        "error": "Errors",
+        "bounce": "Bounces",
+        "sent": "Sent",
+        "cancel": "Cancelled"
+      },
+      "campaignStatus": {
+        "default": "Processing status",
+        "deposited": "Deposited",
+        "in_process": "In process",
+        "completed": "Completed",
+        "canceled": "Canceled",
+        "in_error": "Error",
+        "scheduled": "Planned",
+        "to_validate": "To validate",
+        "to_finalize": "Draft",
+        "finalized": "Finalized",
+        "treatment": "Processing"
+      }
+    },
+    "document": {
+      "contain_comment": "Some elements of the batch contain a comment.",
+      "element-association": {
+        "accuse-reception": "Accuse Reception",
+        "slip-sheet": "Slip Sheet"
+      },
+      "channel": {
+        "postal": "Postal",
+        "digital": "Digital"
+      },
+      "history": {
+        "status": {
+          "treatment": "Treatment",
+          "in_production": "In production",
+          "deposited": "Deposited",
+          "distributed": "Distributed",
+          "refused": "Refused",
+          "unclaimed": "Unclaimed",
+          "receipt": "Receipt",
+          "accepted": "Accepted",
+          "certified": "Certified",
+          "notified": "Notified",
+          "read": "Read",
+          "sent": "Sent",
+          "in_error": "Error",
+          "refuse_document": "Refused"
+        }
+      },
+      "subChannel": {
+        "default": "Sub-channel",
+        "postal": "",
+        "digital": "",
+        "multiple": ""
+      },
+      "status": {
+        "default": "Status",
+        "scheduled": "<span>Planned</span>",
+        "completed": "<span>Completed<span>",
+        "in_error": "<span>Error</span>",
+        "in_progress": "<span>In progress</span>",
+        "canceled": "<span>Canceled</span>",
+        "in_production": "<span>In production</span>",
+        "deposited": "<span>Deposited</span>",
+        "distributed": "<span>Distributed</span>",
+        "refused": "<span>Refused</span>",
+        "receipt": "<span>Receipt</span>",
+        "accepted": "<span>Accepted</span>",
+        "certified": "<span>Certified</span>",
+        "notified": "<span>Notified</span>",
+        "read": "<span>Read</span>",
+        "sent": "<span>Sent</span>",
+        "claimed": "<span>Claimed</span>",
+        "clicked": "<span>Clicked</span>",
+        "postal_pickup": "<span>Postal pickup</span>",
+        "received": "<span>Received</span>",
+        "notFound": "<span>No history</span>",
+        "postal_recovery": "<span>Postal recovery</span>",
+        "unclaimed": "<span>Unclaimed</span>",
+        "mail_deposit": "<span>Mail deposit</span>",
+        "npai": "<span>NPAI</span>",
+        "stamped": "<span>Stamped</span>",
+        "soft_bounce": "<span>Soft Bounce</span>",
+        "hard_bounce": "<span>Hard Bounce</span>",
+        "opened": "<span>Opened</span>",
+        "resent": "<span>Resent</span>",
+        "blocked": "<span>Blocked</span>",
+        "sent_list": "<span>Completed</span>",
+        "to_validate": "<span>To validate</span>",
+        "validated": "<span>Validated</span>",
+        "refuse_document": "<span>Refused</span>",
+        "access_or_addressing_failure": "<span>Access or addressing failure</span>",
+        "recipient_unknown": "Recipient Unknown"
+      },
+      "actionButtons": {
+        "elementAssociation": "Associated elements",
+        "exportDocument": "Export the file",
+        "return": "Back"
+      },
+      "associateDocument": {
+        "title": "Element(s) associated with the document",
+        "ar": {
+          "line1": "Acknowledgement",
+          "line2": "of receipt"
+        },
+        "bordereau": {
+          "line1": "Deposit",
+          "line2": "slip"
+        },
+        "document": {
+          "line1": "Document"
+        }
+      },
+      "errorMessages": {
+        "unableToLoadDocumentDetail": "Unable to see flow document detail",
+        "unableToDownloadAssociateDocument": "Unable to download the associated document",
+        "unableToLoadAssociateDocument": "Unable to see the associated document"
+      },
+      "labels": {
+        "historyOfEvent": "Historique des événements",
+        "recipient": "Recipient",
+        "documentDetail": "Detail du document"
+      },
+      "eventHistory": {
+        "by": "by",
+        "on": "on",
+        "at": "at"
+      },
+      "recipient": {
+        "address": "Address",
+        "email": "Email",
+        "telephone": "Telephone"
+      },
+      "documentDetail": {
+        "document": {
+          "title": "Document",
+          "identifier": "Identify",
+          "fileSize": "File size",
+          "createdDate": "Creation date",
+          "pageNumber": "Page numbers",
+          "sheetNumber": "Number of sheets",
+          "modelName": "Modèle documentaire",
+          "unloadingDate": "Unloading date",
+          "planned": "Planned"
+        },
+        "productionCriteria": {
+          "title": "Production criteria",
+          "postage": "Postage",
+          "printing": "Printing",
+          "color": "Colour",
+          "envelope": "Envelope"
+        },
+        "dataExtraction": {
+          "title": "Data extraction",
+          "filler": "Filler"
+        },
+        "noFillerConfig": "No filler is configured",
+        "reference": "Reference",
+        "enrichment": {
+          "title": "Enrichment",
+          "signature": "Signature",
+          "watermark": "Watermark",
+          "background": "Background",
+          "attachment": "Attachment"
+        }
+      }
+    },
+    "associate": {
+      "title": "Element(s) associated to the document",
+      "slip": "Slip",
+      "receipt": "Acknowledgement of receipt",
+      "notFound": "No element association"
+    },
+    "detailDocument": {
+      "header": {
+        "document": "Document",
+        "extraction": "Date extraction",
+        "destination": "Recipient",
+        "criteria": "Production criteria",
+        "eventHeader": "Status history",
+        "infoHeader": "Document resulting from the flow: "
+      },
+      "props": {
+        "identity": "Identifier",
+        "dateTreatment": "Treatment date",
+        "fileWeight": "File weight",
+        "nbpage": "Num page",
+        "nbsheet": "Num sheets",
+        "reference": "Reference",
+        "field": "Filler",
+        "address": "Address",
+        "email": "Email",
+        "campaign": "Campaign",
+        "telephone": "Telephone",
+        "postage": "Postage",
+        "impression": "Impression",
+        "color": "Color",
+        "envelope": "Envelope",
+        "page": "Page background",
+        "addition": "PJs addition",
+        "archive": "Archiving",
+        "postalPickup": "Postal pickup"
+      }
+    },
+    "deposit": {
+      "uploading": {
+        "invalidPdfFormat": "The imported file is not in PDF format. Please proceed to a new download."
+      },
+      "confirmCancelFlow": {
+        "title": "Delete the file?",
+        "message": "Are you sure you want to cancel the file upload? <br/>You will be redirected to the file upload step.",
+        "cancelButton": "Cancel",
+        "confirmButton": "Delete the file"
+      },
+      "confirmNextPage": {
+        "title": "The file has {{KO}} error(s)",
+        "message": "Are you sure you want to continue?",
+        "cancelButton": "Upload a new file",
+        "confirmButton": "Continue"
+      },
+      "title": "Deposit a file",
+      "list": {
+        "title": "DEPOSITS",
+        "subTitle": "Consult the list of files to send",
+        "btnCreate": "Send a mail",
+        "postal": {
+          "flowName": "Flow name",
+          "user": "User",
+          "dateCreation": "Date creation",
+          "channel": "Channel",
+          "category": "Category",
+          "mode": "Mode",
+          "status": "Status",
+          "action": "Actions",
+          "btnEdit": "Modify",
+          "btnDownload": "Download the file",
+          "btnDelete": "Delete",
+          "btnInformation": "Information"
+        },
+        "digital": {},
+        "message": {
+          "notFound": "No match found!",
+          "criteriaNotFound": "No data",
+          "criteriaResultZero": "Results: 0"
+        },
+        "confirmation": {
+          "deleteFlow": {
+            "title": "Delete the draft?",
+            "message": "Are you sure you want to delete the draft? This action is irreversible.",
+            "paragraph": "This action is irreversible",
+            "cancelButton": "Cancel",
+            "confirmButton": "Delete"
+          },
+          "deleteFlowMessage": {
+            "success": "The draft has been deleted.",
+            "fail": "The draft hasn't been deleted."
+          }
+        }
+      },
+      "acquisition": {
+        "title": "Please upload a .pdf file",
+        "label": {
+          "uploadfile": "Drag or drop your file (PDF format) here",
+          "dragHere": "Drag here",
+          "yourPdf": "your file",
+          "file": "File",
+          "or": "OR",
+          "uploadButton": "Browse",
+          "uploadMessageProgressing": "Uploading the file in progress",
+          "uploadMessageDone": "File upload complete",
+          "uploadMessageError": "File upload error. Please upload again.",
+          "uploadMessageError406": "The file is empty. Please upload again.",
+          "uploadMessageError5001": "The imported file is not in PDF format. Please upload again.",
+          "uploadMessageError5002": "Upload error. Please upload again.",
+          "uploadMessageError5003": "The file is too large. Please upload again.",
+          "uploadMessageError5004": "Upload error. The user cannot be found. (code: 5004 ). Please upload again.",
+          "uploadMessageError5005": "Internal server error. (code: 5005 ). Please upload again.",
+          "uploadMessageError5006": "Not allowed to upload multiple files. Please upload again.",
+          "uploadMessageError5007": "No internet connection.",
+          "uploadMessageError5008": "The document cannot be identified. Please upload again.",
+          "uploadMessageGoBack": "You can go back to the previous screen. Please upload again.",
+          "uploadMessageGoNext": "You can proceed to the next step. Please upload again.",
+          "errorFileUploading": "Upload error",
+          "limitUploadFileSize": "Accepted formats: pdf (maximum size {{sizeLimit}})"
+        }
+      },
+      "preAnalysis": {
+        "title": "Please select a sending channel",
+        "table": {
+          "fileName": "File name",
+          "flowType": "Flow Type",
+          "definitionOfModel": "Definition of Model",
+          "documentType": "Document Type",
+          "docName": "Document name"
+        },
+        "checkbook": {
+          "postal": "Postal",
+          "digital": "Digital"
+        },
+        "digitalType": {
+          "item1": "Email",
+          "item2": "Electronic follow-up mail",
+          "item3": "Electronic follow-up mail",
+          "item4": "Electronic registered letter"
+        },
+        "description": "The recipients of your electronic registered letters, if they are not professionals, must have given their prior consent to receive an electronic registered letter."
+      },
+      "analysisResult": {
+        "title": "Please check your document analysis : ",
+        "labelSummary": "Result of the analysis ",
+        "errorLabelHasKO": "See below for <span tessi-b-span>{{KO}} error(s)</span> to correct in your .pdf file",
+        "errorLabelNoOK": "See below the errors to correct in your .pdf file and proceed to a new",
+        "hasPartialKO": "The .pdf file has",
+        "hasPartialKO_instruction": "Upload a new corrected file or continue sending ignoring errors.<br/>(Recipients in error will be ignored)",
+        "error": "error(s)",
+        "noValidDocumentOnlyOne": "No document from your file is valid.",
+        "upload": "upload",
+        "analysisVariant": {
+          "titleSuccess": "Analysis successfully completed",
+          "titleWarning": "Analysis performed errors",
+          "titleError": "Fault",
+          "table": {
+            "title": "Synthesis",
+            "numberDoc": "Number of documents:",
+            "document": "documents(s), ",
+            "of": "",
+            "error": "in error (s)",
+            "numberPage": "Number of pages:",
+            "page": "pages(s)"
+          }
+        },
+        "analysisResultTable": {
+          "document": "N° DOC",
+          "nbPage": "Ng page(s)",
+          "resultAnalyse": "Analysis result",
+          "subFilter": "sector (sub-sector)",
+          "recipient": "Recipient(s)",
+          "notFound": "Not match found!",
+          "postal": "Postal",
+          "digital": "Digital",
+          "ko": "Incomplete address",
+          "actions": "Actions",
+          "modify": "Address changed"
+        },
+        "access": "Access",
+        "modify_address": "Modify address",
+        "address_change_made": "Changes made to addresses will be visible in step 5"
+      },
+      "finished": {
+        "title": "Preview the file and check the information below",
+        "menuTitle": "Validation",
+        "subTitle1": "Your flow is taken into account, you can find it from the monitoring interface",
+        "subTitle2": "You can return to the deposit screen"
+      },
+      "validateResult": {
+        "title": "Your document is sent!",
+        "alterButton": "Send a new file",
+        "mainButton": "Track my shipment",
+        "subtitle": "Processing may take a few minutes. \nYou can find all the information about your shipment at any time in the tracking section."
+      },
+      "synthesis": {
+        "title": "Synthesis",
+        "filename": "Filename",
+        "nbDocuments": "Number of documents",
+        "nbPages": "Number of pages",
+        "nbSheets": "Number of sheets",
+        "nbDocumentsKO": "Number of documents ignored"
+      },
+      "productionCriteria": {
+        "title": "Set the production parameters",
+        "criteria": "Production criteria",
+        "form": {
+          "button": {
+            "browse": "Browse"
+          },
+          "label": {
+            "postage": "Postage Cost",
+            "color": "Color",
+            "impression": "Recto/verso",
+            "evenlope": "Envelope",
+            "leaflet": "Page of Postal Address",
+            "watermark": "Watermark",
+            "signature": "Signature",
+            "background": "Page background",
+            "enclosed": "Attachment",
+            "enclosed_size_limit": "Maximum size {{sizeLimit}}",
+            "zipCode": "Zip Code",
+            "countryCode": "Country Code",
+            "monochrome": "Color",
+            "quardchrome": "Black White",
+            "recto": "Back & front",
+            "rectoverso": "Front only",
+            "auto": "Auto",
+            "c6": "C6",
+            "c5": "C5",
+            "c4": "C4",
+            "yes": "Yes",
+            "no": "No",
+            "nofileselected": "No files selected",
+            "takeover": "Add an postage address page.",
+            "attachwatermark": "Add a page background",
+            "watermarktype": "Attachment type :",
+            "watermarkpos": "Attachment mode :",
+            "upload_inst": "This watermark will not be saved in the library",
+            "file_limt": "Accepted formats: pdf (maximum weight 20 Mb)",
+            "file_max": "Maximum number of pages: 1",
+            "choosepage": "Choice of page background :"
+          },
+          "postageType": {
+            "letter": "Letter (J+2)",
+            "ecopli": "Ecopli (J+4)",
+            "registerLetterWithAR": "Registered letter with AR",
+            "registerLetterWithoutAR": "Registered letter without AR"
+          }
+        },
+        "options": {
+          "title": "Options",
+          "showOptions": "Show fewer options",
+          "seeMoreOption": "See more options",
+          "confirmMail": "Confirmation email",
+          "validateDoc": "Document validation workflow",
+          "archieveDoc": "Archiving of documents",
+          "ged": "Electronic Document Management System",
+          "takeover": "Postal Recovery",
+          "dayOfDelay": "Nb of delay days",
+          "takeover1": "I would like an automatic recovery in the postal sector of envelopes for which the electronic distribution address does not exist (PND Electronique)",
+          "takeover2": "I would like an automatic recovery in the postal sector of all PND Electronic and Non Réclame envelopes and CGUs refused during distribution"
+        },
+        "hasAppliedDefaultConfig": "Values in orange are taken from the default configuration of the document template."
+      },
+      "button": {
+        "prev": "Previous",
+        "next": "Next",
+        "return": "Back",
+        "validate": "Send",
+        "back_warning_title": "Shipment not finalized",
+        "back_warning_message": "Are you sure you want to quit?<br/>The shipment will be saved with the status \"Draft\", you can finalize it later.",
+        "back_warning_okButton": "Exit",
+        "back_warning_cancelButton": "Cancel",
+        "cancelFlowBtn": "Upload a new file",
+        "hasPartialError": "Carrying on despite mistakes"
+      },
+      "pdfViewer": {
+        "label": "Flow preview"
+      },
+      "previewDocument": "Document preview",
+      "stepper": {
+        "acquisition": "Upload",
+        "choiceChannel": "Channel selection",
+        "analyze": "Analysis",
+        "setting": "Settings",
+        "mail": "Send"
+      },
+      "message": {
+        "launchedSuccess": "Your file is successfully imported",
+        "validateSuccess": "The flow has been sent to production",
+        "atLeastOneDocOK": "No document in this stream is valid.",
+        "cancelSuccess": "The shipment was cancelled.",
+        "cancelFail": "Failed to cancel the flow.",
+        "cannotGetLimitFileSize": "Fail to load limit file size."
+      },
+      "channel_category_not_activated": {
+        "cancelButton": "Cancel",
+        "confirmButton": "Exit",
+        "message": "Your shipment cannot be sent until the distribution channel is activated from the \nactivated from the flow settings.",
+        "message2": "The shipment will be saved with the status \"Draft\", you can finalize it later. \nlater.",
+        "title": "Distribution channel not activated"
+      },
+      "missing_config_signature": {
+        "cancelButton": "Cancel",
+        "confirmButton": "Exit",
+        "message": "Your send cannot be completed until the signature configuration is valid.",
+        "message2": "The sending will be saved with the status \"Draft\", you can finalize it \nlater.",
+        "title": "Invalid signature configuration"
+      },
+      "document_model_changed": {
+        "confirmButton": "Continuer",
+        "message": "The document configuration has been changed.",
+        "message2": "Your draft template has been updated with the new configuration.",
+        "title": "Change of document model"
+      },
+      "document_configuration_changed": {
+        "confirmButton": "Continuer",
+        "message": "The configuration of the ${ModelName} template has been changed.",
+        "message2": "Your draft has been updated with the new configuration.",
+        "title": "Change(s) in the model"
+      },
+      "setting_option_popup_signature_title": "Add a signature",
+      "setting_option_popup_attachment_title": "Add an attachment",
+      "setting_option_popup_signature_type": "Type of addition :",
+      "setting_option_popup_attachment_type": "Type of addition :",
+      "setting_option_popup_choice_of_signature": "Choix de la signature :",
+      "setting_option_popup_choice_of_attachment": "Choice of attachment :",
+      "setting_option_popup_position": "Positioning :",
+      "setting_option_popup_add_button": "Add",
+      "setting_option_popup_modify_button": "Modify",
+      "setting_option_popup_source_type_form_upload": "One-time upload",
+      "setting_option_popup_source_type_from_resource": "Library",
+      "setting_option_popup_position_first": "First position",
+      "setting_option_popup_position_second": "Second position",
+      "setting_option_popup_position_third": "Third position",
+      "setting_option_popup_position_fourth": "Fourth position",
+      "setting_option_popup_position_fifth": "Fifth position",
+      "setting_option_popup_all_pages": "All pages",
+      "setting_option_popup_first_page": "First page",
+      "setting_option_popup_next_page": "Next pages",
+      "setting_option_popup_last_page": "Last page",
+      "fail_to_fetch_resources": "An error occurred while fetching the resources.",
+      "fail_to_fetch_resource_detail": "An error occurred while fetching the resource.",
+      "setting_option_popup_uploading_instruction": "This signature will not be saved in the library",
+      "setting_option_popup_uploading_signature_instruction": "This signature will not be saved in the library",
+      "setting_option_popup_uploading_format": "Accepted formats : PDF ( maximum weight 20 Mb)",
+      "setting_option_popup_uploading_signature_format": "Accepted formats : PNG (maximum size 1 Mb)",
+      "fail_to_fetch_attachment_detail": "An error occurred while getting the attachment detail.",
+      "fail_to_fetch_background_detail": "An error occurred while getting the background detail.",
+      "setting_option_popup_update_attachment_successfully": "An error occurred while updating the attachment.",
+      "setting_option_popup_update_attachment_fail": "An error occurred while updating the attachment.",
+      "setting_option_popup_update_background_fail": "An error occurred while updating the background.",
+      "setting_option_popup_get_all_attachment_fail": "An error occurred while getting the attachment.",
+      "setting_option_popup_get_all_background_fail": "An error occurred while getting the background.",
+      "setting_option_popup_delete_attachment_fail": "An error occurred while deleting the attachment.",
+      "setting_option_popup_delete_background_fail": "An error occurred while deleting the background.",
+      "setting_option_popup_signature_file_missing": "Missing signature page",
+      "setting_option_popup_background_file_missing": "Missing background page",
+      "setting_option_popup_attachment_file_missing": "Missing attachment page",
+      "setting_option_popup_background_unknown": "Unable to communicate with the server",
+      "setting_option_popup_background_page_limit": "Upload error. The number of pages cannot exceed one page for a background resource",
+      "setting_option_popup_attachment_page_limit": "Upload error. The number of pages cannot exceed one page for a attachment resource",
+      "setting_option_popup_attachment_max_file_size": "Upload error. The size of the resource cannot exceed 20 MB.",
+      "setting_option_popup_signature_max_file_size": "Upload error. The size of the resource cannot exceed 1 MB.",
+      "setting_option_popup_background_unauthorized": "Error: You do not have permission to access the resource library.",
+      "setting_option_popup_background_no_delete_permission": "You do not have permission to delete background from the page.",
+      "setting_option_popup_background_delete_conflict": "The file or resource does not exist.",
+      "setting_option_popup_background_fetch_list_fail": "Failed to fetch the page background.",
+      "setting_option_popup_background_select_page_background": "The page background is mandatory. Please select the page background",
+      "setting_option_popup_background_select_page_attachment": "The attachment is mandatory. Please select the attachment",
+      "setting_option_popup_uploading_file_is_required": "Error. No file selected.",
+      "setting_option_popup_upload_not_pdf_for_background": "Upload error. The format must not be different from PDF for a background resource.",
+      "setting_option_popup_upload_not_pdf_for_attachment": "Upload error. The format must not be different from PDF for a attachment resource.",
+      "setting_option_popup_upload_not_png_for_signature": "Upload error. The format must not be different from PNG for a signature resource.",
+      "setting_option_popup_watermark_title": "Add watermark",
+      "setting_option_popup_text_water_mark": "Text watermark",
+      "setting_option_popup_text_size": "Text size",
+      "setting_option_popup_text_rotation": "Text rotation",
+      "setting_option_popup_text_color": "Text colour",
+      "setting_option_popup_original_document_page": "Original document pages",
+      "setting_option_popup_enhancement_page": "Enhancement pages",
+      "setting_option_popup_water_mark_text": {
+        "require": "Watermark text is required.",
+        "length": "The watermark text must be less than or equal to 30 characters."
+      },
+      "setting_option_popup_water_mark_text_size": {
+        "require": "Text size is required.",
+        "positive": "The text size must be a positive number."
+      },
+      "setting_option_popup_water_mark_text_rotation": {
+        "require": "Rotating the text is mandatory.",
+        "limit": "The text rotation must be between -360 and 360."
+      },
+      "setting_option_popup_create_watermark_fail": "An error occurred while creating the watermark.",
+      "setting_option_popup_update_watermark_fail": "An error occurred while updating the watermark.",
+      "setting_option_popup_delete_watermark_fail": "An error occurred while deleting the watermark.",
+      "setting_option_display": {
+        "size": "Size",
+        "rotation": "Rotation"
+      },
+      "address_destination": {
+        "title":"Address destination",
+        "cancel": "Cancel",
+        "validate": "Validate",
+        "line": "Line",
+        "zip_code_and_city": "Zip code and city",
+        "country": "Country"
+      },
+      "address_line_pop_up_length": "An address line cannot exceed 38 characters.",
+      "address_line_at_least_three": "Error: At least three address lines are mandatory.",
+      "address_line_at_zip_code_and_town": "Error: A zip code and city must be specified.",
+      "address_line_postal_require": "Zip code and city is require.",
+      "address_modify_success": "Address successfully modified.",
+      "address_modify_error": "Address update failed.",
+      "address_line_at_zip_code_and_town_not_match": "Error: Zip code and city do not match."
+    },
+    "buttons": {
+      "previous": "Previous",
+      "return": "Back"
+    }
+  },
+  "profile": {
+    "header": {
+      "title": {
+        "listProfiles": "Profile settings",
+        "createNewProfile": "Create a profile",
+        "modifyProfile": "Modify a profile"
+      },
+      "subTitle": {
+        "listProfiles": "View and manage the list of profiles",
+        "createNewProfile": "Profile management",
+        "modifyProfile": "Profile management : "
+      }
+    },
+    "list": {
+      "title": "Profiles",
+      "refreshedDate": "Updated at",
+      "table": {
+        "header": {
+          "name": "Profile name",
+          "displayName": "Role",
+          "created": "Date of creation",
+          "clientName": "Client",
+          "modified": "Date of modification",
+          "actions": "Actions"
+        },
+        "notFound": "No match found!",
+        "consult": "Consult"
+      },
+      "buttonCreate": "Create a profile",
+      "buttonRefresh": "Refresh list",
+      "buttonEdit": "Edit profile",
+      "buttonDelete": "Delete profile"
+    },
+    "dialog": {
+      "delete": {
+        "title": "Delete profile?",
+        "message": "Are you sure you want to delete the profile?",
+        "attention": "Are you sure you want to delete the profile? <br/> Attention, {{numUsers}} user(s) assigned to this profile.",
+        "description": "This action is irreversible.",
+        "success": "Profile successfully deleted",
+        "fail": "Profile was delete fail!",
+        "deleteNotValid": {
+          "title": "Profile Deletion",
+          "message": "Profile deletion is not possible! There are currently {{numUsers}} user(s) assigned to this profile."
+        }
+      }
+    },
+    "create": {
+      "title": "Create profile"
+    },
+    "update": {
+      "title": "Edit profile"
+    },
+    "form": {
+      "label": {
+        "traceability": "Tracking space",
+        "statistic": "Statistics and reports area",
+        "mailModel": "Emailing template design",
+        "smsModel": "Sms template design",
+        "mailCampaign": "Email campaign management",
+        "smsCampaign": "SMS campaign management",
+        "deposit": "Flow deposit area",
+        "modelSetting": "Model settings",
+        "consumablesSetting":"configuration of consumables",
+        "usermgt": "User management",
+        "client_management": "Client management",
+        "directoryMgt": "Directory management",
+        "interactive": "Interactive communication creation",
+        "espace_validation": "Validation space",
+        "management_library_resource": "Resource Library",
+        "cxm_enrichment_mailing": "Enrichment mailing",
+        "cxm_watermark_enhancement_postal_delivery": "Watermark enhancement postal delivery",
+        "privilege": {
+          "tracking_space_consult": "Consult the flow traceability",
+          "tracking_space_filter": "Sort and filter the display",
+          "tracking_space_select_flow": "Select a flow to open document tracking",
+          "tracking_space_cancel_flow": "Cancel a flow",
+          "tracking_space_validate": "Validate a flow",
+          "tracking_space_finalize": "Finalize a deposit (return to the deport area)",
+          "tracking_space_download": "Download the stream",
+          "tracking_space_history": "Consult the history of events",
+          "tracking_space_doc_consult": "Consult document traceability",
+          "tracking_space_doc_filter": "Sort and filter the display",
+          "tracking_space_select_doc": "Select a flow to open the detail",
+          "tracking_space_download_doc": "Download the document",
+          "tracking_space_history_doc": "Consult the history of events",
+          "tracking_space_relate_item": "Open and download related items",
+          "tracking_space_validate_doc": "Validate a document",
+          "tracking_space_detail_doc": "Consult the detail of a document",
+          "statistic_search": "Fill in the search criteria",
+          "statistic_generate": "Generate statistics (graphics)",
+          "statistic_download": "Download statistical files",
+          "report_search": "Fill in the generation criteria",
+          "report_generate": "Generate report",
+          "report_download": "Download the report",
+          "mailModel_list": "List the template",
+          "mailModel_create": "Create a template",
+          "mailModel_create_copy": "Create a template by duplication",
+          "mailModel_edit": "Edit a template",
+          "mailModel_modify": "Modify a template",
+          "mailModel_delete": "Delete a template",
+          "smsModel_list": "List existing models",
+          "smsModel_create": "Create a model",
+          "smsModel_create_copy": "Create a model by duplication",
+          "smsModel_edit": "Edit a model",
+          "smsModel_modify": "Modify a template",
+          "smsModel_delete": "Delete a template",
+          "mailCampaign_list": "Follow the campaigns",
+          "mailCampaign_filter": "Sort and filter the display",
+          "mailCampaign_detail": "Select a campaign to open the detail (view the email, and see the contracts from the detail)",
+          "mailCampaign_cancel": "Cancel a campaign",
+          "mailCampaign_finalize": "Finalize a campaign",
+          "mailCampaign_create": "Create a campaign (activate the privileges of the following sub-functionality)",
+          "mailCampaign_select": "Choose a model from the list",
+          "mailCampaign_local_filter": "Sort and filter the display of available models",
+          "mailCampaign_create_parameter": "Define creation parameters (view the model, choose the sender, plan the shipment)",
+          "mailCampaign_import_destination": "Import the recipient file",
+          "mailCampaign_send_proof": "Send a proof",
+          "mailCampaign_generate": "Generate the campaign",
+          "smsCampaign_list": "Follow the campaigns",
+          "smsCampaign_filter": "Sort and filter the display",
+          "smsCampaign_detail": "Select a campaign to open the detail (view the sms and see the contacts from the detail)",
+          "smsCampaign_cancel": "Cancel a campaign",
+          "smsCampaign_finalized": "Finalize a campaign",
+          "smsCampaign_create": "Create a campaign (activate the privileges of the following sub-functionality)",
+          "smsCampaign_select": "Choose a model from the list",
+          "smsCampaign_local_filter": "Sort and filter the display of available models",
+          "smsCampaign_create_parameter": "Define the creation parameters (view the model, choose the sender, schedule the sending)",
+          "smsCampaign_import": "Import the recipient file",
+          "smsCampaign_send_proof": "Send a proof",
+          "smsCampaign_generate": "Generate the campaign",
+          "deposit_submit": "Submit a feed",
+          "deposit_select_channel": "Choose the sending channel",
+          "deposit_analysis": "Check the analysis performed",
+          "send_a_letter": "Send a letter",
+          "list_deposits": "List the deposits",
+          "modify_a_deposit": "Modify a deposit",
+          "delete_a_deposit": "Delete a deposit",
+          "deposit_select_criteria": "Select production criteria",
+          "deposit_validate": "Validate the deposit",
+          "modelSetting_list": "List the parameters",
+          "modelSetting_create": "Create a template parameter",
+          "modelSetting_create_parameter": "Define the recognition criteria: type of flow and documentary model",
+          "modelSetting_associate": "Associate the documentary model with a documentary type, possibly a sector, sub-sector and production criteria",
+          "modelSetting_identity": "Define and identify the different areas of the document via the capture wizard or by contact details: document break, address lines, recipient email, metadata",
+          "modelSetting_edit": "Edit a setting",
+          "modelSetting_modify": "Modify a setting",
+          "modelSetting_delete": "Delete a setting",
+          "usermgt_list": "List users",
+          "usermgt_create": "Create user",
+          "usermgt_modify": "Modify a user",
+          "usermgt_delete_user": "Delete a user",
+          "usermgt_list_profile": "List profiles",
+          "usermgt_create_profile": "Create a profile",
+          "usermgt_modify_profile": "Modify a Profile",
+          "usermgt_delete_profile": "Delete a profile",
+          "usermgt_permission": "Manage permissions",
+          "usermgt_assign_service": "Assign a user to a service",
+          "edit_user": "Edit a user",
+          "edit_profile": "Edit a profile",
+          "client_management_list": "List the account",
+          "cxm_setting_up_consumables_list":"List envelope references",
+          "cxm_setting_up_consumables_creat_modify":"Add, modify envelope references",
+          "cxm_setting_up_consumables_delete":"Delete envelope references",
+          "client_management_modify": "Modify the account",
+          "directoryMgtListDefinitionDirectory": "List directories (definition)",
+          "directoryMgtCreateDefinitionDirectory": "Create a directory",
+          "directoryMgtEditDefinitionDirectory": "Edit a directory",
+          "directoryMgtModifyDefinitionDirectory": "Modify a directory",
+          "directoryMgtDeleteDefinitionDirectory": "Delete a directory",
+          "directoryMgtListDirectoryFeed": "List directories (feed)",
+          "directoryMgtEditDirectoryFeed": "Edit directory (enables the following sub-feature privileges)",
+          "directoryMgtManualPopulateDirectoryFeed": "Populate a directory by manually adding data",
+          "directoryMgtImportDirectoryFeed": "Feeding a directory by importing a data file",
+          "directoryMgtExportDirectoryFeed": "Export a directory",
+          "directoryMgtModifyDirectoryFeed": "Modify existing directory data",
+          "directoryMgtDeleteDirectoryFeed": "Delete existing data from a directory",
+          "interactive_list_model": "Choose the model",
+          "espace_validation_list": "List the batches",
+          "espace_validation_validate_refuse": "Validate/refuse",
+          "management_library_resource_list": "List the resources in the library",
+          "management_library_resource_create": "Add a resource to the library",
+          "management_library_resource_delete": "Delete a resource from the library",
+          "cxm_enrichment_mailing_add_resource": "Add a resource",
+          "cxm_enrichment_mailing_use_resource_in_library": "Using a resource in the library",
+          "cxm_enrichment_mailing_upload_a_single_resource": "Uploading a single-use resource",
+          "cxm_enrichment_mailing_modify_a_custom_resource": "Modify a custom resource",
+          "cxm_enrichment_mailing_delete_a_custom_resource": "Delete a custom resource",
+          "cxm_enrichment_mailing_modify_a_default_resource": "Modify a default resource",
+          "cxm_enrichment_mailing_delete_a_default_resource": "Delete a default resource",
+          "cxm_enrichment_mailing_add_watermark": "Add a watermark",
+          "cxm_enrichment_mailing_modify_watermark": "Modify a watermark",
+          "cxm_enrichment_mailing_delete_watermark": "Delete a watermark",
+          "modify_or_correct_an_address": "Modify / correct an address"
+        },
+        "functional": "Features",
+        "visibility": "Visibility level",
+        "modification": "Modification level",
+        "formTitle": "Fields to be filled in",
+        "displayname": "Role",
+        "displayNamePlaceholder": "Example: Campaign management",
+        "name": "Profile name",
+        "namePlaceholder": "Enter a profile name",
+        "seeMore": "See more",
+        "seeLess": "See less",
+        "client": "Client",
+        "button": {
+          "cancel": "Cancel",
+          "ok": "OK",
+          "create": "Create",
+          "modify": "Modify"
+        }
+      },
+      "errors": {
+        "nameExisting": "This profile already exists",
+        "missing": "Profile name is required",
+        "nameMaxLength": "Profile name must be smaller or equal to 128 characters!",
+        "displayNameMaxLength": "The role must be smaller or equal to 128 characters!",
+        "missingDisplayName": "Display name is required",
+        "atLeastOne": "The profile must have at least one feature",
+        "clientIsRequired": "The profile must be attached to a client."
+      },
+      "options": {
+        "user": "User",
+        "owner": "Owner",
+        "service": "Service",
+        "division": "Division",
+        "client": "Client",
+        "specific": "Specific"
+      },
+      "confirmation": {
+        "title": "Data not saved!",
+        "message": "Are you sure you want to leave? The data will be lost.",
+        "cancelButton": "Cancel",
+        "confirmButton": "Quit"
+      }
+    },
+    "filter": {
+      "client": "Client"
+    },
+    "events": {
+      "success": "Action successfully registered",
+      "fail": "Registration failure",
+      "failCreate": "Fail to create",
+      "failEdit": "Fail to view detail",
+      "failModified": "Fail to modified",
+      "failDelete": "Fail to delete"
+    }
+  },
+  "user": {
+    "list": {
+      "button": {
+        "create": "Create a user",
+        "refresh": "Refresh list",
+        "change": "Modify user",
+        "changes": "Modify users",
+        "delete": "Delete user",
+        "deletes": "Delete users",
+        "profile": "Profile",
+        "division": "Division",
+        "service": "Service",
+        "client": "Client",
+        "user": "Users"
+      },
+      "table": {
+        "header": {
+          "firstname": "First name",
+          "lastname": "Last name",
+          "userId": "Username",
+          "email": "Email",
+          "profile": "Profile",
+          "client": "Client",
+          "division": "Division",
+          "service": "Service"
+        },
+        "noProfile": "This user no longer has a profile",
+        "admin": "Administrator",
+        "nonadmin": "Non administrator"
+      },
+      "refreshDateLabel": "Updated at",
+      "selected_user": "Selected user(s)",
+      "selected_user_delete": "Delete",
+      "selected_user_edit": "Modify",
+      "title": "User Settings",
+      "subTitle": "Consult and manage the list of users"
+    },
+    "create": {
+      "title": "Create a user",
+      "subTitle": "Please fill in the fields below",
+      "description": "Please fill in the fields below"
+    },
+    "update": {
+      "title": "Modify a user",
+      "titleBatch": "Modify users",
+      "subTitle": "Please fill in the fields below",
+      "description": "Fields to be modified"
+    },
+    "delete": {
+      "success": "The user has been deleted",
+      "heading": "Delete the user?",
+      "message": "Are you sure you want to delete this user group?",
+      "singleUserMessage": "Are you sure you want to delete the user ?",
+      "title": "User group",
+      "cancelButton": "Cancel",
+      "confirmButton": "Ok",
+      "action_undone": "This action is irreversible."
+    },
+    "form": {
+      "label": {
+        "id": "User ID",
+        "email": "Email",
+        "fullName": "Full name",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "client": "Customer",
+        "divService": "Division / Service",
+        "service": "Service",
+        "profile": "Profile",
+        "password": "Password",
+        "confirmPassword": "Confirm password",
+        "emailExample": "example@mail.com",
+        "adminstration": "Administrator",
+        "yes": "Yes",
+        "no": "No"
+      },
+      "profileNameList": "Profile name",
+      "button": {
+        "create": "Create",
+        "modify": "Modify",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "addNewProfile": "+ Add a profile",
+        "noAnyProfile": "No results found",
+        "noAnyService": "No results found"
+      },
+      "errors": {
+        "invalidEmail": "Please enter a valid email address",
+        "duplicatedEmail": "This email address is already being used",
+        "maxLength": "This field must be smaller or equal to 128 characters !",
+        "email": "Email is required",
+        "firstName": "First name is required",
+        "lastName": "Last name is required",
+        "invalidFirstName": "Please enter a valid first name!",
+        "invalidLastName": "Please enter a valid last name!",
+        "clientId": "The user must be attached to a client.",
+        "serviceId": "Service is required",
+        "password": "Password is required",
+        "confirmPassword": "Passwords do not match",
+        "profileIdList": "At least one profile must be selected",
+        "profilesEmpty": "Profiles are empty",
+        "profile": "At least one profile must be selected"
+      },
+      "userAddressLevel": {
+        "service": "Service",
+        "division": "Division",
+        "client": "Client",
+        "user": "User"
+      }
+    },
+    "event": {
+      "failCreate": "Fail to create",
+      "failEdit": "Fail to view detail",
+      "failModified": "Fail to modified",
+      "failDelete": "Fail to delete",
+      "failGetService": "Fail to list services",
+      "successCreate": "User successfully created",
+      "successModify": "Saved change successfully",
+      "successDelete": "The user has been deleted"
+    },
+    "create_user_by_import": "Import users",
+    "export_user_in_csv": "Export users",
+    "export_user_in_csv_success_result": "Your CSV file has been successfully generated",
+    "import_invalid_csv_format": "The format or structure of the csv file is incorrect. The import is cancelled.",
+    "error_during_import_invalid_csv_format": "An error occurred while importing the batch of users",
+    "not_all_users_could_be_created": "End of import. <b>ATTENTION! not all users could be created.\nThe file contains errors:</b>\n",
+    "all_users_have_been_created": "End of import. All users have been created:\n",
+    "number_of_line_created": "-   ${Variable} users created\n",
+    "number_of_line_error": "-   ${Variable} rejected users",
+    "close_btn": "Close"
+  },
+  "envelope_reference": {
+    "list": {
+      "action": {
+        "edit": "Edit"
+      },
+      "button": {
+        "create": "Create a envelope reference",
+        "refresh": "Refresh list",
+        "change": "Modify envelope reference",
+        "changes": "Modify envelope references",
+        "delete": "Delete envelope reference",
+        "deletes": "Delete envelope references"
+      },
+      "table": {
+        "header": {
+          "reference": "Reference",
+          "format": "Format",
+          "description": "Description",
+          "active": "Active"
+        },
+        "noProfile": "This user no longer has a profile",
+        "admin": "Administrator",
+        "nonadmin": "Non administrator"
+      },
+      "refreshDateLabel": "Updated at",
+      "selected_re": "Selected envelope reference(s)",
+      "title": "Envelope Reference",
+      "subTitle": "Consult and manage the list of envelope references"
+    },
+    "create": {
+      "title": "Create a envelope reference",
+      "subTitle": "Please fill in the fields below",
+      "description": "Please fill in the fields below"
+    },
+    "update": {
+      "title": "Modify a envelope reference",
+      "titleBatch": "Modify envelope references",
+      "subTitle": "Please fill in the fields below",
+      "description": "Fields to be modified"
+    },
+    "delete": {
+      "success": "The envelope reference has been deleted",
+      "heading": "Delete the envelope reference?",
+      "message": "Are you sure you want to delete this envelope reference group?",
+      "singleUserMessage": "Are you sure you want to delete the envelope reference ?",
+      "title": "Envelope reference group",
+      "cancelButton": "Cancel",
+      "confirmButton": "Ok",
+      "action_undone": "This action is irreversible."
+    },
+    "form": {
+      "label": {
+        "id": "Reference ID",
+        "reference": "Reference",
+        "format": "Format",
+        "description": "Description",
+        "active": "Active",
+        "yes": "Yes",
+        "no": "No"
+      },
+      "button": {
+        "create": "Create",
+        "modify": "Modify",
+        "delete": "Delete",
+        "cancel": "Cancel"
+      },
+      "errors": {
+        "maxLength": "This field must be smaller or equal to 100 characters !",
+        "format": "Format is required",
+        "referenceDuplicate": "Reference is duplicate",
+        "reference": "Reference is required",
+        "description": "Description is required"
+      }
+    },
+    "event": {
+      "failCreate": "Fail to create",
+      "failEdit": "Fail to view detail",
+      "failModified": "Fail to modified",
+      "failDelete": "Fail to delete",
+      "successCreate": "Envelope reference successfully created",
+      "successModify": "Saved change successfully",
+      "successDelete": "The envelope reference has been deleted"
+    },
+    "close_btn": "Close"
+  },
+  "directory": {
+    "definition_directory_list_title": "DIRECTORY DEFINITION",
+    "definition_direction_list_sub_title": "Consult and manage your directory list",
+    "definition_direction_list_column_name": "DIRECTORY NAME",
+    "definition_direction_list_column_modified_at": "MODIFICATION DATE",
+    "definition_direction_list_column_created_at": "CREATION DATE",
+    "definition_direction_list_column_actions": "ACTIONS",
+    "definition_direction_list_create_directory_btn": "Create a directory",
+    "definition_direction_list_column_actions_btn_download": "Download the structure",
+    "definition_direction_delete": {
+      "title": "Delete directory?",
+      "message": "Are you sure you want to delete the directory? This action is irreversible.",
+      "cancelButton": "Cancel",
+      "confirmButton": "Delete"
+    },
+    "load_directory_fail": {
+      "title": "Error",
+      "message": "Fail to load directory",
+      "confirm": "OK",
+      "cancel": "Cancel"
+    },
+    "load_directory_unauthorized": {
+      "title": "Unauthorized",
+      "message": "You don't have privilege to load directory",
+      "confirm": "OK",
+      "cancel": "Cancel"
+    },
+    "definition_directory_create_step_1_title": "CREATE A DIRECTORY (1/3)",
+    "definition_directory_create_step_1_sub_title": "Fill in the fields below",
+    "definition_directory_create_step_1_section_field_to_complete": "Fields to be completed",
+    "definition_directory_create_step_1_field_name": "Name :",
+    "definition_directory_create_step_1_field_name_placeholder": "Enter a directory name",
+    "definition_directory_create_step_1_field_display_name_required": "This field is required!",
+    "definition_directory_create_step_1_field_display_name_cannot_contains_space": "Directory name must not contain spaces",
+    "definition_directory_create_step_1_field_display_name_duplicated": "The directory with this name already exists",
+    "definition_directory_create_step_1_field_name_maxlength": "Directory name must be less than or equal to 100 characters",
+    "definition_directory_create_step_1_field_display_name_maxlength": "Directory display name must be less than or equal to 255 characters",
+    "definition_directory_create_step_1_field_name_required": "The display name is mandatory.",
+    "definition_directory_create_step_1_field_display_name": "Display name :",
+    "definition_directory_create_step_1_field_display_name_placeholder": "Example: Customer directory",
+    "definition_directory_create_step_1_btn_cancel": "Cancel",
+    "definition_directory_create_step_1_btn_next": "Next",
+    "definition_directory_create_step_2_title": "CREATE A DIRECTORY (2/3)",
+    "definition_directory_create_step_2_sub_title": "Directory structure",
+    "definition_directory_create_step_2_section_field": "Fields",
+    "definition_directory_create_step_2_section_field_btn_add_field": "+ Add a field",
+    "definition_directory_create_step_2_section_field_properties": "Field properties",
+    "definition_directory_create_step_2_section_field_properties_display_name": "Display name :",
+    "definition_directory_create_step_2_section_field_properties_data_type": "Data type :",
+    "definition_directory_create_step_2_section_field_properties_key": "Key :",
+    "definition_directory_create_step_2_section_field_properties_data": "Data :",
+    "definition_directory_create_step_2_section_field_properties_presence": "Presence:",
+    "definition_directory_create_step_2_section_field_properties_max_length": "Maximum length :",
+    "definition_directory_create_step_2_section_field_properties_max_invalid_length": "Maximum length must not exceed 255",
+    "definition_directory_create_step_2_section_field_properties_min_invalid_length": "Minimum length must not be less than 0",
+    "definition_directory_create_step_2_section_field_properties_mask": "Mask :",
+    "definition_directory_create_step_2_section_field_properties_btn_validate": "Validate",
+    "definition_directory_create_step_2_section_field_properties_no_field_selected": "No fields selected.",
+    "definition_directory_create_step_2_is_required": "Directory creation error. At least one field required.",
+    "definition_directory_create_step_2_key_is_required": "Directory creation error. No key field declared.",
+    "definition_directory_go_to_list": "Directory definition",
+    "definition_directory_create_step_2_section_field_properties_data_types": {
+      "directory_data_type_boolean": "Boolean",
+      "directory_data_type_number": "Number",
+      "directory_data_type_string": "String",
+      "directory_data_type_integer": "Integer",
+      "directory_data_type_date": "Date",
+      "directory_field_type_mandatory": "Mandatory",
+      "directory_field_type_optional": "Optional"
+    },
+    "definition_directory_modify_step_2_error": {
+      "cannot_set_to_key": "Unable to modify the « Key » field: The new field defined as << Key » contains duplicate data.",
+      "cannot_set_to_require": "Impossible to change the « Presence » property: The field contains empty data.",
+      "cannot_change_type": "Impossible to change « Data » property: The field contains data that does not correspond to the new « Data » type.",
+      "cannot_change_length": "Impossible to change « Maximum length »  property: The field contains data exceeding the defined value.",
+      "cannot_set_new_mask": "Impossible to change « Mask »  property: The field contains data that does not respect the new mask.",
+      "mask_require": "The mask is required"
+    },
+    "definition_directory_confirm_leave": {
+      "title": "Data not saved!",
+      "message": "Are you sure you want to cancel? The data will be lost.",
+      "cancelBtn": "Cancel",
+      "quit": "Exit"
+    },
+    "definition_directory_confirm_update": {
+      "title": "Modify the directory!",
+      "message": "Are you sir to modify the directory? ",
+      "paragraph": "This directory may be used and may cause production problems.",
+      "cancel": "Cancel",
+      "confirm": "Modify",
+      "fail_to_check_is_used": "Fail to check directory is used"
+    },
+    "directory_definition_part2_max_display_name_length": "Display name must not exceed 100 characters",
+    "definition_directory_create_step_2_btn_cancel": "Previous",
+    "definition_directory_create_step_2_btn_next": "Next",
+    "definition_directory_create_step_3_btn_cancel": "Previous",
+    "definition_directory_create_step_3_btn_next": "Create",
+    "definition_directory_create_step_3_title": "CREATE A DIRECTORY (3/3)",
+    "definition_directory_create_step_3_sub_title": "Fill in the fields below",
+    "definition_directory_modify_step_1_title": "MODIFY A DIRECTORY (1/3) ",
+    "definition_directory_modify_step_1_sub_title": "Fill in the fields below",
+    "definition_directory_view_step_1_title": "Consult A DIRECTORY (1/3) ",
+    "definition_directory_view_step_1_sub_title": "Consult the fields below",
+    "definition_directory_modify_step_2_title": "MODIFY A DIRECTORY (2/3) ",
+    "definition_directory_modify_step_2_sub_title": "Directory structure",
+    "definition_directory_view_step_2_title": "Consult A DIRECTORY (2/3) ",
+    "definition_directory_view_step_2_sub_title": "Directory structure",
+    "definition_directory_modify_step_3_title": "MODIFY A DIRECTORY (3/3)",
+    "definition_directory_modify_step_3_sub_title": "Fill in the fields below",
+    "definition_directory_view_step_3_title": "Consult A DIRECTORY (3/3)",
+    "definition_directory_view_step_3_sub_title": "Consult the fields below",
+    "definition": {
+      "list": {
+        "title": "Definition Directory",
+        "button": {
+          "create": "Create a directory",
+          "refresh": "Refresh List",
+          "change": "Edit directory",
+          "delete": "Delete directory"
+        },
+        "refreshDateLabel": "Updated at",
+        "table": {
+          "no": "No",
+          "name": "Name",
+          "createdAt": "Created",
+          "updatedAt": "Modified"
+        }
+      },
+      "client-directory-form": {
+        "title": "Clients with directory access",
+        "add-client": "Add client",
+        "exist": "This client already added.",
+        "loadClientFail": "Fail to load client"
+      },
+      "create": {
+        "warningMessage": "The \"Presence\" property can only be modified once a value has been defined for all lines. ",
+        "title": "Create directory",
+        "popup": {
+          "title": "Create directory",
+          "name": "Name",
+          "displayName": "Display Name",
+          "ok": "OK",
+          "cancel": "Cancel",
+          "required": "This field is required!",
+          "exist": "The directory name is already exist!"
+        },
+        "clientField": {
+          "title": "Clients with access to the directory",
+          "table": {
+            "name": "Name"
+          },
+          "addClientButton": "Add Client",
+          "message": {
+            "exist": "This client already added."
+          }
+        },
+        "directoryField": {
+          "title": "Directory fields",
+          "table": {
+            "display": "Display Name",
+            "type": "Data Type"
+          },
+          "addFieldButton": "Add field"
+        },
+        "propertiesField": {
+          "title": "Field properties",
+          "data": "Data",
+          "dataType": "Data type",
+          "displayName": "Show name",
+          "key": "Key",
+          "type": "Presence",
+          "options": {
+            "title": "Options",
+            "length": "Length",
+            "mask": "Mask"
+          },
+          "maximum": "Maximum"
+        },
+        "message": {
+          "unStructure": "At least one directory field must exist!",
+          "fieldsNotEmpty": "The directory field cannot be empty!",
+          "fieldsNotDuplicate": "The directory field cannot be duplicated!",
+          "fieldHaveNotKey": "The key of the directory field is required!",
+          "createdFail": "The directory cannot be created!",
+          "createdSuccess": "The directory has been created successfully."
+        },
+        "button": {
+          "ok": "OK",
+          "cancel": "cancel"
+        }
+      },
+      "edit": {
+        "title": "Edit directory",
+        "popup": {
+          "title": "Edit directory",
+          "name": "Name",
+          "displayName": "Display Name",
+          "ok": "OK",
+          "cancel": "Cancel",
+          "required": "This field is required!",
+          "exist": "The directory name is already exist!"
+        },
+        "confirmModifyPopUp": {
+          "heading": "Edit directory",
+          "message": "Are you sure you want to modify this directory? This directory is used and may cause production problems.",
+          "cancel": "Cancel",
+          "ok": "OK"
+        },
+        "confirmCancelPopUp": {
+          "heading": "Cancel directory",
+          "message": "Are you sure, your progress will be lost?",
+          "cancel": "Cancel",
+          "ok": "OK"
+        },
+        "clientField": {
+          "title": "Clients with access to the directory",
+          "table": {
+            "name": "Name"
+          },
+          "addClientButton": "Add Client",
+          "message": {
+            "exist": "This client already added."
+          }
+        },
+        "directoryField": {
+          "title": "Directory fields",
+          "table": {
+            "display": "Display Name",
+            "type": "Data Type"
+          },
+          "addFieldButton": "Add field"
+        },
+        "propertiesField": {
+          "title": "Field properties",
+          "data": "Data",
+          "dataType": "Data type",
+          "displayName": "Show name",
+          "key": "Key",
+          "type": "Presence",
+          "options": {
+            "title": "Options",
+            "length": "Length",
+            "mask": "Mask"
+          },
+          "maximum": "Maximum"
+        },
+        "message": {
+          "unStructure": "At least one directory field must exist!",
+          "fieldsNotEmpty": "The directory field cannot be empty!",
+          "fieldsNotDuplicate": "The directory field cannot be duplicated!",
+          "fieldHaveNotKey": "The key of the directory field is required!",
+          "fieldNotUnique": "This field is not unique!",
+          "createdFail": "Directory creation failed.",
+          "createdSuccess": "The directory has been successfully created.",
+          "editFail": "Directory modification failed.",
+          "editSuccess": "The directory has been successfully modified."
+        },
+        "button": {
+          "ok": "OK",
+          "cancel": "cancel"
+        }
+      },
+      "delete": {
+        "header": "Delete directory",
+        "message": "Are you sure you want to delete this directory?",
+        "allReadyUsedMessage": "Are you sure you want to delete this directory? This directory is used and can cause production problems.",
+        "cancelButton": "Cancel",
+        "okButton": "Ok"
+      },
+      "event": {
+        "failCreate": "Directory creation failed.",
+        "failEdit": "Fail to view detail",
+        "failModified": "Directory modification failed.",
+        "failDelete": "Directory deletion failed.",
+        "deleteSuccess": "The directory has been successfully deleted."
+      }
+    },
+    "feed": {
+      "list": {
+        "table": {
+          "directory": "Directory",
+          "dateCreated": "Date creation",
+          "dateModification": "Date modification",
+          "no": "No"
+        },
+        "title": "Directory Feed",
+        "header": "List of directories",
+        "refreshDateLabel": "Updated at",
+        "button": {
+          "refresh": "Refresh List",
+          "openDirectory": "Open directory",
+          "import": "Import file",
+          "import_schemas": "Export template CSV file to follow",
+          "export": "Export File",
+          "cancel": "Cancel",
+          "ok": "Ok",
+          "add": "Add line",
+          "remove_all": "Delete all rows",
+          "insert": "Insert"
+        }
+      },
+      "detail": {
+        "title": "Directory details"
+      },
+      "dialog": {
+        "error": "Error",
+        "validate": "Validation",
+        "errormessage_predefine": "The file could not be imported because it has errors.Check the fields of line {{line}}: the data \"{{field}}\" is badly formatted",
+        "errormessage_column_length": "The file could not be imported because it does not respect the expected standard. A template can be downloaded",
+        "errormessage_filenotsupport": "The file format is invalid: only files in .csv format can be imported",
+        "errormessage_unique": "The file could not be imported because the {{field}} column was expecting a unique value. Found a duplicate value in line {{line}}",
+        "okbutton": "OK",
+        "cancelButton": "Cancel",
+        "validButton": "Validate",
+        "message_validate_confirm": "The import deletes all existing data and replaces it with that of the imported file"
+      }
+    },
+    "directory_feed_list_title": "Directory feed",
+    "directory_feed_list_subtitle": "Consult and add to the directory",
+    "directory_feed_list_table_directory_name": "Directory name",
+    "directory_feed_list_table_modified_at": "Modification date",
+    "directory_feed_list_table_created_at": "Creation date",
+    "directory_feed_list_table_feeding_at": "Feeding date",
+    "directory_feed_list_table_actions": "Actions",
+    "directory_feed_list_fetch_fail": "Failed to obtain directory list",
+    "directory_feed_details_fetch_fail": "Failed to obtain directory details",
+    "directory_feed_details_upload_invalid_extension": "Upload error. The format must not be different from CSV.",
+    "directory_feed_details_upload_invalid_max_size": "Upload error. File size cannot exceed 20 MB.",
+    "directory_feed_details_upload_has_duplicated_field": "Upload error. The file contains duplicates in the ${directoryKey} field.",
+    "directory_feed_details_upload_file_empty": "Upload error. File is empty",
+    "directory_feed_details_upload_invalid_total_files": "Download error. The amount of the file cannot exceed 1 file.",
+    "directory_feed_details_upload_invalid_directory_structure": "Upload error. Imported file structure does not match directory structure.",
+    "directory_feed_details_upload_invalid_file_structure": "Upload error. The ${field_name} field for the ${field_value} key does not match the ${field_format} format expected by the directory structure.",
+    "directory_feed_import_csv_fail": "Failed to import csv file",
+    "directory_feed_import_csv_title": "Import a CSV file",
+    "directory_feed_import_csv_instruction": "The number and order of columns in your .csv file must correspond to the fields defined in the directory structure.",
+    "directory_feed_import_csv_select_option_title": "File actions",
+    "directory_feed_import_csv_ignore_csv": "Ignore the first line of <span tessi-g-span>header</span>.",
+    "directory_feed_import_csv_remove_duplicated": "Delete <span tessi-g-span>duplicates</span> from field « ${labelFieldKey} »",
+    "directory_feed_import_csv_import": "Import",
+    "directory_feed_import_no_file_selected": "Error. No files selected.",
+    "directory_feed_limit_max_csv_file_size": "<p>Accepted formats: .csv (maximum weight 20 Mb)</p>",
+    "directory_feed_imported_successfully": "The data has been imported successfully.",
+    "directory_feed_load_imported_csv_content_fail": "Failed to load contents of imported csv file",
+    "directory_feed_details_title": "Directory feed",
+    "directory_feed_details_sub_title": "Consult and feed the directory",
+    "directory_feed_details_export_csv": "Download as CSV",
+    "directory_feed_details_import_csv": "Import CSV file",
+    "directory_feed_details_add_more_line": "Add a line",
+    "directory_feed_add_one_line_title": "Insert a line",
+    "directory_feed_add_one_line_subtitle": "Fill in the fields below",
+    "directory_feed_details_delete_successfully": "Successful deletion(s).",
+    "directory_feed_details_modify_successfully": "Modification saved successfully.",
+    "directory_feed_details_delete_failure": "Error during deletion.",
+    "directory_feed_details_modify_failure": "Error during update.",
+    "directory_feed_details_popup_modified": "Changed line(s)",
+    "directory_feed_details_popup_selected": "Selected line(s)",
+    "directory_feed_list_column_actions_btn_download": "Download file",
+    "insert_directory_feed": {
+      "directory_key": "Directory key",
+      "mandatory_field" : "Mandatory field",
+      "field_to_complete": "Fields to be completed"
+    },
+    "directory_feed_details_delete_row_message": {
+      "title": "Delete line(s)?",
+      "message": "Are you sure you want to delete the line(s)?",
+      "paragraph": "This action is irreversible.",
+      "cancelButton": "Cancel",
+      "confirmButton": "Delete"
+    },
+    "directory_feed_details_error": {
+      "require": "The ${field_name} field is mandatory",
+      "duplicate": "The key field must have a unique value",
+      "format": "The ${field_name} field does not match the ${field_format} format expected by the directory structure.",
+      "length": "The ${field_name} field must not exceed ${field_length} characters."
+    },
+    "insert_directory_feed_error": {
+      "require": "The ${field_name} field is required.",
+      "length": "Field size must not exceed ${field_length} characters.",
+      "mask": "The value entered does not match the ${field_format} format expected by the directory structure.",
+      "integer": "The field must be filled with an integer."
+    },
+    "insert_directory_feed_message": {
+      "success": "The new data line has been successfully added.",
+      "error": "Error when adding a new line of data."
+    }
+  },
+  "dashboard": {
+    "header_title": "Dashboard",
+    "refresh_time": "Last update : ",
+    "filter": "Filters",
+    "title_shipment_volume": "Total volume of deliveries",
+    "title_shipment_table": "Summary of the monitoring",
+    "title_shipment_process": "Evolution of unit shipments by channel",
+    "title_shipment_evol": "Summary of the monitoring",
+    "provider_mail": "E-MAIL",
+    "lre": "LRE",
+    "delivery": "MAIL",
+    "whatapp": "WHATSAPP",
+    "SMS": "SMS",
+    "col_provider": "Channel",
+    "col_volume": "Flight received",
+    "col_ratio": "PND/MNH",
+    "col_processing": "Processed",
+    "col_inprogress": "In progress",
+    "col_percentage": "% Processed",
+    "title_channel_envoy": "Sending channel",
+    "title_channel_deposit": "Mode of deposit",
+    "flow_traceability_deposit_mode_portal": "Portail",
+    "flow_traceability_deposit_mode_iv": "Virtual Printer",
+    "flow_traceability_deposit_mode_api": "API",
+    "flow_traceability_deposit_mode_batch": "Batch",
+    "calendar": {
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "last7day": "Last 7 days",
+      "last30day": "Last 30 days",
+      "thismonth": "This month",
+      "lastmonth": "Last month",
+      "last3month": "Last 3 months",
+      "custom_date": "Custom date ranged"
+    },
+    "button_save": "Enregistrer",
+    "Email": "Email",
+    "Postal": "Postal",
+    "alert_shipment_waiting_for_validate": "You have shipments waiting to be \nfor validation.",
+    "alert_shipment_waiting_for_validate_btn": "Consult the shipments to be validated"
+  },
+  "directory_data_type_boolean": "Boolean",
+  "directory_data_type_number": "Number",
+  "directory_data_type_string": "String",
+  "directory_data_type_integer": "Integer",
+  "directory_data_type_date": "Date",
+  "directory_field_type_mandatory": "Mandatory",
+  "directory_field_type_optional": "Optional",
+  "smartflow_title_about": "About",
+  "smartflow_desc_about": "With Tessi Digital Experience platform, manage and distribute all your SMS campaigns, emails, and letters from a single dispatch platform. From a web portal, a printer driver or via an automatic transfer mode, your electronic documents are captured and redirected to Tessi Digital Experience platform for processing, concentration and allotment. Track the production and distribution status of your business communications in real time on the Tessi Digital Experience platform which is available 24/7. We handle acknowledgments of receipts and undelivered post for registered letters for you, and send you the statistical reports of your email and SMS campaigns so you can track them.",
+  "smartflow_subtitle_about": "Digitalization your campaign with Tessi Digital Experience Platform",
+  "forgot-password": {
+    "title": "Reset your password",
+    "email": "Email address",
+    "mustBeValidEmail": "Please enter a valid email address",
+    "tokenExpired": "The password reset request has expired.",
+    "pleaseTryAgain": "Please try again",
+    "resetPassword": "Forgot password?",
+    "returnHome": "Return to the login page",
+    "returnHomeLogin": "Return to the login page",
+    "reset": "Send",
+    "changePass": "Confirm",
+    "emailSent": "An email containing a link to change your password has been sent to you.",
+    "passwordRested": "Your password has been changed. Go to the login page to log in.",
+    "returnHomeConnector": "Connect",
+    "changePassword": "Reset your password",
+    "newPassword": "Password:",
+    "newPassword_placeholder": "Enter your new password",
+    "confirmPassword": "Confirm password:",
+    "confirmPassword_placeholder": "Confirm your new password",
+    "emailNotFound": "We couldn't find an account with this email address",
+    "instruction": "Enter your email and we will send you a confirmation link",
+    "email_placeholder": "Enter your email",
+    "reset_instruction": "Enter your new password",
+    "error_password_invalid": "Please enter a valid password",
+    "error_password_notmatch": "Confirm password is not match",
+    "error_contains_at_least_one_lower_character": "contains at least one lower character",
+    "error_contains at_least_one_upper_character": "contains at least one upper character",
+    "error_contains_at_least_one_digit": "contains at least one digit",
+    "error_contains_at_least_one_special_character": "contains at least one special character",
+    "error_contains_at_least_twelve_characters": "contains at least 12 characters",
+    "error_password_confirmation_required": "Password confirmation is required",
+    "info_need_to_change_password": "you need to change your password",
+    "error_password_already_used": "The password must not match one of the last 3 passwords",
+    "current_password_is_incorrect": "The current password is incorrect"
+  },
+  "pagination_total": "Total : {{value}}",
+  "pagination_results": "Results: {{value}}",
+  "pagination_no_results": "No data",
+  "pagination_result_zero": "Results: 0",
+  "cxmMatDatetimePicker": {
+    "dateTooltip": "Select Day",
+    "btnApply": "Validator",
+    "timeTooltip": "Start at",
+    "hourLabel": "Hours",
+    "minuteLabel": "Minutes",
+    "secondLabel": "Seconds"
+  },
+  "about_page": {
+    "table": {
+      "service": "Service",
+      "version": "Version"
+    }
+  },
+  "communicationInteractive": {
+    "title": "Upload a file",
+    "subTitle": "Please choose a predefined model",
+    "chooseModel": "Choose a model",
+    "next": "Next",
+    "successPage": {
+      "or": "or",
+      "title": "Your document is sent!",
+      "subtitle": "Processing may take a few minutes. You can find all the information about your shipment at any time in the tracking section.",
+      "alterButton": "Send a new file",
+      "mainButton": "Track my shipment"
+    },
+    "errorMessage": {
+      "chooseModel": "Model is required",
+      "failToFetchModel": "Fail to fetch model",
+      "failToGetRemotedUrl": "Fail to get remoted URL"
+    }
+  },
+  "espace": {
+    "headerTitle": "VALIDATION SPACE",
+    "subTitle": "Consult the list of shipments to be validated",
+    "consultHeader": "VALIDATION SPACE",
+    "consultSubtitle": "Batch Detail:",
+    "table": {
+      "colName": "NAME",
+      "colUser": "USER",
+      "createdAt": "DATE OF CREATION",
+      "channel": "CHANNEL",
+      "category": "CATEGORY",
+      "envoy": "UNIT SENDER(S) TO BE VALIDATED",
+      "actions": "ACTIONS",
+      "consult": "Consult",
+      "modelName": "MODEL NAME"
+    },
+    "listFlowDocument": {
+      "table": {
+        "name": "Name",
+        "recipient": "Recipient",
+        "createdAt": "Date created",
+        "canal": "Channel",
+        "category": "Category",
+        "categories": "Categories",
+        "users": "Users",
+        "dates": "Dates",
+        "actions": "Actions",
+        "btnConsult": "Consult",
+        "btnDownload": "Download the file",
+        "message": {
+          "downloadFileFail": "Fail to download file"
+        }
+      }
+    },
+    "selection": {
+      "flow_counter": "selected batch(es)",
+      "flow_document_counter": "selected unit shipments",
+      "button_refuse": "Refuse",
+      "button_validate": "Validate",
+      "comment_placeholder": "Optional: Enter a comment",
+      "validate_success": "Validation registered successfully.",
+      "validate_fail": "Refuse registered successfully.",
+      "validate_error": "Registration failed.",
+      "not_yet_configure_unloading": "Client is not yet configured the unloading configuration"
+    },
+    "comment": {
+      "require": "A comment is required in the case of refuse.",
+      "max_length": "Your message exceeds the maximum size allowed."
+    },
+    "errorMessage": {
+      "failtoFetchList": "Unable to communicate with the server."
+    }
+  },
+  "filterCriteria": {
+    "channel": "Channel",
+    "reset": "Reset",
+    "postal": "Postal",
+    "digital": "Digital",
+    "category": "Category",
+    "user": "User",
+    "depositModeTitle": "Deposit mode",
+    "depositMode": "Deposit method"
+  },
+  "flux_criteria": {
+    "deposit_mode": "Deposit modes",
+    "identification_mode": "Identification modes",
+    "distribute_criteria": "Distribution criteria"
+  },
+  "client": {
+    "headerTitle": "CLIENT SETTINGS",
+    "headerSubititle": "Consult and manage the client list",
+    "createClient": "Create a client",
+    "createButton": "Create",
+    "deleteClient": "Delete the client",
+    "force_dechargement": "Start an unloading",
+    "fillClientInfo": "Fill in the information for the client",
+    "fillClientParam": "Fill in the client's parameters",
+    "fillClientFunc": "Management of the client's features",
+    "info_tab": "Information",
+    "paramter_tab": "Divisions and Services",
+    "functional_tab": "Features",
+    "offloading_tab": "Unloading",
+    "flux_tab": "Flow",
+    "fillers_tab": "Fillers",
+    "consultClient": "View and modify the settings for the client: ",
+    "configuration_file_client": "Management of the configuration file: ",
+    "companyName": "Name of the company",
+    "companyContactName": "Customer contact name",
+    "companyContactLastname": "First name of the customer contact",
+    "companyContactEmail": "Client's email",
+    "companyUploadFile": "Policy on the use of personal data:",
+    "table": {
+      "clientName": "CUSTOMER NAME",
+      "modifiedDate": "MODIFICATION DATE",
+      "createdDate": "CREATION DATE",
+      "action": "ACTIONS",
+      "buttonModify": "Modify",
+      "buttonConsult": "Consult"
+    },
+    "messages": {
+      "deleteSuccess": "The client has been deleted.",
+      "deleteFail": "The client hasn't been deleted.",
+      "modifySuccess": "Modification saved successfully.",
+      "modifyFail": "Failed to save.",
+      "deleteDivisionTitle": "Delete the division?",
+      "deleteDivisionDesc": "Are you sure you want to delete the division? The associated services will also be deleted. This action is irreversible.",
+      "deleteServiceTitle": "Delete the service",
+      "deleteServiceDesc": "Are you sure you want to delete the service? This action is irreversible.",
+      "atleastOndivService": "At least one division and one department must be filled out.",
+      "clientNotExist": "The client does not exist.",
+      "atLeastOneFunctionality": "At least one feature must be enabled.",
+      "userNotAuthorize": "Functionality not allowed for this user.",
+      "noOffloadConfig": "No offload configured",
+      "noOffload_hint": "Your shipment cannot be completed until an offload configuration exists",
+      "noOffload_hint2": "The shipment will be saved with the status \"Draft\", you can finalize it later.",
+      "force_dechargement_success": "Unloading done",
+      "force_dechargement_fail": "Failed to launch unloading. Cannot communicate with the server",
+      "fillNameLimit": "The filler name cannot exceed 20 characters.",
+      "file_size_exceed": "Upload error. The file size cannot exceed 5 MB.",
+      "registerNotPossible": "Registration not possible: incomplete information."
+    },
+    "delete": {
+      "title": "Delete the client?",
+      "message": "Are you sure you want to delete the client? All information and organisation of this client will be deleted. This action is irreversible.",
+      "cancelButton": "Cancel",
+      "confirmButton": "Delete"
+    },
+    "placeholder": {
+      "companyName": "Enter the name of the company",
+      "companyContactName": "Fill in the name of the client contact",
+      "companyContactLastname": "Enter the first name of the client contact",
+      "companyContactEmail": "Fill in the client contact email"
+    },
+    "confirmLeave": {
+      "cancelButton": "Cancel",
+      "confirmButton": "Exit",
+      "message": "Are you sure you want to cancel? The data will be lost.",
+      "title": "Data not saved!"
+    },
+    "form": {
+      "titleDivision": "Divisions",
+      "titleService": "Services associated with the division",
+      "enterDivision": "Enter a division field",
+      "addDivision": "Add a division",
+      "addService": "Add a service",
+      "enterService": "Enter a service field",
+      "noAvailableField": "No fields available.",
+      "addAssociate": "Please create a division to associate",
+      "acceptOnlyPdfFile": "Accepted formats : pdf",
+      "dragHere": "Drag here",
+      "file_drop_pdf_here": "your file",
+      "add_hours": "+New",
+      "titleOffloadByHours": "Days and hours of unloading",
+      "titleOffloadHoliday": "Public holidays",
+      "days": {
+        "MON": "Monday",
+        "TUE": "Tuesday",
+        "WED": "Wednesday",
+        "THU": "Thursday",
+        "FRI": "Friday",
+        "SAT": "Saturday",
+        "SUN": "Sunday",
+        "new_year_day": "New Year's Day",
+        "victory_day": "Victory of 1945",
+        "assumption_day": "Assumption Day",
+        "armistice_day": "Armistice Day",
+        "st_stephen_day": "Saint Stephen's Day",
+        "labour_day": "Labor Day",
+        "national_day": "National Day",
+        "all_saints_day": "All Saints' Day",
+        "christmas_day": "Christmas",
+        "easter_monday": "Easter Monday",
+        "ascension_thursday": "Ascension Thursday",
+        "pentecost_monday": "Pentecost Monday"
+      },
+      "titleFillers": "Customization of fillers",
+      "filler": "Filler"
+    },
+    "formError": {
+      "doubleName": "This company name is already in use.",
+      "nameRequired": "The name of the company is required.",
+      "invalidName": "This field accepts only alphanumeric characters or spaces.",
+      "invalidEmail": "Please enter a valid email address.",
+      "invalidPdfFile": "Upload error, only PDF files are accepted.",
+      "requiredDivision": "A division name is required.",
+      "incorrectDivisionFormat": "This field accepts only alphanumeric characters.",
+      "duplicatedDivisionName": "This division name is already in use.",
+      "requiredService": "A service name is required.",
+      "incorrectService": "This field accepts only alphanumeric characters.",
+      "duplicatedServiceName": "This service name is already in use.",
+      "emailFormat": "Please enter a valid email address."
+    },
+    "confirmUnloading": {
+      "title": "Start an unloading",
+      "message": "Are you sure you want to launch unloading?",
+      "cancelButton": "Cancel",
+      "confirmButton": "Validate"
+    },
+    "create": {
+      "createSuccess": "Successfully created a client.",
+      "createFail": "Failed to create the client."
+    },
+    "button": {
+      "backToStep2": "Previous",
+      "validationCreation": "Create",
+      "manage": "Manage"
+    },
+    "functionality": {
+      "cxm_flow_traceability": "Tracking space",
+      "cxm_statistic_report": "Statistics and reports area",
+      "cxm_template": "Emailing template design",
+      "cxm_sms_template": "Sms template design",
+      "cxm_campaign": "Email campaign management",
+      "cxm_sms_campaign": "SMS campaign management",
+      "cxm_flow_deposit": "Flow deposit area",
+      "cxm_setting_up_document_template": "Model settings",
+      "cxm_setting_up_consumables": "configuration of consumables",
+      "cxm_user_management": "User management",
+      "cxm_client_management": "Client management",
+      "cxm_directory": "Directory management",
+      "cxm_communication_interactive": "Interactive communication creation",
+      "cxm_espace_validation": "Validation space",
+      "cxm_management_library_resource": "Resource Library",
+      "cxm_enrichment_mailing": "Enrichment mailing",
+      "cxm_watermark_enhancement_postal_delivery": "Watermark enhancement postal delivery"
+    },
+    "configuration_history_tracking": "Version history",
+    "configuration_file_config": "Configuration file",
+    "configuration_return": "Back",
+    "configuration_register": "Register",
+    "configuration_drag_order": "Please select and drag to order",
+    "configuration_drag_add": "Adding a model",
+    "configuration_drag_view": "View",
+    "configuration_drag_modify": "Modify",
+    "configuration_view_version": "View version",
+    "configuration_return_a_previous_version": "Return to a previous version",
+    "configuration_revert_cancel": "Cancel",
+    "configuration_revert_confirm": "Confirm",
+    "configuration_revert_message": "Do you really want to go back to this file version?",
+    "configuration_revert_title": "Back to...",
+    "configuration_drag_remove": "Delete",
+    "configuration_drag_export": "Export the file",
+    "configuration_popup_confirm": "Confirmer",
+    "configuration_popup_invalid_key": "The configuration property is invalid",
+    "configuration_popup_required_model": "The model name is mandatory.",
+    "configuration_popup_required_model_name": "Model name is required.",
+    "configuration_popup_key_existed": "The configuration property cannot be duplicated",
+    "configuration_popup_modele_existed": "A model with this name already exists. Define a unique name.",
+    "configuration_popup_modele_cannot_override": "The \"Modele\" value cannot be override.",
+    "configuration_confirm_delete_title": "Delete model ?",
+    "configuration_confirm_delete_message": "Are you sure you want to delete the model?",
+    "configuration_confirm_delete_cancelBtn": "Cancel",
+    "configuration_confirm_delete_deleteBtn": "Delete",
+    "configuration_register_success": "The version has been successfully registered.",
+    "configuration_register_fail": "Fail to register new configuration",
+    "configuration_download_configuration_fail": "Fail to download configuration file",
+    "configuration_fetch_configurations": "Fail to get configurations",
+    "configuration_at": "at",
+    "configuration_on": "on",
+    "configuration_by": "by",
+    "configuration_version": "Version:",
+    "configuration_reference_version": "Reference \nversion :\nVersion",
+    "confirm_discard_client_configuration": {
+      "confirmButton": "Exit",
+      "cancelButton": "Cancel",
+      "message": "Warning, your version has not been saved and will be lost.",
+      "title": "Quit without saving?",
+      "title_switch_version": "Switch version without saving?"
+    },
+    "distribution_criteria_postal": "Channel postal",
+    "distribution_criteria_digital": "Channel digital",
+    "distribution_category_email": "Email",
+    "distribution_category_sms": "Sms",
+    "distribution_category_cse": "CSE",
+    "distribution_category_cse_ar": "CSE AR",
+    "distribution_category_lre": "LRE",
+    "canal_digital_header": "Digital channel",
+    "canal_digital_sub_title": "Criteria for distribution",
+    "metadata_email_title": "Emailing metadata management",
+    "metadata_sms_title": "SMS metadata management",
+    "hub_distribution": "Distribution hub",
+    "metadata_email_sender_name": "Sender names",
+    "metadata_email_sender_email": "Sender emails",
+    "metadata_email_unsubscribe_link": "Unsubscribe links",
+    "metadata_consult_btn": "View",
+    "metadata_sms_sender_label": "Sender labels",
+    "metadata_hub_distribute_access_parameter": "Access parameters",
+    "metadata_hub_distribute_service_provider": "Service providers",
+    "metadata_update_success": "Metadata has been successfully updated",
+    "metadata_update_fail": "An error occurred while updating the metadata",
+    "metadata_fetch_fail": "Failed to get metadata",
+    "update_hub_account_successfully": "Hub access settings have been successfully updated",
+    "fetch_hub_access_account_fail": "Fail to get the Hub access parameter",
+    "fail_update_hub_account": "An error occurred while updating the hub access settings",
+    "fail_to_fetch_service_provider": "Fail to fetch service provider",
+    "update_service_provider_successfully": "Service providers have been successfully updated",
+    "fail_update_service_provider": "An error occurred while updating the service providers",
+    "senderNameMetadata": "Sender names",
+    "senderEmailMetadata": "Sender emails",
+    "unsubscribeMetadata": "Unsubscribe links",
+    "senderLabelMetadata": "Sender labels",
+    "metadata_popup_title": "Sender's names",
+    "metadata_popup_add": "Add a field",
+    "metadata_popup_description": "Please select and drag the \nfields to order them",
+    "metadata_is_duplicated": "A metadata with this name already exists",
+    "metadata_sender_name_is_required": "The field is required",
+    "metadata_sender_mail_is_required": "The field is required",
+    "metadata_sender_unsubscribe_link_is_required": "The field is required",
+    "metadata_sender_label_is_required": "The field is required",
+    "metadata_sender_label_max_length": "The length of a metadata cannot exceed 11 characters",
+    "hub_distribute_title": "Hub Access Settings",
+    "hub_distribute_identifiant": "Identifier",
+    "hub_distribute_identifiant_invalid": "Please enter a valid email address",
+    "hub_distribution_phone_number_invalid": "Please enter a valid recipient number",
+    "hub_distribution_phone_number_required": "Recipient number is required",
+    "hub_distribute_identifiant_required": "Email is required",
+    "hub_distribute_identifiant_max_length": "The length of metadata cannot exceed 128 characters",
+    "hub_distribute_password": "Password",
+    "hub_distribute_password_required": "Password is required",
+    "hub_distribute_register_btn": "Register",
+    "service_provider_title": "Service providers",
+    "service_provider_label_email": "Email service provider",
+    "service_provider_label_sms": "SMS service provider",
+    "service_provider_add_more_service_btn": "+ Add a provider*",
+    "service_provider_cannot_be_delete": "This service cannot be delete, this service is currently in use.",
+    "service_provider_form_description": "* The order determines the order in which providers are used by the Hub.",
+    "fragment_return_address_field_return_address": "Return address :",
+    "fragment_return_address_field_line1": "Line 1 :",
+    "fragment_return_address_field_line2": "Line 2 :",
+    "fragment_return_address_field_line3": "Line 3 :",
+    "fragment_return_address_field_line4": "Line 4 :",
+    "fragment_return_address_field_line5": "Line 5 :",
+    "fragment_return_address_field_zipcode": "Postal code and city :",
+    "fragment_return_address_field_country": "Country :",
+    "fragment_return_address_add_least_three_address_lines": "Error: At least three address lines are mandatory",
+    "fragment_return_address_invalid_zipcode_city": "Error: a zip code and a city must be specified",
+    "fragment_return_address_zipcode_city_does_not_match": "Error: Postcode and city do not match",
+    "fragment_return_address_zipcode_required": "Error: a zip code and a city must be specified",
+    "fragment_return_address_address_line_exceed_line": "An address line cannot exceed 38 characters.",
+    "popup_return_address_title": "Address",
+    "popup_return_address_cancel_btn": "Cancel",
+    "popup_return_address_validate_btn": "Confirm"
+  },
+  "integrations": {
+    "serverError": "Unable to communicate with the server.",
+    "failtovalidate": "The ticket does not exist."
+  },
+  "changePassword": {
+    "heading": "Profile",
+    "form": {
+      "firstname": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmNewPassword": "Confirm new password",
+      "division": "Division",
+      "service": "Service",
+      "profile": "Profile",
+      "validation": {
+        "currentPasswordRequired": "The current password is required",
+        "currentPasswordIncorrect": "The current password is incorrect",
+        "newPasswordRequired": "The new password is required",
+        "confirmNewPasswordNotMatch": "The new passwords do not match"
+      }
+    },
+    "buttons": {
+      "edit": "Edit"
+    },
+    "message": {
+      "success": "Your password has been correctly changed",
+      "fail": "Fail to change the password!",
+      "loadUserInFail": "Fail to load user information!"
+    }
+  },
+  "globalMessage": {
+    "downloadFileFail": "Fail to download file"
+  },
+  "cxm_setting": {
+    "list_title": "Resource library",
+    "list_sub_title": "Consult and manage the list of resources",
+    "add_resource_btn": "Add a resource",
+    "type": "Type",
+    "table_file_name": "File name",
+    "table_label": "Label",
+    "table_type": "Type",
+    "date_creation": "Creation date",
+    "weight": "Weight",
+    "number_of_page": "Number of pages",
+    "actions": "Actions",
+    "attachment": "Attachment",
+    "background": "Background",
+    "signature": "Signature",
+    "watermark": "Watermark",
+    "popup_title": "Add a resource",
+    "label": "Label",
+    "backgroundDescription": "<p>Accepted formats: pdf (maximum weight 20 Mb)</p> <p>Maximum number of pages : 1</p>",
+    "attachmentDescription": "<p>Accepted formats: pdf (maximum weight 20 Mb)</p>",
+    "signatureDescription": "<p>Accepted formats: PNG (maximum weight 1 Mb)</p>",
+    "add": "Add",
+    "popup_errors_type_required": "The type is required.",
+    "popup_errors_label_required": "The label is required.",
+    "popup_invalidFileFormat": "Upload error. The format must not be different from PDF for a background resource.",
+    "popup_invalidTotalFile": "Upload error. The amount of the resource cannot exceed 1 file.",
+    "popup_invalidFileSize": "Upload error. The size of the resource cannot exceed 20 MB.",
+    "please_select_attachment_file": "Error. No files selected.",
+    "popup_invalidTotalPage": "Upload error. The number of pages cannot exceed one page for a background resource.",
+    "attachment_invalid_file_size": "Upload error. The size of the resource cannot exceed 20 Mb.",
+    "attachment_invalid_format": "Upload error. The format must not be different from PDF for an attachment asset.",
+    "attachment_invalid_total_file": "Download error. The amount of the resource cannot exceed 1 file.",
+    "fail_to_create": "Fail to create",
+    "create_new_resource_success": "The new resource has been added successfully.",
+    "popup_errors_label_duplicated": "A resource with this name already exists.",
+    "delete_resource_success": "The resource has been successfully deleted.",
+    "delete_resource_fail": "Fail to delete resource",
+    "confirm_delete_title": "Delete the resource?",
+    "confirm_delete_message": "Are you sure you want to delete the resource? This action is irreversible.",
+    "confirm_delete_paragraph": "This action is irreversible.",
+    "confirm_cancel_btn": "Cancel",
+    "confirm_delete_btn": "OK",
+    "fail_to_download": "Fail to download the resource file",
+    "title_information": "Information",
+    "technicalName": "Technical name:",
+    "copyClipboardSuccess": "Copied technical name",
+    "noInformationFound": "No information found"
+  },
+  "flow-report": {
+    "col": {
+      "channel": "Channel",
+      "volume": "Volume",
+      "to-validate": "To validate",
+      "scheduled": "Scheduled",
+      "in-progress": "In progress",
+      "other": "Other",
+      "completed-percent": "% Complete"
+    }
+  },
+  "background": {
+    "position": {
+      "ALL_PAGES": "All pages",
+      "FIRST_PAGE": "First page",
+      "NEXT_PAGES": "Next pages",
+      "LAST_PAGE": "Last page",
+      "FIRST_POSITION": "First position",
+      "SECOND_POSITION": "Second position",
+      "THIRD_POSITION": "Third position",
+      "FOURTH_POSITION": "Fourth position",
+      "FIFTH_POSITION": "Fifth position",
+      "OTHER": "Enhancement pages",
+      "ONLY_DOC": "Original document pages"
+    },
+    "type": {
+      "watermark_form_upload": "One-time upload",
+      "watermark_form_library": "Library"
+    },
+    "errors": {
+      "file_missing": "Missing background page",
+      "unknown": "Unable to communicate with the server",
+      "page_limit": "Upload error. The number of pages cannot exceed one page for a background resource",
+      "unauthorize": "Error: You do not have permission to access the resource library.",
+      "noDeletePermission": "You do not have permission to delete background from the page.",
+      "deleteConflict": "The file or resource does not exist.",
+      "failToFetchList": "Failed to fetch the page background.",
+      "selectPageBackgound": "The page background is mandatory. Please select the page background",
+      "selectPageAttachment": "The attachement is mandatory. Please select the an attachment",
+      "uploadPageBackgound": "Error. No file selected.",
+      "not_pdf": "Upload error. The format must not be different from PDF for a background resource."
+    },
+    "buttons": {
+      "watermark": "Add a watermark",
+      "signature": "Add signature",
+      "attachment": "Add an attachment",
+      "background": "Add a background",
+      "missingRes": "Missing resource. Please add it using the resource management screen"
+    },
+    "messages": {
+      "background": "Page background",
+      "attachment": "Attachment",
+      "watermark": "Watermark",
+      "missingRes": "Missing resource",
+      "missingRes_hint": "Your shipment cannot be completed while it uses missing resources",
+      "missingRes_hint2": "The submission will be saved with the status \"Draft\", you can finalize it later.",
+      "signature": "Signature :"
+    }
+  },
+  "cxm_analytics": {
+    "title": "REPORTING SPACE",
+    "sub_title": "Consult statistics and monitoring indicators",
+    "export_btn": "Export the report",
+    "navigation_global": "Global",
+    "navigation_postal": "Postal",
+    "navigation_email": "Email",
+    "navigation_sms": "SMS",
+    "fetch_filter_criteria_fail": "Error is occurred while fetching the filter criteria",
+    "fetch_filler_list_fail": "Error is occurred while fetching the list of filler",
+    "refresh_analytics_date": "Last update: ",
+    "graph_production_detail_title": "Production progress",
+    "graph_volume_received": "Volume received",
+    "graph_volume_treaty": "Volume treated",
+    "graph_motif_pnd": "PND pattern",
+    "graph_status_mail": "Mail status",
+    "graph_status_sms": "SMS status",
+    "table_production_detail_title": "Production detail",
+    "global_table": {
+      "channel": "Channel",
+      "volume_received": "Volume received",
+      "pnd_mnd": "PND/MND",
+      "pnd_mnd_percentage": "% PND/MND",
+      "treaty": "Treated",
+      "in_progress": "In progress",
+      "treaty_percentage": "% Treated"
+    },
+    "dynamic_production_detail_table": "Detail of production by grouping of fillers",
+    "postal_table": {
+      "fillers": "Fillers",
+      "volume_received": "Received",
+      "processed": "Processed",
+      "in_progress": "In progress",
+      "pnd": "PND",
+      "mnd": "MND",
+      "processed_percentage": "Processed %",
+      "pnd_percentage": "PND %",
+      "mnd_percentage": "MND %",
+      "total": "Grand total"
+    },
+    "production_detail_table": {
+      "blank": "(blank)",
+      "fillers": "Fillers",
+      "volume_received": "Received",
+      "processed": "Processed",
+      "in_progress": "In progress",
+      "pnd": "PND",
+      "mnd": "MND",
+      "processed_percentage": "Processed %",
+      "pnd_percentage": "PND %",
+      "mnd_percentage": "MND %",
+      "total": "Grand total"
+    },
+    "distribution_volume_received": {
+      "title": "Distribution of the volume "
+    },
+    "distribution_of_NDPs_by_reason": {
+      "title": "Distribution of PND by reason"
+    },
+    "processed_mail": {
+      "title": "Processed mail"
+    },
+    "detail_of_production_by_filler_grouping": {
+      "title": "Detail of production by Filler grouping"
+    },
+    "blank": "(blank)",
+    "pnd_status": {
+      "refused": "Refused",
+      "unclaimed": "Unclaimed",
+      "npai": "NPAI",
+      "recipient_unknown": "Recipient Unknown",
+      "access_or_addressing_failure": "Access or addressing failure"
+    },
+    "sms_by_status": {
+      "title": "SMS by status"
+    },
+    "mails_by_status": {
+      "title": "Mails by status"
+    },
+    "none_pnd": "None PND",
+    "you_mas_select_filler_in_order": "You must select fillers 1, 2 and 3 in order",
+    "sms_status": {
+      "in_progress": "In progress",
+      "sent": "Sent",
+      "cancelled": "Cancelled",
+      "in_error": "Error"
+    },
+    "email_status": {
+      "hard_bounce": "Hard Bounce",
+      "soft_bounce": "Soft Bounce",
+      "clicked": "Clicked",
+      "resent": "Resent",
+      "opened": "Opened",
+      "sent": "Sent",
+      "blocked": "Blocked",
+      "in_error": "Error",
+      "in_progress": "In progress"
+    }
+  },
+  "shared": {
+    "uploading_fragment": {
+      "drop_here": "Drag here",
+      "mention_file": "your ${extension} file"
+    }
+  }
+}

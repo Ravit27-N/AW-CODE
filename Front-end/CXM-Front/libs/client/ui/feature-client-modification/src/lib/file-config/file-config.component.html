@@ -1,0 +1,39 @@
+<main class='container'>
+  <div class='configuration'>
+    <div class='flex justify-end'>
+      <div cdkDropList class='drag-drop-list' (cdkDropListDropped)='order($event)'>
+
+        <div class='flex flex-col'>
+          <ng-container *ngFor='let configuration of configurations; let i = index'>
+            <!-- cannot drag -->
+            <cxm-smartflow-draggable-element [configuration]='configuration'
+                                             (deleteModel)='delete($event)'
+                                             (modifyModel)='modify($event)'
+                                             *ngIf='!configuration.draggable'
+                                             [forceDisableDelete]='disableButtonAddConfig'>
+            </cxm-smartflow-draggable-element>
+
+            <!-- draggable -->
+            <cxm-smartflow-draggable-element [configuration]='configuration'
+                                             cdkDrag
+                                             (deleteModel)='delete($event)'
+                                             (modifyModel)='modify($event)'
+                                             *ngIf='configuration.draggable'
+                                             [forceDisableDelete]='disableButtonAddConfig'>
+            </cxm-smartflow-draggable-element>
+
+          </ng-container>
+        </div>
+
+      </div>
+    </div>
+
+    <div class='add-configuration' (click)="add()" *ngIf='!disableButtonAddConfig'>
+      <a>+ {{ 'client.configuration_drag_add' | translate }}</a>
+    </div>
+
+    <div class='description' *ngIf='!disableButtonAddConfig'>
+      <p>{{ 'client.configuration_drag_order' | translate }}</p>
+    </div>
+  </div>
+</main>

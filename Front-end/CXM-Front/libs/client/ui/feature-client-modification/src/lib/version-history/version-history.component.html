@@ -1,0 +1,79 @@
+<main class='container'>
+  <div class='version-tracking'>
+    <ng-container *ngFor='let configVersion of configurationVersion; let i = index;'>
+      <div [ngClass]='configVersion?.createdBy ? "event-add-height" : "event-remove-height"' class='event'>
+
+        <!-- Version tracking -->
+        <div class='event-trace'>
+          <div class='circle'></div>
+          <div class='line' [ngClass]='configVersion?.createdBy ? "add-line-height" : "remove-line-height"'></div>
+        </div>
+        <!-- ./Version tracking -->
+
+
+        <!-- Version information -->
+        <div class='data' *ngIf='i < (configurationVersion.length - 1)'>
+          <div>
+            <button [class.highlight-old-version]='i === versionHighlighted'
+                    [class.highlight-selected-version]='i === versionSelected'
+                    [matMenuTriggerFor]='menuAction'
+                    (menuOpened)='matMenuOpen(configVersion, i)'
+                    (menuClosed)='matMenuClose(configVersion, i)'>
+              <span>{{ formatSelectedVersion(configVersion.version, i === this.versionHighlighted || (i === this.versionSelected)) | async }}</span>
+            </button>
+            <mat-menu #menuAction='matMenu' class='mat-menu-config-version-action-panel'>
+              <div mat-menu-item (click)='onSelectViewEvent(configVersion, i);'>
+                <div class="icon-open-eye">
+                  <img src="assets/icons/open-eye-gray.png" class="w-[53px]" alt="uploading logo">
+                  <span>{{ 'client.configuration_view_version' | translate }}</span>
+                </div>
+              </div>
+              <div mat-menu-item (click)='onSelectPreviousEvent(configVersion);'>
+                <div class="icon__revert">
+                  <img src="assets/icons/download.svg" class="w-[53px]" alt="uploading logo">
+                  <span>{{ 'client.configuration_revert_title' | translate }}</span>
+                </div>
+              </div>
+            </mat-menu>
+
+            <!-- Question mark -->
+            <span class='question-mark' *ngIf='configVersion?.referenceVersion'
+                  cxmSmartflowInfoTooltip
+                  [class.active__highlight__question_mark]="i === this.versionHighlighted || i === (configurationVersion.length - 1)"
+                  width='100px'
+                  [tooltipMessage]='(getTooltipMsg(configVersion) | async) || ""'>
+                <span class='item' style='color: #fff !important;'>?</span>
+            </span>
+            <!-- ./Question mark -->
+          </div>
+          <!-- Status description -->
+          <p class='user'> {{ 'client.configuration_by' | translate }} {{ configVersion?.createdBy }}</p>
+          <p class='date'>{{ formatDate(configVersion.createdAt) | async }}</p>
+          <!-- ./Status description -->
+        </div>
+
+        <div class='data' *ngIf='i === (configurationVersion.length - 1)'>
+        <div>
+          <button (click)='onSelectCurrentEvent(configVersion)' [class.highlight-last-version]='lastVersionSelected'>
+            <span>{{ formatSelectedVersion(configVersion.version,  lastVersionSelected) | async }}</span>
+          </button>
+          <!-- Question mark -->
+          <span class='question-mark' *ngIf='configVersion?.referenceVersion'
+                cxmSmartflowInfoTooltip
+                width='100px'
+                [tooltipMessage]='(getTooltipMsg(configVersion) | async) || ""'>
+                <span class='item' style='color: #fff !important;'>?</span>
+            </span>
+          <!-- ./Question mark -->
+        </div>
+        <!-- Status description -->
+        <p class='user'> {{ 'client.configuration_by' | translate }} {{ configVersion?.createdBy }}</p>
+        <p class='date'>{{ formatDate(configVersion.createdAt) | async }}</p>
+        <!-- ./Status description -->
+      </div>
+
+        <!-- ./Version information -->
+      </div>
+    </ng-container>
+  </div>
+</main>

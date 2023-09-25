@@ -1,0 +1,30 @@
+<div class="flex flex-row justify-between">
+  <div>
+    <app-ng-dynamic-breadcrumb symbol=">"></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{
+      'user.create.title' | translate | uppercase
+    }}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header small>{{
+      'user.create.subTitle' | translate
+    }}</cxm-smartflow-page-sub-header>
+  </div>
+
+  <div class="flex flex-col justify-end"></div>
+</div>
+<hr class="horizontal-line" />
+<article class="create-profile-container">
+  <h2 class="create-profile-page-title">
+    {{ 'user.create.description' | translate }}
+  </h2>
+  <cxm-smartflow-user-form
+    [isAdmin]='(isAdmin$ | async) || false'
+    [clients]='(clientWrapper$ | async) || []'
+    [divService]='(divServiceWrapper$ | async) || []'
+    [profiles]='(profiles$ | async) || []'
+    (submitForm)="create($event)"
+    (clientChange)='clientChangeEvent($event)'
+    (serviceIdChange)='changeServiceId($event)'
+    (cancelForm)="cancelForm()"
+  >
+  </cxm-smartflow-user-form>
+</article>

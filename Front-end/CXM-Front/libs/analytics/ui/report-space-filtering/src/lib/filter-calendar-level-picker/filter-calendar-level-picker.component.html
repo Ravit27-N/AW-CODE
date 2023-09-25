@@ -1,0 +1,33 @@
+<label [matMenuTriggerFor]="dashboardMenu" class="flex align-middle items-center filters-button relative" style="width: 230px;"
+       *ngIf='field|async as calendar'
+       [matMenuTriggerData]="wrapInObject(calendar,'graphFilter')">
+
+
+  <span class='calendar-wrapper flex align-middle items-center'>
+    <span class="pr-2"><img class='icon' src='assets/icons/calendar.svg' alt='dates icon'></span>
+
+    <span class="flex flex-row btn-dropdown-label active">
+      <span [class.highLight]="true">{{ labelForm.controls['startDateLabel']?.value }}</span>
+      <span>
+        <img class="separate-date-label" [class.highLight]="true" src="assets/icons/right-arrow.png" alt="right arrow icon">
+      </span>
+      <span [class.highLight]="true">{{ labelForm.controls['endDateLabel']?.value }}</span>
+    </span>
+
+
+  </span>
+  <mat-icon class='expand_more ml-auto'>expand_more</mat-icon>
+
+
+</label>
+
+
+<mat-menu #dashboardMenu="matMenu" xPosition="after" class="common-filter-menu-panel dashboard-menu-panel" style="width: 600px;">
+  <ng-template matMenuContent let-calendarFilter="graphFilter">
+    <div class="menu-content" (click)='$event.stopPropagation()' style="width: 600px;">
+      <cxm-smartflow-calendar-picker [calendarOptions]="calendarFilter"
+                                     (calenderChanged)="onCalendarChange($event)">
+      </cxm-smartflow-calendar-picker>
+    </div>
+  </ng-template>
+</mat-menu>

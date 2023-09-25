@@ -1,0 +1,33 @@
+//.common-cxm-table-wrapper{
+//  box-shadow: 0 1px 9px #8DC2E548 !important;
+//}
+
+:host ::ng-deep .mat-table{
+  box-shadow: 0 1px 9px #8DC2E548 !important;
+}
+
+.col-actions {
+  padding-left: 1.2rem;
+  max-width: 126px;
+  width: 126px;
+}
+
+.col-actions button {
+  color: var(--unnamed-color-3b82f6);
+  text-align: left;
+  font: normal normal normal 14px/17px Rubik;
+  cursor: pointer;
+}
+
+.col-actions button[disabled] {
+  cursor: default !important;
+}
+
+.mat-menu-item {
+  width: 247px !important;
+}
+
+.cancel-icon {
+  color: #c70000;
+  font-weight: 500;
+}

@@ -1,0 +1,7 @@
+<button class='button-blue-tessi text-center flex flex-col align-middle justify-center'
+        [ngStyle]='{"height": height, "width": width, "min-width": minWidth, "padding": padding}' (click)='onclick.emit()'>
+  <div class='flex mx-auto px-2'>
+    <mat-icon *ngIf='icon' [inline]='true' class='mr-1'>{{icon}}</mat-icon>
+    <ng-content></ng-content>
+  </div>
+</button>

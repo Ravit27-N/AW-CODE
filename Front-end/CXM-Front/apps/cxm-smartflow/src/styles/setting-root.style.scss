@@ -1,0 +1,31 @@
+.common-table-action {
+  margin-right: -35px;
+  margin-top: -7px;
+  border-radius: 5px !important;
+
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  box-shadow: 0 1px 9px #7492C447 !important;
+  opacity: 1;
+
+  .mat-menu-item {
+    width: 200px !important;
+    height: 41px;
+
+    span {
+      color: var(--unnamed-color-65666e);
+      text-align: left;
+      font: normal normal normal 14px/17px Rubik;
+      opacity: 1;
+    }
+
+    .material-icons {
+      margin-right: 2px !important;
+      font-size: 18px;
+    }
+
+    .cancel-icon {
+      color: #C70000;
+      padding-left: 5px;
+    }
+  }
+}

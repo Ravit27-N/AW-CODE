@@ -1,0 +1,27 @@
+<!--
+<div class="flex flex-col items-center space-y-2" *ngIf="(state$|async) as state" [class.error]="state.error">
+
+  <span *ngIf="state.done" class="message">{{'flow.deposit.acquisition.label.uploadMessageDone'|translate}}</span>
+  <span *ngIf="state.sending" class="message">{{'flow.deposit.acquisition.label.uploadMessageProgressing'|translate}}</span>
+
+  <span *ngIf="state.error" class="message">{{'flow.deposit.acquisition.label.uploadMessageError' + state.error |translate}}</span>
+
+
+  <div class="progress-1 text-white text-sm text-center" [style.background-size]="progressionValueStyle">{{value}}%</div>
+  <div class="text-4xl">
+    <mat-icon *ngIf="state.done" class="border text-blue border-gray-400" [inline]="true">done</mat-icon>
+    <mat-icon *ngIf="state.error" class="text-red-600 px-1" [inline]="true">cancel</mat-icon>
+  </div>
+
+  <span *ngIf="state.done">{{'flow.deposit.acquisition.label.uploadMessageGoNext'|translate}}</span>
+  <span *ngIf="state.error">{{'flow.deposit.acquisition.label.uploadMessageGoBack'|translate}}</span>
+
+</div>
+-->
+
+<cxm-smartflow-progression-line *ngIf='(state$|async) as state'
+                                [width]='value + "%"'
+                                [innerBackground]='getInnerBackground(state)'
+                                [outsideBorder]='getOutsideBorder(state)'
+                                [transition]='getTransition(state)'>
+</cxm-smartflow-progression-line>

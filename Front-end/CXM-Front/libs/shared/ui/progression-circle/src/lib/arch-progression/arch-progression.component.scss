@@ -1,0 +1,35 @@
+:host {
+  padding: 0;
+  margin: 0;
+}
+
+.ngx-gauge-meter {
+  text-align: inherit;
+}
+
+ngx-gauge-value, ngx-gauge-label {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+ngx-gauge-value {
+  position: absolute;
+  top: 0;
+  transform: translate(-20px, -4px);
+}
+
+ngx-gauge-label {
+  position: absolute;
+  top: 0;
+  transform: translate(-20px, -16px);
+}
+::ng-deep .reading-block, ::ng-deep .reading-label {
+  overflow: unset !important;
+}
+
+p {
+  font-size: 14px;
+  text-align: center;
+  font-weight: 600;
+  color: rgba(0, 0, 0, .6);
+}

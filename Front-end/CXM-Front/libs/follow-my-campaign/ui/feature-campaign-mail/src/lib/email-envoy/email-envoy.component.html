@@ -1,0 +1,91 @@
+<cxm-smartflow-spinner *ngIf='isLoading$ | async'></cxm-smartflow-spinner>
+
+<div class='flex flex-row justify-between mb-8 items-center'>
+  <div>
+    <app-ng-dynamic-breadcrumb [bgColor]="'none'" symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{'cxmCampaign.followMyCampaign.campaignHeader' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header>{{ 'cxmCampaign.followMyCampaign.generateEmail.subHeader' | translate }}</cxm-smartflow-page-sub-header>
+  </div>
+</div>
+
+<div class='email-envoi-container flex flex-row'>
+  <div class='content-left'>
+    <div class='summary-content'>
+      <div class='flex flex-row w-full justify-between'>
+        <h2>{{ 'cxmCampaign.followMyCampaign.generateEmail.title' | translate }}</h2>
+        <img (click)='previous()' class='pencil-square-icon' src='assets/icons/pencil-square.svg'
+             alt='pencil-square icon'>
+      </div>
+
+      <div class='flex flex-row mt-6'>
+        <label>{{ 'cxmCampaign.followMyCampaign.generateEmail.label.campaignName' | translate }}</label>
+        <span class="break-words">{{emailCampaign?.campaignName}}</span>
+      </div>
+
+      <div class='flex flex-row mt-5'>
+        <label>{{ 'cxmCampaign.followMyCampaign.generateEmail.label.subjectMail' | translate }}</label>
+        <span class="break-words">{{emailCampaign?.subjectMail}}</span>
+      </div>
+
+      <div class='flex flex-row mt-5'>
+        <label>{{ 'cxmCampaign.followMyCampaign.generateEmail.label.sender' | translate }}</label>
+        <span class="break-words">{{emailCampaign?.senderName}}</span>
+      </div>
+
+      <div class='flex flex-row mt-5'>
+        <label>{{ 'cxmCampaign.followMyCampaign.generateEmail.label.recipient.text' | translate }}</label>
+        <span class="break-words">{{this.emailCampaign?.details?.csvRecordCount || 0 }}</span>
+      </div>
+    </div>
+
+    <form class='send-test-form mt-5 flex flex-col' [formGroup]='sendTestFormGroup' (ngSubmit)='submitSentTest()'>
+
+      <h2 class='mb-7'>{{'cxmCampaign.followMyCampaign.generateEmail.label.variableForm.title' | translate}}
+        <span  class='question-mark'
+               cxmSmartflowInfoTooltip
+               [tooltipMessage]="'cxmCampaign.followMyCampaign.generateEmail.label.variableForm.messageEmailInfo'| translate">
+          <span class='item'>?</span>
+        </span>
+      </h2>
+      <label>{{'cxmCampaign.followMyCampaign.generateEmail.label.variableForm.subTitle' | translate}}</label>
+      <div class='overflow-y-auto'>
+        <div class='flex flex-col box-border mt-1' formArrayName='emails' style='width: 439px;'>
+          <div class='flex flex-row items-center mt-3' *ngFor='let email of emails?.controls; index as i'>
+            <input [formControlName]='i' placeholder='exemple@email.com'
+                   cxmSmartflowCxmTooltip
+                   [tooltipText]='getVariableTooltip(email, i)'
+                   [showTooltip]='(email?.invalid && sendTestHasSubmit) || (isDuplicateEmail(i))'
+                   [showBackgroundEl]='showVariableBgTooltip'>
+            <mat-icon class='ml-2' (click)='removeEmail(i)' *ngIf='i > 0'>remove_circle_outline</mat-icon>
+          </div>
+
+          <a *ngIf='!isAddBtnInvisible' (click)='addEmail()'>{{'cxmCampaign.followMyCampaign.generateEmail.label.variableForm.btnAdd' | translate}}</a>
+        </div>
+
+        <div class='flex flex-row w-full justify-end mt-auto'>
+          <button class='btn-send-test' type='submit' *ngIf='(canSendTest$ | async)'>{{'cxmCampaign.followMyCampaign.generateEmail.label.bat.button' | translate}}</button>
+        </div>
+      </div>
+    </form>
+
+    <form class='schedule-content' [formGroup]='emailCampaignFormGroup' (ngSubmit)='submitEmailCampaign()'>
+      <h2 class='mb-4'>{{'cxmCampaign.followMyCampaign.generateEmail.label.programmingSending' | translate}}</h2>
+      <div class='mt-5'>
+        <cxm-smartflow-cxm-date-time-picker (dateTimeChange)='this.dateTimeChange($event)'
+                                            [dateTime]='sendingSchedule?.value'></cxm-smartflow-cxm-date-time-picker>
+      </div>
+    </form>
+  </div>
+
+  <div class='content-right p-5 overflow-auto'>
+    <cxm-smartflow-common-render-html-template [htmlFile]='emailTemplateSources$ | async' [type]='"email"'>
+    </cxm-smartflow-common-render-html-template>
+  </div>
+</div>
+
+<div class='text-right space-x-4 mt-10'>
+  <cxm-smartflow-common-button [type]="'Alter'"
+                               (onclick)='previous()'>{{'cxmCampaign.followMyCampaign.form_button_prev'|translate}}</cxm-smartflow-common-button>
+  <cxm-smartflow-common-button
+    (onclick)='submitEmailCampaign()'>{{'cxmCampaign.followMyCampaign.form_button_plan'|translate}}</cxm-smartflow-common-button>
+</div>

@@ -1,0 +1,22 @@
+<div class='client-form-container'>
+  <div *ngFor='let client of (this.clientInternal$ | async)' class='flex flex-row items-center mt-1'>
+    <span class='mr-5'>{{client?.name}}</span>
+    <img src="assets/icons/delete.svg" alt='delete' *ngIf='formMode !== "view"' [class.hide]='!client.canModify' class='delete-icon' (click)='removeEvent(client)'>
+  </div>
+  <div class='flex flex-col mt-5'>
+    <div *ngIf='toggleSelect' style='width: 320px; height: 38px'>
+      <cxm-smartflow-input-selection [datasource]='(clientSelects$ | async) || []'
+                                     (selectedSource)='selectEvent($event)'
+                                     errorMsg='{{"directory.definition.client-directory-form.exist" | translate}}'
+                                     [isShowError]='duplicate'>
+      </cxm-smartflow-input-selection>
+    </div>
+
+    <div *ngIf='formMode !== "view"'>
+      <button (click)='addClient()' class='flex flex-row items-center'>
+        <mat-icon class='arrow-icon'>{{arrowIcon}}</mat-icon>
+        {{'directory.definition.client-directory-form.add-client' | translate}}
+      </button>
+    </div>
+  </div>
+</div>

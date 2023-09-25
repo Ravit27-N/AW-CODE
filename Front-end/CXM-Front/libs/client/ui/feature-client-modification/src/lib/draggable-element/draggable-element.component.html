@@ -1,0 +1,33 @@
+<div class='box-drag-drop' [title]='addTitle(configuration, inputElement)'>
+  <div>
+    <div class='flex flex-row items-center container-wrapper' [class.cursor-not-allowed]='!configuration.draggable'>
+
+      <label class='label-wrapper bg-white flex-grow flex items-center model'>
+        <img class='image-icon' [class.invisible]='!configuration.draggable' src='assets/images/2022-06-28_16h46_24.png' alt=''/>
+        <input class='cursor-pointer w-0 flex-grow text-truncate' [value]='configuration.name' #inputElement/>
+      </label>
+
+      <button mat-icon-button [matMenuTriggerFor]='menu'>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu='matMenu' class='common-table-action transform-left' xPosition='before'>
+        <div *ngIf='!forceDisableModify'>
+          <button mat-menu-item (click)='modify(configuration)' *ngIf='configuration.modifiable'>
+            <div class='flex flex-row justify-start items-center font-bold'>
+              <span>{{ modifiedButtonLabel | translate}}</span>
+            </div>
+          </button>
+        </div>
+
+        <div *ngIf='!forceDisableDelete'>
+          <button mat-menu-item (click)='delete(configuration)' *ngIf='configuration.removable'>
+            <div class='flex flex-row justify-start items-center'>
+              <span class='cancel-icon'>{{'client.configuration_drag_remove' | translate}}</span>
+            </div>
+          </button>
+        </div>
+      </mat-menu>
+    </div>
+  </div>
+</div>

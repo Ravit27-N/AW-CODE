@@ -1,0 +1,23 @@
+@mixin for-size($size) {
+  @if ($size) == laptop {
+    @media (min-width: 1280px) {
+      @content;
+    }
+  } @else if $size == tablet {
+    @media (max-width: 1280px) {
+      @content
+    }
+  } @else if $size == desktop-up {
+    @media (min-width: 1365px) {
+      @content;
+    }
+  } @else if $size == big-desktop-up {
+    @media (min-width: 1765px) {
+      @content;
+    }
+  } @else if $size == xl-desktop-up {
+    @media (min-width: 2065px) {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<div class="my-2">
+  <div class="flex space-x-1 mb-2"  [class.justify-center]="center" *ngIf="_totalPage > 1">
+    <span *ngIf="length > pageSize" class="page-note page-note-nav cursor-pointer" (click)="prev()"><mat-icon>keyboard_arrow_left</mat-icon></span>
+    <span *ngFor="let item of rangeOfTototal()" (click)="tryToMove(item)" [class.active]="item === pageIndex" class="page-note page-note-item cursor-pointer rounded">{{ item }}</span>
+    <span *ngIf="length > pageSize" (click)="next()" class="page-note page-note-nav cursor-pointer"><mat-icon>keyboard_arrow_right</mat-icon></span>
+
+    <form [class.hidden]="(!isShowBox || _totalPage <= 1)" [formGroup]="form" (ngSubmit)="submit()">
+      <input formControlName="gotopage" type="number" class="w-14 px-1 rounded text-sm outline-none border-2 border-gray-400" />
+      <!-- <span *ngIf="isSubmitted && gotopage.errors?.notInRanged">{{'error.page_notInRanged'|translate}}</span> -->
+    </form>
+  </div>
+
+  <div class="text-center text-gray-400 text-xs" *ngIf="withCriteria ===  false && showLength && length > 0" [translate]="'pagination_total'" [translateParams]="{ value: length }"></div>
+  <div class="text-center text-gray-400 text-xs" *ngIf="withCriteria === true && showLength" [translate]="'pagination_results'" [translateParams]="{ value: length }"></div>
+
+  <div class="text-center text-gray-400 text-xs" *ngIf="withCriteria === false && length <= 0  && showLength" [translate]="'pagination_no_results'"></div>
+</div>

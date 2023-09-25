@@ -1,0 +1,153 @@
+@import "flow-traceability-global-styles";
+
+#flow-traceability-table-container {
+  box-sizing: border-box;
+
+  #flow-traceability-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .flow-traceability-panel {
+    width: 100%;
+    overflow: auto;
+  }
+
+  .cell-action {
+    color: var(--unnamed-color-3b82f6);
+  }
+
+  .btn-view-details {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+}
+
+.label-cancel {
+  @apply font-bold;
+  color: #E50A0A;
+}
+
+.btn-menu-icon {
+  @apply  ml-1 mr-2 inline-block;
+  height: 17px;
+  vertical-align: middle;
+}
+
+.none-action-icon {
+  width: 24px;
+}
+
+@media screen and (max-width: 1366px) {
+  .flow-traceability-panel {
+    .col-action {
+      width: 145px !important;
+    }
+  }
+}
+
+@media screen and (min-width: 1765px) {
+  .flow-traceability-panel {
+    .col-flow-name{
+      width: 240px !important;
+    }
+
+    .col-created-by{
+      width: 140px !important;
+    }
+
+    .col-created-at{
+      width: 185px !important;
+    }
+
+    .col-channel{
+      width: 125px !important;
+    }
+
+    .col-sub-channel{
+      width: 140px !important;
+    }
+
+    .col-deposit-mode{
+      width: 150px !important;
+    }
+
+    .col-status{
+      width: 130px !important;
+    }
+
+    .col-action {
+      width: 9.5% !important;
+      padding-left: 40px !important;
+    }
+  }
+
+  :host ::ng-deep{
+    .flow-traceability-panel .mat-cell:last-child{
+      padding-left: 40px !important;
+    }
+  }
+}
+
+.flow-traceability-panel{
+  .col-flow-name{
+    width: 225px;
+  }
+
+  .col-created-by{
+    width: 130px;
+  }
+
+  .col-created-at{
+    width: 180px;
+  }
+
+  .col-channel{
+    width: 120px;
+  }
+
+  .col-sub-channel{
+    width: 135px;
+  }
+
+  .col-deposit-mode{
+    width: 145px;
+  }
+
+  .col-status{
+    width: 125px;
+  }
+}
+
+@media screen and (min-width: 2065px) {
+  .td-flow-name {
+    display: inline-block;
+    max-width: 26.4375rem;
+    padding: 1.5rem 0;
+    margin-right: -10.625rem;
+  }
+}
+
+@media screen and (max-width: 2064px) {
+  .td-flow-name {
+    display: inline-block;
+    max-width: 19.375rem;
+    padding: 1.5rem 0;
+    margin-right: -4.375rem;
+  }
+}
+
+@media screen and (max-width: 1766px) {
+  .td-flow-name {
+    margin-right: .625rem;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .td-flow-name {
+    display: inline-block;
+    max-width: 19.375rem;
+    padding: 1.5rem 0;
+    margin-right: .625rem;
+  }
+}

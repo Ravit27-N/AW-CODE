@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="upload-panel">
+    <div class='upload-container' cxmSmartflowDnd
+    (dragover)='handleDragover($event)'
+    (dragleave)='handleDragover($event, true)'
+    (fileDropped)='onFileDrop($event)'>
+
+
+      <div style="width: 700px;" class="relative flex justify-center items-center">
+
+        <div class='drag-file-info relative' [ngStyle]='{"right": titleOffsetX}'>
+          <img class='pdf-icon' draggable="false" src='assets/icons/icon-file-pdf.png' [ngStyle]='{"opacity": dragOpacity}' alt='CSV file format' loading='lazy'>
+          <span>{{'client.form.dragHere'|translate}}</span>
+          <span>{{'client.form.file_drop_pdf_here'|translate}}</span>
+        </div>
+
+        <div [ngStyle]='{"opacity": dragOpacity}'>
+          <span class='or'>{{'flow.deposit.acquisition.label.or'|translate}}</span>
+        </div>
+
+        <div [ngStyle]='{"opacity": dragOpacity, "right": buttonOffsetX}'>
+          <button type="button" role="button" class='btn-upload' (click)='fileUpload.click()'>{{'flow.deposit.acquisition.label.uploadButton'|translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- Format accepted file. -->
+<div class='text-center pt-4'><span class='accept-pdf-file'>{{'client.form.acceptOnlyPdfFile' | translate}}</span></div>
+
+
+<input class='hidden' accept='.pdf' (change)='onFileSelected($event)' type='file' #fileUpload />

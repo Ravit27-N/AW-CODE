@@ -1,0 +1,9 @@
+<div class="flex flex-row py-1 w-full">
+  <button [disabled]="isDisabled" type="button" class="px-4 btn-browse mr-1 text-white"
+          [ngClass]="isDisabled? 'opacity-75' : ''" (click)="fileinput.click()">
+    <mat-icon class="icon-center">folder_open</mat-icon>
+  </button>
+  <input [placeholder]="placeholder" readonly class="w-full" [value]="file ? file.name : ''">
+</div>
+
+<input type="file" class="hidden" #fileinput (change)="choosefile($event)"/>

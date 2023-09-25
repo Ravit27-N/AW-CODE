@@ -1,0 +1,26 @@
+<section class='header'>
+  <cxm-smartflow-flow-traceability-page-header>
+    <cxm-smartflow-header-button class='ml-3' width='auto' height='48px' minWidth='204px' (click)="exportSuivi()"  >
+      <div class='import-title-wrapper'>
+        <div class='img'><img src='assets/images/import-arrow.png'></div>
+        <div class='pl-8 pr-3'>{{'flowTraceability.switchTab.export-suivi-csv' | translate}}</div>
+      </div>
+    </cxm-smartflow-header-button>
+  </cxm-smartflow-flow-traceability-page-header>
+</section>
+
+<div class="mb-7 common-mt-table">
+  <div class="">
+    <div class="flex flex-row justify-start flow-switch-tab">
+      <div [class.active]="false"
+           (click)="backToListFlowTraceability()">{{'flowTraceability.switchTab.flowTraceability' | translate}}</div>
+      <div class="pl-5" [class.active]="true">{{'flowTraceability.switchTab.flowDocument' | translate}}</div>
+    </div>
+  </div>
+</div>
+
+<div class="w-full">
+  <div [class.hidden]="false" class="w-full">
+    <cxm-smartflow-shipment-tracking></cxm-smartflow-shipment-tracking>
+  </div>
+</div>

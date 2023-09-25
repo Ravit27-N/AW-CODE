@@ -1,0 +1,40 @@
+<div class="flex flex-row justify-between">
+  <div>
+    <app-ng-dynamic-breadcrumb
+      [bgColor]="'none'"
+      symbol=">"
+    ></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{
+      'cxmTemplate.emailingTemplate.list.title' | translate | uppercase
+    }}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header>{{
+      'cxmTemplate.emailingTemplate.list.subtitle' | translate
+    }}</cxm-smartflow-page-sub-header>
+  </div>
+
+  <div class="flex flex-col justify-center" [class.hidden]='(canCreate$ | async) === false'>
+    <cxm-smartflow-header-button (onclick)="createTemplate()" icon="add">{{
+      'cxmTemplate.emailingTemplate.create.createButton' | translate
+      }}</cxm-smartflow-header-button>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+
+<section class="flex mb-8 justify-between">
+  <cxm-smartflow-template-filter-component
+    (valueChanged)="filterTemplateChanged($event)"
+  ></cxm-smartflow-template-filter-component>
+
+  <cxm-smartflow-search-box [isError]='(showTooltip$ | async) || false'
+                            (searchBoxChange)='searchTermChanged($event)'
+                            [value]='filterCriteria?.filter || ""'>
+  </cxm-smartflow-search-box>
+</section>
+
+<cxm-smartflow-grid-list-template
+  (onpaginationChanged)="requestPagination($event)"
+  (oncreate)="createTemplate()"
+  (oncardevent)="handleCardEvent($event)"
+  [allowCreate]="(canCreate$ | async) || false"
+></cxm-smartflow-grid-list-template>

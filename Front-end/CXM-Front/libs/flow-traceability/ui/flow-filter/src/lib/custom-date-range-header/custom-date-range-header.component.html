@@ -1,0 +1,21 @@
+<div class="mt-3 justify-between flex flex-row">
+  <span class="font-bold">
+    {{'flowTraceability.table.filter.calender' | translate}}
+  </span>
+
+  <div class="date-range-box">
+    <span class="pl-2 w-2/3">{{periodStartLabel}}</span>
+    <span class="separator-range"></span>
+    <span class="pl-2 w-2/3">{{periodEndLabel}}</span>
+  </div>
+</div>
+
+<div class="date-range-header">
+  <button (click)="previousClicked('month')">
+    <mat-icon class="date-range-icon">keyboard_arrow_left</mat-icon>
+  </button>
+  <span class="date-range-header-label">{{periodLabel}}</span>
+  <button (click)="nextClicked('month')">
+    <mat-icon class="date-range-icon">keyboard_arrow_right</mat-icon>
+  </button>
+</div>

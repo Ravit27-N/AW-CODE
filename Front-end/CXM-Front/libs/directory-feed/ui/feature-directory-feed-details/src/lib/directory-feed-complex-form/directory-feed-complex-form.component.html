@@ -1,0 +1,25 @@
+<cxm-smartflow-spinner [inline]='true' *ngIf='(loading$ | async)'></cxm-smartflow-spinner>
+
+<div class='director-feed-complex-form'>
+  <div class='flex flex-row justify-end'>
+    <cxm-smartflow-search-box  [isError]='(isShowErrorTooltip | async) || false' (searchBoxChange)='onSearch($event)'
+                              [value]='this.filter || ""'>
+    </cxm-smartflow-search-box>
+  </div>
+
+
+  <cxm-smartflow-directory-feed-table-form
+    [feedField]='(feedField$ | async) || { directoryId: 0, directoryName: "", fields: [], shareDirectory: false }'
+    [feedValue]='(feedValue$ | async) || { contents: [], page: 0, pageSize: 0, total: 0, isLoad: false }'
+    [formMode]='formMode'
+    (sorting)='onSorting($event)'>
+  </cxm-smartflow-directory-feed-table-form>
+</div>
+
+<section class='pagination mt-6'>
+  <cxm-smartflow-list-paginator [pageIndex]='(page$ | async) || 1'
+                                [pageSize]='(pageSize$ | async) || 15'
+                                [length]='(total$ | async) || 0'
+                                (page)='onPageChange($event)'>
+  </cxm-smartflow-list-paginator>
+</section>

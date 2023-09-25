@@ -1,0 +1,26 @@
+
+
+.flow-switch-tab  {
+  border-bottom: 1px solid rgb(168, 168, 168, 0.48);
+
+  div {
+    @apply text-left px-5 pb-2 cursor-pointer;
+    color: #9d9d9d;
+    vertical-align: middle;
+    margin-bottom: -4px;
+  }
+
+  div.active {
+    @apply font-bold;
+    border-bottom: 4px solid var(--unnamed-color-3b82f6) ;
+    color: var(--unnamed-color-3b82f6);
+    text-align: left;
+    font: normal normal 500 16px/19px Rubik;
+    letter-spacing: 0;
+    opacity: 1;
+  }
+}
+
+section.header {
+  margin-bottom: 23px;
+}

@@ -1,0 +1,25 @@
+<mat-card class='relative'>
+  <cxm-smartflow-spinner *ngIf='spinner' [inline]='true'></cxm-smartflow-spinner>
+  <mat-card-content>
+    <div class='card-container' [class.empty-donut]="graph.isEmpty">
+      <div><h1>{{title|translate }}</h1></div>
+
+        <div class='apex-cart-container' [class.hidden-all]='hiddenAll'>
+          <!-- Graph -->
+          <div class='graph disable-hover-click'>
+            <div disabled='true' #chart></div>
+          </div>
+
+          <!-- Legend -->
+          <div class='legend' *ngIf='graph.labels.length'>
+            <ng-container *ngFor='let item of graph.labels; let i = index'>
+              <div class='legend-item'>
+                <div class='square-badge' [ngStyle]="{'background-color': graph.colors[i] }"></div>
+                <div class='legend-title'>{{ item }}</div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,21 @@
+.tooltipable {
+  @apply rounded-sm;
+  background-color: #1A214D;
+  color: white;
+  position: absolute;
+  bottom: -45px;
+  z-index: 500;
+  left: 0;
+}
+
+.tooltipable::after {
+  content: " ";
+  position: absolute;
+  z-index: 500;
+  bottom: 90%; /* At the bottom of the tooltip */
+  left: 18px;
+  margin-left: 0px;
+  border-width: 12px;
+  border-style: solid;
+  border-color:transparent transparent #1A214D transparent;
+}

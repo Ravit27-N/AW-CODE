@@ -1,0 +1,47 @@
+<div class="common-cxm-datetime-component">
+  <!-- Channel filtering -->
+  <div class="flex flex-row space-x-2">
+    <!-- Channel category -->
+    <cxm-smartflow-filter-channel-category *ngIf='visibilityItem.includes("channel-category")'
+                                           [subChannel]='config?.subChannel || []'
+                                           [filterCategorySelected]='filterCategoriesSelected'
+                                           [filterChannelSelected]='filterChannelSelected'
+                                           [disabledChannel]='disabledChannel'
+                                           [disabledCategory]='disabledCategory'
+                                           (channelCategoryChange)='channelCategoryChanged($event)'>
+    </cxm-smartflow-filter-channel-category>
+
+    <!-- Category -->
+    <cxm-smartflow-filter-category *ngIf='visibilityItem.includes("category")'
+                                   [subChannel]='config?.subChannel || []'
+                                   [filterCategorySelected]='filterStandAloneCategorySelected'
+                                   (channelCategoryChange)='categoryChange($event)'>
+    </cxm-smartflow-filter-category>
+
+    <!-- Calendar picker -->
+    <cxm-smartflow-filter-calendar-level-picker *ngIf='visibilityItem.includes("date-picker")'
+                                                [calendarOptionConfig]='filterCalendarSelected'
+                                                (calendarChange)='calendarLevelChange($event)'>
+    </cxm-smartflow-filter-calendar-level-picker>
+
+    <!-- Fillers -->
+    <cxm-smartflow-filter-fillers *ngIf='visibilityItem.includes("fillers")'
+                                  [fillers]='fillers'
+                                  [fillersSelected]='filterFillersSelected'
+                                  [fillersSearchTermInput]='fillersSearchTermInput'
+                                  (searchTermChange)='fillerSearchTermChange($event)'
+                                  (fillersChange)='fillersChange($event)'>
+    </cxm-smartflow-filter-fillers>
+
+    <!-- Filler group -->
+    <cxm-smartflow-filter-filler-group *ngIf='visibilityItem.includes("fillers-group") && fillerGroup.length === 3'
+                                       [fillerGroup]='fillerGroup'
+                                       [fillers]='fillers'
+                                       [fillerGroupSelected]='fillersGroupSelected'
+                                       (fillerGroupChanges)='fillersGroupChanges($event)'>
+    </cxm-smartflow-filter-filler-group>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,15 @@
+<button
+  (click)="onClick.emit($event)"
+  [ngClass]="classes"
+  [ngStyle]="{
+    'background-color': backgroundColor,
+    'border-radius': borderRadius,
+    'color': labelColor,
+    'width': width,
+    'font-weight': fontWeight,
+    'font-size': fontSize
+  }"
+  [disabled]="disable"
+>
+  {{ label }}
+</button>

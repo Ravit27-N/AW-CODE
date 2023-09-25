@@ -1,0 +1,61 @@
+.col-name, .col-user, .col-createdat, .col-channel, .col-category, .col-envoy, .col-actions  {
+  width: 15%;
+  // width: 230px;
+  max-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.col-channel, .col-category {
+  width: 10%;
+}
+
+.col-actions {
+  padding-left: 1.2rem;
+  max-width: 126px;
+  width: 126px;
+}
+
+.col-envoy {
+  width: 14%;
+}
+
+.col-actions button {
+  color: var(--unnamed-color-3b82f6);
+  text-align: left;
+  font: normal normal normal 14px/17px Rubik;
+  cursor: pointer;
+}
+
+.col-actions button[disabled] {
+  cursor: default !important;
+}
+
+
+.col-name {
+  padding-right: 0.5rem;
+  width: calc(20% - 10px );
+}
+
+
+th.col-envoy {
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: left;
+  padding-right: 1rem;
+  // width: 200px;
+}
+
+:host ::ng-deep{
+  .mat-table{
+    box-shadow: 0 1px 9px #8dc2e548 !important;
+  }
+}
+
+
+// if disable whole role
+// tr.row-disabled {
+//   opacity: 0.6;
+// }
+

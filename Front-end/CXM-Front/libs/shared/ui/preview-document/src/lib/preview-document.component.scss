@@ -1,0 +1,74 @@
+:focus {
+  outline: none !important;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 20vh);
+}
+
+::ng-deep {
+  .content-routing {
+    //padding: 50px 0 !important;
+    padding: 30px 0 40px !important;
+  }
+}
+
+:host ::ng-deep {
+  #toolbarContainer {
+    @apply border-solid;
+    background: #2e2e2e;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 9px #8dc2e548 !important;
+  }
+
+  ngx-extended-pdf-viewer .html {
+    border-radius: 10px !important;
+  }
+
+  ngx-extended-pdf-viewer .body,
+  #viewerContainer {
+    border-radius: 10px !important;
+
+    .hiddenXLView {
+      display: unset !important;
+    }
+  }
+
+  #pageNumber {
+    margin-top: 8px !important;
+  }
+
+  #secondaryToolbarToggle {
+    margin-top: 1px !important;
+  }
+
+  #presentationMode {
+    display: block !important;
+  }
+}
+
+//@media screen and (max-width: 1366px) {
+//  .pdf-view-container {
+//    width: 70% !important;
+//  }
+//}
+//
+//@media screen and (max-width: 1776px) {
+//  .pdf-view-container {
+//    width: 70% !important;
+//  }
+//}
+
+.pdf-view-container {
+  margin: 0 auto;
+  //width: 40%;
+  width: 1024px;
+  border-radius: 10px;
+  box-shadow: 0 1px 9px #8dc2e548 !important;
+}

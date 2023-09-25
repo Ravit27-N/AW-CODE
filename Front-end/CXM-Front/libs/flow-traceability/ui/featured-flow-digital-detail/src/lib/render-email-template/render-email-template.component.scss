@@ -1,0 +1,30 @@
+.iframe-render-html-container {
+  padding: 15px;
+  overflow: auto;
+  //min-height: 518px;
+  min-height: 500px;
+}
+
+img {
+  display: inline-block;
+}
+
+.iframe-render__wrapper > .email-contain {
+  width: 30vw;
+  zoom: 0.88;
+}
+
+.iframe-render__wrapper > .batch-contain {
+  //min-height: 200vh !important;
+  zoom: 0.5 !important;
+  -moz-transform: scale(0.5) !important;
+}
+
+.iframe-render-html-spinner .indicator-overlay {
+  width: 508px !important;
+  height: 545px !important;
+  top: 70px !important;
+  left: initial !important;
+  right: 65px !important;
+  background: transparent !important;
+}

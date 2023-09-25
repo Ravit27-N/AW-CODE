@@ -1,0 +1,11 @@
+<div class="list-none flex items-stretch">
+  <ng-container *ngFor="let item of directoryFeedNavTab">
+    <a
+      class="tab"
+      [class.tab-active]="isActiveTab(item.link)"
+      (click)="navigateTo(item)"
+    >
+      <div>{{ item.name | translate }}</div>
+    </a>
+  </ng-container>
+</div>

@@ -1,0 +1,8 @@
+<div style="height:calc(100vh - 80px - 64px) ;">
+  <cxm-smartflow-communication-interactive-iframe [ticketUrl]="ticketUrl$|async" (onclosed)="log()"></cxm-smartflow-communication-interactive-iframe>
+</div>
+
+<!-- TEST -->
+<div class="fixed top-60 right-10 z-50">
+  <button (click)="getTicket()" class="rounded border-2 border-blue-600">Interactive</button>
+</div>

@@ -1,0 +1,54 @@
+<div class='pt-16'>
+  <div class='header-container pb-4'>
+    <cxm-smartflow-header pageTitle='flow.deposit.title' subTitle='flow.deposit.analysisResult.title'>
+      <span content-ext>{{filename$|async}}</span>
+    </cxm-smartflow-header>
+<!--    <cxm-smartflow-file-info></cxm-smartflow-file-info>-->
+  </div>
+  <hr class='line-separator'/>
+  <div class="grid grid-flow-row grid-cols-2 gap-4 pt-2">
+    <div>
+    <span>
+      <label *ngIf="document.hasKo" class="message-error-label">
+            <span *ngIf="summeryDoc$|async as summery" [innerHTML]="'flow.deposit.analysisResult.errorLabelHasKO' | translate: summery |safeHtml"></span>
+          </label>
+      <span *ngIf="document.noOk">
+         <label
+           class="message-error-label">{{'flow.deposit.analysisResult.errorLabelNoOK' | translate}}</label>
+        <label (click)="backToDepositFile()"
+               class="back-to-upload underline underline-offset-1">{{'flow.deposit.analysisResult.upload' | translate}}</label>
+      </span>
+    </span>
+      <div class="pt-2 flex flex-row w-full justify-between">
+        <cxm-smartflow-identification-table></cxm-smartflow-identification-table>
+      </div>
+
+      <div class="mt-5">
+        <cxm-smartflow-analysis-result-table (pageAccessNumber)="pageAccessNumberChange($event)"></cxm-smartflow-analysis-result-table>
+      </div>
+
+    </div>
+
+    <div>
+      <div class="pt-2">
+        <cxm-smartflow-pdf-viewer #pdfViewerComponent></cxm-smartflow-pdf-viewer>
+      </div>
+    </div>
+
+    <!-- Row two-->
+    <div></div>
+    <div>
+      <cxm-smartflow-deposit-nav-control
+        [hasPartialError]="document.hasKo"
+        [hideCanNext]="document.noOk"
+        (nextClick)="goNext()"
+        [showCancelFlow]='(document.hasKo || document.noOk) && isFlowCancelable'
+        (cancelFlow)='cancelFlowDeposit()'
+        (prevClick)="goPrev()"
+      ></cxm-smartflow-deposit-nav-control>
+    </div>
+  </div>
+
+
+
+</div>

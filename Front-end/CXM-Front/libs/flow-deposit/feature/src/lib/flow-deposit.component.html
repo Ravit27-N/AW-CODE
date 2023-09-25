@@ -1,0 +1,12 @@
+<cxm-smartflow-spinner *ngIf='isLoading$|async'></cxm-smartflow-spinner>
+<div *ngIf='this.isNotDisplay | async'>
+  <div class='fixed top-0 left-0 mt-20 w-full flex flex-col flex-grow z-50'>
+    <cxm-smartflow-step [steps]='(steps$|async)' (stepClick)='navigateTo($event)'
+                        *ngIf='!isFinished'></cxm-smartflow-step>
+  </div>
+</div>
+
+<div class='deposit-container' id='deposit-container'>
+  <router-outlet (activate)='onActivate()'></router-outlet>
+</div>
+

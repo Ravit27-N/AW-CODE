@@ -1,0 +1,200 @@
+<div class="p-3 pb-8">
+  <form [formGroup]="optionsForm">
+    <div class="grid grid-cols-3 gap-4 gap-y-7 criteria-option-panel">
+      <!-- Row 1 -->
+      <div>
+        <label class="text-label">{{'flow.deposit.productionCriteria.form.label.watermark'|translate}} :</label>
+      </div>
+      <div class="col-span-2">
+        <div *ngIf="waterMark$| async as watermark">
+          <div *ngIf="!(canAddWatermark$ | async)">
+            <div class="flex flex-row items-center space-x-4 space-y-2">
+              <div class="flex space-x-2">
+              <span class="cxm-icon text-icon-blue mx-auto"
+                    style="background-image: url('assets/icons/pencil.svg');"
+                    (click)="modifyAttributeWatermark(watermark.id,'Watermark')"
+                    *ngIf="isCanUpdateWatermark"
+                    [class.disabled-btn]='!isCanUpdateWatermark'
+              ></span>
+                <span class="cxm-icon text-icon-red mx-auto"
+                      style="background-image: url('assets/icons/delete.svg');"
+                      *ngIf="isCanDeleteWaterMark"
+                      (click)="deleteWatermark()"
+                      [class.disabled-btn]='!isCanDeleteWaterMark'
+                ></span>
+              </div>
+              <div>
+                <div class='flex content-start w-full relative'>
+                  <p class="background-name" style="color: #ffc075;"
+                     *ngIf="watermarkHasDefaultConfig">{{watermark.text}}</p>
+                  <p class="background-name" *ngIf="!watermarkHasDefaultConfig">{{watermark.text}}</p>
+                  <span class='square_icon  ml-3' [style.background-color]="watermark.color"> </span>
+                </div>
+                <p class="background-pos text-opacity-70 font-thin text-gray-500">
+                  {{ watermark.position }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <cxm-smartflow-attachement-button [placeholder]="'background.buttons.watermark'|translate"
+                                          (attach)="addAttribute('Watermark')"
+                                          [class.hidden]="!(canAddWatermark$ | async)"
+                                          [disabled]="!isCanCreateWatermark"
+        ></cxm-smartflow-attachement-button>
+      </div>
+
+
+      <!-- Row 2 -->
+      <div>
+        <label class="text-label">{{'flow.deposit.productionCriteria.form.label.signature'|translate}} :</label>
+      </div>
+      <div class="col-span-2">
+        <div class="col-span-2">
+          <div *ngIf="signatures$ | async as signatures">
+            <div *ngFor="let signature of signatures" class="flex flex-row items-center space-x-4 space-y-2">
+              <div class="flex space-x-2">
+
+                <span *ngIf="signature.modifiable" class="cxm-icon text-icon-blue mx-auto" style="background-image: url('assets/icons/pencil.svg');" (click)="modifyAttribute(signature.id, 'Signature')" [class.disabled-btn]='!isUsingLibrary && !isCanUpload'></span>
+                <span *ngIf="signature.deletable" class="cxm-icon text-icon-red mx-auto" style="background-image: url('assets/icons/delete.svg');" (click)="deleteAttribute(signature.id)"></span>
+
+              </div>
+              <div>
+                <div class='relative flex content-start w-full info-tooltip-container'>
+                  <p class="background-name" [ngStyle]="getStyle(signatureParagraph)" (mouseenter)="enterParagraph(signature.originalName, signatureParagraph)" #signatureParagraph [class.signature-default-config]='this.signatureHasDefaultConfig'>
+                    {{signature.originalName}}
+                  </p>
+                  <cxm-smartflow-info-tooltip [enrichmentDetail]="signature" [enrichmentElement]="signatureParagraph"></cxm-smartflow-info-tooltip>
+                </div>
+              </div>
+            </div>
+            <cxm-smartflow-attachement-button [class.hidden]="!(canAddSignatures$ | async)"
+                                              (attach)="addAttribute('Signature')"
+                                              [placeholder]="'background.buttons.signature'|translate"
+                                              [disabled]="!isCanAdd || (!isCanUpload && !isUsingLibrary) || !(this.isValidSignature$ | async)">
+            </cxm-smartflow-attachement-button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Background -->
+      <div>
+        <label class="text-label">{{'flow.deposit.productionCriteria.form.label.background'|translate}} :</label>
+      </div>
+
+      <!-- Option background attribute -->
+      <div class="col-span-2">
+        <div *ngIf="this.internalBackgroundMap$ | async as backgrounds">
+          <div *ngFor="let background of backgrounds" class="flex flex-row items-center space-x-4 space-y-2">
+            <div class="flex space-x-2">
+
+              <span *ngIf="background.modifiable" class="cxm-icon text-icon-blue mx-auto" style="background-image: url('assets/icons/pencil.svg');" (click)="modifyAttribute(background.id, 'Background')" [class.disabled-btn]='!isUsingLibrary && !isCanUpload'></span>
+              <span *ngIf="background.deletable" class="cxm-icon text-icon-red mx-auto" style="background-image: url('assets/icons/delete.svg');" (click)="deleteAttribute(background.id)"></span>
+
+            </div>
+            <div>
+              <div class='relative flex content-start w-full info-tooltip-container'>
+                <p class="background-name" [ngStyle]="getStyle(backgroundParagraph)" (mouseenter)="enterParagraph(background.originalName, backgroundParagraph)" #backgroundParagraph
+                [class.page-background-default-config]='background.selected'>
+                  {{background.originalName}}
+                </p>
+                <cxm-smartflow-info-tooltip [enrichmentDetail]="background" [enrichmentElement]="backgroundParagraph"></cxm-smartflow-info-tooltip>
+              </div>
+              <p class="background-pos text-opacity-70 font-thin text-gray-500">{{ 'background.position.'+background.position|translate }}</p>
+            </div>
+          </div>
+          <cxm-smartflow-attachement-button [class.hidden]="!(canAddBackground$ | async)"
+                                            (attach)="addAttribute('Background')"
+                                            [placeholder]="'background.buttons.background'|translate"
+                                            [disabled]="!isCanAdd || (!isCanUpload && !isUsingLibrary)">
+          </cxm-smartflow-attachement-button>
+        </div>
+      </div>
+
+      <!-- Attachment -->
+      <div>
+        <label class="text-label">{{'flow.deposit.productionCriteria.form.label.enclosed'|translate}} :</label>
+        <p *ngIf="sizeLimit$|async as sizeLimit" class="limiteduploadfile">{{ 'flow.deposit.productionCriteria.form.label.enclosed_size_limit'|translate:{sizeLimit: getLimitSize(sizeLimit)} }}</p>
+      </div>
+
+      <!-- Option attachment attribute -->
+      <div class="col-span-2">
+        <div *ngIf="internalAttachmentMap$ | async as attachments">
+          <div *ngFor="let attachment of attachments" class="flex flex-row items-center space-x-4 space-y-2">
+            <div class="flex space-x-2">
+
+              <!-- Action buttons. -->
+              <span *ngIf="attachment.modifiable" class="cxm-icon text-icon-blue mx-auto" style="background-image: url('assets/icons/pencil.svg');" (click)="modifyAttribute(attachment.id, 'Attachment')" [class.disabled-btn]='!isUsingLibrary && !isCanUpload'></span>
+              <span *ngIf="attachment.deletable" class="cxm-icon text-icon-red mx-auto" style="background-image: url('assets/icons/delete.svg');" (click)="deleteAttribute(attachment.id)"></span>
+
+            </div>
+            <div>
+              <div class='flex content-start w-full relative info-tooltip-container'>
+                <p class="background-name" [ngStyle]="getStyle(paragraphElement)" (mouseenter)="enterParagraph(attachment.originalName, paragraphElement)" #paragraphElement [class.attachment-default-config]='attachment.selected'>
+                  {{ attachment.originalName }}
+                </p>
+                <cxm-smartflow-info-tooltip [enrichmentDetail]="attachment" [enrichmentElement]="paragraphElement"></cxm-smartflow-info-tooltip>
+              </div>
+              <p class="background-pos text-opacity-70 font-thin text-gray-500">{{ 'background.position.' + attachment.position | translate }}</p>
+            </div>
+          </div>
+          <cxm-smartflow-attachement-button [class.hidden]="!(canAddAttribute$ | async)"
+                                            (attach)="addAttribute('Attachment')"
+                                            [placeholder]="'background.buttons.attachment' | translate"
+                                            [disabled]="!isCanAdd || (!isCanUpload && !isUsingLibrary)">
+          </cxm-smartflow-attachement-button>
+        </div>
+      </div>
+
+      <!-- Row 5 -->
+      <div class="col-span-2">
+        <label class="text-label">{{'flow.deposit.productionCriteria.options.confirmMail'|translate}} :</label>
+      </div>
+      <div class="text-right">
+        <mat-radio-group formControlName="confirmation">
+          <mat-radio-button [disabled]="disabledRadioBtn" [value]="true">Oui</mat-radio-button>
+          <mat-radio-button [value]="false">Non</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <!-- Row 6 -->
+      <div class="col-span-2">
+        <label class="text-label">{{'flow.deposit.productionCriteria.options.validateDoc'|translate}} :</label>
+      </div>
+      <div class="text-right">
+        <mat-radio-group formControlName="validation" [class.workflow-mat-radio]='workflowDefaultConfig'>
+          <mat-radio-button [checked]='optionsForm.getRawValue()?.validation === true' [value]="true">Oui</mat-radio-button>
+          <mat-radio-button [checked]='optionsForm.getRawValue()?.validation === false' [value]="false">Non</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <!-- Row 7 -->
+      <div class="col-span-2">
+        <label class="text-label">{{'flow.deposit.productionCriteria.options.archieveDoc'|translate}} :</label>
+      </div>
+      <div class="text-right">
+        <mat-radio-group formControlName="archiving">
+          <mat-radio-button [disabled]="disabledRadioBtn" [value]="true">Oui</mat-radio-button>
+          <mat-radio-button [value]="false">Non</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <!-- Row 8 -->
+      <div class="col-span-2">
+        <label class="text-label">{{'flow.deposit.productionCriteria.options.ged'|translate}} :</label>
+      </div>
+      <div class="text-right">
+        <mat-radio-group formControlName="ged">
+          <mat-radio-button [disabled]="disabledRadioBtn" [value]="true">Oui</mat-radio-button>
+          <mat-radio-button [value]="false">Non</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+    </div>
+  </form>
+
+  <p *ngIf='hasAppliedDefaultConfig' class='has-applied-default-config pt-3 px-3'>
+    {{ 'flow.deposit.productionCriteria.hasAppliedDefaultConfig'|translate }}
+  </p>
+
+</div>

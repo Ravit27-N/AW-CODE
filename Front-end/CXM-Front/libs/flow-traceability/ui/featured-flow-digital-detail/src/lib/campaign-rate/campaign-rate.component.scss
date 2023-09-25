@@ -1,0 +1,177 @@
+@import 'flow-traceability-global-styles';
+
+@mixin overview-popup-wrapper {
+  background: var(--unnamed-color-ffffff) 0 0 no-repeat padding-box;
+  box-shadow: 0 3px 6px #00000052;
+  border: 1px solid #707070;
+  border-radius: 10px;
+  z-index: 1001;
+  position: fixed;
+  top: 102px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+main.content {
+  background: var(--unnamed-color-ffffff) 0 0 no-repeat padding-box;
+  box-shadow: 0 1px 9px #8DC2E547;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+
+.rate-container {
+  width: 100%;
+  height: 298px;
+  border-bottom: 2px solid #dce8fd;
+  display: flex;
+  padding: 0 20px;
+  @include for-size(laptop) {
+    justify-content: space-evenly;
+  }
+
+  @include for-size(desktop-up) {
+    justify-content: space-evenly;
+  }
+
+  @include for-size(big-desktop-up) {
+    justify-content: space-between;
+  }
+
+  @include for-size(xl-desktop-up) {
+    justify-content: space-evenly;
+  }
+
+  @include for-size(tablet) {
+    justify-content: space-evenly;
+  }
+
+  cxm-smartflow-circle-progression {
+    display: flex;
+    align-self: center;
+  }
+}
+
+.action-button {
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  height: 86px;
+  padding-right: 24px;
+
+  cxm-smartflow-rich-button {
+    align-self: center;
+    margin-left: 10px;
+    position: relative;
+    //padding-left: 40px;
+  }
+
+  img {
+    &.icon {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      left: 35px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &.img-disabled {
+      filter: brightness(0) invert(1) !important;
+      opacity: 0.75;
+    }
+  }
+}
+
+.overview-popup-container {
+  width: 100vw;
+  height: 100vh;
+  background: #000000 0 0 no-repeat padding-box;
+  opacity: 0.39;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+}
+
+.overview-popup-wrapper-sms {
+  @include overview-popup-wrapper;
+  width: 691px;
+  height: 615px;
+}
+
+.overview-popup-wrapper-email {
+  @include overview-popup-wrapper;
+  width: 777px;
+  height: 690px;
+}
+
+.overview-popup-box {
+  width: 100%;
+  height: 100%;
+}
+
+.overview-popup--close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+
+  mat-icon {
+    color: #5085f0;
+    font-weight: 600;
+  }
+
+  mat-icon:hover {
+    font-weight: 700;
+  }
+}
+
+.overview-popup--content {
+  padding-top: 36px;
+  padding-left: 52px;
+  height: 100%;
+  overflow: hidden;
+
+  h4 {
+    color: var(--unnamed-color-1a214d);
+    text-align: left;
+    font: normal normal 600 16px/19px Rubik;
+  }
+}
+
+.overview-popup--data-wrapper {
+  width: calc(100% - 50px);
+  //margin: 0 auto;
+  padding: 15px 0;
+  height: 510px;
+}
+
+.overview-popup--data {
+  width: calc(100% - 80px);
+  background: var(--unnamed-color-ffffff) 0 0 no-repeat padding-box;
+  box-shadow: 0 0 6px #afcdffb1;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+iframe.iframe-wrapper {
+  overflow-y: scroll;
+  height: 300px;
+}
+
+@media screen and (min-height: 967px) {
+  .rate-container {
+    height: 372px !important;
+  }
+
+  .action-button {
+    height: 80px !important;
+  }
+}
+
+cxm-smartflow-circle-progression-control {
+  display: flex;
+  align-self: center;
+}

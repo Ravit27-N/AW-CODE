@@ -1,0 +1,16 @@
+<div class="date-time-picker-content">
+
+  <div class="date">
+      <div class="input-date">
+        <input matInput [matDatepicker]="picker" [formControl]="control">
+      </div>
+      <div class="icon">
+        <mat-datepicker-toggle [for]="picker" ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </div>
+  </div>
+
+  <div class="time">
+    <input matInput>
+  </div>
+</div>

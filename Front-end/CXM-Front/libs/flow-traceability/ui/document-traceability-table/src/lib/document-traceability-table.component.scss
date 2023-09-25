@@ -1,0 +1,108 @@
+@import 'flow-traceability-global-styles';
+
+#flow-document-table-container {
+  #flow-document-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .flow-traceability-panel {
+    width: 100%;
+    overflow: auto;
+  }
+
+  .cell-action {
+    color: var(--unnamed-color-3b82f6);
+  }
+
+  .btn-view-details {
+    @apply mr-2 cursor-pointer;
+  }
+}
+
+.btn-menu-icon {
+  @apply  ml-1 mr-2 inline-block;
+  height: 17px;
+  vertical-align: middle;
+}
+
+.none-action-icon {
+  width: 24px;
+}
+
+.col-action {
+  width: 11vh;
+  text-align: center;
+}
+
+img{
+  width: 20px;
+  opacity: 100;
+}
+
+@media screen and (max-width: 1366px) {
+  .flow-traceability-panel {
+    .col-action {
+      width: 145px !important;
+    }
+  }
+}
+
+@media screen and (min-width: 1765px) {
+  .flow-traceability-panel {
+    .col-document-name{
+      width: 240px !important;
+    }
+
+    .col-destination, .col-sending-date{
+      width: 155px !important;
+    }
+
+    .col-channel{
+      width: 130px !important;
+    }
+
+    .col-sub-channel{
+      width: 130px !important;
+    }
+
+    .col-status{
+      width: 130px !important;
+    }
+
+    .col-action {
+      width: 9.5% !important;
+      padding-left: 40px !important;
+    }
+  }
+
+  :host ::ng-deep .flow-traceability-panel .mat-cell:last-child{
+    padding-left: 40px !important;
+  }
+}
+
+.flow-traceability-panel{
+  .col-document-name{
+    width: 235px;
+  }
+
+  .col-destination, .col-sending-date{
+    width: 155px;
+  }
+
+  .col-channel{
+    width: 130px;
+  }
+
+  .col-sub-channel{
+    width: 135px;
+  }
+
+  .col-status{
+    width: 125px;
+  }
+
+  .col-action{
+    text-align: left !important;
+  }
+}

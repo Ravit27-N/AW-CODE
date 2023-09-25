@@ -1,0 +1,15 @@
+<div class='h-full w-full'>
+  <div class='py-2' *ngFor='let subItem of subItems; let i = index;'>
+    <div class='overflow-hidden inner-sub-item-panel'>
+      <div class="flex flex-row justify-items-center" [matTooltip]="subItem.other">
+        <input type="checkbox" class="checkbox-input" id="checkbox-{{i}}" #checkbox (change)='itemChecked(subItem, checkbox)'>
+        <label for="checkbox-{{i}}">
+            <span class="custom-checkbox">
+            </span>
+        </label>
+        <label *ngIf="!showTooltip" class="ml-2 selector-value" [innerHTML]="subItem.key |translate"></label>
+        <label *ngIf="showTooltip" [matTooltip]="subItem.other" class="ml-2 selector-value" [innerHTML]="subItem.key |translate"></label>
+      </div>
+    </div>
+  </div>
+</div>

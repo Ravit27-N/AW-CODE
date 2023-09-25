@@ -1,0 +1,39 @@
+:host {
+  display: block;
+}
+
+.directory-feed-container {
+  @apply mx-auto;
+  width: 90%;
+  min-width: 900px;
+  padding: 20px 0;
+}
+
+.tab {
+  @apply py-2 px-10 border border-gray-400 cursor-pointer;
+  opacity: 0.7;
+  background-color: #c2c2c2;
+}
+
+.tab-active {
+  @apply hover:opacity-100;
+  background-color: #efefef;
+  border-top: 4px solid #1a214d;
+  opacity: 1;
+}
+
+.tab-active div {
+  color: #1a214d;
+  @apply cursor-default;
+}
+
+.vl {
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 45px;
+  border-left: 2px solid #1a214d;
+}
+
+.breadcrumb {
+  margin: 15px 0;
+}

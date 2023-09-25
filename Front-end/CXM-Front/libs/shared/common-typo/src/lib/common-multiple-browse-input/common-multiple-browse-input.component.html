@@ -1,0 +1,26 @@
+<!--browse button, drag & drop-->
+<div class='common-multiple-browse-input flex flex-row w-full'>
+  <button type='button' class='px-4 btn-browse mr-1 text-white' (click)='fileInput.click()'>
+    <mat-icon class='icon-center'>folder_open</mat-icon>
+  </button>
+
+  <input readonly [ngStyle]='{"outline": cssBrowseInput}' style='width: 100%;' cxmSmartflowDnd
+         (fileDropped)='handleFileDrop($event)' (dragover)='handleFileOver()'>
+</div>
+<input type='file' multiple class='hidden' [accept]='acceptableType' #fileInput (change)='chooseFile($event)'>
+<!--end browse button, drag & drop-->
+
+<!--all filenames-->
+<div class='flex flex-col w-full pt-1' style='padding-left: 60px;'>
+  <label *ngFor='let file of this.internalFileProperties; let i = index;' class='flex flex-row justify-between mt-1'>
+    <a id='_{{file?.fileId}}' class='filename relative text-truncate'
+       [title]='showTooltip("#_" + file?.fileId || "", file?.filename || "")'>
+      {{file?.filename}}
+    </a>
+    <mat-icon class='filename-icon' (click)='removeFile(i, file, $event)' style='width: 18px !important;'>close
+    </mat-icon>
+  </label>
+</div>
+<!--end filenames-->
+
+

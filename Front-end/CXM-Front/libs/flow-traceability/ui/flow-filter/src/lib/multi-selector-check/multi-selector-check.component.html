@@ -1,0 +1,16 @@
+<div class="h-full w-full">
+  <div class="py-2" *ngFor="let item of items; let i = index;">
+    <div class="flow-checkbox-panel overflow-hidden">
+      <div class="flex flex-row justify-items-center">
+        <input type="checkbox" class="checkbox-input" id="checkbox-{{i}}" [(ngModel)]="item.checked"
+               (change)="onCheckedItems(item.value, item.checked, item?.other)">
+        <label for="checkbox-{{i}}">
+            <span class="custom-checkbox">
+            </span>
+        </label>
+        <label *ngIf="!isShowTooltip" class="ml-2 selector-value" [innerHTML]="item.key |translate"></label>
+        <label *ngIf="isShowTooltip" [matTooltip]="item.other" class="ml-2 selector-value" [innerHTML]="item.key |translate"></label>
+      </div>
+    </div>
+  </div>
+</div>

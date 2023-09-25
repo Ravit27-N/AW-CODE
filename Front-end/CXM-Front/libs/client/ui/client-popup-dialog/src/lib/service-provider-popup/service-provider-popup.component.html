@@ -1,0 +1,64 @@
+<main class='popup-layout relative'>
+  <header>
+    <h3>{{'client.service_provider_title' | translate}}</h3>
+  </header>
+  <div class='close-icon'><mat-icon (click)='closeModal()'>close</mat-icon></div>
+  <div class='mt-6'></div>
+  <hr class="common-mat-divider">
+
+  <div class='wrapper'>
+    <form [formGroup]='formGroup'>
+      <div class='form-container'>
+        <div>
+          <div>
+          <!-- Email -->
+            <div class='flex justify-evenly mb-2'>
+              <div class='email-service-provider-label flex self-center'><label>{{'client.service_provider_label_email' | translate}} :</label></div>
+              <div class='email-service-provider'>
+                <cxm-smartflow-multi-input-selection
+                  (selectedSource)='selectEmailService($event)'
+                  [selectSourceKey]='selectedEmailServiceProviders'
+                  [addSourceBtn]='"client.service_provider_add_more_service_btn" | translate'
+                  [datasource]='emailServiceProvider'
+                  [lockModifyOverlayContainer]='true'
+                  [unRemovableSourceKey]='unRemovableEmailServiceProviders'
+                  [errorMsg]='(formGroup.controls["email"]?.errors?.message || "") | translate'
+                  (removeUnRemovableSource)='alertCannotDeleteSource($event)'
+                  [isShowError]='formGroup.controls["email"]?.errors !== null && (this.error$ | async) || false'>
+                </cxm-smartflow-multi-input-selection>
+              </div>
+            </div>
+
+          <!-- SMS -->
+            <div class='flex justify-evenly'>
+              <div class='sms-service-provider-label flex self-center'><label>{{'client.service_provider_label_sms' | translate}} :</label></div>
+                <div class='sms-service-provider'>
+                  <cxm-smartflow-multi-input-selection
+                    (selectedSource)='selectSmsService($event)'
+                    [selectSourceKey]='selectedSmsServiceProviders'
+                    [addSourceBtn]='"client.service_provider_add_more_service_btn" | translate'
+                    [datasource]='smsServiceProvider'
+                    [lockModifyOverlayContainer]='true'
+                    [errorMsg]='(formGroup.controls["sms"]?.errors?.message || "") | translate'
+                    (removeUnRemovableSource)='alertCannotDeleteSource($event)'
+                    [unRemovableSourceKey]='unRemovableSmsServiceProviders'
+                    [isShowError]='formGroup.controls["sms"]?.errors !== null && (this.error$ | async) || false'>
+                  </cxm-smartflow-multi-input-selection>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <hr class="common-mat-divider">
+  <div class='form-description'>
+    {{'client.service_provider_form_description' | translate}}
+  </div>
+
+  <!-- Action button -->
+  <section class='action-btn flex justify-end'>
+    <cxm-smartflow-rich-button (click)='register()' style='min-width: 200px !important;'> {{'client.hub_distribute_register_btn' | translate}} </cxm-smartflow-rich-button>
+  </section>
+</main>

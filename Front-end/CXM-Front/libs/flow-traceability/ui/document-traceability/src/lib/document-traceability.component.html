@@ -1,0 +1,14 @@
+<div class="mb-7 mt-3">
+  <div class="">
+    <div class="mb-10">
+      <cxm-smartflow-flow-traceability-filter [isFlowCriteria]="false"></cxm-smartflow-flow-traceability-filter>
+    </div>
+    <cxm-smartflow-document-traceability-table></cxm-smartflow-document-traceability-table>
+
+    <div class="flex justify-end">
+      <cxm-smartflow-rich-button [class]="'btn-return'" (click)='backToListFlowTraceability()' *ngIf='canPrevious.value'>
+        {{'flow.buttons.return' | translate}}
+      </cxm-smartflow-rich-button>
+    </div>
+  </div>
+</div>

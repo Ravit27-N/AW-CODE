@@ -1,0 +1,44 @@
+
+.calendar-button {
+
+  padding: 0.75rem 16px;
+  font: normal normal 500 14px/16px Rubik;
+  border-radius: 8px;
+  background: var(--unnamed-color-3b82f6) 0 0 no-repeat padding-box;
+  color: var(--unnamed-color-ffffff);
+}
+
+
+mat-list-option {
+  border-radius: 8px;
+
+}
+
+.mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+  height: 40px;
+}
+
+.mat-list-single-selected-option, .mat-list-single-selected-option:hover,
+.mat-list-single-selected-option:focus {
+  background: var(--unnamed-color-3b82f6) 0 0 no-repeat padding-box;
+  color: var(--unnamed-color-ffffff);
+}
+
+.calendar-button-options {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 160px;
+  padding: 0.75rem 16px;
+  font: normal normal 400 14px/16px Rubik;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.calendar-button-options.active {
+  background-color: var(--unnamed-color-3b82f6) !important;
+  color: var(--unnamed-color-ffffff);
+}
+
+.calendar-button-options:hover,.calendar-button-options:active {
+  background-color: rgba(0, 0, 0, 0.04);
+}

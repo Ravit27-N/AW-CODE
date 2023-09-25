@@ -1,0 +1,18 @@
+<section class="container">
+  <header class='page-header'>
+    <app-ng-dynamic-breadcrumb symbol=">"></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{
+      'flowTraceability.pageTitle' | translate | uppercase
+    }}</cxm-smartflow-page-header>
+    <p class="sub-title" *ngIf="showFileName.includes(type)">
+      {{ 'flowTraceability.subTitlePageHeader.listOfFlow' | translate }}
+    </p>
+    <p class="sub-title" *ngIf="!showFileName.includes(type)">
+      {{ 'flowTraceability.subTitlePageHeader.'.concat(type) | translate }} :
+      <span [className]="'file-name '.concat(type)">{{ fileName }}</span>
+    </p>
+  </header>
+  <main>
+    <ng-content></ng-content>
+  </main>
+</section>

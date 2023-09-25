@@ -1,0 +1,109 @@
+<ng-container>
+
+  <div class='w-full flex flex-row justify-end'>
+    <mat-icon mat-dialog-close class='close-icon' (click)='closeModal()'>close</mat-icon>
+  </div>
+
+  <h1 class="mb-4">{{"flow.deposit.address_destination.title" | translate}}</h1>
+
+  <label class="message-error-label mb-5" *ngIf="errorValidation">
+    <span>{{errorMessage | translate}}</span>
+  </label>
+  <form [formGroup]="addressFormGroup" class="form-water-mark">
+    <div class="mt-7">
+      <div class="flex control-group items-center">
+        <label class='whitespace-nowrap'>{{"flow.deposit.address_destination.line" | translate}} 1 :</label>
+        <div class="input-form">
+          <input
+            formControlName="Line1"
+            type="text"
+            cxmSmartflowCxmTooltip
+            [tooltipText]='(addressFormGroup.controls["Line1"]?.errors?.message || "") | translate'
+            [showTooltip]='addressFormGroup.controls["Line1"]?.errors !== null && (error$ | async)'
+          >
+        </div>
+      </div>
+      <div class="flex control-group items-center mt-5">
+        <label class='whitespace-nowrap'>{{"flow.deposit.address_destination.line" | translate}} 2 :</label>
+        <div class="input-form">
+          <input
+            formControlName="Line2"
+            type="text"
+            cxmSmartflowCxmTooltip
+            [tooltipText]='(addressFormGroup.controls["Line2"]?.errors?.message || "") | translate'
+            [showTooltip]='addressFormGroup.controls["Line2"]?.errors !== null && (error$ | async)'
+          >
+        </div>
+      </div>
+      <div class="flex control-group items-center mt-5">
+        <label class='whitespace-nowrap'>{{"flow.deposit.address_destination.line" | translate}} 3 :</label>
+        <div class="input-form">
+          <input
+            formControlName="Line3"
+            type="text"
+            cxmSmartflowCxmTooltip
+            [tooltipText]='(addressFormGroup.controls["Line3"]?.errors?.message || "") | translate'
+            [showTooltip]='addressFormGroup.controls["Line3"]?.errors !== null && (error$ | async)'
+          >
+        </div>
+      </div>
+      <div class="flex control-group items-center mt-5">
+        <label class='whitespace-nowrap'>{{"flow.deposit.address_destination.line" | translate}} 4 :</label>
+        <div class="input-form">
+          <input
+            formControlName="Line4"
+            type="text"
+            cxmSmartflowCxmTooltip
+            [tooltipText]='(addressFormGroup.controls["Line4"]?.errors?.message || "") | translate'
+            [showTooltip]='addressFormGroup.controls["Line4"]?.errors !== null && (error$ | async)'
+          >
+        </div>
+      </div>
+      <div class="flex control-group items-center mt-5">
+        <label class='whitespace-nowrap'>{{"flow.deposit.address_destination.line" | translate}} 5 :</label>
+        <div class="input-form">
+          <input
+            formControlName="Line5"
+            type="text"
+            cxmSmartflowCxmTooltip
+            [tooltipText]='(addressFormGroup.controls["Line5"]?.errors?.message || "") | translate'
+            [showTooltip]='addressFormGroup.controls["Line5"]?.errors !== null && (error$ | async)'
+          >
+        </div>
+      </div>
+      <div class="flex control-group items-center mt-5">
+        <label class='whitespace-nowrap'>{{"flow.deposit.address_destination.zip_code_and_city" | translate}} :</label>
+        <div class="input-form">
+          <input
+            formControlName="Line6"
+            type="text"
+            cxmSmartflowCxmTooltip
+            [tooltipText]='(addressFormGroup.controls["Line6"]?.errors?.message || "") | translate'
+            [showTooltip]='addressFormGroup.controls["Line6"]?.errors !== null && (error$ | async)'
+          >
+        </div>
+      </div>
+      <div class="flex control-group items-center mt-5">
+        <label class='whitespace-nowrap'>{{"flow.deposit.address_destination.country" | translate}} :</label>
+        <div class="input-form">
+          <input
+            formControlName="Line7"
+            type="text"
+            cxmSmartflowCxmTooltip
+            [tooltipText]='(addressFormGroup.controls["Line7"]?.errors?.message || "") | translate'
+            [showTooltip]='addressFormGroup.controls["Line7"]?.errors !== null && (error$ | async)'
+          >
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+  <div class='w-full flex flex-row justify-end mt-8'>
+    <cxm-smartflow-rich-button [isRounded]='true'
+                               class="mr-4 cancel-button"
+                               (click)="closeModal()">{{"flow.deposit.address_destination.cancel"|translate}}</cxm-smartflow-rich-button>
+    <cxm-smartflow-rich-button
+      (click)="submit()">{{"flow.deposit.address_destination.validate" | translate}}</cxm-smartflow-rich-button>
+  </div>
+</ng-container>

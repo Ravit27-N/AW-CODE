@@ -1,0 +1,16 @@
+<div class="relative iframe-render-html-container" [ngStyle]="{ width: width }">
+  <article
+    [ngStyle]="{ visibility: isPresentRendering ? 'visible' : 'hidden' }"
+    class="iframe-render__wrapper"
+  >
+    <div [ngClass]="type === 'batch' ? 'batch-contain' : 'email-contain'">
+      <cxm-smartflow-preview-html-template
+        [htmlTemplate]="htmlFile"
+      ></cxm-smartflow-preview-html-template>
+    </div>
+  </article>
+
+  <div class="cxm-spinner w-52 h-52" *ngIf="!isPresentRendering">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>

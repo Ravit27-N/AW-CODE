@@ -1,0 +1,90 @@
+<div class='flex flex-row justify-between'>
+  <div>
+    <app-ng-dynamic-breadcrumb [bgColor]="'none'" symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{'client.headerTitle' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header>{{'client.consultClient' | translate}} <strong class='client-name-sub-heading'>{{(clientData$ | async)?.name}}</strong></cxm-smartflow-page-sub-header>
+  </div>
+
+  <div class='flex flex-col justify-end' *ngIf="navigation$|async as navigation">
+    <cxm-smartflow-rich-button [class.hidden]="navigation.step !== 1"
+      *ngIf='isAdmin'
+      (click)='handleDelete()'
+      [type]='"error"'
+      [style]='"font-weight: 600 !important;"'
+      [isRounded]='true'> {{'client.deleteClient' | translate}}
+    </cxm-smartflow-rich-button>
+
+    <cxm-smartflow-rich-button [class.hidden]="navigation.step !== 4" [style]='"font-weight: 600 !important;"'
+      (click)='handleForceDechargement()'> {{'client.force_dechargement' | translate}}
+    </cxm-smartflow-rich-button>
+  </div>
+</div>
+
+<!-- <mat-divider></mat-divider> -->
+<div class="flex flex-row mt-4 mb-6 cxm-tab" *ngIf="navigation$|async as navigation">
+  <div class="cxm-tab-divid"></div>
+  <div class="cursor-pointer"  [class.active]="navigation.step === 1" *ngIf="navigation.isAdmin" (click)="switchStepHandler(1)" >{{ 'client.info_tab'|translate }}</div>
+  <div class="cursor-pointer" [class.active]="navigation.step === 2" (click)="switchStepHandler(2)">{{'client.paramter_tab' | translate}}</div>
+  <div class="cursor-pointer" [class.active]="navigation.step === 3" *ngIf="navigation.isAdmin" (click)="switchStepHandler(3)">{{'client.functional_tab' | translate}}</div>
+  <div class="cursor-pointer" [class.active]="navigation.step === 6"  *ngIf="navigation.isAdmin" (click)="switchStepHandler(6)">{{'client.flux_tab' | translate}}</div>
+  <div class="cursor-pointer" [class.active]="navigation.step === 4" (click)="switchStepHandler(4)">{{'client.offloading_tab' | translate}}</div>
+  <div class="cursor-pointer" [class.active]="navigation.step === 5" (click)="switchStepHandler(5)">{{'client.fillers_tab' | translate}}</div>
+</div>
+
+
+<!-- TODO:  Modification users-->
+<div *ngIf="navigation$|async as navigation">
+  <!-- TODO: User creation form -->
+<section class="common-cxm-container-panel" *ngIf="clientData$|async as clientData" [class.hidden]="navigation.step !== 1">
+  <cxm-smartflow-client-form [clientData]="clientData" [mode]="1" *ngIf="navigation.isAdmin"
+  [uploadState]="uploading$"
+  (uploadFileEvent)="dropfile($event)"
+  (formValueChanged)="handleFormChange($event)">
+    <p filename>
+      <img src="assets/images/pdf2.png" class="mr-2" alt="PDF">
+      <span>{{ clientData.file.filename }}</span>
+      <span class='file-size'> ({{ (clientData.file.fileSize | fileSize).replace(' ', '') }})</span>
+      <mat-icon (click)="removeFile()" class="ml-auto text-red-600 cursor-pointer">close</mat-icon>
+    </p>
+  </cxm-smartflow-client-form>
+</section>
+
+<!-- TODO: cliet division -->
+<section class="common-cxm-container-panel division-panel" style="background: transparent;" *ngIf="clientDivision$|async as clientDivision" [class.hidden]="navigation.step !== 2">
+  <cxm-smartflow-associate-list  [class.hidden]="!navigation.ready"
+  [clientDivision]="clientDivision" (divisionUpdated)="handleDivisionChange($event)" ></cxm-smartflow-associate-list>
+</section>
+
+
+<section class="common-cxm-container-panel division-panel" style="background: transparent;" *ngIf="clientFunctionality$|async as clientFunctionality" [class.hidden]="navigation.step !== 3">
+  <cxm-smartflow-functionality-page [clientFunctionality]="clientFunctionality" (valueChanged)="handleFunctionalityChange($event)" *ngIf="navigation.isAdmin"></cxm-smartflow-functionality-page>
+</section>
+
+<section class="common-cxm-container-panel division-panel" style="background: transparent;" [class.hidden]="navigation.step !== 4"
+*ngIf="holidayConfig$|async as holidayConfig">
+  <cxm-smartflow-offloading-form [configuration]="holidayConfig" (onformChanged)="offloadFormChange($event)"></cxm-smartflow-offloading-form>
+</section>
+
+
+<section class="common-cxm-container-panel division-panel" style="background: transparent;" [class.hidden]="navigation.step !== 5"
+*ngIf="fillConfig$|async as fillConfig">
+  <cxm-smartflow-fillers-form [fillersConfig]="fillConfig" (valueChanged)="fillerConfigChagend($event)"></cxm-smartflow-fillers-form>
+</section>
+
+<section class="common-cxm-container-panel division-panel" style="background: transparent;" [class.hidden]="navigation.step !== 6" *ngIf="fillConfig$|async as fillConfig">
+  <cxm-smartflow-flux-form [fluxDepositModes]='depositMode$ | async' [fluxIdentificationMode]='fluxIdentificationMode$ | async' [distributesCriteria]='(distributeCriteria$ | async) || []'
+                           (configurationFileChanged)='configurationFileChanged($event)'
+                           (manageConfigurationChanged)='manageConfigurationChange($event)'
+                           (criteriaChange)='distributeCriteriaChange($event)'
+                           (manageDistributeCriteria)='manageDigitalCriteria($event)'
+                           (valueChanged)='fluxDepositMode($event)'></cxm-smartflow-flux-form>
+</section>
+
+</div>
+
+
+<!-- TODO: navigation condition -->
+<div class="space-x-4 mt-6 flex justify-end" *ngIf="navigation$|async as navigation">
+  <cxm-smartflow-rich-button [isRounded]='true' (click)="handlePrev()" >{{ navigation.prevButton | translate}}</cxm-smartflow-rich-button>
+  <cxm-smartflow-rich-button (click)="handleNext()" >{{ navigation.nextButton | translate}}</cxm-smartflow-rich-button>
+</div>

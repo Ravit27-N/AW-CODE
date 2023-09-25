@@ -1,0 +1,3545 @@
+{
+  "router_loading": {
+    "title": "Erreur",
+    "message": "Impossible d'accéder à cette fonctionnalité",
+    "cancel": "Annuler",
+    "confirm": "OK"
+  },
+  "cannotAccess": "Vous n'avez aucun privilège pour poursuivre ce processus !",
+  "cxmTemplate": {
+    "cannotModify": "Vous n'avez aucun privilège pour poursuivre ce processus !",
+    "emailingTemplate": {
+      "headerTitle": "MODÈLE D’EMAIL",
+      "create": {
+        "createButton": "Créer un nouveau modèle",
+        "cardTitle": {
+          "parameterTitle": "Création du modèle",
+          "summaryTitle": "Récapitulatif",
+          "compositionTitle": "Composition d'un modèle"
+        },
+        "parameter": {
+          "propertiesModel": {
+            "title": "Propriétés du modèle",
+            "modelName": {
+              "label": "Nom du modèle",
+              "placeholder": "MODEL TEST",
+              "required": "Ce champ de saisie est obligatoire !",
+              "maxLength": "Ce champ de saisie doit être inférieur ou égal à 128 caractères !",
+              "isExist": "Le nom du modèle existe déjà !",
+              "notValid": "Veuillez entrer un nom de modèle valide !"
+            },
+            "subjectMail": {
+              "label": "Objet du mail",
+              "placeholder": "Test : {MOIS}",
+              "required": "Ce champ de saisie est obligatoire !",
+              "maxLength": "Ce champ de saisie doit être inférieur ou égal à 128 caractères !",
+              "isValid": "Veuillez entrer un objet du mail valide !",
+              "isMatched": "L'objet du mail ne correspond pas au champ variable !"
+            },
+            "senderEmail": {
+              "label": "Email de l'expéditeur",
+              "placeholder": "noreply@tessi.fr",
+              "required": "Ce champ de saisie est obligatoire !",
+              "maxLength": "Ce champ de saisie doit être inférieur ou égal à 128 caractères !",
+              "isValid": "Veuillez entrer un e-mail valide !"
+            },
+            "senderName": {
+              "label": "Nom de l'expéditeur*",
+              "placeholder": "Tessi Communication",
+              "required": "Ce champ de saisie est obligatoire !"
+            },
+            "unsubscribeLink": {
+              "label": "Lien de désabonnement",
+              "placeholder": "mailto:se.desabonner@tessi.fr",
+              "required": "Ce champ de saisie est obligatoire !",
+              "isValid": "Veuillez entrer un lien de désabonnement valide (URL or mailto:test@gmail.com) !"
+            }
+          },
+          "variableField": {
+            "title": "Champs variables",
+            "description": "Les champs variables permettent de faire le lien avec les entêtes de colonne du fichier csv utilisé en entrée de l'envoi d'un mail utilisant ce modèle. Le nom défini doit correspondre au libellé de la colonne associée. Les champs déclarés seront disponibles dans la conception du modèle comme donnée dynamique.",
+            "empty": "Ce champ de saisie ne peut pas être vide !",
+            "defaultValue": "Le champ variable doit contenir au moins une valeur égale à email ou mail !",
+            "duplicate": "Cette variable est déjà existante !",
+            "required": "Ce champ de saisie ne peut pas être vide !",
+            "delete": "Ce champ variable est utilisé dans la composition. Sa suppression est impossible!"
+          },
+          "grapeJs": {
+            "unSubscribePage": "Page de désabonnement",
+            "mirrorPage": "Page miroir",
+            "removeAssetSuccess": "L'actif a été retiré avec succès.",
+            "removeAssetFail": "Ne pas retirer l'actif !"
+          }
+        },
+        "summary": {
+          "label": {
+            "modelName": "Nom du modèle",
+            "subjectMail": "Objet du mail",
+            "senderEmail": "Email de l'expéditeur",
+            "senderName": "Nom de l'expéditeur",
+            "unsubscribeLink": "Lien de désabonnement",
+            "variableFields": "Champs variables"
+          },
+          "required": "Ce champ de saisie est obligatoire !"
+        },
+        "dialog": {
+          "title": "Attention",
+          "body": "La création du modèle a échoué !"
+        }
+      },
+      "update": {
+        "cardTitle": {
+          "parameterTitle": "Modifier du modèle",
+          "summaryTitle": "Récapitulatif",
+          "compositionTitle": "Composition d'un modèle"
+        },
+        "label": {}
+      },
+      "list": {
+        "button": {
+          "createModel": "Créer un modèle"
+        },
+        "title": "modèles emailing",
+        "smsTitle": "modèles SMS",
+        "subtitle": "Concevez et gérer vos propres modèles"
+      },
+      "sideBar": [
+        {
+          "icon": "settings",
+          "text": "Paramètres",
+          "link": "feature-create-email-template"
+        },
+        {
+          "icon": "edit",
+          "text": "Composition",
+          "link": "feature-edit-email-template"
+        },
+        {
+          "icon": "description",
+          "text": "Récapitulatif",
+          "link": "feature-summary-email-template"
+        }
+      ],
+      "button": {
+        "accessComposition": "Accéder à la composition"
+      }
+    },
+    "smsEditor": {
+      "maxLength": "Ce champ de saisie doit être inférieur ou égal à 612 caractères !"
+    }
+  },
+  "template": {
+    "filterType": {
+      "filterBy": "Filtrer par :",
+      "modelType": "Type modèle"
+    },
+    "template_type": {
+      "default": "Type",
+      "emailing": "Emailing",
+      "direct_mail": "Publipostage",
+      "sms": "Sms"
+    },
+    "source": "Aucune",
+    "sort_by": {
+      "label": "Trier par",
+      "name": "Nom",
+      "modelName": "Nom",
+      "created_at": "Date création",
+      "lastModified": "Date",
+      "asc": "Ascendant",
+      "desc": "Descendant",
+      "lastestAdd": "Dernier ajouts"
+    },
+    "card": {
+      "editButton": "Editer",
+      "selectButton": "Sélectionner",
+      "overviewButton": "Aperçu",
+      "option": {
+        "edit": "Editer",
+        "duplicate": "Dupliquer",
+        "downloadHtml": "Télécharger au format",
+        "modify": "Modifier",
+        "delete": "Supprimer",
+        "select": "Sélectionner",
+        "visible": "Visualiser"
+      }
+    },
+    "popup": {
+      "create": {
+        "title": "Choisissez un nom pour votre nouveau modèle",
+        "form": {
+          "modelName": "Nom du modèle ",
+          "modelType": "Type de modèle :",
+          "source": "Source :",
+          "input": {
+            "type": "Type",
+            "emailing": "Emailing",
+            "direct_mail": "Publipostage",
+            "sms": "Sms"
+          },
+          "actionButton": {
+            "cancel": "Annuler",
+            "create": "Créer"
+          }
+        }
+      },
+      "errors": {
+        "duplicatedModelName": "Un modèle portant ce nom existe déjà. Définir un nom unique.",
+        "modelNameRequired": "Renseigner un nom de modèle.",
+        "modelTypeRequired": "Un nom et un type de modèle sont obligatoires",
+        "modelNameLimitCharacter": "Le nom du modèle ne peut contenir que 128 caractères",
+        "maxLength": "Un modèle doit être inférieur ou égal à 128 caractères."
+      }
+    },
+    "variableForm": {
+      "title": "Champs variables :",
+      "subTitle": "L’ordre des champs variables doit correspondre à celui du fichier csv qui sera importé lors du paramétrage de la campagne.",
+      "btnAdd": "Ajouter un champ variable",
+      "description": "Veuillez sélectionner et glisser les champs pour les ordonner",
+      "btnSubmit": "Enregistrer"
+    },
+    "sms": {
+      "sms_template_header_title": "Modèle sms",
+      "email_template_header_title": "Modèle email",
+      "sms_template_form_label_name": "Nom du modèle :",
+      "sms_template_form_label_var": "Champs variables :",
+      "sms_template_button_register": "Enregistrer",
+      "sms_template_button_return": "Retour",
+      "sms_add_var": "Ajouter champ",
+      "sms_char_counter": "Nombre de caractères :",
+      "sms_tab_conception": "Modèles",
+      "sms_tab_preview": "Prévisualisation",
+      "sms_menu_context_vars": "Champs variables",
+      "sms_template_back_warning_title": "Quitter sans enregistrer ?",
+      "sms_template_back_warning_message": " Attention, votre conception n’a pas été enregistrée et va être perdue.",
+      "sms_template_back_warning_okButton": "Quitter",
+      "sms_template_back_warning_cancelButton": "Annuler"
+    },
+    "message": {
+      "createdSuccess": "La conception a été sauvegardée.",
+      "updatedSuccess": "La conception a été sauvegardée.",
+      "createError": "Le modèle ne peut pas être créé",
+      "updateError": "Le modèle ne peut pas être mis à jour",
+      "maxLength": "Le champ variable doit être inférieur ou égal à 128 caractères.",
+      "variableEmpty": "Le champ variable ne peut pas être vide",
+      "variableDuplicate": "Ce champ variable existe déjà",
+      "smsRequiredVariable": "Le modèle doit contenir au moins un champ variable \"{}\"",
+      "emailingRequiredVariable": "Le modèle doit contenir au moins un champ variable \"{}\"",
+      "variableAlreadyUsed": "Ce champ variable est utilisé dans la conception, sa suppression est impossible.",
+      "unknownError": "Impossible d'exécuter l'action.",
+      "unauthorizeAccess": "Le modèle n'existe pas.",
+      "unauthorize": "Accès non autorisé",
+      "unauthorizeLeave": "Quitter",
+      "unauthorizeCancel": "Annuler",
+      "campaignNotFound": "La campagne n'existe pas",
+      "notFoundTemplateTitle": "Non trouvé",
+      "notFoundMessage": "Cette modèle n'existe pas.",
+      "unauthorizedRemoveAsset": "Vous n'êtes pas autorisé à poursuivre ce processus.",
+      "removeAssetFail": "Échec de la suppression de la composition de l'élément."
+    },
+    "words": {
+      "copy": "Copie"
+    },
+    "template_success_page": {
+      "or": "ou",
+      "title": "Votre modèle est enregistré !",
+      "subtitle": "Il sera disponible lors du paramétrage d’une campagne.",
+      "alterButton": "Voir mes modèles",
+      "mainButton": "Créer campagne emailing",
+      "mainButton2": "Créer campagne SMS",
+      "subcontent_title": "Puis-je modifier ce modèle ?",
+      "subcontent_line1": "Une fois enregistré dans les modèles, vous pouvez le modifier depuis la rubrique :",
+      "subcontent_line2": "Modèles > Emailing",
+      "subcontent_line4": "Modèles > SMS",
+      "subcontent_line3": "Assurez-vous d’enregistrer les modifications pour qu’elles soient appliquées à vos prochaines campagnes. Veuillez noter que la mise à jour d’un modèle n’aura aucun impact sur les campagnes ayant déjà recours à ce modèle."
+    }
+  },
+  "campaign": {
+    "status": {
+      "pending": "Brouillon",
+      "scheduling": "Programmé",
+      "in_progress": "En cours",
+      "delivered": "Délivré",
+      "canceled": "Annulé",
+      "refused": "Refusé"
+    },
+    "mode": {
+      "manual": "Manuel",
+      "automated": "Automatique"
+    },
+    "type": {
+      "sms": "SMS",
+      "email": "Emailing"
+    }
+  },
+  "cxmCampaign": {
+    "followMyCampaign": {
+      "smsHeaderTitle": "Campagne sms",
+      "emailHeaderTitle": "Campagne emailing",
+      "campaignTitle": "Suivi des campagnes",
+      "headerTitle": "Suivi des campagnes",
+      "campaignHeader": "CAMPAGNES",
+      "campaignSubheader": "Veuillez sélectionner le type de campagne",
+      "campaignListSubHeader": "Consultez la liste des campagnes à envoyer",
+      "select_campaignSubheader": "Sélectionnez le modèle de votre choix",
+      "import_campaign_subheader": "Veuillez choisir le mode d’importation des destinataires",
+      "imported_campaign_header": "Veuillez vérifier la liste des destinataires du fichier",
+      "limitSizeLoadFailed": "Impossible de charger la taille maximale du fichier à télécharger",
+      "limitUploadFileSizeInfo": "Formats acceptés : .csv (poids maximum",
+      "list": {
+        "title": "Liste des campagnes",
+        "buttonCreateCampaign": "Créer une campagne",
+        "tableHeader": {
+          "creationDate": "Date de création",
+          "name": "Nom",
+          "model": "Modèle",
+          "status": "Statut",
+          "dateOfStatus": "Date du statut",
+          "percentage": "%",
+          "actions": "Actions",
+          "notFound": "Aucune correspondance trouvée",
+          "type": "Type",
+          "channel": "CANAL",
+          "category": "CATÉGORIE",
+          "mode": "MODE",
+          "edit": "Modifier",
+          "download": "Télécharger le fichier",
+          "cancel": "Annuler",
+          "delete": "Supprimer"
+        },
+        "filterComponent": {
+          "defaultTitle": "Filtrer",
+          "newTitle": "Filière",
+          "label": {
+            "mode": "Mode",
+            "reset": "Réinitialiser",
+            "manual": "Manuel",
+            "manuel": "Manuel",
+            "automated": "Automatisé",
+            "category": "Catégories",
+            "email": "Emailing",
+            "sms": "SMS"
+          }
+        },
+        "downloadCsv": {
+          "message": {
+            "success": "Le fichier a été téléchargé avec succès",
+            "fail": "Impossible de télécharger le fichier"
+          }
+        },
+        "message": {
+          "failToFetchData": "Échec de la récupération des données !"
+        }
+      },
+      "cancelEmailCampaignPopUp": {
+        "header": "Supprimer le brouillon ?",
+        "message": "Êtes-vous sûr de vouloir supprimer le brouillon ? Cette action est irréversible.",
+        "cancelButton": "Annuler",
+        "confirmButton": "Supprimer",
+        "successMessage": "Le brouillon a été supprimé.",
+        "errorMessage": "Le statut de la campagne ne peut pas être mis à jour."
+      },
+      "destinationEmailCampaignPopUp": {
+        "tableHeader": {
+          "contact": "Contact"
+        },
+        "notFound": "Destination contact of campaign not found.",
+        "remove_campaign_file": "Supprimer le fichier ?",
+        "remove_campaign_info": "Êtes-vous sûr de vouloir annuler l’envoi de la campagne ? Vous allez être redirigé à l’étape de téléchargement d’un fichier.",
+        "remove_campaign_cancel": "Annuler",
+        "remove_campaign_ok": "Supprimer la campagne",
+        "title_file_container_error": "Le fichier comporte {{invalidCount}} erreur(s)",
+        "message_file_container_error": "Souhaitez-vous poursuivre ? En passant à l'étape suivante, les lignes en erreur seront ignorées.",
+        "action_continue": "Poursuivre la campagne"
+      },
+      "detail": {
+        "title": "Détail d'une campagne : ",
+        "label": {
+          "campaignName": "Nom de la compagne",
+          "status": "Statut",
+          "statusDate": "Date du statut",
+          "creationDate": "Date de création",
+          "createdBy": "Créée par",
+          "numberOfShipment": "Nombre d'envois",
+          "sendingTime": "Date/heure d'envoi",
+          "sent": "Ouverts",
+          "clicked": "Cliqués",
+          "errors": "Erreurs",
+          "spam": "Bounces"
+        },
+        "button": {
+          "seeMail": "Voir le mail",
+          "viewContract": "Voir les contacts",
+          "viewSms": "Voir les sms"
+        }
+      },
+      "choiceOfModel": {
+        "header": "Veuillez sélectionner le modèle pour votre campagne:",
+        "titleUpdate": "Mettre d'une campagne (1/4): Choix du modèle",
+        "title": "Création d'une campagne (1/4): Choix du modèle",
+        "description": "Veuillez sélectionner le modèle pour votre campagne :",
+        "message": {
+          "withoutSelectTemplate": "Veuillez sélectionner un modèle."
+        }
+      },
+      "settingParameter": {
+        "subHeader": "Veuillez renseigner les paramètres de votre campagne",
+        "titleUpdate": "Mettre à jour d'une campagne (2/4): Définition des paramètres",
+        "title": "Création d'une campagne (2/4): Définition des paramètres",
+        "selectedModel": {
+          "label": "Modèle sélectionné*:",
+          "placeholder": ""
+        },
+        "campaignName": {
+          "label": "Nom de la campagne :",
+          "placeholder": "Renseignez un nom de campagne",
+          "maxLength": "Ce champ doit être inférieur ou égal à 128 caractères !"
+        },
+        "subjectMail": {
+          "label": "Objet du mail :",
+          "placeholder": "Insérez l’objet du mail",
+          "defaultSelect": "Insérer une variable",
+          "maxLength": "Ce champ doit être inférieur ou égal à 128 caractères !"
+        },
+        "senderEmail": {
+          "label": "Email de l’expéditeur :",
+          "placeholder": "tessipost@tessi.fr",
+          "invalid": "S'il vous plaît, entrez un e-mail valide!"
+        },
+        "senderName": {
+          "label": "Nom de l’expéditeur :",
+          "smsLabel": "Libellé expéditeur",
+          "placeholder": "L’équipe Tessi"
+        },
+        "smsSenderName": {
+          "label": "Libellé expéditeur :",
+          "smsLabel": "Sender label",
+          "placeholder": "L’équipe Tessi"
+        },
+        "unsubscribeLink": {
+          "label": "Lien de désabonnement :",
+          "placeholder": "L’équipe Tessi",
+          "invalid": "Veuillez saisir un lien de désabonnement valide !",
+          "messageInfo": "Exemple: \"mailto:p.dupont@exemple.com\", ou \"https://www.exemple.com\""
+        },
+        "sendingSchedule": {
+          "label": "Programmation de l'envoi :",
+          "placeholder": ""
+        },
+        "attachment": {
+          "label": "Pièce(s) jointe(s) :",
+          "description": "Poids total maximum 5Mo",
+          "validation": {
+            "fileLimit": "Erreur de téléchargement. Le nombre limite autorisé est de 4 pièces jointes.",
+            "fileSize": "Erreur de téléchargement. La taille totale de l’ensemble des pièces jointes ne peut pas dépasser 5 Mo.",
+            "fileExtension": "Erreur de téléchargement. Seuls les fichiers Pdf, Word, Excel, Zip ou Images sont autorisés.",
+            "fileDuplicate": "Erreur de téléchargement. Un fichier avec le même nom existe déjà."
+          },
+          "message": {
+            "uploadFail": "Échec du téléchargement du fichier."
+          }
+        },
+        "actionButton": {
+          "previous": "Précédent",
+          "next": "Suivant"
+        },
+        "validation": {
+          "required": "Ce champ est requis",
+          "maxLength": "Ce champ doit être inférieur ou égal à 128 caractères !"
+        }
+      },
+      "summaryEmailTemplateDetailPopUp": {
+        "header": "Visualiser modèle",
+        "modelName": "Nom de modèle: ",
+        "variableField": "Champs variables: ",
+        "title": "Prévisualisation du modèle",
+        "closeButton": "Fermer"
+      },
+      "recipientSelection": {
+        "titleUpdate": "Mettre à jour d'une campagne (3/4): Destinataires",
+        "title": "Création d'une campagne (3/4): Destinataires",
+        "checkBox": "Vérifiez si les fichiers contiennent l'en-tête",
+        "tableHeader": {
+          "email": "Email",
+          "lastName": "Nom",
+          "firstName": "Prénom",
+          "amount": "Montant"
+        },
+        "nRejectPopUp": {
+          "addressReject": "Adresse refusée : ",
+          "line": "lignes ",
+          "leaveButton": "Quitter"
+        },
+        "messageText": {
+          "success": "Le fichier est conforme aux variables définies dans le modèle.",
+          "error": "Le fichier n'est pas conforme aux variables définies dans le modèle."
+        },
+        "fileException": {
+          "readError": "Une erreur s'est produite lors de la lecture du fichier !",
+          "format": "Impossible d'ouvrir le fichier car le format de fichier ou l'extension de fichier n'est pas valide",
+          "invalidContent": "Le csv n'a pas de valeur de contenu, veuillez les insérer avant l'importation.",
+          "uploaded": "Le fichier ${file.name} a été enregistré.",
+          "observableError": "Quelque chose d'horrible est arrivé; Veuillez réessayer plus tard.",
+          "occurred": "Une erreur s'est produite :",
+          "fileSize": "Téléchargement du fichier ${file.name} de taille",
+          "surprising": "Événement de téléchargement surprenant du fichier ${file.name} :"
+        },
+        "totalDestinations": "Aperçu des ${totalItems} premiers destinataires"
+      },
+      "generateEmail": {
+        "subHeader": "Veuillez vérifier les champs ci-dessous et planifiez l’envoi.",
+        "title": "Synthèse",
+        "label": {
+          "selectedModel": "Modèle sélectionné : ",
+          "campaignName": "Nom de la campagne :",
+          "fileName": "Nom fichier:",
+          "subjectMail": "Objet du mail : ",
+          "sender": "Expéditeur : ",
+          "sendingSchedule": "Programmation de l'envoi : ",
+          "programmingSending": "Programmer l’envoi",
+          "recipient": {
+            "text": "Destinataires : ",
+            "value": "destinataires chargés à partir du fichier ",
+            "recipientCount": "{{recipientCount}} destinataires"
+          },
+          "variableForm": {
+            "title": "Envoyer un BAT",
+            "subTitle": "Destinataires des emails de test (5 destinataires maximum)",
+            "btnAdd": "+ Ajouter une adresse mail",
+            "placeholder": "exemple@email.com",
+            "smsSubTitle": "Destinataires des SMS de test (5 destinataires maximum)",
+            "smsBtnAdd": "+ Ajouter une adresse SMS",
+            "messageSmsInfo": "Vous pouvez envoyer un bon à tirer aux destinataires de votre choix en renseignant leurs numéros de téléphone ci-dessous.",
+            "messageEmailInfo": "Vous pouvez envoyer un bon à tirer aux destinataires de votre choix en renseignant leurs adresses email ci-dessous."
+          },
+          "bat": {
+            "label": "Générer BAT:",
+            "button": "Envoyer un BAT"
+          },
+          "preview": "Aperçu avec les données du 1er destinataire"
+        },
+        "dialog": {
+          "cardTitle": "Envoyer un B.A.T.",
+          "title": "Liste des destinataires",
+          "description": "Les champs variables sont alimentés avec les données du premier destinataire.",
+          "smsDescription": "Les champs variables seront alimentés avec les données du premier destinataire.",
+          "cancel": "Annuler",
+          "send": "Envoyer un test",
+          "add": "Ajouter adresse",
+          "addPhoneNumber": "Ajouter numéro",
+          "message": {
+            "success": "L’email(s) a été envoyé avec succès.",
+            "successes": "L’email(s) a été envoyé avec succès.",
+            "fail": "E-mail(s) n'a pas été envoyé !",
+            "fails": "E-mail(s) n'a pas été envoyé !",
+            "warning": "Tous les champs obligatoires ne sont pas remplis.",
+            "required": "Veuillez saisir une adresse email valide",
+            "phoneRequired": "Veuillez saisir un numéro de téléphone valide",
+            "invalidPhoneNumber": "Veuillez saisir un numéro de téléphone valide",
+            "atLeastOnNumber": "Un numéro de téléphonedoit être renseigné pour envoyer un BAT.",
+            "inValid": "Veuillez saisir une adresse email valide",
+            "empty": "Ayez au moins une adresse e-mail !",
+            "smsSuccess": "Le SMS(s) a été envoyé avec succès.",
+            "smsSuccesses": "Le SMS(s) a été envoyé avec succès.",
+            "smsFail": "Le SMS n'a pas été envoyé.",
+            "smsFails": "SMS(s) n'a pas été envoyé.",
+            "duplicate": "Ce destinataire est déjà renseigné."
+          }
+        },
+        "button": {
+          "send": "Envoyer",
+          "sendTest": "Envoyer un test",
+          "preview": "Aperçu",
+          "validate": "Valider",
+          "previous": "Précédent"
+        },
+        "message": {
+          "createSuccess": "La campagne a été sauvegardée avec succès.",
+          "createFail": "La campagne n'a pas été sauvée !",
+          "updateSuccess": "La campagne a été mise à jour avec succès.",
+          "updateFail": "La campagne n'a pas été mise à jour !"
+        }
+      },
+      "button": {
+        "createCampaign": "Créer une campagne",
+        "viewMail": "Voir le mail",
+        "viewContact": "Voir les contacts",
+        "browse": "Parcourir"
+      },
+      "tooltip": {
+        "must_format_csv": "Le fichier à importer doit être au format CSV.",
+        "must_match_size_csv": "Le nombre et l'ordre des colonnes dans le fichier .csv doivent correspondre aux champs variables définis dans le modèle",
+        "import_suggestion": "Nous vous recommandons de n’importer que des fichiers de contacts dont vous connaissez la source. Faire des campagnes sur des addresses non validées peut faire baisser votre taux de délivrabilité.",
+        "import_var": "Les champs variables du modèle peuvent être utilisés entourés des caractères \"{\" et \"}\" dans cette zone.",
+        "paramter_tooltop_vars": "Les champs variables du modèle peuvent être utilisés entourés des caractères \"{\" et \"}\" dans cette zone."
+      },
+      "label_email_destination": "Destinataires",
+      "label_email_destination_count": "{{count}} destinataire(s)",
+      "form_select_file": "Fichier au format .csv",
+      "form_button_upload": "Parcourir",
+      "form_ckb_check_header": "Ignorer la première ligne d’<span tessi-g-span>entête</span>",
+      "form_ckb_remove_same_mail": "Supprimer les <span tessi-g-span>doublons</span> issus du champ « Email »",
+      "form_ckb_remove_same_telephone": "Supprimer les <span tessi-g-span>doublons</span> issus du champ « Numéro destinataire »",
+      "form_button_prev": "Précédent",
+      "form_button_next": "Suivant",
+      "form_button_continue": "Poursuivre",
+      "form_button_plan": "Planifier",
+      "form_button_back_download": "Télécharger un nouveau fichier",
+      "form_drop_csv_here": "votre fichier .csv",
+      "csv_tooltop_success": "Le fichier CSV est correctement ajouté",
+      "csv_fail_reupload": "Veuillez procéder à un nouveau téléchargement.",
+      "csv_tooltop_fail": "Le fichier .csv contient plus ou moins de colonnes que le nombre attendu",
+      "csv_container_column_not_expected": "Le fichier .csv ne contient pas le nombre de colonnes attendues.",
+      "csv_contain_more_column_tooltip": "Le fichier .csv contient plus de colonnes que le nombre attendu.",
+      "csv_contain_fewer_column_tooltip": "Le fichier .csv contient moins de colonnes que le nombre attendu.",
+      "at_least_one_recipient_with_a_valid_email": "Veuillez importer un fichier comportant au moins un destinataire avec une adresse email valide.",
+      "import_compliant_file_message": "Veuillez importer un fichier conforme.",
+      "file_not_csv_tooltip": "Le fichier importé n'est pas un fichier csv.",
+      "import_file_in_csv_format_message": "Le fichier importé n’est pas au format CSV.",
+      "import_file_in_csv_empty_records": "Le fichier importé est vide.",
+      "csv_file_no_valid_line_tooltip": "Le fichier importé ne posséde aucune ligne valide (aucun destinataire).",
+      "import_file_at_least_one_recipient_message": "Veuillez importer un fichier comportant au moins un destinataire avec une adresse email valide.",
+      "import_file_upload_fail": "Erreur de téléchargement",
+      "imported_file_has_error_line": "Consultez ci-dessous  <span tessi-b-span>{{invalidCount}} erreur(s)</span> à corriger dans votre fichier .csv",
+      "imported_file_has_error": "Le fichier .csv comporte {{invalidCount}} erreur(s)",
+      "imported_file_has_error_instruction": "Chargez un nouveau fichier corrigé ou poursuivez la création de campagne en ignorant les erreurs.<br/>(Les destinataires en erreur seront ignorés)",
+      "imported_file_success": "Votre fichier .csv est importé avec succès",
+      "csv_table_col_etat": "État",
+      "csv_table_col_line": "ligne",
+      "stepper": {
+        "model": "Choix du modèle",
+        "destination": "Destinataires",
+        "parameter": "Paramètres",
+        "sending": "Test & Planification"
+      },
+      "lockable-form": {
+        "popup": {
+          "message": {
+            "heading": "Campagne non finalisée",
+            "message": "Êtes-vous sûr de vouloir quitter ?\nLa campagne va être sauvegardée avec le statut \"Brouillon\", vous pourrez la finaliser ultérieurement",
+            "cancelBtn": "Annuler",
+            "confirmBtn": "Quitter"
+          }
+        }
+      },
+      "import_sms_instruction": "Le nombre et l’ordre des colonnes de votre fichier .csv doivent correspondre aux champs variables définis dans le modèle. Nous vous recommandons d’importer uniquement des fichiers de contacts dont vous connaissez la source et comportant des numéros validés pour assurer un taux de délivrabilité optimal.",
+      "import_email_instruction": "Le nombre et l’ordre des colonnes de votre fichier .csv doivent correspondre aux champs variables définis dans le modèle. Nous vous recommandons d’importer uniquement des fichiers de contacts dont vous connaissez la source et comportant des adresses validées pour assurer un taux de délivrabilité optimal.",
+      "import_manuel": "MANUEL",
+      "import_action": "Actions sur le fichier",
+      "email_invalid": "Adresse email invalide",
+      "sms_invalid": "Numéro de téléphone invalide",
+      "campaign_success_page": {
+        "or": "ou",
+        "title": "Votre campagne est planifiée !",
+        "subtitle": "Retrouvez toutes les informations relatives à votre campagne à tout moment dans la rubrique suivi.",
+        "alterButton": "Créer une nouvelle campagne",
+        "mainButton": "Suivre mes campagnes"
+      }
+    },
+    "manageMyCampaign": {
+      "headerTitle": "Gérer mes campagnes",
+      "choiceOfModel": {
+        "title": "Création d'une campagne (1/4): Choix du modèle"
+      },
+      "settingParameter": {
+        "title": "Création d'une campagne (2/4): Définition des paramètres",
+        "selectedModel": {
+          "label": "Modèle sélectionné",
+          "placeholder": ""
+        },
+        "campaignName": {
+          "label": "Nom de la campagne",
+          "placeholder": ""
+        },
+        "subjectMail": {
+          "label": "Objet du mail",
+          "placeholder": ""
+        },
+        "sender": {
+          "label": "Expéditeur",
+          "placeholder": ""
+        },
+        "sendingSchedule": {
+          "label": "Programmation de l'envoi",
+          "placeholder": ""
+        }
+      },
+      "recipientSelection": {
+        "title": "Création d'une campagne (3/4): Destinataires",
+        "tableHeader": {
+          "email": "Email",
+          "lastName": "Nom",
+          "firstName": "Prénom",
+          "amount": "Montant"
+        }
+      },
+      "generateEmail": {
+        "subHeader": "Veuillez vérifier les champs ci-dessous et planifiez l’envoi.",
+        "title": "Création d'une campagne (4/4): Récapitulatif",
+        "label": {
+          "selectedModel": "Modèle sélectionné: ",
+          "subjectMail": "Objet du mail: ",
+          "sender": "Expéditeur: ",
+          "sendingSchedule": "Programmation de l'envoi: ",
+          "recipient": "Destinataires: ",
+          "bat": "B.A.T."
+        },
+        "dialog": {
+          "cardTitle": "Envoyer un B.A.T.",
+          "title": "Liste des destinataires",
+          "description": "Les champs variables sont alimentés avec les données du premier destinataire."
+        },
+        "button": {
+          "send": "Envoyer",
+          "sendTest": "Envoyer un test",
+          "preview": "Aperçu",
+          "validate": "Valider"
+        }
+      }
+    },
+    "choiceOfModel": {
+      "headerTitle": "Campagne emailing"
+    },
+    "message": {
+      "unknownError": "Impossible d'exécuter l'action.",
+      "unauthorizedTitle": "Accès non autorisé",
+      "unauthorizedMessage": "Vous n'êtes pas autorisé à accéder à cette campagne.",
+      "notFoundCampaignDetailTitle": "Non trouvé",
+      "notFoundViewCampaignDetailMessage": "Cette campagne n'existe pas.",
+      "unauthorizedLeave": "Quitter"
+    }
+  },
+  "button": {
+    "summary": "Récapitulatif",
+    "overview": "Aperçu",
+    "save": "Sauvegarder",
+    "return": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "submit": "Soumettre",
+    "ok": "OK",
+    "cancel": "Annuler",
+    "validate": "Valider",
+    "confirmDelete": "Oui, supprimer !",
+    "confirm": "Confirmer",
+    "delete": "Supprimer",
+    "create": "Créer",
+    "modify": "Modifier"
+  },
+  "input": {
+    "placeholder": {
+      "search": "Rechercher"
+    },
+    "tooltip": {
+      "searchNotFound": "Aucune correspondance trouvée"
+    }
+  },
+  "table": {
+    "itemsFounded": "Total ${totalItems} éléments trouvés",
+    "paginator": {
+      "itemsPerPageLabel": "Résultats par page: ",
+      "nextPageLabel": "Page suivante",
+      "previousPageLabel": "Page précédente",
+      "ofLabel": "sur"
+    }
+  },
+  "dialog": {
+    "cxmTemplate": {
+      "emailTemplate": {
+        "confirmDelete": {
+          "title": "Supprimer le modèle ?",
+          "body": "Confirmez-vous la suppression de ce modèle"
+        },
+        "composition": {
+          "popUpConfirmation": {
+            "title": "Show Confirmation",
+            "body": "Changes have not been saved!"
+          }
+        }
+      }
+    }
+  },
+  "menuBars": {
+    "template": {
+      "text": "Modèles",
+      "link": "cxm-template",
+      "access": "cxm_template",
+      "activeMenu": "cxm-template",
+      "subMenu": [
+        {
+          "text": "Emailing",
+          "link": "/cxm-template/design-model/feature-list-email-template/email",
+          "access": "cxm_template_list"
+        },
+        {
+          "text": "SMS",
+          "link": "/cxm-template/design-model/feature-list-email-template/sms",
+          "access": "cxm_sms_template_list"
+        }
+      ]
+    },
+    "deposits": {
+      "text": "Envois",
+      "link": "cxm-deposit",
+      "access": "",
+      "activeMenu": "cxm-deposit, cxm-campaign, cxm-flow-traceability/espace",
+      "subMenu": [
+        {
+          "text": "À partir d'un fichier PDF",
+          "link": "/cxm-deposit/list",
+          "access": "cxm_flow_deposit"
+        },
+        {
+          "text": "À partir d'un modèle",
+          "link": "/cxm-campaign/follow-my-campaign/campaign-list",
+          "access": "cxm_campaign_list,cxm_sms_campaign_list"
+        },
+        {
+          "text": "Communication interactive",
+          "link": "/cxm-deposit/communication-interactive",
+          "access": "cxm_communication_interactive,cxm_communication_interactive_list"
+        },
+        {
+          "text": "Espace de validation",
+          "link": "/cxm-flow-traceability/espace",
+          "access": "cxm_espace_validation_list"
+        }
+      ]
+    },
+    "suivis": {
+      "text": "Suivi",
+      "link": "/cxm-flow-traceability/list",
+      "access": "cxm_flow_traceability_list,cxm_flow_traceability_view_document",
+      "activeMenu": "cxm-flow-traceability, follow-my-campaign/feature-campaign-list, follow-my-campaign/campaign-detail",
+      "inActiveMenu": "cxm-flow-traceability/espace"
+    },
+    "analytics": {
+      "text": "Statistiques",
+      "link": "/cxm-analytics",
+      "access": "cxm_statistic_report_generate_statistic",
+      "activeMenu": "cxm-analytics",
+      "inActiveMenu": "cxm-analytics/dashboard"
+    },
+    "parameters": {
+      "text": "Paramétrage",
+      "link": "",
+      "access": "",
+      "activeMenu": "cxm-directory, cxm-profile, cxm-setting",
+      "isAdmin": "true",
+      "subMenu": [
+        {
+          "text": "Profils",
+          "link": "/cxm-profile/list-profiles",
+          "access": "cxm_user_management_list_profile",
+          "isAdmin": "true"
+        },
+        {
+          "text": "Utilisateurs",
+          "link": "/cxm-profile/users/list-user",
+          "access": "cxm_user_management_list_user",
+          "isAdmin": "true"
+        },
+        {
+          "text": "Clients",
+          "link": "/cxm-profile/client/list",
+          "access": "cxm_client_management_list",
+          "isAdmin": "true"
+        },
+        {
+          "text": "Ressources",
+          "link": "/cxm-setting",
+          "access": "cxm_management_library_resource_list"
+        },
+        {
+          "text": "Définition annuaire",
+          "link": "/cxm-directory/list-definition-directory",
+          "access": "cxm_directory_definition_list_directory",
+          "isAdmin": "true"
+        },
+        {
+          "text": "Alimentation annuaire",
+          "link": "/cxm-directory/directory-feed",
+          "access": "cxm_directory_feed_list_directory",
+          "isAdmin": "true"
+        },
+        {
+          "text": "Références Enveloppes",
+          "link": "/cxm-profile/enveloppes/list",
+          "access": "cxm_setting_up_consumables_list",
+          "isAdmin": "true"
+        },
+        {
+          "text": "Gérer flux",
+          "link": "",
+          "access": ""
+        },
+        {
+          "text": "Paramétrer modèles documentaires",
+          "link": "",
+          "access": ""
+        },
+        {
+          "text": "Paramétrer composition",
+          "link": "",
+          "access": ""
+        },
+        {
+          "text": "Paramétrer production",
+          "link": "",
+          "access": ""
+        },
+        {
+          "text": "Paramétrer préfacturation",
+          "link": "",
+          "access": ""
+        },
+        {
+          "text": "Télécharger imprimante virtuelle",
+          "link": "",
+          "access": ""
+        },
+        {
+          "text": "Reference enveloppe",
+          "link": "/cxm-setting/envelope-references/list",
+          "access": "cxm_management_library_resource_list"
+        }
+      ]
+    }
+  },
+  "footerBar": [
+    {
+      "link": "/about",
+      "text": "À propos"
+    },
+    {
+      "text": "CGV",
+      "link": ""
+    },
+    {
+      "text": "Mentions légales",
+      "link": ""
+    },
+    {
+      "text": "Données personnelles",
+      "link": ""
+    },
+    {
+      "text": "Cookies",
+      "link": ""
+    },
+    {
+      "text": "Contact",
+      "link": ""
+    },
+    {
+      "text": "FAG",
+      "link": ""
+    }
+  ],
+  "footerLogin": {
+    "left": [
+      {
+        "text": "© 2022 Tessi - All rights reserved - Version $version$",
+        "link": "/about"
+      }
+    ],
+    "right": [
+      {
+        "text": "Politique de gestion des cookies",
+        "link": ""
+      }
+    ]
+  },
+  "footerAll": {
+    "left": [
+      {
+        "text": "© 2022 Tessi - All rights reserved - Version $version$",
+        "link": "/about"
+      }
+    ],
+    "right": [
+      {
+        "text": "Politique d’utilisation des données personnelles",
+        "link": "",
+        "download": true
+      },
+      {
+        "text": "Politique de gestion des cookies",
+        "link": ""
+      }
+    ]
+  },
+  "errorCases": {
+    "messages": {
+      "notBeenSaved": "Vos modifications n'ont pas été enregistrées. Si vous souhaitez continuer, il sera perdu.",
+      "noMatchFound": "Aucune correspondance trouvée.",
+      "required": "Tous les champs obligatoires ne sont pas remplis.",
+      "cannotBePerformed": "Ce champ variable est utilisé dans la publication, sa suppression est impossible.",
+      "invalidProperties": "Il y a une entrée invalide dans les propriétés",
+      "cannotIdentifyDocument": "Le modèle documentaire de ce flux n'a pas pu être identifié."
+    },
+    "cxmTemplate": {
+      "emailTemplate": {
+        "saveSuccess": "Le modèle a été enregistré.",
+        "updateSuccess": "Le modèle a été mis à jour.",
+        "deleteSuccess": "Le modèle {{modelName}} a été supprimé.",
+        "deleteFail": "Impossible d'exécuter l'action.",
+        "loadFail": "Impossible d'exécuter l'action.",
+        "composition": {
+          "saveSuccess": "La composition du modèle a été enregistrée.",
+          "notSuccess": "Échec de l'enregistrement de la composition du modèle !",
+          "uploadAssetSuccess": "Une actif a été téléchargée avec succès.",
+          "uploadAssetFail": "Échec du téléchargement d'une actif!",
+          "removeAssetSuccess": "Une actif a été supprimée avec succès.",
+          "removeAssetFail": "Une actif a été supprimée échec !"
+        }
+      }
+    }
+  },
+  "login": {
+    "label": "S’identifier",
+    "form": {
+      "username": {
+        "placeholder": "Exemple@mail.com",
+        "label": "Adresse email :",
+        "error": "Veuillez saisir une adresse email valide",
+        "required": "Veuillez saisir une adresse email",
+        "invalid": "Veuillez saisir une adresse email valide",
+        "notexisted": "Adresse email et/ou mot de passe incorrect(s)",
+        "blockedaccount": "Compte bloqué"
+      },
+      "password": {
+        "placeholder": "",
+        "label": "Mot de passe :",
+        "error": "Veuillez saisir un mot de passe",
+        "required": "Veuillez saisir un mot de passe",
+        "invalid": "Mot de passe incorrect. Réessayez ou cliquez sur \"Mot de passe oublié\" pour le réinitialiser"
+      },
+      "forgotPassword": "Mot de passe oublié ?"
+    },
+    "information": {
+      "descriptionTitle": "Bienvenue",
+      "description": "Jusqu'à présent, la mise en œuvre de micro-apps a nécessité un peu de temps pour en apprendre la complexité. L'une des raisons en est certainement que les outils et cadres de construction actuels ne sont pas familiers avec ce concept. La Fédération des modules initie ici un changement de direction."
+    },
+    "button": {
+      "login": "Se connecter",
+      "logout": "Se déconnecter"
+    },
+    "message": {
+      "loginSuccess": "Vous vous être connecté avec succès.",
+      "invalidUsernameOrPassword": "Nom d'utilisateur ou mot de passe invalide !"
+    },
+    "userInfo": {
+      "profile": "Profil"
+    },
+    "loadProfileFail": "Impossible de connecter la passerelle de service!"
+  },
+  "flowTraceability": {
+    "table": {
+      "header": {
+        "dateDeposit": "Date dépôt",
+        "modeDeposit": "Mode",
+        "flowName": "Nom",
+        "user": "Utilisateur",
+        "channelType": "Filière d’envoi",
+        "serviceName": "Service",
+        "shipmentFilter": "Sous filière",
+        "treatmentStatus": "Statut de traitement",
+        "status": "Statut",
+        "dateStatus": "Date statut",
+        "actions": "Actions",
+        "category": "Catégorie",
+        "channel": "Canal",
+        "createdAt": "Date de création",
+        "notFound": "Aucune correspondance trouvée",
+        "modelName": "Modèle"
+      },
+      "notFound": "Pas de résultat trouvé!",
+      "criteriaNotFound": "Aucune donnée",
+      "criteriaResultZero": "Résultats: 0",
+      "filter": {
+        "postal": "Postal",
+        "digital": "Digital",
+        "faculty": "Filière: ",
+        "flux": "Flux :",
+        "date": "Dates",
+        "depositeStart": "Dépôt entre",
+        "depositeEnd": "et",
+        "statusStart": "Statut entre",
+        "statusEnd": "et",
+        "user": "Utilisateur",
+        "search": "Recherche",
+        "channel": "Canal",
+        "status": "Statut",
+        "reset": "Réinitialiser",
+        "depositMode": "Mode de dépôt",
+        "depositModeTitle": "Mode dépôt",
+        "calender": "Calendrier",
+        "apply": "Appliquer"
+      },
+      "action": {
+        "edit": "Modifier",
+        "delete": "Annuler",
+        "download": "Télécharger le fichier",
+        "view": "Voir les envois"
+      }
+    },
+    "confirmationPopUp": {
+      "cancelButton": "Annuler",
+      "confirmButton": "Confirmer",
+      "unauthorizedLeave": "Quitter",
+      "title": "Changer de statut",
+      "cancelledBody": "Vous êtes sur le point de supprimer la suite du traitement de ce flux",
+      "returnOfDeposit": "Confirmer le retour de dépôt",
+      "depositValidateBody": "Vous êtes sur le point de revenir à l'interface de dépôt",
+      "message": {
+        "cancelSuccess": "Le flux a été annulé",
+        "cancelFail": "L'annulation du flux a échoué.",
+        "validateSuccess": "Le flux a été validé.",
+        "validateFail": "La validation du flux a échoué.",
+        "unknownError": "Impossible d'exécuter l'action.",
+        "unauthorizedTitle": "Accès non autorisé",
+        "unauthorizedMessage": "Vous n'êtes pas autorisé à accéder à cette campagne."
+      }
+    },
+    "tab": {
+      "flowTraceability": "Suivi des flux",
+      "documentTraceability": "Suivi des envois",
+      "documentDetail": "Détail document"
+    },
+    "switchTab": {
+      "flowTraceability": "Envois par lots",
+      "flowDocument": "Envois unitaires",
+      "export-suivi-csv":"Exporter les données "
+    },
+    "history": {
+      "table": {
+        "status": "Statut",
+        "event": "Evénement",
+        "user": "Utilisateur",
+        "server": "Serveur",
+        "date": "Date/heure"
+      },
+      "notfound": "Aucun événement trouvé"
+    },
+    "documentTraceability": {
+      "table": {
+        "header": {
+          "document": "Nom",
+          "lot": "N˚ lot",
+          "dateCreated": "Date création",
+          "nbpage": "Nb pages",
+          "nbfilter": "Nb feuilles",
+          "subchannel": {
+            "value1": "Filière d'envoi ",
+            "value2": "(et sous-filière)"
+          },
+          "destination": "Destinataire",
+          "status": "Statut",
+          "statusDate": "Date statut",
+          "substate": "Sous-statut",
+          "element": "Eléments associés",
+          "action": "Actions",
+          "channel": "Canal",
+          "category": "Catégorie",
+          "sendingDate": "Date d’envoi"
+        },
+        "action": {
+          "download": "Télécharger le fichier"
+        },
+        "notFound": "Pas de résultat trouvé!"
+      },
+      "filter": {
+        "filter": "Filière:",
+        "postal": "Postal",
+        "digital": "Digital",
+        "document": "Document:",
+        "date": "Dates:",
+        "createFrom": "Création entre",
+        "statusFrom": "Statut entre",
+        "to": "et",
+        "option": {
+          "subchannel": "Sous-filière",
+          "treatment": "Statut de traitement",
+          "substatus": "Sous-statut"
+        }
+      },
+      "summaryData": {
+        "flux": "Nom du flux",
+        "filter": "Filière et sous-filière",
+        "analyze": "Analyse",
+        "page": "pages",
+        "done": "plis dont",
+        "error": "Erreur(s)",
+        "bytes": "Bytes",
+        "kb": "Kb",
+        "mb": "Mo",
+        "gb": "Gb",
+        "tb": "Tb"
+      }
+    },
+    "pageTitle": "Espace de suivi",
+    "subTitlePageHeader": {
+      "listOfFlow": "Consultez la liste des envois",
+      "postalFlowHistory": "Détail du lot",
+      "digitalFlowHistory": "Statistiques de la campagne emailing",
+      "digitalSMSFlowHistory": "Statistiques de la campagne SMS",
+      "postalDocumentDetail": "Détail de l’envoi unitaire du lot",
+      "digitalDocumentDetail": "Détail de l’envoi unitaire du lot"
+    }
+  },
+  "flow": {
+    "traceability": {
+      "visitAction": "Consulter",
+      "status": {
+        "treatment": "Traitement",
+        "default": "Statut de traitement",
+        "deposited": "Déposé",
+        "in_process": "En cours",
+        "completed": "Terminé",
+        "canceled": "Annulé",
+        "in_error": "Erreur",
+        "scheduled": "Planifié",
+        "to_validate": "A valider",
+        "to_finalize": "Brouillon",
+        "finalized": "Finalisé",
+        "refused": "Refusé",
+        "validated": "Validé",
+        "in_progress": "En cours",
+        "refuse_document": "Refusé"
+      },
+      "sub-channel": {
+        "none": "",
+        "multiple": ""
+      },
+      "subChannel": {
+        "default": "Sous-filière",
+        "postal": "",
+        "digital": "",
+        "multiple": ""
+      },
+      "deposit": {
+        "mode": {
+          "default": "Mode dépôt",
+          "virtualPrinter": "IV",
+          "iv": "Imprimante Virtuelle",
+          "portal": "Portail",
+          "api": "API",
+          "batch": "Batch"
+        },
+        "identification_mode": {
+          "configuration_file": "Fichier de configuration"
+        }
+      },
+      "user": {
+        "default": "Nom"
+      },
+      "service": {
+        "default": "Service"
+      },
+      "channel": {
+        "postal": "Postal",
+        "digital": "Digital",
+        "multiple": "Multiple",
+        "none": ""
+      },
+      "confirmPopups": {
+        "finalizeFlowDeposit": {
+          "title": "Modifier l’envoi ?",
+          "message": "Vous êtes sur le point de modifier l’envoi",
+          "cancelButton": "Annuler",
+          "confirmButton": "Modifier l'envoi"
+        },
+        "cancelFlow": {
+          "title": "Annuler le lot ?",
+          "message": "Etes-vous sûr de vouloir annuler ce lot ",
+          "cancelButton": "Annuler",
+          "confirmButton": "Confirmer",
+          "paragraph": "Cette action est irréversible."
+        }
+      },
+      "message": {
+        "cancelFlowSuccess": "Le flux a été annulé",
+        "cancelFlowFail": "L'annulation du flux a échoué."
+      }
+    },
+    "history": {
+      "actionButtons": {
+        "viewDocument": "Voir les envois unitaires",
+        "edit": "Modifier",
+        "exportFile": "Exporter le fichier",
+        "cancelFlow": "Annuler",
+        "back": "Retour",
+        "referToNonOperator": "Renvoyer aux non-ouvreurs",
+        "overview_email": "Aperçu de l’email",
+        "overview_sms": "Aperçu du SMS",
+        "overview_batch": "Aperçu de l’email",
+        "export": "Exporter"
+      },
+      "export_csv_success_result": "Votre fichier CSV a été généré avec succès",
+      "label": {
+        "history": "Historique des événements",
+        "information": "Informations",
+        "deliverabilityRate": "Taux de délivrabilité",
+        "campaignRate": "Taux de la campagne"
+      },
+      "digitalInformationLabel": {
+        "createdDate": "Date de création",
+        "createdBy": "Créée par",
+        "sentDate": "Date d’envoi",
+        "status": "Statut",
+        "service": "Service",
+        "division": "Division"
+      },
+      "informationLabel": {
+        "model": "Mode de dépôt",
+        "flowType": "Canal",
+        "category": "Catégorie",
+        "createdDate": "Date de création",
+        "unloadingDate": "Date de déchargement",
+        "undetermined": "Indéterminée",
+        "unloadingLabel": "(Planifié)",
+        "username": "Utilisateur",
+        "userService": "Service",
+        "modelName": "Modèle documentaire",
+        "status": "Statut",
+        "division": "Division"
+      },
+      "flowErrorMessage": {
+        "cancelFail": "L'annulation du flux a échoué.",
+        "failToLoadFlowId": "Impossible de voir les détails du flux"
+      },
+      "flowSuccessMessage": {
+        "cancelSuccess": "Le flux a été annulé"
+      },
+      "status": {
+        "treatment": "<span>Traitement</span>",
+        "deposited": "<span>Déposé</span>",
+        "in_error": "<span>Erreur</span>",
+        "to_validate": "<span>A valider</span>",
+        "validated": "<span>Validé</span>",
+        "to_finalize": "<span>A finaliser</span>",
+        "canceled": "<span>Annulé</span>",
+        "finalized": "<span>Finalisé</span>",
+        "scheduled": "<span>Planifié</span>",
+        "in_process": "<span>En cours</span>",
+        "completed": "<span>Terminé</span>",
+        "refused": "<span>Refusé</span>",
+        "refuse_document": "<span>Refusé</span>"
+      },
+      "eventHistory": {
+        "by": "par",
+        "on": "le",
+        "at": "à",
+        "outOf": "sur"
+      },
+      "confirmCancelDialog": {
+        "title": "Annuler le lot ?",
+        "message": "Etes-vous sûr de vouloir annuler ce lot ",
+        "cancelButton": "Annuler",
+        "confirmButton": "Confirmer",
+        "paragraph": "Cette action est irréversible."
+      },
+      "confirmCancelCampaignDialog": {
+        "title": "Supprimer la campagne ?",
+        "message": "Êtes-vous sûr de vouloir supprimer la campagne",
+        "paragraph": "Cette action est irréversible",
+        "cancelButton": "Annuler",
+        "confirmButton": "Supprimer la campagne"
+      },
+      "confirmFinalizeDialog": {
+        "title": "Modifier l’envoi ?",
+        "message": "Vous êtes sur le point de modifier l’envoi",
+        "cancelButton": "Annuler",
+        "confirmButton": "Modifier l'envoi"
+      },
+      "deliveryAbilityRate": {
+        "total_email": "Emails au total",
+        "total_sms": "SMS au total",
+        "total_batch": "Emails au total",
+        "delivered": "Délivrés",
+        "email": "emails",
+        "sms": "SMS",
+        "batch": "emails",
+        "block": "Bloqués",
+        "temporaryError": "Erreur temporaire",
+        "permanentError": " Erreur permanente",
+        "dismissal": "Renvoi",
+        "cancel": "Annulé",
+        "tooltips": {
+          "sms": {
+            "block": "Nous identifions et bloquons les SMS qui n’ont aucune chance d’arriver jusqu’à la boite de réception du destinataire.",
+            "temporaryError": "Un problème temporaire est survenu sur le serveur de destination. Ces destinataires ne seront pas automatiquement exclus des futurs envois.",
+            "permanentError": "Une erreur s’est produite lors du traitement du SMS.",
+            "dismissal": "SMS rejetés par le serveur du destinataire. Nous réessayerons d’envoyer l’email pendant 24 heures. Si l’erreur persiste, SMS sera signalé comme erreur temporaire.",
+            "cancelError": "L’envoi a été annulé avant sa distribution."
+          },
+          "email": {
+            "block": "Nous identifions et bloquons les emails qui n’ont aucune chance d’arriver jusqu’à la boite de réception du destinataire.",
+            "temporaryError": "Un problème temporaire est survenu sur le serveur de destination. Ces destinataires ne seront pas automatiquement exclus des futurs envois.",
+            "permanentError": "Une erreur d’envoi permanente peut être due à une adresse invalide (mal saisie, serveur de destination non existant...). Les erreurs permanentes peuvent nuire à votre réputation d’expéditeur et sont automatiquement bloquées.",
+            "dismissal": "Emails rejetés par le serveur du destinataire. Nous réessayerons d’envoyer l’email pendant 24 heures. Si l’erreur persiste, l’email sera signalé comme erreur temporaire."
+          },
+          "batch": {
+            "block": "Nous identifions et bloquons les emails qui n’ont aucune chance d’arriver jusqu’à la boite de réception du destinataire.",
+            "temporaryError": "Un problème temporaire est survenu sur le serveur de destination. Ces destinataires ne seront pas automatiquement exclus des futurs envois.",
+            "permanentError": "Une erreur d’envoi permanente peut être due à une adresse invalide (mal saisie, serveur de destination non existant...). Les erreurs permanentes peuvent nuire à votre réputation d’expéditeur et sont automatiquement bloquées.",
+            "dismissal": "Emails rejetés par le serveur du destinataire. Nous réessayerons d’envoyer l’email pendant 24 heures. Si l’erreur persiste, l’email sera signalé comme erreur temporaire."
+          }
+        }
+      },
+      "campaignRate": {
+        "open": "Ouverts",
+        "clicked": "Cliqués",
+        "error": "Erreurs",
+        "bounce": "Bounces",
+        "sent": "Envoyés",
+        "cancel": "Annulés"
+      },
+      "campaignStatus": {
+        "default": "Statut de traitement",
+        "deposited": "Déposé",
+        "in_process": "En cours",
+        "completed": "Terminé",
+        "canceled": "Annulé",
+        "in_error": "Erreur",
+        "scheduled": "Planifié",
+        "to_validate": "A valider",
+        "to_finalize": "Brouillon",
+        "finalized": "Finalisé",
+        "refused": "Refusé",
+        "treatment": "Traitement"
+      }
+    },
+    "document": {
+      "contain_comment": "Certains éléments du lot contiennent un commentaire.",
+      "element-association": {
+        "accuse-reception": "Accusé de réception",
+        "slip-sheet": "Bordereau"
+      },
+      "history": {
+        "status": {
+          "treatment": "Traitement",
+          "in_production": "En production",
+          "deposited": "Déposé",
+          "distributed": "Distribué",
+          "refused": "Refusé",
+          "unclaimed": "Non réclamés",
+          "receipt": "Reçu",
+          "accepted": "Accepté",
+          "certified": "Certifié",
+          "notified": "Notifié",
+          "read": "Lu",
+          "sent": "Envoyé",
+          "in_error": "Erreur",
+          "refuse_document": "Refusé"
+        }
+      },
+      "channel": {
+        "postal": "Postale",
+        "digital": "Digitale"
+      },
+      "subChannel": {
+        "default": "Sous-filière",
+        "postal": "",
+        "digital": "",
+        "multiple": ""
+      },
+      "status": {
+        "default": "Statut",
+        "scheduled": "<span>Planifié</span>",
+        "completed": "<span>Terminé</span>",
+        "in_error": "<span>Erreur</span>",
+        "in_progress": "<span>En cours</span>",
+        "in_production": "<span>En production</span>",
+        "deposited": "<span>Déposé</span>",
+        "distributed": "<span>Distribué</span>",
+        "refused": "<span>Refusé</span>",
+        "receipt": "<span>Reçu</span>",
+        "accepted": "<span>Accepté</span>",
+        "certified": "<span>Certifié</span>",
+        "notified": "<span>Notifié</span>",
+        "read": "<span>Lu</span>",
+        "sent": "<span>Envoyé</span>",
+        "claimed": "<span>Réclamé</span>",
+        "clicked": "<span>Cliqué</span>",
+        "postal_pickup": "<span>Enlèvement postal</span>",
+        "canceled": "<span>Annulé</span>",
+        "received": "<span>Reçu</span>",
+        "notFound": "<span>Pas d'historique</span>",
+        "postal_recovery": "<span>Reprise postale</span>",
+        "unclaimed": "<span>Non réclamé</span>",
+        "mail_deposit": "<span>Dépôt poste</span>",
+        "npai": "<span>NPAI</span>",
+        "stamped": "<span>Dépôt poste</span>",
+        "soft_bounce": "<span>Soft bounce</span>",
+        "hard_bounce": "<span>Hard bounce</span>",
+        "opened": "<span>Lu</span>",
+        "resent": "<span>Renvoi</span>",
+        "blocked": "<span>Bloqué</span>",
+        "sent_list": "<span>Terminé</span>",
+        "to_validate": "<span>A valider</span>",
+        "validated": "<span>Validé</span>",
+        "refuse_document": "<span>Refusé</span>",
+        "access_or_addressing_failure": "<span>Défaut d’accès ou d’adressage</span>",
+        "recipient_unknown": "Destinataire Inconnu"
+      },
+      "actionButtons": {
+        "elementAssociation": "Éléments associés",
+        "exportDocument": "Exporter le fichier",
+        "return": "Retour"
+      },
+      "associateDocument": {
+        "title": "Élément(s) associé(s) au document",
+        "ar": {
+          "line1": "Accusé",
+          "line2": "de réception"
+        },
+        "bordereau": {
+          "line1": "Bordereau",
+          "line2": "de dépôt"
+        },
+        "document": {
+          "line1": "Document"
+        }
+      },
+      "errorMessages": {
+        "unableToLoadDocumentDetail": "Impossible de voir le détail du document de flux",
+        "unableToDownloadAssociateDocument": "Impossible de télécharger le document associé",
+        "unableToLoadAssociateDocument": "Impossible de voir le document associé"
+      },
+      "labels": {
+        "historyOfEvent": "Historique des événements",
+        "recipient": "Destinataire",
+        "documentDetail": "Détail du document"
+      },
+      "eventHistory": {
+        "by": "par",
+        "on": "le",
+        "at": "à"
+      },
+      "recipient": {
+        "address": "Adresse",
+        "email": "Email",
+        "telephone": "Téléphone"
+      },
+      "documentDetail": {
+        "document": {
+          "title": "Document",
+          "identifier": "Identifiant",
+          "fileSize": "Poids du fichier",
+          "createdDate": "Date de création",
+          "pageNumber": "Nombres pages",
+          "sheetNumber": "Nombre feuilles",
+          "modelName": "Modèle documentaire",
+          "unloadingDate": "Date de déchargement",
+          "planned": "Planifié"
+        },
+        "productionCriteria": {
+          "title": "Critères production",
+          "postage": "Affranchissement",
+          "printing": "Impression",
+          "color": "Couleur",
+          "enveloppe": "Enveloppe"
+        },
+        "dataExtraction": {
+          "title": "Extraction des données",
+          "filler": "Filler"
+        },
+        "noFillerConfig": "Aucun filler n'est configuré",
+        "reference": "Référence",
+        "enrichment": {
+          "title": "Enrichissement",
+          "signature": "Signature",
+          "watermark": "Filigrane",
+          "background": "Fond de page",
+          "attachment": "Pièce jointe"
+        }
+      }
+    },
+    "associate": {
+      "title": "Element(s) associé(s) au document",
+      "slip": "Bordereau",
+      "receipt": "Accusé de Réception",
+      "notFound": "Aucune association d'element"
+    },
+    "detailDocument": {
+      "header": {
+        "document": "Document",
+        "extraction": "Extraction des données",
+        "destination": "Destinataires",
+        "criteria": "Critères production",
+        "eventHeader": "Historique des statuts",
+        "infoHeader": "Document issu du flux: "
+      },
+      "props": {
+        "identity": "Identifiant",
+        "dateTreatment": "Date traitement",
+        "fileWeight": "Poids fichier",
+        "nbpage": "Nb pages",
+        "nbsheet": "Nb feuilles",
+        "reference": "Référence",
+        "field": "Filler",
+        "address": "Addresse",
+        "email": "Email",
+        "campaign": "Campagne",
+        "telephone": "Téléphone",
+        "postage": "Affranchissement",
+        "impression": "Impression",
+        "color": "Couleur",
+        "enveloppe": "Enveloppe",
+        "page": "Fond de page",
+        "addition": "Adjonction PJs",
+        "archive": "Archivage",
+        "postalPickup": "Reprise postale"
+      }
+    },
+    "deposit": {
+      "uploading": {
+        "invalidPdfFormat": "Le fichier importé n’est pas au format PDF. Veuillez procéder à un nouveau téléchargement."
+      },
+      "confirmCancelFlow": {
+        "title": "Supprimer le fichier ?",
+        "message": "Êtes-vous sûr de vouloir annuler I'envoi du fichier ? <br/>Vous allez être redirigé à I'étape de téléchargement d'un fichier.",
+        "cancelButton": "Annuler",
+        "confirmButton": "Supprimer le fichier"
+      },
+      "confirmNextPage": {
+        "title": "Le fichier comporte {{KO}} erreur(s)",
+        "message": "Êtes-vous sûr de vouloir poursuivre ?",
+        "cancelButton": "Télécharger un nouveau fichier",
+        "confirmButton": "Continuer"
+      },
+      "title": "Déposer un fichier",
+      "list": {
+        "title": "DÉPÔTS",
+        "subTitle": "Consultez la liste des fichiers à envoyer",
+        "btnCreate": "Envoyer un courrier",
+        "postal": {
+          "flowName": "NOM",
+          "user": "UTILISATEUR",
+          "dateCreation": "DATE DE CRÉATION",
+          "channel": "CANAL",
+          "category": "Catégorie",
+          "mode": "Mode",
+          "status": "Statut",
+          "action": "Actions",
+          "btnEdit": "Modifier",
+          "btnDownload": "Télécharger le fichier",
+          "btnDelete": "Supprimer",
+          "btnInformation": "Informations"
+        },
+        "digital": {},
+        "message": {
+          "notFound": "Aucune correspondance trouvée",
+          "criteriaNotFound": "Aucune donnée",
+          "criteriaResultZero": "Résultats: 0"
+        },
+        "confirmation": {
+          "deleteFlow": {
+            "title": "Supprimer le brouillon ?",
+            "message": "Êtes-vous sûr de vouloir supprimer le brouillon ? Cette action est irréversible.",
+            "cancelButton": "Annuler",
+            "confirmButton": "Supprimer",
+            "paragraph": "Cette action est irréversible."
+          },
+          "deleteFlowMessage": {
+            "success": "Le brouillon a été supprimé.",
+            "fail": "Le projet n'a pas été supprimé."
+          }
+        }
+      },
+      "acquisition": {
+        "title": "Veuillez télécharger un fichier .pdf",
+        "label": {
+          "uploadfile": "Glisser ou déposer votre fichier (format PDF) ici",
+          "dragHere": "Glissez ici",
+          "yourPdf": "votre fichier",
+          "file": "Fichier",
+          "or": "OU",
+          "uploadButton": "Parcourir",
+          "uploadMessageProgressing": "Téléchargement du fichier en cours",
+          "uploadMessageDone": "Téléchargement du fichier terminé",
+          "uploadMessageError": "Erreur de téléchargement. Veuillez procéder à un nouveau téléchargement.",
+          "uploadMessageGoBack": "Vous pouvez revenir à l'écran précédent. Veuillez procéder à un nouveau téléchargement.",
+          "uploadMessageGoNext": "Vous pouvez passer à l'étape suivante. Veuillez procéder à un nouveau téléchargement.",
+          "uploadMessageError406": "Le fichier est vide. Veuillez procéder à un nouveau téléchargement.",
+          "uploadMessageError5001": "Le fichier importé n'est pas au format PDF. Veuillez procéder à un nouveau téléchargement.",
+          "uploadMessageError5002": "Erreur de téléchargement. Veuillez procéder à un nouveau téléchargement.",
+          "uploadMessageError5003": "Le fichier est trop volumineux. Veuillez procéder à un nouveau téléchargement.",
+          "uploadMessageError5004": "Erreur de téléchargement. L'utilisateur ne peut être trouvé. (code: 5004 ). Veuillez procéder à un nouveau téléchargement.",
+          "uploadMessageError5005": "Erreur de serveur interne. (code : 5005). Veuillez procéder à un nouveau téléchargement.",
+          "uploadMessageError5006": "Non autorisé à télécharger des fichiers multiples. Veuillez procéder à un nouveau téléchargement.",
+          "uploadMessageError5007": "Pas de connexion internet",
+          "uploadMessageError5008": "Le document ne peut pas être identifié. Veuillez procéder à un nouveau téléchargement.",
+          "errorFileUploading": "Erreur de téléchargement",
+          "limitUploadFileSize": "Formats acceptés : pdf (poids maximum {{sizeLimit}})"
+        }
+      },
+      "preAnalysis": {
+        "title": "Veuillez sélectionner un canal d’envoi",
+        "table": {
+          "fileName": "Nom fichier",
+          "flowType": "Type de document",
+          "definitionOfModel": "Modèle documentaire",
+          "documentType": "Type documentaire",
+          "docName": "Nom du document"
+        },
+        "checkbook": {
+          "postal": "Postal",
+          "digital": "Digital"
+        },
+        "digitalType": {
+          "item1": "Email",
+          "item2": "Courrier suivi électronique",
+          "item3": "Courrier suivi électronique (avec AR)",
+          "item4": "Lettre recommandée électronique"
+        },
+        "description": "Les destinataires de vos lettres recommandées électroniques, s'ils ne sont pas des professionnels, doivent avoir donné leur accord préalable pour recevoir une lettre recommandée électronique."
+      },
+      "analysisResult": {
+        "title": "Veuillez vérifier l’analyse de votre document : ",
+        "labelSummary": "Résultat de l’analyse ",
+        "errorLabelHasKO": "Consulter ci-dessous <span tessi-b-span>{{KO}} erreur(s)</span> à corriger dans votre fichier .pdf",
+        "errorLabelNoOK": "Consultez ci-dessous les erreurs à corriger dans votre fichier .pdf et procédez a un nouveau",
+        "hasPartialKO": "Le fichier .pdf comporte",
+        "hasPartialKO_instruction": "Chargez un nouveau fichier corrigé ou poursuivez l'envoi en ignorant les erreurs.<br/>(Les destinataires en erreur seront ignorés)",
+        "error": "erreur(s)",
+        "noValidDocumentOnlyOne": "Aucun document issu de votre fichier n'est valide.",
+        "upload": "téléchargement",
+        "analysisVariant": {
+          "titleSuccess": "Analyse effectuée avec succès",
+          "titleWarning": "Analyse effectué errors",
+          "titleError": "Erreur",
+          "table": {
+            "title": "Synthèse",
+            "numberDoc": "Nombre de documents: ",
+            "document": "documents(s), ",
+            "of": "dont",
+            "error": "Erreur(s)",
+            "numberPage": "Nombre de pages: ",
+            "page": "page(s)"
+          }
+        },
+        "analysisResultTable": {
+          "document": "N° DOC",
+          "nbPage": "Nb page(s)",
+          "resultAnalyse": "ÉTAT",
+          "subFilter": "Filière (sous-filière)",
+          "recipient": "Destinataire(s)",
+          "notFound": "Pas de correspondance trouvée!",
+          "postal": "Postale",
+          "digital": "Numérique",
+          "ko": "Adresse incomplète",
+          "actions": "Actions",
+          "modify": "Adresse modifiée"
+        },
+        "access": "Accéder",
+        "modify_address": "Modifier l'adresse",
+        "address_change_made": "Les modifications apportées sur les adresses seront visibles à l'étape 5"
+      },
+      "finished": {
+        "title": "Prévisualisez le fichier et vérifiez les informations ci-dessous",
+        "menuTitle": "Fin",
+        "subTitle1": "Votre flux est bien pris en compte, vous pouvez le retrouver depuis l'interface de suivi",
+        "subTitle2": "Vous pouvez revenir à l'écran de dépôt"
+      },
+      "validateResult": {
+        "title": "Votre document est envoyé !",
+        "alterButton": "Envoyer un nouveau fichier",
+        "mainButton": "Suivre mon envoi",
+        "subtitle": "Le traitement peut prendre quelques minutes. \n<br>Retrouvez toutes les informations relatives à votre envoi à tout moment \ndans la rubrique suivi."
+      },
+      "synthesis": {
+        "title": "Synthèse",
+        "filename": "Nom du fichier",
+        "nbDocuments": "Nombre de documents",
+        "nbPages": "Nombre de pages",
+        "nbSheets": "Nb feuilles",
+        "nbDocumentsKO": "Nombre de documents ignorés"
+      },
+      "productionCriteria": {
+        "title": "Renseignez les paramètres de production",
+        "criteria": "Critères de production",
+        "form": {
+          "button": {
+            "browse": "Parcourir"
+          },
+          "label": {
+            "postage": "Affranchissement",
+            "color": "Couleur",
+            "impression": "Recto/verso",
+            "evenlope": "Enveloppe",
+            "leaflet": "Porte adresse",
+            "watermark": "Filigrane",
+            "signature": "Signature",
+            "background": "Fond de page ",
+            "enclosed": "Pièce jointe",
+            "enclosed_size_limit": "Poids maximum {{sizeLimit}}",
+            "zipCode": "Zip code",
+            "countryCode": "Code postal",
+            "monochrome": "Couleur",
+            "quardchrome": "Noir & Blanc",
+            "recto": "Recto & verso",
+            "rectoverso": "Recto uniquement",
+            "auto": "Auto",
+            "c6": "C6",
+            "c5": "C5",
+            "c4": "C4",
+            "yes": "Oui",
+            "no": "Non",
+            "nofileselected": "Aucun fichier sélectionné",
+            "takeover": "Ajouter une page porte adresse",
+            "attachwatermark": "Ajouter un fond de page",
+            "watermarktype": "Type d'ajout :",
+            "watermarkpos": "Mode d'apposition :",
+            "upload_inst": "Ce fond ne sera pas sauvegardé dans la bibliothèque",
+            "file_limt": "Formats acceptés : pdf (poids maximum 20 Mo)",
+            "file_max": "Nombre de page maximum : 1",
+            "choosepage": "Choix du fond de page :"
+          },
+          "postageType": {
+            "letter": "Lettre (J+2)",
+            "ecopli": "Ecopli (J+4)",
+            "registerLetterWithAR": "Lettre recommandée avec AR",
+            "registerLetterWithoutAR": "Lettre recommandée sans AR"
+          }
+        },
+        "options": {
+          "title": "Options",
+          "showOptions": "Afficher moins d'options",
+          "seeMoreOption": "Voir plus d'options",
+          "confirmMail": "Mail de confirmation",
+          "validateDoc": "Workflow de validation des documents",
+          "archieveDoc": "Archivage des documents",
+          "ged": "Mise en GED",
+          "takeover": "Reprise postale",
+          "dayOfDelay": "Nb de jours de délai",
+          "takeover1": "Je souhaite une reprise automatique en filière postale des plis pours lesquels l'adresse electronique de distribution n'existe pas (PND Electronique)",
+          "takeover2": "Je souhaite une reprise automatique en filière postale de l'ensemble des plis PND Electronique et Non Réclame et CGUs refuses en cours de distribution"
+        },
+        "hasAppliedDefaultConfig": "Les valeurs en orange sont issues de la configuration par défaut du modèle documentaire."
+      },
+      "button": {
+        "prev": "Précédent",
+        "next": "Suivant",
+        "return": "Retour",
+        "validate": "Envoyer",
+        "back_warning_title": "Envoi non finalisé",
+        "back_warning_message": "Êtes-vous sûr de vouloir quitter ?<br/> L'envoi va être sauvegardé avec le statut \"Brouillon\", vous pourrez le finaliser ultérieurement.",
+        "back_warning_okButton": "Quitter",
+        "back_warning_cancelButton": "Annuler",
+        "cancelFlowBtn": "Télécharger un nouveau fichier",
+        "hasPartialError": "Poursuivre malgré les erreurs"
+      },
+      "pdfViewer": {
+        "label": "Prévisualisation du flux"
+      },
+      "previewDocument": "Prévisualisation du document",
+      "stepper": {
+        "acquisition": "Téléchargement",
+        "choiceChannel": "Choix du canal",
+        "analyze": "Analyse",
+        "setting": "Paramètres",
+        "mail": "Envoi"
+      },
+      "message": {
+        "launchedSuccess": "Votre fichier est importé avec succès",
+        "validateSuccess": "Le flux a été envoyé en production",
+        "atLeastOneDocOK": "Aucun document de ce flux n'est valide.",
+        "cancelSuccess": "L'envoi a été annulé.",
+        "cancelFail": "L'annulation du flux a échoué.",
+        "cannotGetLimitFileSize": "Échec du chargement de la taille limite du fichier."
+      },
+      "channel_category_not_activated": {
+        "cancelButton": "Annuler",
+        "confirmButton": "Quitter",
+        "message": "Votre envoi ne peut pas être réalisé tant que le canal de distribution n'est pas \nactivé depuis le paramétrage des flux.",
+        "message2": "L’envoi va étre sauvegardé avec le statut \"Brouillon\", vous pourrez le finaliser \nultérieurement.",
+        "title": "Canal de distribution non activé"
+      },
+      "missing_config_signature": {
+        "cancelButton": "Annuler",
+        "confirmButton": "Quitter",
+        "message": "Votre envoi ne peut pas être réalisé tant que la configuration de la signature n'est pas valide.",
+        "message2": "L'envoi va être sauvegardé avec le statut \"Brouillon\", vous pourrez le finaliser \nultérieurement.",
+        "title": "Configuration de signature invalide"
+      },
+      "document_model_changed": {
+        "confirmButton": "Continuer",
+        "message": "La configuration documentaire a été modifiée.",
+        "message2": "Le modèle de votre brouillon a été mis à jour avec la nouvelle configuration.",
+        "title": "Changement de modèle documentaire"
+      },
+      "document_configuration_changed": {
+        "confirmButton": "Continuer",
+        "message": "La configuration du modèle ${ModelName} a été modifiée. ",
+        "message2": "Votre brouillon a été mis à jour avec la nouvelle configuration.",
+        "title": "Changement(s) dans le modèle"
+      },
+      "setting_option_popup_signature_title": "Ajouter une signature",
+      "setting_option_popup_attachment_title": "Ajouter une pièce jointe",
+      "setting_option_popup_choice_of_signature": "Choix de la signature :",
+      "setting_option_popup_choice_of_attachment": "Choix de l'attachement :",
+      "setting_option_popup_signature_type": "Type d'ajout :",
+      "setting_option_popup_attachment_type": "Type d'ajout :",
+      "setting_option_popup_position": "Positionnement :",
+      "setting_option_popup_add_button": "Ajouter",
+      "setting_option_popup_modify_button": "Modifier",
+      "setting_option_popup_source_type_form_upload": "Téléversement unique",
+      "setting_option_popup_source_type_from_resource": "Bibliothèque",
+      "setting_option_popup_position_first": "Première position",
+      "setting_option_popup_position_second": "Deuxième position",
+      "setting_option_popup_position_third": "Troisième position",
+      "setting_option_popup_position_fourth": "Quatrième position",
+      "setting_option_popup_position_fifth": "Cinquième position",
+      "setting_option_popup_all_pages": "Toutes les pages",
+      "setting_option_popup_first_page": "Première page",
+      "setting_option_popup_next_page": "Pages suivantes",
+      "setting_option_popup_last_page": "Dernière page",
+      "fail_to_fetch_resources": "Une erreur s'est produite lors de l'extraction des ressources.",
+      "fail_to_fetch_resource_detail": "Une erreur s'est produite lors de l'extraction de la ressource.",
+      "setting_option_popup_uploading_instruction": "Cette signature ne sera pas sauvegardée dans la bibliothèque",
+      "setting_option_popup_uploading_signature_instruction": "Cette signature ne sera pas sauvegardée dans la bibliothèque",
+      "setting_option_popup_uploading_format": "Formats acceptés : PDF ( poids maximum 20 Mo)",
+      "setting_option_popup_uploading_signature_format": "Formats acceptés : PNG (taille maximale 1 Mo)",
+      "fail_to_fetch_attachment_detail": "Une erreur s'est produite lors de l'obtention des détails de la pièce jointe.",
+      "fail_to_fetch_background_detail": "Une erreur s'est produite lors de l'obtention du détail de l'arrière-plan.",
+      "setting_option_popup_update_attachment_successfully": "Une erreur s'est produite lors de l'obtention des détails de la pièce jointe.",
+      "setting_option_popup_update_attachment_fail": "Une erreur s'est produite lors de la mise à jour de la pièce jointe.",
+      "setting_option_popup_update_background_fail": "Une erreur s'est produite lors de la mise à jour de l'arrière-plan.",
+      "setting_option_popup_get_all_attachment_fail": "Une erreur s'est produite lors de l'obtention de la pièce jointe.",
+      "setting_option_popup_get_all_background_fail": "Une erreur s'est produite lors de l'obtention de l'arrière-plan.",
+      "setting_option_popup_delete_attachment_fail": "Une erreur s'est produite lors de la suppression de la pièce jointe.",
+      "setting_option_popup_delete_background_fail": "Une erreur s'est produite lors de la suppression de l'arrière-plan.",
+      "setting_option_popup_signature_file_missing": "Page de signature manquante",
+      "setting_option_popup_background_file_missing": "Page de fond manquante",
+      "setting_option_popup_attachment_file_missing": "Page d'attachement manquante",
+      "setting_option_popup_background_unknown": "Impossible de communiquer avec le serveur",
+      "setting_option_popup_background_page_limit": "Erreur de téléchargement. Le nombre de pages ne peut excéder une page pour une ressource d'arrière-plan.",
+      "setting_option_popup_attachment_page_limit": "Erreur de téléchargement. Le nombre de pages ne peut excéder une page pour une ressource jointe.",
+      "setting_option_popup_attachment_max_file_size": "Erreur de téléversement. La taille de la ressource ne peut pas dépasser 20 Mo.",
+      "setting_option_popup_signature_max_file_size": "Erreur de téléversement. La taille de la ressource ne peut pas dépasser 1 Mo.",
+      "setting_option_popup_background_unauthorized": "Erreur : Vous n'avez pas le droit d'accéder à la bibliothèque de ressources.",
+      "setting_option_popup_background_no_delete_permission": "Vous n'êtes pas autorisé à supprimer l'arrière-plan de la page.",
+      "setting_option_popup_background_delete_conflict": "Le fichier ou la ressource n'existe pas.",
+      "setting_option_popup_background_fetch_list_fail": "Échec de l'extraction de l'arrière-plan de la page.",
+      "setting_option_popup_background_select_page_background": "Le fond de page est obligatoire. Veuillez sélectionner le fond de page",
+      "setting_option_popup_background_select_page_attachment": "La pièce jointe est obligatoire. Veuillez sélectionner la pièce jointe",
+      "setting_option_popup_uploading_file_is_required": "Erreur. Aucun fichier sélectionné.",
+      "setting_option_popup_upload_not_pdf": "Erreur de téléchargement. Le format ne doit pas être différent de PDF pour une ressource d'arrière-plan.",
+      "setting_option_popup_upload_not_pdf_for_background": "Erreur de téléchargement. Le format ne doit pas être différent de PDF pour une ressource d'arrière-plan.",
+      "setting_option_popup_upload_not_pdf_for_attachment": "Erreur de téléversement. Le format ne doit pas être différent de PDF pour une ressource de type pièce jointe.",
+      "setting_option_popup_upload_not_png_for_signature": "Erreur de téléversement. Le format ne doit pas être différent de PNG pour une ressource de type signature.",
+      "setting_option_popup_watermark_title": "Ajouter filigrane",
+      "setting_option_popup_text_water_mark": "Texte filigrane",
+      "setting_option_popup_text_size": "Taille du texte",
+      "setting_option_popup_text_rotation": "Rotation du texte",
+      "setting_option_popup_text_color": "Couleur du texte",
+      "setting_option_popup_original_document_page": "Pages du document d'origine",
+      "setting_option_popup_enhancement_page": "Pages d'enrichissement",
+      "setting_option_popup_water_mark_text": {
+        "require": "Le texte du filigrane est requis.",
+        "length": "Le texte du filigrane doit être inférieur ou égal à 30 caractères."
+      },
+      "setting_option_popup_water_mark_text_size": {
+        "require": "La taille du texte est requise.",
+        "positive": "La taille du texte doit être un entier positif."
+      },
+      "setting_option_popup_water_mark_text_rotation": {
+        "require": "La rotation du texte est obligatoire",
+        "limit": "La rotation du texte doit être comprise entre -360 et 360."
+      },
+      "setting_option_popup_create_watermark_fail": "Une erreur s'est produite lors de la création du filigrane.",
+      "setting_option_popup_update_watermark_fail": "Une erreur s'est produite lors de la mise à jour du filigrane.",
+      "setting_option_popup_delete_watermark_fail": "Une erreur s'est produite lors de la suppression du filigrane.",
+      "setting_option_display": {
+        "size": "Taille",
+        "rotation": "Rotation"
+      },
+      "address_destination": {
+        "title":"Adresse destinataire",
+        "cancel": "Annuler",
+        "validate": "Valider",
+        "line": "Ligne",
+        "zip_code_and_city": "Code postal et ville",
+        "country": "Pays"
+      },
+      "address_line_pop_up_length": "Une ligne d’adresse ne peut pas excéder 38 caractère.",
+      "address_line_at_least_three": "Erreur: Au moins trois lignes d’adresses sont obligatoires.",
+      "address_line_at_zip_code_and_town": "Erreur: Un code postal et une ville doivent être spécifiés.",
+      "address_line_postal_require": "Code postal et ville est requis.",
+      "address_modify_success": "Adresse modifiée avec succès.",
+      "address_modify_error": "La mise à jour de l'adresse a échoué.",
+      "address_line_at_zip_code_and_town_not_match": "Erreur: Le code postal et la ville ne correspondent pas."
+    },
+    "buttons": {
+      "previous": "Précédent",
+      "return": "Retour"
+    }
+  },
+  "profile": {
+    "header": {
+      "title": {
+        "listProfiles": "Paramétrage profil",
+        "createNewProfile": "Créer un profil",
+        "modifyProfile": "Modifier un profil"
+      },
+      "subTitle": {
+        "listProfiles": "Consultez et gérez la liste des profils",
+        "createNewProfile": "Gestion du profil",
+        "modifyProfile": "Gestion du profil : "
+      }
+    },
+    "list": {
+      "title": "Profils",
+      "refreshedDate": "Mis à jour à",
+      "table": {
+        "header": {
+          "name": "Nom du profil",
+          "displayName": "Rôle",
+          "created": "Date de création",
+          "clientName": "Client",
+          "modified": "Date de modification",
+          "actions": "Actions"
+        },
+        "consult": "Consulter",
+        "notFound": "Pas de résultat trouvé!"
+      },
+      "buttonCreate": "Créer un profil",
+      "buttonRefresh": "Actualiser la liste",
+      "buttonEdit": "Modifier le profil",
+      "buttonDelete": "Supprimer le profil"
+    },
+    "create": {
+      "title": "Créer profil"
+    },
+    "update": {
+      "title": "Modifier profil"
+    },
+    "form": {
+      "label": {
+        "traceability": "Espace de suivi",
+        "statistic": "Espace de statistiques et rapports",
+        "mailModel": "Conception d’un modèle emailing",
+        "smsModel": "Conception d’un modèle sms",
+        "mailCampaign": "Gestion d’une campagne emailing",
+        "smsCampaign": "Gestion d’une campagne sms",
+        "deposit": "Espace dépôt flux",
+        "modelSetting": "Paramétrage des modèles documentaire",
+        "consumablesSetting":"Paramétrage des Consommables",
+        "usermgt": "Gestion des utilisateurs",
+        "client_management": "Gestion client",
+        "directoryMgt": "Gestion annuaire",
+        "interactive": "Création communication Interactive",
+        "espace_validation": "Espace de validation",
+        "management_library_resource": "Bibliothèque ressources",
+        "cxm_enrichment_mailing": "Enrichissement envoi postal",
+        "cxm_watermark_enhancement_postal_delivery": "Enrichissement Filigrane envoi postal",
+        "privilege": {
+          "tracking_space_consult": "Consulter le suivi des flux",
+          "tracking_space_filter": "Trier et filtrer l’affichage",
+          "tracking_space_select_flow": "Sélectionner un flux pour ouvrir le suivi des documents",
+          "tracking_space_cancel_flow": "Annuler un flux",
+          "tracking_space_validate": "Valider un flux",
+          "tracking_space_finalize": "Finaliser un dépôt (renvoi vers l’espace de dépôt)",
+          "tracking_space_download": "Télécharger le flux",
+          "tracking_space_history": "Consulter l’historique des événements",
+          "tracking_space_doc_consult": "Consulter le suivi des documents",
+          "tracking_space_doc_filter": "Trier et filtrer l'affichage",
+          "tracking_space_select_doc": "Sélectionner un document pour ouvrir le détail",
+          "tracking_space_download_doc": "Télécharger le document",
+          "tracking_space_history_doc": "Consulter l'historique des événements",
+          "tracking_space_relate_item": "Ouvrir et télécharger les éléments associés",
+          "tracking_space_validate_doc": "Valider un document",
+          "tracking_space_detail_doc": "Consulter le détail d'un document",
+          "statistic_search": "Renseigner les critères de recherche",
+          "statistic_generate": "Générer les statistiques (graphiques)",
+          "statistic_download": "Télécharger les fichiers statistique",
+          "report_search": "Renseigner les critères de génération",
+          "report_generate": "Générer le rapport",
+          "report_download": "Télécharger la rapport",
+          "mailModel_list": "Lister les modèles",
+          "mailModel_create": "Créer un modèle",
+          "mailModel_create_copy": "Créer un modèle par duplication",
+          "mailModel_edit": "Editer un modèle",
+          "mailModel_modify": "Modifier un modèle",
+          "mailModel_delete": "Supprimer un modèle",
+          "smsModel_list": "Lister les modèles déjà existants",
+          "smsModel_create": "Créer un modèle",
+          "smsModel_create_copy": "Créer un modèle par duplication",
+          "smsModel_edit": "Editer un modèle",
+          "smsModel_modify": "Modifier un modèle",
+          "smsModel_delete": "Supprimer un modèle",
+          "mailCampaign_list": "Suivre les campagnes",
+          "mailCampaign_filter": "Trier et filtrer l'affichage",
+          "mailCampaign_detail": "Sélectionne une campagne pour ouvrir le détail (visualiser le mail, et voir les contracts depuis le detail)",
+          "mailCampaign_cancel": "Annuler une campagne",
+          "mailCampaign_finalize": "Finaliser une campagne",
+          "mailCampaign_create": "Créer une campagne (active les privilèges de la sous-fonctionnalité suivante)",
+          "mailCampaign_select": "Choisir un modèle parmi la liste",
+          "mailCampaign_local_filter": "Trier et filtrer l'affichage des modèles disponibles",
+          "mailCampaign_create_parameter": "Définir les paramètres de création (visualiser le modèle, choisir l'expéditeur, planifier l'expédition)",
+          "mailCampaign_import_destination": "Importer le fichier de destinataires",
+          "mailCampaign_send_proof": "Envoyer un BAT",
+          "mailCampaign_generate": "Générer la campagne",
+          "smsCampaign_list": "Suivre les campagnes",
+          "smsCampaign_filter": "Trier et filtrer l'affichage",
+          "smsCampaign_detail": "Sélectionner une campagne pour ouvrir le détail (visualiser le sms et voir les contacts depuis le détail)",
+          "smsCampaign_cancel": "Annuler une campagne",
+          "smsCampaign_finalized": "Finaliser une campagne",
+          "smsCampaign_create": "Créer une campagne (active les privilèges de la sous-fonctionnalité suivante)",
+          "smsCampaign_select": "Choisir un modèle parmi la liste",
+          "smsCampaign_local_filter": "Trier et filtrer l'affichage des modèles disponibles",
+          "smsCampaign_create_parameter": "Définir les paramètres de création (visualiser le modèle, choisir l’expéditeur, programme l’envoi)",
+          "smsCampaign_import": "Importer le fichier de destinataires",
+          "smsCampaign_send_proof": "Envoyer un BAT",
+          "smsCampaign_generate": "Générer la campagne",
+          "deposit_submit": "Déposer un flux",
+          "deposit_select_channel": "Choisir la filière d'envoi",
+          "deposit_analysis": "Vérifier l'analyse effectuée",
+          "deposit_select_criteria": "Sélectionner les critères de production",
+          "send_a_letter": "Envoyer un courrier",
+          "list_deposits": "Lister les dépôts",
+          "modify_a_deposit": "Modifier un dépôt",
+          "delete_a_deposit": "Supprimer un dépôt",
+          "deposit_validate": "Valider le dépôt",
+          "modelSetting_list": "Lister les paramétrages",
+          "modelSetting_create": "Créer un paramétrage de modèle",
+          "modelSetting_create_parameter": "Définir les critères de reconnaissance : type de flux et modèle documentaire",
+          "modelSetting_associate": "Associer le modèle documentaire à un type documentaire, éventuellement une filière, sous-filière et des critères de production",
+          "modelSetting_identity": "Définir et identifier les différentes zones du document via l’assistant de capture ou par coordonnées : rupture de document, lignes adresse, email destinataire, métadonnées",
+          "modelSetting_edit": "Editer un paramétrage",
+          "modelSetting_modify": "Modifier un paramétrage",
+          "modelSetting_delete": "Supprimer un paramétrage",
+          "usermgt_list": "Lister les utilisateurs",
+          "usermgt_create": "Créer un utilisateur",
+          "usermgt_modify": "Modifier un utilisateur",
+          "usermgt_delete_user": "Supprimer un utilisateur",
+          "usermgt_list_profile": "Lister les profils",
+          "usermgt_create_profile": "Créer un profil",
+          "usermgt_modify_profile": "Modifier un profil",
+          "usermgt_delete_profile": "Supprimer un profil",
+          "usermgt_permission": "Gérer les autorisations",
+          "usermgt_assign_service": "Affecter un utilisateur à un service",
+          "edit_user": "Editer un utilisateur",
+          "edit_profile": "Editer un profil",
+          "client_management_list": "Lister le compte",
+          "client_management_modify": "Modifier le compte",
+          "cxm_setting_up_consumables_list":"Lister des références envelopes",
+          "cxm_setting_up_consumables_creat_modify":"Ajouter, modifier des références enveloppes",
+          "cxm_setting_up_consumables_delete":"Supprimer des références enveloppes",
+          "directoryMgtListDefinitionDirectory": "Lister les annuaires (définition)",
+          "directoryMgtCreateDefinitionDirectory": "Créer un annuaire",
+          "directoryMgtEditDefinitionDirectory": "Editer un annuaire",
+          "directoryMgtModifyDefinitionDirectory": "Modifier un annuaire",
+          "directoryMgtDeleteDefinitionDirectory": "Supprimer un annuaire",
+          "directoryMgtListDirectoryFeed": "Lister les annuaires (alimentation)",
+          "directoryMgtEditDirectoryFeed": "Editer un annuaire (active les privilèges de la sous-fonctionnalité suivante)",
+          "directoryMgtManualPopulateDirectoryFeed": "Alimenter un annuaire par ajout manuel de données",
+          "directoryMgtImportDirectoryFeed": "Alimenter un annuaire par import de fichier de données",
+          "directoryMgtExportDirectoryFeed": "Exporter un annuaire",
+          "directoryMgtModifyDirectoryFeed": "Modifier données existantes d'un annuaire",
+          "directoryMgtDeleteDirectoryFeed": "Supprimer données existantes d'un annuaire",
+          "interactive_list_model": "Choisir le modèle",
+          "espace_validation_list": "Lister les lots",
+          "espace_validation_validate_refuse": "Valider/refuser",
+          "management_library_resource_list": "Lister les ressources dans la bibliothèque",
+          "management_library_resource_create": "Ajouter une ressource dans la bibliothèque",
+          "management_library_resource_delete": "Supprimer une ressource dans la bibliothèque",
+          "cxm_enrichment_mailing_add_resource": "Ajouter une ressource ",
+          "cxm_enrichment_mailing_use_resource_in_library": "Utilisation d'une ressource dans la bibliothéque",
+          "cxm_enrichment_mailing_upload_a_single_resource": "Téléversement d'une ressource a usage unique",
+          "cxm_enrichment_mailing_modify_a_custom_resource": "Modifier une ressource personnalisée",
+          "cxm_enrichment_mailing_delete_a_custom_resource": "Supprimer une ressource personnalisée",
+          "cxm_enrichment_mailing_modify_a_default_resource": "Modifier une ressource par défaut",
+          "cxm_enrichment_mailing_delete_a_default_resource": "Supprimer une ressource par défaut",
+          "cxm_enrichment_mailing_add_watermark": "Ajouter un filigrane",
+          "cxm_enrichment_mailing_modify_watermark": "Modifier un filigrane",
+          "cxm_enrichment_mailing_delete_watermark": "Supprimer un filigrane",
+          "modify_or_correct_an_address": "Modifier / corriger une adresse"
+        },
+        "functional": "Fonctionnalités",
+        "visibility": "Niveau visibilité",
+        "modification": "Niveau modification",
+        "formTitle": "Champs à remplir",
+        "displayname": "Rôle",
+        "displayNamePlaceholder": "Exemple : Gestion des campagnes",
+        "name": "Nom du profil",
+        "namePlaceholder": "Rentrez un nom de profil",
+        "seeMore": "Voir plus",
+        "seeLess": "Voir moins",
+        "client": "Client",
+        "button": {
+          "cancel": "Annuler",
+          "ok": "Créer",
+          "create": "Créer",
+          "modify": "Modifier"
+        }
+      },
+      "confirmation": {
+        "title": "Données non sauvegardées !",
+        "message": "Vous êtes sûr de vouloir partir ? Les données seront perdues.",
+        "cancelButton": "Annuler",
+        "confirmButton": "Quitter"
+      },
+      "errors": {
+        "nameExisting": "Ce profil existe déjà",
+        "nameMaxLength": "Le nom du profil doit être inférieur ou égal à 128 caractères !",
+        "displayNameMaxLength": "Le rôle doit être inférieur ou égal à 128 caractères !",
+        "missing": "Le nom du profil est requis",
+        "missingDisplayName": "Le nom d'affichage est requis",
+        "atLeastOne": "Le profil doit posséder au moins une fonctionnalité",
+        "clientIsRequired": "Le profil doit être rattaché à un client."
+      },
+      "options": {
+        "user": "Utilisateur",
+        "owner": "Propriétaire",
+        "service": "Service",
+        "division": "Division",
+        "client": "Client",
+        "specific": "Spécifique"
+      }
+    },
+    "filter": {
+      "client": "Client"
+    },
+    "events": {
+      "success": "Action enregistrée avec succès",
+      "fail": "Échec de l’enregistrement",
+      "failCreate": "Fail to create",
+      "failEdit": "Fail to view detail",
+      "failModified": "Fail to modified",
+      "failDelete": "Fail to delete"
+    },
+    "dialog": {
+      "delete": {
+        "title": "Supprimer le profil ?",
+        "message": "Êtes-vous sûr de vouloir supprimer le profil ?",
+        "attention": "Êtes-vous sûr de vouloir supprimer le profil ? <br/> Attention, {{numUsers}} utilisateur(s) affecté(s) à ce profil.",
+        "description": "Cette action est irréversible.",
+        "success": "Profil supprimé avec succès",
+        "fail": "Échec de la suppression du profil!",
+        "deleteNotValid": {
+          "title": "Suppression du profil",
+          "message": "La suppression du profil est impossible !   Il y a actuellement {{numUsers}}  utilisateur(s) affecté à ce profil."
+        }
+      }
+    }
+  },
+  "user": {
+    "list": {
+      "button": {
+        "create": "Créer un utilisateur",
+        "refresh": "Actualiser la liste",
+        "change": "Modifier l’utilisateur",
+        "changes": "Modifier les utilisateurs",
+        "delete": "Supprimer l’utilisateur ?",
+        "deletes": "Supprimer les utilisateurs",
+        "profile": "Profil",
+        "division": "Division",
+        "service": "Service",
+        "client": "Client",
+        "user": "Utilisateurs"
+      },
+      "table": {
+        "header": {
+          "firstname": "Prénom",
+          "lastname": "Nom",
+          "userId": "Identifiant",
+          "email": "Email",
+          "profile": "Profil",
+          "client": "Client",
+          "division": "Division",
+          "service": "Service"
+        },
+        "noProfile": "Cet utilisateur ne possède plus de profil",
+        "admin": "Administrateur",
+        "nonadmin": "Non administrateur"
+      },
+      "refreshDateLabel": "Mis à jour à",
+      "title": "PARAMÉTRAGE UTILISATEUR",
+      "subTitle": "Consultez et gérez la liste des utilisateurs",
+      "selected_user": "Utilisateur(s) sélectionné(s)",
+      "selected_user_delete": "Supprimer",
+      "selected_user_edit": "Modifier"
+    },
+    "create": {
+      "title": "Créer un utilisateur",
+      "subTitle": "Renseignez les champs ci-dessous",
+      "description": "Champs à remplir"
+    },
+    "update": {
+      "title": "Modifier un utilisateur",
+      "titleBatch": "Modifier les utilisateurs",
+      "subTitle": "Renseignez les champs ci-dessous",
+      "description": "Champs à modifier"
+    },
+    "delete": {
+      "success": "l'utilisateur a été supprimé",
+      "heading": "Supprimer l’utilisateur ?",
+      "message": "Êtes-vous sûr de vouloir supprimer l’utilisateur ?",
+      "singleUserMessage": "Souhaitez-vous vraiment supprimer cet utilisateur ?",
+      "title": "Groupe d'utilisateurs",
+      "cancelButton": "Annuler",
+      "confirmButton": "Supprimer",
+      "action_undone": "Cette action est irréversible."
+    },
+    "form": {
+      "label": {
+        "id": "Identifiant",
+        "email": "Email",
+        "fullName": "Nom complet",
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "client": "Client",
+        "divService": "Division / Service",
+        "service": "Service",
+        "profile": "Profil",
+        "password": "Mot de passe",
+        "confirmPassword": "Confirmation de mot de passe",
+        "emailExample": "exemple@mail.com",
+        "adminstration": "Administrateur",
+        "yes": "Oui",
+        "no": "Non"
+      },
+      "profileNameList": "Nom du profil",
+      "button": {
+        "create": "Créer",
+        "modify": "Modifier",
+        "delete": "Supprimer",
+        "cancel": "Annuler",
+        "addNewProfile": "+ Ajouter un profil",
+        "noAnyProfile": "Aucune donnée",
+        "noAnyService": "Aucune donnée"
+      },
+      "errors": {
+        "invalidEmail": "Veuillez saisir une adresse email valide",
+        "duplicatedEmail": "Cette adresse e-mail est déjà utilisée",
+        "maxLength": "Ce champ de saisie doit être inférieur ou égal à 128 caractères !",
+        "email": "L'email est requis",
+        "firstName": "Le prénom est requis",
+        "lastName": "Le nom est requis",
+        "invalidFirstName": "Veuillez entrer un prénom valide!",
+        "invalidLastName": "Veuillez entrer un nom valide!",
+        "clientId": "L'utilisateur doit être rattaché à un client.",
+        "serviceId": "Le service est requis",
+        "password": "Le mot de passe est requis",
+        "confirmPassword": "Les mots de passe ne correspondent pas",
+        "profileIdList": "Au moins un profil doit être sélectionné",
+        "profilesEmpty": "Les profils sont vides",
+        "profile": "Au moins un profil doit être sélectionné"
+      },
+      "userAddressLevel": {
+        "service": "Service",
+        "division": "Division",
+        "client": "Client",
+        "user": "Utilisateur"
+      }
+    },
+    "event": {
+      "failCreate": "Échec de la création",
+      "failEdit": "Échec de l'affichage des détails",
+      "failModified": "Échec de la modification",
+      "failDelete": "Échec de la suppression",
+      "failGetService": "Ne pas énumérer les services",
+      "successCreate": "Utilisateur créé avec succès",
+      "successModify": "Modification enregistrée avec succès",
+      "successDelete": "L’utilisateur a été supprimé"
+    },
+    "create_user_by_import": "Importer utilisateurs",
+    "export_user_in_csv": "Exporter utilisateurs",
+    "export_user_in_csv_success_result": "Votre fichier CSV a été généré avec succès",
+    "import_invalid_csv_format": "Le format ou la structure du fichier csv est incorrect. L'import est annulé",
+    "error_during_import_invalid_csv_format": "Une erreur s'est produite lors de l'importation du lot d'utilisateurs",
+    "not_all_users_could_be_created": "Fin de l’import. <b>ATTENTION ! Tous les utilisateurs n’ont\npas pu être créés, le fichier contient des erreurs :</b>\n",
+    "all_users_have_been_created": "Fin de l’import. Tous les utilisateurs ont été créés :\n",
+    "number_of_line_created": "-   ${Variable} utilisateurs créés\n",
+    "number_of_line_error": "-   ${Variable} utilisateurs rejetés",
+    "close_btn": "Fermer"
+  },
+  "envelope_reference": {
+    "list": {
+      "action": {
+        "edit": "Modifier"
+      },
+      "button": {
+        "create": "Ajouter une référence",
+        "refresh": "Actualiser la liste",
+        "change": "Modifier la référence enveloppe",
+        "changes": "Modifier les références enveloppe",
+        "delete": "Supprimer la référence enveloppe ?",
+        "deletes": "Supprimer les références enveloppe"
+      },
+      "table": {
+        "header": {
+          "reference": "Reference",
+          "format": "Format",
+          "description": "Description",
+          "active": "Active"
+        },
+        "admin": "Administrateur",
+        "nonadmin": "Non administrateur"
+      },
+      "refreshDateLabel": "Mis à jour à",
+      "title": "PARAMÉTRAGE référence enveloppe",
+      "subTitle": "Consultez et gérez la liste des références enveloppe",
+      "selected_re": "Référence(s) enveloppe sélectionnée(s)"
+    },
+    "create": {
+      "title": "Créer une référence enveloppe",
+      "subTitle": "Renseignez les champs ci-dessous",
+      "description": "Champs à remplir"
+    },
+    "update": {
+      "title": "Modifier une référence enveloppe",
+      "titleBatch": "Modifier les référence enveloppes",
+      "subTitle": "Renseignez les champs ci-dessous",
+      "description": "Champs à modifier"
+    },
+    "delete": {
+      "success": "la référence enveloppe a été supprimée",
+      "heading": "Supprimer la référence enveloppe ?",
+      "message": "Êtes-vous sûr de vouloir supprimer la référence enveloppe ?",
+      "singleUserMessage": "Souhaitez-vous vraiment supprimer cette référence enveloppe ?",
+      "title": "Groupe de référence enveloppes",
+      "cancelButton": "Annuler",
+      "confirmButton": "Supprimer",
+      "action_undone": "Cette action est irréversible."
+    },
+    "form": {
+      "label": {
+        "id": "Référence ID",
+        "reference": "Référence Enveloppe",
+        "format": "Format Enveloppe",
+        "description": "Description",
+        "active": "Actif",
+        "yes": "Oui",
+        "no": "Non"
+      },
+      "button": {
+        "create": "Ajouter",
+        "modify": "Modifier",
+        "delete": "Supprimer",
+        "cancel": "Annuler"
+      },
+      "errors": {
+        "maxLength": "Vous ne pouvez pas saisir plus de 100 caractères !",
+        "maxLength30": "Vous ne pouvez pas saisir plus de 30 caractères !",
+        "format": "Cette information est obligatoire",
+        "reference": "Cette information est obligatoire",
+        "description": "Cette information est obligatoire",
+        "referenceDuplicate": "Cette référence existe déjà"
+      }
+    },
+    "event": {
+      "failCreate": "Échec de la création",
+      "failEdit": "Échec de l'affichage des détails",
+      "failModified": "Échec de la modification",
+      "failDelete": "Échec de la suppression",
+      "failGetService": "Ne pas énumérer les services",
+      "successCreate": "Référence enveloppe créée avec succès",
+      "successModify": "Modification enregistrée avec succès",
+      "successDelete": "La référence enveloppe a été supprimée"
+    },
+    "close_btn": "Fermer"
+  },
+  "directory": {
+    "definition_directory_list_title": "DÉFINITION ANNUAIRE",
+    "definition_direction_list_sub_title": "Consultez et gérez la liste des annuaires",
+    "definition_direction_list_create_directory_btn": "Créer un annuaire",
+    "definition_direction_list_column_name": "NOM DE L'ANNUAIRE",
+    "definition_direction_list_column_modified_at": "DATE DE MODIFICATION",
+    "definition_direction_list_column_created_at": "DATE DE CRÉATION",
+    "definition_direction_list_column_actions": "ACTIONS",
+    "definition_direction_list_column_actions_btn_download": "Télécharger la structure",
+    "definition_direction_delete": {
+      "title": "Supprimer l'annuaire ?",
+      "message": "Êtes-vous sûr de vouloir supprimer l'annuaire ? Cette action est irréversible.",
+      "cancelButton": "Annuler",
+      "confirmButton": "Supprimer"
+    },
+    "load_directory_fail": {
+      "title": "Erreur",
+      "message": "Échec du chargement du répertoire",
+      "confirm": "OK",
+      "cancel": "Annuler"
+    },
+    "load_directory_unauthorized": {
+      "title": "Non autorisé",
+      "message": "Vous n'avez pas le privilège de charger le répertoire",
+      "confirm": "OK",
+      "cancel": "Annuler"
+    },
+    "definition_directory_create_step_1_title": "CRÉER UN ANNUAIRE (1/3)",
+    "definition_directory_create_step_1_sub_title": "Renseignez les champs ci-dessous",
+    "definition_directory_create_step_1_section_field_to_complete": "Champs à remplir",
+    "definition_directory_create_step_1_field_name": "Nom :",
+    "definition_directory_create_step_1_field_name_placeholder": "Rentrez un nom de d'annuaire",
+    "definition_directory_create_step_1_field_display_name": "Nom d'affichage :",
+    "definition_directory_create_step_1_field_display_name_required": "Ce champ est requis",
+    "definition_directory_create_step_1_field_display_name_cannot_contains_space": "Le nom de l’annuaire ne doit pas être composé d’espace",
+    "definition_directory_create_step_1_field_display_name_duplicated": "Un annuaire possédant ce nom existe déjà",
+    "definition_directory_create_step_1_field_name_maxlength": "Le nom de l’annuaire doit être inférieur ou égal à 100 caractères",
+    "definition_directory_create_step_1_field_display_name_maxlength": "Le nom d'affichage de l'annuaire doit être inférieur ou égal à 255 caractères.",
+    "definition_directory_create_step_1_field_name_required": "Le nom d'affichage est obligatoire.",
+    "definition_directory_create_step_1_field_display_name_placeholder": "Exemple: Annuaire clients",
+    "definition_directory_create_step_1_btn_cancel": "Annuler",
+    "definition_directory_create_step_1_btn_next": "Suivant",
+    "definition_directory_create_step_2_title": "CRÉER UN ANNUAIRE (2/3)",
+    "definition_directory_create_step_2_sub_title": "Structure de l'annuaire",
+    "definition_directory_create_step_2_section_field": "Champs",
+    "definition_directory_create_step_2_section_field_btn_add_field": "+ Ajouter un champ",
+    "definition_directory_create_step_2_section_field_properties": "Propriétés du champ",
+    "definition_directory_create_step_2_section_field_properties_display_name": "Nom d'affichage :",
+    "definition_directory_create_step_2_section_field_properties_data_type": "Type de donnée :",
+    "definition_directory_create_step_2_section_field_properties_key": "Clé :",
+    "definition_directory_create_step_2_section_field_properties_data": "Donnée :",
+    "definition_directory_create_step_2_section_field_properties_presence": "Présence :",
+    "definition_directory_create_step_2_section_field_properties_max_length": "Longueur maximum :",
+    "definition_directory_create_step_2_section_field_properties_max_invalid_length": "La longueur maximale ne doit pas dépasser 255",
+    "definition_directory_create_step_2_section_field_properties_min_invalid_length": "La longueur minimale ne doit pas être inférieure à 0",
+    "definition_directory_create_step_2_section_field_properties_mask": "Masque :",
+    "definition_directory_create_step_2_section_field_properties_btn_validate": "Valider",
+    "definition_directory_create_step_2_section_field_properties_no_field_selected": "Aucun champ selectionné.",
+    "definition_directory_create_step_2_is_required": "Erreur de création de l'annuaire. Au moins un champ est requis.",
+    "definition_directory_create_step_2_key_is_required": "Erreur de création de l'annuaire. Aucun champ clé déclaré.",
+    "definition_directory_go_to_list": "Définition du répertoire",
+    "definition_directory_create_step_2_section_field_properties_data_types": {
+      "directory_data_type_boolean": "Booléen",
+      "directory_data_type_number": "Nombre",
+      "directory_data_type_string": "Chaîne",
+      "directory_data_type_integer": "Entier",
+      "directory_data_type_date": "Date",
+      "directory_field_type_mandatory": "Obligatoire",
+      "directory_field_type_optional": "Facultatif"
+    },
+    "definition_directory_modify_step_2_error": {
+      "cannot_set_to_key": "Impossible de modifier le champ « Clé » : Le nouveau champ défini en tant que « Clé » contient des doublons dans les données.",
+      "cannot_set_to_require": "Impossible de changer la propriété « Présence » : Le champ contient des données vides.",
+      "cannot_change_type": "Impossible de changer la propriété « Donnée » : Le champ contient des données ne correspondant pas au nouveau type de « Donnée ».",
+      "cannot_change_length": "Impossible de changer la propriété « Longueur maximum » : Le champ contient des données dépassant la valeur définie.",
+      "cannot_set_new_mask": "Impossible de changer la propriété « Masque » : Le champ contient des données ne respectant pas le nouveau masque.",
+      "mask_require": "Le masque est obligatoire !"
+    },
+    "definition_directory_confirm_leave": {
+      "title": "Données non sauvegardées !",
+      "message": "Êtes-vous sûr de vouloir annuler ? Les données seront perdues.",
+      "cancelBtn": "Annuler",
+      "quit": "Quitter"
+    },
+    "definition_directory_confirm_update": {
+      "title": "Modifier l'annuaire ?",
+      "message": "Êtes-vous sûr de vouloir modifier l'annuaire ?",
+      "paragraph": "Cet annuaire est peut être utilisé et peut causer des problèmes de production. ",
+      "cancel": "Annuler",
+      "confirm": "Modifier",
+      "fail_to_check_is_used": "Absence de vérification de l'utilisation du répertoire"
+    },
+    "directory_definition_part2_max_display_name_length": "Le nom d’affichage ne doit pas dépasser 100 caractères",
+    "definition_directory_create_step_2_btn_cancel": "Précédent",
+    "definition_directory_create_step_2_btn_next": "Suivant",
+    "definition_directory_create_step_3_btn_cancel": "Précédent",
+    "definition_directory_create_step_3_btn_next": "Créer",
+    "definition_directory_create_step_3_title": "CRÉER UN ANNUAIRE (3/3)",
+    "definition_directory_create_step_3_sub_title": "Renseignez les champs ci-dessous",
+    "definition_directory_modify_step_1_title": "MODIFIER UN ANNUAIRE (1/3) ",
+    "definition_directory_modify_step_1_sub_title": "Renseignez les champs ci-dessous",
+    "definition_directory_view_step_1_title": "Consulter UN ANNUAIRE (1/3) ",
+    "definition_directory_view_step_1_sub_title": "Consultez les champs ci-dessous",
+    "definition_directory_modify_step_2_title": "MODIFIER UN ANNUAIRE (2/3) ",
+    "definition_directory_modify_step_2_sub_title": "Structure des l'annuaire",
+    "definition_directory_view_step_2_title": "Consultez UN ANNUAIRE (2/3) ",
+    "definition_directory_view_step_2_sub_title": "Structure des l'annuaire",
+    "definition_directory_modify_step_3_title": "MODIFIER UN ANNUAIRE (3/3)",
+    "definition_directory_modify_step_3_sub_title": "Renseignez les champs ci-dessous",
+    "definition_directory_view_step_3_title": "Consultez UN ANNUAIRE (3/3)",
+    "definition_directory_view_step_3_sub_title": "Consultez les champs ci-dessous",
+    "definition": {
+      "list": {
+        "title": "Définition annuaire",
+        "button": {
+          "create": "Créer un annuaire",
+          "refresh": "Actualiser la liste",
+          "change": "Modifier l'annuaire",
+          "delete": "Supprimer l'annuaire"
+        },
+        "refreshDateLabel": "Mis à jour à",
+        "table": {
+          "no": "No",
+          "name": "Nom",
+          "createdAt": "Créé le",
+          "updatedAt": "Modifié le"
+        }
+      },
+      "client-directory-form": {
+        "title": "Clients ayant accés a l'annuaire",
+        "add-client": "Ajouter un client",
+        "exist": "Ce client a déjà été ajouté.",
+        "loadClientFail": "Échec du chargement du client"
+      },
+      "create": {
+        "warningMessage": "La propriété \"Présence\" ne pourra être modifiée que lorsqu'une valeur sera définie pour toutes les lignes.",
+        "title": "Créer annuaire",
+        "popup": {
+          "title": "Créer annuaire",
+          "name": "Nom",
+          "displayName": "Nom d'affichage",
+          "ok": "OK",
+          "cancel": "Annuler",
+          "required": "Ce champ est requis",
+          "exist": "Le nom du annuaire existe déjà !"
+        },
+        "clientField": {
+          "title": "Clients ayant accès à l'annuaire",
+          "table": {
+            "name": "Nom"
+          },
+          "addClientButton": "Ajouter client",
+          "message": {
+            "exist": "Ce client a déjà été ajouté."
+          }
+        },
+        "directoryField": {
+          "title": "Champs de l'annuaire",
+          "table": {
+            "display": "Nom d'affichage",
+            "type": "Type de données"
+          },
+          "addFieldButton": "Ajouter champ"
+        },
+        "propertiesField": {
+          "title": "Propriétés de champ",
+          "data": "Donnée",
+          "dataType": "Type de données",
+          "displayName": "Nom d'affichage",
+          "key": "Clé",
+          "type": "Présence",
+          "options": {
+            "title": "Options",
+            "length": "Longueur",
+            "mask": "Masque"
+          },
+          "maximum": "Maximum"
+        },
+        "message": {
+          "unStructure": "Au moins un champ de annuaire doit exister!",
+          "fieldsNotEmpty": "Le champ annuaire ne peut pas être vide !",
+          "fieldsNotDuplicate": "Le champ annuaire ne peut pas être dupliqué!",
+          "fieldHaveNotKey": "La clé du champ annuaire est obligatoire !",
+          "createdFail": "La création de l'annuaire a échoué.",
+          "createdSuccess": "L'annuaire a été créé avec succès."
+        },
+        "button": {
+          "ok": "OK",
+          "cancel": "Annuler"
+        }
+      },
+      "edit": {
+        "title": "Éditer annuaire",
+        "popup": {
+          "title": "Éditer annuaire",
+          "name": "Nom",
+          "displayName": "Nom d'affichage",
+          "ok": "OK",
+          "cancel": "Annuler",
+          "required": "Ce champ est requis",
+          "exist": "Le nom du annuaire existe déjà !"
+        },
+        "confirmModifyPopUp": {
+          "heading": "Modifier l'annuaire",
+          "message": "Souhaitez-vous vraiment modifier ce annuaire? Ce annuaire est utilisé et peut entraîner des problèmes de production.",
+          "cancel": "Annuler",
+          "ok": "OK"
+        },
+        "confirmCancelPopUp": {
+          "heading": "Annuler",
+          "message": "Êtes-vous sûr que votre progression sera perdue?",
+          "cancel": "Annuler",
+          "ok": "OK"
+        },
+        "clientField": {
+          "title": "Clients ayant accès à l'annuaire",
+          "table": {
+            "name": "Nom"
+          },
+          "addClientButton": "Ajouter client",
+          "message": {
+            "exist": "Ce client a déjà été ajouté."
+          }
+        },
+        "directoryField": {
+          "title": "Champs de l'annuaire",
+          "table": {
+            "display": "Nom d'affichage",
+            "type": "Type de données"
+          },
+          "addFieldButton": "Ajouter champ"
+        },
+        "propertiesField": {
+          "title": "Propriétés de champ",
+          "data": "Donnée",
+          "dataType": "Type de données",
+          "displayName": "Nom d'affichage",
+          "key": "Clé",
+          "type": "Présence",
+          "options": {
+            "title": "Options",
+            "length": "Longueur",
+            "mask": "Masque"
+          },
+          "maximum": "Maximum"
+        },
+        "message": {
+          "unStructure": "Au moins un champ de annuaire doit exister!",
+          "fieldsNotEmpty": "Le champ annuaire ne peut pas être vide !",
+          "fieldsNotDuplicate": "Le champ annuaire ne peut pas être dupliqué!",
+          "fieldHaveNotKey": "La clé du champ annuaire est obligatoire !",
+          "fieldNotUnique": "Ce champ n'est pas unique !",
+          "createdFail": "La création de l'annuaire a échoué.",
+          "createdSuccess": "L'annuaire a été créé avec succès.",
+          "editFail": "La modification de l'annuaire a échoué.",
+          "editSuccess": "L'annuaire a été modifié avec succès."
+        },
+        "button": {
+          "ok": "OK",
+          "cancel": "Annuler"
+        }
+      },
+      "delete": {
+        "header": "Supprimer l'annuaire",
+        "message": "Souhaitez-vous vraiment supprimer cet annuaire ?",
+        "allReadyUsedMessage": "Souhaitez-vous vraiment supprimer cet annuaire ? Cet annuaire est utilisé et peut causer des problèmes de production.",
+        "cancelButton": "Annuler",
+        "okButton": "Ok"
+      },
+      "event": {
+        "failCreate": "La création de l'annuaire a échoué.",
+        "failEdit": "Échec de l'affichage des détails",
+        "failModified": "La modification de l'annuaire a échoué.",
+        "failDelete": "La suppression de l'annuaire a échoué.",
+        "deleteSuccess": "L'annuaire a été supprimé avec succès."
+      }
+    },
+    "feed": {
+      "list": {
+        "table": {
+          "directory": "Annuaire",
+          "dateCreated": "Date création",
+          "dateModification": "Date modification",
+          "no": "No"
+        },
+        "title": "Alimentation annuaire",
+        "header": "Liste des annuaires",
+        "refreshDateLabel": "Mis à jour à",
+        "button": {
+          "refresh": "Actualiser la liste",
+          "openDirectory": "Ouvrir l'annuaire",
+          "import": "Importer Fichier",
+          "import_schemas": "Exporter modèle fichier CSV à suivre",
+          "export": "Exporter Fichier",
+          "cancel": "Annuler",
+          "ok": "OK",
+          "add": "Ajouter ligne",
+          "remove_all": "Supprimer toutes les lignes",
+          "insert": "Insérer"
+        }
+      },
+      "detail": {
+        "title": "Détails annuaire"
+      },
+      "dialog": {
+        "error": "Erreur",
+        "validate": "Validation",
+        "errormessage_predefine": "Le fichier n'a pas pu être importé car il comporte des erreurs.Verifiez les champs de la ligne {{line}} : la donnee \"{{field}}\" est mal formatée",
+        "errormessage_column_length": "le fichier n'a pas pu être importe car il ne respectre pas la norme attendue. Un modèle peut être telecharge",
+        "errormessage_filenotsupport": "Le format du fichier n'est pas valide : seuls les fichiers au format .csv peuvent être importes",
+        "errormessage_unique": "Le fichier n'a pas pu être importé car la colonne \"{{field}}\" attendait une valeur unique. Trouvé une valeur en double sur la ligne {{line}}",
+        "okbutton": "OK",
+        "cancelButton": "Annuler",
+        "validButton": "Valider",
+        "message_validate_confirm": "L'import supprimer toutes les données existantes et les remplacent par celles du fichier importé"
+      }
+    },
+    "directory_feed_list_title": "Alimentation annuaire",
+    "directory_feed_list_subtitle": "Consultez et alimentez l'annuaire",
+    "directory_feed_list_table_directory_name": "Nom du l'annuaire",
+    "directory_feed_list_table_modified_at": "Date de modification",
+    "directory_feed_list_table_created_at": "Date de création",
+    "directory_feed_list_table_feeding_at": "Date d'alimentation",
+    "directory_feed_list_table_actions": "Actions",
+    "directory_feed_list_fetch_fail": "Échec de l'obtention de la liste des répertoires",
+    "directory_feed_details_fetch_fail": "Échec de l'obtention des détails du répertoire",
+    "directory_feed_details_upload_invalid_extension": "Erreur de téléversement. Le format ne doit pas être différent de CSV.",
+    "directory_feed_details_upload_invalid_max_size": "Erreur de téléversement. La taille du fichier ne peut pas dépasser 20 Mo.",
+    "directory_feed_details_upload_has_duplicated_field": " Erreur de téléversement. Le fichier contient des doublons dans le champ ${directoryKey}.",
+    "directory_feed_details_upload_file_empty": "Erreur de téléversement. Le fichier est vide",
+    "directory_feed_details_upload_invalid_total_files": "Erreur de téléchargement. Le volume du fichier ne peut excéder 1 fichier.",
+    "directory_feed_details_upload_invalid_directory_structure": "Erreur de téléversement. La structure du fichier importé ne correspond pas à la structure de l’annuaire.",
+    "directory_feed_details_upload_invalid_file_structure": "Erreur de téléversement. Le champ ${field_name} pour la clé ${field_value} ne correspond pas au format ${field_format} attendu par la structure de l’annuaire",
+    "directory_feed_import_csv_fail": "Échec de l'importation du fichier csv",
+    "directory_feed_import_no_file_selected": "Erreur. Aucun fichier sélectionné.",
+    "directory_feed_limit_max_csv_file_size": "<p>Formats acceptés : .csv (poids maximum 20 Mo)</p>",
+    "directory_feed_imported_successfully": "Les données ont été importées avec succès.",
+    "directory_feed_import_csv_title": "Importer un fichier CSV",
+    "directory_feed_import_csv_instruction": "Le nombre et l'ordre des colonnes de votre fichier .csv doivent correspondre aux champs définis dans la structure de l'annuaire.",
+    "directory_feed_import_csv_select_option_title": "Actions sur le fichier",
+    "directory_feed_import_csv_ignore_csv": "Ignorer la première ligne d’<span tessi-g-span>entête</span>",
+    "directory_feed_import_csv_remove_duplicated": "Supprimer les <span tessi-g-span>doublons</span> issus du champ « ${labelFieldKey} »",
+    "directory_feed_import_csv_import": "Importer",
+    "directory_feed_load_imported_csv_content_fail": "Échec du chargement du contenu d'un fichier csv importé",
+    "directory_feed_details_delete_successfully": "Suppression(s) réalisée(s) avec succès.",
+    "directory_feed_details_modify_successfully": "Modification enregistrée avec succès .",
+    "directory_feed_details_delete_failure": "Erreur lors de la suppression.",
+    "directory_feed_details_modify_failure": "Erreur lors de la mise à jour.",
+    "directory_feed_details_title": "Alimentation annuaire",
+    "directory_feed_details_sub_title": "Consultez et alimentez l'annuaire",
+    "directory_feed_details_export_csv": "Télécharger en CSV",
+    "directory_feed_details_import_csv": "Importer un fichier CSV",
+    "directory_feed_details_add_more_line": "Ajouter une ligne",
+    "directory_feed_add_one_line_title": "Inserer une ligne",
+    "directory_feed_add_one_line_subtitle": "Renseignez les champs ci-dessous",
+    "directory_feed_details_popup_modified": "Ligne(s) modifiées(s)",
+    "directory_feed_details_popup_selected": "Lignes(s) sélectionnée(s)",
+    "directory_feed_list_column_actions_btn_download": "Télécharger le fichier",
+    "insert_directory_feed": {
+      "directory_key": "Clé de l'annuaire",
+      "mandatory_field" : "Champ obligatoire",
+      "field_to_complete": "Champs à remplir"
+    },
+    "directory_feed_details_delete_row_message": {
+      "title": "Supprimer la/les ligne(s)?",
+      "message": "Êtes-vous sûr de vouloir supprimer la/les ligne(s) ?",
+      "paragraph": "Cette action est irréversible.",
+      "cancelButton": "Annuler",
+      "confirmButton": "Supprimer"
+    },
+    "directory_feed_details_error": {
+      "require": "Le champ ${field_name} est obligatoire",
+      "duplicate": "Le champ clé doit avoir une valeur unique",
+      "format": "Le champ ${field_name} ne correspond pas au format ${field_format} attendu par la structure de l’annuaire",
+      "length": "Le champ ${field_name} ne doit pas dépasser ${field_length} caractères ."
+    },
+    "insert_directory_feed_error": {
+      "require": "Le champ ${field_name} est obligatoire.",
+      "length": "La taille du champ ne doit pas dépasser ${field_length} caractères.",
+      "mask": "La valeur saisie ne correspond pas au format ${field_format} attendu par la structure de l’annuaire.",
+      "integer": "Le champ doit être renseigné avec un entier."
+    },
+    "insert_directory_feed_message": {
+      "success": "La nouvelle ligne de données a été ajoutée avec succès.",
+      "error": "Erreur lors de l'ajout d'une nouvelle ligne de données."
+    }
+  },
+  "dashboard": {
+    "header_title": "Tableau du bord",
+    "refresh_time": "Dernière actualisation : ",
+    "filter": "Filtres",
+    "title_shipment_volume": "Volume total des envois",
+    "title_shipment_table": "Synthèse du suivi",
+    "title_shipment_process": "Évolution des envois unitaires par canal",
+    "title_shipment_evol": "Synthèse du suivi",
+    "provider_mail": "E-MAIL",
+    "lre": "LRE",
+    "delivery": "COURRIER",
+    "whatapp": "WHATSAPP",
+    "SMS": "SMS",
+    "col_provider": "CANAL",
+    "col_volume": "Vol. Reçu",
+    "col_ratio": "PND/MNH",
+    "col_processing": "Traité",
+    "col_inprogress": "En cours",
+    "col_percentage": "% Traité",
+    "title_channel_envoy": "Canal d'envoi",
+    "title_channel_deposit": "Mode de dépôt",
+    "flow_traceability_deposit_mode_portal": "Portail",
+    "flow_traceability_deposit_mode_iv": "Imprimante Virtuelle",
+    "flow_traceability_deposit_mode_api": "API",
+    "flow_traceability_deposit_mode_batch": "Batch",
+    "calendar": {
+      "today": "Aujourd'hui",
+      "yesterday": "Hier",
+      "last7day": "7 derniers jours",
+      "last30day": "30 derniers jours",
+      "thismonth": "Ce mois-ci",
+      "lastmonth": "Le mois dernier",
+      "last3month": "Les 3 derniers mois",
+      "custom_date": "Personnalisé"
+    },
+    "button_save": "Enregistrer",
+    "Email": "Email",
+    "Postal": "Postal",
+    "alert_shipment_waiting_for_validate": "Vous avez des envois en attente \nde validation.",
+    "alert_shipment_waiting_for_validate_btn": "Consulter les envois à valider"
+  },
+  "directory_data_type_boolean": "Booléen",
+  "directory_data_type_number": "Nombre",
+  "directory_data_type_string": "Chaîne",
+  "directory_data_type_integer": "Entier",
+  "directory_data_type_date": "Date",
+  "directory_field_type_mandatory": "Obligatoire",
+  "directory_field_type_optional": "Facultatif",
+  "smartflow_title_about": "À propos",
+  "smartflow_desc_about": "Avec la plateforme Tessi Digital Experience, gérez et distribuez toutes vos campagnes SMS, e-mails et lettres à partir d'une seule plateforme d'envoi. Depuis un portail web, un pilote d'imprimante ou via un mode de transfert automatique, vos documents électroniques sont capturés et redirigés vers la plateforme Tessi Digital Experience pour être traités, concentrés et alloués. Suivez en temps réel l'état de production et de distribution de vos communications professionnelles sur la plateforme d'expérience numérique Tessi, disponible 24 heures sur 24 et 7 jours sur 7. Nous gérons pour vous les accusés de réception et les courriers non distribués pour les lettres recommandées, et vous envoyons les rapports statistiques de vos campagnes d'e-mailing et de SMS afin que vous puissiez les suivre.",
+  "smartflow_subtitle_about": "Numérisation de votre campagne avec la plateforme d'expérience numérique Tessi",
+  "forgot-password": {
+    "title": "Réinitialisez votre mot de passe",
+    "email": "Adresse email",
+    "mustBeValidEmail": "Veuillez saisir une adresse email valide",
+    "tokenExpired": "La demande de réinitialisation de mot de passe a expiré.",
+    "pleaseTryAgain": "Veuillez recommencer.",
+    "resetPassword": "Mot de passe oublié?",
+    "mustMatchPassowrd": "Les mots de passe ne sont pas identiques",
+    "returnHome": "Retour à la page de connexion",
+    "returnHomeLogin": "Retourner à la page de connexion",
+    "reset": "Envoyer",
+    "changePass": "Confirmer",
+    "emailSent": "Un email contenant un lien pour changer votre mot de passe vous a été envoyé.",
+    "passwordRested": "Votre mot de passe a bien été changé. Accédez à la page de connexion afin de vous connecter.",
+    "returnHomeConnector": "Se connecter",
+    "changePassword": "Redéfinition de votre mot de passe",
+    "newPassword": "Mot de passe :",
+    "newPassword_placeholder": "Rentrez votre nouveau mot de passe",
+    "confirmPassword": "Confirmation du mot de passe :",
+    "confirmPassword_placeholder": "Confirmez votre nouveau mot de passe",
+    "emailNotFound": "Nous n'avons pas pu trouver de compte avec cette adresse email",
+    "instruction": "Entrez votre email et nous vous enverrons un lien de confirmation",
+    "email_placeholder": "Entrez votre adresse mail",
+    "reset_instruction": "Renseignez votre nouveau mot de passe",
+    "error_password_invalid": "Veuillez entrer un mot de passe valide",
+    "error_contains_at_least_one_lower_character": "contient au moins un caractère minuscule",
+    "error_contains at_least_one_upper_character": "contient au moins un caractère majuscule",
+    "error_contains_at_least_one_digit": "contient au moins un chiffre",
+    "error_contains_at_least_one_special_character": "contient au moins un caractère spécial",
+    "error_contains_at_least_twelve_characters": "contient au moins 12 caractères",
+    "error_password_confirmation_required": "La confirmation du mot de passe est requise",
+    "error_password_notmatch": "Le mot de passe de confirmation ne correspond pas",
+    "info_need_to_change_password": "Vous devez modifier votre mot de passe",
+    "error_password_already_used": "Le mot de passe ne doit pas correspondre à un des 3 derniers mot de passe",
+    "current_password_is_incorrect": "Le mot de passe actuel est incorrect"
+  },
+  "pagination_total": "Total : {{value}}",
+  "pagination_results": "Résultats : {{value}}",
+  "pagination_no_results": "Aucune donnée",
+  "pagination_result_zero": "Résultats: 0",
+  "cxmMatDatetimePicker": {
+    "dateTooltip": "Sélectionner le jour",
+    "btnApply": "Valider",
+    "timeTooltip": "Commencer à",
+    "hourLabel": "Heures",
+    "minuteLabel": "Minutes",
+    "secondLabel": "Secondes"
+  },
+  "about_page": {
+    "table": {
+      "service": "Service",
+      "version": "Version"
+    }
+  },
+  "communicationInteractive": {
+    "title": "Déposer un fichier",
+    "subTitle": "Veuillez choisir un modèle prédéfini",
+    "chooseModel": "Choisissez un modèle",
+    "next": "Suivant",
+    "successPage": {
+      "or": "ou",
+      "title": "Votre document est envoyé !",
+      "subtitle": "Le traitement peut prendre quelques minutes. Retrouvez toutes les informations relatives à votre envoi à tout moment dans la rubrique suivi.",
+      "alterButton": "Envoyer un nouveau fichier",
+      "mainButton": "Suivre mon envoi"
+    },
+    "errorMessage": {
+      "chooseModel": "Le modèle est requis",
+      "failToFetchModel": "Échec de la récupération du modèle",
+      "failToGetRemotedUrl": "Échec de l'obtention de l'URL distant"
+    }
+  },
+  "espace": {
+    "headerTitle": "ESPACE DE VALIDATION",
+    "subTitle": "Consultez la liste des envois à valider",
+    "consultHeader": "ESPACE DE VALIDATION",
+    "consultSubtitle": "Détail du lot :",
+    "table": {
+      "colName": "NOM",
+      "colUser": "UTILISATEUR",
+      "createdAt": "DATE DE CRÉATION",
+      "channel": "CANAL",
+      "category": "CATÉGORIE",
+      "envoy": "ENVOI(S) UNITAIRE(S) À VALIDER",
+      "actions": "ACTIONS",
+      "consult": "Consulter",
+      "modelName": "MODELE"
+    },
+    "listFlowDocument": {
+      "table": {
+        "name": "Nom",
+        "recipient": "Destinataire",
+        "createdAt": "Date de création",
+        "canal": "Canal",
+        "category": "Catégorie",
+        "categories": "Catégories",
+        "users": "Utilisateur",
+        "dates": "Dates",
+        "actions": "Actions",
+        "btnConsult": "Consulter",
+        "btnDownload": "Télécharger le fichier",
+        "message": {
+          "downloadFileFail": "Échec du téléchargement d'un fichier"
+        }
+      }
+    },
+    "selection": {
+      "flow_counter": "lot(s) sélectionné(s)",
+      "flow_document_counter": "Envoi(s) unitaire(s) sélectionné(s)",
+      "button_refuse": "Refuser",
+      "button_validate": "Valider",
+      "comment_placeholder": "Facultatif : Renseignez un commentaire",
+      "validate_success": "Validation enregistrée avec succès.",
+      "validate_fail": "Refus enregistré avec succès.",
+      "validate_error": "Échec de l’enregistrement",
+      "not_yet_configure_unloading": "Le client n'est pas encore configuré la configuration de déchargement"
+    },
+    "comment": {
+      "require": "Un commentaire est requis en cas de refus.",
+      "max_length": "Votre message dépasse la taille maximale autorisée."
+    },
+    "errorMessage": {
+      "failtoFetchList": "Impossible de communiquer avec le serveur"
+    }
+  },
+  "filterCriteria": {
+    "channel": "Canal",
+    "reset": "Réinitialiser",
+    "postal": "Postal",
+    "digital": "Digital",
+    "category": "Catégorie",
+    "user": "Utilisateur",
+    "depositModeTitle": "Mode dépôt",
+    "depositMode": "Mode de dépôt"
+  },
+  "flux_criteria": {
+    "deposit_mode": "Modes de dépôt",
+    "identification_mode": "Modes d'identification",
+    "distribute_criteria": "Critères de distribution"
+  },
+  "client": {
+    "headerTitle": "PARAMÉTRAGE CLIENT",
+    "headerSubititle": "Consultez et gérez la liste des clients",
+    "createClient": "Créer un client",
+    "createButton": "Créer",
+    "deleteClient": "Supprimer le client",
+    "force_dechargement": "Lancer un déchargement",
+    "fillClientInfo": "Renseignez les informations pour le client",
+    "fillClientParam": "Renseignez les paramètres du client",
+    "fillClientFunc": "Gestion des fonctionnalités du client",
+    "info_tab": "Informations",
+    "paramter_tab": "Divisions et services",
+    "functional_tab": "Fonctionnalités",
+    "offloading_tab": "Déchargement",
+    "flux_tab": "Flux",
+    "fillers_tab": "Fillers",
+    "consultClient": "Consultez et modifiez les paramètres pour le client : ",
+    "configuration_file_client": "Gestion du fichier de configuration : ",
+    "companyName": "Nom de l’entreprise",
+    "companyContactName": "Nom du contact client",
+    "companyContactLastname": "Prénom du contact client",
+    "companyContactEmail": "Email du client",
+    "companyUploadFile": "Politique d’utilisation des données personnelles :",
+    "table": {
+      "clientName": "NOM DU CLIENT",
+      "modifiedDate": "DATE DE MODIFICATION",
+      "createdDate": "DATE DE CRÉATION",
+      "action": "ACTIONS",
+      "buttonModify": "Modifier",
+      "buttonConsult": "Consulter"
+    },
+    "messages": {
+      "deleteSuccess": "Le client a été supprimé.",
+      "deleteFail": "Le client n'a pas été supprimé.",
+      "modifySuccess": "Modification enregistrée avec succès.",
+      "modifyFail": "Échec de l’enregistrement",
+      "deleteDivisionTitle": "Supprimer la division ?",
+      "deleteDivisionDesc": "Êtes-vous sûr de vouloir supprimer la division ? Les services associés seront également supprimés. Cette action est irréversible.",
+      "deleteServiceTitle": "Supprimer la service",
+      "deleteServiceDesc": "Êtes-vous sûr de vouloir supprimer la service ? Cette action est irréversible.",
+      "atleastOndivService": "Au moins une division et un service doivent être renseignés.",
+      "clientNotExist": "Le client n’existe pas.",
+      "atLeastOneFunctionality": "Au moins une fonctionnalité doit être activée .",
+      "userNotAuthorize": "Fonctionnalité non autorisée pour cet utilisateur.",
+      "noOffloadConfig": "Aucun déchargement configuré",
+      "noOffload_hint": "Votre envoi ne peut pas être réalisé tant qu'il n'existe pas de configuration de déchargement.",
+      "noOffload_hint2": "L'envoi va être  sauvegardé avec le statut \"Brouillon\", vous pourrez le finaliser ultérieurement.",
+      "force_dechargement_success": "Déchargement effectué",
+      "force_dechargement_fail": "Échec du lancement du déchargement. Impossible de communiquer avec le serveur",
+      "fillNameLimit": "Le nom du filler ne peut pas excéder 20 caractères.",
+      "file_size_exceed": "Erreur de téléversement. La taille du fichier ne peut pas dépasser 5 Mo.",
+      "registerNotPossible": "Enregistrement impossible : informations incomplètes."
+    },
+    "delete": {
+      "title": "Supprimer le client ?",
+      "message": "Êtes-vous sûr de vouloir supprimer le client ? Toutes les informations et l’organisation de ce client seront supprimés. Cette action est irréversible.",
+      "cancelButton": "Annuler",
+      "confirmButton": "Supprimer"
+    },
+    "placeholder": {
+      "companyName": "Renseignez le nom de l'entreprise",
+      "companyContactName": "Renseignez le nom du contact client",
+      "companyContactLastname": "Renseignez le prénom du contact client",
+      "companyContactEmail": "Renseignez le mail du contact client"
+    },
+    "confirmLeave": {
+      "cancelButton": "Annuler",
+      "confirmButton": "Quitter",
+      "message": "Êtes-vous sûr de vouloir annuler ? Les données seront perdues.",
+      "title": "Données non sauvegardées !"
+    },
+    "form": {
+      "titleDivision": "Divisions",
+      "titleService": "Services associés à la division",
+      "enterDivision": "Rentrez un champ de division",
+      "enterService": "Rentrez un champ de service",
+      "addDivision": "Ajouter une division",
+      "addService": "Ajouter un service",
+      "noAvailableField": "Aucun champ disponible.",
+      "addAssociate": "Veuillez créer une division afin d’y associer des",
+      "acceptOnlyPdfFile": "Formats acceptés : pdf",
+      "dragHere": "Glissez ici",
+      "file_drop_pdf_here": "votre fichier",
+      "add_hours": "+Ajouter",
+      "titleOffloadByHours": "Jours et heures de déchargement",
+      "titleOffloadHoliday": "Jours fériés",
+      "days": {
+        "MON": "Lundi",
+        "TUE": "Mardi",
+        "WED": "Mercredi",
+        "THU": "Jeudi",
+        "FRI": "Vendredi",
+        "SAT": "Samedi",
+        "SUN": "Dimanche",
+        "new_year_day": "Jour de l'an",
+        "victory_day": "Victoire de 1945",
+        "assumption_day": "Assomption",
+        "armistice_day": "Armistice",
+        "st_stephen_day": "Le jour de la Saint-Étienne",
+        "labour_day": "Fête du travail",
+        "national_day": "Fête Nationale",
+        "all_saints_day": "Toussaint",
+        "christmas_day": "Noël",
+        "easter_monday": "Lundi de Pâques",
+        "ascension_thursday": "Jeudi de l’Ascension",
+        "pentecost_monday": "Lundi de Pentecôte"
+      },
+      "titleFillers": "Personnalisation des fillers",
+      "filler": "Filler"
+    },
+    "formError": {
+      "doubleName": "Ce nom d’entreprise est déjà utilisé.",
+      "nameRequired": "Le nom de l’entreprise est requis.",
+      "invalidName": "Ce champ n’accepte que des caractères alphanumériques ou espaces.",
+      "invalidEmail": "Veuillez saisir une adresse email valide.",
+      "invalidPdfFile": "Erreur de téléchargement, seuls les fichiers PDFs sont acceptés.",
+      "requiredDivision": "Un nom de division est requis.",
+      "incorrectDivisionFormat": "Ce champ n’accepte que des caractères alphanumériques.",
+      "duplicatedDivisionName": "Ce nom de division est déjà utilisé.",
+      "requiredService": "Un nom de service est requis.",
+      "incorrectService": "Ce champ n’accepte que des caractères alphanumériques.",
+      "duplicatedServiceName": "Ce nom de service est déjà utilisé.",
+      "emailFormat": "Veuillez saisir une adresse email valide."
+    },
+    "confirmUnloading": {
+      "title": "Lancer un déchargement",
+      "message": "Êtes-vous sûr de vouloir lancer un déchargement ?",
+      "cancelButton": "Annuler",
+      "confirmButton": "Valider"
+    },
+    "create": {
+      "createSuccess": "Client créé avec succès.",
+      "createFail": "Échec à la création du client."
+    },
+    "button": {
+      "backToStep2": "Précédent",
+      "validationCreation": "Créer",
+      "manage": "Gérer"
+    },
+    "functionality": {
+      "cxm_flow_traceability": "Espace de suivi",
+      "cxm_statistic_report": "Espace de statistiques et rapports",
+      "cxm_template": "Conception d’un modèle emailing",
+      "cxm_sms_template": "Conception d’un modèle sms",
+      "cxm_campaign": "Gestion d’une campagne emailing",
+      "cxm_sms_campaign": "Gestion d’une campagne sms",
+      "cxm_flow_deposit": "Espace dépôt flux",
+      "cxm_setting_up_document_template": "Paramétrage des modèles documentaire",
+      "cxm_setting_up_consumables": "Paramétrage des Consommables",
+      "cxm_user_management": "Gestion des utilisateurs",
+      "cxm_client_management": "Gestion client",
+      "cxm_directory": "Gestion annuaire",
+      "cxm_communication_interactive": "Création communication Interactive",
+      "cxm_espace_validation": "Espace de validation",
+      "cxm_management_library_resource": "Bibliothèque ressources",
+      "cxm_enrichment_mailing": "Enrichissement envoi postal",
+      "cxm_watermark_enhancement_postal_delivery": "Enrichissement Filigrane envoi postal"
+    },
+    "configuration_history_tracking": "Historique des versions",
+    "configuration_file_config": "Fichier de configuration",
+    "configuration_return": "Retour",
+    "configuration_register": "Enregistrer",
+    "configuration_drag_order": "Veuillez sélectionner et glisser pour ordonner",
+    "configuration_drag_add": "Ajouter un modèle",
+    "configuration_drag_view": "Visualiser",
+    "configuration_drag_modify": "Modifier",
+    "configuration_view_version": "Voir la version",
+    "configuration_return_a_previous_version": "Revenir à une version ultérieure",
+    "configuration_revert_cancel": "Annuler",
+    "configuration_revert_confirm": "Confirmer",
+    "configuration_revert_message": "Voulez-vous vraiment revenir à cette version de fichier ?",
+    "configuration_revert_title": "Revenir à...",
+    "configuration_drag_remove": "Supprimer",
+    "configuration_drag_export": "Exporter le fichier",
+    "configuration_popup_confirm": "Confirmer",
+    "configuration_popup_invalid_key": "La propriété de configuration n'est pas valide",
+    "configuration_popup_required_model": "Le nom du modèle est obligatoire.",
+    "configuration_popup_required_model_name": "Le nom du modèle est obligatoire.",
+    "configuration_popup_key_existed": "La propriété de configuration ne peut pas être dupliquée",
+    "configuration_popup_modele_existed": "Un modéle portant ce nom existe déja. Définir un nom unique.",
+    "configuration_popup_modele_cannot_override": "La valeur \"Modele\" ne peut pas être remplacée.",
+    "configuration_confirm_delete_title": "Supprimer le modèle ?",
+    "configuration_confirm_delete_message": "Êtes-vous sûr de vouloir supprimer le modèle ?",
+    "configuration_confirm_delete_cancelBtn": "Annuler",
+    "configuration_confirm_delete_deleteBtn": "Supprimer",
+    "configuration_register_success": "La version a été enregistrée avec succès.",
+    "configuration_register_fail": "Échec de l'enregistrement d'une nouvelle configuration",
+    "configuration_download_configuration_fail": "Échec du téléchargement du fichier de configuration",
+    "configuration_at": "à",
+    "configuration_on": "le",
+    "configuration_by": "par",
+    "configuration_version": "Version :",
+    "configuration_reference_version": "Version de\nréférence&nbsp;: \nVersion",
+    "confirm_discard_client_configuration": {
+      "confirmButton": "Quitter",
+      "cancelButton": "Annuler",
+      "message": "Attention, votre version n'a pas été enregistrée et va être perdue.",
+      "title": "Quitter sans enregistrer ?",
+      "title_switch_version": "Changer de version sans enregistrer?"
+    },
+    "distribution_criteria_postal": "Canal postal",
+    "distribution_criteria_digital": "Canal digital",
+    "distribution_category_email": "Email",
+    "distribution_category_sms": "Sms",
+    "distribution_category_cse": "CSE",
+    "distribution_category_cse_ar": "CSE AR",
+    "distribution_category_lre": "LRE",
+    "canal_digital_header": "Canal digital",
+    "canal_digital_sub_title": "Critères de distribution",
+    "metadata_email_title": "Gestion des métadonnées emailing",
+    "metadata_sms_title": "Gestion des métadonnées SMS",
+    "hub_distribution": "Hub de distribution",
+    "metadata_email_sender_name": "Noms expéditeur",
+    "metadata_email_sender_email": "Emails expéditeur",
+    "metadata_email_unsubscribe_link": "Liens désabonnement",
+    "metadata_consult_btn": "Consulter",
+    "metadata_sms_sender_label": "Libellés expéditeur",
+    "metadata_hub_distribute_access_parameter": "Paramètres d'accès",
+    "metadata_hub_distribute_service_provider": "Prestataires de services",
+    "metadata_update_success": "Les métadonnées ont été mises à jour avec succès",
+    "metadata_update_fail": "Une erreur est survenue lors de la mise à jour des métadonnées",
+    "metadata_fetch_fail": "Échec de l'obtention de métadonnées",
+    "update_hub_account_successfully": "Les paramètres d’accès au hub ont été mis à jour avec succès",
+    "fetch_hub_access_account_fail": "Échec de l'obtention du paramètre d'accès au Hub",
+    "fail_update_hub_account": "Une erreur est survenue lors de la mise à jour des paramètres d’accès au hub",
+    "fail_to_fetch_service_provider": "Échec de la recherche d'un prestataire de services",
+    "update_service_provider_successfully": "Les prestataires de service ont été mis à jour avec succès",
+    "fail_update_service_provider": "Une erreur est survenue lors de la mise à jour des prestataires de service",
+    "senderNameMetadata": "Noms expéditeur",
+    "senderEmailMetadata": "Emails expéditeur",
+    "unsubscribeMetadata": "Liens désabonnement",
+    "senderLabelMetadata": "Libellés expéditeur",
+    "metadata_popup_add": "Ajouter un champ",
+    "metadata_popup_description": "Veuillez sélectionner et glisser les \nchamps pour les ordonner",
+    "metadata_is_duplicated": "Une métadonnée avec ce nom existe déjà",
+    "metadata_sender_name_is_required": "Le champ est requis",
+    "metadata_sender_mail_is_required": "Le champ est requis",
+    "metadata_sender_unsubscribe_link_is_required": "Le champ est requis",
+    "metadata_sender_label_is_required": "Le champ est requis",
+    "metadata_sender_label_max_length": "La longueur d’une métadonnée ne peut pas dépasser 11 caractères",
+    "hub_distribute_title": "Paramètres d'accès au Hub",
+    "hub_distribute_identifiant": "Identifiant",
+    "hub_distribute_identifiant_invalid": "Veuillez saisir une adresse email valide",
+    "hub_distribution_phone_number_invalid": "Veuillez entrer un numéro destinataire valide",
+    "hub_distribution_phone_number_required": "Numéro destinataire est requis",
+    "hub_distribute_identifiant_required": "L'email est requis",
+    "hub_distribute_identifiant_max_length": "La longueur d’une métadonnée ne peut pas dépasser 128 caractères",
+    "hub_distribute_password": "Mot de passe",
+    "hub_distribute_password_required": "Le mot de passe est requis",
+    "hub_distribute_register_btn": "Enregistrer",
+    "service_provider_title": "Prestataires de service",
+    "service_provider_label_email": "Prestataire de service email",
+    "service_provider_label_sms": "Prestataire de service sms",
+    "service_provider_add_more_service_btn": "+ Ajouter un prestataire*",
+    "service_provider_cannot_be_delete": "Ce service ne peut pas être supprimé, il est actuellement en cours d'utilisation.",
+    "service_provider_form_description": "* L'ordre détermine l'ordre d'utilisation des prestataires par le Hub.",
+    "fragment_return_address_field_return_address": "Adresse retour :",
+    "fragment_return_address_field_line1": "Ligne 1 :",
+    "fragment_return_address_field_line2": "Ligne 2 :",
+    "fragment_return_address_field_line3": "Ligne 3 :",
+    "fragment_return_address_field_line4": "Ligne 4 :",
+    "fragment_return_address_field_line5": "Ligne 5 :",
+    "fragment_return_address_field_zipcode": "Code postal et ville :",
+    "fragment_return_address_field_country": "Pays :",
+    "fragment_return_address_add_least_three_address_lines": "Erreur : Au moins trois lignes d’adresses sont obligatoires",
+    "fragment_return_address_invalid_zipcode_city": "Erreur : un code postal et une ville doivent être spécifiés",
+    "fragment_return_address_zipcode_city_does_not_match": "Erreur : Le code postal et la ville ne correspondent pas",
+    "fragment_return_address_zipcode_required": "Erreur : un code postal et une ville doivent être spécifiés",
+    "fragment_return_address_address_line_exceed_line": "Une ligne d’adresse ne peut pas excéder 38 caractère.",
+    "popup_return_address_title": "Adresse",
+    "popup_return_address_cancel_btn": "Annuler",
+    "popup_return_address_validate_btn": "Valider"
+  },
+  "integrations": {
+    "serverError": "Impossible de communiquer avec le serveur.",
+    "failtovalidate": "Le ticket n'existe pas."
+  },
+  "changePassword": {
+    "heading": "Profil",
+    "form": {
+      "firstname": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "confirmNewPassword": "Confirmation nouveau mot de passe",
+      "division": "Division",
+      "service": "Service",
+      "profile": "Profil",
+      "validation": {
+        "currentPasswordRequired": "Le mot de passe actuel est obligatoire",
+        "currentPasswordIncorrect": "Le mot de passe actuel est incorrect",
+        "newPasswordRequired": "Le nouveau mot de passe est obligatoire",
+        "confirmNewPasswordNotMatch": "Les nouveaux mots de passe ne correspondent pas"
+      }
+    },
+    "buttons": {
+      "edit": "Modifier"
+    },
+    "message": {
+      "success": "Votre mot de passe a correctement été modifié",
+      "fail": "Échec de la modification du mot de passe!",
+      "loadUserInFail": "Échec du chargement des informations sur l'utilisateur!"
+    }
+  },
+  "globalMessage": {
+    "downloadFileFail": "Échec du téléchargement d'un fichier"
+  },
+  "cxm_setting": {
+    "list_title": "Bibliotheque des ressources",
+    "list_sub_title": "Consultez et gérez la liste des ressources",
+    "add_resource_btn": "Ajouter une ressource",
+    "type": "Type",
+    "table_file_name": "Nom du fichier",
+    "table_label": "Libellé",
+    "table_type": "Type",
+    "date_creation": "date de création",
+    "weight": "Poids",
+    "number_of_page": "Nombre de pages",
+    "actions": "Actions",
+    "attachment": "Pièce jointe",
+    "background": "Fond de page",
+    "signature": "Signature",
+    "watermark": "Filigrane",
+    "popup_title": "Ajouter une ressource",
+    "label": "Libellé",
+    "backgroundDescription": "<p>Formats acceptés : pdf (poids maximum 20 Mo)</p> <p>Nombre de page maximum : 1</p>",
+    "attachmentDescription": "<p>Formats acceptés : pdf (poids maximum 20 Mo)</p>",
+    "signatureDescription": "<p>Formats acceptés : PNG (poids maximum 1 Mo)</p>",
+    "add": "Ajouter",
+    "popup_errors_type_required": "Le type est requis.",
+    "popup_errors_label_required": "Le libellé est requis.",
+    "popup_invalidFileFormat": "Erreur de téléversement. Le format ne doit pas être différent de PDF pour une ressource de type fond de page.",
+    "popup_invalidTotalFile": "Erreur de téléchargement. La quantité de la ressource ne peut pas dépasser 1 fichier.",
+    "popup_invalidFileSize": "Erreur de téléversement. La taille de la ressource ne peut pas dépasser 20 Mo.",
+    "please_select_attachment_file": "Erreur. Aucun fichier sélectionné.",
+    "popup_invalidTotalPage": "Erreur de téléversement. Le nombre de page ne peut pas excéder une page pour une ressource de type fond de page.",
+    "attachment_invalid_file_size": "Erreur de téléversement. La taille de la ressource ne peut pas dépasser 20 Mo.",
+    "attachment_invalid_format": "Erreur de téléversement. Le format ne doit pas être différent de PDF pour une ressource de type pièce jointe.",
+    "attachment_invalid_total_file": "Erreur de téléchargement. La quantité de la ressource ne peut pas dépasser 1 fichier.",
+    "fail_to_create": "Ne pas créer",
+    "create_new_resource_success": "La nouvelle ressource a été ajoutée avec succès.",
+    "popup_errors_label_duplicated": "Une ressource portant ce nom existe déjà.",
+    "delete_resource_success": "La ressource a été supprimée avec succès.",
+    "delete_resource_fail": "Échec de la suppression de la ressource",
+    "confirm_delete_title": "Supprimer la ressource ?",
+    "confirm_delete_message": "Êtes-vous sûr de vouloir supprimer la ressource ? Cette action est irréversible.",
+    "confirm_delete_paragraph": "Cette action est irréversible.",
+    "confirm_cancel_btn": "Annuler",
+    "confirm_delete_btn": "Supprimer",
+    "fail_to_download": "Échec du téléchargement du fichier ressource",
+    "title_information": "Informations",
+    "technicalName": "Nom technique :",
+    "copyClipboardSuccess": "Nom technique copié",
+    "noInformationFound": "Aucune information trouvée"
+  },
+  "flow-report": {
+    "col": {
+      "channel": "Canal",
+      "volume": "Volume",
+      "to-validate": "A valider",
+      "scheduled": "Planifié",
+      "in-progress": "En cours",
+      "other": "Autre",
+      "completed-percent": "% Terminé"
+    }
+  },
+  "background": {
+    "position": {
+      "ALL_PAGES": "Toutes les pages",
+      "FIRST_PAGE": "Première page",
+      "NEXT_PAGES": "Pages suivantes",
+      "LAST_PAGE": "Dernière page",
+      "FIRST_POSITION": "Première position",
+      "SECOND_POSITION": "Deuxième position",
+      "THIRD_POSITION": "Troisième position",
+      "FOURTH_POSITION": "Quatrième position",
+      "FIFTH_POSITION": "Cinquième position",
+      "OTHER": "Pages d'enrichissement",
+      "ONLY_DOC": "Pages du document d'origine"
+    },
+    "type": {
+      "watermark_form_upload": "Téléversement unique",
+      "watermark_form_library": "Bibliothèque"
+    },
+    "errors": {
+      "file_missing": "Page de fond manquante",
+      "unknown": "Impossible de communiquer avec le serveur",
+      "page_limit": "Erreur de téléversement. Le nombre de page ne peut pas excéder une page pour une ressource de type fond de page.",
+      "unauthorize": "Erreur : Vous n'avez pas la permission d'accéder à la bibliothèque des ressources.",
+      "noDeletePermission": "Vous n'avez pas la permission de supprimer fond de la page.",
+      "deleteConflict": "Le fichier ou la ressource n'existe pas.",
+      "failToFetchList": "Échec de la récupération du fond de la page.",
+      "selectPageBackgound": "Le fond de page est obligatoire. Veuillez sélectionner le fond de page",
+      "selectPageAttachment": "La pièce jointe est obligatoire. Veuillez sélectionner une pièce jointe",
+      "uploadPageBackgound": "Erreur. Aucun fichier sélectionné.",
+      "not_pdf": "Erreur de téléversement. Le format ne doit pas être différent de PDF pour une ressource de type fond de page."
+    },
+    "buttons": {
+      "watermark": "Ajouter un filigrane",
+      "signature": "Ajouter une signature",
+      "attachment": "Ajouter une pièce jointe",
+      "background": "Ajouter un fond de page",
+      "missingRes": "Ressource manquante. Veuillez l’ajouter en utilisant l’écran de gestion des ressources"
+    },
+    "messages": {
+      "background": "Fond de page",
+      "attachment": "Pièce jointe",
+      "watermark": "Filigrane",
+      "missingRes": "Ressource manquante",
+      "missingRes_hint": "Votre envoi ne peut pas être réalisé tant qu'il utilise des ressources manquantes.",
+      "missingRes_hint2": "L'envoi va être sauvegardé avec le statut \"Brouillon\", vous pourrez le finaliser ultérieurement.",
+      "signature": "Signature :"
+    }
+  },
+  "cxm_analytics": {
+    "title": "ESPACE DE REPORTING",
+    "sub_title": "Consultez les statistiques et indicateurs de suivi",
+    "export_btn": "Exporter le rapport",
+    "navigation_global": "Global",
+    "navigation_postal": "Postal",
+    "navigation_email": "Email",
+    "navigation_sms": "SMS",
+    "fetch_filter_criteria_fail": "Une erreur s'est produite lors de l'extraction des critères de filtrage",
+    "fetch_filler_list_fail": "Une erreur s'est produite lors de la recherche de la liste des remplisseurs.",
+    "refresh_analytics_date": "Dernière actualisation : ",
+    "graph_production_detail_title": "Avancement de la production",
+    "graph_volume_received": "Volume reçu",
+    "graph_volume_treaty": "Volume traité",
+    "graph_motif_pnd": "Motif PND",
+    "graph_status_mail": "Statut mails",
+    "graph_status_sms": "Statut SMS",
+    "table_production_detail_title": "Détail de la production",
+    "global_table": {
+      "channel": "Canal",
+      "volume_received": "Volume reçu",
+      "pnd_mnd": "PND/MND",
+      "pnd_mnd_percentage": "% PND/MND",
+      "treaty": "Traité",
+      "in_progress": "En cours",
+      "treaty_percentage": "% Traité"
+    },
+    "dynamic_production_detail_table": "Détail de la production par Regroupement de Fillers",
+    "postal_table": {
+      "filler": "Fillers",
+      "volume_received": "Reçu",
+      "processed": "Traité",
+      "in_progress": "En cours",
+      "pnd": "PND",
+      "mnd": "MND",
+      "processed_percentage": "Traité %",
+      "pnd_percentage": "PND %",
+      "mnd_percentage": "MND %",
+      "total": "Total général"
+    },
+    "production_detail_table": {
+      "blank": "(vide)",
+      "filler": "Fillers",
+      "volume_received": "Reçu",
+      "processed": "Traité",
+      "in_progress": "En cours",
+      "pnd": "PND",
+      "mnd": "MND",
+      "processed_percentage": "Traité %",
+      "pnd_percentage": "PND %",
+      "mnd_percentage": "MND %",
+      "total": "Total général"
+    },
+    "distribution_volume_received": {
+      "title": "Répartition du volume reçu "
+    },
+    "distribution_of_NDPs_by_reason": {
+      "title": "Répartition PND par motif"
+    },
+    "processed_mail": {
+      "title": "Courriers traités"
+    },
+    "detail_of_production_by_filler_grouping": {
+      "title": "Détail de la production par Regroupement de Fillers"
+    },
+    "blank": "(vide)",
+    "pnd_status": {
+      "refused": "Refusé",
+      "unclaimed": "Non Réclamé",
+      "npai": "NPAI",
+      "recipient_unknown": "Destinataire Inconnu",
+      "access_or_addressing_failure": "Défaut d’accès ou d’adressage"
+    },
+    "sms_by_status": {
+      "title": "SMS par statut"
+    },
+    "mails_by_status": {
+      "title": "Mails par statut"
+    },
+    "none_pnd": "Non PND",
+    "you_mas_select_filler_in_order": "Vous devez sélectionner les fillers 1, 2 et 3 dans l’ordre.",
+    "sms_status": {
+      "in_progress": "En cours",
+      "sent": "Envoyé",
+      "cancelled": "Annulé",
+      "in_error": "Erreur"
+    },
+    "email_status": {
+      "hard_bounce": "Hard bounce",
+      "soft_bounce": "Soft bounce",
+      "clicked": "Cliqué",
+      "resent": "Renvoi",
+      "opened": "Lu",
+      "sent": "Envoyé",
+      "blocked": "Bloqué",
+      "in_error": "Erreur",
+      "in_progress": "En cours"
+    }
+  },
+  "shared": {
+    "uploading_fragment": {
+      "drop_here": "Glissez ici",
+      "mention_file": "votre fichier ${extension}"
+    }
+  }
+}

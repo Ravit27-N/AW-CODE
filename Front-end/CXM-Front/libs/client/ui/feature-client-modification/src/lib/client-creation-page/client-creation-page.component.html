@@ -1,0 +1,54 @@
+<div class='flex flex-row justify-between'>
+  <div>
+    <app-ng-dynamic-breadcrumb [bgColor]="'none'" symbol='>'></app-ng-dynamic-breadcrumb>
+
+    <div *ngIf="navigation$|async as navigation">
+      <cxm-smartflow-page-header>
+        {{'client.createClient' | translate | uppercase}} ({{ navigation.step}}/{{ navigation.allstep }})
+      </cxm-smartflow-page-header>
+
+      <cxm-smartflow-page-sub-header *ngIf="navigation.step===1">{{'client.fillClientInfo' | translate}} </cxm-smartflow-page-sub-header>
+      <cxm-smartflow-page-sub-header *ngIf="navigation.step===2">{{'client.fillClientParam' | translate}} </cxm-smartflow-page-sub-header>
+      <cxm-smartflow-page-sub-header *ngIf="navigation.step===3">{{'client.fillClientFunc' | translate}} </cxm-smartflow-page-sub-header>
+    </div>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+
+<div *ngIf="navigation$|async as navigation">
+    <!-- TODO: User creation form -->
+  <section class="common-cxm-container-panel" *ngIf="clientData$|async as clientData" [class.hidden]="navigation.step !== 1">
+    <cxm-smartflow-client-form
+    [uploadState]="uploading$"
+    (submitEvent)="handleFormSubmit($event)"
+    (uploadFileEvent)="dropfile($event)"
+    (formValueChanged)="handleFormChange($event)">
+    <p filename>
+      <img src="assets/images/pdf2.png" class="mr-2" alt="PDF">
+      <span>{{ clientData.file.filename }}</span>
+      <span class='file-size'>&nbsp;({{ (clientData.file.fileSize | fileSize).replace(' ', '') }})</span>
+      <mat-icon (click)="removeFile()" class="ml-auto text-red-600 cursor-pointer">close</mat-icon>
+    </p>
+  </cxm-smartflow-client-form>
+  </section>
+
+  <!-- TODO: cliet division -->
+  <section class="common-cxm-container-panel division-panel" style="background: transparent;" *ngIf="clientDivision$|async as clientDivision" [class.hidden]="navigation.step !== 2">
+    <cxm-smartflow-associate-list [class.hidden]="!navigation.ready" [clientDivision]="clientDivision" (divisionUpdated)="handleDivisionChange($event)" ></cxm-smartflow-associate-list>
+  </section>
+
+  <!-- Functionality -->
+  <section class="common-cxm-container-panel division-panel" style="background: transparent;" [class.hidden]="navigation.step !== 3">
+    <cxm-smartflow-functionality-page (valueChanged)="handleFunctionalityChange($event)" ></cxm-smartflow-functionality-page>
+  </section>
+
+</div>
+
+
+
+<!-- TODO: navigation condition -->
+<div class="space-x-4 mt-6 flex justify-end" *ngIf="navigation$|async as navigation">
+  <cxm-smartflow-rich-button [isRounded]='true' (click)="handlePrev()" >{{ navigation.prevButton | translate}}</cxm-smartflow-rich-button>
+  <cxm-smartflow-rich-button (click)="handleNext()" >{{navigation.nextButton | translate}}</cxm-smartflow-rich-button>
+</div>

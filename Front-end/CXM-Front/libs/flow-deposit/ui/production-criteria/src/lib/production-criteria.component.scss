@@ -1,0 +1,70 @@
+@import 'flow-deposit-global-styles';
+
+:host {
+  display: block;
+}
+
+.d-block {
+  display: block;
+}
+
+.production-criteria-content {
+  @apply py-2 px-4 border bg-white;
+  border-color: $flow-text-primary;
+}
+
+.title-header {
+  @apply mb-6 border-b border-gray-300 pb-2 font-bold;
+  color: $flow-text-primary;;
+}
+
+.h48 {
+  height: 48px;
+  align-items: center;
+}
+.h48 div {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  vertical-align: middle;
+  text-align: center;
+  width: 193px;
+  cursor: pointer;
+  border-bottom:  3px solid $color-afcdffb1;
+  // color: $color-9d9d9d;
+  font: normal normal 400 16px/19px Rubik;
+  // border-background: #3B82F6 0 0 no-repeat padding-box;
+  opacity: 1;
+  color: var(--unnamed-color-2e2e2e);
+}
+
+
+.h48 div.active {
+  border-bottom: 4.5px solid var(--unnamed-color-3b82f6);
+  color: var(--unnamed-color-3b82f6);
+  font: normal normal 500 16px/19px Rubik;
+}
+
+.content-panel {
+  margin-bottom: 0;
+  min-height: 545px;
+  height: calc(100vh - 360px);
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 60% auto;
+  @apply gap-14;
+}
+
+.padding-bottom-80 {
+  padding-bottom: 80px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+cxm-smartflow-file-info {
+  padding-top: 52px;
+}

@@ -1,0 +1,222 @@
+/* ============ cxm-flow-traceability ============ */
+
+// list of flow traceability.
+@mixin menu_criteria() {
+  width: 302px;
+  height: 221px;
+  max-width: 302px;
+}
+
+@mixin menu_criteria_bg() {
+  background: var(--unnamed-color-ffffff) 0 0 no-repeat padding-box;
+  box-shadow: 0 3px 6px #00000029;
+  border: 1px solid #F5F5F5;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+.cxm-flow-traceability--list {
+
+  &.mat-datepicker-content {
+    @apply px-4;
+    border: 1px solid #F5F5F5 !important;
+    margin-top: 10px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 3px 6px #00000029 !important;
+    background: #FFFFFF 0 0 no-repeat padding-box;
+
+    .mat-calendar-table-header-divider::after {
+      left: -5px !important;
+      right: -5px !important;
+    }
+
+    .flow-custom-mat-datepicker {
+      width: 321px !important;
+      height: auto !important;
+
+      .mat-calendar-header {
+        padding: 0 !important;
+      }
+
+      .mat-calendar-content {
+        padding: 0 4px 4px 4px !important;
+      }
+
+      .mat-calendar-controls {
+        margin: 0 !important;
+
+        .mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button {
+          font-size: 13px !important;
+        }
+
+        .mat-icon-button {
+          width: 37px !important;
+          height: 37px !important;
+          color: #3B82F6 !important;
+        }
+      }
+
+      .mat-calendar-table {
+        border-bottom: 1px solid #e3e3e3 !important;
+      }
+    }
+
+
+    .mat-datepicker-actions {
+      border: none !important;
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+
+  }
+
+  .mat-date-range-input-separator {
+    display: none;
+  }
+
+  &.faculty-custom-dropdown {
+    margin-top: 10px !important;
+
+    width: 260px;
+    height: 408px !important;
+    max-width: 260px;
+
+    /* UI Properties */
+    @include menu_criteria_bg();
+
+    .custom-category-item {
+      height: auto !important;
+
+      .mat-divider {
+        border-top-color: #A4B1C1;
+      }
+
+      .category-panel {
+        @apply overflow-y-auto;
+        width: 188px;
+        height: 248px;
+
+        .category-box {
+          @apply w-full;
+          min-height: 246px;
+          padding-left: 10px;
+          padding-right: 10px;
+          border: 0.5px solid #8194B4;
+          border-radius: 5px;
+          opacity: 1;
+        }
+      }
+    }
+
+    .mat-menu-item:hover {
+      cursor: default;
+      background-color: initial !important;
+    }
+  }
+
+  &.status-custom-dropdown {
+    margin-top: 10px !important;
+
+    @include menu_criteria();
+
+    /* UI Properties */
+    @include menu_criteria_bg();
+
+    .custom-category-item {
+      height: auto !important;
+
+      .category-panel {
+        @apply overflow-y-auto w-full;
+        height: 160px;
+
+        .category-box {
+          @apply w-full px-2;
+          min-height: 160px;
+          border: 0.5px solid #8194B4;
+          border-radius: 5px;
+          opacity: 1;
+        }
+      }
+    }
+
+    .mat-menu-item:hover {
+      cursor: default;
+      background-color: initial !important;
+    }
+  }
+
+  &.users-custom-dropdown {
+    margin-top: 10px !important;
+
+    @include menu_criteria();
+
+    /* UI Properties */
+    @include menu_criteria_bg();
+
+    .custom-category-item {
+      height: auto !important;
+
+      .category-panel {
+        @apply overflow-y-auto w-full;
+        height: 160px;
+
+        .category-box {
+          @apply w-full px-2;
+          min-height: 160px;
+          border: 0.5px solid #8194B4;
+          border-radius: 5px;
+          opacity: 1;
+        }
+      }
+    }
+
+    .mat-menu-item:hover {
+      cursor: default;
+      background-color: initial !important;
+    }
+
+    .selector-value {
+      width: 218px;
+      display: inline-block;
+      white-space: nowrap;
+      overflow-y: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &.deposit-mode-custom-dropdown {
+    margin-top: 10px !important;
+
+    width: 260px;
+    height: 205px;
+
+    /* UI Properties */
+    @include menu_criteria_bg();
+
+    .custom-category-item {
+      height: auto !important;
+    }
+
+    .mat-menu-item:hover {
+      cursor: default;
+      background-color: initial !important;
+    }
+  }
+
+  &.action-card-panel {
+    background: var(--unnamed-color-ffffff) 0 0% no-repeat padding-box;
+    box-shadow: 0 1px 9px #7492C447;
+    border-radius: 5px;
+    opacity: 1;
+
+    .mat-menu-content > div {
+      height: 40px;
+      line-height: 40px;
+    }
+
+    .download-icon {
+      display: inherit !important;
+    }
+  }
+
+}

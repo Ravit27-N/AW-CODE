@@ -1,0 +1,36 @@
+.client-form-container {
+  width: 100%;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box !important;
+  padding: 20px;
+  border-radius: 10px;
+  //min-height: 199px;
+  min-height: 135px;
+  box-shadow: 0 1px 9px #8dc2e548 !important;
+
+  .remove-icon {
+    cursor: pointer;
+    color: #c31c20;
+    font-size: 22px;
+  }
+
+  .arrow-icon{
+    color: var(--unnamed-color-3b82f6);
+    font-size: 22px;
+  }
+
+  button{
+    color: var(--unnamed-color-3b82f6);
+    height: 62px;
+    font-weight: 500;
+    font-size: 14px;
+  }
+}
+
+.delete-icon {
+  height: 17px;
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}

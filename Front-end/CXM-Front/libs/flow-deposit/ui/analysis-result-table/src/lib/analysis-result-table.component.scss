@@ -1,0 +1,243 @@
+@import 'flow-deposit-global-styles';
+
+#analysis-result-table {
+  border-collapse: collapse;
+  width: 100%;
+
+  th {
+    z-index: auto !important;
+  }
+}
+
+.nb-doc-label {
+  @apply font-bold;
+  font-size: 14px;
+  color: $color-3b82f6;
+}
+
+.ok {
+  @apply pl-3;
+  color: #04C60B;
+}
+
+.ko, .error {
+  @apply pl-3;
+  background-color: #FFCCCC;
+  color: #E50A0A;
+}
+
+.warning {
+  background-color: #DDB640;
+}
+
+.analysis-result-panel {
+  @apply mb-7;
+  //@include for-size(laptop) {
+  //  height: calc(100vh - 21vw);
+  //}
+  //
+  //@include for-size(desktop-up) {
+  //  height: calc(100vh - 21vw);
+  //}
+  //
+  //@include for-size(big-desktop-up) {
+  //  height: calc(100vh - 26vw);
+  //}
+}
+
+.h-portal-card {
+  width: 100%;
+  @apply overflow-x-hidden overflow-y-auto;
+
+  @include for-size(laptop) {
+    max-height: calc(100vh - 21vw);
+  }
+
+  @include for-size(desktop-up) {
+    max-height: calc(100vh - 21vw);
+  }
+
+  @include for-size(big-desktop-up) {
+    max-height: calc(100vh - 26vw);
+  }
+}
+
+:host ::ng-deep {
+  .mat-header-row {
+    height: 60px;
+    background: #E0ECFF 0 0 no-repeat padding-box;
+    opacity: 1;
+  }
+
+  .mat-row {
+    height: 59px;
+    border-top: 1px solid #BCD5FF;
+
+    &:first-child {
+      border: none;
+    }
+
+    &:last-child {
+      border-top: 1px solid #BCD5FF;
+    }
+  }
+
+  .mat-cell {
+    border-bottom-width: 0;
+    border-bottom-style: none !important;
+  }
+
+  .mat-table {
+    box-shadow: inset 5px 0 10px #D1E3FF48;
+    border-radius: 10px 10px 0 0 !important;
+  }
+}
+
+::ng-deep .mat-sort-header-arrow[style] {
+  // Hide default arrow stem
+  .mat-sort-header-stem {
+    display: none;
+
+    &:hover {
+      transform: none !important;
+    }
+  }
+
+  .mat-sort-header-indicator {
+    opacity: 1;
+    transform: none !important;
+
+    // Hide default arrow as its composed of left, right and middle
+    .mat-sort-header-pointer-left,
+    .mat-sort-header-pointer-right,
+    .mat-sort-header-pointer-middle {
+      display: none;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+  }
+}
+
+// custom ascending arrow
+[aria-sort='ascending'] {
+  ::ng-deep .mat-sort-header-arrow {
+    transform: none !important;
+    opacity: 1 !important;
+
+    .mat-sort-header-indicator {
+      &:hover {
+        transform: none !important;
+      }
+
+      &::before {
+        @apply pl-2;
+        content: '\2191';
+        top: -0em;
+        position: absolute;
+        color: #3B82F6;
+        font-size: 15px;
+        line-height: 10px;
+      }
+    }
+  }
+}
+
+// custom descending arrow
+[aria-sort='descending'] {
+  ::ng-deep .mat-sort-header-arrow {
+    transform: none !important;
+    opacity: 1 !important;
+
+    .mat-sort-header-indicator {
+      &::before {
+        @apply pl-2;
+        content: '\2193';
+        top: -5px;
+        position: absolute;
+        color: #3B82F6;
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+// custom none sorting
+[aria-sort='none'] {
+  ::ng-deep .mat-sort-header-arrow {
+    transform: none !important;
+    opacity: 1 !important;
+
+    .mat-sort-header-indicator {
+      &::before {
+        @apply pl-2 font-bold;
+        content: '\2193';
+        top: -5px;
+        position: absolute;
+        color: #A8A8A8;
+        height: 10px !important;
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+.paging-title {
+  color: #8194B4;
+}
+
+.analysis-result-panel {
+
+  #actions {
+    width: 15%;
+    padding-left: 1.75rem;
+    border-left: 2px solid #0072BB;
+  }
+
+  .cell-action {
+    padding-left: 1.75rem;
+    border-left: 2px solid #0072BB;
+    color: var(--unnamed-color-3b82f6);
+  }
+
+  .btn-view-details {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .btn-menu-icon {
+    @apply  ml-1 mr-2 inline-block;
+    height: 17px;
+    vertical-align: middle;
+  }
+
+  .mat-column-actins{
+    width: 20%;
+  }
+}
+
+.message-warning-label {
+  color: #ffc075;
+}
+
+.modify {
+  @apply pl-3;
+  color: #ffc075;
+}
+
+
+.menu-icon {
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+
+  .cxm-icon {
+    margin-right: 15px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 20px;
+    width: 20px;
+  }
+
+}

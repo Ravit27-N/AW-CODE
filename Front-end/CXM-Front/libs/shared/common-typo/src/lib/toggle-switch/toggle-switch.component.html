@@ -1,0 +1,9 @@
+<div class="switch relative">
+  <div class="absolute top-0 left-0 w-full h-full z-10 flex flex-row justify-around items-center " [class.opacity-100]="disabled">
+    <span (click)="toggle(false)" class="action-text" [class.active]="!toggleState">{{'cxmCampaign.followMyCampaign.list.filterComponent.label.manuel'|translate}}</span>
+    <span (click)="toggle(true)" class="action-text" [class.active]="toggleState">{{'cxmCampaign.followMyCampaign.list.filterComponent.label.automated'|translate}}</span>
+  </div>
+
+  <input type="checkbox" [checked]="toggleState" />
+  <span class="slider round"></span>
+</div>

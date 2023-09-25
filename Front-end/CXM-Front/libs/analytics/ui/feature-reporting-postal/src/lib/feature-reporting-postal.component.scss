@@ -1,0 +1,88 @@
+
+.report-filters {
+  display: flex;
+  justify-content: space-between;
+
+  .refresh-date {
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-2e2e2e);
+    text-align: left;
+    font: normal normal normal 16px/19px Rubik;
+    opacity: 1;
+  }
+}
+
+
+.volume-info-container {
+  margin-top: 70px;
+
+  .graph-table-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+
+    .table-container {
+      width: calc(50% - 20px);
+    }
+
+    .graph-container {
+      display: flex;
+      flex-direction: column;
+      width: calc(50%);
+      margin-top: -11px;
+      justify-content: space-between;
+
+      .distribution-info {
+        width: 100%;
+      }
+
+      .graph-area-pnd {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        .graph {
+          width: calc(50% - 5px);
+        }
+      }
+
+    }
+  }
+}
+
+:host ::ng-deep {
+
+  .indicator-overlay {
+    z-index: 999 !important;
+  }
+
+  .table-container {
+    margin-top: 0 !important;
+  }
+
+}
+
+@media screen and (max-width: 2067px) {
+  .graph-table-container {
+    .table-container {
+      width: calc(50% - 20px);
+    }
+
+    .graph-container {
+      width: calc(50%);
+   }
+  }
+}
+
+
+@media screen and (max-width: 2240px) and (min-width: 2060px) {
+  .graph-table-container {
+    .table-container {
+      width: calc(50% - 20px);
+    }
+
+    .graph-container {
+      width: calc(50% - 20px);
+    }
+  }
+}

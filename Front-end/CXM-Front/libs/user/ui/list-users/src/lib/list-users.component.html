@@ -1,0 +1,44 @@
+<div class='flex flex-row justify-between'>
+
+  <div class="overlay" *ngIf="this.submittedCsvExport$ | async">
+    <div class="center">
+        <mat-progress-spinner diameter=120 
+                            mode="indeterminate" 
+                  color="primary">
+      </mat-progress-spinner> 
+    </div>
+    </div>
+  <div>
+    <app-ng-dynamic-breadcrumb symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{'user.list.title' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header small>{{'user.list.subTitle' | translate}}</cxm-smartflow-page-sub-header>
+  </div>
+
+  <div class='flex flex-col justify-end'>
+    <div class='flex justify-end'>
+      <cxm-smartflow-header-button icon='add' (onclick)='createUserEvent()' width='204px' height='48px' minWidth='204px' *ngIf='_canCreateCreate'>
+        {{'user.list.button.create' | translate}}
+      </cxm-smartflow-header-button>
+
+      <cxm-smartflow-header-button class='ml-3' width='auto' height='48px' minWidth='204px' *ngIf='_canImportUser' (click)='fileUpload.click()'>
+        <div class='import-title-wrapper'>
+          <div class='img'><img src='assets/images/import-arrow.png'></div>
+          <div class='pl-8 pr-3'>{{'user.create_user_by_import' | translate}}</div>
+        </div>
+      </cxm-smartflow-header-button>
+      <cxm-smartflow-header-button class='ml-3' width='auto' height='48px' minWidth='204px'(click)="exportUsers()" >
+        <div class='import-title-wrapper'>
+          <div class='img'><img src='assets/images/import-arrow.png'></div>
+          <div class='pl-8 pr-3'>{{'user.export_user_in_csv' | translate}}</div>
+        </div>
+      </cxm-smartflow-header-button>
+    </div>
+  </div>
+</div>
+<mat-divider class="common-mat-divider"></mat-divider>
+
+<section class="common-mt-table" [class.hidden]='!userFormControlService.isCanList'>
+  <cxm-smartflow-list-user-table></cxm-smartflow-list-user-table>
+</section>
+
+<input class='hidden' type="file" name="importUser" accept="text/csv" (change)='onFileSelected($event)' #fileUpload>

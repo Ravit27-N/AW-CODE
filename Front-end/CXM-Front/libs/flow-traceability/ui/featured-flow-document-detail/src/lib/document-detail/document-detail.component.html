@@ -1,0 +1,157 @@
+<main>
+  <!-- Document -->
+  <section class='document'>
+    <h4>{{'flow.document.documentDetail.document.title' | translate}}</h4>
+    <div class='document-description-container'>
+      <!-- model name -->
+      <div class='group-space' *ngIf='flowDocumentDetail?.document?.modelName !== undefined'>
+        <h5>{{'flow.document.documentDetail.document.modelName' | translate}} :</h5>
+        <p>{{flowDocumentDetail?.document?.modelName}}</p>
+      </div>
+
+      <!-- identifier -->
+      <div class='group-space'>
+        <h5>{{'flow.document.documentDetail.document.identifier' | translate}} :</h5>
+        <p id='identify'
+           (mousemove)="showTooltip('#identify', flowDocumentDetail?.document?.identify || '')"
+           [title]="showTooltip('#identify', flowDocumentDetail?.document?.identify || '')">
+          <span>{{flowDocumentDetail?.document?.identify}}</span>
+        </p>
+      </div>
+
+      <!-- file size -->
+      <div class='group-space'>
+        <h5>{{'flow.document.documentDetail.document.fileSize' | translate}} :</h5>
+        <p
+          *ngIf='flowDocumentDetail?.document?.fileSize !== undefined'>{{getLimitSize(flowDocumentDetail?.document?.fileSize | fileSize)}}</p>
+      </div>
+
+      <!-- creation date -->
+      <div class='group-space'>
+        <h5>{{'flow.document.documentDetail.document.createdDate' | translate}} :</h5>
+        <p>{{flowDocumentDetail?.document?.createdDate}}</p>
+      </div>
+
+      <!-- unloading date -->
+      <div class='group-space' *ngIf="flowDocumentDetail?.document?.unloadingDate">
+        <h5>{{'flow.document.documentDetail.document.unloadingDate' | translate}} :</h5>
+        <p>{{flowDocumentDetail?.document?.unloadingDate}}</p>
+      </div>
+
+      <!-- page number -->
+      <div class='group-space'>
+        <h5>{{'flow.document.documentDetail.document.pageNumber' | translate}} :</h5>
+        <p>{{flowDocumentDetail?.document?.pageNumber}}</p>
+      </div>
+
+      <!-- sheet number -->
+      <div class='group-space'>
+        <h5>{{'flow.document.documentDetail.document.sheetNumber' | translate}} :</h5>
+        <p>{{flowDocumentDetail?.document?.sheetNumber}}</p>
+      </div>
+    </div>
+
+    <div class='enrichment-detail' *ngIf='showEnrichment'>
+      <mat-expansion-panel (opened)='panelOpenState' (closed)='!panelOpenState' hideToggle='true'>
+        <mat-expansion-panel-header #enrichmentPanel (click)='enrichmentPanel._toggle()'>
+          <mat-panel-title>
+            <div class='label-enrichment app-toolbar-menu' (click)='enrichmentPanel._toggle()'>
+              {{'flow.document.documentDetail.enrichment.title'|translate}}
+              <mat-icon *ngIf='!enrichmentPanel._isExpanded()'>arrow_drop_down</mat-icon>
+              <mat-icon *ngIf='enrichmentPanel._isExpanded()'>arrow_drop_up</mat-icon>
+            </div>
+
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div *ngIf='background'>
+          <div class='group-space' *ngFor='let b of background'>
+            <h5> {{'background.messages.background'|translate}} ({{ b.name | translate }})&nbsp; :</h5>
+            <p>{{ b?.value }}</p>
+          </div>
+        </div>
+
+        <div *ngIf='watermark'>
+          <div class='group-space'>
+            <h5>{{'flow.document.documentDetail.enrichment.watermark'| translate}} :</h5>
+            <p>{{ watermark }}</p>
+          </div>
+        </div>
+
+        <div *ngIf='attachments'>
+          <div class='group-space' *ngFor='let attachment of attachments'>
+            <h5> {{'background.messages.attachment'|translate}} ({{ attachment.name | translate }})&nbsp;:</h5>
+            <p>{{ attachment?.value }}</p>
+          </div>
+        </div>
+
+        <div *ngIf='signature'>
+          <div class='group-space'>
+            <h5>{{'flow.document.documentDetail.enrichment.signature' | translate}} :</h5>
+            <p>{{ signature }}</p>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </div>
+  </section>
+
+  <!-- Production criteria -->
+  <section class='production-criteria' *ngIf="flowDocumentDetail?.channel !== 'Postal'"></section>
+  <section class='production-criteria' *ngIf="flowDocumentDetail?.channel === 'Postal'">
+    <h4>{{'flow.document.documentDetail.productionCriteria.title' | translate}}</h4>
+    <div class='document-description-container'>
+      <!-- postage -->
+      <div class='group-space'>
+        <h5>{{'flow.document.documentDetail.productionCriteria.postage' | translate}} :</h5>
+        <p>{{flowDocumentDetail?.productionCriteria?.postage}}</p>
+      </div>
+
+      <!-- printing -->
+      <div class='group-space'>
+        <h5>{{'flow.document.documentDetail.productionCriteria.printing' | translate}} :</h5>
+        <p>{{flowDocumentDetail?.productionCriteria?.printing}}</p>
+      </div>
+
+      <!-- color -->
+      <div class='group-space'>
+        <h5>{{'flow.document.documentDetail.productionCriteria.color' | translate}} :</h5>
+        <p>{{flowDocumentDetail?.productionCriteria?.color |cxmColor |translate}}</p>
+      </div>
+
+      <!-- envelope -->
+      <div class='group-space'>
+        <h5>{{'flow.document.documentDetail.productionCriteria.envelope' | translate}} :</h5>
+        <p class='capitalize'>{{flowDocumentDetail?.productionCriteria?.envelope}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data extraction -->
+  <section class='data-extraction'>
+    <h4>{{'flow.document.documentDetail.dataExtraction.title' | translate}}</h4>
+    <div class='document-description-container'>
+      <div class='group-space'>
+        <table>
+          <tr *ngIf="flowDocumentDetail?.channel === 'Postal'">
+            <td><h5>{{ 'flow.document.documentDetail.reference'|translate}} :</h5></td>
+            <td><p>{{ flowDocumentDetail?.dataExtraction?.reference }}</p></td>
+          </tr>
+
+          <tr
+            *ngIf='flowDocumentDetail?.dataExtraction?.fillers && flowDocumentDetail.dataExtraction.fillers.length <= 0'>
+            <td colspan='2'>
+              <h5 style='width: 15rem;'>{{ 'flow.document.documentDetail.noFillerConfig'|translate }}</h5>
+            </td>
+          </tr>
+          <ng-container
+            *ngIf='flowDocumentDetail?.dataExtraction?.fillers && flowDocumentDetail.dataExtraction.fillers.length > 0'>
+            <tr *ngFor='let item of flowDocumentDetail?.dataExtraction?.fillers; let i = index'>
+              <td><h5>{{ item.key }} :</h5></td>
+              <td><p>{{ item.value }}</p></td>
+            </tr>
+          </ng-container>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>

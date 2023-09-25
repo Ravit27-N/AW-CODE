@@ -1,0 +1,47 @@
+
+// .storybook-input{
+//   font-size: 14px;
+//   padding-top: 8px;
+//   padding-bottom: 8px;
+//   width: 100%;
+//   border:0px ;
+//   border-radius: 5px;
+//   box-shadow: rgba(0, 30, 32, 0.1);
+//   border: 1px rgba(255, 255, 255, 0.2) solid;
+//   outline: none 0px;
+//   box-sizing: border-box;
+// }
+
+// input:hover{
+//   border:0px;
+//   border: 1px rgba(1, 24, 26, 0.5) solid;
+//   border-radius: 5px;
+//   outline: none 0px;
+// }
+
+// input:focus{
+//   border:0px;
+//   border: 1px rgba(1, 24, 26, 0.5) solid;
+//   border-radius: 5px;
+//   outline: none 0px;
+// }
+
+// input {
+//   padding-left: 8px;
+//   padding-right: -8px;
+//   margin-top: 5px;
+//   margin-bottom: 5px;
+// }
+
+input {
+  @apply rounded-lg border-2 py-2 px-4;
+  border-color: #EEEEEE;
+  opacity: 1;
+  width: 100%;
+  background: #F6F6F6 0% 0% no-repeat padding-box;
+  outline: none;
+}
+
+input:hover, input:focus {
+  border-color: #0060A5;
+}

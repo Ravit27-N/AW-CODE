@@ -1,0 +1,74 @@
+<div class="login-container fixed top-0 right-0 w-full h-full flex flex-col">
+
+  <div class="content mx-auto flex flex-col relative">
+
+    <div class="flex-grow flex flex-col content-wrapper">
+
+      <div class="flex-grow flex content-wrapper-layout">
+        <div class="content-home">
+          <div class="cover h-full content-home-wrapper">
+
+            <div class="logo-group space-y-4">
+              <img class="logo-cxm" src="assets/images/cxm.svg" alt="Digital Experience by Tessi">
+              <img class="logo-pc" src="assets/images/fond-min.png" alt="Digital Experience by Tessi">
+            </div>
+          </div>
+        </div>
+
+        <div class="conent-form">
+          <div class="lang-switcher-top ">
+            <cxm-smartflow-lang-switcher></cxm-smartflow-lang-switcher>
+          </div>
+          <!-- <div> -->
+            <form [formGroup]='this.signIn' (ngSubmit)='this.login()'>
+              <h3>{{'login.label'|translate}}</h3>
+
+              <div class="mt-auto mb-4">
+                <label for="username">{{ 'login.form.username.label' | translate }}</label>
+                <div>
+                  <input type='text' (blur)="usernameErrorOnBlur()" [placeholder]="'login.form.username.placeholder'|translate" id='username' formControlName='username' (keyup.enter)='this.login()'
+                  cxmSmartflowCxmTooltip
+                  [tooltipText]="usernameErrorMessage"
+                  [showTooltip]="isUsernameError || isUsernameErrorOnBlur"
+                  />
+                </div>
+              </div>
+
+              <div class="mb-auto">
+                <label for="password">{{ 'login.form.password.label' | translate }}</label>
+                <div class="relative">
+                  <input id='password' formControlName='password' [type]=" showPassword ?  'text' : 'password'" (keyup.enter)='this.login()'
+                    cxmSmartflowCxmTooltip
+                    [tooltipText]="passwordErrorMessage"
+                    [showTooltip]="isPasswordError"
+                  />
+
+                  <mat-icon (click)="togglerShowPw()" *ngIf="!showPassword && password?.value?.length > 0" class="showhide-icon">visibility</mat-icon>
+                  <mat-icon (click)="togglerShowPw()" *ngIf="showPassword && password?.value?.length > 0" class="showhide-icon">visibility_off</mat-icon>
+                </div>
+              </div>
+
+              <div class="justify-self-end">
+                <button class="mb-4" type='submit'>{{ 'login.button.login' | translate }}</button>
+
+                <div class="text-center">
+                  <a class="forgot-password" routerLink="/forgot-password">{{ 'login.form.forgotPassword' | translate }}</a>
+                </div>
+              </div>
+
+
+            </form>
+          <!-- </div> -->
+
+        </div>
+      </div>
+      <div class="relative h-11">
+        <cxm-smartflow-footer [padRight]="true"  position='Abs' [leftFooters]='leftFooters' [rightFooters]='rightFooters'></cxm-smartflow-footer>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+

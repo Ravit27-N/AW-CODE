@@ -1,0 +1,21 @@
+<table mat-table [dataSource]='services$'>
+  <ng-container matColumnDef='service'>
+    <th mat-header-cell *matHeaderCellDef>{{'about_page.table.service' | translate | uppercase}}</th>
+    <td mat-cell *matCellDef='let row'>
+      {{row?.serviceName}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef='version'>
+    <th mat-header-cell *matHeaderCellDef>{{'about_page.table.version' | translate | uppercase}}</th>
+    <td mat-cell *matCellDef='let row'>
+      {{row?.instances[0].version}}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef='this.displayColumns; sticky: true'></tr>
+  <tr mat-row *matRowDef='let row; columns: displayColumns;'></tr>
+  <tr *matNoDataRow>
+    <td class="mat-cell no-data-cell" [colSpan]="this.displayColumns.length"></td>
+  </tr>
+</table>

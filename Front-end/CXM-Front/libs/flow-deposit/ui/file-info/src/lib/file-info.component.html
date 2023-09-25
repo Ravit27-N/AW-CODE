@@ -1,0 +1,9 @@
+<div class='container' *ngIf='isFlowCancelable'>
+  <div class='img-container'>
+    <img src='assets/icons/icon-file-pdf.png' alt='pdf file icon'>
+  </div>
+  <div class='alert'>
+    <h5>{{fileName}}</h5>
+    <div class='span-x' (click)='cancelFlow()'>X</div>
+  </div>
+</div>

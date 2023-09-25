@@ -1,0 +1,32 @@
+<article class='flex flex-row justify-between'>
+
+  <header>
+    <app-ng-dynamic-breadcrumb symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{ 'directory.directory_feed_details_title' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header small>
+      {{ 'directory.directory_feed_details_sub_title' | translate}}
+      <span class="directory__name">{{ feedDirectoryName }}</span>
+    </cxm-smartflow-page-sub-header>
+  </header>
+
+  <div class='flex flex-col justify-end'>
+    <div class='flex justify-end'>
+      <cxm-smartflow-header-button width='204px' height='48px' minWidth='204px' *ngIf='_canExportCSV' (click)="exportFeedCsv()">
+        {{'directory.directory_feed_details_export_csv' | translate}}
+      </cxm-smartflow-header-button>
+
+      <cxm-smartflow-header-button icon='add' class='ml-3' width='auto' height='48px' minWidth='204px' *ngIf='isCanImport$ | async' (click)="importDirectoryFeedCsv()">
+        {{'directory.directory_feed_details_import_csv' | translate}}
+      </cxm-smartflow-header-button>
+
+      <cxm-smartflow-header-button (click)='addDirectory()' icon='add' class='ml-3' width='auto' height='48px'
+                                   minWidth='204px' *ngIf='isCanAddNew$ | async'>
+        {{'directory.directory_feed_details_add_more_line' | translate}}
+      </cxm-smartflow-header-button>
+    </div>
+  </div>
+
+</article>
+<mat-divider class="common-mat-divider"></mat-divider>
+
+<cxm-smartflow-directory-feed-complex-form [directoryId]='directoryId'></cxm-smartflow-directory-feed-complex-form>

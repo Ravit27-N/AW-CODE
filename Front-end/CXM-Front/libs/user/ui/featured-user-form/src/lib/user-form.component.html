@@ -1,0 +1,211 @@
+<main class='user-form-container'>
+  <article class='user-info-form'>
+
+    <form class='user-info-form-wrapper'
+          autocomplete='off'
+          [class.user-info-form-wrapper-create]='mode === userFormUpdateMode.CREATE'
+          [class.user-info-form-wrapper-multiple]='mode === userFormUpdateMode.UPDATE_MULTIPLE' [formGroup]='formGroup'>
+
+        <section class="form-group flex flex-row items-center" *ngIf='isAdmin && (mode === userFormUpdateMode.CREATE || mode === userFormUpdateMode.UPDATE_SINGLE)'>
+          <label>{{ 'user.form.label.adminstration' | translate }} :</label>
+          <mat-radio-group class="flex" formControlName="admin">
+            <mat-radio-button class="flex-1 mr-12" [value]="true">{{ 'user.form.label.yes'|translate }}</mat-radio-button>
+            <mat-radio-button class="flex-1" [value]="false">{{ 'user.form.label.no'|translate }}</mat-radio-button>
+          </mat-radio-group>
+        </section>
+
+      <!-- Client name-->
+      <section class='form-group' *ngIf='isAdmin && mode !== userFormUpdateMode.UPDATE_MULTIPLE'>
+        <label>{{'user.form.label.client' | translate}} :</label>
+        <article class='client-selection-container'>
+          <cxm-smartflow-input-selection [datasource]='clients'
+                                         [selectSourceKey]='clientIdSelected'
+                                         [isShowError]='errorFormControl.includes(userFormProperties.CLIENT_ID)'
+                                         [errorMsg]='clientIdErrorMessage | translate'
+                                         (selectedSource)='onClientSelectEvent($event)'
+                                         [isDisabled]="isDisabled">
+          </cxm-smartflow-input-selection>
+        </article>
+      </section>
+
+      <!-- First name -->
+      <section class='form-group first-name' *ngIf='mode !== userFormUpdateMode.UPDATE_MULTIPLE'>
+        <label for='user-first-name'>{{'user.form.label.firstName' | translate}} :</label>
+        <input type='text' id='user-first-name' formControlName='firstName' placeholder='Nicolas' cxmSmartflowCxmTooltip
+               cxmSmartflowTitleCase
+               oninput="this.value = this.value.toString()"
+               [tooltipText]='firstNameErrorMessage | translate'
+               [showTooltip]='errorFormControl.includes(userFormProperties.FIRST_NAME)'>
+      </section>
+      <!-- Last name -->
+      <section class='form-group last-name' *ngIf='mode !== userFormUpdateMode.UPDATE_MULTIPLE'>
+        <label for='user-last-name'>{{'user.form.label.lastName' | translate}} :</label>
+        <input type='text' id='user-last-name' formControlName='lastName' placeholder='DUBOIS' cxmSmartflowCxmTooltip
+               oninput='this.value = this.value.toUpperCase()'
+               [tooltipText]='lastNameErrorMessage | translate'
+               [showTooltip]='errorFormControl.includes(userFormProperties.LAST_NAME)'>
+      </section>
+
+      <!-- Email -->
+      <section class='form-group email' *ngIf='mode !== userFormUpdateMode.UPDATE_MULTIPLE'>
+        <label>{{'user.form.label.email' | translate}} :</label>
+        <input type='text' formControlName='email'
+               [placeholder]='"user.form.label.emailExample" | translate' cxmSmartflowCxmTooltip
+               [class.disabled]='mode === userFormUpdateMode.UPDATE_SINGLE'
+               [tooltipText]='emailErrorMessage | translate'
+               [showTooltip]='errorFormControl.includes(userFormProperties.EMAIL)'>
+      </section>
+
+      <!-- Password -->
+      <!--<div class='w-full flex flex-row items-center mt-3'
+               *ngIf='mode === userFormUpdateMode.CREATE || (mode === userFormUpdateMode.UPDATE_SINGLE && isAdminUser)'>
+        <label for='user-password'>{{'user.form.label.password' | translate}} :</label>
+
+        <div lass='fxFlex' style="position: relative">
+
+          <mat-form-field
+appearance="outline"
+[color]="passwordComponentWithConfirmation.color"
+style=" width: 385px;" >
+<mat-pass-toggle-visibility #toggle3 matSuffix > </mat-pass-toggle-visibility>
+<input
+  matInput
+  #passwordWithConfirmation
+  [type]="toggle3.type"
+  formControlName="passwordComponent"
+  placeholder="Password"
+  required
+/>
+
+<mat-error
+  *ngIf="passwordComponentWithConfirmation.passwordFormControl.hasError('required')">
+  Password is required
+</mat-error>
+<mat-error
+  *ngIf="passwordComponentWithConfirmation.passwordFormControl.hasError('pattern')">
+  Password is not valid
+</mat-error>
+</mat-form-field>
+
+
+<mat-password-strength
+[min]="12"
+(onStrengthChanged)="onStrengthChanged($event)"
+#passwordComponentWithConfirmation
+[password]="passwordWithConfirmation.value">
+</mat-password-strength>
+
+
+<mat-password-strength-info
+[lowerCaseCriteriaMsg]="'forgot-password.error_contains_at_least_one_lower_character' | translate"
+              [upperCaseCriteriaMsg]="'forgot-password.error_contains at_least_one_upper_character'| translate"
+              [digitsCriteriaMsg]="'forgot-password.error_contains_at_least_one_digit'| translate"
+              [specialCharsCriteriaMsg]="'forgot-password.error_contains_at_least_one_special_character' | translate"
+              [minCharsCriteriaMsg]="'forgot-password.error_contains_at_least_twelve_characters' | translate"
+ passwordComponentWithValidation
+*ngIf="passwordWithConfirmation.value.length > 0"
+[passwordComponent]="passwordComponentWithConfirmation">
+</mat-password-strength-info>
+        </div>
+      </div> -->
+
+      <!-- Confirmed password -->
+      <!--<div class='w-full flex flex-row items-center mt-3'
+               *ngIf='mode === userFormUpdateMode.CREATE || (mode === userFormUpdateMode.UPDATE_SINGLE && isAdminUser)'>
+        <label for='user-confirm-password'>{{'user.form.label.confirmPassword' | translate}} :</label>
+        <div class='box-wrapper'>
+
+        <div lass='fxFlex' style="position: relative">
+        <mat-form-field
+appearance="outline"
+class="mt-3"
+style=" width: 385px;">
+<mat-label>Confirm Password</mat-label>
+<mat-pass-toggle-visibility
+  #toggleConfirmPassword
+  matSuffix>
+</mat-pass-toggle-visibility>
+<input
+  matInput
+  #passwordToConfirm
+  [type]="toggleConfirmPassword.type"
+  [formControl]="passwordComponentWithConfirmation.passwordConfirmationFormControl"
+  placeholder="Password"
+/>
+
+
+<mat-error
+  *ngIf="passwordComponentWithConfirmation.passwordConfirmationFormControl.hasError('required'
+    )
+  "
+>
+{{'forgot-password.error_password_confirmation_required' | translate}}
+</mat-error>
+<mat-error *ngIf="passwordComponentWithConfirmation.passwordConfirmationFormControl.hasError('notConfirmed')">
+  {{'forgot-password.error_password_notmatch' | translate}}
+</mat-error>
+</mat-form-field>
+</div>
+        </div>
+      </div> -->
+
+      <!-- Service Id -->
+      <section class='form-group service' *ngIf='mode !== userFormUpdateMode.UPDATE_MULTIPLE'>
+        <label>{{'user.form.label.divService' | translate}} : </label>
+        <article class='service-selection__container'>
+          <cxm-smartflow-input-selection [datasource]='divService'
+                                         [selectSourceKey]='serviceIdSelected'
+                                         [isShowError]='errorFormControl.includes(userFormProperties.SERVICE_ID)'
+                                         [errorMsg]='serviceIdErrorMessage | translate'
+                                         (selectedSource)='selectService($event)'>
+          </cxm-smartflow-input-selection>
+        </article>
+      </section>
+
+      <!-- Profiles -->
+      <section class='form-group service'>
+        <label>{{'user.form.label.profile' | translate}} : </label>
+        <article class='profiles-selector'>
+          <cxm-smartflow-multi-input-selection
+            [datasource]='profiles'
+            [selectSourceKey]='profileIdsSelected'
+            [isShowError]='errorFormControl.includes(userFormProperties.PROFILES)'
+            [errorMsg]='profileIdsErrorMessage | translate'
+            (selectedSource)='selectProfile($event)'
+            [addSourceBtn]='"user.form.button.addNewProfile" | translate'>
+          </cxm-smartflow-multi-input-selection>
+        </article>
+      </section>
+
+      <!-- Return address -->
+      <section class="form-field__return-address--container" *ngIf='mode !== userFormUpdateMode.UPDATE_MULTIPLE'>
+        <section class="fragment-field__group flex">
+          <label class="field-return-address__label">{{ 'client.fragment_return_address_field_return_address' | translate }}</label>
+          <div class="field-select">
+            <cxm-smartflow-input-selection
+              [datasource]="userAddressLevel|| []"
+              (selectedSource)="returnAddressLevelChanged($event)"
+              [selectSourceKey]="(selectUserAddressLevel$ | async) || ''">
+            </cxm-smartflow-input-selection>
+          </div>
+        </section>
+        <div *ngIf="isUserLevel">
+          <cxm-smartflow-fragment-return-address
+            (valueChangeEvent)="updateReturnAddress($event)" #returnAddressElement
+            [fragmentReturnAddress]="returnAddress"></cxm-smartflow-fragment-return-address>
+        </div>
+
+      </section>
+    </form>
+
+  </article>
+</main>
+
+<!-- Action button. -->
+<section class='action-button-container'>
+  <button class='cancel-btn' (click)='cancelForm.emit()'>{{'user.form.button.cancel' | translate}}</button>
+  <button class='submit-btn' (click)='beforeSubmit()'
+          *ngIf='mode === userFormUpdateMode.CREATE && userFormControlService.isCanCreate'>{{'user.form.button.create' | translate}}</button>
+  <button class='submit-btn' (click)='beforeSubmit()'
+          *ngIf='mode !== userFormUpdateMode.CREATE && userFormControlService.isCanModify'>{{'user.form.button.modify' | translate}}</button>
+</section>

@@ -1,0 +1,49 @@
+<div *ngIf='this.hasActiveAccount$ | async'>
+<cxm-smartflow-page-header>{{'dashboard.header_title'|translate|uppercase}}</cxm-smartflow-page-header>
+
+<mat-divider class="my-2"></mat-divider>
+<cxm-smartflow-page-sub-header [right]="true">
+  <span *ngIf="refreshTime$|async as refreshTime">
+    {{ 'dashboard.refresh_time'|translate }} {{refreshTime|cxmdate:'dd/MM/yyyy HH:mm:ss': 'dd/MM/yyyy HH:mm:ss'}}
+  </span>
+</cxm-smartflow-page-sub-header>
+
+<label [matMenuTriggerFor]="dashboardMenu" class="flex align-middle items-center filters-button relative" style="width: 230px;"
+  *ngIf="graphFilter$|async as graphFilter"
+  [matMenuTriggerData]="wrapInObject(graphFilter,'graphFilter')">
+  <span class='calendar-wrapper flex align-middle items-center'>
+    <span class="pr-2"><img src='assets/icons/calendar.svg' alt='dates icon'></span>
+    <!-- <span class='sortValue' [class.activated-filter]="">{{'Dates'|translate}}</span> -->
+
+    <span class="flex flex-row btn-dropdown-label active">
+      <span [class.hightligh]="true">{{startDatelabel}}</span>
+      <span>
+        <img class="separate-date-label" [class.hightligh]="true" src="assets/icons/right-arrow.png" alt="right arrow icon">
+      </span>
+      <span [class.hightligh]="true">{{endDatelable}}</span>
+    </span>
+
+
+  </span>
+  <mat-icon class='expand_more ml-auto'>expand_more</mat-icon>
+</label>
+
+<div class="mb-6"></div>
+
+<section>
+  <cxm-smartflow-graph-deposit-mode></cxm-smartflow-graph-deposit-mode>
+  <cxm-smartflow-campaign-report-evolution></cxm-smartflow-campaign-report-evolution>
+  <cxm-smartflow-graph-channel-envoy></cxm-smartflow-graph-channel-envoy>
+  <cxm-smartflow-campaign-report-table-card></cxm-smartflow-campaign-report-table-card>
+</section>
+
+
+<mat-menu #dashboardMenu="matMenu"  xPosition="after" class="common-filter-menu-panel dashboard-menu-panel" style="width: 600px;">
+  <ng-template matMenuContent let-calendarFilter="graphFilter">
+    <div class="menu-content" (click)='$event.stopPropagation()' style="width: 600px;">
+      <cxm-smartflow-calendar-date-selector [calendarOptions]="calendarFilter"
+      (calenderChanged)="oncalendarChanged($event)"></cxm-smartflow-calendar-date-selector>
+    </div>
+  </ng-template>
+</mat-menu>
+</div>

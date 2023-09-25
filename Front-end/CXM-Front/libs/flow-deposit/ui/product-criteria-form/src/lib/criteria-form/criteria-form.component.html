@@ -1,0 +1,84 @@
+<div class="px-3 pt-3 pb-9">
+  <form [formGroup]="criteriaForm">
+    <div class="grid grid-cols-3 gap-4 gap-y-7 form-criteria-panel">
+      <!-- Row 1 -->
+      <div>
+        <label class="text-label">{{'flow.deposit.productionCriteria.form.label.postage'|translate}} :</label>
+      </div>
+      <div class="col-span-2 mr-5">
+        <div class='w-full'>
+          <mat-select class="rounded-sm select-panel" formControlName="urgency" [class.postage-mat-select]='postageHasDefaultConfig'>
+            <mat-option *ngFor="let item of postageModels" [disabled]="!item.value" [value]="item.value" [ngClass]="{'postage-mat-option': item.selected && item.value }">
+              {{'flow.deposit.productionCriteria.form.postageType.' + item.key | translate}}
+            </mat-option>
+          </mat-select>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div>
+        <label class="text-label">{{'flow.deposit.productionCriteria.form.label.color'|translate}} :</label>
+      </div>
+      <div class='col-span-2'>
+        <mat-radio-group class='flex' formControlName='color' [class.color-mat-radio]='colorHasDefaultConfig'>
+          <mat-radio-button class='flex-1'
+                            value='1'>{{'flow.deposit.productionCriteria.form.label.monochrome'|translate}}</mat-radio-button>
+          <mat-radio-button class='flex-1'
+                            value='0'>{{'flow.deposit.productionCriteria.form.label.quardchrome'|translate}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <!-- Row 3 -->
+      <div>
+        <label class="text-label">{{'flow.deposit.productionCriteria.form.label.impression'|translate}} :</label>
+      </div>
+      <div class="col-span-2">
+        <mat-radio-group class="flex" formControlName="recto" [class.recto-mat-radio]='rectoHasDefaultConfig'>
+          <mat-radio-button class="flex-1"
+            value="RV">{{'flow.deposit.productionCriteria.form.label.recto'|translate}}</mat-radio-button>
+          <mat-radio-button class="flex-1"
+            value="R">{{'flow.deposit.productionCriteria.form.label.rectoverso'|translate}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <!-- Row 4 -->
+      <div>
+        <label class="text-label">{{'flow.deposit.productionCriteria.form.label.evenlope'|translate}} :</label>
+      </div>
+      <div class="col-span-2">
+        <mat-radio-group class="flex" formControlName="wrap" [class.wrap-mat-radio]='wrapHasDefaultConfig'>
+          <mat-radio-button class="flex-1"
+            value="Auto">{{'flow.deposit.productionCriteria.form.label.auto'|translate}}</mat-radio-button>
+          <mat-radio-button value="C4"
+                            class="flex-1">{{'flow.deposit.productionCriteria.form.label.c4'|translate}}</mat-radio-button>
+          <mat-radio-button class="flex-1"
+                            value="C5">{{'flow.deposit.productionCriteria.form.label.c5'|translate}}</mat-radio-button>
+          <mat-radio-button class="flex-1"
+                            value="C6">{{'flow.deposit.productionCriteria.form.label.c6'|translate}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <!-- Row 5 -->
+      <div>
+        <label class="text-label">{{'flow.deposit.productionCriteria.form.label.leaflet'|translate}} :</label>
+      </div>
+      <div class="col-span-2">
+        <div class="checkbox-panel">
+          <div class="flex flex-row justify-items-center">
+            <input formControlName="leaflet" type="checkbox" class="checkbox-input" id="checkbox">
+            <label for="checkbox">
+            <span class="checkbox">
+            </span>
+            </label>
+            <label class="ml-2">{{'flow.deposit.productionCriteria.form.label.takeover'|translate}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <p *ngIf='hasHasAppliedDefaultConfig' class='has-applied-default-config pt-3 px-3'>
+    {{ 'flow.deposit.productionCriteria.hasAppliedDefaultConfig'|translate }}
+  </p>
+
+</div>

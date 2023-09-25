@@ -1,0 +1,35 @@
+<div class='text-right'>
+  <mat-icon class='cursor-pointer hover:opacity-90' (click)='close()'>close</mat-icon>
+</div>
+
+<div class='px-8 flex flex-col'>
+  <h3 class='mb-2'>{{'template.card.overviewButton'|translate}}</h3>
+
+  <div class='flex flex-grow'>
+    <div class='w-1/3'>
+
+      <div class='mt-8'>
+        <h4 class='mb-2'>{{'template.variableForm.title'|translate}}</h4>
+
+        <ul>
+          <li *ngFor='let variable of template?.variables; let i = index;'
+              class='relative text-truncate' id='_{{i}}'
+              (mousemove)='showTooltip("#_" + i, variable)'
+              [title]='showTooltip("#_" + i, variable)'>{{variable}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class='w-2/3'>
+      <div class='previewer'>
+        <cxm-smartflow-iframely-embed [width]='635' [height]='470' *ngIf="template.templateType === 'EMAILING'"
+                                      [srcDoc]='sourceHTML'></cxm-smartflow-iframely-embed>
+        <cxm-smartflow-preview-sms-template *ngIf="template.templateType === 'SMS'" [smsContent]='sourceHTML'
+                                            smsContentMaxHeight='260px'
+                                            smsContentMinHeight='183px'></cxm-smartflow-preview-sms-template>
+      </div>
+    </div>
+  </div>
+
+</div>
+

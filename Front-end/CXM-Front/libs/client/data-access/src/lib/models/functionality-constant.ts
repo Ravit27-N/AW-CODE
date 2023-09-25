@@ -1,0 +1,19 @@
+export const functionalityConstant = [
+  'cxm_flow_traceability',
+  'cxm_statistic_report',
+  'cxm_template',
+  'cxm_sms_template',
+  'cxm_campaign',
+  'cxm_sms_campaign',
+  'cxm_flow_deposit',
+  'cxm_setting_up_document_template',
+  'cxm_directory',
+  'cxm_communication_interactive',
+  'cxm_espace_validation',
+  'cxm_client_management',
+  'cxm_user_management',
+  'cxm_management_library_resource',
+  'cxm_enrichment_mailing',
+  'cxm_watermark_enhancement_postal_delivery',
+  'cxm_setting_up_consumables'
+];

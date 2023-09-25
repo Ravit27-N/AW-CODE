@@ -1,0 +1,156 @@
+.filters-button {
+  /* UI Properties */
+  background: var(--unnamed-color-3b82f6) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #9DB2BF1A;
+  border-radius: 20px;
+  opacity: 1;
+  // width: 126px;
+  height: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+  transition: all 0.3s ease;
+
+
+  .material-icons{
+    color: #BCD5FF;
+    opacity: 1;
+  }
+
+  &:hover{
+    cursor: pointer;
+    background-color: rgba(59, 130, 246, 0.9);
+  }
+}
+
+.sortValue {
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-17) var(--unnamed-font-family-rubik);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-ffffff);
+  opacity: 1;
+  padding-left: 11px;
+  padding-right: 5px;
+}
+
+.menu-content {
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  border: 1px solid var(--unnamed-color-f5f5f5);
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.channel-menu-content {
+  width: 260px;
+  height: 408px;
+}
+
+.date-menu-content {
+  width: 320px;
+  height: 302px;
+}
+
+.users-menu-content {
+  // width: 302px;
+  width: 260px;
+  height: 221px;
+}
+
+.menu-label {
+  color: var(--unnamed-color-2e2e2e);
+  text-align: left;
+  font: normal normal 600 14px/17px Rubik;
+  letter-spacing: 0px;
+}
+
+.text-reset {
+  color: var(--unnamed-color-3b82f6);
+  text-align: right;
+  font: normal normal 500 12px/14px Rubik;
+}
+
+.category-content {
+  margin-top: auto;
+  height: 236px;
+  overflow-y: auto;
+
+}
+
+.users-content {
+  margin-top: auto;
+  height: 164px;
+  overflow-y: auto;
+}
+
+cxm-smartflow-common-checkbox {
+  color: var(--unnamed-color-1a214d);
+  text-align: left;
+  font: normal normal normal 14px/17px Rubik;
+}
+
+
+.category-content-inner {
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  border: 0.5px solid var(--unnamed-color-8194b4);
+  border-radius: 5px;
+  min-height: 236px;
+}
+
+.category-content-inner cxm-smartflow-common-checkbox {
+  color: var(--unnamed-color-2e2e2e);
+}
+
+.category-content-inner-user {
+  min-height: 156px;
+}
+
+.datetimeButton {
+  background: var(--unnamed-color-3b82f6) 0% 0% no-repeat padding-box;
+  border-radius: 5px;
+  color: var(--unnamed-color-ffffff);
+  text-align: center;
+  font: normal normal 500 12px/14px Rubik;
+  padding: 0.625rem 0.456rem;
+}
+
+.datetime-reset {
+  background: none;
+  color: var(--unnamed-color-3b82f6);
+}
+
+
+.sort-icon-panel {
+  color: var(--unnamed-color-3b82f6);
+  font-size: 15px;
+  font-weight: 900;
+
+  .sort-icon {
+    &-asc:before {
+      @apply px-2 cursor-pointer;
+      content: "\2191";
+    }
+
+    &-desc:before {
+      @apply px-2 cursor-pointer;
+      content: '\2193';
+    }
+  }
+}
+
+.calendar-wrapper {
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-17) var(--unnamed-font-family-rubik);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-ffffff);
+  padding-left: 11px;
+  padding-right: 5px;
+}
+
+.separate-date-label {
+  @apply px-2;
+  width: 34px;
+}
+
+span.hightligh {
+  color: #feb037;
+}
+img.hightligh {
+  filter: invert(24%) sepia(81%) saturate(2077%) hue-rotate(331deg) brightness(104%) contrast(99%)
+}

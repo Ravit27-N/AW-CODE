@@ -1,0 +1,10 @@
+<button mat-fab color="cxm-button-blue" class="mat-elevation-z0 relative" disableRipple="true"
+cxmSmartflowRoundButtonTooltip
+[hint]="hint"
+[disabled]="disabled"
+cdk-overlay-origin
+(click)="onclick?.emit($event)">
+  <mat-icon>
+    <ng-content></ng-content>
+  </mat-icon>
+</button>

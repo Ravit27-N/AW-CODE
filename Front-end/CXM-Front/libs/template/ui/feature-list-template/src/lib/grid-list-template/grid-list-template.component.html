@@ -1,0 +1,113 @@
+<section *ngIf="templateList$ | async as templateList">
+  <div class="template-grid mb-6">
+    <div
+      *ngIf="allowCreate"
+      class="template-card shadow cursor-pointer items-center justify-center"
+      (click)="requestCreate()"
+    >
+      <div class="w-2/3 text-center space-y-8">
+        <div class="create-card w-28 h-28 mx-auto rounded-full">
+          <mat-icon [inline]="true" class="w-28 h-28">add</mat-icon>
+        </div>
+        <h5 class="create-card-h5">
+          {{
+            'cxmTemplate.emailingTemplate.create.createButton'
+              | translate
+              | uppercase
+          }}
+        </h5>
+      </div>
+    </div>
+
+    <div class="template-card shadow relative cursor-pointer" *ngFor="let template of templateList.contents">
+      <button (click)="$event.stopPropagation()" [matMenuTriggerFor]="templateMenu" class="shadow rounded-full absolute top-2 text-lg right-2 z-50 w-7 h-7 bg-white text-blue-900"
+              *ngIf='template?.privilege?.canShowToggleButton' (menuOpened)='mainMenuOpen()' (menuClosed)='mainMenuClose()'>
+        <mat-icon [inline]="true" class='more_horiz'>more_horiz</mat-icon>
+      </button>
+
+      <mat-menu #templateMenu="matMenu" xPosition="before">
+        <button mat-menu-item *ngIf="template?.privilege?.canCopy" (click)="requestCopy(template)">
+          <mat-icon>content_copy</mat-icon>
+          <span>{{ 'template.card.option.duplicate' | translate }}</span>
+        </button>
+
+        <button mat-menu-item [mat-menu-trigger-for]="downloadFormat" *ngIf="template?.privilege?.canDownload">
+          <mat-icon>file_download</mat-icon>
+          <span>{{ 'template.card.option.downloadHtml' | translate }}</span>
+        </button>
+
+        <div class="border-t"></div>
+        <button mat-menu-item *ngIf="template?.privilege?.canDelete" (click)="requestDelete(template)">
+          <span class="mr-4 cxm-icon text-icon-red" style="background-image: url('assets/icons/delete.svg')"></span>
+          <span class="text-icon-red">{{'template.card.option.delete' | translate}}</span>
+        </button>
+      </mat-menu>
+
+      <mat-menu #downloadFormat="matMenu">
+        <button mat-menu-item (click)="requestDownload(template)">
+          {{ template?.downloadOption }}
+        </button>
+      </mat-menu>
+
+      <div class="flex-grow rounded-t-lg w-full img-cover relative">
+<!--         <img class="mx-auto" src="https://placekitten.com/200/300" />-->
+        <cxm-smartflow-image [imageURL]="template?.imgUrl"></cxm-smartflow-image>
+
+        <!-- Modify -->
+        <div
+          (click)="requestModify(template)"
+          *ngIf="template?.privilege?.canModify"
+          class="modify-active flex flex-col justify-center items-center"
+        >
+          <div class="text-white text-center text-3xl">
+            <!-- <mat-icon [inline]="true">create</mat-icon> -->
+            <span
+              class="cxm-icon text-icon-white"
+              style="
+                background-image: url('assets/icons/pencil-square.svg');
+                width: 40px;
+                height: 40px;
+              "
+            ></span>
+          </div>
+          <h4 class="text-lg font-semibold">
+            {{ 'template.card.option.modify' | translate }}
+          </h4>
+        </div>
+
+        <!-- View readonly -->
+        <div
+          (click)="requestView(template)"
+          [class.hidden]="
+            template?.privilege?.canModify || !template?.privilege?.canView
+          "
+          class="modify-active flex flex-col justify-center items-center"
+        >
+          <div class="text-white text-center text-3xl">
+            <mat-icon [inline]="true">visibility</mat-icon>
+          </div>
+          <h4 class="text-lg font-semibold">
+            {{ 'template.card.option.visible' | translate }}
+          </h4>
+        </div>
+      </div>
+
+      <div class="px-2 card-text-group">
+        <div style='height: 45px;' class='flex items-center border-b'>
+          <h5 class="px-2 overflow-hidden overflow-ellipsis text-center whitespace-nowrap" [title]="template.modelName">{{ template.modelName }}</h5>
+        </div>
+        <div style='height: 53px;' class='flex items-center'>
+          <p class="px-2 text-xs">{{ template.lastModified | date: 'dd/MM/yyyy HH:mm' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <cxm-smartflow-list-paginator
+    [withCriteria]="(filters$ | async).filter?.length > 0"
+    (page)="onpaginationChanged.emit($event)"
+    [pageIndex]="templateList.page || 0"
+    [pageSize]="templateList.pageSize || 0"
+    [length]="templateList.total || 0"
+  ></cxm-smartflow-list-paginator>
+</section>

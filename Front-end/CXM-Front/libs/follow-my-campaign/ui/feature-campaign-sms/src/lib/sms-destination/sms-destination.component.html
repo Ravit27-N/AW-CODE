@@ -1,0 +1,63 @@
+<cxm-smartflow-spinner *ngIf='isLoading$ | async'></cxm-smartflow-spinner>
+
+<mat-card>
+  <mat-card-content class="mb-8">
+    <form [formGroup]="formGroup">
+
+      <div class="flex flex-row align-middle">
+        <label class="mr-2 text-base">{{'cxmCampaign.followMyCampaign.label_email_destination'|translate}}: </label>
+        <mat-icon (click)="toggleInfoMessage()" class="cursor-pointer icon-hover" mode="rich" cxmSmartflowTooltip #csvInfoMsg=cxmSmartflowTooltip [hint]="infoMessage">info_outline</mat-icon>
+      </div>
+      <div>
+        <input class="hidden" accept=".csv" type="file" #fileupload (change)="selectFile($event)" />
+        <input [value]="csvData?.originalName || ''" [disabled]="true" class="file-input" type="text" placeholder="{{'cxmCampaign.followMyCampaign.form_select_file'|translate}}" />
+
+        <button type="button" mat-button class="upload-button px-4" (click)="fileupload.click()" >
+          <mat-icon class="text-white mr-2" [inline]="true">folder</mat-icon>
+          <span class="text-white">{{'cxmCampaign.followMyCampaign.form_button_upload'|translate}}</span>
+        </button>
+      </div>
+
+
+      <div>
+        <mat-checkbox disableRipple="true" formControlName="hasHeader">{{'cxmCampaign.followMyCampaign.form_ckb_check_header'|translate}}</mat-checkbox>
+      </div>
+      <div>
+        <mat-checkbox disableRipple="true" formControlName="checkSameNumber">{{'cxmCampaign.followMyCampaign.form_ckb_remove_same_telephone'|translate}}</mat-checkbox>
+      </div>
+    </form>
+
+    <section class="csv-table-section" [class.hidden]='csvData.fileName.length === 0'>
+      <div class="csv-table mt-12 overflow-auto border" >
+        <table class="w-full" mat-table [dataSource]="dataSource$">
+
+        <ng-container cdkColumnDef="etat">
+           <th class="px-1 state-column text-white" mat-header-cell *cdkHeaderCellDef>{{'cxmCampaign.followMyCampaign.csv_table_col_etat'|translate}}</th>
+           <td mat-cell *cdkCellDef="let row" class="px-1">
+             <mat-icon class="text-green-600" *ngIf="row.valid === 'true'">done</mat-icon>
+             <mat-icon class="text-red-600" *ngIf="row.valid === 'false'">clear</mat-icon>
+           </td>
+         </ng-container>
+
+          <ng-container *ngFor="let column of columns;  index as idx" [cdkColumnDef]="column.header">
+            <th class="px-1 text-white" mat-header-cell *cdkHeaderCellDef>{{displayedColumns[idx + 1]}}</th>
+            <td class="px-1" mat-cell *cdkCellDef="let row">{{column.cell(row)}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="header-table"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      <cxm-smartflow-paginator (page)="paginationUpdated($event)"></cxm-smartflow-paginator>
+    </section>
+
+    <!-- <div class="mat-paginator-sticky">
+      <cxm-smartflow-paginator></cxm-smartflow-paginator>
+    </div> -->
+  </mat-card-content>
+
+  <mat-card-footer>
+    <button mat-button (click)="navigateBack()" class="nav-button" [class.disabled-button]="!navigation.prev" [disabled]="!navigation.prev" >{{'cxmCampaign.followMyCampaign.form_button_prev'|translate}}</button>
+    <button mat-button (click)="navigateNext()" class="nav-button" [class.disabled-button]="!navigation.next" [disabled]="!navigation.next">{{'cxmCampaign.followMyCampaign.form_button_next'|translate}}</button>
+  </mat-card-footer>
+</mat-card>

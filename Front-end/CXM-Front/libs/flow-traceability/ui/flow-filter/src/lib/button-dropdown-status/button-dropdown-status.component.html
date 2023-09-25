@@ -1,0 +1,35 @@
+<div id="dropdown-status-panel" class="dropdown-status-panel">
+  <span class='flex align-middle items-center btn-status-panel justify-between' [matMenuTriggerFor]='filterMenu' (click)='addCustomCssClass()'
+  (menuOpened)='mainMenuOpen()' (menuClosed)='mainMenuClose()'>
+    <span class="flex items-center flex-row align-middle">
+      <img src="assets/icons/statut.svg" alt="status icon">
+      <span class='btn-dropdown-label' [class.active]="isUsingFilter">{{'flowTraceability.table.filter.status' | translate}}</span>
+    </span>
+    <mat-icon class='expand_more'>expand_more</mat-icon>
+  </span>
+
+  <mat-menu #filterMenu='matMenu' class='status-custom-dropdown'>
+    <section id="status-label-header">
+      <button mat-menu-item style='width: 100%; display: flex; justify-content: space-between'
+              (click)='$event.stopPropagation()' [disableRipple]='true'>
+        <span>
+          <span class='flow-mode'>{{'flowTraceability.table.filter.status' | translate}}</span>
+          <span class="sort-icon-panel">
+            <span class="sort-icon-{{sortDirection}}" (click)="changeDirection()"></span>
+          </span>
+        </span>
+        <span class='flow-reset' (click)="onReset()">{{'flowTraceability.table.filter.reset' | translate}}</span>
+      </button>
+    </section>
+
+    <button mat-menu-item class='custom-category-item' (click)='$event.stopPropagation()' [disableRipple]='true'>
+
+      <div class='category-panel'>
+        <div class="category-box">
+          <cxm-smartflow-multi-selector-check [items]="flowStatus"
+                                              (checkedItems)="checkedItems($event)"></cxm-smartflow-multi-selector-check>
+        </div>
+      </div>
+    </button>
+  </mat-menu>
+</div>

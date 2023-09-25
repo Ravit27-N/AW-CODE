@@ -1,0 +1,58 @@
+article {
+  padding: 0 28px 0 17px;
+}
+
+article.selected, article:hover {
+  background: var(--unnamed-color-e0ecff);
+  color: var(--unnamed-color-3b82f6);
+  font-weight: 500;
+
+  .field-item {
+    color: var(--unnamed-color-3b82f6);
+  }
+}
+
+.field-item {
+  height: 56px;
+  line-height: 60px;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--unnamed-color-2e2e2e);
+
+
+  .field-item__info {
+    svg {
+      transform: translateY(19px);
+    }
+  }
+
+
+  .field-item__action-btn {
+    .draggable-icon {
+      cursor: move;
+      display: none;
+    }
+
+    .delete-icon {
+      height: 17px;
+      cursor: pointer;
+      display: none;
+    }
+
+
+  }
+
+  &:hover {
+    .draggable-icon, .delete-icon {
+      display: block !important;
+    }
+  }
+}
+
+.field-item__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: pre-wrap;
+}

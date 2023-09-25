@@ -1,0 +1,26 @@
+iframe, .iframe, embed {
+  height: 399px;
+  min-width: 283px;
+}
+
+.iframe {
+  border: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+embed {
+  div.toolbar {
+    display: none;
+  }
+  #viewerContainer {
+    top: 0;
+  }
+  .pdfViewer .page {
+    margin: 0;
+    border: 0;
+    padding: 0;
+  }
+  #viewerContainer,
+  #viewer {
+    overflow-y: hidden;
+  }
+}

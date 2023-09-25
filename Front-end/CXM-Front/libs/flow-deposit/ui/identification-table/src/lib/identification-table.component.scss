@@ -1,0 +1,17 @@
+@import 'flow-deposit-global-styles';
+
+.identification-table {
+  @apply ml-7 my-4;
+  width: 451px;
+}
+
+.text-title {
+  @apply font-bold;
+  color: #1A214D;
+}
+
+.text-value {
+  color: #2E2E2E;
+  font: normal normal normal 14px/17px Rubik;
+  line-break: anywhere;
+}

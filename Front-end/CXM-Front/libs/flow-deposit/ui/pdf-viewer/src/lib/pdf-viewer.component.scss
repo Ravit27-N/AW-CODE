@@ -1,0 +1,113 @@
+@import 'flow-deposit-global-styles';
+
+.bg-document {
+  background: #3B82F6 0 0 no-repeat padding-box;
+  border-radius: 0 0 5px 0;
+  opacity: 1;
+}
+.h-doc-panel {
+  height: 32px !important;
+  line-height: 32px;
+}
+
+.m-document {
+  margin: 0 auto;
+}
+
+.padding-bottom-65 {
+  padding-bottom: 65px;
+}
+
+.mat-icon {
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+}
+
+section {
+  top: 0;
+  float: left;
+  width: 100%;
+  transition: width 2s, height 4s;
+}
+
+:host ::ng-deep {
+  #toolbarContainer {
+    @apply border-solid;
+    background: #2E2E2E;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+  }
+
+  ngx-extended-pdf-viewer .html {
+    border-radius: 10px !important;
+  }
+
+  ngx-extended-pdf-viewer .body, #viewerContainer {
+    border-radius: 10px !important;
+
+    .hiddenXLView {
+      display: unset !important;
+    }
+  }
+
+  #pageNumber {
+    margin-top: 8px !important;
+  }
+
+  #secondaryToolbarToggle {
+    margin-top: 1px !important;
+  }
+
+  #presentationMode {
+    display: block !important;
+  }
+}
+
+@media screen and (max-width: 1764px) {
+  .w-pdf-panel {
+    width: 100%;
+    position: relative;
+  }
+}
+
+@media screen and (min-width: 1765px) {
+  .w-pdf-panel {
+    width: 100%;
+    position: relative;
+  }
+}
+
+@media screen and (min-width: 2065px) {
+  .w-pdf-panel {
+    width: 100%;
+    position: relative;
+  }
+}
+
+.pdf-doc-panel {
+  top: 50px;
+  z-index: 1000;
+}
+
+.pdf-panel {
+  @include for-size(laptop) {
+    height: calc(100vh - 7.5vw) !important;
+  }
+
+  @include for-size(desktop-up) {
+    height: calc(100vh - 7.5vw) !important;
+  }
+
+  @include for-size(big-desktop-up) {
+    height: calc(100vh - 18.5vw) !important;
+  }
+
+  @apply border-solid;
+  border-radius: 10px;
+  background: #FFFFFF;
+}
+

@@ -1,0 +1,147 @@
+@import "flow-traceability-global-styles";
+
+@media screen and (max-width: 1366px),screen and (min-width: 1367px),screen and (max-width: 2500px)   {
+  .enrichment-detail{
+    h5{
+      width: 230px !important;
+    }
+
+    p {
+      width: 265px !important;
+    }
+  }
+
+  #identify{
+    overflow: hidden;
+    display: inline-block;
+    width: 22px;
+  }
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  box-shadow: 0 1px 9px #8DC2E548;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: [column-1] 1fr [colum-3] 1fr [column-3] 1fr;
+  grid-gap: 0 25px;
+  padding: 24px;
+}
+
+main > section {
+  //overflow: hidden;
+  border-right: 2px solid #c4d9ff;
+}
+
+main > section:last-child {
+  border: none;
+}
+
+main > section h4 {
+  color: var(--unnamed-color-1a214d);
+  text-align: left;
+  font: normal normal 500 16px/19px Rubik;
+  letter-spacing: 0;
+  margin-bottom: 30px;
+}
+
+.identifier-group {
+  display: flex;
+}
+
+.group-space {
+  margin-bottom: 15px;
+  display: flex;
+
+  .box-label{
+    width: 220px;
+    background-color: gray !important;
+  }
+
+  h5 {
+    width: 230px;
+    color: var(--unnamed-color-1a214d);
+    text-align: left;
+    font: normal normal 500 14px/17px Rubik;
+    letter-spacing: 0;
+  }
+
+  p {
+    color: var(--unnamed-color-2e2e2e);
+    text-align: left;
+    font: normal normal normal 14px/17px Rubik;
+    letter-spacing: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    span {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  td {
+    padding-bottom: 15px;
+  }
+}
+
+#identify {
+  width: calc(100% - 230px);
+}
+
+
+.enrichment-detail {
+  h5 {
+    width: 230px;
+    color: var(--unnamed-color-1a214d);
+    text-align: left;
+    font: normal normal 500 14px/17px Rubik;
+    letter-spacing: 0;
+  }
+
+
+  .label-enrichment {
+    text-align: left;
+    font: normal normal 500 16px/19px Rubik;
+    letter-spacing: 0;
+    color: #1A214D;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  .mat-expansion-panel-header {
+    padding: 0px;
+  }
+
+  .mat-expansion-panel {
+    box-shadow: none;
+  }
+
+  ::ng-deep {
+    mat-expansion-panel {
+      .mat-expansion-panel-body {
+        padding: 0;
+      }
+    }
+  }
+}
+
+::ng-deep mat-expansion-panel{
+
+  .mat-expansion-panel-header{
+    &:hover{
+      cursor: default;
+      background-color: white !important;
+    }
+  }
+  .mat-expansion-panel-body{
+    margin-top: 5px;
+  }
+
+}

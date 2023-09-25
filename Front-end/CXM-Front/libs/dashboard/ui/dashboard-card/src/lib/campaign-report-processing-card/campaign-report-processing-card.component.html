@@ -1,0 +1,19 @@
+<mat-card>
+  <cxm-smartflow-card-header-title>{{'dashboard.title_shipment_process'|translate }}</cxm-smartflow-card-header-title>
+  <div class="center-display">
+    <ngx-charts-pie-chart
+    [view]="view"
+    [customColors]="colorScheme"
+    [results]="data"
+    [gradient]="gradient"
+    [legend]="showLegend"
+    [legendPosition]="legendPosition"
+    [labels]="showLabels"
+  ></ngx-charts-pie-chart>
+
+    <div class="h-full flex flex-col space-y-6">
+      <cxm-smartflow-chart-legends *ngFor="let item of colorScheme" [color]="item.value">{{item.name}}</cxm-smartflow-chart-legends>
+    </div>
+  </div>
+
+</mat-card>

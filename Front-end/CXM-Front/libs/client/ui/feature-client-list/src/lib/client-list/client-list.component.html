@@ -1,0 +1,56 @@
+<div class="common-cxm-table-wrapper">
+
+  <div class="common-cxm-table-container">
+    <table mat-table matSortDisableClear matSort [dataSource]="clients$">
+      <ng-container matColumnDef='name'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style='width: 30%'>{{'client.table.clientName'|translate}}</th>
+        <td mat-cell *matCellDef='let row' [title]="row.name">{{ row.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef='lastModified'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style='width: 20%'>{{'client.table.modifiedDate'|translate}}</th>
+        <td mat-cell *matCellDef='let row' [title]="row.lastModified | date: 'MMM d, y h:mm'">{{ row.lastModified|cxmdate }}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef='createdAt'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="has-right-border" style='width: auto'>{{'client.table.createdDate'|translate}}</th>
+        <td mat-cell *matCellDef='let row' [title]="row.createdAt | date: 'MMM d, y h:mm'" class="has-right-border">{{ row.createdAt|cxmdate}}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef='actions'>
+        <th mat-header-cell *matHeaderCellDef class="col-actions">{{'client.table.action'|translate}}</th>
+        <td mat-cell *matCellDef='let row' class="col-actions">
+          <button class="mr-2" (click)="handleConsult(row)" *ngIf='modifiable'>{{'client.table.buttonConsult'|translate}}</button>
+          <button [matMenuTriggerFor]="actionMenu" *ngIf='isAdmin' [matMenuTriggerData]="row" style="width: 0px;" mat-icon-button><mat-icon>more_vert</mat-icon></button>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef='this.displayedColumns; sticky: true'></tr>
+      <tr mat-row *matRowDef='let row; let i = index; columns: displayedColumns'></tr>
+      <tr class='mat-row no-data-row' *matNoDataRow>
+        <td class='mat-cell no-data-cell' [colSpan]='this.displayedColumns.length'></td>
+      </tr>
+    </table>
+  </div>
+
+  <div *ngIf="pagination$|async as pagination">
+    <cxm-smartflow-list-paginator [pageSize]="pagination.pageSize"
+                                  (page)="paginationUpdate($event)"
+                                  [pageIndex]="pagination.page" [length]="pagination.total">
+    </cxm-smartflow-list-paginator>
+  </div>
+</div>
+
+<mat-menu #actionMenu="matMenu" class="common-cxm-menu" xPosition="before">
+  <ng-template matMenuContent let-rowId="id">
+    <button mat-menu-item (click)="handleDelete(rowId)">
+      <div class='flex flex-row justify-start items-center'>
+        <img class="delete-icon mr-2" src="assets/icons/delete.svg" alt="delete icon">
+        <span class='cancel-icon'>{{'cxmCampaign.followMyCampaign.list.tableHeader.delete' | translate}}</span>
+      </div>
+    </button>
+  </ng-template>
+</mat-menu>

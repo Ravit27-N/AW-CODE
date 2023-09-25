@@ -1,0 +1,43 @@
+<div class='flex flex-row justify-between mb-8 items-center'>
+  <div>
+    <app-ng-dynamic-breadcrumb [bgColor]="'none'" symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{'cxmCampaign.followMyCampaign.campaignHeader' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header>{{'cxmCampaign.followMyCampaign.settingParameter.subHeader' | translate}}</cxm-smartflow-page-sub-header>
+  </div>
+</div>
+
+<div class='email-campaign-parameter-container'>
+  <form [formGroup]='formGroup' (ngSubmit)='navigateNext()'>
+    <div class='form-content'>
+      <div class='flex flex-row row items-center mt-2'>
+        <div class='col-1'><label>{{'cxmCampaign.followMyCampaign.settingParameter.campaignName.label' | translate}}</label></div>
+        <div class='col-2'><input type='text' placeholder= '{{"cxmCampaign.followMyCampaign.settingParameter.campaignName.placeholder" | translate}}' formControlName='campaignName'
+                                  cxmSmartflowCxmTooltip
+                                  [tooltipText]='campaignNameTooltip'
+                                  [showTooltip]='(campaignName?.invalid && formHasSubmit)'
+                                  [showBackgroundEl]='showTooltipBackground'
+                                  onkeydown="return event.key != 'Enter';">
+        </div>
+      </div>
+
+      <div class='flex flex-row row items-center mt-6'>
+        <div class='col-1'><label>{{'cxmCampaign.followMyCampaign.settingParameter.smsSenderName.label' | translate}}</label></div>
+        <div class='col-2 selection__container'>
+          <cxm-smartflow-input-selection
+            [errorMsg]='(formGroup.controls["senderName"]?.errors?.message || "") | translate'
+            [isShowError]='(senderName?.invalid || false) && formHasSubmit'
+            [selectSourceKey]='(selectSenderLabel$ | async) || ""'
+            (selectedSource)='selectSenderLabel($event)'
+            [datasource]='(metadataResponse$ | async) || []'>
+          </cxm-smartflow-input-selection>
+        </div>
+      </div>
+    </div>
+
+    <div class='flex flex-row w-full justify-end mt-6'>
+      <button class='mr-5' (click)='navigatePrev()' [class.disabled-button]="!navigation.prev" [disabled]="!navigation.prev">{{'cxmCampaign.followMyCampaign.settingParameter.actionButton.previous' | translate}}</button>
+<!--      <button class='btn-active' type='submit' [class.disabled-button]="!navigation.next" [disabled]="!navigation.next">{{'cxmCampaign.followMyCampaign.settingParameter.actionButton.next' | translate}}</button>-->
+      <button class='btn-active' type='submit' >{{'cxmCampaign.followMyCampaign.settingParameter.actionButton.next' | translate}}</button>
+    </div>
+  </form>
+</div>

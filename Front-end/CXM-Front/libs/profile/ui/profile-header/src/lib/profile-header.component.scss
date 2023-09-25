@@ -1,0 +1,39 @@
+.sub-title {
+  font: var(--unnamed-font-style-normal) normal
+  var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) /
+    var(--unnamed-line-spacing-19) var(--unnamed-font-family-rubik);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-2e2e2e);
+  text-align: left;
+}
+
+.container {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+cxm-smartflow-page-header {
+  margin-top: 10px;
+}
+
+.file-name {
+  color: var(--unnamed-color-2e2e2e);
+  text-align: left;
+  letter-spacing: 0;
+  font-weight: 600;
+
+  &.postalDocumentDetail,
+  &.digitalDocumentDetail {
+    color: var(--unnamed-color-3b82f6);
+  }
+}
+
+main {
+  @apply flex items-end;
+
+  cxm-smartflow-rich-button {
+    margin: 0 15px;
+  }
+}

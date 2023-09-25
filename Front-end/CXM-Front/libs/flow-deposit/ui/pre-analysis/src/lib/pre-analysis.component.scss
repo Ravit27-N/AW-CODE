@@ -1,0 +1,146 @@
+@import 'flow-deposit-global-styles';
+
+:host {
+  display: block;
+}
+
+.d-block {
+  display: block;
+}
+
+
+.pre-analysis-container{
+  min-height: 450px;
+  @apply py-2 px-4 border bg-white;
+  border-color: $flow-text-primary;
+
+}
+
+form{
+  margin: 13vh auto 0;
+  width: 250px;
+}
+
+.title {
+  font: $font-style-normal $font-weight-normal $font-size-16/$line-spacing-19 $font-family-rubik;
+  letter-spacing: $character-spacing-0;
+  color: $color-2e2e2e;
+  opacity: 1;
+}
+
+.mat-icon {
+  font-size: 70px;
+  width: 74.22px;
+  height: 51.02px;
+}
+
+.mat-icon img {
+  height: 51.02px;
+  width: 74.22px;
+  text-align: center;
+  object-fit: contain;
+}
+
+.radio-button-icon {
+  width: 217px;
+  height: 217px;
+  padding: 22px;
+  background: $color-ffffff 0 0 no-repeat padding-box;
+  box-shadow: 0 3px 6px #BCD5FF31;
+  border: 1px solid #BCD5FF;
+  border-radius: 5px;
+  opacity: 1;
+  display: inline-block;
+  letter-spacing: 0;
+  font: normal normal 600 14px/17px Rubik;
+  position: relative;
+  justify-content: center;
+  text-align: center;
+}
+
+.radio-button-icon div {
+  text-align: center;
+  justify-content: center;
+}
+
+.radio-button-icon .mat-icon {
+  margin-top: 48px;
+}
+
+.radio-button-icon:hover img, .selected-channel-img {
+  filter: invert(45%) sepia(15%) saturate(7500%) hue-rotate(202deg) brightness(99%);
+}
+
+.selected-channel-text {
+  color: #3B82F6;
+}
+
+.radio-button-icon:hover {
+  opacity: 1;
+  background: #F4F8FF 0 0 no-repeat padding-box;
+  box-shadow: 0 3px 6px #BCD5FF31;
+  border: 1px solid #BCD5FF;
+  border-radius: 5px;
+  font: normal normal 600 14px/17px Rubik;
+  letter-spacing: 0;
+  color: #3B82F6;
+}
+
+[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+[type=radio] + .radio-button-icon {
+  cursor: pointer;
+}
+
+[type=radio]:checked + .radio-button-icon {
+  background-color: $white;
+  color: $color-2e2e2e;
+  border: solid 1px $color-3b82f6;
+}
+
+.box-item{
+  @apply border text-center w-44 h-12 mb-2 rounded flex justify-center items-center;
+}
+
+.box-item:hover{
+  background-color: $flow-text-primary;
+  color: white;
+  cursor: pointer;
+}
+
+.show-shadow{
+  background-color: $flow-text-primary;
+  color: white;
+}
+
+.main-panel {
+  height: 180px;
+}
+
+
+.channel-sending-panel {
+  background: $white 0 0 no-repeat padding-box;
+  box-shadow: 0 1px 9px #8DC2E548;
+  border-radius: 10px;
+  opacity: 1;
+  margin-top: 19px;
+}
+
+mat-card-content {
+  margin-bottom: 0;
+  min-height: 545px;
+  height: calc(100vh - 360px);
+  overflow-y: auto;
+  display: grid;
+  //grid-template-columns: 60% auto;
+  @apply gap-14;
+}
+
+.padding-bottom-80 {
+  padding-bottom: 80px;
+}

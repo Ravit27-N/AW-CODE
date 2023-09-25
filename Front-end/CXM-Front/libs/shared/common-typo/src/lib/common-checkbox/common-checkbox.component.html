@@ -1,0 +1,10 @@
+<div class="flex flex-row justify-items-center check_box_input">
+  <input [disabled]="disabled" [checked]="isChecked" type="checkbox" [value]="value" [disabled]="disabled"
+  (blur)="onBlur($event)" [name]="formControlName"
+  />
+
+  <label [for]="formControlName" class="space-x-2" [class.checkbox-disabled]="disabled">
+    <span (click)="toggleChanged(!isChecked)" class="common-checkbox"></span>
+    <span class="common-checkbox-label"><ng-content></ng-content></span>
+  </label>
+</div>

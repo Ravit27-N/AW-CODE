@@ -1,0 +1,56 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+
+  // Title.
+  h1 {
+    text-align: left;
+    font: normal normal 600 17px/5px Rubik;
+    letter-spacing: 0;
+    color: var(--unnamed-color-1a214d);
+  }
+
+  // Close Button.
+  section.close-btn {
+    cursor: pointer;
+    color: #3b82f6;
+
+    mat-icon:hover {
+      font-weight: 600;
+    }
+  }
+
+}
+
+main {
+  margin-bottom: 30px;
+}
+
+footer {
+  display: flex;
+  justify-content: end;
+
+  cxm-smartflow-rich-button:last-child {
+    margin-left: 20px;
+  }
+}
+
+:host ::ng-deep {
+  .fragment-field__group label {
+    width: 270px !important;
+  }
+
+  cxm-smartflow-rich-button:first-child {
+    button {
+      min-width: 155px !important;
+    }
+  }
+
+  cxm-smartflow-rich-button:last-child {
+    button {
+      min-width: 195px !important;
+    }
+  }
+}

@@ -1,0 +1,63 @@
+.date-time-picker-content{
+  width: 100%;
+  display: flex;
+}
+
+.date-time-picker-content .date{
+  width: 70%;
+  display: flex;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.date .input-date{
+  background-color: white;
+  padding-left: 5px;
+  padding-top: 5px;
+}
+
+.input-date input{
+  font-size: 14px !important;
+}
+
+.date .icon{
+  width: 30%;
+  text-align: center;
+  background-color: #D6D6D6;
+}
+
+
+.mat-datepicker-toggle{
+  padding: 0px !important;
+}
+
+:host ::ng-deep .mat-icon-button{
+  padding: 0px !important;
+  min-width: 0px !important;
+}
+
+.mat-icon-button{
+  padding: 0px !important;
+  min-height: 0px !important;
+}
+
+.date-time-picker-content .time {
+  width: 25%;
+  margin-left: 5px;
+  background-color: white;
+}
+
+
+:host::ng-deep .mat-form-field-flex:hover {
+  border: 1px rgba(1, 24, 26, 0.5) solid;
+  border-radius: 5px;
+}
+
+:host ::ng-deep .mat-form-field-wrapper {
+  margin: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+:host ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding: 8px 8px !important;
+}

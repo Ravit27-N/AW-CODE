@@ -1,0 +1,103 @@
+<div class='list-profile-table-wrapper common-cxm-table-container'>
+  <table
+    matSortDisableClear
+    mat-table
+    matSort
+    [dataSource]='dataSource$ | async'
+    (matSortChange)='sortEvent($event)'
+    [matSortActive]="sortActiveColumn$ | async"
+    [matSortDirection]="sortDirection$ | async"
+  >
+
+    <!-- file name -->
+    <ng-container matColumnDef='fileName'>
+      <th class="col-file__name" mat-header-cell *matHeaderCellDef mat-sort-header> {{'cxm_setting.table_file_name' | translate}}</th>
+      <td mat-cell *matCellDef='let row; let i = index;' class='col-file__name text-truncate' [title]='row?.fileName || ""'> {{row?.fileName}} </td>
+    </ng-container>
+
+    <!-- label -->
+    <ng-container matColumnDef='label'>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class='col-label'> {{ 'cxm_setting.table_label' | translate }} </th>
+      <td mat-cell *matCellDef='let row; let i = index;' class='col-label text-truncate' [title]='row?.label || ""'> {{row?.label}} </td>
+    </ng-container>
+
+    <!-- type -->
+    <ng-container matColumnDef='type'>
+      <th class='col-type' mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'cxm_setting.table_type' | translate }} </th>
+      <td class="col-type cursor-pointer" mat-cell *matCellDef='let row'> {{row?.type}} </td>
+    </ng-container>
+
+    <!-- date creation -->
+    <ng-container matColumnDef='createdAt'>
+      <th class='col-date__creation' mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'cxm_setting.date_creation' | translate }} </th>
+      <td class="col-date__creation cursor-pointer" mat-cell *matCellDef='let row'> {{row?.createdAt | date: 'dd/MM/yyyy HH:mm:ss'}} </td>
+    </ng-container>
+
+    <!-- weight -->
+    <ng-container matColumnDef='fileSize'>
+      <th class='col-weight' mat-header-cell *matHeaderCellDef mat-sort-header> {{'cxm_setting.weight' | translate }} </th>
+      <td class="col-weight cursor-pointer" mat-cell *matCellDef='let row'> {{row?.fileSize}} </td>
+    </ng-container>
+
+    <!-- number of page -->
+    <ng-container matColumnDef='pageNumber'>
+      <th class='col-number_of_page' mat-header-cell *matHeaderCellDef> {{'cxm_setting.number_of_page' | translate}}</th>
+      <td class="col-number_of_page cursor-pointer" mat-cell *matCellDef='let row'>
+        {{row?.pageNumber}}
+      </td>
+    </ng-container>
+
+    <!-- action -->
+    <ng-container matColumnDef='actions'>
+      <th class='row-action' mat-header-cell *matHeaderCellDef class='col-action overflow-hidden'>{{'cxm_setting.actions' | translate}}</th>
+      <td class='row-action' mat-cell *matCellDef='let row' style='width: 9.5rem'>
+        <span class='inline-block whitespace-nowrap wrapper-buttons'>
+          <span class="consult-action whitespace-nowrap" (click)='consult(row)'> {{ 'profile.list.table.consult' | translate }}</span>
+          <span class="mr-4 cxm-icon text-icon-red whitespace-nowrap">
+
+            <button [matMenuTriggerFor]='menu'>
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu='matMenu' class='common-table-action'>
+              <button mat-menu-item (click)='information(row?.fileId)'>
+                <div class='flex flex-row justify-start items-center'>
+                  <img class='information-icon mr-2' src='assets/icons/information.svg' alt='information icon'>
+                  <span>{{'flow.deposit.list.postal.btnInformation' | translate}}</span>
+                </div>
+              </button>
+
+              <button mat-menu-item (click)='downloadFile(row)'>
+                <div class='flex flex-row justify-start items-center'>
+                  <img class='download-icon mr-2' src='assets/icons/download.svg' alt='download icon'>
+                  <span>{{'flow.deposit.list.postal.btnDownload' | translate}}</span>
+                </div>
+              </button>
+
+              <button mat-menu-item (click)='delete(row?.fileId)' *ngIf='row?.canDelete'>
+                <div class='flex flex-row justify-start items-center'>
+                  <img class='delete-icon mr-2' src='assets/icons/delete.svg' alt='delete icon'>
+                  <span class='cancel-icon'>{{'flow.deposit.list.postal.btnDelete' | translate}}</span>
+                </div>
+              </button>
+            </mat-menu>
+          </span>
+        </span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef='this.tableColumns; sticky: true'></tr>
+    <tr mat-row *matRowDef='let row; columns: tableColumns'></tr>
+    <tr class='mat-row border-none' *matNoDataRow></tr>
+  </table>
+</div>
+
+<!-- pagination -->
+<div class="mt-6">
+  <cxm-smartflow-list-paginator
+    (page)='paginationChange($event)'
+    [withCriteria]='isHasFilter$ | async'
+    [pageIndex]='page$ | async'
+    [pageSize]='pageSize$ | async'
+    [length]='length$ | async'>
+  </cxm-smartflow-list-paginator>
+</div>

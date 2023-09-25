@@ -1,0 +1,37 @@
+<mat-card class="relative overflow-hidden">
+  <cxm-smartflow-spinner *ngIf="productionProgress.isFetching" [inline]="true"></cxm-smartflow-spinner>
+  <mat-card-content>
+    <cxm-smartflow-card-header-title>{{'cxm_analytics.graph_production_detail_title'|translate }}</cxm-smartflow-card-header-title>
+    <div></div>
+    <div *ngIf="!productionProgress.isFetching" class="flex items-start justify-center">
+      <div class="flex px-4 justify-evenly w-full flex-row space-x-4 mx-auto pt-20 chart-contain">
+        <ng-container *ngFor='let item of productionProgress.content'>
+          <div class='gauge-wrapper relative'>
+            <ngx-gauge [id]="item.label" (click)="removeClass()" (mouseover)="addClass(item.label)" (mouseleave)="removeClass()"
+                       [ngClass]="{'gauge-component': currentElement === item.label}" style="color:gray; font-size:12px;"
+                       type="semi"
+                       [thick]="24"
+                       [size]="size"
+                       [foregroundColor]='item.color'
+                       [value]="item.value"
+                       [max]="100"
+                       [matTooltip]="customTooltip(item)"
+                       [matTooltipPosition]="'above'"
+                       [matTooltipClass]="['graph-production-tooltip']"
+                       [min]="0"
+                       append='%'>
+            </ngx-gauge>
+
+            <div class='gauge-label absolute'>
+              <span>{{ getFormattedLabel(item.value) }}</span>
+            </div>
+
+            <div class='gauge-title absolute'>
+              <span>{{item.label}}</span>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

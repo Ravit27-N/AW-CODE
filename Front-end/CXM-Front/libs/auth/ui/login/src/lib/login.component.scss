@@ -1,0 +1,146 @@
+
+.container {
+  width: 100%;
+  height: calc(100vh - 145px);
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  background-color: white;
+}
+
+.box-cover {
+  width: 100%;
+  height: calc(100vh - 70%);
+}
+
+.box-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.box-content {
+  width: 100%;
+  flex-grow: 1;
+  background-color: white;
+  height: calc(100vh - 10%);
+}
+
+.box-content .title {
+  width: 50%;
+  padding-left: 10%;
+  padding-top: 3%;
+}
+
+// h2 {
+//   font-size: 35px;
+// }
+
+.box-login {
+  // top: 30%;
+  bottom: 15%;
+}
+
+.mat-card {
+  background-color: #f2f2f2 !important;
+  width: 350px;
+  height: 388px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 10px;
+}
+
+.mat-card:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.mat-card-title {
+  // display: flex;
+  justify-content: center;
+  // height: 30px;
+  color: #1a214d;
+  font-size: 1.2rem;
+}
+
+.mat-card-content {
+  margin-top: 40px;
+  // display: flex;
+  justify-content: center;
+}
+
+.mat-form-field {
+  width: 100%;
+  min-width: 250px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+a {
+  margin-top: 10px;
+}
+mat-label {
+  font-size: 15px;
+  color: rgb(85, 85, 129);
+}
+form {
+  margin: 20px;
+}
+.forgetPass {
+  margin-top: 25px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.button-login {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  // margin: 0 auto;
+}
+
+.button-login cxm-smartflow-button {
+  flex-grow: 1;
+}
+
+.form-control{
+  padding-bottom: 15px;
+}
+
+.p-error{
+  font-size: 16px;
+  color: red;
+}
+
+strong{
+  padding-bottom: 10px !important;
+}
+
+input{
+  box-sizing: border-box;
+  margin-top: 3px;
+  font-size: 14px;
+  padding: 8px 32px 8px 14px;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: rgba(0, 30, 32, 0.5);
+  outline: none;
+  border: none;
+}
+
+
+
+.showhide-icon {
+  cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 4px;
+}
+
+::-ms-reveal {
+  display: none
+}

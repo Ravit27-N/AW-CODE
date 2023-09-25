@@ -1,0 +1,11 @@
+<footer class='w-full flex flex-row justify-between fixed bottom-0 left-0 right-0 bg-white' [style.height]="useHeight" [class.fixed]="position==='Fixed'" [class.relative]="position==='Relative'" [class.absolute]="position === 'Abs'"
+  [class.extra-pad-right]="padRight"
+>
+  <ul class='flex flex-wrap justify-start items-center'>
+    <li *ngFor='let item of leftFooters'><a (click)="navigateTo(item)">{{item.text}}</a></li>
+  </ul>
+
+  <ul class='items-center space-x-4'>
+    <li *ngFor='let item of rightFooters'><a (click)="navigateTo(item)">{{item.text}}</a></li>
+  </ul>
+</footer>

@@ -1,0 +1,49 @@
+<main class='popup-layout relative'>
+  <header>
+    <h3>{{'client.hub_distribute_title' | translate}}</h3>
+  </header>
+  <div class='close-icon'><mat-icon (click)='closeModal()'>close</mat-icon></div>
+  <div class='mt-6'></div>
+  <mat-divider class="common-mat-divider"></mat-divider>
+
+  <div class='wrapper'>
+
+    <form [formGroup]='formGroup'>
+      <div class='form-container'>
+        <table>
+          <tbody>
+          <!-- Username -->
+          <tr>
+            <td><label for='id'>{{'client.hub_distribute_identifiant' | translate}} :</label></td>
+            <td><input class='lowercase' type='text' id='id' formControlName="email" cxmSmartflowCxmTooltip
+                       [tooltipText]='(formGroup.controls["email"]?.errors?.message || "") | translate'
+                       [showTooltip]='formGroup.controls["email"]?.errors !== null && (error$ | async)'></td>
+          </tr>
+
+          <!-- Password -->
+          <tr>
+            <td><label for='password'>{{'client.hub_distribute_password' | translate}} :</label></td>
+            <td>
+              <div class='relative'>
+                <input class='relative' [type]='passwordVisible? "text" : "password"' id='password' formControlName="password" cxmSmartflowCxmTooltip
+                       [tooltipText]='(formGroup.controls["password"]?.errors?.message || "") | translate'
+                       [showTooltip]='formGroup.controls["password"]?.errors !== null && (error$ | async)'>
+                <mat-icon class='absolute cursor-pointer' *ngIf='formGroup.controls["password"].value?.length > 0' (click)='togglePasswordIcon()'>{{passwordVisible ? "visibility_off" : "visibility"}}</mat-icon>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </form>
+
+  </div>
+
+  <mat-divider class="common-mat-divider"></mat-divider>
+  <div class='mb-6'></div>
+
+  <!-- Action button -->
+  <section class='action-btn flex justify-end'>
+    <cxm-smartflow-rich-button (click)='register()' style='min-width: 200px !important;'> {{'client.hub_distribute_register_btn' | translate}} </cxm-smartflow-rich-button>
+  </section>
+</main>

@@ -1,0 +1,18 @@
+.tab {
+  @apply py-2 px-10 border border-gray-400 cursor-pointer;
+  opacity: .7;
+  background-color: #C2C2C2;
+}
+
+
+.tab-active {
+  @apply hover:opacity-100;
+  background-color: #EFEFEF;
+  border-top: 4px solid #1A214D;
+  opacity: 1;
+}
+
+.tab-active div {
+  color: #1A214D;
+  @apply cursor-default;
+}

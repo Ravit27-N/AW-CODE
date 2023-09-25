@@ -1,0 +1,75 @@
+<article class='flex flex-row justify-between'>
+  <header>
+    <app-ng-dynamic-breadcrumb symbol='>'></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{'directory.directory_feed_list_title' | translate | uppercase}}</cxm-smartflow-page-header>
+    <cxm-smartflow-page-sub-header small>{{'directory.directory_feed_list_subtitle' | translate}}</cxm-smartflow-page-sub-header>
+  </header>
+</article>
+
+<mat-divider class="common-mat-divider"></mat-divider>
+
+<article>
+  <div class="contain-table-directory">
+    <table mat-table matSort [dataSource]='definitionTableDatasource' matSortDisableClear>
+      <!-- COLUMN DIRECTORY NAME -->
+      <ng-container matColumnDef='displayName'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition='after' class="w-1/3"> {{'directory.directory_feed_list_table_directory_name' | translate}} </th>
+        <td mat-cell *matCellDef='let row'><span class="display-name-contain"  [title]="row.displayName">{{ row.displayName }} </span></td>
+      </ng-container>
+
+      <!-- COLUMN MODIFIED AT -->
+      <ng-container matColumnDef='lastModified'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition='after'> {{'directory.directory_feed_list_table_modified_at' | translate}} </th>
+        <td mat-cell *matCellDef='let row'> {{ row.lastModified | date:'dd/MM/yyyy HH:mm' }}</td>
+      </ng-container>
+
+      <!-- COLUMN CREATED AT -->
+      <ng-container matColumnDef='createdAt'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition='after'> {{'directory.directory_feed_list_table_created_at' | translate}} </th>
+        <td mat-cell *matCellDef='let row'> {{ row.createdAt | date:'dd/MM/yyyy HH:mm' }} </td>
+      </ng-container>
+
+      <!-- COLUMN FEEDING AT -->
+      <ng-container matColumnDef='feedingDate'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition='after' class="has-right-border"> {{'directory.directory_feed_list_table_feeding_at' | translate}} </th>
+        <td mat-cell *matCellDef='let row' class="has-right-border"> {{ (row?.adminFeedingDate || row?.feedingDate) | date:'dd/MM/yyyy HH:mm' }} </td>
+      </ng-container>
+
+      <!-- COLUMN ACTIONS -->
+      <ng-container matColumnDef='actions'>
+        <th mat-header-cell *matHeaderCellDef class="col-actions">{{'directory.directory_feed_list_table_actions' | translate }}</th>
+        <td mat-cell *matCellDef='let row' class="col-actions flex flex-row justify-between">
+          <button (click)='consulDirectory(row?.id, row?.name, row?.ownerId)'>{{ 'client.table.buttonConsult' | translate }}</button>
+          <button [matMenuTriggerFor]="actionMenu" [disableRipple]="true" [matMenuTriggerData]="row" mat-icon-button style="width: 0;">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef='definitionTableColumns; sticky: true'></tr>
+      <tr mat-row *matRowDef='let row; let i = index; columns: definitionTableColumns' [class.row-selected]='false'></tr>
+      <tr class='mat-row no-data-row' *matNoDataRow>
+        <td class='mat-cell no-data-cell' [colSpan]='definitionTableColumns.length'></td>
+      </tr>
+    </table>
+  </div>
+  <section class="pagination mt-6">
+    <cxm-smartflow-list-paginator [pageSize]="definitionTableCriteria.pageSize"
+                                  (page)="paginationUpdateEvent($event)"
+                                  [pageIndex]="definitionTableCriteria.page"
+                                  [length]="definitionTableCriteria.total">
+    </cxm-smartflow-list-paginator>
+  </section>
+</article>
+
+<mat-menu #actionMenu="matMenu" class="common-cxm-menu" xPosition="before">
+  <ng-template matMenuContent let-rowId="id" let-rowName="name">
+
+    <button mat-menu-item (click)='downloadStructureFileEvent(rowId, rowName)'>
+      <div class='flex flex-row justify-start items-center'>
+        <img class='download-icon mr-2' src='assets/icons/download.svg' alt='download icon'>
+        <span>{{'directory.directory_feed_list_column_actions_btn_download' | translate }}</span>
+      </div>
+    </button>
+  </ng-template>
+</mat-menu>

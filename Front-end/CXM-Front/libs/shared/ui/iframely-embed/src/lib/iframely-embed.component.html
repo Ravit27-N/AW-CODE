@@ -1,0 +1,13 @@
+<!-- <div class="spaceWrap">
+  <iframe [srcdoc] = "srcDoc | safeHtml" class="viewPort"></iframe>
+</div> -->
+
+<div class="viewport p-1" [style.width]="width+'px'" [style.height]="height+'px'">
+  <div class="content-view" [style.min-width]="(width - 8 ) +'px'" >
+    <div class="content-wrapper" [style.min-height]="(height - 8)+'px'">
+<!--      <cxm-smartflow-common-render-html-template [class]="" [htmlFile]='srcDoc' [type]='"email"'>-->
+<!--      </cxm-smartflow-common-render-html-template>-->
+      <cxm-smartflow-html-preview [html]="srcDoc"></cxm-smartflow-html-preview>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class='{{snackBar?.type}}'>
+  <div class='icon'><mat-icon (click)='close()'>{{snackBar?.icon}}</mat-icon></div>
+
+  <div class='message'>{{snackBar?.message}}</div>
+
+  <div *ngIf="snackBar.details" class="mt-3 text-sm">
+    <p class="snackbar-details" [innerHTML]="snackBar.details"></p>
+  </div>
+</div>

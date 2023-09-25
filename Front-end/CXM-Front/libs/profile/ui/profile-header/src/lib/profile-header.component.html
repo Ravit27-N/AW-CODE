@@ -1,0 +1,22 @@
+<section class="container">
+  <header>
+    <app-ng-dynamic-breadcrumb symbol=">"></app-ng-dynamic-breadcrumb>
+    <cxm-smartflow-page-header>{{
+      'profile.header.title.'.concat(type) | translate | uppercase
+      }}</cxm-smartflow-page-header>
+
+    <div class="flex flex-row sub-title">
+      <p class="">
+        {{ 'profile.header.subTitle.'.concat(type) | translate }}
+      </p>
+
+      <p class="font-bold pl-1" *ngIf="type === 'modifyProfile'"> {{modifyValue}}</p>
+    </div>
+
+  </header>
+  <main>
+    <ng-content></ng-content>
+  </main>
+</section>
+
+<mat-divider class="common-mat-divider"></mat-divider>

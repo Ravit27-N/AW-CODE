@@ -1,0 +1,3 @@
+<button [disabled]="disabled" [class.btn-cancel-active]="type === 'Alter'" [class.btn-submit-active]="type === 'Main'" (click)="onclick.emit()">
+  <ng-content></ng-content>
+</button>

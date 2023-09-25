@@ -1,0 +1,72 @@
+{
+  "apiGateway": "${GATEWAY_URL}",
+  "keycloak": "${KEYCLOAK_REALM_URL}",
+  "clientId": "${TOKEN_EXCHANGE_CLIENT_CLIENTID}",
+  "dummyClientSecret": "${TOKEN_EXCHANGE_CLIENT_SECRET}",
+  "apps": [
+    {
+      "name": "Campaign",
+      "remoteEntry": "${FRONT_REMOTE_ENTRY_URL}/cxm-campaign/remoteEntry.js",
+
+      "routePath": "cxm-campaign",
+      "ngModuleName": "CxmCampaignModule",
+      "remoteName": "cxmCampaign"
+    },
+    {
+      "name": "Template",
+      "remoteEntry": "${FRONT_REMOTE_ENTRY_URL}/cxm-template/remoteEntry.js",
+
+      "routePath": "cxm-template",
+      "ngModuleName": "CxmTemplateModule",
+      "remoteName": "cxmTemplate"
+    },
+    {
+      "name": "Traceability",
+      "remoteEntry": "${FRONT_REMOTE_ENTRY_URL}/cxm-flow-traceability/remoteEntry.js",
+
+      "routePath": "cxm-flow-traceability",
+      "ngModuleName": "CxmFlowTraceabilityModule",
+      "remoteName": "cxmFlowTraceability"
+    },
+    {
+      "name": "Deposit",
+      "remoteEntry": "${FRONT_REMOTE_ENTRY_URL}/cxm-deposit/remoteEntry.js",
+
+      "routePath": "cxm-deposit",
+      "ngModuleName": "CxmDepositModule",
+      "remoteName": "cxmDeposit"
+    },
+    {
+      "name": "Profile",
+      "remoteEntry": "${FRONT_REMOTE_ENTRY_URL}/cxm-profile/remoteEntry.js",
+
+      "routePath": "cxm-profile",
+      "ngModuleName": "CxmProfileModule",
+      "remoteName": "cxmProfile"
+    },
+    {
+      "name": "Directory",
+      "remoteEntry": "${FRONT_REMOTE_ENTRY_URL}/cxm-directory/remoteEntry.js",
+
+      "routePath": "cxm-directory",
+      "ngModuleName": "CxmDirectoryModule",
+      "remoteName": "cxmDirectory"
+    },
+    {
+      "name": "Setting",
+      "remoteEntry": "${FRONT_REMOTE_ENTRY_URL}/cxm-setting/remoteEntry.js",
+
+      "routePath": "cxm-setting",
+      "ngModuleName": "CxmSettingModule",
+      "remoteName": "cxmSetting"
+    },
+    {
+      "name": "Analytics",
+      "remoteEntry": "${FRONT_REMOTE_ENTRY_URL}/cxm-analytics/remoteEntry.js",
+
+      "routePath": "cxm-analytics",
+      "ngModuleName": "CxmAnalyticsModule",
+      "remoteName": "cxmAnalytics"
+    }
+  ]
+}

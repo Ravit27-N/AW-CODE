@@ -1,0 +1,35 @@
+<div class='selection-container relative'>
+  <div *ngIf='(data.isValidate() | async)' class='box-item mx-4 bg-white rounded-l-lg text-center'>
+    <span class='counter'>{{(this.selectionModified$ | async)}}</span>
+  </div>
+
+  <div *ngIf='(data.isDelete() | async) && (data.isValidate() | async) === false' class='box-item mx-4 bg-white rounded-l-lg text-center'>
+    <span class='counter'>{{(this.selectionDelete$ | async)}}</span>
+  </div>
+
+  <div>
+    <p *ngIf='(data.isValidate() | async)' class='text-white'>{{'directory.directory_feed_details_popup_modified'  | translate}}</p>
+    <p *ngIf='(data.isDelete() | async)' class='text-white'>{{'directory.directory_feed_details_popup_selected'  | translate}}</p>
+  </div>
+
+  <div class='ml-auto mr-4 flex'>
+    <div class='box-item ml-auto mr-12 text-center clickable' *ngIf='(data.isDelete() | async)' (click)='data.onDelete()'>
+    <span class='cxm-icon text-icon-red mx-auto' style="
+      background-image: url('assets/icons/delete.svg');">
+    </span>
+      <span>{{ 'button.delete' | translate}}</span>
+    </div>
+
+    <div class='box-item ml-auto mr-12 text-center clickable' *ngIf='(data.isValidate() | async)' (click)='data.onValidate()'>
+      <mat-icon class="cxm-icon mx-auto">done</mat-icon>
+      <span>{{ 'button.validate' | translate}}</span>
+    </div>
+
+    <div class='box-item ml-auto mr-12 text-center clickable' *ngIf='(data.isCancel() | async)' (click)='data.onCancel()'>
+      <mat-icon class="cxm-icon mx-auto" style="transform: rotateZ(90deg)">block</mat-icon>
+      <span>{{ 'button.cancel' | translate}}</span>
+    </div>
+  </div>
+
+  <span (click)="data.onCancel()" class="material-icons close-icon clickable">clear</span>
+</div>

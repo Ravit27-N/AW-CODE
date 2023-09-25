@@ -1,0 +1,21 @@
+<div class="selection-menu-content" (click)='$event.stopPropagation()'>
+  <label mat-menu-item disableRipple="true" class="hover:bg-white" style="padding: 0 0;" (click)='$event.stopPropagation()'>
+    <div class="w-full h-full text-gray-800 px-2 bg-gray-100 border-b-2 flex flex-row items-center">
+      <mat-icon class="search-icon">search</mat-icon>
+    <input #searchInput
+      (keyup)="onsearchChanged($event)"
+      class="w-full h-full outline-none flex-grow text-gray-800 bg-gray-100"
+      type="text" [placeholder]="'input.placeholder.search'|translate" />
+    </div>
+  </label>
+
+  <div *ngIf="items" class="result-content">
+    <button [class.activated]="selectedItem && (item === selectedItem)" disableRipple class="selectable"
+    mat-menu-item *ngFor='let item of items' (click)="chooseTemplate(item)">{{item.name}}</button>
+
+    <button disabled disableRipple mat-menu-item *ngIf='items.length === 0' (click)='$event.stopPropagation()'>
+      {{'user.form.button.noAnyService' | translate}}
+    </button>
+
+  </div>
+</div>

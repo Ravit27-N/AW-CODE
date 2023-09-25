@@ -1,0 +1,38 @@
+<cxm-smartflow-custom-header></cxm-smartflow-custom-header>
+
+<div class='container'>
+
+  <!-- <div class='box-cover'>
+    <img src='assets/images/cover5.jpg' alt='Cover' height='auto' />
+  </div>
+
+  <div class='box-wrapper left-6 relative bg-white md:bg-transparent'>
+    <mat-card class='m-auto md:bg-none'>
+      <mat-card-content>
+        <h4 class='title'>{{ 'forgot-password.tokenExpired' | translate }}
+          <br> {{ 'forgot-password.pleaseTryAgain' | translate }}
+        </h4>
+      </mat-card-content>
+      <mat-card-footer>
+        <button class='reset-btn'><a routerLink='/forgot-password'>{{ 'forgot-password.resetPassword' | translate }}</a></button>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div> -->
+
+
+  <div class="wrapper">
+
+    <div class="text-center mb-4 space-y-6">
+      <div class="img-key">
+        <img class="key-icon" src="assets/icons/key.svg" alt="Key">
+      </div>
+      <h1>{{'forgot-password.changePassword' | translate}}</h1>
+    </div>
+
+    <p class="mx-auto mb-6 text-center">{{'forgot-password.tokenExpired'|translate}}</p>
+    <button (click)="backToLogin()" class="mb-4">{{'forgot-password.returnHome' | translate}}</button>
+
+  </div>
+
+<cxm-smartflow-footer [leftFooters]='leftFooters' [rightFooters]='rightFooters'></cxm-smartflow-footer>

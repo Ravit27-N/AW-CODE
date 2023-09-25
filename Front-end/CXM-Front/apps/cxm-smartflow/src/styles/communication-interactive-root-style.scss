@@ -1,0 +1,39 @@
+/**
+ * Setup keyframes for pulsing animation
+ */
+@-webkit-keyframes cxmLoadingPlaceholders {
+  0% {
+    background-color: #f6f8fc;
+  }
+  50% {
+    background-color: #e6f1ff;
+  }
+  100% {
+    background-color: #f6f8fc;
+  }
+}
+
+@keyframes cxmLoadingPlaceholders {
+  0% {
+    background-color: #f6f8fc;
+  }
+  50% {
+    background-color: #e6f1ff;
+  }
+  100% {
+    background-color: #f6f8fc;
+  }
+}
+
+/**
+ * Style the placeholder
+ */
+.cxm-content-placeholder {
+  -webkit-animation: cxmLoadingPlaceholders 2s ease-in infinite;
+  animation: cxmLoadingPlaceholders 2s ease-in infinite;
+  background-color: #4e4e4e;
+}
+
+cxm-smartflow-communication-interactive-editor-placeholder .indicator-overlay {
+  background: white !important;
+}

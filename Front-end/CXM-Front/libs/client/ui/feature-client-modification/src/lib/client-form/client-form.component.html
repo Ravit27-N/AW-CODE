@@ -1,0 +1,54 @@
+<form class="space-y-3" [formGroup]="clientForm">
+  <div class="space-y-2">
+    <label>{{ 'client.companyName' | translate }}</label>
+    <div>
+      <input
+        type="text"
+        formControlName="name"
+        [placeholder]="'client.placeholder.companyName' | translate"
+        cxmSmartflowCxmTooltip
+        [tooltipText]="getCompanyNameError | translate"
+        [showTooltip]="isCompanyNameError"
+      />
+    </div>
+  </div>
+
+  <div class="space-y-2">
+    <label>{{'client.companyContactName'|translate}}</label>
+    <div>
+      <input type="text" formControlName="contactFirstName" [placeholder]="'client.placeholder.companyContactName'|translate" oninput="this.value = this.value.toUpperCase()">
+    </div>
+  </div>
+
+  <div class="space-y-2">
+    <label>{{'client.companyContactLastname'|translate}}</label>
+    <div>
+      <input type="text" formControlName="contactLastname" [placeholder]="'client.placeholder.companyContactLastname'|translate" oninput="this.value = this.value.toString()" cxmSmartflowTitleCase>
+    </div>
+  </div>
+
+  <div class="space-y-2">
+    <label>{{'client.companyContactEmail'|translate}}</label>
+    <div>
+      <input type="text" formControlName="email" [placeholder]="'client.placeholder.companyContactEmail'|translate"
+      cxmSmartflowCxmTooltip
+      [tooltipText]="getEmailError | translate"
+      [showTooltip]="isInvalidEmail">
+    </div>
+  </div>
+
+  <details class="field__return-address__container space-y-2" (toggle)="isOpenDetailsSummary = !isOpenDetailsSummary">
+    <summary>{{ 'client.popup_return_address_title' | translate }}  <mat-icon [class.rotate-summary]="!isOpenDetailsSummary">arrow_drop_down</mat-icon></summary>
+    <cxm-smartflow-fragment-return-address [fragmentReturnAddress]="returnAddressForm" #returnAddressElement (valueChangeEvent)="returnAddressFormChange($event)"></cxm-smartflow-fragment-return-address>
+  </details>
+
+  <div class="space-y-2" [class.margin-clear]="isOpenDetailsSummary" *ngIf="uploadState|async as state">
+    <label>{{'client.companyUploadFile'|translate}}</label>
+    <div style="width: 585px" *ngIf="state.progressing === false && state.uploaded === false">
+      <cxm-smartflow-file-upload-fragement (onDropFile)="uploadFileEvent.emit($event)" [fileValidator]='fileValidator'></cxm-smartflow-file-upload-fragement>
+    </div>
+    <div style="width: 585px" *ngIf="!(state.progressing === false && state.uploaded === false)">
+      <ng-content select="[filename]"></ng-content>
+    </div>
+  </div>
+</form>

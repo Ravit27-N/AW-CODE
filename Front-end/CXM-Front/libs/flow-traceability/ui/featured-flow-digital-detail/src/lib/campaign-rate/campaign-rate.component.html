@@ -1,0 +1,98 @@
+<main class='content'>
+  <!-- Rate -->
+  <!-- Email box -->
+  <div class='rate-container email-box' *ngIf="(campaignRate?.type === 'email') || (campaignRate?.type?.toLowerCase() === 'batch')">
+    <cxm-smartflow-circle-progression-control
+      [progressMessage]="campaignRate?.rates?.open?.messages || ''"
+      [types]="'info'"
+      [percentage]='campaignRate?.rates?.open?.percentage || 0'
+      [progressTitle]="'flow.history.campaignRate.open' | translate"
+      [size]='160'
+      [strokeWidth]='40'
+      [r]='70'
+    ></cxm-smartflow-circle-progression-control>
+    <cxm-smartflow-circle-progression-control
+      [progressMessage]="campaignRate?.rates?.clicked?.messages || ''"
+      [types]="'success'"
+      [percentage]='campaignRate?.rates?.clicked?.percentage || 0'
+      [progressTitle]="'flow.history.campaignRate.clicked' | translate"
+      [size]='160'
+      [strokeWidth]='40'
+      [r]='70'
+    ></cxm-smartflow-circle-progression-control>
+    <cxm-smartflow-circle-progression-control
+      [types]="'warning'"
+      [percentage]='campaignRate?.rates?.error?.percentage || 0'
+      [progressMessage]="campaignRate?.rates?.error?.messages || ''"
+      [progressTitle]="'flow.history.campaignRate.error' | translate"
+      [size]='160'
+      [strokeWidth]='40'
+      [r]='70'
+    ></cxm-smartflow-circle-progression-control>
+    <cxm-smartflow-circle-progression-control
+      [types]="'danger'"
+      [percentage]='campaignRate?.rates?.bound?.percentage || 0'
+      [progressMessage]="campaignRate?.rates?.bound?.messages || ''"
+      [progressTitle]="'flow.history.campaignRate.bounce' | translate"
+      [size]='160'
+      [strokeWidth]='40'
+      [r]='70'
+    ></cxm-smartflow-circle-progression-control>
+  </div>
+
+  <!-- SMS box -->
+  <div class='rate-container sms-box' *ngIf="campaignRate?.type === 'sms'">
+    <cxm-smartflow-circle-progression-control
+      [types]="'info'"
+      [percentage]='campaignRate?.rates?.delivered?.percentage || 0'
+      [progressMessage]="campaignRate?.rates?.delivered?.messages || ''"
+      [progressTitle]="'flow.history.campaignRate.sent' | translate"
+      [size]='205'
+      [r]='90'
+    ></cxm-smartflow-circle-progression-control>
+    <cxm-smartflow-circle-progression-control
+      [types]="'danger'"
+      [percentage]='campaignRate?.rates?.error?.percentage || 0'
+      [progressMessage]="campaignRate?.rates?.error?.messages || ''"
+      [progressTitle]="'flow.history.campaignRate.error' | translate"
+      [size]='205'
+      [r]='90'
+    ></cxm-smartflow-circle-progression-control>
+    <cxm-smartflow-circle-progression-control
+      [types]="'warning'"
+      [percentage]='campaignRate?.rates?.cancel?.percentage || 0'
+      [progressMessage]="campaignRate?.rates?.cancel?.messages || ''"
+      [progressTitle]="'flow.history.campaignRate.cancel' | translate"
+      [size]='205'
+      [r]='90'
+    ></cxm-smartflow-circle-progression-control>
+  </div>
+
+  <!-- Action button -->
+  <section class='action-button'>
+    <cxm-smartflow-rich-button [isRounded]='true' (click)='togglePopup()'>{{'flow.history.actionButtons.overview_'.concat(campaignRate?.type || "email") | translate}}</cxm-smartflow-rich-button>
+    <cxm-smartflow-rich-button [class]="'disabled img-disabled'" [isRounded]='true' *ngIf='campaignRate?.exportFileButtonVisible'>
+      <img class='icon ' src='assets/icons/export-svg.svg' alt='export file'>
+      <span>{{'flow.history.actionButtons.export' | translate}}</span>
+    </cxm-smartflow-rich-button>
+  </section>
+</main>
+
+<!-- Overview popup -->
+<div class='overview-popup-container' (click)='togglePopup()' *ngIf='isPopupVisible'></div>
+<div [ngClass]="campaignRate?.type === 'sms' ? 'overview-popup-wrapper-sms' : 'overview-popup-wrapper-email'" *ngIf='isPopupVisible'>
+  <div class='overview-popup-box relative'>
+    <div class='overview-popup--close-btn' (click)='togglePopup()'><mat-icon>close</mat-icon></div>
+    <main class='overview-popup--content'>
+      <h4>{{(campaignRate?.type === 'email' || campaignRate?.type === 'batch')? "Email" : (campaignRate?.type | uppercase)}}</h4>
+      <!-- Section data -->
+      <div class='overview-popup--data-wrapper'>
+        <div class='overview-popup--data'>
+          <cxm-smartflow-common-render-html-template *ngIf='campaignRate?.type === "batch"' [htmlFile]='campaignRate?.htmlTemplate || ""' [type]='"batch"'></cxm-smartflow-common-render-html-template>
+          <cxm-smartflow-common-render-html-template *ngIf='campaignRate?.type === "email"' [htmlFile]='campaignRate?.htmlTemplate || ""' [type]='"email"'></cxm-smartflow-common-render-html-template>
+          <cxm-smartflow-render-sms-template *ngIf='campaignRate?.type === "sms"' [smsContent]='campaignRate?.htmlTemplate || ""'></cxm-smartflow-render-sms-template>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+.content-progress {
+  width: 160px;
+  height: 160px;
+  position: relative;
+}
+
+.outer {
+  background: #cfd5e0;
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+}
+
+.inner {
+  background: #FFFFFF;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 120px;
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.number {
+  text-align: center;
+  font: normal normal 500 22px/27px Rubik;
+  letter-spacing: 0;
+  color: #000000;
+}
+
+circle {
+  fill: none;
+  stroke: url(#GradientColor);
+  stroke-width: 20px;
+  stroke-dasharray: 472;
+  stroke-dashoffset: 471;
+  transition: stroke-dashoffset 0.7s ease-in-out;
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(273deg);
+}
+
+.progression--title h4 {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--unnamed-color-1a214d);
+  text-align: center;
+  font: normal normal 500 16px/19px Rubik;
+  letter-spacing: 0;
+}
+
+.progression-message p {
+  position: absolute;
+  bottom: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font: normal normal normal 14px/17px Rubik;
+  letter-spacing: 0;
+  color: #7C828A;
+}
+
+.content-progress {
+  &.success circle {
+    stroke: #5ec139;
+  }
+
+  &.warning circle {
+    stroke: #f0a02f;
+  }
+
+  &.info circle {
+    stroke: #4f84f0;
+  }
+
+  &.danger circle {
+    stroke: #d03016;
+  }
+}

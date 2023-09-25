@@ -1,0 +1,22 @@
+<mat-card class='relative'>
+  <cxm-smartflow-spinner *ngIf='fetching' [inline]='true'></cxm-smartflow-spinner>
+  <mat-card-content>
+    <cxm-smartflow-card-header-title>{{'dashboard.title_shipment_table'|translate}}</cxm-smartflow-card-header-title>
+
+    <div *ngIf='!fetching && data && data.length > 0'>
+      <table mat-table [dataSource]='datasource'>
+
+        <ng-container *ngFor='let m of metadataTable' [matColumnDef]='m.col'>
+          <th mat-header-cell *matHeaderCellDef>{{ m.label | translate }}</th>
+          <td mat-cell *matCellDef='let row'>
+            <span *ngIf='m.type !== "percent"'>{{ row[m.col] }}</span>
+            <span *ngIf='m.type === "percent"'>{{ (row[m.col] | number: '1.2-2') + ' %'}}</span>
+          </td>
+        </ng-container>
+
+        <tr class='header-row-style' mat-header-row *matHeaderRowDef='displayedColumns'></tr>
+        <tr mat-row *matRowDef='let row; columns: displayedColumns'></tr>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>

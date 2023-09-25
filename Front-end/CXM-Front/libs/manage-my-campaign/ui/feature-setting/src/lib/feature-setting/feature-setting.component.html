@@ -1,0 +1,118 @@
+<cxm-smartflow-spinner *ngIf="isLoading$"></cxm-smartflow-spinner>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{settingLabel.settingParameter.title}}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <a href="" class="link">{{settingLabel.settingParameter.linkEdit}}</a>
+    <div class="box-form">
+      <form [formGroup]="this.formGroup">
+        <div>
+
+          <label>Name of the campaign*</label>
+          <div>
+            <cxm-smartflow-input id="templateName" formControlName="templateName" [placeHolder]="'Enter Template Name'" (onUp)="checkFormInvalid()">
+            </cxm-smartflow-input >
+            <mat-error
+              *ngIf="this.formGroup.controls['templateName']?.touched && this.formGroup.controls['templateName']?.invalid">
+              This field has required !
+            </mat-error>
+          </div>
+
+          <label>Reply To Address*</label>
+          <div>
+            <cxm-smartflow-input id="replyToAddress" formControlName="replyToAddress"
+              [placeHolder]="'Enter Reply To Address'" (onUp)="checkFormInvalid()">
+            </cxm-smartflow-input>
+            <mat-error
+              *ngIf="this.formGroup.controls['replyToAddress']?.touched && this.formGroup.controls['replyToAddress']?.invalid">
+              This field has required !
+            </mat-error>
+          </div>
+
+          <label>First Name*</label>
+          <div>
+            <cxm-smartflow-input id="firstname" formControlName="firstname" [placeHolder]="'Enter First Name'" (onUp)="checkFormInvalid()">
+            </cxm-smartflow-input>
+            <mat-error
+              *ngIf="this.formGroup.controls['firstname']?.touched && this.formGroup.controls['firstname']?.invalid">
+              This field has required !
+            </mat-error>
+          </div>
+
+          <label>Last Name*</label>
+          <div>
+            <cxm-smartflow-input id="lastname" formControlName="lastname" [placeHolder]="'Enter Last Name'" (onUp)="checkFormInvalid()">
+            </cxm-smartflow-input>
+            <mat-error
+              *ngIf="this.formGroup.controls['lastname']?.touched && this.formGroup.controls['lastname']?.invalid">
+              This field has required !
+            </mat-error>
+          </div>
+
+
+          <label>nom*</label>
+          <div>
+            <cxm-smartflow-input id="nom" formControlName="nom" [placeHolder]="'Enter Nom'" (onUp)="checkFormInvalid()">
+            </cxm-smartflow-input>
+            <mat-error *ngIf="this.formGroup.controls['nom']?.touched && this.formGroup.controls['nom']?.invalid">
+              This field has required !
+            </mat-error>
+          </div>
+
+          <label>prenom*</label>
+          <div>
+            <cxm-smartflow-input id="prenom" formControlName="prenom" [placeHolder]="'Enter Prenom'" (onUp)="checkFormInvalid()">
+            </cxm-smartflow-input>
+            <mat-error *ngIf="this.formGroup.controls['prenom']?.touched && this.formGroup.controls['prenom']?.invalid">
+              This field has required !
+            </mat-error>
+          </div>
+
+          <label>email*</label>
+          <div>
+            <cxm-smartflow-input id="email" formControlName="email" [placeHolder]="'Enter Email'" (onUp)="checkFormInvalid()">
+            </cxm-smartflow-input>
+            <mat-error *ngIf="this.formGroup.controls['email']?.touched && this.formGroup.controls['email']?.invalid">
+              This field has required !
+            </mat-error>
+          </div>
+
+          <label>webview_url*</label>
+          <div>
+            <cxm-smartflow-input id="webview_url" formControlName="webview_url" [placeHolder]="'Enter Webview_url'" (onUp)="checkFormInvalid()">
+            </cxm-smartflow-input>
+            <mat-error
+              *ngIf="this.formGroup.controls['webview_url']?.touched && this.formGroup.controls['webview_url']?.invalid">
+              This field has required !
+            </mat-error>
+          </div>
+
+          <label>Unsubscribe_url*</label>
+          <div>
+            <cxm-smartflow-input id="unsubscribe_url" formControlName="unsubscribe_url"
+              [placeHolder]="'Enter Unsubscribe_url'" (onUp)="checkFormInvalid()">
+            </cxm-smartflow-input>
+            <mat-error
+              *ngIf="this.formGroup.controls['unsubscribe_url']?.touched && this.formGroup.controls['unsubscribe_url']?.invalid">
+              This field has required !
+            </mat-error>
+          </div>
+
+          <div class="box-action">
+            <cxm-smartflow-button [backgroundColor]="'#0072BB'" [label]=settingButton.next [labelColor]="'#fff'"
+              [borderRadius]="'48px'" (onClick)="onNext()"></cxm-smartflow-button>
+            <cxm-smartflow-button [backgroundColor]="'#0072BB'" [label]=settingButton.previous [labelColor]="'#fff'"
+              [borderRadius]="'48px'" (onClick)="onPrevious()"></cxm-smartflow-button>
+            <cxm-smartflow-button [backgroundColor]="'#0072BB'" [label]=settingButton.submit [labelColor]="'#fff'"
+              [borderRadius]="'48px'" (onClick)="this.onSubmit()" [disable]="!canSubmit" ></cxm-smartflow-button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

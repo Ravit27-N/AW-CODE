@@ -1,0 +1,28 @@
+<div class="text-center">
+  <div class="mb-5">
+    <img
+      class="cxm-img-center"
+      src="assets/icons/warning.png"
+      alt="warning icon"
+    />
+  </div>
+  <p class="font-bold text-xl" *ngIf="data?.title">{{ data.title }}</p>
+  <div mat-dialog-content class="text-center">{{ data.message }}</div>
+  <div>
+    <cxm-smartflow-button
+      [backgroundColor]="'#C1C1C1'"
+      [borderRadius]="'5px'"
+      id="cancelButton"
+      label="{{data?.cancel || 'Cancel'}}"
+      (click)="dialogRef.close(false)"
+    ></cxm-smartflow-button>
+    &nbsp;
+    <cxm-smartflow-button
+      [backgroundColor]="'#37BC9B'"
+      [borderRadius]="'5px'"
+      id="comfirmButton"
+      label="{{ data?.confirm || 'Save' }}"
+      (click)="dialogRef.close(true)"
+    ></cxm-smartflow-button>
+  </div>
+</div>

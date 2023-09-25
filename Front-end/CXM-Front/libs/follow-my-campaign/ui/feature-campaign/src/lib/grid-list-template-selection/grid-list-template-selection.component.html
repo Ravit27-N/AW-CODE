@@ -1,0 +1,32 @@
+<section *ngIf="emailTemplateList$ | async as templateList">
+
+
+  <div class="template-grid mb-6">
+    <div class="template-card shadow relative" *ngFor="let template of templateList.contents">
+      <div class="flex-grow rounded-t-lg w-full img-cover relative">
+        <cxm-smartflow-image [imageURL]="template.imgUrl"></cxm-smartflow-image>
+        <div class="modify-active flex flex-col justify-center items-center space-y-2">
+          <button (click)="requestSelect(template)" type="button" class="button-select">{{'template.card.selectButton'|translate}}</button>
+          <button (click)="requestView(template)" type="button" class="button-view" >{{'template.card.overviewButton'|translate}}</button>
+        </div>
+      </div>
+
+      <div class="px-2 card-text-group">
+        <div style='height: 45px;' class='flex items-center border-b'>
+          <h5 class="px-2 overflow-hidden overflow-ellipsis text-center whitespace-nowrap" [title]="template.modelName">{{ template.modelName }}</h5>
+        </div>
+        <div style='height: 53px;' class='flex items-center'>
+          <p class="px-2 text-xs">{{ template.lastModified | date: 'dd/MM/yyyy HH:mm' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <cxm-smartflow-list-paginator
+  [withCriteria]="(filters$ | async).filter?.length > 0"
+  (page)="onpaginationChanged.emit($event)"
+  [pageIndex]="templateList.page || 0"
+  [pageSize]="templateList.pageSize || 0"
+  [length]="templateList.total || 0"
+  ></cxm-smartflow-list-paginator>
+</section>

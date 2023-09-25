@@ -1,0 +1,22 @@
+<main class='popup-layout relative'>
+  <div class='close-icon'><mat-icon (click)='closeModal()'>close</mat-icon></div>
+  <div class='wrapper'>
+
+    <form [formGroup]='formGroup' *ngIf='btnConfirmEnable'>
+      <textarea formControlName='content'
+                #editor
+                (focus)='focusEditor(editor)'
+                cxmSmartflowCxmTooltip
+                [showTooltip]='error$ | async'
+                [tooltipText]='((errorMsg$ | async) || "") | translate'>
+      </textarea>
+    </form>
+
+    <div *ngIf='!btnConfirmEnable' [innerText]='this.config.data.content' class='preview-mode'></div>
+  </div>
+
+  <!-- Action button -->
+  <section class='action-btn flex justify-end' *ngIf='btnConfirmEnable'>
+    <cxm-smartflow-rich-button (click)='confirm()'> {{'client.configuration_popup_confirm' | translate}} </cxm-smartflow-rich-button>
+  </section>
+</main>

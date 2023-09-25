@@ -1,0 +1,70 @@
+<main class='popup-layout relative'>
+  <div class='close-icon'><mat-icon (click)='closeModal()'>close</mat-icon></div>
+  <div class='wrapper'>
+    <!-- Title -->
+    <header>
+        <h3>{{'cxm_setting.popup_title' | translate}}</h3>
+    </header>
+
+    <!-- Form -->
+    <section class='form-fragment'>
+      <form [formGroup]='formGroup'>
+
+        <!-- label -->
+        <div class='form-group'>
+          <div class='flex justify-between'>
+            <label for='label'>{{'cxm_setting.label' | translate}} : </label>
+            <input formControlName='label'
+                   cxmSmartflowCxmTooltip
+                   [showTooltip]='(labelError$ | async) || (isLabelDuplicate$ | async)'
+                   [tooltipText]='((isLabelDuplicate$ | async)? "cxm_setting.popup_errors_label_duplicated" : "cxm_setting.popup_errors_label_required") | translate'
+                   type='text'
+                   id='label'>
+          </div>
+        </div>
+
+        <!-- type -->
+        <div class='form-group'>
+          <div class='flex justify-between'>
+            <label>{{'cxm_setting.type' | translate}} : </label>
+            <article class='service-selection__container'>
+              <cxm-smartflow-input-selection class='control'
+                                             [datasource]='resourceCriteria$ | async'
+                                             [errorMsg]='"cxm_setting.popup_errors_type_required" | translate'
+                                             (selectedSource)='typeValueChange($event)'
+                                             [isShowError]='typeError$ | async'
+                                             [lockModifyOverlayContainer]='true'
+                                             [isDisabled]='(isSelectTypeDisabled$ | async) || false'>
+              </cxm-smartflow-input-selection>
+            </article>
+          </div>
+        </div>
+
+      </form>
+    </section>
+
+    <!-- File upload description -->
+    <section class='file-instruction'>
+      <div class='whitespace-pre-line text-center' [innerHTML]='description$ | async'></div>
+    </section>
+
+    <!-- File upload area -->
+    <section class='uploading-file-fragment'>
+
+      <cxm-smartflow-uploading-fragment (fileChange)='fileChange($event)'
+                                        (resetUploadFile)='resetFile()'
+                                        [fileName]='fileName$ | async'
+                                        [fileSize]='fileSize$ | async'
+                                        [icon]=icon
+                                        [uploadedIcon]="updatedIcon"
+                                        [acceptExtension]=acceptExtension$
+                                        [isHidden]='(isUploadedDisable$ | async) || false'>
+      </cxm-smartflow-uploading-fragment>
+    </section>
+  </div>
+
+  <!-- Action button -->
+  <section class='action-btn flex justify-end'>
+    <cxm-smartflow-rich-button style='min-width: 180px !important; ' (click)='submit()'> {{'cxm_setting.add' | translate}} </cxm-smartflow-rich-button>
+  </section>
+</main>
