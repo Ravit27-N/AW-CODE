@@ -1,0 +1,4 @@
+# org.springframework.cloud.bootstrap.BootstrapConfiguration=\
+# com.tessi.cxm.config.GatewayDiscoveryBootstrapConfiguration,\
+# org.springframework.cloud.consul.ConsulAutoConfiguration,\
+# org.springframework.cloud.config.client.DiscoveryClientConfigServiceBootstrapConfiguration

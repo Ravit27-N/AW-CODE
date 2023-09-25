@@ -1,0 +1,358 @@
+spring:
+  application:
+    name: service-gateway
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active:
+      - master
+      - ${SPRING_PROFILES_ACTIVE:@activatedProperties@}
+  # redis:
+  #    host: ${VAULT_SERVER_HOST:10.2.50.83}
+  #    port: 6379
+  output.ansi.enabled: ALWAYS
+  cloud:
+    discovery:
+      client:
+        health-indicator:
+          enabled: true
+    config:
+      discovery:
+        enabled: true
+        service-id: CONFIG-SERVER
+      retry:
+        max-attempts: 3
+        max-interval: 3000
+        multiplier: 1.1
+    loadbalancer:
+      ribbon:
+        enabled: true
+      retry:
+        avoid-previous-instance: true
+    gateway:
+      enabled: true
+      loadbalancer:
+        use404: true
+      filter:
+        #circuit-breaker:
+        #enabled: true
+        retry:
+          enabled: true
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+      httpclient:
+        wiretap: true
+        connect-timeout: 90000
+        response-timeout: 3600s
+      httpserver:
+        wiretap: true
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+        #- StripPrefix=1
+        #      - name: RequestRateLimiter
+        #        args:
+        #          '[redis-rate-limiter.replenishRate]': 10
+        #          '[redis-rate-limiter.burstCapacity]': 20
+        #          '[redis-rate-limiter.requestedTokens]': 1
+        - RemoveRequestHeader=Cookie
+      routes:
+        - id: service-cxm-template
+          uri: lb://cxm-template
+          predicates:
+            - Path=/cxm-template/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-template
+                fallbackUri: forward:/fallback
+            #- RewritePath=/cxm-template/(?.*), /$\{path}
+        - id: service-cxm-campaign
+          uri: lb://cxm-campaign
+          predicates:
+            - Path=/cxm-campaign/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-campaign
+                fallbackUri: forward:/fallback
+            #- RewritePath=/cxm-campaign/(?.*), /$\{path}
+        - id: service-cxm-flow-traceability
+          uri: lb://cxm-flow-traceability
+          predicates:
+            - Path=/cxm-flow-traceability/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-flow-traceability
+                fallbackUri: forward:/fallback
+
+        #Profile
+        - id: service-cxm-profile-ignore-header
+          uri: lb://cxm-profile
+          predicates:
+            - Path=/cxm-profile/api/public/**
+          filters:
+            - RemoveRequestHeader=Authorization
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-profile
+                fallbackUri: forward:/fallback
+        - id: service-cxm-profile
+          uri: lb://cxm-profile
+          predicates:
+            - Path=/cxm-profile/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-profile
+                fallbackUri: forward:/fallback
+
+
+        # Directory
+        - id: service-cxm-directory
+          uri: lb://cxm-directory
+          predicates:
+            - Path=/cxm-directory/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-directory
+                fallbackUri: forward:/fallback
+        #Acquisition
+        - id: service-cxm-acquisition
+          uri: lb://cxm-acquisition
+          predicates:
+            - Path=/cxm-acquisition/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-acquisition
+                fallbackUri: forward:/fallback
+        #File control management
+        - id: service-cxm-file-control-management
+          uri: lb://cxm-file-control-management
+          predicates:
+            - Path=/cxm-file-control-management/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-file-control-management
+                fallbackUri: forward:/fallback
+
+        #Process Control
+        - id: service-cxm-process-control
+          uri: lb://cxm-process-control
+          predicates:
+            - Path=/cxm-process-control/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-process-control
+                fallbackUri: forward:/fallback
+        #File manager
+        - id: service-cxm-file-manager
+          uri: lb://cxm-file-manager
+          predicates:
+            - Path=/cxm-file-manager/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-file-manager
+                fallbackUri: forward:/fallback
+        # Cxm composition
+        - id: service-cxm-composition
+          uri: lb://cxm-composition
+          predicates:
+            - Path=/cxm-composition/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-composition
+                fallbackUri: forward:/fallback
+
+        # Setting
+        - id: service-cxm-setting
+          uri: lb://cxm-setting
+          predicates:
+            - Path=/cxm-setting/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-setting
+                fallbackUri: forward:/fallback
+
+        #Acquisition
+        - id: service-cxm-acquisition
+          uri: lb://cxm-acquisition
+          predicates:
+            - Path=/cxm-acquisition/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-acquisition
+                fallbackUri: forward:/fallback
+
+        #cxm-processing
+        - id: service-cxm-processing
+          uri: lb://cxm-processing
+          predicates:
+            - Path=/cxm-processing/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-processing
+        #cxm-go2pdf
+        - id: service-cxm-go2pdf
+          uri: lb://cxm-go2pdf
+          predicates:
+            - Path=/cxm-go2pdf/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-go2pdf
+        #cxm-switch
+        - id: service-cxm-switch
+          uri: lb://cxm-switch
+          predicates:
+            - Path=/cxm-switch/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-switch
+        #cxm-production
+        - id: service-cxm-production
+          uri: lb://cxm-production
+          predicates:
+            - Path=/cxm-production/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-production
+
+        #cxm-hub-digitalflow
+        - id: service-cxm-hub-digitalflow
+          uri: lb://cxm-hub-digitalflow
+          predicates:
+            - Path=/cxm-hub-digitalflow/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-hub-digitalflow
+
+        #cxm-analytics
+        - id: service-cxm-analytics
+          uri: lb://cxm-analytics
+          predicates:
+            - Path=/cxm-analytics/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: cxm-analytics
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      register-health-indicator: true
+      sliding-window-size: 10
+      ring-buffer-size-in-closed-state: 10
+      ring-buffer-size-in-half-open-state: 3
+      event-consumer-buffer-size: 10
+      minimum-number-of-calls: 3
+      permitted-number-of-calls-in-half-open-state: 3
+      automatic-transition-from-open-to-half-open-enabled: true
+      wait-duration-in-open-state: 5s
+      failure-rate-threshold: 70
+      slow-call-duration-threshold: 3000
+      slow-call-rate-threshold: 70
+      record-exceptions:
+        - org.springframework.web.client.HttpServerErrorException
+        - java.io.IOException
+        #- java.lang.NullPointerException
+        - java.util.concurrent.TimeoutException
+  instances:
+    cxm-template:
+      baseConfig: default
+    cxm-campaign:
+      baseConfig: default
+    cxm-flow-traceability:
+      baseConfig: default
+    cxm-profile:
+      baseConfig: default
+    cxm-directory:
+      baseConfig: default
+    cxm-acquisition:
+      baseConfig: default
+resilience4j:
+  timelimiter:
+    time-limiter-aspect-order: 398
+    configs:
+      default:
+        timeoutDuration: 5s
+        cancelRunningFuture: false
+    instances:
+      cxm-template:
+        timeoutDuration: 30000
+      cxm-campaign:
+        timeoutDuration: 30000
+
+resilience4j.retry:
+  configs:
+    default:
+      maxAttempts: 2
+      waitDuration: 100
+      retryExceptions:
+        - java.util.concurrent.TimeoutException
+        - org.springframework.web.client.HttpServerErrorException
+        - java.io.IOException
+
+application:
+  discovery:
+    type: ${CXM_DISCOVERY_TYPE}
+    host: ${CXM_DISCOVERY_HOST}
+    port: ${CXM_DISCOVERY_PORT}
+    instance-id: ${spring.application.name}
+    instance-hostname: ${CXM_DISCOVERY_INSTANCE_HOSTNAME}
+    prefer-ip-address: ${CXM_DISCOVERY_PREFERE_IP_ADDRESS:true}
+    enabled: ${CXM_DISCOVERY_ENABLED:true}
+    scheme: ${CXM_DISCOVERY_SCHEME:http}
+    instance-group: ${spring.application.name}
+    metadata:
+      version: @project.version@

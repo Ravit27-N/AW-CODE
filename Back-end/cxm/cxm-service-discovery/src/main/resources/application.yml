@@ -1,0 +1,18 @@
+server:
+  port: 8761
+
+spring:
+  config:
+    activate:
+      on-profile: native
+
+eureka:
+  client:
+    app-group-name: ${spring.application.name}
+    registerWithEureka: false
+    fetchRegistry: false
+  instance:
+    instance-id: ${spring.application.name}-${random.int}
+    hostname: localhost
+    metadata-map:
+      version: ${app.version}

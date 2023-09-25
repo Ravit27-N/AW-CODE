@@ -1,0 +1,202 @@
+server:
+  tomcat:
+    threads:
+      max: 5
+  forward-headers-strategy: framework
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_SERVER_URL:${keycloak.auth-server-url}}/realms/${keycloak.realm}
+          jwk-set-uri: ${KEYCLOAK_SERVER_URL:${keycloak.auth-server-url}}/realms/${keycloak.realm}/protocol/openid-connect/certs
+      client:
+        provider:
+          keycloak:
+            token-uri: ${KEYCLOAK_SERVER_URL:${keycloak.auth-server-url}}/realms/${keycloak.realm}/protocol/openid-connect/token
+            authorization-uri: ${KEYCLOAK_SERVER_URL:${keycloak.auth-server-url}}/realms/${keycloak.realm}/protocol/openid-connect/auth
+            user-info-uri: ${KEYCLOAK_SERVER_URL:${keycloak.auth-server-url}}/realms/${keycloak.realm}/protocol/openid-connect/userinfo
+            jwk-set-uri: ${KEYCLOAK_SERVER_URL:${keycloak.auth-server-url}}/realms/${keycloak.realm}/protocol/openid-connect/certs
+            user-name-attribute: preferred_username
+            user-info-authentication-method: header
+
+        registration:
+          gateway:
+            provider: keycloak
+            client-id: ${GATEWAY_INTEGRATION_KEYCLOAK_RESOURCE_APIDOCS_CLIENT_ID:${cxm.gateway.keycloak.resource.api-docs.clientId}}
+            client-secret: ${GATEWAY_INTEGRATION_KEYCLOAK_RESOURCE_APIDOCS_CLIENT_SECRET:${cxm.gateway.keycloak.resource.api-docs.clientSecret}}
+            authorization-grant-type: ${gateway.keycloak.client.registration.default.authorization-grant-type}
+            redirect-uri: ${gateway.keycloak.client.registration.default.redirect-uri}
+          cxm-template:
+            provider: keycloak
+            client-id: ${SERVICE_TEMPLATE_KEYCLOAK_RESOURCE:${cxm.services.cxm-template.keycloak.resource}}
+            client-secret: ${SERVICE_TEMPLATE_KEYCLOAK_CREDENTIALS_SECRET:${cxm.services.cxm-template.keycloak.credentials.secret}}
+            authorization-grant-type: password
+            client-authentication-method: basic
+          cxm-campaign:
+            provider: keycloak
+            client-id: ${SERVICE_CAMPAIGN_KEYCLOAK_RESOURCE:${cxm.services.cxm-campaign.keycloak.resource}}
+            client-secret: ${SERVICE_CAMPAIGN_KEYCLOAK_CREDENTIALS_SECRET:${cxm.services.cxm-campaign.keycloak.credentials.secret}}
+            authorization-grant-type: password
+            client-authentication-method: basic
+          cxm-flow-traceability:
+            provider: keycloak
+            client-id: ${SERVICE_FLOW_KEYCLOAK_RESOURCE:${cxm.services.cxm-flow-traceability.keycloak.resource}}
+            client-secret: ${SERVICE_FLOW_KEYCLOAK_CREDENTIALS_SECRET:${cxm.services.cxm-flow-traceability.keycloak.credentials.secret}}
+            authorization-grant-type: password
+            client-authentication-method: basic
+          cxm-profile:
+            provider: keycloak
+            client-id: ${SERVICE_PROFILE_KEYCLOAK_RESOURCE:${cxm.services.cxm-profile.keycloak.resource}}
+            client-secret: ${SERVICE_PROFILE_KEYCLOAK_CREDENTIALS_SECRET:${cxm.services.cxm-profile.keycloak.credentials.secret}}
+            authorization-grant-type: password
+            client-authentication-method: basic
+          cxm-directory:
+            provider: keycloak
+            client-id: ${SERVICE_CXM_DIRECTORY_KEYCLOAK_RESOURCE:${cxm.services.cxm-directory.keycloak.resource}}
+            client-secret: ${SERVICE_CXM_DIRECTORY_KEYCLOAK_CREDENTIALS_SECRET:${cxm.services.cxm-directory.keycloak.credentials.secret}}
+            authorization-grant-type: password
+            client-authentication-method: basic
+          cxm-acquisition:
+            provider: keycloak
+            client-id: ${SERVICE_ACQUISITION_KEYCLOAK_RESOURCE:${cxm.services.cxm-acquisition.keycloak.resource}}
+            client-secret: ${SERVICE_ACQUISITION_KEYCLOAK_CREDENTIALS_SECRET:${cxm.services.cxm-acquisition.keycloak.credentials.secret}}
+            authorization-grant-type: password
+            client-authentication-method: basic
+          cxm-file-manager:
+            provider: keycloak
+            client-id: ${SERVICE_FILE_MANAGER_KEYCLOAK_RESOURCE:${cxm.services.cxm-file.manager.keycloak.resource}}
+            client-secret: ${SERVICE_FILE_MANAGER_KEYCLOAK_CREDENTIALS_SECRET:${cxm.services.cxm-file.manager.keycloak.credentials.secret}}
+            authorization-grant-type: password
+            client-authentication-method: basic
+          cxm-processing:
+            provider: keycloak
+            client-id: ${SERVICE_CXM_PROCESSING_KEYCLOAK_RESOURCE:${cxm.services.cxm-processing.keycloak.resource}}
+            client-secret: ${SERVICE_CXM_PROCESSING_KEYCLOAK_CREDENTIALS_SECRET:${cxm.services.cxm-processing.keycloak.credentials.secret}}
+            authorization-grant-type: password
+            client-authentication-method: basic
+          cxm-go2pdf:
+            provider: keycloak
+            client-id: ${SERVICE_CXM_GO2PDF_KEYCLOAK_RESOURCE:${cxm.services.cxm-go2pdf.keycloak.resource}}
+            client-secret: ${SERVICE_CXM_GO2PDF_KEYCLOAK_CREDENTIALS_SECRET:${cxm.services.cxm-go2pdf.keycloak.credentials.secret}}
+            authorization-grant-type: password
+            client-authentication-method: basic
+          cxm-switch:
+            provider: keycloak
+            client-id: ${SERVICE_CXM_SWITCH_KEYCLOAK_RESOURCE:${cxm.services.cxm-switch.keycloak.resource}}
+            client-secret: ${SERVICE_CXM_SWITCH_KEYCLOAK_CREDENTIALS_SECRET:${cxm.services.cxm-switch.keycloak.credentials.secret}}
+            authorization-grant-type: password
+            client-authentication-method: basic
+          cxm-production:
+            provider: keycloak
+            client-id: ${SERVICE_CXM_PRODUCTION_KEYCLOAK_RESOURCE:${cxm.services.cxm-production.keycloak.resource}}
+            client-secret: ${SERVICE_CXM_PRODUCTION_KEYCLOAK_CREDENTIALS_SECRET:${cxm.services.cxm-production.keycloak.credentials.secret}}
+            authorization-grant-type: password
+            client-authentication-method: basic
+          cxm-hub-digitalflow:
+            provider: keycloak
+            client-id: ${SERVICE_CXM_HUB_DIGITAL_FLOW_KEYCLOAK_RESOURCE:${cxm.services.cxm-hub-digitalflow.keycloak.resource}}
+            client-secret: ${SERVICE_CXM_HUB_DIGITAL_FLOW_KEYCLOAK_CREDENTIALS_SECRET:${cxm.services.cxm-hub-digitalflow.keycloak.credentials.secret}}
+            authorization-grant-type: password
+            client-authentication-method: basic
+          cxm-analytics:
+            provider: keycloak
+            client-id: ${SERVICE_CXM_ANALYTICS_KEYCLOAK_RESOURCE:${cxm.services.cxm-analytics.keycloak.resource}}
+            client-secret: ${SERVICE_CXM_ANALYTICS_KEYCLOAK_CREDENTIALS_SECRET:${cxm.services.cxm-analytics.keycloak.credentials.secret}}
+            authorization-grant-type: password
+            client-authentication-method: basic
+          java-admin-client:
+            provider: keycloak
+            client-id: ${SERVICE_IDENTIFICATION_KEYCLOAK_RESOURCE:${cxm.keycloak.resource.java-admin-client.clientId}}
+            client-secret: ${SERVICE_IDENTIFICATION_KEYCLOAK_CREDENTIALS_SECRET:${cxm.keycloak.resource.java-admin-client.clientSecret}}
+            authorization-grant-type: password
+            client-authentication-method: basic
+springdoc:
+  swagger-ui:
+    groups-order: asc
+    urls:
+      - name: cxm-flow-traceability
+        url: /api/v3/api-docs/cxm-flow-traceability
+      - name: cxm-campaign
+        url: /api/v3/api-docs/cxm-campaign
+      - name: cxm-template
+        url: /api/v3/api-docs/cxm-template
+      - name: cxm-profile
+        url: /api/v3/api-docs/cxm-profile
+      - name: cxm-directory
+        url: /api/v3/api-docs/cxm-directory
+      - name: cxm-acquisition
+        url: /api/v3/api-docs/cxm-acquisition
+      - name: cxm-composition
+        url: /api/v3/api-docs/cxm-composition
+      - name: cxm-setting
+        url: /api/v3/api-docs/cxm-setting
+      - name: cxm-file-control-management
+        url: /api/v3/api-docs/cxm-file-control-management
+      - name: cxm-process-control
+        url: /api/v3/api-docs/cxm-process-control
+      - name: cxm-file-manager
+        url: /api/v3/api-docs/cxm-file-manager
+      - name: cxm-processing
+        url: /api/v3/api-docs/cxm-processing
+      - name: cxm-go2pdf
+        url: /api/v3/api-docs/cxm-go2pdf
+      - name: cxm-switch
+        url: /api/v3/api-docs/cxm-switch
+      - name: cxm-production
+        url: /api/v3/api-docs/cxm-production
+      - name: cxm-hub-digitalflow
+        url: /cxm-hub-digitalflow/v3/api-docs
+      - name: cxm-analytics
+        url: /api/v3/api-docs/cxm-analytics
+  api-docs:
+    groups:
+      enabled: true
+
+cxm:
+  services:
+    - name: cxm-flow-traceability
+      contextPath: /api
+    - name: cxm-campaign
+      contextPath: /api
+    - name: cxm-template
+      contextPath: /api
+    #    - name: cxm-profile
+    #      contextPath: /api
+    - name: cxm-directory
+      contextPath: /api
+    - name: cxm-acquisition
+      contextPath: /api
+    - name: cxm-composition
+      contextPath: /api
+    - name: cxm-setting
+      contextPath: /api
+    - name: cxm-file-control-management
+      contextPath: /api
+    - name: cxm-process-control
+      contextPath: /api
+    - name: cxm-file-manager
+      contextPath: /api
+    - name: cxm-processing
+      contextPath: /api
+    - name: cxm-go2pdf
+      contextPath: /api
+    - name: cxm-switch
+      contextPath: /api
+    - name: cxm-production
+      contextPath: /api
+    - name: cxm-hub-digitalflow
+      contextPath: /
+    - name: cxm-analytics
+      contextPath: /api
+  gateway:
+    server:
+      uri: ${CXM_SERVICES_GATEWAY_SERVER_URI:${gateway.server.uri}}
+
+
+logging:
+  level:
+    root: INFO
+    '[io.github.resilience4j]': DEBUG
+    '[org.springframework.cloud.gateway.filter.factory]': DEBUG
+    '[org.keycloak]': DEBUG

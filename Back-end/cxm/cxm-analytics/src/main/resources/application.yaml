@@ -1,0 +1,26 @@
+spring:
+  cloud:
+    # spring cloud stream config
+    function:
+      definition: createFlowTraceabilityReport;updateFlowTraceabilityReport;createFlowDocumentReport;createFlowDocumentStatusReport;createFlowDocumentHistoryStatusReport;
+    stream:
+      bindings:
+        createFlowTraceabilityReport-in-0:
+          destination: initial-flow-report-topic
+          group: initial-flow-report-group
+        updateFlowTraceabilityReport-in-0:
+          destination: update-flow-report-topic
+          group: update-flow-report-group
+        createFlowDocumentReport-in-0:
+          destination: initial-flow-document-report-topic
+          group: initial-flow-document-report-group
+        createFlowDocumentStatusReport-in-0:
+          destination: update-flow-document-status-report-topic
+          group: update-flow-document-status-report-group
+        createFlowDocumentHistoryStatusReport-in-0:
+          destination: create-flow-document-status-history-report-topic
+          group: create-flow-document-status-report-history-group
+  jpa:
+    properties:
+      hibernate:
+        dialect: com.tessi.cxm.pfl.ms32.config.CustomPgSqlDialect

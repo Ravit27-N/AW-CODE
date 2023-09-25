@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "cxm.user.admin-id",
+      "type": "java.lang.String",
+      "description": "Keycloak user's id to be identified as super admin user."
+    },
+    {
+      "name": "cxm.oauth2.group",
+      "type": "java.lang.String",
+      "description": "Keycloak group name to be used as the default group of a newly created user."
+    }
+  ]
+}

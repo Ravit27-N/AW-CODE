@@ -1,0 +1,81 @@
+{
+    "name": null,
+    "displayName": null,
+    "functionalities": [
+        {
+            "functionalityKey": "cxm_user_management",
+            "privileges": [
+                {
+                    "key": "cxm_user_management_create_user",
+                    "visibilityLevel": null,
+                    "modificationLevel": null,
+                    "modificationOwners": [],
+                    "visibilityOwners": []
+                },
+                {
+                    "key": "cxm_user_management_delete_profile",
+                    "visibilityLevel": null,
+                    "modificationLevel": null
+                },
+                {
+                    "key": "cxm_user_management_modify_user",
+                    "visibilityLevel": null,
+                    "modificationLevel": null,
+                    "modificationOwners": [],
+                    "visibilityOwners": []
+                },
+                {
+                    "key": "cxm_user_management_list_user",
+                    "visibilityLevel": null,
+                    "modificationLevel": null,
+                    "modificationOwners": [],
+                    "visibilityOwners": []
+                },
+                {
+                    "key": "cxm_user_management_create_profile",
+                    "visibilityLevel": null,
+                    "modificationLevel": null,
+                    "modificationOwners": [],
+                    "visibilityOwners": []
+                },
+                {
+                    "key": "cxm_user_management_edit_user",
+                    "visibilityLevel": null,
+                    "modificationLevel": null,
+                    "modificationOwners": [],
+                    "visibilityOwners": []
+                },
+                {
+                    "key": "cxm_user_management_modify_profile",
+                    "visibilityLevel": null,
+                    "modificationLevel": null,
+                    "modificationOwners": [],
+                    "visibilityOwners": []
+                },
+                {
+                    "key": "cxm_user_management_list_profile",
+                    "visibilityLevel": "user",
+                    "modificationLevel": null,
+                    "modificationOwners": [],
+                    "visibilityOwners": []
+                },
+                {
+                    "key": "cxm_user_management_delete_user",
+                    "visibilityLevel": null,
+                    "modificationLevel": null,
+                    "modificationOwners": [],
+                    "visibilityOwners": []
+                },
+                {
+                    "key": "cxm_user_management_edit_profile",
+                    "visibilityLevel": null,
+                    "modificationLevel": null,
+                    "modificationOwners": [],
+                    "visibilityOwners": []
+                }
+            ],
+            "visibilityLevel": null,
+            "modificationLevel": null
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+spring:
+  cloud:
+    # spring cloud stream config
+    function:
+      definition: updateCampaignFlowDocumentStatus;simpleConsumer;updateFlowAfterPreTreatmentPortalStep;updateFlowTraceabilityDetailByDepositFlowStep;updateFlowAfterIdentificationStep;updateFlowStatusAfterSwitchStep;updateFlowTraceabilityStatusByFileId;updateFlowTraceabilityAfterSwitchStep;updateFlowTraceabilityAfterCompositionStep;updateFlowTraceabilityAfterPreTreatmentStep;cancelFlowTraceability;updateEmailCampaignNotification;updateCampaignSmsStatusByHubIdDoc;initializeFlowListener;updateFlowCampaignHtmlTemplate;
+    stream:
+      bindings:
+        simpleConsumer-in-0:
+          destination: cloud-stream
+          group: consumer
+          consumer:
+            max-attempts: 2
+            default-retryable: false
+        updateFlowTraceabilityDetailByDepositFlowStep-in-0:
+          destination: update-flow-traceability-detail-after-leave-deposit-flow-step-topic
+          group: update-flow-traceability-detail-after-leave-deposit-flow-step-group
+        updateFlowAfterPreTreatmentPortalStep-in-0:
+          destination: update-flow-after-pre-treatment-step-portal-topic
+          group: update-flow-after-pre-treatment-step-portal-group
+        updateFlowAfterIdentificationStep-in-0:
+          destination: update-flow-traceability-after-identification-step-topic
+          group: update-flow-traceability-after-identification-step-group
+        updateFlowTraceabilityAfterSwitchStep-in-0:
+          destination: update-flow-traceability-after-switch-step-topic
+          group: update-flow-traceability-after-switch-step-group
+        updateFlowTraceabilityStatusByFileId-in-0:
+          destination: update-flow-traceability-status-by-file-id-topic
+          group: update-flow-traceability-status-by-file-id-group
+        updateFlowTraceabilityAfterCompositionStep-in-0:
+          destination: update-flow-traceability-after-composition-step-topic
+          group: update-flow-traceability-after-composition-step-group
+        updateFlowTraceabilityAfterPreTreatmentStep-in-0:
+          destination: update-flow-traceability-after-pre-treatment-step-topic
+          group: update-flow-traceability-after-pre-treatment-step-group
+        updateCampaignFlowDocumentStatus-in-0:
+          destination: update-campaign-flow-document-status-topic
+          group: update-campaign-flow-document-status-group
+        # cancel flow-traceability binder
+        cancelFlowTraceability-in-0:
+          destination: cancel-flow-topic
+          group: cancel-flow-group
+        updateEmailCampaignNotification-in-0:
+          destination: flow-email-campaign-notification-topic
+          group: flow-email-campaign-notification-group
+        updateCampaignSmsStatusByHubIdDoc-in-0:
+          destination: update-flow-document-by-hub-id-doc-topic
+          group: update-flow-document-by-hub-id-doc-group
+        initializeFlowListener-in-0:
+          destination: initial-flow-topic
+          group: initial-flow-group
+        updateFlowCampaignHtmlTemplate-in-0:
+          destination: update-flow-campaign-html-template-after-composition-topic
+          group: update-flow-campaign-html-template-after-composition-group
+
+
+

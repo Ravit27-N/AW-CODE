@@ -1,0 +1,49 @@
+diff --git a/src/main/resources/bootstrap.yml b/src/main/resources/bootstrap.yml
+index d76c369..487d25c 100644
+--- a/src/main/resources/bootstrap.yml
++++ b/src/main/resources/bootstrap.yml
+@@ -52,26 +52,26 @@ spring:
+           fail-on-error: true
+         #This configuration use for both development and production.
+         #It is used to load all configuration from vault server
+-        vault:
+-          authentication: token
+-          token: ${SPRING_CLOUD_VAULT_TOKEN:${spring.cloud.vault.token}}
+-          kv-version: 2
+-          host: ${VAULT_SERVER_HOST:10.2.50.83}
+-          port: 8200
+-          backend: kv
+-          order: 1
++#        vault:
++#          authentication: token
++#          token: ${SPRING_CLOUD_VAULT_TOKEN:${spring.cloud.vault.token}}
++#          kv-version: 2
++#          host: ${VAULT_SERVER_HOST:10.2.50.83}
++#          port: 8200
++#          backend: kv
++#          order: 1
+         #This configuration use for production.
+         #It is used to load all configuration from git server
+-        git:
+-          basedir: ${GIT_CLONE_TO_LOCAL_PATH:./../../config}
+-          clone-on-start: ${GIT_CLONE_ON_START:true}
+-          default-label: ${GIT_BRANCH:${git.branch}}
+-          username: ${GIT_USERNAME:${git.username}}
+-          password: ${GIT_PASSWORD:${git.password}}
+-          uri: ${GIT_REPOSITORY_URL:${git.repository.url}}
+-          search-paths:
+-            - cxm-props-config/*
+-          order: 2
++#        git:
++#          basedir: ${GIT_CLONE_TO_LOCAL_PATH:./../../config}
++#          clone-on-start: ${GIT_CLONE_ON_START:true}
++#          default-label: ${GIT_BRANCH:${git.branch}}
++#          username: ${GIT_USERNAME:${git.username}}
++#          password: ${GIT_PASSWORD:${git.password}}
++#          uri: ${GIT_REPOSITORY_URL:${git.repository.url}}
++#          search-paths:
++#            - cxm-props-config/*
++#          order: 2
+   devtools:
+     livereload:
+       enabled: false

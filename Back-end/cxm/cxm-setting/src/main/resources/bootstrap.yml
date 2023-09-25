@@ -1,0 +1,44 @@
+springdoc:
+  override-with-generic-response: false
+
+spring:
+  application:
+    name: cxm-setting
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active:
+      - ${SPRING_PROFILES_ACTIVE:@activatedProperties@}
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    discovery:
+      client:
+        health-indicator:
+          enabled: true
+    config:
+      fail-fast: true
+      discovery:
+        enabled: true
+        service-id: CONFIG-SERVER
+      retry:
+        max-attempts: 6
+        max-interval: 3000
+        multiplier: 1.1
+application:
+  discovery:
+    type: ${CXM_DISCOVERY_TYPE}
+    host: ${CXM_DISCOVERY_HOST}
+    port: ${CXM_DISCOVERY_PORT}
+    instance-id: ${spring.application.name}-${random.int}
+    instance-hostname: ${CXM_DISCOVERY_INSTANCE_HOSTNAME}
+    prefer-ip-address: ${CXM_DISCOVERY_PREFERE_IP_ADDRESS:true}
+    enabled: ${CXM_DISCOVERY_ENABLED:true}
+    scheme: ${CXM_DISCOVERY_SCHEME:http}
+    instance-group: ${spring.application.name}
+    healthCheckPath: ${CXM_DISCOVERY_HEALTH_CHECK_PATH:/api/actuator/health}
+    metadata:
+      version: @project.version@
+
+

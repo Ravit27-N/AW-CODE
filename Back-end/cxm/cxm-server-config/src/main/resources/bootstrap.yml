@@ -1,0 +1,91 @@
+cxm:
+  server-config:
+    base-path: ${NATIVE_LOCAL_CONFIG_PATH:@pom.basedir@/../cxm-props-config-native}
+
+spring:
+  application:
+    name: config-server
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active:
+      - ${SERVER_CONFIG_PROFILES:@activatedProperties@}
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: true
+    inetutils:
+      timeout-seconds: 10
+      ignoredInterfaces:
+        - docker0
+        - veth.*
+      useOnlySiteLocalInterfaces: true
+#    vault:
+#      token: ${SPRING_CLOUD_VAULT_TOKEN:s.xtRssdTiAs3ApmtNdmqX51NT}
+#      enabled: false
+    config:
+      server:
+        bootstrap: true
+        #This configuration use for development
+        #It is used to load configuration properties from local machine
+        native:
+          search-locations:
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-campaign
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-template
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-flow-traceability
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/service-gateway
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-profile
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-directory
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-composition
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-setting
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-file-control-management
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-process-control
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-file-manager
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-acquisition
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-processing
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-go2pdf
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-hub-digitalflow
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-switch
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-production
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/service-discovery
+            - ${SERVER_CONFIG_BASE_PATH_CONTAINER:${cxm.server-config.base-path}}/cxm-analytics
+          fail-on-error: true
+        #This configuration use for both development and production.
+        #It is used to load all configuration from vault server
+#        vault:
+#          authentication: token
+#          token: ${SPRING_CLOUD_VAULT_TOKEN:${spring.cloud.vault.token}}
+#          kv-version: 2
+#          host: ${VAULT_SERVER_HOST:10.2.50.83}
+#          port: 8200
+#          backend: kv
+#          order: 1
+        #This configuration use for production.
+        #It is used to load all configuration from git server
+#        git:
+#          basedir: ${GIT_CLONE_TO_LOCAL_PATH:./../../config}
+#          clone-on-start: ${GIT_CLONE_ON_START:true}
+#          default-label: ${GIT_BRANCH:${git.branch}}
+#          username: ${GIT_USERNAME:${git.username}}
+#          password: ${GIT_PASSWORD:${git.password}}
+#          uri: ${GIT_REPOSITORY_URL:${git.repository.url}}
+#          search-paths:
+#            - cxm-props-config/*
+#          order: 2
+  devtools:
+    livereload:
+      enabled: false
+
+application:
+  discovery:
+    type: ${CXM_DISCOVERY_TYPE}
+    host: ${CXM_DISCOVERY_HOST}
+    port: ${CXM_DISCOVERY_PORT}
+    instance-id: ${spring.application.name}
+    instance-hostname: ${CXM_DISCOVERY_INSTANCE_HOSTNAME}
+    prefer-ip-address: ${CXM_DISCOVERY_PREFERE_IP_ADDRESS:true}
+    enabled: ${CXM_DISCOVERY_ENABLED:true}
+    scheme: ${CXM_DISCOVERY_SCHEME:http}
+    instance-group: ${spring.application.name}
+    metadata:
+      version: @project.version@

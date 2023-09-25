@@ -1,0 +1,44 @@
+package com.tessi.cxm.pfl.ms3.entity;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+@Builder
+@Entity
+@SequenceGenerator(
+    name = "FLOW_DOCUMENT_ATTACHMENT_SEQUENCE_GENERATOR",
+    sequenceName = "FLOW_DOCUMENT_ATTACHMENT_SEQUENCE",
+    allocationSize = 1)
+public class FlowDocumentAttachment implements Serializable {
+
+  @Id
+  @GeneratedValue(
+      strategy = GenerationType.SEQUENCE,
+      generator = "FLOW_DOCUMENT_ATTACHMENT_SEQUENCE_GENERATOR")
+  private Long id;
+
+  private String attachment;
+  private String position;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "flow_document_details_id", referencedColumnName = "id")
+  @JsonBackReference
+  private FlowDocumentDetails flowDocumentDetails;
+}

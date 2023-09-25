@@ -1,0 +1,18 @@
+app:
+  version: @project.version@
+spring:
+  application:
+    name: service-discovery
+  profiles:
+    active:
+      - native
+  #      - ${SPRING_PROFILES_ACTIVE:@activatedProperties@}
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    config:
+      uri: http://10.2.50.9:8895
+eureka:
+  client:
+    service-url:
+      defaultZone: http://10.2.50.9:8761/eureka

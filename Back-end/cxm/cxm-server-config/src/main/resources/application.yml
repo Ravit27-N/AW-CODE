@@ -1,0 +1,7 @@
+server:
+  port: ${SERVER_CONFIG_PORT:8895}
+spring:
+  profiles:
+    # Provide property repository to include.
+    # Use "native" for development.
+    include: ${SERVER_CONFIG_PROFILES_INCLUDE}

@@ -1,0 +1,104 @@
+{
+  "configurations": [
+    {
+      "name": "DEFAULT",
+      "order": 0,
+      "entries": [
+        {
+          "key": "ServerName",
+          "value": "DOCKER_TESSI-POST"
+        },
+        {
+          "key": "ComputerName",
+          "value": "DOCKER_TESSI-POST"
+        },
+        {
+          "key": "Creator",
+          "value": "go2pdf"
+        },
+        {
+          "key": "PathLog",
+          "value": "${workingPath}/log/"
+        },
+        {
+          "key": "FromConfirmation",
+          "value": "confirmation@bee-post.com"
+        },
+        {
+          "key": "FromError",
+          "value": "erreur@bee-post.com"
+        },
+        {
+          "key": "PathGs",
+          "value": "/usr/bin/gs"
+        },
+        {
+          "key": "PathZip",
+          "value": "/usr/bin/7z"
+        },
+        {
+          "key": "Mail",
+          "value": "replaceByAdministrateur@nomClient.fr"
+        },
+        {
+          "key": "Licence",
+          "value": "W400902-010500-738437-3VKP82-NDGVH2"
+        },
+        {
+          "key": "SMTPLogin",
+          "value": "ls.edition"
+        },
+        {
+          "key": "SMTPmdp",
+          "value": "lrdezTDNJI2375Ga"
+        },
+        {
+          "key": "SMTP",
+          "value": "smtp.tessitechno.fr"
+        },
+        {
+          "key": "KeepOriginalName",
+          "value": "false"
+        },
+        {
+          "key": "PaysConfiguration",
+          "value": "France;Monaco;Guadeloupe;Guyane;La Reunion;Ile de la Reunion;Martinique;Mayotte;Nouvelle Caledonie;Nouvelle-Caledonie;Polynesie Francaise;Saint Barthelemy;Saint-Martin;Saint Martin;Saint-Pierre-et-Miquelon;Saint Martin;Saint Pierre et Miquelon;Wallis-et-Futuna;Wallis et Futuna;Saint-Martin - France;FR"
+        },
+        {
+          "key": "AddFont.1",
+          "value": "OCRB;/apps/cxm/common/logidoc/Go2PDF/config/ressources/OCR_BB.TTF"
+        }
+      ]
+    },
+    {
+      "name": "PORTAIL",
+      "order": 1,
+      "entries": [
+        {
+          "key": "PathIni",
+          "value": "/apps/cxm/config/go2pdf/NomClient/config_portail.ini"
+        }
+      ]
+    },
+    {
+      "name": "PORTAIL_ANALYSE",
+      "order": 2,
+      "entries": [
+        {
+          "key": "PathIni",
+          "value": "/apps/cxm/config/go2pdf/NomClient/config_portail.ini"
+        }
+      ]
+    },
+    {
+      "name": "PORTAIL_PREVIEW",
+      "order": 3,
+      "entries": [
+        {
+          "key": "PathIni",
+          "value": "/apps/cxm/config/go2pdf/NomClient/config_portail.ini"
+        }
+      ]
+    }
+  ]
+}

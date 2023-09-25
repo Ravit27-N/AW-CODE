@@ -1,0 +1,480 @@
+{
+  "configurations": [
+    {
+      "name": "DEFAULT",
+      "order": 0,
+      "entries": [
+        {
+          "key": "ServerName",
+          "value": "DOCKER_TESI-POST"
+        },
+        {
+          "key": "ComputerName",
+          "value": "DOCKER_TESSI-POST"
+        },
+        {
+          "key": "FromConfirmation",
+          "value": "confirmation-int@bee-post.com"
+        },
+        {
+          "key": "FromError",
+          "value": "erreur-int@bee-post.com"
+        },
+        {
+          "key": "SMTP",
+          "value": "172.20.0.6"
+        },
+        {
+          "key": "PaysConfiguration",
+          "value": "France;Monaco;Guadeloupe;Guyane;La Reunion;Martinique;Mayotte;Nouvelle Caledonie;Nouvelle-Caledonie;Polynesie Francaise;Saint Barthelemy;Saint-Martin;Saint Martin;Saint-Pierre-et-Miquelon;Saint Martin;Saint Pierre et Miquelon;Wallis-et-Futuna;Wallis et Futuna"
+        }
+      ]
+    },
+    {
+      "name": "PORTAIL",
+      "order": 1,
+      "entries": [
+        {
+          "key": "Modele",
+          "value": "PORTAIL"
+        },
+        {
+          "key": "PathChargement",
+          "value": ""
+        },
+        {
+          "key": "PathIn",
+          "value": "${workingPath}/portail/in/"
+        },
+        {
+          "key": "PathTemp",
+          "value": "${workingPath}/portail/tmp/"
+        },
+        {
+          "key": "PathOutTemp",
+          "value": "${workingPath}/portail/tmp_out/"
+        },
+        {
+          "key": "PathOut",
+          "value": "${workingPath}/portail/out/"
+        },
+        {
+          "key": "PathArch",
+          "value": "${workingPath}/portail/arch/"
+        },
+        {
+          "key": "PathFlags",
+          "value": "${workingPath}/portail/flags/"
+        },
+        {
+          "key": "PathJob",
+          "value": "${workingPath}/portail/job/"
+        },
+        {
+          "key": "PathError",
+          "value": "${workingPath}/portail/error/"
+        },
+        {
+          "key": "Pathfdp",
+          "value": "${enrichmentPath}"
+        },
+        {
+          "key": "PathDdp",
+          "value": "${enrichmentPath}"
+        },
+        {
+          "key": "PathMail",
+          "value": "${clientConfigPath}/mail/"
+        },
+        {
+          "key": "PathPjs",
+          "value": "${enrichmentPath}"
+        },
+        {
+          "key": "PathRessources",
+          "value": "${enrichmentPath}"
+        },
+        {
+          "key": "PathLog",
+          "value": "${workingPath}/log/"
+        },
+        {
+          "key": "RejectPercent",
+          "value": "99.9"
+        },
+        {
+          "key": "SousConfig",
+          "value": "OUI"
+        },
+        {
+          "key": "CoorAdresse",
+          "value": "215 600 650 750"
+        },
+        {
+          "key": "CoorStampX",
+          "value": "290"
+        },
+        {
+          "key": "CoorStampY",
+          "value": "590"
+        },
+        {
+          "key": "CoorRupture",
+          "value": "215 600 650 750"
+        },
+        {
+          "key": "CadreBlanc",
+          "value": "215 600 650 711"
+        },
+        {
+          "key": "Archiving",
+          "value": "0"
+        },
+        {
+          "key": "Color",
+          "value": "0"
+        },
+        {
+          "key": "Workflow",
+          "value": "NO"
+        },
+        {
+          "key": "Wrap",
+          "value": "auto"
+        },
+        {
+          "key": "Recto",
+          "value": "R"
+        },
+        {
+          "key": "Urgency",
+          "value": "Lettre"
+        },
+        {
+          "key": "NotificationMail",
+          "value": "OUI"
+        },
+        {
+          "key": "Optimisation",
+          "value": "NON"
+        },
+        {
+          "key": "FilterByCompany",
+          "value": "OUI"
+        }
+      ]
+    },
+    {
+      "name": "PORTAIL_ANALYSE",
+      "order": 2,
+      "entries": [
+      {
+        "key": "Modele",
+        "value": "PORTAIL_ANALYSE"
+      },
+        {
+          "key": "PathChargement",
+          "value": ""
+        },
+        {
+          "key": "PathIn",
+          "value": "${workingPath}/portail_analyse/in/"
+        },
+        {
+          "key": "PathTemp",
+          "value": "${workingPath}/portail_analyse/tmp/"
+        },
+        {
+          "key": "PathOutTemp",
+          "value": "${workingPath}/portail_analyse/tmp_out/"
+        },
+        {
+          "key": "PathOut",
+          "value": "${workingPath}/portail_analyse/out/"
+        },
+        {
+          "key": "PathArch",
+          "value": "${workingPath}/portail_analyse/arch/"
+        },
+        {
+          "key": "PathFlags",
+          "value": "${workingPath}/portail_analyse/flags/"
+        },
+        {
+          "key": "PathJob",
+          "value": "${workingPath}/portail_analyse/job/"
+        },
+        {
+          "key": "PathError",
+          "value": "${workingPath}/portail_analyse/error/"
+        },
+        {
+          "key": "Pathfdp",
+          "value": "${enrichmentPath}"
+        },
+        {
+          "key": "PathDdp",
+          "value": "${enrichmentPath}"
+        },
+        {
+          "key": "PathMail",
+          "value": "${clientConfigPath}/mail/"
+        },
+        {
+          "key": "PathPjs",
+          "value": "${enrichmentPath}"
+        },
+        {
+          "key": "PathRessources",
+          "value": "${enrichmentPath}"
+        },
+        {
+          "key": "PathLog",
+          "value": "${workingPath}/log/"
+        },
+        {
+          "key": "SousConfig",
+          "value": "OUI"
+        },
+        {
+          "key": "CoorAdresse",
+          "value": "255 605 590 728"
+        },
+        {
+          "key": "CadreBlanc",
+          "value": "255 605 590 728"
+        },
+        {
+          "key": "CoorHide",
+          "value": "255 605 590 728"
+        },
+        {
+          "key": "CoorRupture",
+          "value": "255 605 590 728"
+        },
+        {
+          "key": "RupturePage",
+          "value": "adresse"
+        },
+        {
+          "key": "CoorStampX",
+          "value": "290"
+        },
+        {
+          "key": "CoorStampY",
+          "value": "600"
+        },
+        {
+          "key": "EcartGauche",
+          "value": "47"
+        },
+        {
+          "key": "Archiving",
+          "value": "0"
+        },
+        {
+          "key": "Color",
+          "value": "0"
+        },
+        {
+          "key": "Workflow",
+          "value": "NO"
+        },
+        {
+          "key": "Wrap",
+          "value": "auto"
+        },
+        {
+          "key": "Recto",
+          "value": "R"
+        },
+        {
+          "key": "Urgency",
+          "value": "Lettre"
+        },
+        {
+          "key": "ConfirmationMail",
+          "value": "NON"
+        },
+        {
+          "key": "Optimisation",
+          "value": "NON"
+        },
+        {
+          "key": "RejectPercent",
+          "value": "100.0"
+        },
+        {
+          "key": "FilterByCompany",
+          "value": "OUI"
+        },
+        {
+          "key": "IgnoreXML",
+          "value": "NON"
+        },
+        {
+          "key": "CopyDelay",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "name": "PORTAIL_PREVIEW",
+      "order": 3,
+      "entries": [
+        {
+          "key": "Modele",
+          "value": "PORTAIL_PREVIEW"
+        },
+        {
+          "key": "PathChargement",
+          "value": ""
+        },
+        {
+          "key": "PathIn",
+          "value": "${workingPath}/portail_preview/in/"
+        },
+        {
+          "key": "PathTemp",
+          "value": "${workingPath}/portail_preview/tmp/"
+        },
+        {
+          "key": "PathOutTemp",
+          "value": "${workingPath}/portail_preview/tmp_out/"
+        },
+        {
+          "key": "PathOut",
+          "value": "${workingPath}/portail_preview/out/"
+        },
+        {
+          "key": "PathArch",
+          "value": "${workingPath}/portail_preview/arch/"
+        },
+        {
+          "key": "PathFlags",
+          "value": "${workingPath}/portail_preview/flags/"
+        },
+        {
+          "key": "PathJob",
+          "value": "${workingPath}/portail_preview/job/"
+        },
+        {
+          "key": "PathError",
+          "value": "${workingPath}/portail_preview/error/"
+        },
+        {
+          "key": "Pathfdp",
+          "value": "${enrichmentPath}"
+        },
+        {
+          "key": "PathDdp",
+          "value": "${enrichmentPath}"
+        },
+        {
+          "key": "PathMail",
+          "value": "${clientConfigPath}/mail/"
+        },
+        {
+          "key": "PathPjs",
+          "value": "${enrichmentPath}"
+        },
+        {
+          "key": "PathRessources",
+          "value": "${enrichmentPath}"
+        },
+        {
+          "key": "PathLog",
+          "value": "${workingPath}/log/"
+        },
+        {
+          "key": "SousConfig",
+          "value": "OUI"
+        },
+        {
+          "key": "CoorAdresse",
+          "value": "255 605 590 728"
+        },
+        {
+          "key": "CadreBlanc",
+          "value": "255 605 590 728"
+        },
+        {
+          "key": "CoorHide",
+          "value": "255 605 590 728"
+        },
+        {
+          "key": "CoorRupture",
+          "value": "255 605 590 728"
+        },
+        {
+          "key": "RupturePage",
+          "value": "adresse"
+        },
+        {
+          "key": "CoorStampX",
+          "value": "290"
+        },
+        {
+          "key": "CoorStampY",
+          "value": "600"
+        },
+        {
+          "key": "EcartGauche",
+          "value": "47"
+        },
+        {
+          "key": "Archiving",
+          "value": "0"
+        },
+        {
+          "key": "Color",
+          "value": "0"
+        },
+        {
+          "key": "Workflow",
+          "value": "NO"
+        },
+        {
+          "key": "Wrap",
+          "value": "auto"
+        },
+        {
+          "key": "Recto",
+          "value": "R"
+        },
+        {
+          "key": "Urgency",
+          "value": "Lettre"
+        },
+        {
+          "key": "ConfirmationMail",
+          "value": "NON"
+        },
+        {
+          "key": "NotificationMail",
+          "value": "NON"
+        },
+        {
+          "key": "Optimisation",
+          "value": "NON"
+        },
+        {
+          "key": "RejectPercent",
+          "value": "100.0"
+        },
+        {
+          "key": "FilterByCompany",
+          "value": "OUI"
+        },
+        {
+          "key": "IgnoreXML",
+          "value": "NON"
+        },
+        {
+          "key": "CopyDelay",
+          "value": "0"
+        }
+      ]
+    }
+  ]
+}
