@@ -1,0 +1,83 @@
+image: docker:19.03.12
+services:
+  - docker:19.03.12-dind
+  
+variables:
+  TAG_LATEST: $CI_REGISTRY_IMAGE/rms-api:latest
+  DOCKER_TLS_CERTDIR: "/certs"
+
+stages:
+  - build
+  - test
+  - code_quality
+  - sonarqube-check
+  - deploy
+
+include:
+  - template: Code-Quality.gitlab-ci.yml
+
+before_script:
+  - chmod +x mvnw
+
+docker-build:
+  stage: build
+  script:
+  - docker info
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  - docker build -t $TAG_LATEST .
+  - docker push $TAG_LATEST
+  only:
+  - master
+#deploy:
+  #image: alpine:latest
+  #stage: deploy
+  #tags:
+    #- deployment
+  #script:
+    #- chmod og= $ID_RSA
+    #- apk update && apk add openssh-client
+    #- ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY"
+    #- ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull $TAG_LATEST"
+    #- ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f recruit || true"
+    #- ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker-compose up -d"
+  #environment:
+    #name: production
+    #url: http://10.2.7:8083
+  #only:
+    #- rc/1.0.0
+code_quality:
+  stage: code_quality
+  variables:
+    REPORT_FORMAT: html
+  artifacts:
+    paths: [gl-code-quality-report.html]
+
+sonarqube-check:
+  image: maven:3.6.3-jdk-11
+  stage: sonarqube-check
+  needs: []
+  dependencies: []
+  variables:
+    SONAR_PROJECT_BASE_DIR: "${CI_PROJECT_DIR}"
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+    SONAR_TOKEN: "d9b1269eff1530f693226caa0c411bbbfda1cd23"
+    SONAR_HOST_URL: "http://10.2.7.2:9000"
+    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+    # This will suppress any download for dependencies and plugins or upload messages which would clutter the console log.
+    # `showDateTime` will show the passed time in milliseconds. You need to specify `--batch-mode` to make this work.
+    MAVEN_OPTS: "-Dhttp.protocols=TLSv1.2 -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
+    # As of Maven 3.3.0 instead of this you may define these options in `.mvn/maven.config` so the same config is used
+    MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
+
+  cache:
+    key: "sonar-${CI_PROJECT_ID}"
+    paths:
+      - .m2/repository
+      - ".scannerwork"
+      - ".sonar"
+  script:
+    - mvn $MAVEN_OPTS verify sonar:sonar -Dsonar.qualitygate.wait=true  -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN
+  allow_failure: true
+  only:
+    - rc/1.0.0
+

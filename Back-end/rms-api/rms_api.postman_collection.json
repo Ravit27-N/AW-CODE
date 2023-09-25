@@ -1,0 +1,1536 @@
+{
+	"info": {
+		"_postman_id": "66decd85-e3a4-4002-b583-eadfc61ea720",
+		"name": "rms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "file_manager",
+			"item": [
+				{
+					"name": "UploadCommand",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessTokenUrl",
+									"value": "http://10.2.7.2:8080/auth/realms/aw_recruitment/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "8467253b-931b-43ef-914d-1a936ab20526",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sakal",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "aw-recruit-login",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "upload",
+									"type": "file",
+									"src": [
+										"/C:/Users/TD-05/Pictures/after-supress.png",
+										"/C:/Users/TD-05/Pictures/allweb.png",
+										"/C:/Users/TD-05/Pictures/Annotation 2020-08-20 175212.png"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}:8182/api/v1/connector?cmd=upload&target=A_dXBsb2FkXHRlbXA_E",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8182",
+							"path": [
+								"api",
+								"v1",
+								"connector"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "upload"
+								},
+								{
+									"key": "target",
+									"value": "A_dXBsb2FkXHRlbXA_E"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MkDirCommand",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://10.2.7.2:8080/auth/realms/aw_recruitment/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "8467253b-931b-43ef-914d-1a936ab20526",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sakal",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "aw-recruit-login",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}:8182/api/v1/connector?cmd=mkdir&target=A_dXBsb2FkXHRlbXA_E&name=test_copy",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8182",
+							"path": [
+								"api",
+								"v1",
+								"connector"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "mkdir"
+								},
+								{
+									"key": "target",
+									"value": "A_dXBsb2FkXHRlbXA_E",
+									"description": "upload\\temp"
+								},
+								{
+									"key": "name",
+									"value": "test_copy"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MkFileCommand",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://10.2.7.2:8080/auth/realms/aw_recruitment/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "8467253b-931b-43ef-914d-1a936ab20526",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sakal",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "aw-recruit-login",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}:8182/api/v1/connector?cmd=mkfile&target=A_dXBsb2FkXHRlbXA_E&name=my_text_2.txt",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8182",
+							"path": [
+								"api",
+								"v1",
+								"connector"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "mkfile"
+								},
+								{
+									"key": "target",
+									"value": "A_dXBsb2FkXHRlbXA_E",
+									"description": "upload\\temp"
+								},
+								{
+									"key": "name",
+									"value": "my_text_2.txt"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LsCommand",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://10.2.7.2:8080/auth/realms/aw_recruitment/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "8467253b-931b-43ef-914d-1a936ab20526",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sakal",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "aw-recruit-login",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}:8182/api/v1/connector?cmd=ls&targets=A_dXBsb2FkXHRlbXA_E",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8182",
+							"path": [
+								"api",
+								"v1",
+								"connector"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "ls"
+								},
+								{
+									"key": "targets",
+									"value": "A_dXBsb2FkXHRlbXA_E",
+									"description": "upload\\temp"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TreeCommand",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://10.2.7.2:8080/auth/realms/aw_recruitment/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "8467253b-931b-43ef-914d-1a936ab20526",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sakal",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "aw-recruit-login",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}:8182/api/v1/connector?cmd=tree&target=A_dXBsb2FkXHRlbXA_E",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8182",
+							"path": [
+								"api",
+								"v1",
+								"connector"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "tree"
+								},
+								{
+									"key": "target",
+									"value": "A_dXBsb2FkXHRlbXA_E",
+									"description": "upload\\temp"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SearchCommand",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://10.2.7.2:8080/auth/realms/aw_recruitment/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "8467253b-931b-43ef-914d-1a936ab20526",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sakal",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "aw-recruit-login",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}:8182/api/v1/connector?cmd=search&q=New Text Document&mimes=text/plain",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8182",
+							"path": [
+								"api",
+								"v1",
+								"connector"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "search"
+								},
+								{
+									"key": "target",
+									"value": "A_dXBsb2FkXHRlbXA_E",
+									"description": "upload\\temp",
+									"disabled": true
+								},
+								{
+									"key": "q",
+									"value": "New Text Document"
+								},
+								{
+									"key": "mimes",
+									"value": "text/plain"
+								},
+								{
+									"key": "mimes",
+									"value": "directory",
+									"disabled": true
+								},
+								{
+									"key": "q",
+									"value": "testghjkhgjkghjk",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ParentsCommand",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://10.2.7.2:8080/auth/realms/aw_recruitment/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "8467253b-931b-43ef-914d-1a936ab20526",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sakal",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "aw-recruit-login",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}:8182/api/v1/connector?cmd=parents&target=A_dXBsb2FkXHRlbXBcQVxC",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8182",
+							"path": [
+								"api",
+								"v1",
+								"connector"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "parents"
+								},
+								{
+									"key": "target",
+									"value": "A_dXBsb2FkXHRlbXBcQVxCXEM_E",
+									"description": "upload\\temp\\A\\B\\C",
+									"disabled": true
+								},
+								{
+									"key": "target",
+									"value": "A_dXBsb2FkXHRlbXBcQVxC",
+									"description": "upload\\temp\\A\\B"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SizeCommand",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://10.2.7.2:8080/auth/realms/aw_recruitment/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "8467253b-931b-43ef-914d-1a936ab20526",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sakal",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "aw-recruit-login",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}:8182/api/v1/connector?cmd=size&targets=A_dXBsb2FkXHRlbXBcdGVzdDE_E&targets=A_dXBsb2FkXHRlbXBcdGVzdDI_E&targets=A_dXBsb2FkXHRlbXBcdGVzdDM_E",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8182",
+							"path": [
+								"api",
+								"v1",
+								"connector"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "size"
+								},
+								{
+									"key": "targets",
+									"value": "A_dXBsb2FkXHRlbXA_E",
+									"description": "upload\\temp",
+									"disabled": true
+								},
+								{
+									"key": "targets",
+									"value": "A_dXBsb2FkXHRlbXBcdGVzdDE_E",
+									"description": "upload\\temp\\test1"
+								},
+								{
+									"key": "targets",
+									"value": "A_dXBsb2FkXHRlbXBcdGVzdDI_E",
+									"description": "upload\\temp\\test2"
+								},
+								{
+									"key": "targets",
+									"value": "A_dXBsb2FkXHRlbXBcdGVzdDM_E",
+									"description": "upload\\temp\\test3, Not exist"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutCommand",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://10.2.7.2:8080/auth/realms/aw_recruitment/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "8467253b-931b-43ef-914d-1a936ab20526",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sakal",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "aw-recruit-login",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}:8182/api/v1/connector?cmd=put&target=A_dXBsb2FkXHRlbXBcbXlfdGV4dC50eHQ_E&content=data already put!!!&encoding=utf-8",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8182",
+							"path": [
+								"api",
+								"v1",
+								"connector"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "put"
+								},
+								{
+									"key": "target",
+									"value": "A_dXBsb2FkXHRlbXBcbXlfdGV4dC50eHQ_E",
+									"description": "upload\\temp\\my_text.txt"
+								},
+								{
+									"key": "content",
+									"value": "data already put!!!",
+									"description": "19 charactors"
+								},
+								{
+									"key": "encoding",
+									"value": "utf-8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RenameCommand",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://10.2.7.2:8080/auth/realms/aw_recruitment/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "8467253b-931b-43ef-914d-1a936ab20526",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sakal",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "aw-recruit-login",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}:8182/api/v1/connector?cmd=rename&target=A_dXBsb2FkXHRlbXBcbXlfdGV4dC50eHQ_E&name=my_text_renamed.txt",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8182",
+							"path": [
+								"api",
+								"v1",
+								"connector"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "rename"
+								},
+								{
+									"key": "target",
+									"value": "A_dXBsb2FkXHRlbXBcbXlfdGV4dC50eHQ_E",
+									"description": "upload\\temp\\my_text.txt"
+								},
+								{
+									"key": "name",
+									"value": "my_text_renamed.txt"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PasteCommand",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://10.2.7.2:8080/auth/realms/aw_recruitment/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "8467253b-931b-43ef-914d-1a936ab20526",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sakal",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "aw-recruit-login",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}:8182/api/v1/connector?cmd=paste&dst=A_dXBsb2FkXHRlbXBcdGVzdF9jb3B5&targets=A_dXBsb2FkXHRlbXBcbXlfdGV4dC50eHQ_E&renames=test_rename&cut=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8182",
+							"path": [
+								"api",
+								"v1",
+								"connector"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "paste"
+								},
+								{
+									"key": "dst",
+									"value": "A_dXBsb2FkXHRlbXBcdGVzdF9jb3B5",
+									"description": "upload\\temp\\test_copy"
+								},
+								{
+									"key": "targets",
+									"value": "A_dXBsb2FkXHRlbXBcbXlfdGV4dC50eHQ_E",
+									"description": "upload\\temp\\my_text.txt"
+								},
+								{
+									"key": "renames",
+									"value": "test_rename"
+								},
+								{
+									"key": "cut",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DuplicateCommand",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://10.2.7.2:8080/auth/realms/aw_recruitment/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "8467253b-931b-43ef-914d-1a936ab20526",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sakal",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "aw-recruit-login",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}:8182/api/v1/connector?cmd=duplicate&targets=A_dXBsb2FkXHRlbXBcbXlfdGV4dC50eHQ_E",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8182",
+							"path": [
+								"api",
+								"v1",
+								"connector"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "duplicate"
+								},
+								{
+									"key": "targets",
+									"value": "A_dXBsb2FkXHRlbXBcbXlfdGV4dC50eHQ_E",
+									"description": "upload\\temp\\my_text.txt"
+								},
+								{
+									"key": "targets",
+									"value": "A_dXBsb2FkXHRlbXBcbXlfdGV4dCgyKS50eHQ_E",
+									"description": "upload\\temp\\my_text(2).txt",
+									"disabled": true
+								},
+								{
+									"key": "targets",
+									"value": "A_dXBsb2FkXHRlbXBcdGVzdDE_E",
+									"description": "upload\\temp\\test1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCommand",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://10.2.7.2:8080/auth/realms/aw_recruitment/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "8467253b-931b-43ef-914d-1a936ab20526",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sakal",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "aw-recruit-login",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}:8182/api/v1/connector?cmd=get&target=A_dXBsb2FkXHRlbXBcbXlfdGV4dC50eHQ_E",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8182",
+							"path": [
+								"api",
+								"v1",
+								"connector"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "get"
+								},
+								{
+									"key": "target",
+									"value": "A_dXBsb2FkXHRlbXBcbXlfdGV4dC50eHQ_E",
+									"description": "upload\\temp\\my_text.txt"
+								},
+								{
+									"key": "target",
+									"value": "A_dXBsb2FkXHRlbXA_E",
+									"description": "upload\\temp -> errNotFile",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RmCommand",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://10.2.7.2:8080/auth/realms/aw_recruitment/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "8467253b-931b-43ef-914d-1a936ab20526",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sakal",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "aw-recruit-login",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}:8182/api/v1/connector?cmd=rm&targets=A_dXBsb2FkXHRlbXBcdGVzdF9Mc0NvbW1hbmQ_E",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8182",
+							"path": [
+								"api",
+								"v1",
+								"connector"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "rm"
+								},
+								{
+									"key": "targets",
+									"value": "A_dXBsb2FkXHRlbXBcbXlfdGV4dC50eHQ_E",
+									"description": "upload\\temp\\my_text.txt",
+									"disabled": true
+								},
+								{
+									"key": "targets",
+									"value": "A_dXBsb2FkXHRlbXBcbXlfdGV4dF8xLnR4dA_E_E",
+									"description": "upload\\temp\\my_text_1.txt",
+									"disabled": true
+								},
+								{
+									"key": "targets",
+									"value": "A_dXBsb2FkXHRlbXBcbXlfdGV4dF8yLnR4dA_E_E",
+									"description": "upload\\temp\\my_text_2.txt",
+									"disabled": true
+								},
+								{
+									"key": "targets",
+									"value": "A_dXBsb2FkXHRlbXBcdGVzdF9Mc0NvbW1hbmQ_E",
+									"description": "upload\\temp\\test_LsCommand"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: aw-rms-service
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: aw-server-config
+  mvc:
+    servlet:
+      path: /
+  profiles:
+    active: @activatedProperties@

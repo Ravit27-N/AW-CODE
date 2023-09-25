@@ -1,0 +1,9 @@
+http.host: "0.0.0.0"
+xpack.monitoring.enabled: true
+xpack.monitoring.collection.enabled: true
+xpack.monitoring.elasticsearch.hosts: [ "http://elasticsearch:9200" ]
+
+pipeline:
+  batch:
+    size: 125
+    delay: 50

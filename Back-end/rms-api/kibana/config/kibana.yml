@@ -1,0 +1,3 @@
+elasticsearch.hosts: ["http://elasticsearch:9200"]
+xpack.reporting.capture.browser.chromium.disableSandbox: true
+xpack.actions.allowedHosts: ['*']
