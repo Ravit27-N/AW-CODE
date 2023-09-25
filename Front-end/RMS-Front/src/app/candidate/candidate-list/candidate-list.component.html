@@ -1,0 +1,209 @@
+<div class="container-fluid mb-2">
+  <h1 class="mat-h1">Candidates</h1>
+
+  <div class="row mb-2">
+    <div class="col-sm-9">
+      <mat-button-toggle-group #group="matButtonToggleGroup" appearance="legacy" name="fontStyle" aria-label="Font Style"
+      (change)="filterByStatus($event)" [(ngModel)]="selectStatusCandidate" name="selectStatusCandidate">
+      <mat-button-toggle value=''>{{'All'}}</mat-button-toggle>
+      <mat-button-toggle *ngFor="let item of statusCandidates" [value]="item.title">{{item.title}}</mat-button-toggle>
+    </mat-button-toggle-group>
+    </div>
+    <div class="col-sm-3 d-flex flex-row justify-content-end">
+      <button mat-raised-button [color]="this.btnArchiev" class="mx-2" (click)="getCandidateListByIsDeleted()" appCanAccess perm="Candidate:edit"><mat-icon>archive</mat-icon> Archive</button>
+      <button mat-raised-button color="primary" (click)="add()" appCanAccess perm="Candidate:add"><mat-icon>add</mat-icon> Add</button>
+    </div>
+  </div>
+
+  <div class="d-flex flex-nowrap justify-content-between align-items-center">
+    <div class="check-filter-group">
+      Filter:
+      <mat-checkbox [checked]="false" name="Interview" value="Interview" (change)="filterInterview($event)"
+        class="mx-2">
+        Interview
+      </mat-checkbox>
+      <mat-checkbox [checked]="false" class="mx-2" name="Interview" value="Reminder" (change)="filterReminder($event)">
+        Reminder
+      </mat-checkbox>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input matInput #input (keyup)="applyFilter()" [(ngModel)]="filter" name="filter">
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="filter" (click)="clearFilter()" tabindex="-1">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="mat-elevation-z8 mt-0 pt-0 pos-relative">
+    <app-loading-indicator [isloading]="('candidate'|swIsLoading|async)" ></app-loading-indicator>
+
+    <table mat-table [dataSource]="dataSource" matSort class="w-100" (matSortChange)="sortData($event)">
+
+      <ng-container matColumnDef="#">
+        <th mat-header-cell *matHeaderCellDef class="col-id"> No. </th>
+        <td mat-cell *matCellDef="let row, let i = index;"> {{paginator.pageIndex * paginator.pageSize + i + 1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Photo">
+        <th mat-header-cell *matHeaderCellDef class="mat-header-center"> Photo </th>
+        <td mat-cell *matCellDef="let row;" class="mat-header-center">
+          <div *ngIf="row.photoUrl === undefined || row.photoUrl === null || row.photoUrl === ''">
+            <div *ngIf="row.gender.toLowerCase() == 'male'" class="img-profile">
+              <img  [src]="this.bIcon" alt="Photo">
+            </div>
+            <div *ngIf="row.gender.toLowerCase() == 'female'" class="img-profile">
+              <img  [src]="this.gIcon" alt="Photo">
+            </div>
+          </div>
+
+          <div *ngIf="!!row.photoUrl" class="img-profile">
+              <app-image [photoUrl]="getUrl(row)"></app-image>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Full name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th>
+        <td mat-cell *matCellDef="let row" class="pl-2">
+          <a [routerLink]="'/admin/candidate/candidateDetail/'+ row.id">{{row.fullName}}</a>
+          <span class="d-block my-1 small text-info" *ngIf="row.interviews">{{row.interviews.title}}</span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="age">
+        <th mat-header-cell *matHeaderCellDef class="mat-header-center"> Age </th>
+        <td mat-cell *matCellDef="let row" class="mat-header-center"> {{getAge(row.dateOfBirth)|na}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Phone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-center"> Phone </th>
+        <td mat-cell *matCellDef="let row" class="mat-header-center">{{row.telephone}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="From">
+        <th mat-header-cell *matHeaderCellDef class="mat-header-center"> University </th>
+        <td mat-cell *matCellDef="let row" class="mat-header-center"> <span class="d-block">{{row.arrUniversities}}</span> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="GPA">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > GPA </th>
+        <td mat-cell *matCellDef="let row" > {{row.gpa|na}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="yearOfExperience">
+        <th mat-header-cell *matHeaderCellDef class="mat-header-center"> Experiences </th>
+        <td mat-cell *matCellDef="let row" class="mat-header-center"> {{row.yearOfExperience|na}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Priority">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Priority</th>
+        <td mat-cell *matCellDef="let row"> {{row. priority}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Status" *ngIf="!this.isDelete">
+        <th mat-header-cell *matHeaderCellDef class="mat-header-center">Status</th>
+        <td mat-cell *matCellDef="let row" class="mat-header-center">
+          <mat-form-field appearance="none" class="select-status">
+
+            <mat-select *ngIf="row.candidateStatus.active === true" [ngModel]="row.candidateStatus.id"
+              name="candidateStatus" (selectionChange)="confirmDialog($event, row)">
+              <mat-option *ngFor="let item of statusCandidates" [value]="item.id">{{item.title}}</mat-option>
+            </mat-select>
+
+            <mat-select *ngIf="row.candidateStatus.active === false || row.candidateStatus.active === undefined"
+              [ngModel]="row.candidateStatus.id" name="candidateStatus"
+              (selectionChange)="confirmDialog($event, row)">
+              <mat-option [value]="row.candidateStatus.id">{{row.candidateStatus.title}}</mat-option>
+              <mat-option *ngFor="let item of statusCandidates" [value]="item.id">{{item.title}}</mat-option>
+            </mat-select>
+
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Status" *ngIf="this.isDelete">
+        <th mat-header-cell *matHeaderCellDef class="mat-header-center">Status</th>
+        <td mat-cell *matCellDef="let row" class="mat-header-center">
+          {{row.candidateStatus.title}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Last Interview">
+        <th mat-header-cell *matHeaderCellDef class="mat-header-center">Interviewed</th>
+        <td mat-cell *matCellDef="let row" class="mat-header-center">
+          <span *ngIf="!row.interviews.lastInterview">N/A</span>
+          <span *ngIf="row.interviews.lastInterview">{{row.interviews.lastInterview | awDateFormat}}
+
+            <span class="d-block text-xs text-info" *ngIf="row.interviews.result.average">
+              {{row.interviews.result.average}}%
+              (Q&A: {{row.interviews.result.score.quiz.score}}, Coding: {{row.interviews.result.score.coding.score}})</span>
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Created at">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-center">Created</th>
+        <td mat-cell *matCellDef="let row" class="mat-header-center"> {{row.createdAt | awDateFormat}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Action" *ngIf="!isDelete">
+        <th mat-header-cell *matHeaderCellDef class="wide-action-group mat-header-center"> Action</th>
+        <td mat-cell *matCellDef="let row" class="action-group-button mat-header-center">
+          <button [disabled]="!row.interviews.lastInterview"
+            *ngIf="row.interviews && row.interviews.result && row.interviews.result.average" mat-icon-button
+            matTooltip="Last interview result" color="primary" (click)="setLastResult(row)">
+            <mat-icon>wysiwyg</mat-icon>
+          </button>
+          <button [disabled]="!row.interviews.lastInterview"
+            *ngIf="!(row.interviews && row.interviews.result && row.interviews.result.average)" mat-icon-button
+            matTooltip="Add interview result" (click)="setLastResult(row)">
+            <mat-icon>wysiwyg</mat-icon>
+          </button>
+          <button appCanAccess perm="Activity:add" mat-icon-button color="basic" matTooltip="Add activity log" (click)="addActivity(row.id)">
+            <mat-icon>playlist_add</mat-icon>
+          </button>
+
+          <button appCanAccess perm="Interview:add" mat-icon-button color="basic" matTooltip="Set interview" (click)="setInterview(row.id)">
+            <mat-icon>insert_invitation</mat-icon>
+          </button>
+          <button appCanAccess perm="Interview:add" mat-icon-button color="basic" matTooltip="Set reminder" (click)="setReminder(row.id)">
+            <mat-icon>add_alert</mat-icon>
+          </button>
+          <button appCanAccess perm="Candidate:view" mat-icon-button color="primary" matTooltip="View" (click)="view(row.id)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button appCanAccess perm="Candidate:edit" mat-icon-button color="primary" matTooltip="Edit" (click)="edit(row.id)">
+            <mat-icon>drive_file_rename_outline</mat-icon>
+          </button>
+          <button appCanAccess perm="Candidate:delete" mat-icon-button color="warn" matTooltip="Delete" (click)="deleteCandidate(row.id,row.fullName)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Action" *ngIf="isDelete">
+        <th mat-header-cell *matHeaderCellDef class="sm-action-group mat-header-center"> Action</th>
+        <td mat-cell *matCellDef="let row" class="action-group-button mat-header-center">
+          <button appCanAccess perm="Candidate:delete" mat-icon-button color="primary" matTooltip="Restore" (click)="restoreOrPermenantDelete(row.id, false, 'restore', row.fullName)">
+            <mat-icon>restore</mat-icon>
+          </button>
+          <button appCanAccess perm="Candidate:delete" mat-icon-button color="warn" matTooltip="Permenantly Delete" (click)="restoreOrPermenantDelete(row.id, false, 'permanentyDelete', row.fullName)">
+            <mat-icon>report_problem</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr class="row-hover" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="11" *ngIf="input.value === undefined || input.value === null || input.value === ''">No matching records found <b>{{input.value}}</b></td>
+        <td class="mat-cell" colspan="11" *ngIf="!!input.value">No matching records found <b>{{input.value}}</b>"</td>
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="paginationSize" [length]="length" (page)="pageEvent($event)"
+      showFirstLastButtons></mat-paginator>
+  </div>
+</div>

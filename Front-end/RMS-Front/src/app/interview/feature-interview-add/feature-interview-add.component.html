@@ -1,0 +1,123 @@
+<app-aw-layout-list [pageTitle]="pageTitle" [pageSubtitle]="pageSubtitle">
+  <div class="row mt-4">
+    <div class="col-6">
+      <app-aw-container>
+        <form class="interview-form" [formGroup]="formGroup">
+          <div>
+            <label class="aw-label">Candidate</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-select [disabled]="isEditableMode || candidateId?.length > 0" disableOptionCentering formControlName="candidateId" tabIndex="1">
+                <mat-option>
+                  <ngx-mat-select-search [formControl]="candidateFilter" placeholderLabel="Enter title"
+                                         noEntriesFoundLabel="no matching found">
+                    <mat-icon>Search</mat-icon>
+                  </ngx-mat-select-search>
+                </mat-option>
+                <mat-option *ngFor="let candidate of candidates" [value]="candidate?.id?.toString()">
+                  {{candidate?.fullName}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="this.formGroup.get('candidateId').invalid">Candidate name is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <label class="aw-label">Interview template</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-select disableOptionCentering formControlName="status" tabIndex="2">
+                <mat-option *ngFor="let status of interviewTemplates" [value]="status?.name">
+                  {{status?.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="formGroup.controls.status.errors">Interview template is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <label class="aw-label">Date & time</label>
+            <mat-form-field appearance="outline" class="d-block">
+              <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" formControlName="dateTime"
+                     tabindex="3"/>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker [enableMeridian]="true" #picker>
+              </ngx-mat-datetime-picker>
+
+              <mat-error *ngIf="formGroup.controls.dateTime.errors">Date & Time is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="d-flex">
+            <app-aw-checkbox
+              *ngIf="!isEditableMode"
+              class="d-block label-description"
+              [formControlName]="'sendInvite'"
+              tabindex="4"
+            >Send invitation mail to candidate
+            </app-aw-checkbox>
+          </div>
+          <div *ngIf="!isEditableMode" class="d-flex mb-3">
+            <app-aw-checkbox
+              class="align-self-end label-description"
+              [formControlName]="'setReminder'"
+              tabindex="5"
+            >Reminder Me
+            </app-aw-checkbox>
+            <mat-form-field class="mx-2">
+              <input disabled class="set-reminder-time" matInput type="number" min="1"
+                     formControlName="reminderTime">
+            </mat-form-field>
+            <p class="align-self-center mt-2 label-description m-0 text-nowrap"><b>minutes in advance</b></p>
+          </div>
+          <div class="mb-2">
+            <label class="aw-label">Apply for</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-select disableOptionCentering name="title" formControlName="title" tabindex="6">
+                <mat-option>
+                  <ngx-mat-select-search [formControl]="titleDescription" placeholderLabel="Enter title"
+                                         noEntriesFoundLabel="no matching found">
+                    <mat-icon>Search</mat-icon>
+                  </ngx-mat-select-search>
+                </mat-option>
+                <button class="w-100" color="primary" mat-button (click)="openCreateTitleDescription()">
+                  <mat-icon>add</mat-icon>
+                  Add new job description
+                </button>
+
+                <mat-option *ngFor="let job of titleDescriptions" [value]="job">{{job}}</mat-option>
+              </mat-select>
+
+              <mat-error *ngIf="formGroup.controls.title.invalid">Title is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <label class="aw-label">Description</label>
+            <quill-editor formControlName="description" tabindex="7"></quill-editor>
+          </div>
+        </form>
+      </app-aw-container>
+    </div>
+    <div class="col-6">
+      <app-aw-container>
+        <div class="interview-wrapper">
+          <h4 class="font-weight-bold w-25 m-0">Interviewers : </h4>
+          <div class="d-flex flex-column interviewer-container overflow-auto h-100">
+            <div *ngFor="let interviewer of interviewers; let idx = index;">
+              <div class="d-flex flex-wrap align-items-center interviewer-wrapper">
+                <div *ngIf="interviewer" class="circle"></div>
+                <span class="interviewer-item d-inline-block">{{ interviewer?.name }}
+                  <span class="mat-card-subtitle d-block">{{ interviewer?.email }}</span></span>
+              </div>
+              <div *ngIf="idx !== interviewers?.length - 1" class="separator"></div>
+            </div>
+          </div>
+        </div>
+      </app-aw-container>
+    </div>
+  </div>
+  <div class="action-button-container mt-4">
+    <div class="d-flex justify-content-end">
+      <app-aw-rich-button (click)="back()" [outline]="true" class="mr-3"
+      >Cancel
+      </app-aw-rich-button>
+      <app-aw-rich-button [actionType]="'submit'"
+                          (click)="save()">{{ isEditableMode ? 'Update' : 'Save' }}</app-aw-rich-button>
+    </div>
+  </div>
+</app-aw-layout-list>

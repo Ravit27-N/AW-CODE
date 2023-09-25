@@ -1,0 +1,62 @@
+<div class="h-100">
+  <form class="d-flex flex-column h-100 justify-content-between" [formGroup]="form">
+    <div>
+      <div class="child-between m-0 p-0 mb-4 pb-2">
+        <div class="d-flex justify-content-between w-100 align-items-center">
+          <div>
+            <h2 class="mat-h2 m-0 p-0 self-center">Add Job Description</h2>
+          </div>
+          <div>
+            <button class="close-btn" (click)="cancel()" mat-icon-button matTooltip="Close">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      <mat-form-field class="w-100" appearance="outline" floatLabel="always">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" id="title" tabindex="1" appAutoFocus/>
+        <button mat-button *ngIf="form.controls.title.value" matSuffix mat-icon-button aria-label="Clear" tabindex="-1"
+                (click)="clearName()">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="form.controls.title.invalid">
+          Title required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="description-container">
+        <mat-label class="label-body">
+          description
+        </mat-label>
+        <hr class="my-2">
+        <div>
+          <quill-editor formControlName="description" tabindex="2"></quill-editor>
+        </div>
+      </div>
+      <div class='img-dragdrop'>
+        <app-aw-upload-fragment width="433px"
+                                [offsetX]="15"
+                                [truncateFilenameWidth]='0.45'
+                                [icon]='icon'
+                                [fileName]="fileName"
+                                [fileSize]="fileSize"
+                                (fileChange)="fileUpload($event)"
+                                (resetUploadFile)="remove()"
+                                [uploadedIcon]='updatedIcon'
+                                [acceptExtension]='acceptExtension'>
+        </app-aw-upload-fragment>
+      </div>
+      <mat-slide-toggle class="toggle-container" formControlName="active" (click)="onChange()">
+        {{slideValue}}
+      </mat-slide-toggle>
+    </div>
+    <div class="d-flex justify-content-end">
+      <app-aw-rich-button [outline]="true" [width]="'168px'" [height]="'48px'" (click)="cancel()">Cancel
+      </app-aw-rich-button>
+      <app-aw-rich-button (click)="onSubmit()" [width]="'168px'" [height]="'48px'" class="mx-2">Save
+      </app-aw-rich-button>
+    </div>
+  </form>
+
+</div>

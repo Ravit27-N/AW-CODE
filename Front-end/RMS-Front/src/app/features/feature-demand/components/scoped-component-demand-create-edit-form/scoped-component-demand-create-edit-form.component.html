@@ -1,0 +1,223 @@
+<article>
+  <div class="my-5">
+    <div class="d-flex flex-row small-screen">
+      <div class="left-component bg-white rounded col-md-5 p-0">
+        <h2 class="text-bold demand-title mt-2">{{ getDemandTitle() }}</h2>
+        <form
+          [formGroup]="form"
+          (ngSubmit)="submitDemand()"
+          class="mx-4 my-2"
+        >
+          <div
+            *ngFor="let item of demand"
+            (click)="getDemand(item)"
+            class="d-flex flex-column align-items-stretch"
+          >
+            <mat-form-field
+              *ngIf="item === demand[0]"
+              class="w-100 my-2"
+              appearance="outline"
+              floatLabel="always"
+            >
+              <mat-label>Position</mat-label>
+              <mat-select
+                formControlName="jobDescriptionId"
+                name="position"
+                tabindex="1"
+              >
+                <mat-option>
+                  <ngx-mat-select-search
+                    [formControl]="titleDescriptionCtrl"
+                    placeholderLabel="Enter title"
+                    noEntriesFoundLabel="no matching found"
+                  >
+                    <mat-icon>Search</mat-icon>
+                  </ngx-mat-select-search>
+                </mat-option>
+                <button
+                  class="w-100"
+                  color="primary"
+                  mat-button
+                  (click)="newPosition()"
+                >
+                  <mat-icon>add</mat-icon>
+                  Add new job description
+                </button>
+                <mat-option
+                  *ngFor="let jobDescription of jobDescriptions?.contents"
+                  [value]="jobDescription.id"
+                >
+                  {{ jobDescription.title }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.controls.jobDescriptionId.invalid"
+              >Job Description is required
+              </mat-error>
+            </mat-form-field>
+            <!-- ./ Position -->
+
+            <mat-form-field
+              *ngIf="item === demand[1]"
+              appearance="outline"
+              floatLabel="always"
+              class="my-2 w-100"
+            >
+              <mat-label>Select a Project</mat-label>
+              <mat-select
+                name="project"
+                formControlName="projectId"
+                tabIndex="2"
+              >
+                <mat-option>
+                  <ngx-mat-select-search
+                    [formControl]="projectCtrl"
+                    placeholderLabel="Enter title"
+                    noEntriesFoundLabel="no matching found"
+                  >
+                    <mat-icon>Search</mat-icon>
+                  </ngx-mat-select-search>
+                </mat-option>
+                <button
+                  class="w-100"
+                  color="primary"
+                  mat-button
+                  (click)="newProject()"
+                >
+                  <mat-icon>add</mat-icon>
+                  Add new project
+                </button>
+                <mat-option
+                  *ngFor="let project of projects?.contents"
+                  [value]="project.id"
+                >
+                  {{ project.name }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.controls.projectId.invalid"
+              >Project name is required
+              </mat-error>
+            </mat-form-field>
+            <!-- ./ Project -->
+
+            <mat-form-field
+              *ngIf="item === demand[2]"
+              appearance="outline"
+              floatLabel="always"
+              class="my-2 w-100"
+            >
+              <mat-label> {{ item }} </mat-label>
+              <input
+                formControlName="nbRequired"
+                matInput
+                type="number"
+                class="example-right-align"
+                placeholder="0"
+                min="1"
+              />
+              <mat-error *ngIf="form.controls.nbRequired.invalid"
+              >Amount of candidate is required and must greater than 0
+              </mat-error>
+            </mat-form-field>
+            <!-- ./ nbRequirement -->
+
+            <mat-form-field
+              *ngIf="item === demand[3]"
+              appearance="outline"
+              floatLabel="always"
+              class="my-2 w-100"
+            >
+              <mat-label>{{ item }}</mat-label>
+              <mat-select formControlName="experienceLevel">
+                <mat-option value="Junior">Junior</mat-option>
+                <mat-option value="Middle">Middle</mat-option>
+                <mat-option value="Senior">Senior</mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.controls.experienceLevel.invalid"
+              >Experience is required
+              </mat-error>
+            </mat-form-field>
+            <!-- ./ Experience -->
+
+            <mat-form-field
+              *ngIf="item === demand[4]"
+              appearance="outline"
+              floatLabel="always"
+              class="my-2 w-100 deadline-block"
+            >
+              <mat-label>{{ item }}</mat-label>
+              <div class="d-flex flex-row">
+                <input
+                  matInput
+                  [matDatepicker]="datepicker"
+                  formControlName="deadLine"
+                />
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="datepicker"
+                ></mat-datepicker-toggle>
+              </div>
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker #datepicker>
+                <mat-datepicker-actions>
+                  <button mat-button matDatepickerCancel>Cancel</button>
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    matDatepickerApply
+                  >
+                    Apply
+                  </button>
+                </mat-datepicker-actions>
+              </mat-datepicker>
+              <mat-error *ngIf="form.controls.deadLine.invalid"
+              >Deadline is required
+              </mat-error>
+            </mat-form-field>
+            <!-- ./ Deadline -->
+
+            <div *ngIf="item === demand[5]" class="my-3">
+              <mat-label class="mr-3">{{ item }}</mat-label>
+              <mat-slide-toggle formControlName="active" (click)="pinOrUnpinDemandToDashboard()">
+                {{ slideValue }}
+              </mat-slide-toggle>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <div class="d-flex mb-3 mt-2">
+              <app-aw-rich-button
+                [outline]="true"
+                [width]="'168px'"
+                [height]="'48px'"
+                (click)="discardFormAndNavigateToList()"
+              >Cancel
+              </app-aw-rich-button>
+              <app-aw-rich-button
+                actionType="submit"
+                [width]="'168px'"
+                [height]="'48px'"
+                class="mx-2"
+              >Save
+              </app-aw-rich-button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="empty-container"></div>
+      <div
+        *ngIf="enableNewPosition || enableNewProject"
+        class="right-component bg-white rounded col-md-5 p-4 p-0"
+      >
+        <app-add-form-project
+          *ngIf="enableNewProject"
+          (saving)="saveProject($event)"
+          (canceled)="cancelProject($event)"
+        ></app-add-form-project>
+        <app-feature-add-job-description
+          *ngIf="enableNewPosition"
+          (saving)="savePosition($event)"
+          (canceled)="cancelPosition($event)"
+        ></app-feature-add-job-description>
+      </div>
+    </div>
+  </div>
+</article>

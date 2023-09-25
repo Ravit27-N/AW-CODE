@@ -1,0 +1,21 @@
+.label-description {
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+ngx-file-drag-drop {
+  max-width: 100%;
+}
+quill-editor {
+  height: 350px;
+}
+
+.mat-standard-chip {
+  height: auto !important;
+}
+.savebutton{
+  margin-right: 5px;
+}
+.chip:hover{
+  cursor: pointer;
+}

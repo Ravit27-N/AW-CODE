@@ -1,0 +1,62 @@
+<app-aw-layout [pageTitle]="title" [pageSubtitle]="pageSubtitle">
+  <ng-container slot="top-header">
+    <div class="step-container">
+      <app-aw-step [awSteps]="addCandidateSteps" (navigateTo)="changeStep($event)"></app-aw-step>
+    </div>
+  </ng-container>
+  <!-- ./ Top Header -->
+
+  <ng-container slot="page-content">
+    <div class="mt-4">
+      <ng-container [ngSwitch]="currentStep">
+        <app-add-candidate-step-one
+          *ngSwitchCase="1"
+          [candidateCriteria]="candidateStep1"
+          [maxFileSize]="maxFileSize"
+          (cancelFormEvent)="cancelForm()"
+          (goNextPageEvent)="goNextPageEvent($event)"
+        ></app-add-candidate-step-one>
+        <!-- ./ Information -->
+
+        <app-add-candidate-step-two
+          *ngSwitchCase="2"
+          [candidateStep2]="candidateStep2"
+          (goPreviousPageEvent)="goPreviousPageEvent()"
+          (goNextPageEvent)="goNextPageEvent()"
+        ></app-add-candidate-step-two>
+        <!-- ./ Education -->
+
+        <app-add-candidate-step-three
+          *ngSwitchCase="3"
+          (goPreviousPageEvent)="goPreviousPageEvent()"
+          (goNextPageEvent)="goNextPageEvent()"
+          [candidateStep3]="candidateStep3"
+        ></app-add-candidate-step-three>
+        <!-- ./ Experience -->
+
+        <app-add-candidate-step-fourth
+          *ngSwitchCase="4"
+          [maxFileSize]="maxFileSize"
+          (goPreviousPageEvent)="goPreviousPageEvent()"
+          (goNextPageEvent)="goNextPageEvent()"
+          [candidateStep4]="candidateStep4"
+        ></app-add-candidate-step-fourth>
+        <!-- ./ Upload CSV -->
+
+        <app-add-candidate-step-fifth
+          (goPreviousPageEvent)="goPreviousPageEvent()"
+          (goNextPageEvent)="goNextPageEvent()"
+          (navigateToStep)="changeStep($event)"
+          *ngSwitchCase="5"
+          [candidateStep1]="candidateStep1"
+          [candidateStep2]="candidateStep2"
+          [candidateStep3]="candidateStep3"
+          [candidateStep4]="candidateStep4"
+        ></app-add-candidate-step-fifth>
+        <!-- ./ Preview -->
+      </ng-container>
+      <!-- ./ Form -->
+    </div>
+  </ng-container>
+  <!-- ./ Step Header -->
+</app-aw-layout>

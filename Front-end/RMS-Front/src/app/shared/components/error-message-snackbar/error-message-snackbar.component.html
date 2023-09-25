@@ -1,0 +1,9 @@
+<div class="d-flex justify-content-between align-items-center mb-1">
+  <span><span *ngIf="data.code && data.code > 0" class="text-danger text-bold">Error :
+      &emsp;</span>{{data.message}}</span>
+  <button class="mx-1" mat-button color="warn" (click)="snackbar.dismissWithAction()">{{data.actionName}}</button>
+</div>
+<span class="text-xs">{{data.error}}</span>
+<ul *ngIf="data.subErrors">
+  <li *ngFor="let e of data.subErrors">{{e?.field}}: {{e?.message}}</li>
+</ul>

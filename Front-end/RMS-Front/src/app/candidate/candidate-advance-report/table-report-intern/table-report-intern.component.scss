@@ -1,0 +1,210 @@
+
+.wrapper {
+  width: 100%;
+  overflow: auto;
+  padding: 0 40px 20px;
+}
+
+#my-table-intern{
+  box-shadow: 0 1px 15px rgba(125, 192, 236, 0.28) !important;
+}
+
+/* internship*/
+#my-table-intern .header-design{
+  text-align: center;
+  background-color: #fabf8f;
+  height: 4px;
+  width: 20px;
+  font-size: 13px;
+  font-weight: bold;
+}
+#my-table-intern .color-red{
+  color: red;
+}
+#my-table-intern .align-center{
+  text-align: center;
+}
+#my-table-intern .align-left{
+  text-align: left;
+  padding-left: 3px;
+}
+#my-table-intern .full-staff-color{
+  background-color:#b8cce4;
+}
+#my-table-intern .datetime-interview{
+  background-color: #FFFF00;
+}
+#my-table-intern .comment-one{
+  background-color: #D9D9D9;
+}
+#my-table-intern .comment-two{
+  background-color: #dce6f1;
+}
+#my-table-intern .comment-three{
+  background-color: #D8E4BC;
+}
+#my-table-intern .evaluation-color{
+  background-color: #dce6f1;
+}
+#my-table-intern .remark-color{
+  background-color: white;
+  color: white;
+}
+#my-table-intern #intern-no-width{
+  width: 2%;
+  padding-left: 0px;
+}
+#my-table-intern #intern-name-width{
+  width: 6%;
+}
+#my-table-intern #intern-gender-width{
+  width:2.5%;
+}
+#my-table-intern #intern-age-width{
+  width: 1.8%;
+}
+#my-table-intern #intern-school-width{
+  width: 6%;
+}
+#my-table-intern #intern-year-width{
+  width: 3.5%;
+}
+#my-table-intern #intern-gpa-width{
+  width: 1.8%;
+}
+#my-table-intern #intern-experience-width{
+  width: 2%;
+}
+#my-table-intern #intern-apply-for-width{
+  width: 6%;
+}
+#my-table-intern #intern-current-company-width{
+  width: 6%;
+}
+#my-table-intern #intern-result-width{
+  width: 6.5%;
+}
+#my-table-intern #intern-qa-width{
+  width: 2.3%;
+}
+#my-table-intern #intern-coding-width{
+  width: 2.3%;
+}
+#my-table-intern .first-st-width{
+  width: 5.5%;
+}
+#my-table-intern #intern-availability-width{
+  width: 3.5%;
+}
+#my-table-intern .comment-two-width{
+  width: 3%;
+}
+#my-table-intern #intern-grade-width{
+  width:2.5%;
+}
+#my-table-intern .evaluation-width{
+  width:2%;
+}
+#my-table-intern #intern-remark-width{
+  width:1%;
+  padding-right: 0px;
+}
+#my-table-intern #intern-padding-left{
+  padding-left: 0px;
+}
+#my-table-intern #intern-padding-right{
+  padding-right: 0px;
+}
+#my-table-intern #intern-remark-padding-right{
+  padding-right: 0px;
+}
+#my-table-intern .align-center{
+  text-align: center;
+}
+#my-table-intern #intern-experience-style{
+  color: red;
+}
+#my-table-intern #intern-company-style{
+  color: red;
+}
+#my-table-intern #intern-qa-style{
+  color: red;
+}
+#my-table-intern #intern-coding-style{
+  color: red;
+}
+#my-table-intern #intern-grade-style{
+  background-color: #D8E4BC;
+  color: red;
+  font-weight: bold;
+}
+#my-table-intern th,td{
+  border-left: 1px solid rgba(11, 46, 77, 0.5);
+  border-right: 1px solid rgba(11, 46, 77, 0.5);
+  border-collapse: collapse;
+}
+
+
+
+#my-table-staff{
+  .mat-header-cell {
+    text-align: center !important;
+  }
+  th.mat-column-Full-Name{
+    text-align: center !important;
+    padding-left: 3px;
+  }
+  td.mat-column-Full-Name{
+    padding-left: 3px;
+    text-align: left !important;
+  }
+}
+
+
+
+.sectionTitle {
+  font-family: var(--aw-font-primary) !important;
+  font-weight: var(--aw-font-weight-strong) !important;
+  font-size: 20px !important;
+  color: var(--aw-text-secondary) !important;
+  text-align: left;
+  margin: 0 !important;
+  white-space: nowrap;
+  margin-bottom: 8px !important;
+  letter-spacing: 0 !important;
+}
+
+
+:host ::ng-deep {
+
+  //.mat-sort-header-container {
+  //  display: flex;
+  //  justify-content: center;
+  //}
+  .mat-column-Gender, .mat-column-Age, .mat-column-Experience {
+    .mat-sort-header-container {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+}
+
+
+#my-table-intern{
+  th.mat-column-Full-Name{
+    text-align: center !important;
+    padding-left: 3px;
+  }
+  td.mat-column-Full-Name{
+    padding-left: 3px;
+    text-align: left !important;
+  }
+
+  #intern-apply-for-width, #intern-result-width {
+    text-align: left;
+    padding-left: 3px;
+  }
+
+}
+

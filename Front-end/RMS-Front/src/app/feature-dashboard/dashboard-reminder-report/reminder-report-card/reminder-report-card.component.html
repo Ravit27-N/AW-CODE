@@ -1,0 +1,28 @@
+<mat-card [class.left-panel-success]="reminder.reminderType.trim().toUpperCase() === 'Special'.toUpperCase()"
+          [class.left-panel-primary]="reminder.reminderType.trim().toUpperCase() === 'Normal'.toUpperCase()"
+          [class.left-panel-warning]="reminder.reminderType.trim().toUpperCase() === 'Interview'.toUpperCase()">
+  <div class="reminder-report-card d-flex justify-content-between overflow-hidden">
+    <div class="row">
+      <div class="col-12">
+        <div class="left-panel">
+          <div class="app-aw-badge-container">
+            <app-aw-badge *ngIf="reminder.reminderType.trim().toUpperCase() === 'Special'.toUpperCase()" color="success">{{ reminder.reminderType }}</app-aw-badge>
+            <app-aw-badge *ngIf="reminder.reminderType.trim().toUpperCase() === 'Normal'.toUpperCase()" color="primary">{{ reminder.reminderType }}</app-aw-badge>
+            <app-aw-badge *ngIf="reminder.reminderType.trim().toUpperCase() === 'Interview'.toUpperCase()" color="warning">{{ reminder.reminderType }}</app-aw-badge>
+          </div>
+          <div class="pl-2">
+            <strong>{{ reminder.title }}</strong>
+            <mat-card-subtitle class="font-italic text-nowrap sub-title">{{ reminder.dateReminder | awDateFormat }}</mat-card-subtitle>
+          </div>
+        </div>
+        <div class="right-panel">
+          <p class="candidate-name">
+            {{ reminder.candidate?.fullName }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>
+
+

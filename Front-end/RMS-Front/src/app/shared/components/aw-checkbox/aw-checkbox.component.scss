@@ -1,0 +1,63 @@
+.aw-checkbox-container {
+  justify-items: center;
+}
+
+input[type='checkbox'] {
+  display: none;
+
+  &:checked + label .aw-checkbox {
+    &:after {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}
+
+.aw-checkbox {
+  cursor: pointer;
+  background: #FFFFFF 0 0 no-repeat padding-box;
+  border: 0.5px solid #BCD5FF;
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  display: inline-block;
+  position: relative;
+  border-radius: 3px;
+
+  &::after {
+    content: '';
+    display: block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 16px;
+    min-width: 16px;
+    height: 16px;
+    background-color: #3B82F6;
+    border-radius: 3px;
+    transition: 0.3s;
+  }
+}
+
+
+label {
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  overflow: hidden;
+}
+
+.aw-checkbox-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 7px;
+  font-weight: var(--aw-font-weight-normal);
+  font-family: var(--aw-font-primary);
+}
+
+.checkbox-disabled .aw-checkbox {
+  cursor: default;
+  background: #c6c5c54d;
+  border: none;
+}

@@ -1,0 +1,127 @@
+<app-aw-layout-list pageTitle="Manage Users" pageSubtitle="List all user">
+  <ng-container slot="action-buttons">
+    <app-aw-rich-button (click)="addUser()" class="ml-3">
+      <mat-icon>add</mat-icon>
+      Add
+    </app-aw-rich-button>
+  </ng-container>
+
+  <ng-container slot="page-filter">
+    <section class="search-box d-flex justify-content-end">
+      <app-aw-search-box (valueChange)="searchValueChange($event)" [value]="userCriteria?.filter || ''"
+                         [hasError]="!this.dataSource?.length && userCriteria?.filter?.length > 0">
+      </app-aw-search-box>
+    </section>
+  </ng-container>
+
+  <ng-container slot="page-table">
+    <section class="aw-table">
+      <div class="table-user">
+        <div class="width-full overflow-auto sub-contain-table">
+          <table mat-table matSort [dataSource]='dataSource' matSortDisableClear>
+            <!-- COLUMN NO -->
+            <ng-container matColumnDef='no'>
+              <th mat-header-cell *matHeaderCellDef> {{'No.'}} </th>
+              <td mat-cell
+                  *matCellDef='let row, let idx = index;' class="text-nowrap">{{ getUserRowNumber(idx) }}</td>
+            </ng-container>
+
+            <!-- COLUMN FULL NAME -->
+            <ng-container matColumnDef='fullName'>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header
+                  arrowPosition='after'> Full Name
+              </th>
+              <td mat-cell *matCellDef="let row" class="text-truncate" [innerText]="row?.fullName"></td>
+            </ng-container>
+
+            <!-- COLUMN NAME -->
+            <ng-container matColumnDef='name'>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header
+                  arrowPosition='after'> User Name
+              </th>
+              <td mat-cell *matCellDef="let row" class="text-truncate" [innerText]="row?.username"></td>
+            </ng-container>
+
+            <!-- COLUMN TYPE -->
+            <ng-container matColumnDef='email'>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header
+                  arrowPosition='after'> Email
+              </th>
+              <td mat-cell *matCellDef="let row" class="pl-2" [innerText]="row?.email"></td>
+            </ng-container>
+
+            <!-- COLUMN Active -->
+            <ng-container matColumnDef="active">
+              <th mat-header-cell *matHeaderCellDef class="mat-header-center" mat-sort-header
+                  arrowPosition='after'>Active
+              </th>
+              <td mat-cell *matCellDef="let row" class="mat-header-center">
+                <app-aw-slider-toggle [disabled]="row?.enabled && row?.deleted"
+                                      [checked]="row?.enabled"
+                                      (valueChangeEvent)="slideToggle(row?.id, row?.enabled)"></app-aw-slider-toggle>
+              </td>
+            </ng-container>
+
+            <!-- COLUMN CREATED -->
+            <ng-container matColumnDef='created'>
+              <th mat-header-cell *matHeaderCellDef class="has-right-border" mat-sort-header
+                  arrowPosition='after'> Created
+              </th>
+              <td mat-cell *matCellDef="let row" class="pl-2 has-right-border">
+                {{ row?.createdTimestamp | awDateFormat }}
+              </td>
+            </ng-container>
+
+            <!-- COLUMN ACTION -->
+            <ng-container matColumnDef='action'>
+              <th mat-header-cell *matHeaderCellDef
+                  class="col-actions">action
+              </th>
+              <td mat-cell *matCellDef='let row' class="col-actions d-flex justify-content-start ml-n1">
+                <div class="center-action-button p-0">
+                  <button (click)="edit(row?.id)">Modify</button>
+                  <button [matMenuTriggerFor]="actionMenu"
+                          [disableRipple]="true" [matMenuTriggerData]="getUserRow(row)" mat-icon-button
+                          style="width: 0;">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef='tableColumnHeader; sticky: true'></tr>
+            <tr mat-row *matRowDef='let row; let i = index; columns: tableColumnHeader'
+                [class.row-selected]='false'></tr>
+            <tr class='mat-row no-data-row' *matNoDataRow>
+              <td class='mat-cell no-data-cell' [colSpan]='dataSource.length'></td>
+            </tr>
+          </table>
+
+          <mat-menu #actionMenu="matMenu" class="common-aw-menu aw-mat-menu mr-1 aw-selection-box-container"
+                    xPosition="before">
+            <ng-template matMenuContent let-row="row">
+              <button mat-menu-item (click)="delete(row?.id)">
+                <div class='d-flex flex-row justify-content-start align-items-center'>
+                  <img class="delete-icon mr-2" src="../../../../assets/icons/delete.svg" alt="delete icon">
+                  <span class='cancel-icon'>Delete</span>
+                </div>
+              </button>
+            </ng-template>
+          </mat-menu>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+  <!--  ./Page Table-->
+
+  <ng-container slot="page-pagination">
+    <section class="pagination d-flex justify-content-center my-2">
+      <app-aw-pagination [pageIndex]="userCriteria.defaultCriteria.pageIndex"
+                         [pageSize]="userCriteria.defaultCriteria.pageSize"
+                         [length]="total"
+                         (pageChanged)="pageChangeEvent($event)"
+                         [hasFilter]="true">
+      </app-aw-pagination>
+    </section>
+  </ng-container>
+</app-aw-layout-list>

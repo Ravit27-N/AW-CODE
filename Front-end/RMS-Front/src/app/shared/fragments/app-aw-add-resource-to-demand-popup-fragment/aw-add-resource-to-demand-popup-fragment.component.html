@@ -1,0 +1,33 @@
+<article>
+  <header>
+    <button class="close-icon" (click)="emitDialog(undefined)">
+      <mat-icon>close</mat-icon>
+    </button>
+  </header>
+
+  <main>
+    <h1>Add resource</h1>
+
+    <form>
+      <section class="select-resources d-flex flex-nowrap">
+        <label>
+          Resources:
+        </label>
+
+        <div class="field-select">
+          <app-aw-multi-selection-box addSourceBtnLabel="+ Add a resource"
+                                      [datasource]="data.resources"
+                                      [selectedKeys]="data.selectedSources"
+                                      [errorMsg]="'The resource should not add greater than total demands in this project.'"
+                                      [isShowError]="isFormError"
+                                      (selectedSource)="selectSources($event)">
+          </app-aw-multi-selection-box>
+        </div>
+      </section>
+    </form>
+  </main>
+
+  <footer class="mt-4 mb-2 d-flex justify-content-end">
+    <app-aw-rich-button width="200px" (click)="emitDialog(selectedResources)">Add</app-aw-rich-button>
+  </footer>
+</article>

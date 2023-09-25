@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <app-aw-container>
+      <app-aw-upload-fragment (fileChange)="uploadCV($event)"
+                              [fileName]="candidateStep4?.originalFilename || ''"
+                              [uploadedIcon]="uploadedIcon"
+                              [fileSize]="formatFileSize(candidateStep4?.fileSize)"
+                              (resetUploadFile)="resetFile()">
+      </app-aw-upload-fragment>
+
+      <div class="d-flex justify-content-center">
+        <span class="mt-3" *ngIf="maxFileSize">Maximum {{ maxFileSizeAmount }} upload file size.</span>
+      </div>
+    </app-aw-container>
+  </div>
+  <div class="col-md-6 sm-12">
+    <app-aw-container>
+     <embed *ngIf="fileURL" [src]="urlSanitizer" type="application/pdf">
+    </app-aw-container>
+  </div>
+</div>
+<!-- ./ Form -->
+
+<div class="action-button-container mt-4">
+  <div class="d-flex justify-content-end">
+    <app-aw-rich-button (click)="goPrevious()" [outline]="true" class="mr-3" >Previous</app-aw-rich-button>
+    <app-aw-rich-button (click)="goNext()">Next</app-aw-rich-button>
+  </div>
+</div>
+<!-- ./ Action button -->

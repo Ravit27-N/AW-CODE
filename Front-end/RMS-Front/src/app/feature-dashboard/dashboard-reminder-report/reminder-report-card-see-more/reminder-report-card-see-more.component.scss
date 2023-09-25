@@ -1,0 +1,15 @@
+:host ::ng-deep {
+  mat-card {
+    box-shadow: 0 1px 9px #7492c447 !important;
+    border-radius: 23px !important;
+  }
+
+  mat-icon {
+    transform: translateY(3px);
+  }
+
+  mat-card:hover {
+    box-shadow: 0 6px 30px rgba(182, 186, 203, 0.3) !important;
+    border-radius: 25px;
+  }
+}

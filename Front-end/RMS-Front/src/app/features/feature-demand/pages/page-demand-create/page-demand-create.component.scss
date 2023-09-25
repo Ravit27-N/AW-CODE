@@ -1,0 +1,56 @@
+.demand-container {
+  width: 100%;
+  overflow: auto;
+  padding: 0 40px 20px;
+  border-radius: 5px !important;
+}
+
+.empty-container {
+  padding-left: 50px;
+}
+
+.left-component, .right-component {
+  border-radius: 15px !important;
+  box-shadow: 0 1px 9px #7492c447 !important;
+}
+
+.demand-title {
+  padding: 16px 28px;
+  margin: 0;
+}
+
+:host::ng-deep .deadline-block .mat-form-field-infix {
+  padding: 0;
+}
+
+::ng-deep .mat-select-panel-wrap .mat-active .mat-option-text {
+  color: #3b82f6;
+}
+
+::ng-deep .mat-calendar-content .mat-calendar-body-selected {
+  background: #3b82f6;
+}
+
+::ng-deep .mat-datepicker-actions .mat-primary {
+  background-color: #3b82f6;
+}
+
+::ng-deep .mat-select-panel button {
+  color: #3b82f6 !important;
+}
+
+@media only screen and (max-width: 1366px) {
+  .small-screen {
+    flex-direction: column-reverse !important;
+
+    .left-component {
+      max-width: 100% !important;
+    }
+
+    .right-component {
+      max-width: 100% !important;
+      margin-bottom: 15px;
+    }
+  }
+}
+

@@ -1,0 +1,79 @@
+
+.candidate-education {
+
+  .contain-tab {
+    border: 1px solid rgba(0, 82, 204, 0.2);
+    box-shadow: 0 6px 30px rgba(201, 208, 234, 0.3);
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  .information-container {
+    padding: 15px;
+    max-height: 130px;
+
+    .row-value {
+      width: 20%;
+      max-height: 130px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      .text-label {
+        font-size: 13px;
+        color: var(--aw-text-primary-light);
+      }
+
+      .text-value {
+        font-size: 15px;
+        font-weight: var(--aw-font-weight-medium);
+      }
+    }
+
+  }
+
+}
+
+
+:host ::ng-deep {
+
+  .mat-tab-label {
+    height: 30px;
+    max-width: none;
+    width: auto !important;
+    opacity: 1 !important;
+    font-family: var(--aw-font-primary) !important;
+    font-weight: var(--aw-font-weight-normal) !important;
+    font-size: 16px !important;
+    color: var(--aw-text-gray) !important;
+
+    @media (max-width: 1368px) {
+      font-size: 14px !important;
+    }
+
+  }
+
+  .mat-tab-label-container {
+    border-bottom: #3b82f6 1px solid;
+  }
+
+  .mat-tab-label-active {
+    color: var( --aw-text-white) !important;
+    border-radius: 15px 15px 0 0;
+    background-color: var(--aw-bg-secondary) !important;
+    //background-color: transparent;
+    font-weight: var(--aw-font-weight-medium) !important;
+  }
+
+  .mat-ink-bar {
+    background-color: var(--aw-text-secondary) !important;
+    height: 0px !important;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .text-value {
+    font-size: 14px !important;
+    font-weight: var(--aw-font-weight-medium);
+  }
+
+}

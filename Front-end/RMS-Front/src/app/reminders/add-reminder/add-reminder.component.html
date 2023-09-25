@@ -1,0 +1,209 @@
+<div class="container-fluid pos-relative" appCanAccess perm="Reminder:add">
+ <app-loading-indicator [isloading]="('AddReminderComponent'|swIsLoading|async)"></app-loading-indicator>
+ <mat-card>
+  <h1>Add Reminder</h1>
+   <mat-card-content>
+
+    <mat-radio-group [(ngModel)]="radioGroup" name="radioGroup">
+      <mat-radio-button value="NORMAL" class="ml-0 ">Normal</mat-radio-button>
+      <mat-radio-button value="SPECIAL">Special</mat-radio-button>
+      <mat-radio-button value="INTERVIEW">Interivew</mat-radio-button>
+    </mat-radio-group>
+
+    <div *ngIf="radioGroup === 'NORMAL'">
+      <form #form="ngForm">
+        <mat-form-field class="w-datetime mt-2">
+          <mat-label>Date & time</mat-label>
+          <input matInput [ngxMatDatetimePicker]="picker1" placeholder="Choose a date" appAutoFocus
+            [(ngModel)]="reminder.dateReminder" name="date" #date="ngModel" required tabindex="1" />
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #picker1 [enableMeridian]="true">
+          </ngx-mat-datetime-picker>
+          <mat-error *ngIf="date.hasError('required')">
+            <mat-label>This field is required.</mat-label>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input type="text" matInput placeholder="Title" [(ngModel)]="reminder.title" name="title" #title="ngModel" tabindex="2"
+            required maxlength="256">
+          <button mat-button *ngIf="reminder.title" matSuffix mat-icon-button aria-label="Clear" tabindex="-1"
+            (click)="clearTitle()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="title.hasError('required')">
+            <mat-label>This field is required.</mat-label>s
+          </mat-error>
+          <mat-hint *ngIf="title.value" align="end">{{title.value.length}} / 256</mat-hint>
+        </mat-form-field>
+
+        <mat-label class="label-description">Description</mat-label>
+        <quill-editor [(ngModel)]="reminder.description" name="description" tabindex="3"></quill-editor>
+
+        <div class="d-flex flex-row mt-2">
+          <div>
+            <mat-label>Status</mat-label>
+            <mat-slide-toggle class="ml-2" (change)="checkStatus($event)" [checked]="statusToggle">
+              {{statusTitle}}
+            </mat-slide-toggle>
+          </div>
+        </div>
+
+        <div class="child-end mt-2">
+          <button mat-raised-button color="warn" [mat-dialog-close]="false" (click)="back()"  cdkFocusInitial>Cancel</button>
+          <button type="submit" mat-raised-button [mat-dialog-close]="true" color="primary" (click)="onSubmit()" [disabled]="form.invalid" tabindex="6">Save</button>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="radioGroup === 'SPECIAL'">
+      <form #form="ngForm">
+
+        <mat-form-field class="w-datetime mt-2">
+          <mat-label>Date & time</mat-label>
+          <input matInput [ngxMatDatetimePicker]="picker2" placeholder="Choose a date" tabindex="7"
+            [(ngModel)]="reminder.dateReminder" name="date" #date="ngModel" required />
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #picker2 [enableMeridian]="true">
+          </ngx-mat-datetime-picker>
+          <mat-error *ngIf="date.hasError('required')">
+            <mat-label>This field is required.</mat-label>
+          </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field required>
+          <mat-label>{{this.selectCandidateTitle}}</mat-label>
+          <mat-select [disabled]="this.isAbleSelectCandidate" [(ngModel)]="reminder.candidateId" name="candidateId"
+            #candidateId="ngModel" required tabindex="8">
+            <mat-option>
+              <ngx-mat-select-search placeholderLabel="search candidate name ..." noEntriesFoundLabel="'No candidates'"
+                [(ngModel)]="filterCandidateValue" name="filter" (ngModelChange)="filterCandidate()">
+              </ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let c of candidates " [value]="c.id">
+              {{c.fullName}}
+            </mat-option>
+          </mat-select>
+          <button [disabled]="this.isAbleSelectCandidate" mat-button *ngIf="reminder.candidateId" matSuffix mat-icon-button aria-label="Clear" tabindex="-1"
+            (click)="clearCandidate()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="candidateId.hasError('required')">
+            <mat-label> This field is require</mat-label>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input type="text" matInput placeholder="Title" [(ngModel)]="reminder.title" name="title" #title="ngModel"
+            required maxlength="256" tabindex="9">
+          <button mat-button *ngIf="reminder.title" matSuffix mat-icon-button aria-label="Clear" tabindex="-1"
+            (click)="clearTitle()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="title.hasError('required')">
+            <mat-label> This field is required.</mat-label>
+          </mat-error>
+          <mat-hint *ngIf="title.value" align="end">{{title.value.length}} / 256</mat-hint>
+        </mat-form-field>
+
+
+        <mat-label class="label-description">Description</mat-label>
+        <quill-editor [(ngModel)]="reminder.description" name="description" tabindex="10">
+        </quill-editor>
+
+        <div class="d-flex flex-row mt-2">
+          <div>
+            <mat-label>Status</mat-label>
+            <mat-slide-toggle class="ml-2" (change)="checkStatus($event)" [checked]="statusToggle">
+              {{statusTitle}}
+            </mat-slide-toggle>
+          </div>
+        </div>
+
+        <div class="child-end mt-2">
+          <button mat-raised-button color="warn" [mat-dialog-close]="false" (click)="back()"  cdkFocusInitial>Cancel</button>
+          <button type="submit" mat-raised-button [mat-dialog-close]="true" color="primary" (click)="onSubmit()" [disabled]="form.invalid" tabindex="11">Save</button>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="radioGroup === 'INTERVIEW'">
+      <form #form="ngForm">
+
+        <mat-form-field class="w-datetime mt-2">
+          <mat-label>Date & time</mat-label>
+          <input matInput [ngxMatDatetimePicker]="picker3" placeholder="Choose a date"
+            [(ngModel)]="reminder.dateReminder" name="date" #date="ngModel" required tabindex="12" />
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #picker3 [enableMeridian]="true">
+          </ngx-mat-datetime-picker>
+          <mat-error *ngIf="date.hasError('required')">
+            <mat-label>This field is required.</mat-label>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{this.selectInterviewTitle}}</mat-label>
+          <mat-select [disabled]="this.isAbleSelectInterview" [(ngModel)]="reminder.interviewId" name="interviewId"
+            #interviewId="ngModel" required tabindex="13">
+            <mat-option>
+              <ngx-mat-select-search placeholderLabel="search interview title" noEntriesFoundLabel="'No interviews'"
+                [(ngModel)]="filterInterviewValue" name="filterInterview" (ngModelChange)="filterInterview()">
+              </ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let i of interviews " [value]="i.id">
+              {{i.title+' | '+i.candidate.fullName}}
+            </mat-option>
+          </mat-select>
+          <button [disabled]="this.isAbleSelectInterview" mat-button *ngIf="reminder.interviewId" matSuffix mat-icon-button aria-label="Clear" tabindex="-1"
+            (click)="clearInterview()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="interviewId.hasError('required')">
+            <mat-label>This field is required.</mat-label>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input type="text" matInput placeholder="Title" [(ngModel)]="reminder.title" name="title" #title="ngModel"
+            required maxlength="256" tabindex="14">
+          <button mat-button *ngIf="reminder.title" matSuffix mat-icon-button aria-label="Clear" tabindex="-1"
+            (click)="clearTitle()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="title.hasError('required')">
+            <mat-label>This field is required.</mat-label>
+          </mat-error>
+          <mat-hint *ngIf="title.value" align="end">{{title.value.length}} / 256</mat-hint>
+        </mat-form-field>
+
+        <mat-label class="label-description">Description</mat-label>
+        <quill-editor [(ngModel)]="reminder.description" name="description" tabindex="15">
+        </quill-editor>
+
+        <div class="d-flex flex-row mt-2">
+          <div>
+            <mat-label>Status</mat-label>
+            <mat-slide-toggle class="ml-2" (change)="checkStatus($event)" [checked]="statusToggle">
+              {{statusTitle}}
+            </mat-slide-toggle>
+          </div>
+        </div>
+
+        <div class="child-end  mt-2">
+          <button mat-raised-button color="warn" [mat-dialog-close]="false" (click)="back()" cdkFocusInitial>Cancel</button>
+          <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="true" (click)="onSubmit()" [disabled]="form.invalid" tabindex="18">Save</button>
+        </div>
+      </form>
+    </div>
+   </mat-card-content>
+ </mat-card>
+</div>
+
+<button mat-raised-button color="primary" (click)="back()" class="bottom-back-button" tabindex="19">
+  <i class="fas fa-chevron-circle-left mr-1"></i>Back
+</button>

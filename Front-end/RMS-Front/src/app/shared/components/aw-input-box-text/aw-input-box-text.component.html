@@ -1,0 +1,16 @@
+<div class="aw-form-group">
+  <label [for]="htmlInputElement" class="aw-form-title">{{ awLabel }} <span class="text-danger" title="This field is required" *ngIf="awRequired">*</span></label>
+
+
+  <input
+    type="text"
+    #htmlInputElement
+    appAwTooltip
+    [shouldShowTooltip]="awError"
+    [tooltipContent]="awErrorMessage"
+    class="aw-form-control"
+    [placeholder]="awPlaceholder"
+    [(ngModel)]="value"
+    (input)="onInputChange(value)"
+  />
+</div>

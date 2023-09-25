@@ -1,0 +1,115 @@
+<div class="container-fluid" appCanAccess perm="Reminder:view">
+  <h1>Reminders</h1>
+  <div class="row">
+    <div class="col">
+      <mat-button-toggle-group #group="matButtonToggleGroup" appearance="legacy" name="fontStyle"
+                               aria-label="Font Style" (change)="filterByDate($event)" [(ngModel)]="matButtonToggleGroup" name="matButtonToggleGroup">
+        <mat-button-toggle value=''>{{'All'}}</mat-button-toggle>
+        <mat-button-toggle value='today'>{{'Today'}}</mat-button-toggle>
+        <mat-button-toggle value='weekly'>{{'Weekly'}}</mat-button-toggle>
+        <mat-button-toggle value='monthly'>{{'Monthly'}}</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div class="col text-right">
+      <button appCanAccess perm="Reminder:add" mat-raised-button color="primary" routerLink="/admin/reminders/add"><i class="fas fa-plus"></i>
+        Add
+      </button>
+    </div>
+  </div>
+
+  <div class="d-flex flex-nowrap justify-content-between align-items-center">
+    <div class="check-filter-group">
+      Filter:
+      <mat-checkbox [checked]="chkNormal" class="mx-2" name="normal" value="normal" (change)="filterReminder($event)">
+        Normal
+      </mat-checkbox>
+      <mat-checkbox [checked]="chkSpecial" class="mx-2" name="special" value="special"
+                    (change)="filterReminder($event)">
+        Special
+      </mat-checkbox>
+      <mat-checkbox [checked]="chkInterview" class="mx-2" name="interview" value="interview"
+                    (change)="filterReminder($event)">
+        Interview
+      </mat-checkbox>
+    </div>
+    <mat-form-field>
+      <mat-label>Seach</mat-label>
+      <input matInput #input (keyup)="applyFilter()" [(ngModel)]="filter" name="filter">
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="filter" (click)="clearFilter()" tabindex="-1">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="mat-elevation-z8 pos-relative">
+    <app-loading-indicator [isloading]="('reminder'|swIsLoading|async)"></app-loading-indicator>
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="w-100">
+
+      <ng-container matColumnDef="No" class="col-id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let row, let i = index"> {{paginator.pageIndex * paginator.pageSize + i + 1}}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+        <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+        <td mat-cell *matCellDef="let row">
+          <quill-view [content]="row.description"></quill-view>
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Candidate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Candidate </th>
+        <td mat-cell *matCellDef="let row">
+          <a [routerLink]="'/admin/candidate/candidateDetail/'+ row.candidate?.id"
+             *ngIf="! (row.candidate === undefined || row.candidate === null)">{{row.candidate?.fullName}}</a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Date & time">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date & time </th>
+        <td mat-cell *matCellDef="let row"> {{row.dateReminder | awDateFormat}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-slide-toggle class="ml-2" (change)="checkStatus(row.id, row.active)" [checked]="row.active">
+          </mat-slide-toggle>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef class="sm-action-group mat-header-center"> Action </th>
+        <td mat-cell *matCellDef="let row" class="mat-header-center">
+          <button mat-icon-button color="primary" matTooltip="View" (click)="view(row.id)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button appCanAccess perm="Reminder:edit" mat-icon-button color="primary" matTooltip="Edit" (click)="edit(row.id)">
+            <mat-icon>create</mat-icon>
+          </button>
+          <button appCanAccess perm="Reminder:delete" mat-icon-button color="warn" matTooltip="Delete" (click)="delete(row.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter <b>{{input.value}}</b></td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="paginationSize" [pageSize]="pageSize" [length]="length" (page)="pageEvent($event)" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

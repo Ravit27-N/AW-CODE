@@ -1,0 +1,43 @@
+.page-note {
+  height: 1.5rem;
+  width: 1.5rem;
+  color: #868686;
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.75;
+  cursor: pointer;
+  margin: 0 4px
+}
+
+.page-note-item:hover, .page-note-item.active {
+  color: var(--aw-text-white);
+  background: var(--aw-bg-secondary) 0 0 no-repeat padding-box;
+  border-radius: 0.25rem;
+}
+
+.page-note-nav:hover {
+  color: #5a5757;
+}
+
+.message {
+  font-size: 0.8rem;
+  line-height: 1rem;
+  color: #9ca3af;
+  font-family: Rubik, sans-serif;
+  text-align: center;
+}
+
+
+.input-page-number {
+  width: 56px;
+  height: 24px;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  border: 2px solid #9ca3af;
+  border-radius: 0.25rem;
+}

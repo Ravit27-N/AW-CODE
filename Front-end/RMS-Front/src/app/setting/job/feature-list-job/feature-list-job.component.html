@@ -1,0 +1,126 @@
+<app-aw-layout-list pageTitle="Manage Job Description" pageSubtitle="List all jobs description">
+  <ng-container slot="action-buttons">
+    <app-aw-rich-button (click)="add()" class="ml-3">
+      <mat-icon>add</mat-icon>
+      Add
+    </app-aw-rich-button>
+  </ng-container>
+
+  <ng-container slot="page-filter">
+    <section class="search-box d-flex justify-content-between mt-3">
+      <div class="d-flex flex-wrap"></div>
+      <app-aw-search-box (valueChange)="searchFilterChange($event)"
+                         [value]="filterListCriteria?.filter || ''"
+                         [hasError]="
+                         !this.dataSource?.data.length &&
+                         filterListCriteria?.filter?.toString()?.length > 0">
+      </app-aw-search-box>
+    </section>
+  </ng-container>
+
+  <ng-container slot="page-table">
+    <section class="aw-table">
+      <div class="table-demand">
+        <div class="width-full overflow-auto">
+          <table mat-table matSort
+                 [dataSource]='dataSource'
+                 matSortDisableClear
+                 (matSortChange)="sortJobs($event)">
+
+            <ng-container matColumnDef="No">
+              <th mat-header-cell *matHeaderCellDef class="col-id"> No.</th>
+              <td mat-cell *matCellDef="let row, let i = index;">
+                {{(filterListCriteria.defaultCriteria.pageIndex - 1) * filterListCriteria.defaultCriteria.pageSize + i + 1}}
+              </td>
+            </ng-container>
+            <!-- ./ No -->
+
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Title </th>
+              <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+            </ng-container>
+            <!-- ./ Title -->
+
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef class="th-description" scope="col" > Description </th>
+              <td mat-cell *matCellDef="let row">
+                <p [line-truncation]="1" [innerHTML]="row.description" ></p>
+              </td>
+            </ng-container>
+            <!-- ./ Description -->
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef class="col-toggle" scope="col"> Status </th>
+              <td mat-cell *matCellDef="let row">
+                <app-aw-slider-toggle [checked]="row.active" (change)="updateStatus(row.id,row.active)" [disabled]="row.deleted"
+                >
+                </app-aw-slider-toggle>
+
+              </td>
+            </ng-container>
+            <!-- ./ Status -->
+
+            <!-- COLUMN ACTION -->
+            <ng-container matColumnDef='action'>
+              <th mat-header-cell *matHeaderCellDef
+                  class="col-actions">{{'action'}}</th>
+              <td mat-cell *matCellDef='let row' class="col-actions d-flex justify-content-start ml-n1">
+                <div class="center-action-button p-0">
+                  <button (click)="edit(row)">Modify</button>
+                  <button [matMenuTriggerFor]="actionMenu"
+                          [disableRipple]="true" [matMenuTriggerData]="getJobRow(row)" mat-icon-button
+                          style="width: 0;">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+            <!-- ./ Action button -->
+
+            <tr mat-header-row *matHeaderRowDef='tableColumns; sticky: true'></tr>
+            <tr mat-row *matRowDef='let row; let i = index; columns: tableColumns'
+                [class.row-selected]='false'></tr>
+            <tr class='mat-row no-data-row' *matNoDataRow>
+              <td class='mat-cell no-data-cell' [colSpan]='dataSource.data.length'></td>
+            </tr>
+          </table>
+        </div>
+        <mat-menu #actionMenu="matMenu" class="common-aw-menu aw-mat-menu mr-1 aw-selection-box-container" xPosition="before">
+          <ng-template matMenuContent let-row="row">
+
+            <button mat-menu-item (click)="getFile(row.id)">
+              <div class='d-flex flex-row justify-content-start align-items-center'>
+                <mat-icon>picture_as_pdf</mat-icon>
+                <span class='cancel-icon'>Get file</span>
+              </div>
+            </button>
+            <button mat-menu-item  (click)="openDialog(this.row)">
+              <div class='d-flex flex-row justify-content-start align-items-center'>
+                <mat-icon>remove_red_eye</mat-icon>
+                <span class='cancel-icon'>View</span>
+              </div>
+            </button>
+            <button mat-menu-item  (click)="deleteJob(this.row)">
+              <div class='d-flex flex-row justify-content-start align-items-center'>
+                <img class="delete-icon mr-2" src="assets/icons/delete.svg" alt="delete icon">
+                <span class='cancel-icon'>Delete</span>
+              </div>
+            </button>
+          </ng-template>
+        </mat-menu>
+      </div>
+    </section>
+  </ng-container>
+
+
+  <ng-container slot="page-pagination">
+    <section class="pagination d-flex justify-content-center my-2">
+      <app-aw-pagination [pageIndex]="filterListCriteria.defaultCriteria.pageIndex"
+                         [pageSize]="filterListCriteria.defaultCriteria.pageSize"
+                         [length]="totalJobs"
+                         (pageChanged)="pageEvent($event)"
+                         [hasFilter]="true">
+      </app-aw-pagination>
+    </section>
+  </ng-container>
+</app-aw-layout-list>

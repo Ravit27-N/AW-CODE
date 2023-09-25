@@ -1,0 +1,25 @@
+<div>
+  <form [formGroup]="formGroup">
+    <div class="d-flex align-items-center">
+      <span
+        appAwTooltip
+        tooltipMode="normal"
+        class="aw-search-box d-flex align-items-center"
+        [class.active]="isSearching$ | async"
+        [tooltipContent]="errorMessage"
+        [shouldShowBackground]="hasError"
+        [shouldShowTooltip]="hasError"
+      >
+        <mat-icon class="mx-1 aw-search-icon">search</mat-icon>
+        <input
+          [disabled]="disableSearch"
+          [value]="value"
+          [class.aw-input-danger]="hasError"
+          formControlName="searchValue"
+          placeholder="Search"
+          class="form-control border-0"
+        />
+      </span>
+    </div>
+  </form>
+</div>

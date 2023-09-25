@@ -1,0 +1,13 @@
+.aw-mat-card {
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--aw-border-radius-size);
+}
+
+.aw-mat-card,
+.aw-mat-card-column-graph {
+  border-radius: 23px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}

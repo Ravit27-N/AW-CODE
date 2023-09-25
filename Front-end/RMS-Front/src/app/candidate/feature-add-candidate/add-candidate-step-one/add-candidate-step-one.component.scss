@@ -1,0 +1,61 @@
+:host ::ng-deep {
+  .field_lastname input {
+    text-transform: uppercase;
+
+    &::placeholder {
+      text-transform: capitalize;
+    }
+  }
+
+  .field_firstname input {
+    text-transform: capitalize;
+  }
+
+  .field_email input {
+    text-transform: lowercase;
+
+    &::placeholder {
+      text-transform: capitalize;
+    }
+  }
+}
+
+.aw-panel {
+  min-height: 300px;
+}
+
+.step-container {
+  margin-bottom: 21px;
+}
+
+.telephone {
+  .delete-icon {
+    color: var(--aw-text-danger);
+    transform: translate(10px, 5px);
+    cursor: pointer;
+  }
+
+  .aw-form-control {
+    width: 100%;
+  }
+}
+
+
+
+:host ::ng-deep {
+  .profile-box {
+    height: 130px;
+    width: 130px;
+    display: block;
+
+    .aw-avatar-title {
+      transform: translateY(60px) !important;
+      font-size: 35px;
+    }
+  }
+}
+
+
+.aw-form-group {
+  height: auto;
+}

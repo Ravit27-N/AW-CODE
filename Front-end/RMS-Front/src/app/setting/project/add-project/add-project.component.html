@@ -1,0 +1,36 @@
+<div perm="Project:add">
+<!--  appCanAccess-->
+  <app-loading-indicator [isloading]="('AddProjectComponent'|swIsLoading|async)"></app-loading-indicator>
+  <form name="project-form" id="project-form" [formGroup]="validateForm" (ngSubmit)="onSubmit()">
+    <div class="child-between m-0 p-0">
+      <h2 class="mat-h2 m-0 p-0 self-center">Add Project</h2>
+      <button mat-icon-button matTooltip="Close" type="button" class="self-center" (click)="onNoClick()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="row gy-4">
+      <mat-form-field class="full-width"   >
+        <mat-label>Name</mat-label>
+        <input matInput type="text"  required tabindex="1" name="name" [(ngModel)]="model.name"  [formControl]="validateForm.controls.name"/>
+        <mat-error *ngIf="validateForm.controls.name.invalid">Name is required</mat-error>
+      </mat-form-field>
+
+      <div class="mt-2">
+        <mat-label class="label-body">
+          description
+        </mat-label>
+        <hr class="my-2">
+        <div>
+          <quill-editor formControlName="description" tabindex="2" [formControl]="validateForm.controls.description"></quill-editor>
+        </div>
+      </div>
+      <br>
+      <div class="flex-column">
+        <div class="child-end mt-2">
+          <button mat-flat-button class="btncancel" color="warn" type="button" (click)="onNoClick()">Cancel</button>
+          <button mat-flat-button color="primary"   type="submit" class="savebutton" [disabled]="validateForm.invalid" tabindex="3" >Save</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

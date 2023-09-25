@@ -1,0 +1,116 @@
+:root {
+  /* Background colors */
+  --aw-bg-primary: #1A214D;
+  --aw-bg-primary-dark: rgba(26, 33, 77, 0.14);
+  --aw-bg-secondary: #0052cc;
+  --aw-bg-secondary-dark-blue: rgba(14, 52, 171, 0.37);
+  --aw-bg-secondary-dark: rgba(59,130,246,.14);
+  --aw-bg-secondary-light: #e7f0fa;
+  --aw-bg-warning: #F90;
+  --aw-bg-warning-light: #FDF4DB;
+  --aw-bg-danger: #E21A1E;
+  --aw-bg-danger-normal: #F96F6F;
+  --aw-bg-danger-dark: rgba(229, 10, 10, 0.14);
+  --aw-bg-danger-light: rgba(255, 31, 35, 0.5);
+  --aw-bg-danger-lighter: #F7EBEB;
+  --aw-bg-white: #FFFFFF;
+  --aw-bg-success: #12a418;
+  --aw-bg-success-light: #04C60B;
+  --aw-bg-success-dark: rgba(130, 226, 134, 0.14);
+  --aw-bg-purple-dark: rgba(149, 75, 151, 0.14);
+  --aw-bg-blue: #448fda;
+
+  /* Text colors */
+  --aw-text-primary: #1A214D;
+  --aw-text-primary-dark: #000000CC;
+  --aw-text-primary-normal: #000000DE;
+  --aw-text-primary-light: #2E2E2E;
+  --aw-text-secondary: #0052cc;
+  --aw-text-danger: #E50A0A;
+  --aw-text-warning: #F90;
+  --aw-text-success: #04C60B;
+  --aw-text-purple: #954B97;
+  --aw-text-white: #FFFFFF;
+  --aw-text-gray: #696969;
+  --aw-text-light-blue: #3b82f6;
+
+  /* Border color */
+  --aw-border-primary: #BCD5FF;
+  --aw-border-primary-dark: #0072BB;
+  --aw-border-primary-dark-blue: rgba(0, 0, 0, 0.12);
+  --aw-border-secondary: #D9D9D9;
+
+  /* Box shadow */
+  --aw-shadow-table: 0 1px 9px #7492c447;
+
+  /* Fonts */
+  --aw-font-primary: 'Rubik', 'Battambang', cursive;
+  --aw-font-secondary: 'Roboto', 'Battambang', cursive;
+
+  /* Font weight */
+  --aw-font-weight-normal: 400;
+  --aw-font-weight-medium: 500;
+  --aw-font-weight-strong: 600;
+
+  /* Font size */
+  --aw-font-size-title: 24px;
+  --aw-font-size-sub-title: 16px;
+  --aw-font-size-btn: 16px;
+  --aw-font-size-th: 12px;
+  --aw-font-size-td: 14px;
+  --aw-font-size-breadcrumb: 11px;
+  --aw-font-size-paragraph: 14px;
+  --aw-font-size-input: 16px;
+
+  /* Border radius*/
+  --aw-border-radius-btn: 25px;
+
+  /* Padding */
+  --aw-padding-btn: 0 15px;
+
+
+
+
+  /* Font/text values */
+  --aw-font-family-rubik: Rubik;
+  --aw-font-weight-bold: bold;
+  --aw-font-style-normal: normal;
+  --aw-font-size-14: 14px;
+  --aw-font-size-16: 16px;
+  --aw-font-size-18: 18px;
+  --aw-font-size-19: 19px;
+  --aw-font-size-25: 25px;
+  --aw-character-spacing-0: 0px;
+  --aw-line-spacing-17: 17px;
+  --aw-line-spacing-19: 19px;
+  --aw-line-spacing-22: 22px;
+  --aw-line-spacing-23: 23px;
+
+  /* Colors: */
+  --aw-color-3b82f6: #3B82F6;
+  --aw-color-0072bb: #0072BB;
+  --aw-color-1a214d: #1A214D;
+  --aw-color-ffffff: #FFFFFF;
+  --aw-color-2e2e2e: #2E2E2E;
+  --aw-color-82e286: #82E286;
+  --aw-color-04c60b: #04C60B;
+  --aw-color-e50a0a: #E50A0A;
+  --aw-color-954b97: #954B97;
+  --aw-color-8194b4: #8194b4;
+  --aw-color-65666e: #65666e;
+  --aw-color-fdf4e1: #fdf4e1;
+  --aw-color-c4ccd8: #c4ccd8;
+  --aw-color-e0ecff: #e0ecff;
+  --aw-color-a8a8a8: #a8a8a8;
+
+
+  --aw-border-radius-size: 25px;
+  --aw-border-radius-small-size: 20px;
+
+
+  --aw-side-nav-width: 300px;
+
+  /* Toolbar Color*/
+  --aw-toolbar-color-gray: #ccc;
+
+}

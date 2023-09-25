@@ -1,0 +1,23 @@
+<div class="aw-form-group">
+  <label [for]="htmlInputElement" class="aw-form-title">{{ awLabel }}</label>
+
+  <div class="position-relative">
+    <textarea
+      #htmlInputElement
+      appAwTooltip
+      [shouldShowTooltip]="awError"
+      [tooltipContent]="awErrorMessage"
+      class="aw-form-control"
+      [placeholder]="awPlaceholder"
+      [(ngModel)]="value"
+      (input)="onInputChange(value)"
+      cols="30"
+      rows="50"
+      [maxLength]="awMaxLength"
+    ></textarea>
+
+    <div class="labels" *ngIf="awMaxLength">
+      <app-aw-badge [color]="color"><strong>{{  htmlInputElement.value?.length }} / {{ awMaxLength }}</strong></app-aw-badge>
+    </div>
+  </div>
+</div>

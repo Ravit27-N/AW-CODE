@@ -1,0 +1,165 @@
+<ng-container slot="page-content">
+  <div class="mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <app-aw-container>
+          <div
+            class="aw-panel"
+            cdkDropList
+            (cdkDropListDropped)="orderItem($event)"
+          >
+            <div class="aw-form-container">
+              <div
+                class="aw-btn-item-group my-2 mt-0"
+                *ngFor="let education of educations; let i = index"
+                cdkDrag
+              >
+                <button
+                  mat-menu-item
+                  disableRipple
+                  class="aw-btn-item"
+                  [class.active]="getIsActive(i)"
+                  (click)="editEducation(i)"
+                >
+                  <mat-icon class="drag-icon">apps</mat-icon>
+                  <span>{{ getUniversityName(education.universityId) }}</span>
+                </button>
+                <!-- Edit education -->
+
+                <mat-icon class="delete-icon" (click)="removeEducation(i)">delete</mat-icon>
+                <!-- Delete education -->
+              </div>
+              <!-- Candidate form -->
+
+              <div style="width: 200px">
+                <app-aw-rich-button
+                  height="40px"
+                  (click)="addMoreField()"
+                >+ Add education
+                </app-aw-rich-button>
+              </div>
+              <!-- Add more education -->
+            </div>
+            <!-- ./ Form -->
+          </div>
+        </app-aw-container>
+      </div>
+
+      <div class="col-md-6">
+        <app-aw-container>
+          <div class="aw-panel">
+            <div class="aw-form-container">
+              <form
+                [formGroup]="formGroup"
+                *ngIf="
+                  educations.length > 0 &&
+                  formGroup.get('order')?.value !== null
+                "
+              >
+                <div class="col-xl-12">
+                  <div class="row">
+                    <div class="col-xl-10">
+                      <app-aw-input-box-select
+                        awLabel="University"
+                        formControlName="universityId"
+                        [awOptions]="universityCriteria"
+                        [awRequired]="true"
+                        [awError]="formGroup.get('universityId')?.errors?.message && shouldShowError"
+                        [awErrorMessage]="formGroup.get('universityId')?.errors?.message"
+                      ></app-aw-input-box-select>
+                      <!-- ./ Field University -->
+
+                      <app-aw-input-box-text
+                        awLabel="Major"
+                        formControlName="major"
+                        [awRequired]="true"
+                        [awError]="formGroup.get('major')?.errors?.message && shouldShowError"
+                        [awErrorMessage]="formGroup.get('major')?.errors?.message"
+                      ></app-aw-input-box-text>
+                      <!-- ./ Field Major -->
+
+                      <app-aw-input-box-select
+                        awLabel="Degree"
+                        formControlName="degree"
+                        [awOptions]="degreeTyeCriteria"
+                        [awRequired]="true"
+                        [awError]="formGroup.get('degree')?.errors?.message && shouldShowError"
+                        [awErrorMessage]="formGroup.get('degree')?.errors?.message"
+                      ></app-aw-input-box-select>
+                      <!-- ./ Field Degree -->
+
+                      <app-aw-input-box-date
+                        awLabel="Start Date"
+                        formControlName="academicYearStart"
+                        [awRequired]="true"
+                        awPlaceholder="N/A"
+                        [awError]="formGroup.get('academicYearStart')?.errors?.message && shouldShowError"
+                        [awErrorMessage]="formGroup.get('academicYearStart')?.errors?.message"
+                      ></app-aw-input-box-date>
+                      <!-- ./ Field Start Date -->
+
+                      <app-aw-input-box-date
+                        awLabel="End Date"
+                        formControlName="academicYearEnd"
+                        awPlaceholder="N/A"
+                        [awError]="formGroup.get('academicYearEnd')?.errors?.message && shouldShowError"
+                        [awErrorMessage]="formGroup.get('academicYearEnd')?.errors?.message"
+                      ></app-aw-input-box-date>
+                      <!-- ./ Field End Date -->
+
+                      <app-aw-input-box-radios
+                        awLabel="Graduate"
+                        formControlName="graduate"
+                        [awOptions]="universityGraduate"
+                        [awRequired]="true"
+                        [awError]="formGroup.get('graduate')?.errors?.message && shouldShowError"
+                        [awErrorMessage]="formGroup.get('graduate')?.errors?.message"
+                      >
+                      </app-aw-input-box-radios>
+                      <!-- ./ Field Graduate -->
+
+                      <app-aw-input-box-text
+                        awLabel="GPA"
+                        formControlName="gpa"
+                        [awRequired]="true"
+                        [awError]="formGroup.get('gpa')?.errors?.message && shouldShowError"
+                        [awErrorMessage]="formGroup.get('gpa')?.errors?.message"
+                      ></app-aw-input-box-text>
+                      <!-- ./ Field GPA -->
+
+                      <app-aw-input-box-text-area
+                        awLabel="Remarks"
+                        formControlName="remarks"
+                        class="field_remark"
+                        [awMaxLength]="255"
+                        [awError]="formGroup.get('remarks')?.errors?.message && shouldShowError"
+                        [awErrorMessage]="formGroup.get('remarks')?.errors?.message"
+                      ></app-aw-input-box-text-area>
+                      <!-- ./ Field Remarks -->
+
+                      <app-aw-rich-button (click)="applyChange()">Apply</app-aw-rich-button>
+                      <!-- ./ Apply change button -->
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <p *ngIf="educations.length === 0">
+                There are no any education for selection.
+              </p>
+            </div>
+          </div>
+        </app-aw-container>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<!-- ./ Form -->
+
+<div class="action-button-container mt-4">
+  <div class="d-flex justify-content-end">
+    <app-aw-rich-button (click)="goPrevious()" [outline]="true" class="mr-3">Previous</app-aw-rich-button>
+    <app-aw-rich-button (click)="goNext()">Next</app-aw-rich-button>
+  </div>
+</div>
+<!-- ./ Action button -->

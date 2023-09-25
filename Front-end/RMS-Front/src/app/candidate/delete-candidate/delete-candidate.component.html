@@ -1,0 +1,19 @@
+<mat-dialog-content class="mat-typography">
+  <div class="d-flex flex-row justify-content-between">
+    <h2 class="flex-grow-1 text-center">Delete Candidate</h2>
+    <button mat-icon-button matTooltip="Close" [mat-dialog-close]="false" cdkFocusInitial class="btn-close">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="text-center">
+    <p> Are you sure to soft delete this candidate? If Okay, this will also soft delete records (Reminder, Result,
+      Interview or Activity Log) that are related to this candidate.</p>
+    <p class="labeler">Full Name: {{candidate.fullName}}</p>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions class="d-flex justify-content-end">
+  <button mat-raised-button color="warn" [mat-dialog-close]="false" class="mb-2">Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true"  class="mr-2 mb-2">Ok</button>
+</mat-dialog-actions>

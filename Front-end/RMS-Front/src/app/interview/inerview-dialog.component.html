@@ -1,0 +1,10 @@
+<div class="child-between m-0 p-0">
+  <h2 class="mat-h2 m-0 p-0 self-center">Update Interview</h2>
+  <button mat-icon-button matTooltip="Close" class="self-center" (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<app-interview-form [interview]="data" [editorMode]="true" (oncancel)="onNoClick()"
+  (onupdateSuccess)="dialogRef.close({ changed: true })"></app-interview-form>
+

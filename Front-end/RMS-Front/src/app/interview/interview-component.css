@@ -1,0 +1,74 @@
+.avatar {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.labeler {
+  font-weight: 500;
+}
+
+.failed, .pass, .following, .in-progress, .new-request {
+  border-radius: 10px;
+  text-align: center;
+  display: inline-block;
+  padding: 4px 1rem;
+  margin-left: 10px;
+}
+
+.failed {
+  color: var(--aw-text-danger);
+  background: var(--aw-bg-danger-dark);
+}
+
+.pass {
+  color: var(--aw-text-secondary);
+  background: var(--aw-bg-secondary-dark);
+}
+
+.following {
+  color: var(--aw-text-warning);
+  background: var(--aw-bg-warning-light);
+}
+
+.in-progress {
+  color: var(--aw-text-success);
+  background: var(--aw-bg-success-dark);
+}
+
+.new-request {
+  color: var(--aw-text-purple);
+  background: var(--aw-bg-purple-dark);
+}
+
+span.empty {
+  opacity: .5;
+}
+
+.small-mat-item-list {
+  height: 30px !important;
+}
+
+.status-button {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  text-align: left;
+  background-color: transparent;
+}
+
+.simple-table tr:hover td {
+  background: none !important;
+}
+
+.img-profile {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  margin: 10px auto;
+}
+
+.footer-button {
+  margin-top: 24px;
+}

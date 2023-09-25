@@ -1,0 +1,14 @@
+.col-id{
+  padding-right: 5px;
+}
+.select-status{
+  width: 100px;
+}
+
+.img-profile{
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  margin: 10px auto;
+}

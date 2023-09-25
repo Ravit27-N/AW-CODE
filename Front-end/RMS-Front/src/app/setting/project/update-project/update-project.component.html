@@ -1,0 +1,43 @@
+<div perm="Project:edit">
+  <app-loading-indicator [isloading]="('UpdateProjectComponent'|swIsLoading|async)"></app-loading-indicator>
+  <form name="project-form" id="project-form" [formGroup]="validateForm" (ngSubmit)="onSubmit()">
+    <div class="child-between m-0 p-0">
+      <h2 class="mat-h2 m-0 p-0 self-center">Update Project</h2>
+      <button mat-icon-button matTooltip="Close" type="button" class="self-center" (click)="onNoClick()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="row gy-4">
+      <mat-form-field class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput type="text"  required tabindex="1" name="name" [(ngModel)]="model.name"  [formControl]="validateForm.controls.name"/>
+        <mat-error *ngIf="validateForm.controls.name.invalid">Name is required</mat-error>
+      </mat-form-field>
+<!--      <mat-form-field class="full-width"   >-->
+<!--        <mat-label>Description</mat-label>-->
+<!--        <input matInput type="text"   tabindex="2" name="description" [(ngModel)]="model.description"  [formControl]="validateForm.controls.description"/>-->
+
+<!--      </mat-form-field>-->
+      <div class="mt-2">
+        <mat-label class="label-body">
+          description
+        </mat-label>
+        <hr class="my-2">
+        <div>
+          <quill-editor formControlName="description" tabindex="2"    [formControl]="validateForm.controls.description"></quill-editor>
+        </div>
+      </div>
+
+      <div class="flex-column">
+        <!--      <div>-->
+        <!--        <mat-slide-toggle tabindex="6"></mat-slide-toggle>-->
+        <!--      </div>-->
+        <div class="child-end mt-2">
+
+          <button mat-flat-button class="btncancel" color="warn" type="button" (click)="onNoClick()">Cancel</button>
+          <button mat-flat-button color="primary"   type="submit" class="savebutton" tabindex="3" [disabled]="validateForm.invalid" >Save</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

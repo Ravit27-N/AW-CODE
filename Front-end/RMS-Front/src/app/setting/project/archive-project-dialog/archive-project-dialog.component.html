@@ -1,0 +1,16 @@
+<mat-dialog-content mat-dialog-content>
+  <div class="d-flex flex-row justify-content-between">
+    <h2  class="flex-grow-1 text-center">{{this.title}}</h2>
+    <button mat-icon-button matTooltip="Close" [mat-dialog-close]="false" cdkFocusInitial>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div class="text-center">
+    <p>{{this.content}}</p>
+    <p class="labeler">Project Name: {{this.data.projectName}}</p>
+  </div>
+</mat-dialog-content>
+<div mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" mat-dialog-close class="mb-2"> Cancel </button>
+  <button mat-raised-button color="primary" class="mb-2" (click)="this.ok()"> Ok </button>
+</div>

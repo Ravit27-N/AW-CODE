@@ -1,0 +1,41 @@
+
+#btn-icon{
+  margin-right: 5px;
+}
+
+.circle {
+  background-color: rgb(239, 239, 239);
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  border: 8px solid rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+}
+
+h2{
+  color: rgb(5, 61, 12);
+  margin-bottom: 0px !important;
+}
+
+.title-color{
+  color: rgb(116, 111, 111);
+}
+
+.title{
+  font-size: 16px;
+}
+
+.title:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#result-title{
+  font-weight: 500;
+  margin-top: .5rem;
+}
+
+.mat-card:hover{
+  cursor: pointer;
+  background-color: rgba(240, 240, 240, 0.288);
+}

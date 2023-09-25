@@ -1,0 +1,13 @@
+<div class="container-fluid" appCanAccess perm="Interview:add">
+  <mat-card>
+    <mat-card-content>
+      <h1 class="mat-h1">Interview</h1>
+      <app-interview-form [preload]="preloadData"
+      (oncancel)="back()" (onupdateSuccess)="back()"></app-interview-form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<button mat-raised-button color="primary" (click)="back()" class="bottom-back-button">
+  <i class="fas fa-chevron-circle-left mr-1"></i>Back
+</button>

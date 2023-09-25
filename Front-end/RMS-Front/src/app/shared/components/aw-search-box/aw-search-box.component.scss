@@ -1,0 +1,30 @@
+.has-filter {
+  border: 1.5px solid #3b82f6 !important;
+  box-shadow: 0 3px 6px rgba(157, 178, 191, 0.1) !important;
+}
+
+.aw-search-input {
+  width: 231px;
+  padding: 0 10px;
+  height: 40px;
+  background: #FFFFFF;
+  box-shadow: 0 3px 6px rgba(157, 178, 191, 0.1);
+  border: 0.5px solid #D9D9D9;
+  border-radius: 10px;
+  opacity: 1;
+}
+
+.aw-search-input .search-icon {
+  color: #3b82f6;
+}
+
+.aw-search-input input {
+  font: normal 16px/19px Rubik;
+  letter-spacing: 0;
+  text-align: left;
+  opacity: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+}

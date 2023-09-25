@@ -1,0 +1,21 @@
+<span *ngIf="(isDone && isAuthenticated && isRoleDone)">
+  <app-redirect path="/admin/dashboard"></app-redirect>
+</span>
+
+<div *ngIf="isDone && !isAuthenticated" class="screen child-center">
+  <mat-card class="main-card center">
+    <img mat-card-image class="avatar" src="{{assetPrefix}}/assets/img/all-web-logo.png" alt="Allweb logo">
+    <mat-card-content>
+      <mat-card-title color="primary" class="heading title">Recruitment Management System</mat-card-title>
+
+      <quill-view-html *ngIf="companyProfile" [content]="companyProfile"></quill-view-html>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <button *appShowAuthed="false" color="primary" class="full" mat-button (click)="login()">LOGIN</button>
+      <button *appShowAuthed="true" color="primary" class="full" mat-button (click)="login()">Continue</button>
+    </mat-card-actions>
+  </mat-card>
+  <br>
+  <app-footer class="welcome" [marginless]="true"></app-footer>
+</div>

@@ -1,0 +1,229 @@
+
+.wrapper {
+  width: 100%;
+  overflow: auto;
+  padding: 0 40px 20px;
+}
+
+/* following-up */
+#my-table-following-up .header-design{
+  text-align: center;
+  background-color: #fabf8f;
+  height: 4px;
+  width: 20px;
+  font-size: 13px;
+  font-weight: bold;
+}
+#my-table-following-up .color-red{
+  color: red;
+}
+#my-table-following-up .align-center{
+  text-align: center;
+}
+#my-table-following-up .align-left{
+  text-align: left;
+  padding-left: 3px;
+}
+#my-table-following-up .full-staff-color{
+  background-color:#b8cce4;
+}
+#my-table-following-up .datetime-interview{
+  background-color: #FFFF00;
+}
+#my-table-following-up .comment-one{
+  background-color: #D9D9D9;
+}
+#my-table-following-up .comment-two{
+  background-color: #dce6f1;
+}
+#my-table-following-up .comment-three{
+  background-color: #D8E4BC;
+}
+#my-table-following-up .evaluation-color{
+  background-color: #dce6f1;
+}
+#my-table-following-up .remark-color{
+  background-color: #dce6f1;
+  color: #dce6f1;
+}
+#my-table-following-up #following-up-no-width{
+  width: 2%;
+  padding-left: 0px;
+}
+#my-table-following-up #following-up-name-width{
+  width: 6%;
+}
+#my-table-following-up #following-up-gender-width{
+  width:2.5%;
+}
+#my-table-following-up #following-up-age-width{
+  width: 1.8%;
+}
+#my-table-following-up #following-up-school-width{
+  width: 7%;
+}
+#my-table-following-up #following-up-year-width{
+  width: 3.5%;
+}
+#my-table-following-up #following-up-gpa-width{
+  width: 1.8%;
+}
+#my-table-following-up #following-up-experience-width{
+  width: 2%;
+}
+#my-table-following-up #following-up-apply-for-width{
+  width: 7%;
+}
+#my-table-following-up #following-up-current-company-width{
+  width: 6%;
+}
+#my-table-following-up #following-up-result-width{
+  width: 6.5%;
+}
+#my-table-following-up #following-up-qa-width{
+  width: 2.3%;
+}
+#my-table-following-up #following-up-coding-width{
+  width: 2.3%;
+}
+#my-table-following-up .first-st-width{
+  width: 5.5%;
+}
+#my-table-following-up #following-up-availability-width{
+  width: 3.5%;
+}
+#my-table-following-up .comment-two-width{
+  width: 3%;
+}
+#my-table-following-up #following-up-grade-width{
+  width:2.5%;
+}
+#my-table-following-up .evaluation-width{
+  width:2%;
+}
+#my-table-following-up #following-up-remark-width{
+  width:1%;
+  padding-right: 0px;
+}
+#my-table-following-up #following-up-done-width{
+  width: 5%;
+}
+#my-table-following-up #following-up-done-width mat-icon{
+  color: royalblue;
+  font-size: medium;
+  font-weight: bolder;
+}
+#my-table-following-up #following-up-contacted-date-width{
+  width: 5%;
+}
+#my-table-following-up #following-up-result-width{
+  width: 5%;
+}
+#my-table-following-up #contact-width{
+  width: 10%;
+}
+#my-table-following-up #following-up-contacted1-date-width{
+  width: 5%;
+}
+#my-table-following-up #following-up-result1-width{
+  width: 5%;
+}
+#my-table-following-up #following-up-padding-left{
+  padding-left: 0px;
+}
+#my-table-following-up #following-up-padding-right{
+  padding-right: 0px;
+}
+#my-table-following-up .align-center{
+  text-align: center;
+}
+#my-table-following-up #following-up-qa-style{
+  color: red;
+}
+#my-table-following-up #following-up-coding-style{
+  color: red;
+}
+#my-table-following-up #following-up-grade-style{
+  background-color: #D8E4BC;
+  color: red;
+  font-weight: bold;
+}
+#my-table-following-up th,td{
+  border-left: 1px solid rgba(11, 46, 77, 0.5);
+  border-right: 1px solid rgba(11, 46, 77, 0.5);
+  border-collapse: collapse;
+}
+::ng-deep .remark-tooltip {
+  background-color: white;
+  font-size: 14px;
+  color: black !important;
+  padding: 6px 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.email-information{
+  color: #3b82f6;
+}
+
+
+#my-table-staff{
+  .mat-header-cell {
+    text-align: center !important;
+  }
+  th.mat-column-Full-Name{
+    text-align: center !important;
+    padding-left: 3px;
+  }
+  td.mat-column-Full-Name{
+    padding-left: 3px;
+    text-align: left !important;
+  }
+}
+
+
+
+.sectionTitle {
+  font-family: var(--aw-font-primary) !important;
+  font-weight: var(--aw-font-weight-strong) !important;
+  font-size: 20px !important;
+  color: var(--aw-text-secondary) !important;
+  text-align: left;
+  margin: 0 !important;
+  white-space: nowrap;
+  margin-bottom: 8px !important;
+  letter-spacing: 0 !important;
+}
+
+
+:host ::ng-deep {
+
+  //.mat-sort-header-container {
+  //  display: flex;
+  //  justify-content: center;
+  //}
+  .mat-column-Gender, .mat-column-Age, .mat-column-Experience {
+    .mat-sort-header-container {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+}
+
+
+#my-table-following-up{
+  th.mat-column-Full-Name{
+    text-align: center !important;
+    padding-left: 3px;
+  }
+  td.mat-column-Full-Name{
+    padding-left: 3px;
+    text-align: left !important;
+  }
+
+  #following-up-apply-for-width, #following-up-result-width {
+    text-align: left;
+    padding-left: 3px;
+  }
+}
+
+

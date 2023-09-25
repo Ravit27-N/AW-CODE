@@ -1,0 +1,16 @@
+.content {
+  padding: 0;
+}
+
+
+
+:host ::ng-deep{
+  .content-wrapper {
+    margin-left: var(--aw-side-nav-width) !important;
+  }
+
+  .main-footer {
+    margin-left: var(--aw-side-nav-width) !important;
+  }
+
+}

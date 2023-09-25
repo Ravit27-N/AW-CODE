@@ -1,0 +1,81 @@
+<app-aw-layout pageTitle="Dashboard" [enabledBreadcrumb]="false">
+  <ng-container slot="page-content">
+
+    <div class="my-4"></div>
+
+    <div class="row mr-0">
+      <div class="col-xl-8 col-lg-12 px-3 left-panel">
+        <section class="quick-access">
+          <h3 class="section-title">Quick Access</h3>
+          <app-dashboard-quick-access [dashboardQuickAccess]="dashboardQuickAccess"></app-dashboard-quick-access>
+        </section>
+        <hr>
+        <!-- ./ Quick access -->
+
+        <section class="resource-demanding">
+          <app-dashboard-resource-demanding></app-dashboard-resource-demanding>
+        </section>
+        <hr>
+        <!-- ./ Resource Demanding -->
+
+        <section class="top-candidate">
+          <header class="d-flex justify-content-between flex-wrap">
+            <h3 class="section-title">Top Candidates</h3>
+
+          </header>
+          <div class="row">
+            <div class="w-100 px-5">
+              <app-dashboard-top-candidate></app-dashboard-top-candidate>
+            </div>
+          </div>
+        </section>
+        <hr>
+        <!-- ./ Top Candidates -->
+
+        <section class="candidate-graph">
+          <header class="d-flex justify-content-between flex-wrap">
+            <h3 class="section-title">Candidate</h3>
+
+          </header>
+          <div class="row">
+            <div class="w-100 px-5">
+              <app-dashboard-candidate-graph></app-dashboard-candidate-graph>
+            </div>
+          </div>
+        </section>
+        <hr>
+        <!-- ./ Candidate graph -->
+
+        <section class="candidate-graph">
+          <header class="d-flex justify-content-between flex-wrap">
+            <h3 class="section-title">Interviews</h3>
+
+          </header>
+          <div class="row">
+            <div class="w-100 px-5">
+              <app-dashboard-interview-graph></app-dashboard-interview-graph>
+            </div>
+          </div>
+        </section>
+        <hr>
+        <!-- ./ Interview graph -->
+      </div>
+      <!-- ./ Left panel -->
+      <div class="col-xl-4 col-lg-12 px-3 right-panel">
+        <section class="reminder-interview">
+          <h3 class="section-title">This Week Interview</h3>
+          <app-dashboard-reminder-interview></app-dashboard-reminder-interview>
+        </section>
+        <hr class="interview-graph-horizontal">
+
+        <section class="reminder-report">
+          <h3 class="section-title">This Week Reminder</h3>
+          <app-dashboard-reminder-report></app-dashboard-reminder-report>
+        </section>
+        <hr>
+      </div>
+      <!-- ./ Right panel -->
+
+    </div>
+  </ng-container>
+</app-aw-layout>

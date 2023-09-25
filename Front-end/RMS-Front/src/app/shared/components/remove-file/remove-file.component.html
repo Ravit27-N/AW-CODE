@@ -1,0 +1,17 @@
+<mat-dialog-content mat-dialog-content>
+  <div class="d-flex flex-row justify-content-between">
+    <h2>Remove File</h2>
+    <button mat-icon-button matTooltip="Close" [mat-dialog-close]="false" cdkFocusInitial>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+   <div class="text-center">
+    <p>Are you sure you want to remove this file? Once you comfirm file will be delete forever? </p>
+   </div>
+</mat-dialog-content>
+<mat-dialog-actions class="  d-flex justify-content-end pb-3">
+  <div class="">
+    <button [mat-dialog-close]="false" mat-raised-button color="warn">Cancel</button>
+    <button [mat-dialog-close]="true" mat-raised-button color="primary" matTooltip="click on this will delete">Comfirm</button>
+  </div>
+</mat-dialog-actions>

@@ -1,0 +1,45 @@
+.interview-template-detail {
+  &-body {
+    .status {
+      padding: 4px 1rem;
+      border-radius: 10px;
+
+      &-active {
+        background-color: var(--aw-bg-secondary-dark);
+        color: var(--aw-text-secondary);
+      }
+
+      &-inactive {
+        background-color: var(--aw-bg-danger-dark);
+        color: var(--aw-text-danger);
+      }
+    }
+  }
+
+  .interviewer-container {
+    width: 70%;
+
+    .interviewer-wrapper {
+      .circle {
+        width: 8px;
+        height: 8px;
+        background: var(--aw-bg-secondary) 0 0 no-repeat padding-box;
+        border-radius: 50%;
+      }
+
+      .interviewer-item {
+        margin-left: 10px;
+        color: var(--aw-text-secondary);
+      }
+    }
+
+    .separator {
+      width: 1px;
+      height: 10px;
+      border-radius: 10px;
+      background-color: #bcd5ff;
+      margin-left: 4px;
+      transform: translateX(-50%);
+    }
+  }
+}

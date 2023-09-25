@@ -1,0 +1,78 @@
+<div class="demand-details">
+  <article>
+    <header class="page-header mr-5">
+      <app-aw-breadcrumb
+        [customLastLabel]="'Demand Details'"
+      ></app-aw-breadcrumb>
+      <app-aw-page-header>Manage Demands</app-aw-page-header>
+      <app-aw-page-sub-header>Demand Details</app-aw-page-sub-header>
+    </header>
+  </article>
+  <mat-divider class="common-mat-divider"></mat-divider>
+  <article
+    *ngIf="project"
+    class="project-detail-container d-flex flex-column justify-content-between"
+  >
+    <div class="project-detail ml-0 pl-0">
+      <div class="project-name">
+        <label class="d-inline-block m-0 mr-1"
+          >Project: {{ project?.name }}</label
+        >
+      </div>
+
+      <div
+        style="font-weight: normal; font-size: 16px; margin-top: 10px"
+        [innerHTML]="project?.description"
+        *ngIf="project?.description"
+      ></div>
+    </div>
+    <div class="position-detail d-flex flex-wrap align-items-center">
+      <div
+        class="position-detail-card ml-0 p-4"
+        *ngFor="let detail of project.projectDetail"
+      >
+        <div>
+          <label class="d-inline-block m-0 mr-1">Position:</label>
+          <span class="position-title">{{
+            getPositionTitle(detail.jobDescription)
+          }}</span>
+          <span class="position-title ml-2">{{
+            detail.experienceLevel
+            }}</span>
+        </div>
+
+        <div
+          class="d-flex flex-column align-items-start dots mt-3"
+          [ngClass]="{
+            'justify-content-center align-items-center':
+              !detail.resources.length
+          }"
+          *ngIf="detail?.resources?.length > 0"
+        >
+          <div
+            *ngIf="detail.resources.length"
+            class="container pt-0"
+            [ngStyle]="{
+              'overflow-y': detail.resources.length > 3 ? 'scroll' : 'hidden'
+            }"
+          >
+            <div *ngFor="let candidate of detail.resources; let idx = index">
+              <div class="d-flex align-items-center">
+                <div class="circle"></div>
+                <a
+                  class="letter"
+                  [routerLink]="navigateCandidateDetailById(candidate.id)"
+                  >{{ getFullName(candidate) }}</a
+                >
+              </div>
+              <div
+                *ngIf="isShowLineSeparators(detail.resources, idx)"
+                class="separator"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>

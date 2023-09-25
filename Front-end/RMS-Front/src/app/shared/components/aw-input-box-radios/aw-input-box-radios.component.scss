@@ -1,0 +1,13 @@
+.aw-form-control {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  padding-top: 19px;
+  flex-wrap: wrap;
+}
+
+mat-radio-button:first-child {
+  margin: 0 !important;
+}

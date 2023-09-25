@@ -1,0 +1,55 @@
+<button
+  mat-icon-button
+  (click)="noticeClick()"
+  class="position-relative text-allweb"
+  cdkOverlayOrigin
+  #trigger="cdkOverlayOrigin"
+>
+  <mat-icon
+    [matBadge]="unreadLength$ | async"
+    matBadgeColor="warn"
+    class="mat-icon-rtl-mirror"
+    >notifications
+  </mat-icon>
+</button>
+
+<ng-template
+  cdkConnectedOverlay
+  cdkConnectedOverlayHasBackdrop
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="showNotice$ | async"
+>
+
+  <div aw-class="header-notification-panel">
+    <mat-card class="notice-width">
+      <mat-card-content>
+        <div matSubheader class="p-2">
+          Notifications
+          <a
+            href="#"
+            (click)="markAsRead($event)"
+            class="float-right link-primary"
+          >Mark as read</a
+          >
+        </div>
+
+        <div class="p-2" *ngIf="(messages$ | async).length <= 0" matLine>
+          There's no any notification
+        </div>
+
+        <div
+          *ngFor="let item of messages$ | async"
+          class="notification-item"
+          [class.unread]="item.unread"
+          (click)="readNotice(item)"
+        >
+          <h3 matLine>{{ item.title }}</h3>
+          <p matLine [innerHTML]="item.body">{{ item.body }}</p>
+          <p matLine>
+            <quill-view [content]="item.body"></quill-view>
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-template>

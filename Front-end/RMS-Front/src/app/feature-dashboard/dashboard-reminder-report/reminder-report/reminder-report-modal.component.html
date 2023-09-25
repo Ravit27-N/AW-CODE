@@ -1,0 +1,89 @@
+<div class="aw-reminder-report p-4 pt-1">
+  <section class="reminder-report-header d-flex justify-content-end">
+    <mat-icon class="reminder-report-close-btn" (click)="closeModal()"
+      >close
+    </mat-icon>
+  </section>
+  <!-- ./ Reminder Report -->
+  <section class="reminder-modal-title d-flex justify-content-center">
+    <h3 class="modal-title-content modal-title">Reminder Detail</h3>
+  </section>
+
+  <section class="reminder-form pt-3">
+    <div class="form-group">
+      <label for="fieldReminderType" class="aw-font-primary aw-font-15"
+        >Reminder Type</label
+      >
+      <input
+        class="form-control aw-font-primary aw-form-control-input"
+        id="fieldReminderType"
+        readonly
+        [value]="data.reminder.reminderType"
+      />
+    </div>
+    <div class="form-group">
+      <label for="fieldTitle" class="aw-font-primary aw-font-15">Title</label>
+      <input
+        class="form-control aw-font-primary aw-form-control-input"
+        id="fieldTitle"
+        readonly
+        [value]="data.reminder?.title | awNaIfFalsy"
+      />
+    </div>
+    <div class="form-group">
+      <label for="fieldInterview" class="aw-font-primary aw-font-15"
+        >Interview</label
+      >
+      <input
+        class="form-control aw-font-primary aw-form-control-input"
+        id="fieldInterview"
+        readonly
+        [value]="data.reminder.interview?.title | awNaIfFalsy"
+      />
+    </div>
+    <div class="form-group">
+      <label for="fieldDatetime" class="aw-font-primary aw-font-15"
+        >Date time</label
+      >
+      <input
+        class="form-control aw-font-primary aw-form-control-input"
+        id="fieldDatetime"
+        readonly
+        [value]="data.reminder.dateReminder | awDateFormat | awNaIfFalsy"
+      />
+    </div>
+    <div class="form-group">
+      <label for="fieldCreatedAt" class="aw-font-primary aw-font-15"
+        >Created at</label
+      >
+      <input
+        class="form-control aw-font-primary aw-form-control-input"
+        id="fieldCreatedAt"
+        readonly
+        [value]="data.reminder.dateReminder | awDateFormat | awNaIfFalsy"
+      />
+    </div>
+    <div class="form-group">
+      <label class="aw-font-primary aw-font-15"
+      >Status</label
+      >
+      <div class="form-control aw-form-control-input d-flex align-items-center">
+        <app-aw-badge *ngIf="data.reminder.active" color="primary">Active</app-aw-badge>
+        <app-aw-badge *ngIf="!data.reminder.active" color="danger">Inactive</app-aw-badge>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="fieldDescription" class="aw-font-primary aw-font-15"
+        >Description</label
+      >
+      <textarea
+        class="form-control aw-font-primary aw-form-control-input"
+        id="fieldDescription"
+        rows="3"
+        readonly
+        [value]="data.reminder?.description | awNaIfFalsy | awHtmlToPlainText"
+      ></textarea>
+    </div>
+  </section>
+  <!-- ./ Reminder Form -->
+</div>

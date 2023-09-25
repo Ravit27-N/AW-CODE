@@ -1,0 +1,29 @@
+.content-email{
+  color:#0c5460;
+  background-color:#d1ecf1;
+}
+
+mat-form-field {
+  width: 100%;
+}
+.day-hour-minute {
+  width: 40px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#day-hour-minute{
+  margin-top: 15px;
+  margin-right: 10px;
+  margin-left: 2px;
+}
+.mat-chip:hover{
+  cursor: pointer;
+}
+
+.mat-radio-button{
+  margin-right: 10px;
+}
+.w-datetime{
+  width: 33%;
+}

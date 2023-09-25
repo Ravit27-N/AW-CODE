@@ -1,0 +1,6 @@
+<div class="star-rating d-flex flex-nowrap" [matTooltip]="tooltipMessage" matTooltipPosition="below">
+  <i class="fa fa-star" *ngFor="let star of stars"></i>
+  <i class="fa fa-star-half" *ngIf="rating % 1 > 0.3 "></i>
+  <i class="fa fa-star blur" *ngIf="rating % 1 < 0.3 && rating % 1 !== 0"></i>
+
+</div>

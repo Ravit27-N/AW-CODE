@@ -1,0 +1,43 @@
+:host ::ng-deep {
+
+  table {
+    th:nth-child(1), td:nth-child(1) {
+      min-width: 55px !important;
+    }
+    th:nth-child(4), td:nth-child(4) {
+      min-width: 4% !important;
+    }
+    th:nth-child(5), td:nth-child(5) {
+      min-width: 7% !important;
+    }
+    th:nth-child(5), td:nth-child(5) {
+      min-width: 8% !important;
+    }
+    th:nth-child(7), td:nth-child(7) {
+      min-width: 5% !important;
+    }
+    th:nth-child(10), td:nth-child(10) {
+      min-width: 8% !important;
+      padding-right: 4px;
+    }
+    th:nth-child(9), td:nth-child(9) {
+      min-width: 7% !important;
+    }
+  }
+
+
+  .aw-table th:nth-child(6) {
+    padding-left: 35px !important;
+  }
+
+  .aw-table td:nth-child(7),
+  .aw-table th:nth-child(7),
+  .aw-table td:nth-child(8),
+  .aw-table th:nth-child(8) {
+    text-align: center;
+  }
+
+  //.aw-table td:nth-child(9) {
+  //  padding-left: 28px !important;
+  //}
+}

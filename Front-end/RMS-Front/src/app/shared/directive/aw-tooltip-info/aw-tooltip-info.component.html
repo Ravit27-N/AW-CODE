@@ -1,0 +1,7 @@
+<div @tooltip
+  [ngClass]="[position, 'aw-info-tooltip-container']"
+  [ngStyle]="{ width: width }"
+>
+  <div [innerHTML]="tooltipMessage"></div>
+  <mat-spinner *ngIf="showLoader"></mat-spinner>
+</div>

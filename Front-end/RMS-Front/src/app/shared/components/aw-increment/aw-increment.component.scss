@@ -1,0 +1,20 @@
+.aw-increment-value {
+  font-size: 16px;
+  line-height: 24px;
+  vertical-align: middle;
+  color: var(--aw-text-secondary);
+  text-decoration: underline;
+  margin-right: 7px;
+}
+
+mat-icon {
+  color: var(--aw-text-secondary);
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}

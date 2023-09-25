@@ -1,0 +1,44 @@
+:host ::ng-deep {
+  app-aw-upload-fragment {
+    .title-wrapper {
+      left: 40% !important;
+    }
+
+    .drag-file-info {
+      transition: all 0.5s;
+      position: absolute;
+      left: 35% !important;
+    }
+  }
+
+  .btn-upload {
+    border: none;
+  }
+}
+
+embed, iframe {
+  height: 60vh;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+}
+
+@media screen and (max-width: 1434px) {
+  :host ::ng-deep {
+    app-aw-upload-fragment {
+      .title-wrapper {
+        left: 30% !important;
+      }
+
+      .drag-file-info {
+        transition: all 0.5s;
+        position: absolute;
+        left: 25% !important;
+      }
+    }
+
+    div[filename] {
+      width: 291.9px !important;
+    }
+  }
+}

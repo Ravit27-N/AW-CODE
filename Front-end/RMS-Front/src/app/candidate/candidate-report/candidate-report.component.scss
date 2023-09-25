@@ -1,0 +1,131 @@
+:host::ng-deep .aw-table td, .aw-table th {
+  min-width: 120px !important;
+}
+
+:host::ng-deep td.col-actions {
+  display: flex;
+  justify-content: start;
+  margin-left: -6px !important;
+}
+
+.search-box {
+  margin-top: 21px;
+}
+
+:host::ng-deep .failed .mat-select-min-line {
+  color: var(--aw-text-danger);
+}
+
+:host::ng-deep .pass .mat-select-min-line {
+  color: var(--aw-text-secondary);
+}
+
+:host::ng-deep .following .mat-select-min-line {
+  color: var(--aw-text-warning);
+}
+
+:host::ng-deep .in-progress .mat-select-min-line {
+  color: var(--aw-text-success);
+}
+
+:host::ng-deep .new-request .mat-select-min-line {
+  color: var(--aw-text-purple);
+}
+
+.mat-select-pass {
+  padding: 4px 1rem;
+  border-radius: 10px;
+  background: var(--aw-bg-secondary-dark);
+  width: 138px;
+  text-align: center;
+}
+
+.mat-select-failed {
+  padding: 4px 1rem;
+  border-radius: 10px;
+  background: var(--aw-bg-danger-dark);
+  width: 138px;
+  text-align: center;
+}
+
+.mat-select-following {
+  padding: 4px 1rem;
+  border-radius: 10px;
+  background: var(--aw-bg-warning-light);
+  width: 138px;
+  text-align: center;
+}
+
+.mat-select-in-progress {
+  padding: 4px 1rem;
+  border-radius: 10px;
+  background: var(--aw-bg-success-dark);
+  width: 138px;
+  text-align: center;
+}
+
+.mat-select-new-request {
+  padding: 4px 1rem;
+  border-radius: 10px;
+  background: var(--aw-bg-purple-dark);
+  width: 138px;
+  text-align: center;
+}
+
+.img-profile {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  margin: 4px 0;
+}
+
+:host::ng-deep .aw-avatar-container {
+  width: 60px !important;
+  height: 60px !important;
+  overflow: hidden;
+  margin: 4px auto;
+
+  .aw-avatar-profile {
+    height: 10px !important;
+  }
+
+  .aw-avatar-title {
+    transform: translate(-16px, 2px) !important;
+  }
+}
+
+
+
+:host ::ng-deep{
+  .aw-table {
+
+    th.mat-column-No,
+    td.mat-column-No,
+    th.mat-column-GPA,
+    td.mat-column-GPA,
+    th.mat-column-age,
+    td.mat-column-age,
+    th.mat-column-Quiz,
+    td.mat-column-Quiz,
+    th.mat-column-Coding,
+    td.mat-column-Coding{
+      min-width: 60px !important;
+      max-width: 60px !important;
+    }
+
+
+
+
+  }
+
+}
+
+.no-data-row {
+  height: 60px;
+}
+
+.no-data-cell {
+  border-left: none !important;
+}
+

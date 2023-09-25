@@ -1,0 +1,36 @@
+:host ::ng-deep {
+  .mat-card {
+    width: 100%;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px !important;
+    border-radius: 23px;
+    cursor: pointer;
+  }
+
+}
+
+.profile-img {
+  min-height: 80px;
+  max-height: 80px;
+  min-width: 80px;
+  max-width: 80px;
+}
+
+.profile-info-name {
+  font-family: var(--aw-font-primary);
+  font-size: var(--aw-font-size-sub-title);
+  margin: 5px 0 0;
+  white-space: nowrap;
+}
+
+.profile-info-position-title {
+  font-size: 12px;
+  font-weight: var(--aw-font-weight-medium);
+  text-transform: uppercase;
+  margin: 0;
+  white-space: nowrap;
+}
+
+mat-card:hover {
+  box-shadow: 0 6px 30px rgba(182, 186, 203, 0.3) !important;
+  border-radius: 25px;
+}

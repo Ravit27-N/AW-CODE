@@ -1,0 +1,16 @@
+.th-filename {
+  width: 20%;
+}
+
+.th-description {
+  width: 50% !important;
+}
+
+.filename {
+  color: blue;
+}
+table {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+

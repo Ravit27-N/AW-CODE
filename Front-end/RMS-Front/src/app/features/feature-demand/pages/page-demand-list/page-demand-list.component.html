@@ -1,0 +1,282 @@
+<app-aw-layout-list pageTitle="Manage Demands" pageSubtitle="List all demands">
+  <ng-container slot="action-buttons">
+    <app-aw-rich-button type="danger" (click)="fetchDemandByIsDeleteHasFalse()" [outline]="!demandListCriteria.isDeleted">
+      <mat-icon>archive</mat-icon>
+      <span>Archive</span>
+    </app-aw-rich-button>
+
+    <app-aw-rich-button (click)="navigateToPageCreateDemand()" class="ml-3">
+      <mat-icon>add</mat-icon>
+      <span>Add</span>
+    </app-aw-rich-button>
+  </ng-container>
+  <!-- ./Page header -->
+
+  <ng-container slot="page-filter">
+    <section
+      class="search-box d-flex justify-content-end"
+      style="margin-top: 21px"
+    >
+      <app-aw-search-box
+        (valueChange)="fetchDemandByFilter($event)"
+        [value]="demandListCriteria.filter || ''"
+        [hasError]="
+          !demandTableDatasource.length &&
+          demandListCriteria.filter.length > 0
+        "
+      >
+      </app-aw-search-box>
+    </section>
+  </ng-container>
+  <!-- ./Page Filter -->
+
+  <ng-container slot="page-table">
+    <section class="aw-table">
+      <div class="contain-table" style="margin-top: 46px">
+        <div class="width-full overflow-auto sub-contain-table">
+          <table
+            mat-table
+            matSort
+            [dataSource]="demandTableDatasource"
+            matSortDisableClear
+          >
+            <caption class="d-none">
+            </caption>
+            <ng-container matColumnDef="no">
+              <th mat-header-cell *matHeaderCellDef> No. </th>
+              <td mat-cell *matCellDef="let row">{{ row?.no || '' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="project">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                arrowPosition="after"
+              >
+                Project Name
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <a (click)="navigatePageDemandDetails(row?.project?.id)">{{ row?.project?.name || '' }}</a>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="jobDescription">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                arrowPosition="after"
+              >
+                Position
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{ row?.jobDescription?.title || '' }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="qty">
+              <th mat-header-cell *matHeaderCellDef> QTY </th>
+              <td mat-cell *matCellDef="let row">{{ row?.nbRequired || 0 }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="experienceLevel">
+              <th mat-header-cell *matHeaderCellDef> Exp. Level </th>
+              <td mat-cell *matCellDef="let row">{{ row?.experienceLevel || 0 }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="deadLine">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                arrowPosition="after"
+              >
+                Deadline
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <app-aw-badge
+                  [color]="getWarningDate(row?.deadLine, row.status)"
+                  [title]="getRemandDeadlineMessage(row?.deadLine)"
+                >
+                  {{ row?.deadLine? (row?.deadLine | awDateNoTimeFormat) : '' }}
+                </app-aw-badge>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="resources">
+              <th mat-header-cell *matHeaderCellDef> Resources </th>
+              <td mat-cell *matCellDef="let row">
+                <app-aw-increment
+                  [value]="row?.resources?.length"
+                  [disabled]="demandListCriteria?.isDeleted || !row?.status"
+                  (addEvent)="addOrRemoveResourceFromProject(row?.resources, row?.id, row?.nbRequired)"
+                >
+                </app-aw-increment>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>{{ "Status" }}</th>
+              <td mat-cell *matCellDef="let row">
+                <app-aw-badge color="success" *ngIf="row.status">{{ "In progress".toUpperCase() }}</app-aw-badge>
+                <app-aw-badge color="primary" *ngIf="!row.status">{{ "Completed".toUpperCase() }}</app-aw-badge>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="active">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                arrowPosition="after"
+              >
+                Hide/Show
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <app-aw-slider-toggle
+                  [disabled]="demandListCriteria.isDeleted || !row.status"
+                  [checked]="row?.active"
+                  (valueChangeEvent)="
+                    switchPinningDemand$.next({ id: row.id, checked: $event })
+                  "
+                >
+                </app-aw-slider-toggle>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="createdAt">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                arrowPosition="after"
+                class="has-right-border"
+              >
+                Created At
+              </th>
+              <td mat-cell *matCellDef="let row" class="has-right-border">
+                {{ row?.createdAt? (row?.createdAt | date: "MMM-dd-yyyy") : '' }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef class="col-actions">
+                Action
+              </th>
+              <td mat-cell *matCellDef="let row" class="col-actions">
+                <div class="center-action-button">
+                  <button
+                    *ngIf="!demandListCriteria.isDeleted"
+                    (click)="navigateToEditDemandPage(row)"
+                  >
+                    <span>Modify</span>
+                  </button>
+                  <button *ngIf="demandListCriteria.isDeleted" (click)="navigateToViewDemandPage(row)">View</button>
+                  <button
+                    [matMenuTriggerFor]="actionMenu"
+                    [disableRipple]="true"
+                    [matMenuTriggerData]="row"
+                    mat-icon-button
+                    style="width: 0"
+                  >
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+
+            <tr
+              mat-header-row
+              *matHeaderRowDef="demandTableColumns; sticky: true"
+            ></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; let i = index; columns: demandTableColumns"
+              [class.row-selected]="false"
+            ></tr>
+            <tr class="mat-row no-data-row" *matNoDataRow>
+              <td
+                class="mat-cell no-data-cell"
+                [colSpan]="demandTableColumns.length"
+              ></td>
+            </tr>
+          </table>
+
+          <mat-menu
+            #actionMenu="matMenu"
+            class="common-aw-menu aw-mat-menu"
+            xPosition="before"
+          >
+            <ng-template matMenuContent let-rowId="id">
+              <button
+                mat-menu-item
+                (click)="restoreFromArchive(rowId)"
+                *ngIf="demandListCriteria.isDeleted"
+              >
+                <div
+                  class="d-flex flex-row justify-content-start align-items-center"
+                >
+                  <mat-icon class="action-icon">history</mat-icon>
+                  <span class="action-label">Restore</span>
+                </div>
+              </button>
+              <!-- ./Restore demand -->
+
+              <button
+                mat-menu-item
+                (click)="moveDemandFromListToArchive(rowId)"
+                *ngIf="!demandListCriteria.isDeleted"
+              >
+                <div
+                  class="d-flex flex-row justify-content-start align-items-center"
+                >
+                  <img
+                    class="delete-icon mr-2"
+                    src="assets/icons/delete.svg"
+                    alt="delete icon"
+                  />
+                  <span class="cancel-icon">Add to archive</span>
+                </div>
+              </button>
+              <!-- ./Add to archive -->
+
+              <button
+                mat-menu-item
+                (click)="deleteDemandPermanent(rowId)"
+                *ngIf="demandListCriteria.isDeleted"
+              >
+                <span
+                  class="d-flex flex-row justify-content-start align-items-center"
+                >
+                  <img
+                    class="delete-icon mr-2"
+                    src="assets/icons/delete.svg"
+                    alt="delete icon"
+                  />
+                  <span class="cancel-icon">Delete</span>
+                </span>
+              </button>
+              <!-- ./Delete demand -->
+            </ng-template>
+          </mat-menu>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+  <!-- ./Page Table -->
+
+  <ng-container slot="page-pagination">
+    <section class="pagination d-flex justify-content-center my-2">
+      <app-aw-pagination
+        [pageIndex]="demandListCriteria.page"
+        [pageSize]="demandListCriteria.pageSize"
+        [length]="totalDemands"
+        (pageChanged)="pageChangeEvent($event)"
+        [hasFilter]="true"
+      >
+      </app-aw-pagination>
+    </section>
+  </ng-container>
+  <!-- ./Page Pagination -->
+</app-aw-layout-list>

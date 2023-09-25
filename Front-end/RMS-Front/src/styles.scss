@@ -1,0 +1,359 @@
+/* You can add global styles to this file, and also import other style files */
+@import "styles/fonts";
+@import "styles/variables";
+@import "styles/components";
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+@import "styles/custom-sidebar";
+@import "styles/font-family";
+html,
+body {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+body, .mat-card {
+  margin: 0;
+  font-family: var(--aw-font-primary);
+  background-color: var(--aw-bg-white);
+}
+
+.content-wrapper {
+  height: calc(100vh - 135px);
+  overflow-y: auto;
+  background-color: var(--aw-bg-white);
+}
+
+.main-footer {
+  max-height: 61px;
+  color: var(--aw-text-primary);
+  background-color: var(--aw-bg-white);
+  font-weight: 400;
+  font-family: var(--aw-font-primary);
+}
+
+.main-footer a {
+  color: var(--aw-text-primary);
+  font-family: var(--aw-font-primary);
+  font-weight: 400;
+}
+
+.profile-pic {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.file-upload {
+  position: absolute;
+  opacity: 0;
+}
+
+.circle-profile {
+  border-radius: 1000px !important;
+  overflow: hidden;
+  width: 128px;
+  height: 128px;
+  border: 3px solid rgb(109, 115, 117);
+  margin: 0 auto;
+  top: 72px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 40px;
+  color: var(--aw-text-primary) !important;
+}
+
+.slick-prev,
+.slick-next {
+  top: 50%;
+}
+
+.slick-prev,
+.slick-next:hover {
+  opacity: 0.9;
+}
+
+.slick-next {
+  right: 1px;
+}
+
+.slick-prev {
+  left: -17px;
+  z-index: 100;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 40px;
+  color: var(--aw-text-primary) !important;
+}
+
+.slick-prev,
+.slick-next {
+  top: 45%;
+}
+
+.slick-prev,
+.slick-next:hover {
+  opacity: 0.9;
+}
+
+.slick-next {
+  right: 1px;
+}
+
+.slick-prev {
+  left: -17px;
+  z-index: 100;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.p-image {
+  position: absolute;
+  top: 185px;
+  margin-left: 110px;
+  color: var(--aw-text-secondary);
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+
+.p-image:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+
+button:focus {
+  outline: none;
+  border: 0;
+}
+
+.sidebar .menu-name {
+  transition: all .3s ease;
+}
+
+.sidebar-collapse .main-sidebar .sidebar .menu-name {
+  opacity: 0;
+  width: 0;
+}
+
+.sidebar-collapse .main-sidebar:hover .sidebar .menu-name {
+  opacity: 1;
+  width: initial;
+}
+
+.sidebar-collapse .child-menu button {
+  padding-left: 1.2rem !important;
+}
+
+/** Common table style **/
+
+.mat-table tr:hover td {
+  background: rgba(128, 128, 128, 0.2);
+  cursor: pointer;
+}
+
+th.col-id {
+  width: 45px;
+}
+
+th.col-img {
+  width: 125px;
+}
+
+th.col-toggle {
+  width: 64px;
+}
+
+th.wide-action-group {
+  width: 280px;
+  padding-right: 0 !important;
+}
+
+th.md-action-group {
+  width: 220px;
+  padding-right: 0 !important;
+}
+
+th.sm-action-group {
+  width: 180px;
+  padding-right: 0 !important;
+}
+
+.action-group-button {
+  padding-right: 0 !important;
+}
+
+.label-description {
+  font-weight: 700;
+  color: rgba(0, 0, 0, .5);
+}
+
+.labeler {
+  font-weight: 500;
+}
+
+.child-between {
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.child-end {
+  margin-top: 1px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.child-end :not(:last-child) {
+  margin-right: 8px;
+}
+
+.no-heigh > .ql-container {
+  min-height: unset !important;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.advance-dialog .mat-dialog-container {
+  padding: 0 !important;
+}
+
+.mat-dialog-container {
+  border-radius: 10px !important;
+  padding-top: 30px !important;
+}
+
+.advance-dialog-backdrop {
+  /* */
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+td .ql-container,
+td .ql-editor {
+  min-height: initial !important;
+  font-size: .75rem;
+  max-height: 100px;
+  overflow-y: hidden;
+}
+
+
+/* Table */
+
+.mat-dialog-content .ql-editor {
+  padding: 0.5rem;
+}
+
+.paddingless .ql-editor {
+  padding: .5rem 0;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 30px !important;
+  color: #193a77 !important;
+}
+
+.welcome > footer {
+  width: 600px;
+  text-align: center;
+  background-color: transparent;
+  color: #869099;
+}
+
+
+/** scroll bar */
+
+
+/* width */
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 3px grey;
+  border-radius: 3px;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  background: #3C74C1;
+  border-radius: 3px;
+}
+
+.slick-list {
+  outline: none !important;
+}
+
+.slick-slide,
+.slick-slide:focus * {
+  outline: none !important;
+}
+
+.col-center {
+  text-align: center !important;
+}
+
+
+/* Calendar */
+
+.fc-daygrid-dot-event .fc-event-title {
+  font-weight: 400 !important;
+}
+
+.progress-show.not {
+  visibility: hidden;
+}
+
+.pos-relative {
+  position: relative;
+}
+
+.mat-cell-not-found {
+  text-align: center;
+}
+
+.ql-editor {
+  padding: 8px 10px !important;
+  min-height: 100px;
+}
+
+.ngx-quill-view .ql-editor, .ngx-quill-view-html .ql-editor {
+  min-height: initial !important;
+  padding: 0px !important;
+}
+
+.bottom-back-button {
+  position: fixed !important;
+  bottom: 80px;
+}
+
+.x-10 {
+  right: 50px;
+}
+
+ngx-file-drag-drop {
+  background-color: #6c757d;
+}
+
+ngx-file-drag-drop .placeholder {
+  color: white !important;
+}
+
+.text-link-abs {
+  color: var(--aw-text-secondary) !important;
+}
+
+.text-link-abs:hover {
+  color: var(--aw-text-secondary) !important;
+}
+

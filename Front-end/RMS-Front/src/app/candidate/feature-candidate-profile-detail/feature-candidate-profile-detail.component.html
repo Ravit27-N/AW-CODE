@@ -1,0 +1,56 @@
+<div class="aw-profile">
+  <div class="aw-profile-body" *ngIf="details?.length">
+    <div class="row aw-profile-list">
+      <div class="d-flex flex-row aw-profile-body-detail col-4 aw-profile-list-first">
+        <span class="mx-2">{{details[0]?.title}}:</span>
+        <span class="font-weight-normal">{{details[0]?.value}}</span>
+      </div>
+      <div class="d-flex flex-row aw-profile-body-detail col-3 aw-profile-list-second">
+        <span class="mx-2">{{details[1]?.title}}:</span>
+        <span class="font-weight-normal">{{details[1]?.value}}</span>
+      </div>
+      <div class="d-flex flex-row aw-profile-body-detail col-5 aw-profile-list-third">
+        <span class="mx-2 text-nowrap">{{details[2]?.title}}:</span>
+        <span class="font-weight-normal">{{details[2]?.value}}</span>
+      </div>
+    </div>
+    <div class="row aw-profile-list">
+      <div class="d-flex flex-row aw-profile-body-detail col-4 aw-profile-list-first">
+        <span class="mx-2">{{details[3]?.title}}:</span>
+        <span class="font-weight-normal">{{details[3]?.value | awDateFormat}}</span>
+      </div>
+      <div class="d-flex flex-row aw-profile-body-detail col-3 aw-profile-list-second">
+        <span class="mx-2">{{details[4]?.title}}:</span>
+        <span class="font-weight-normal">{{details[4]?.value}}</span>
+      </div>
+      <div class="d-flex flex-row aw-profile-body-detail col-5 aw-profile-list-third">
+        <span class="mx-2">{{details[5]?.title}}:</span>
+        <span class="font-weight-normal">{{details[5]?.value | awDateFormat}}</span>
+      </div>
+    </div>
+    <div class="row aw-profile-list">
+      <div class="d-flex flex-row aw-profile-body-detail col-4 aw-profile-list-first">
+        <span class="mx-2">{{details[6]?.title}}:</span>
+        <span class="font-weight-normal">{{details[6]?.value}}</span>
+      </div>
+      <div class="d-flex flex-row aw-profile-body-detail col-3 aw-profile-list-second">
+        <span class="mx-2">{{details[7]?.title}}:</span>
+        <span class="font-weight-normal">{{details[7]?.value}}</span>
+      </div>
+      <div class="d-flex flex-row aw-profile-body-detail col-5 aw-profile-list-third">
+        <span class="mx-2">{{details[8]?.title}}:</span>
+        <span class="font-weight-normal">{{details[8]?.value | awDateFormat}}</span>
+      </div>
+    </div>
+    <div class="row aw-profile-list">
+      <div class="d-flex flex-row aw-profile-body-detail col-4 aw-profile-list-first">
+        <span class="mx-2">{{details[9]?.title}}:</span>
+        <span class="font-weight-normal">{{details[9]?.value}}</span>
+      </div>
+      <div class="d-flex flex-row aw-profile-body-detail col-8 aw-profile-list-second">
+        <span class="mx-2">{{details[10]?.title}}:</span>
+        <span class="font-weight-normal d-inline-block text-truncate" [matTooltip]="details[10]?.value.toString()" [innerText]="details[10]?.value"></span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="wrapper mt-2">
+  <div class="header-contain">
+    <header class="page-header mr-5">
+      <app-aw-breadcrumb></app-aw-breadcrumb>
+      <app-aw-page-header>Manage Candidates Advance Report</app-aw-page-header>
+      <app-aw-page-sub-header>List candidates advance report by filter</app-aw-page-sub-header>
+    </header>
+
+    <ng-container class="action-buttons">
+      <app-aw-rich-button [outline]="false" class="ml-3" (click)="exportExcel()">
+        <span><i class="far fa-file-excel mr-2"></i>Excel</span>
+      </app-aw-rich-button>
+    </ng-container>
+
+  </div>
+
+
+  <mat-tab-group mat-align-tabs="start" class="pt-3" animationDuration="0"  disableRipple="true" (selectedTabChange)="tabChanged($event)">
+    <mat-tab label="Full Staff Report">
+      <app-table-report-staff #tableStaffReport></app-table-report-staff>
+    </mat-tab>
+    <mat-tab label="Intern Report">
+      <app-table-report-intern #tableInternReport></app-table-report-intern>
+    </mat-tab>
+    <mat-tab label="Following Up Report">
+      <app-table-report-following-up #tableFollowingUpReport></app-table-report-following-up>
+    </mat-tab>
+  </mat-tab-group>
+
+</div>

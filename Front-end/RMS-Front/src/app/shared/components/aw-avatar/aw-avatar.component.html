@@ -1,0 +1,14 @@
+<div
+  class="aw-avatar-container d-flex align-items-center justify-content-center"
+  [class.aw-avatar-primary]="bgColor === 'primary'"
+  [class.aw-avatar-secondary]="bgColor === 'secondary'"
+  [class.aw-avatar-danger]="bgColor === 'danger'"
+  [class.aw-avatar-success]="bgColor === 'success'"
+>
+  <div  class="contain-avatar-button" [style]="bypassStyle(profileImgURL)">
+    <img class="avatar-button" [src]="profileImgURL" *ngIf="!imageNotLoaded">
+    <div class="aw-avatar-title" *ngIf="imageNotLoaded">
+      <span>{{ awTitle }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+.aw-form-control {
+  .aw-form-control-label {
+    color: var(--aw-text-primary) !important;
+    font-size: 16px !important;
+    font-family: var(--aw-font-primary);
+    text-align: left;
+    display: inline-block;
+    line-height: 38px;
+    width: 160px !important;
+  }
+
+  .aw-form-control-value-info {
+    color: var(--aw-text-primary-dark) !important;
+    font: var(--aw-font-weight-normal) 14px/20px var(--aw-font-primary) !important;
+  }
+}
+
+.aw-form-control-input {
+  border-radius: 10px !important;
+  background: var(--aw-bg-white) !important;
+  font-size: 14px !important;
+
+  &:focus {
+    outline-width: 4px !important;
+  }
+}
+
+.aw-form-group {
+  display: flex;
+  flex-direction: column;
+
+  .aw-form-title {
+    color: var(--aw-text-primary) !important;
+    font-family: var(--aw-font-primary) !important;
+    font-weight: var(--aw-font-weight-medium) !important;
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+
+  .aw-form-control {
+    height: 38px;
+    background: #ffffff 0 0 no-repeat padding-box;
+    border: 0.5px solid #8194b4;
+    border-radius: 5px;
+    padding: 10px 25px 10px 20px;
+    outline: none;
+    margin-bottom: 22px;
+    font-size: 16px !important;
+
+
+    option {
+      padding: 50px 100px;
+      font-family: var(--aw-font-primary);
+    }
+  }
+
+  .mat-radio-label-content {
+    font-size: 16px !important;
+    font-weight: var(--aw-font-weight-normal) !important;
+  }
+}

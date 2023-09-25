@@ -1,0 +1,164 @@
+<ng-container slot="page-content">
+  <form [formGroup]="formGroup">
+    <div class="mt-4">
+      <div class="row">
+        <div class="col-md-6">
+          <app-aw-container>
+            <div class="aw-panel">
+              <div class="aw-form-container">
+                <div class="row">
+                  <div class="col-xl-12">
+
+                    <div class="aw-form-group mb-4">
+                      <label class="aw-form-title">Profile</label>
+                      <div class="d-flex justify-content-center">
+                        <div class="profile-box mb-3">
+                          <app-aw-avatar [profileImgURL]="getProfileURL()">
+                          </app-aw-avatar>
+
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <app-aw-rich-button type="danger" width="150px" height="35px" [outline]="true" (click)="clearProfileURL()" class="mr-2">Clear</app-aw-rich-button>
+                        <app-aw-rich-button width="150px" height="35px" (click)="selectFile()">Upload</app-aw-rich-button>
+                        <input #profileElement type="file" class="d-none" accept=".jpg, .jpeg, .png, .gif" (change)="uploadProfileURL($event)">
+                      </div>
+                    </div>
+                    <!-- ./ Profile -->
+
+                    <app-aw-input-box-select
+                      awLabel="Salutation"
+                      formControlName="salutation"
+                      [awError]="formGroup.controls['salutation']?.errors !== null && shouldShowError"
+                      [awErrorMessage]="formGroup.controls['salutation']?.errors?.message"
+                      [awRequired]="true"
+                      [awOptions]="salutationCriteria"
+                    ></app-aw-input-box-select>
+                    <!-- ./ Salutation -->
+
+                    <app-aw-input-box-text
+                      a="Please select a salutation"
+                      awLabel="First name"
+                      class="field_firstname"
+                      awPlaceholder="First name"
+                      formControlName="firstName"
+                      [awError]="formGroup.controls['firstName']?.errors !== null &&shouldShowError"
+                      [awErrorMessage]="formGroup.controls['firstName']?.errors?.message"
+                      [awRequired]="true"
+                    ></app-aw-input-box-text>
+                    <!-- ./ First name -->
+
+                    <app-aw-input-box-text
+                      awLabel="Last name"
+                      awPlaceholder="Last name"
+                      formControlName="lastName"
+                      class="field_lastname"
+                      [awError]="formGroup.controls['lastName']?.errors !== null && shouldShowError"
+                      [awErrorMessage]="formGroup.controls['lastName']?.errors?.message"
+                      [awRequired]="true"
+                    ></app-aw-input-box-text>
+                    <!-- ./ Last name -->
+
+                    <app-aw-input-box-date
+                      class="date-picker"
+                      awLabel="Date of Birth"
+                      awPlaceholder="N/A"
+                      formControlName="dateOfBirth"
+                      [awError]="formGroup.controls['dateOfBirth']?.errors !== null && shouldShowError"
+                      [awErrorMessage]="formGroup.controls['dateOfBirth']?.errors?.message"
+                    >
+                    </app-aw-input-box-date>
+                    <!-- ./ Date of Birth -->
+
+                    <app-aw-input-box-radios
+                      awLabel="Gender"
+                      [awRequired]="true"
+                      formControlName="gender"
+                      [awOptions]="genderCriteria"
+                    >
+                    </app-aw-input-box-radios>
+                    <!-- ./ Gender -->
+
+                    <app-aw-input-box-multiple
+                      awLabel="Phone numbers"
+                      formControlName="phoneNumbers"
+                      [awValidator]="phoneNumberValidator"
+                      [shouldShowError]="shouldShowError"
+                      [awValues]="formGroup.getRawValue()?.phoneNumbers"
+                    >
+                    </app-aw-input-box-multiple>
+                    <!-- ./ Phone number -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </app-aw-container>
+        </div>
+        <!-- ./ Left panel -->
+
+
+        <div class="col-md-6">
+          <app-aw-container>
+            <div class="aw-panel">
+              <div class="aw-form-container">
+                <div class="row">
+                  <div class="col-xl-12">
+                    <app-aw-input-box-text
+                      awLabel="Email"
+                      awPlaceholder="Email"
+                      formControlName="email"
+                      class="field_email"
+                      [awError]="formGroup.controls['email']?.errors !== null && shouldShowError"
+                      [awErrorMessage]="formGroup.controls['email']?.errors?.message"
+                      [awRequired]="true"
+                    ></app-aw-input-box-text>
+                    <!-- ./ Email -->
+
+                    <app-aw-input-box-select awLabel="Priority"
+                                             formControlName="priority"
+                                             [awError]="formGroup.controls['priority']?.errors !== null && shouldShowError"
+                                             [awErrorMessage]="formGroup.controls['priority']?.errors?.message"
+                                             [awOptions]="priorityCriteria"
+                                             [awRequired]="true">
+                    </app-aw-input-box-select>
+                    <!-- ./ Priority -->
+
+                    <app-aw-input-box-select awLabel="Status"
+                                             formControlName="status"
+                                             [awError]="formGroup.controls['status']?.errors !== null && shouldShowError"
+                                             [awErrorMessage]="formGroup.controls['status']?.errors?.message"
+                                             [awOptions]="statusCriteria"
+                                             [disabled]="!formEdit"
+                                             [awRequired]="true">
+                    </app-aw-input-box-select>
+                    <!-- ./ Status -->
+
+                    <app-aw-input-box-text-area
+                      awLabel="Description"
+                      formControlName="description"
+                      class="field_description"
+                      [awMaxLength]="255"
+                      [awError]="formGroup.get('description')?.errors?.message && shouldShowError"
+                      [awErrorMessage]="formGroup.get('description')?.errors?.message"
+                    ></app-aw-input-box-text-area>
+                    <!-- ./ Field Description -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </app-aw-container>
+        </div>
+        <!-- ./ Right panel -->
+      </div>
+    </div>
+  </form>
+</ng-container>
+<!-- ./ Form -->
+
+<div class="action-button-container mt-4">
+  <div class="d-flex justify-content-end">
+    <app-aw-rich-button (click)="cancelForm()" [outline]="true" type="danger" class="mr-3">Cancel</app-aw-rich-button>
+    <app-aw-rich-button (click)="goNext()">Next</app-aw-rich-button>
+  </div>
+</div>
+<!-- ./ Action button -->

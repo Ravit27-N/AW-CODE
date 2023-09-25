@@ -1,0 +1,25 @@
+<div *ngIf="model" class="d-flex flex-column">
+  <div *ngIf="editMode" class="d-flex align-items-center justify-content-between">
+    <h2 class="m-0" mat-h2>Feature: {{model.name}}</h2>
+    <button  (click)="remove();" mat-icon-button>
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput name="name" [(ngModel)]="model.name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea matInput name="description" [(ngModel)]="model.description"></textarea>
+  </mat-form-field>
+
+  <mat-slide-toggle [(ngModel)]="model.active"><span class="fw-normal">Active</span></mat-slide-toggle>
+
+  <div class="child-end mt-2">
+    <button mat-flat-button color="warn" (click)="oncancel.emit()">Cancel</button>
+    <button mat-flat-button color="primary" type="button" (click)="saveChange()">Save changes</button>
+  </div>
+</div>

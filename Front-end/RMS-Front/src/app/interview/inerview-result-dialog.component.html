@@ -1,0 +1,10 @@
+<div class="child-between m-0 p-0">
+  <h2 class="mat-h2 m-0 p-0 mt-1 self-center">Interview details</h2>
+  <button mat-icon-button matTooltip="Close" class="self-center" (click)="onNoClick()">
+    <mat-icon class="text-primary">close</mat-icon>
+  </button>
+</div>
+
+<app-interview-card [interview]="data"></app-interview-card>
+<app-result-form (oncancel)="onNoClick()" [interview]="data" (onupdateSuccess)="dialogRef.close({changed: true})">
+</app-result-form>

@@ -1,0 +1,59 @@
+<div class="d-flex flex-column" *ngIf="model">
+  <div *ngIf="editMode" class="d-flex align-items-center justify-content-between">
+    <h2 class="m-0" mat-h2>Group: {{model.name}}</h2>
+    <button color="warn" mat-icon-button (click)="ondelete.emit()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="model.name" />
+  </mat-form-field>
+
+  <section *ngIf="editMode">
+    <mat-menu #selectRole="matMenu">
+      <button mat-menu-item *ngFor="let role of assignableRole" (click)="assignRole(role.name)">{{role.name}}</button>
+    </mat-menu>
+
+    <div class="d-flex justify-content-between">
+      <caption>Assigned roles:</caption>
+      <button [matMenuTriggerFor]="selectRole" matTooltip="Assign role to group" mat-icon-button color="primary" >
+        <mat-icon>add_circle</mat-icon>
+      </button>
+    </div>
+
+    <mat-list class="border">
+      <mat-list-item *ngFor="let roleName of assignedRole" class="pt-0">
+        <div class="w-100 d-flex align-items-center">
+          <mat-icon class="mr-2">vpn_key</mat-icon>
+          <span>{{roleName}}</span>
+          <span class="clickable ml-auto" (click)="removeRoleFromGroup(roleName)"><mat-icon >remove_circle</mat-icon></span>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </section>
+
+  <section class="mt-2">
+    <mat-menu #selectUser="matMenu">
+      <button mat-menu-item *ngFor="let user of availableUser" (click)="addMember(user)">{{user.username}}</button>
+    </mat-menu>
+
+    <div class="d-flex justify-content-between">
+      <caption>Members:</caption>
+      <button [matMenuTriggerFor]="selectUser" matTooltip="Add member to the group" mat-icon-button color="primary" >
+        <mat-icon>add_circle</mat-icon>
+      </button>
+    </div>
+
+    <mat-list class="border">
+      <mat-list-item *ngFor="let m of memeber" class="pt-0">
+        <div class="w-100 d-flex align-items-center">
+          <mat-icon class="mr-2">person</mat-icon>
+          <span>{{m.username}}</span>
+          <span class="clickable ml-auto" (click)="removeMemeber(m)" matTooltip="Remove member from group"><mat-icon>remove_circle</mat-icon></span>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </section>
+</div>

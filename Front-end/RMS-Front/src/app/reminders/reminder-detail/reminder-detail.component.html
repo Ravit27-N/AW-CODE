@@ -1,0 +1,88 @@
+<mat-dialog-content appCanAccess perm="Reminder:view">
+  <div class="d-flex flex-row justify-content-between">
+    <h2>Reminder Detail</h2>
+    <button mat-icon-button matTooltip="Close" [mat-dialog-close]="false" cdkFocusInitial>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div>
+
+    <div class="row">
+      <div class="col">
+        <p class="labeler">Reminder Type</p>
+      </div>
+      <div class="col">
+        <p>: {{this.reminderModel?.reminderType}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <p class="labeler">Title</p>
+      </div>
+      <div class="col">
+        <p>: {{this.reminderModel.title}}</p>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="this.reminderModel.candidate">
+      <div class="col">
+        <p class="labeler">Candidate</p>
+      </div>
+      <div class="col">
+        <a [routerLink]="'/admin/candidate/candidateDetail/'+ this.reminderModel?.candidate?.id">:
+          {{this.reminderModel?.candidate?.fullName}}</a>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="this.reminderModel.interview">
+      <div class="col">
+        <p class="labeler">Interview</p>
+      </div>
+      <div class="col">
+        <a>: {{this.reminderModel?.interview?.title}}</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <p class="labeler">Date time</p>
+      </div>
+      <div class="col">
+        <p>: {{this.reminderModel?.dateReminder | awDateFormat}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <p class="labeler">Created at</p>
+      </div>
+      <div class="col">
+        <p>: {{this.reminderModel.createdAt | awDateFormat}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <p class="labeler">Status</p>
+      </div>
+      <div class="col">
+        <p>: {{this.reminderModel.active ? 'Active' : 'Inactive'}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <p class="labeler">Description</p>
+      </div>
+      <div class="col d-flex flex-row">
+        <p class="mr-1">: </p>
+        <quill-view [content]="this.reminderModel.description"></quill-view>
+      </div>
+    </div>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" [mat-dialog-close]="false" cdkFocusInitial class="mb-2">Close</button>
+</mat-dialog-actions>

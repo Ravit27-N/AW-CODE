@@ -1,0 +1,26 @@
+<div class="d-flex align-self-stretch widget-wrapper" appCanAccess perm="User:view">
+  <div class="list-view px-2">
+    <mat-selection-list #groupSelection [multiple]="false" class="allweb-selection-list">
+      <div mat-subheader class="d-flex justify-content-between bg-white">
+        <span>Group :</span>
+        <button appCanAccess perm="User:add" mat-icon-button color="primary" (click)="create()">
+          <mat-icon>add_circle</mat-icon>
+        </button>
+      </div>
+      <mat-list-option *ngFor="let group of userGroups" [value]="group">
+        <mat-icon mat-list-icon>group</mat-icon>
+        {{group.name}}
+      </mat-list-option>
+    </mat-selection-list>
+
+    <mat-paginator [pageSizeOptions]="paginationSize" [length]="resultLength"></mat-paginator>
+  </div>
+
+  <div class="flex-grow-1" *ngIf="groupSelection.selectedOptions.selected[0]">
+    <mat-card>
+      <mat-card-content>
+        <app-user-group-form (onsuccess)="updated()"  (ondelete)="clearSelect()" [editMode]="true" [userGroup]="groupSelection.selectedOptions.selected[0]?.value"></app-user-group-form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

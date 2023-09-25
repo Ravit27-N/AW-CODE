@@ -1,0 +1,30 @@
+<form [formGroup]="form">
+  <div class="child-between m-0 p-0">
+    <h2 class="mat-h2 m-0 p-0 self-center">Update University</h2>
+    <button mat-icon-button matTooltip="Close" class="self-center" (click)="onNoClick()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <mat-form-field class="w-100">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" id="name" required tabindex="1" appAutoFocus/>
+    <button mat-button *ngIf="form.controls.name.value" matSuffix mat-icon-button aria-label="Clear"
+      (click)="clearName()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-error *ngIf="form.controls.name.hasError('required')">
+      Name required
+    </mat-error>
+  </mat-form-field>
+  <div class="mt-2">
+    <mat-label class="label-description">Address </mat-label>
+    <div>
+      <quill-editor formControlName="address" tabindex="2"></quill-editor>
+    </div>
+  </div>
+  <br>
+  <div class="child-end mt-2">
+    <button mat-flat-button class="btncancel" color="warn" type="button" (click)="onNoClick()">Cancel</button>
+    <button mat-flat-button color="primary" (click)="btnsave()" [disabled]="form.invalid" tabindex="3">Save</button>
+  </div>
+</form>

@@ -1,0 +1,17 @@
+<mat-card class="aw-mat-card">
+  <div class="row">
+    <div class="col">
+      <div style="display: block">
+        <canvas
+          baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="true"
+          [chartType]="barChartType"
+        >
+        </canvas>
+      </div>
+    </div>
+  </div>
+</mat-card>

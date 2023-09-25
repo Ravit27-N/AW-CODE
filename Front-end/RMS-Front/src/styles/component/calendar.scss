@@ -1,0 +1,7 @@
+.aw-mat-menu-panel {
+  max-width: none !important;
+
+  .mat-calendar-body-selected{
+    background-color: var(--aw-bg-secondary) !important;
+  }
+}

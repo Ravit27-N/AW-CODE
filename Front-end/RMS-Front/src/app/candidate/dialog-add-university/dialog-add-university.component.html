@@ -1,0 +1,31 @@
+<mat-dialog-content>
+  <div class="d-flex flex-row justify-content-between">
+    <h2>Add new university</h2>
+    <button mat-icon-button matTooltip="Close" [mat-dialog-close]="false" cdkFocusInitial>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+ <form #form="ngForm">
+  <mat-form-field>
+    <mat-label>University</mat-label>
+    <input type="text" matInput placeholder="NIFF" required [(ngModel)]="universityForm.name" name="name"
+      #name="ngModel" tabindex="1">
+    <button mat-button *ngIf="name.value" matSuffix mat-icon-button aria-label="Clear" (click)="clearUniversity()" tabindex="-1">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-error *ngIf="name.hasError('required')">
+     {{this.validationMessage.requied}}
+    </mat-error>
+    <mat-hint *ngIf="name.value" align="end">{{name.value.length}} / 256</mat-hint>
+  </mat-form-field>
+
+  <mat-label class="label-description mb-1">Address</mat-label>
+  <quill-editor [(ngModel)]="universityForm.description" tabindex="2"></quill-editor>
+ </form>
+</mat-dialog-content>
+
+<mat-dialog-actions class="justify-content-between">
+  <button mat-raised-button color="warn" [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="save()" [disabled]="form.invalid" tabindex="3">Save</button>
+</mat-dialog-actions>

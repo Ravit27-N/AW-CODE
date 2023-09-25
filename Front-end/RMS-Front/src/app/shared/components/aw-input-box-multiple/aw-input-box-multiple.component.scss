@@ -1,0 +1,17 @@
+
+.aw-input-box-multiple {
+  .delete-icon {
+    color: var(--aw-text-danger);
+    transform: translate(10px, 5px);
+    cursor: pointer;
+  }
+
+  .aw-form-control {
+    width: 100%;
+  }
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

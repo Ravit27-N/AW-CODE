@@ -1,0 +1,20 @@
+table{
+  width: 100%;
+}
+#no-right{
+  padding-right: 25px;
+}
+.mat-column-action{
+  width: 6rem;
+}
+.mat-column-active{
+  width: 8rem;
+}
+.mat-column-no{
+  width:3rem;
+}
+
+.mat-column-name{
+width: 20rem;
+
+}

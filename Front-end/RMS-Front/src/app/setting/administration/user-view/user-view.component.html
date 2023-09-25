@@ -1,0 +1,42 @@
+<div class="d-flex align-self-stretch widget-wrapper">
+  <div class="list-view px-2">
+    <mat-selection-list #userSelection [multiple]="false" class="allweb-selection-list">
+      <div mat-subheader class="d-flex justify-content-between bg-white">
+        <span>Users :</span>
+        <button appCanAccess perm="User:add" mat-icon-button color="primary" (click)="create()">
+          <mat-icon>add_circle</mat-icon>
+        </button>
+      </div>
+      <mat-list-option *ngFor="let user of users" [value]="user">
+        <mat-icon mat-list-icon>person</mat-icon>
+        {{user.username}}
+      </mat-list-option>
+    </mat-selection-list>
+
+    <mat-paginator [pageSizeOptions]="paginationSize" [length]="resultLength"></mat-paginator>
+  </div>
+
+  <div class="flex-grow-1">
+    <mat-card>
+      <mat-card-content *ngIf="hidden">
+        <div class="d-flex align-items-center justify-content-between">
+          <h2 class="m-0" mat-h2>User: {{userSelection.selectedOptions.selected[0]?.value.username}}</h2>
+          <button appCanAccess perm="User:delete" color="warn" mat-icon-button (click)="ondelete()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+        <mat-tab-group>
+          <mat-tab label="General">
+            <br/>
+            <app-user-form [editMode]="true" (onsuccess)="updated()" [user]="userSelection.selectedOptions.selected[0]?.value" ></app-user-form>
+          </mat-tab>
+          <mat-tab label="Password">
+            <br/>
+            <app-user-password-form [user]="userSelection.selectedOptions.selected[0]?.value" (onsuccess)="updated()" ></app-user-password-form>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+// Styles for AWMenu
+.common-aw-menu {
+  margin-right: -35px;
+  margin-top: -7px;
+  border-radius: 5px !important;
+  background: var(--unnamed-color-ffffff) 0 0 no-repeat padding-box;
+  box-shadow: 0 1px 9px #7492c447 !important;
+  opacity: 1;
+
+  button > div {
+    cursor: pointer;
+  }
+}
+
+.common-aw-menu.no-width {
+  // Menu with no width restriction
+  max-width: none;
+}
+
+.common-mat-menu-panel.mat-menu-panel {
+  // Menu panel styles
+  border-radius: 7px;
+  max-width: none !important;
+  box-shadow: 0 1px 9px #8dc2e548 !important;
+  margin-top: 5px;
+  background: transparent;
+}
+
+.aw-mat-menu {
+  .action-icon {
+    color: #000000;
+    font-size: 16.5px;
+    transform: translate(-3px, 3px);
+  }
+
+  .action-label {
+    transform: translateX(-20px);
+  }
+
+  button.mat-menu-item {
+    border-bottom: 1px solid #d4d4d4;
+    width: 247px !important;
+  }
+
+  button.mat-menu-item:last-child {
+    border-bottom: none;
+  }
+
+}
+
+.mat-menu-panel {
+  min-height: 0 !important;
+}
+
+.mat-menu-content:not(:empty) {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}

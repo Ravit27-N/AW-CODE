@@ -1,0 +1,83 @@
+<form [formGroup]="filterFormGroup" class="aw-dropdown-filter">
+  <button
+    class="d-flex align-items-center aw-btn-dropdown"
+    [matMenuTriggerFor]="filterMenu"
+    (menuOpened)="menuOpen()"
+    (menuClosed)="menuClose()"
+  >
+    <img
+      class="collapse-categories-icon mr-3"
+      src="assets/icons/aw-dropdown-icon.svg"
+      alt="aw-dropdown-icon"
+    />
+    <!-- ./ Dropdown Icon -->
+
+    <div class="d-flex align-items-center">
+      <span [class.mark-active]="active" class="sortValue pl-0">Filter</span>
+      <mat-icon class="expand_more">expand_more</mat-icon>
+    </div>
+    <!-- ./ Label -->
+  </button>
+  <!-- ./ Button Dropdown -->
+
+  <mat-menu
+    #filterMenu="matMenu"
+    class="aw-dropdown-menu"
+    attrAwDropdownMenu="aw-dropdown-menu"
+  >
+    <button
+      mat-menu-item
+      style="width: 100%; display: flex; justify-content: space-between"
+      (click)="$event.stopPropagation()"
+      [disableRipple]="true"
+    >
+      <span class="filter-title">Filter</span>
+      <span class="reset-btn" (click)="resetForm()">Reset</span>
+    </button>
+    <button
+      class="d-inline-block h-100"
+      mat-menu-item
+      (click)="$event.stopPropagation()"
+      [disableRipple]="true"
+    >
+      <div class="d-flex">
+        <div class="d-flex justify-content-between w-100 flex-column flex-wrap">
+          <app-aw-checkbox
+            [formControlName]="item.key"
+            *ngFor="let item of filterGroup"
+            [value]="item.key"
+          >{{ item.value | uppercase }}</app-aw-checkbox
+          >
+        </div>
+      </div>
+    </button>
+    <!-- ./ Filter group -->
+
+    <button
+      *ngIf="filterItems?.length"
+      mat-menu-item
+      class="aw-dropdown-group"
+      (click)="$event.stopPropagation()"
+      [disableRipple]="true"
+    >
+      <mat-divider></mat-divider>
+      <div>
+        <span class="filter-items-container">Status</span>
+        <div class="aw-dropdown-item overflow-auto">
+          <mat-radio-group
+            formControlName="status"
+            aria-label="Select an option"
+            class="d-flex flex-column"
+          >
+            <mat-radio-button
+              *ngFor="let item of filterItems"
+              [value]="item.key"
+            >{{ item.value | uppercase }}</mat-radio-button
+            >
+          </mat-radio-group>
+        </div>
+      </div>
+    </button>
+    <!-- ./ Filter Status -->
+  </mat-menu>
+</form>

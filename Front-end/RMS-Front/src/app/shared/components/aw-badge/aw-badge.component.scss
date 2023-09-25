@@ -1,0 +1,42 @@
+// Define a mixin for common button styles
+@mixin button-style {
+  padding: 2px 1rem;
+  border-radius: 10px;
+}
+
+// Define specific button styles using the mixin
+.primary {
+  @include button-style;
+  background: var(--aw-bg-secondary-dark);
+  color: var(--aw-text-secondary);
+}
+
+.secondary {
+  @include button-style;
+  background: var(--aw-bg-primary-dark);
+  color: var(--aw-text-primary)
+}
+
+.warning {
+  @include button-style;
+  background: var(--aw-bg-warning-light);
+  color: var(--aw-text-warning);
+}
+
+.danger {
+  @include button-style;
+  background: var(--aw-bg-danger-dark);
+  color: var(--aw-text-danger);
+}
+
+.success {
+  @include button-style;
+  background: var(--aw-bg-success-dark);
+  color: var(--aw-text-success);
+}
+
+.purple {
+  @include button-style;
+  background: var(--aw-bg-purple-dark);
+  color: var(--aw-text-purple);
+}

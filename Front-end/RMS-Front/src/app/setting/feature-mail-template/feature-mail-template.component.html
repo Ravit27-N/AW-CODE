@@ -1,0 +1,116 @@
+<app-aw-layout-list pageTitle="Manage Mail Template" pageSubtitle="List all mail template">
+  <ng-container slot="action-buttons">
+    <app-aw-rich-button (click)="add()" class="ml-3">
+      <mat-icon>add</mat-icon>
+      Add
+    </app-aw-rich-button>
+  </ng-container>
+
+  <ng-container slot="page-filter" >
+    <section class="search-box d-flex justify-content-between mt-3">
+      <div class="d-flex flex-wrap">
+        <app-aw-filter (valueChange)="filterChange($event)" [filterItems]="filterStatuses"
+                       [selectedItems]="getStatusFilter(filterListCriteria?.status?.toString())"
+        ></app-aw-filter>
+      </div>
+      <app-aw-search-box (valueChange)="searchFilterChange($event)"
+                         [value]="filterListCriteria?.filter || ''"
+                         [hasError]="!this.dataSource?.data.length && filterListCriteria?.filter?.toString()?.length > 0"></app-aw-search-box>
+    </section>
+  </ng-container>
+
+  <ng-container slot="page-table">
+    <section class="aw-table">
+      <div class="table-demand">
+        <div class="width-full overflow-auto">
+          <table mat-table matSort [dataSource]='dataSource' matSortDisableClear
+                 (matSortChange)="sortData($event)">
+
+            <ng-container matColumnDef="#">
+              <th mat-header-cell *matHeaderCellDef scope="col"> # </th>
+              <td mat-cell *matCellDef="let row, let i = index">{{(filterListCriteria.defaultCriteria.pageIndex - 1) * filterListCriteria.defaultCriteria.pageSize + i + 1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="body" >
+              <th mat-header-cell *matHeaderCellDef scope="col" class="w-50"> Body </th>
+              <td mat-cell *matCellDef="let row ">
+                <p [line-truncation]="1" [innerHTML]="row.body" ></p>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="subject">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col" (click)="page()"> Subject </th>
+              <td mat-cell *matCellDef="let row"> {{row.subject}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="active">
+              <th mat-header-cell *matHeaderCellDef class="col-toggle mat-header-center" scope="col"> Status </th>
+              <td mat-cell *matCellDef="let row" class="mat-header-center">
+                <mat-slide-toggle [(ngModel)]="row.active" (click)="click(row)" [disabled]="row.deleted">
+                </mat-slide-toggle>
+              </td>
+            </ng-container>
+
+            <!-- COLUMN ACTION -->
+            <ng-container matColumnDef='Action'>
+              <th mat-header-cell *matHeaderCellDef
+                  class="col-actions">{{'action'}}</th>
+              <td mat-cell *matCellDef='let row' class="col-actions d-flex justify-content-start ml-n1">
+                <div class="center-action-button p-0">
+                  <button  (click)="edit(row)">Modify</button>
+                  <button [matMenuTriggerFor]="actionMenu"
+                          [disableRipple]="true" [matMenuTriggerData]="getMailRow(row)" mat-icon-button
+                          style="width: 0;">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef='displayedColumns; sticky: true'></tr>
+            <tr mat-row *matRowDef='let row; let i = index; columns: displayedColumns'
+                [class.row-selected]='false'></tr>
+            <tr class='mat-row no-data-row' *matNoDataRow>
+              <td class='mat-cell no-data-cell' [colSpan]='dataSource.data.length'></td>
+            </tr>
+          </table>
+        </div>
+        <mat-menu #actionMenu="matMenu" class="common-aw-menu aw-mat-menu mr-1 aw-selection-box-container" xPosition="before">
+          <ng-template matMenuContent let-row="row">
+
+            <button mat-menu-item (click)="openDialog(this.row)" [disabled]="row.deleted" >
+              <div class='d-flex flex-row justify-content-start align-items-center'>
+                <img class="delete-icon mr-2" src="assets/icons/view.svg" alt="view icon">
+                <span class='cancel-icon'>View</span>
+              </div>
+            </button>
+            <button mat-menu-item  (click)="delete(row.id , row.subject)"  [disabled]="row.deleted">
+              <div class='d-flex flex-row justify-content-start align-items-center'>
+                <img class="delete-icon mr-2" src="assets/icons/delete.svg" alt="delete icon">
+                <span class='cancel-icon'>Delete</span>
+              </div>
+            </button>
+            <button mat-menu-item [disabled]="!row.deleted" (click)="restore(row.id,row.subject)"  >
+              <div class='d-flex flex-row justify-content-start align-items-center'>
+                <mat-icon>restore</mat-icon>
+                <span class='cancel-icon'>Restore</span>
+              </div>
+            </button>
+          </ng-template>
+        </mat-menu>
+      </div>
+    </section>
+  </ng-container>
+
+
+  <ng-container slot="page-pagination">
+    <section class="pagination d-flex justify-content-center my-2">
+      <app-aw-pagination [pageIndex]="filterListCriteria.defaultCriteria.pageIndex"
+                         [pageSize]="filterListCriteria.defaultCriteria.pageSize"
+                         [length]="total"
+                         (pageChanged)="pageEvent($event)"
+                         [hasFilter]="true">
+      </app-aw-pagination>
+    </section>
+  </ng-container>
+</app-aw-layout-list>

@@ -1,0 +1,19 @@
+<div class="aw-form-group">
+  <label class="aw-form-title">{{ awLabel }} <span class="text-danger" title="This field is required" *ngIf="awRequired">*</span></label>
+
+  <div class="mb-4 mt-2">
+    <mat-radio-group
+      [(ngModel)]="value"
+      (change)="onInputChange(value)"
+      aria-label="Select an option"
+    >
+      <div class="d-flex">
+        <mat-radio-button
+          class="mx-4"
+          [value]="awOption.key"
+          *ngFor="let awOption of awOptions"
+        >{{ awOption.value }}</mat-radio-button>
+      </div>
+    </mat-radio-group>
+  </div>
+</div>

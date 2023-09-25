@@ -1,0 +1,13 @@
+<div class="aw-profile d-flex flex-column flex-wrap" customClass="manage-candidate-detail">
+  <div class="aw-profile-header align-items-center justify-content-center p-3" [class]="{'shadow-none': disabledShadow}">
+    <div class="profile-header-avatar">
+      <app-aw-avatar [awTitle]="sortName(profile)"
+                     [profileImgURL]='profile?.imageURL'>
+      </app-aw-avatar>
+    </div>
+    <h2 class="profile-header-name m-0 mt-3"> {{profile?.fullName}}</h2>
+    <span class="profile-header-email my-2">{{profile?.email}}</span>
+    <div *ngIf="profile?.status?.length" class="profile-header-status"><span
+      [class]="getStatusCssClass(profile?.status)">{{ profile?.status }}</span></div>
+  </div>
+</div>

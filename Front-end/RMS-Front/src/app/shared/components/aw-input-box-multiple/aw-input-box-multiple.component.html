@@ -1,0 +1,37 @@
+<div class="aw-form-group">
+  <label class="aw-form-title">
+    {{ awLabel }}
+    <span class="text-danger" title="This field is required">*</span>
+  </label>
+  <!-- ./ Label -->
+
+  <div
+    [class.disabled]="disabled"
+    class="d-flex aw-input-box-multiple"
+    *ngFor="let value of values; trackBy: trackRow; let i = index"
+  >
+    <input
+      class="aw-form-control"
+      type="text"
+      appAwTooltip
+      [value]="value"
+      [shouldShowTooltip]="awValidator(value)?.message && shouldShowError"
+      [tooltipContent]="awValidator(value)?.message"
+      #data
+      (input)="valueChange(data.value, i)"
+    />
+    <mat-icon
+      class="delete-icon"
+      title="Remove"
+      (click)="removeField(i)"
+      *ngIf="values.length > 1"
+    >delete
+    </mat-icon>
+  </div>
+  <!-- ./ Input values -->
+
+  <app-aw-rich-button height="40px" width="285px" class="mb-3" (click)="addMoreFields()">
+    Add more
+  </app-aw-rich-button>
+  <!-- ./ Add button -->
+</div>

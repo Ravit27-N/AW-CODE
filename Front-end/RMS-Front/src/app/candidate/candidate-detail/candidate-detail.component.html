@@ -1,0 +1,246 @@
+<div class class="container-fluid">
+
+  <div class="row">
+    <!-- candidate  -->
+    <div class="col-sm-6">
+      <!-- menu  -->
+
+      <h1>Candidate Details</h1>
+      <div class="my-4">
+        <button appCanAccess perm="Activity:add" mat-mini-fab matTooltip="Add activity log"
+          (click)="addActivity(this.candidate.id)" id="btn-icon">
+          <mat-icon>playlist_add</mat-icon>
+        </button>
+        <button appCanAccess perm="Interview:add" mat-mini-fab matTooltip="Set interview"
+          (click)="setInterview(this.candidate.id)" id="btn-icon-1">
+          <mat-icon>insert_invitation</mat-icon>
+        </button>
+        <button appCanAccess perm="Reminder:add" mat-mini-fab matTooltip="Set reminder"
+          (click)="setReminder(this.candidate.id)" id="btn-icon-2">
+          <mat-icon>add_alert</mat-icon>
+        </button>
+        <button appCanAccess perm="Candidate:edit" mat-mini-fab color="primary" matTooltip="Edit"
+          (click)="edit(this.candidate.id)" id="btn-icon-3" class="mr-2">
+          <mat-icon>drive_file_rename_outline</mat-icon>
+        </button>
+
+        <button [disabled]="!this.candidate.interviews[this.candidate.interviews.length - 1]?.result"
+          mat-mini-fab
+          matTooltip="Last interview result" color="primary"
+          (click)="setLastResult(this.candidate.interviews[this.candidate.interviews.length - 1], $event)"
+          >
+          <mat-icon>wysiwyg</mat-icon>
+        </button>
+      </div>
+
+      <!-- content  -->
+      <div class="row">
+        <div class="d-flex flex-row">
+          <div class="circle">
+            <div
+              *ngIf="(this.candidate.photoUrl == null)">
+              <img [src]="this.bIcon" alt="Photo" *ngIf="this.candidate.gender.toLowerCase() === 'male'">
+              <img [src]="this.gIcon" alt="Photo" *ngIf="this.candidate.gender.toLowerCase() === 'female' ">
+            </div>
+            <div *ngIf="this.candidate.photoUrl">
+              <app-image [photoUrl]="this.getUrl(this.candidate.id, this.candidate.photoUrl)"></app-image>
+            </div>
+          </div>
+
+          <div class="ml-2">
+            <h2>{{this.candidate.fullName}}</h2>
+            <p>{{this.candidate.email}} <i class="fas fa-envelope"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-2">
+        <div class="col-sm-3">
+          <span class="labeler">Gender</span>
+        </div>
+        <div class="col-sm-9">
+          <p>: {{this.candidate.gender}}</p>
+        </div>
+      </div>
+
+      <div class="row mt-2">
+        <div class="col-sm-3">
+          <span class="labeler">Date of birth</span>
+        </div>
+        <div class="col-sm-9">
+          <p>: {{this.candidate.dateOfBirth|date}} - Age: {{getAge(this.candidate.dateOfBirth)|na}}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <span class="labeler">Telephone</span>
+        </div>
+        <div class="col-sm-9">
+          <p>: {{this.candidate.telephone}}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <span class="labeler">University</span>
+        </div>
+        <div class="col-sm-9">
+          <p>: {{this.candidate.arrUniversities}}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <span class="labeler">GPA</span>
+        </div>
+        <div class="col-sm-9">
+          <p>: {{this.candidate.gpa|na}}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <span class="labeler">Year of experience</span>
+        </div>
+        <div class="col-sm-9">
+          <p>: {{this.candidate.yearOfExperience|na}}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <span class="labeler">Priority</span>
+        </div>
+        <div class="col-sm-9">
+          <p>: {{this.candidate.priority}}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <span class="labeler">Created At</span>
+        </div>
+        <div class="col-sm-9">
+          <p>: {{this.candidate.createdAt | awDateFormat }}</p>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm-3">
+          <span class="labeler">Last Modified</span>
+        </div>
+        <div class="col-sm-9">
+          <p>: {{this.candidate.updatedAt | awDateFormat }}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <span class="labeler">Created By</span>
+        </div>
+        <div class="col-sm-9">
+          <p>: {{this.candidate.createdBy }}</p>
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col-sm-3">
+          <span class="labeler">Status</span>
+        </div>
+        <div class="col-sm-9">
+          <p>: {{this.candidate.candidateStatus?.title}} </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <span class="labeler">Description</span>
+        </div>
+        <div class="col-sm-9 d-flex flex-row">
+          <p class="mr-1">: </p>
+          <quill-view [content]="this.candidate.description"></quill-view>
+        </div>
+      </div>
+      <div>
+        <app-file-manager [width]="670" [height]="330" ></app-file-manager>
+<!--        <app-file-manager [start]="'upload/candidate/'+this.candidate.id" [width]="670" [height]="330"></app-file-manager>-->
+      </div>
+    </div>
+
+    <!-- activities  -->
+    <div class="col-sm-3" appCanAccess perm="Activity:view">
+      <h2 class="title-color">Activities ({{this.candidate.activities?.length}})</h2>
+      <mat-card *ngFor="let activity of this.candidate.activities; let i=index;" class="my-2"
+        (click)="editActivity(activity.id)">
+        <mat-card-header>
+          <mat-card-title>
+            <span (click)="editActivity(activity.id)" class="title"> {{activity.title}}</span>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="d-flex flex-column ml-3">
+            <span> {{activity.updatedAt | awDateFormat}}</span>
+            <span>Author: {{activity.userId}}</span>
+            <quill-view [content]="activity.description"></quill-view>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- interviews  -->
+    <div class="col-sm-3" appCanAccess perm="Interview:view">
+      <h2 class="title-color">Interviews ({{this.candidate.interviews.length}})</h2>
+      <mat-card *ngFor="let interview of this.candidate.interviews; let i=index;" class="my-2"
+        (click)="gotoInterviewDetail(interview.id)">
+        <mat-card-header class="justify-content-between align-items-center">
+
+          <button (click)="requestToRemoveInterview($event, interview)" color="warn" mat-icon-button>
+            <mat-icon>close</mat-icon>
+          </button>
+
+          <mat-card-title class="title mb-0">
+            {{interview.title}}
+            <!-- <span (click)="gotoInterviewDetail(interview.id)" class="title"></span> -->
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="d-flex flex-column ml-3">
+            <span class="mb-2">{{interview.dateTime | awDateFormat}}</span>
+
+            <quill-view [content]="interview.description"></quill-view>
+
+            <span class="mb-2">Created By: {{interview.createdBy}}</span>
+
+            <span id="result-title">
+              <span>{{getResultName(interview)}}</span>
+              <button class="mx-1" (click)="setLastResult(interview, $event)" color="primary" mat-icon-button [disableRipple]="true">
+                <mat-icon>drive_file_rename_outline</mat-icon>
+              </button>
+            </span>
+
+            <div class="d-flex flex-column" *ngIf="interview.result.average">
+              <table>
+                <tr><td class="w-25">Score</td><td>:&emsp;{{interview.result.average}}%
+                  <span>(Q&A: {{interview.result.quizScore}}, Coding: {{interview.result.codingScore}})</span>
+                </td></tr>
+                <tr><td class="w-25">Oral</td><td>:&emsp;{{interview.result.oral}}</td></tr>
+                <tr><td class="w-25">English</td><td>:&emsp;{{interview.result.english}}</td></tr>
+                <tr><td class="w-25">Logical</td><td>:&emsp;{{interview.result.logical}}</td></tr>
+                <tr><td class="w-25">Flexibility</td><td>:&emsp;{{interview.result.flexibility}}</td></tr>
+              </table>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </div>
+</div>
+
+<button mat-raised-button color="primary" (click)="back()" class="mt-2">
+  <i class="fas fa-chevron-circle-left mr-1"></i>Back
+</button>

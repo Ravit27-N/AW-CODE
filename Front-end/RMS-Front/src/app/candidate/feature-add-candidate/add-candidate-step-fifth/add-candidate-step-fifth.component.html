@@ -1,0 +1,142 @@
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <div class="row">
+      <div class="col-12 mb-4 d-flex justify-content-start">
+        <div class="profile-box position-relative">
+          <app-aw-container>
+            <app-aw-avatar [profileImgURL]="getProfileURL()">
+            </app-aw-avatar>
+
+            <button class="edit-btn" (click)="navigateToStep.emit(1)">
+              <img [src]="editIconURL" alt="Edit" />
+            </button>
+          </app-aw-container>
+        </div>
+      </div>
+      <div class="col-12 mb-4">
+        <app-aw-container>
+          <div class="d-flex justify-content-between">
+            <h3 class="aw-form-title text-left">Information</h3>
+
+            <button class="edit-btn" (click)="navigateToStep.emit(1)">
+              <img [src]="editIconURL" alt="Edit" />
+            </button>
+          </div>
+          <div class="board">
+            <p class="label">
+              <span>Salutation</span>:
+              <span class="value">{{ candidateStep1?.salutation }}</span>
+            </p>
+            <p class="label">
+              <span>First name</span>:
+              <span class="value first-name">{{ candidateStep1?.firstName }}</span>
+            </p>
+            <p class="label">
+              <span>Last name</span>:
+              <span class="value last-name">{{
+                candidateStep1?.lastName
+              }}</span>
+            </p>
+            <p class="label">
+              <span>Gender</span>:
+              <span class="value">{{ candidateStep1?.gender }}</span>
+            </p>
+            <p class="label">
+              <span>Date of birth</span>:
+              <span class="value">{{
+                candidateStep1?.dateOfBirth | date: "MMM/d/y"
+              }}</span>
+            </p>
+            <p class="label">
+              <span>Email</span>:
+              <span class="value"
+                ><em>{{ candidateStep1?.email }}</em></span
+              >
+            </p>
+            <p class="label">
+              <span>Phone numbers</span>:
+              <span class="value">{{
+                candidateStep1?.phoneNumbers?.join(", ")
+              }}</span>
+            </p>
+            <p class="label">
+              <span>Priority</span>:
+              <span class="value">{{ candidateStep1?.priority }}</span>
+            </p>
+            <p class="label">
+              <span>Status</span>:
+              <span class="value"><app-aw-badge>{{ getStatus(candidateStep1?.status) }}</app-aw-badge></span>
+            </p>
+          </div>
+        </app-aw-container>
+      </div>
+
+      <div class="col-12 mb-4">
+        <app-aw-container>
+          <div class="d-flex justify-content-between">
+            <h3 class="aw-form-title">Education</h3>
+
+            <button class="edit-btn" (click)="navigateToStep.emit(2)">
+              <img [src]="editIconURL" alt="Edit" />
+            </button>
+          </div>
+          <div class="board">
+            <ng-container *ngIf="candidateStep2?.education">
+              <div *ngFor="let item of candidateStep2?.education || []">
+                <p class="label"*ngIf="item?.academicYearStart">
+                  <span>{{ item.major }} - {{ item.degree }}</span
+                  >:
+                  <span class="value">
+                    {{ item.academicYearStart | date: "MMM/d/y" }} -
+                    {{ item.academicYearEnd? (item.academicYearEnd | date: "MMM/d/y") : 'Present' }}
+                  </span>
+                </p>
+              </div>
+            </ng-container>
+          </div>
+        </app-aw-container>
+      </div>
+
+      <div class="col-12 mb-4" *ngIf="candidateStep3?.experiences?.length">
+        <app-aw-container>
+          <div class="d-flex justify-content-between">
+            <h3 class="aw-form-title">Experience</h3>
+
+            <button class="edit-btn" (click)="navigateToStep.emit(3)">
+              <img [src]="editIconURL" alt="Edit" />
+            </button>
+          </div>
+          <div class="board">
+            <ng-container *ngIf="candidateStep3?.experiences">
+              <div *ngFor="let item of candidateStep3?.experiences || []">
+                <p class="label" *ngIf="item?.experienceStartDate">
+                  <span>{{ item.companyName }} - {{ item.position }}</span>:
+                  <span class="value">
+                    {{ item.experienceStartDate | date: "MMM/d/y" }} -
+                    {{ item.experienceEndDate? (item.experienceEndDate | date: "MMM/d/y"): 'Present' }}
+                  </span>
+                </p>
+              </div>
+            </ng-container>
+          </div>
+        </app-aw-container>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 sm-12">
+    <app-aw-container>
+      <embed *ngIf="fileURL" [src]="urlSanitizer" type="application/pdf" />
+    </app-aw-container>
+  </div>
+</div>
+<!-- ./ Form -->
+
+<div class="action-button-container mt-4">
+  <div class="d-flex justify-content-end">
+    <app-aw-rich-button (click)="goPrevious()" [outline]="true" class="mr-3"
+      >Previous
+    </app-aw-rich-button>
+    <app-aw-rich-button (click)="goNext()">Finish</app-aw-rich-button>
+  </div>
+</div>
+<!-- ./ Action button -->

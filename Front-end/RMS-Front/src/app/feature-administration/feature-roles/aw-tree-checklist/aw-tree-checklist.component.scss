@@ -1,0 +1,23 @@
+.tree-wrapper {
+  margin: 10px 0;
+  background-color: var(--aw-bg-secondary-light);
+  padding: 10px;
+  border-radius: 10px;
+
+  .tree-parent-section {
+
+    .parent-margin {
+      margin: 0 12px;
+    }
+  }
+}
+
+.mat-icon {
+  cursor: pointer;
+}
+
+:host::ng-deep .aw-checkbox-container {
+  padding-top: 8px;
+}
+
+

@@ -1,0 +1,16 @@
+.aw-reminder-report {
+  min-height: 400px;
+
+  .reminder-report-close-btn {
+    color: var(--aw-text-secondary);
+
+    &:hover {
+      cursor: pointer;
+      font-weight: var(--aw-font-weight-medium);
+    }
+  }
+}
+
+.modal-title {
+  font-size: 22px !important;
+}

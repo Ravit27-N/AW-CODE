@@ -1,0 +1,58 @@
+<div class="candidate-container">
+  <article class="d-flex justify-content-between">
+    <header class="page-header mr-5">
+      <app-aw-breadcrumb [customLastLabel]="'Candidate Details'"></app-aw-breadcrumb>
+      <app-aw-page-header>Manage Candidates</app-aw-page-header>
+      <app-aw-page-sub-header>Candidate Details</app-aw-page-sub-header>
+    </header>
+    <main class="d-flex align-self-end">
+      <app-aw-navigation [navigationItem]="navigation" class="mb-4 d-block"></app-aw-navigation>
+    </main>
+  </article>
+  <mat-divider class="common-mat-divider"></mat-divider>
+  <div class="candidate-detail">
+    <article class="row">
+      <div class="col-9 candidate-detail-left">
+        <div class="row">
+          <app-feature-candidate-imformation-detail [profile]="profile" [candidateDetail]="candidateModel"
+                                                    class="candidate-detail-profile col-12"></app-feature-candidate-imformation-detail>
+        </div>
+        <div class="row mt-3" *ngIf="candidateExperience.length>0">
+          <app-candidate-experience class="col-12"
+                                    [candidateExperience]="candidateExperience"></app-candidate-experience>
+        </div>
+        <div class="row mt-3" *ngIf="candidateUniversities.length>0">
+          <app-candidate-education class="col-12" [candidateUniversities]="candidateUniversities" ></app-candidate-education>
+        </div>
+        <div class="file-manager-container mt-3">
+          <div class="label d-flex" style="margin-left: 0;">
+            <h2>File manager </h2><mat-icon class="ml-2 mt-1">folder</mat-icon>
+          </div>
+          <app-file-manager [height]="300"></app-file-manager>
+        </div>
+      </div>
+      <div class="mt-n1 col-3 candidate-detail-right">
+        <app-feature-candidate-activity [activities]="candidateModel?.activities"
+                                *ngIf="candidateModel?.activities?.length > 0"
+                                (editActivity)="editActivity($event)"></app-feature-candidate-activity>
+        <div class="mt-3">
+          <app-feature-candidate-interview [interviews]="interviews" [listInterviewsStatus]="listInterviewsStatus"
+                                   *ngIf="interviews?.length > 0"
+                                   (editInterviewModel)="editInterview($event)"
+                                   (removeInterview)="removeInterview($event)"
+                                   (gotToViewDetails)="gotoInterviewDetail($event)"></app-feature-candidate-interview>
+        </div>
+      </div>
+    </article>
+    <div class="candidate-detail-small-screen">
+      <app-feature-candidate-activity [activities]="candidateModel?.activities"
+                              *ngIf="candidateModel?.activities?.length > 0"
+                              (editActivity)="editActivity($event)"></app-feature-candidate-activity>
+      <app-feature-candidate-interview [interviews]="interviews" [listInterviewsStatus]="listInterviewsStatus"
+                               *ngIf="interviews?.length > 0"
+                               (editInterviewModel)="editInterview($event)"
+                               (removeInterview)="removeInterview($event)"
+                               (gotToViewDetails)="gotoInterviewDetail($event)"></app-feature-candidate-interview>
+    </div>
+  </div>
+</div>

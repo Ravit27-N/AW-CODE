@@ -1,0 +1,96 @@
+<div class="container-fluid" appCanAccess perm="Status Candidate:view">
+  <h1 class="mat-h1">Status Candidates</h1>
+
+  <div class="d-flex justify-content-between my-2">
+    <mat-button-toggle-group #group="matButtonToggleGroup" name="fontStyle" appearance="legacy"
+      (click)="selectdata(group.value)" value="">
+      <mat-button-toggle value="" (click)="page()" class="custom-mat-button-toggle">
+        <mat-icon>view_headline</mat-icon>
+        All
+      </mat-button-toggle>
+      <mat-button-toggle value="active" (click)="page()" class="custom-mat-button-toggle">
+        <mat-icon>check</mat-icon>
+        Active
+      </mat-button-toggle>
+      <mat-button-toggle value="inactive" (click)="page()" class="custom-mat-button-toggle">
+        <mat-icon>clear</mat-icon>
+        Inactive
+      </mat-button-toggle>
+      <mat-button-toggle value="deleted" (click)="page()" class="custom-mat-button-toggle">
+        <mat-icon>delete_sweep</mat-icon>
+        Deleted
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <button appCanAccess perm="Status Candidate:add" class="float-right" mat-flat-button color="primary" (click)="add()">
+      <em class="fas fa-plus"></em>
+      Add
+    </button>
+  </div>
+  <div class="d-flex justify-content-end">
+    <mat-form-field>
+      <mat-label>Seach</mat-label>
+      <input matInput [(ngModel)]="search" (keyup)="applyFilter($event)">
+      <button mat-button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="clear()" tabindex="-1">
+        <mat-icon matSuffix>close</mat-icon>
+      </button>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="mat-elevation-z2 pos-relative">
+    <app-loading-indicator [isloading]="('statuscandidate'|swIsLoading|async)"></app-loading-indicator>
+    <table mat-table [dataSource]="dataSource" matSort class="w-100" aria-label="status Candidate">
+      <ng-container matColumnDef="#">
+        <th mat-header-cell *matHeaderCellDef class="col-id " id="id"> # </th>
+        <td mat-cell *matCellDef="let row, let i = index;"> {{paginator.pageIndex * paginator.pageSize + i + 1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <th id="thtitle" mat-header-cell *matHeaderCellDef mat-sort-header (click)="page()"> Title </th>
+        <td id="tdtitle" mat-cell *matCellDef="let row"> {{row.title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef (click)="page()" scope="col" class="w-50"> Description </th>
+        <td mat-cell *matCellDef="let row">
+          <p [line-truncation]="1" [innerHTML]="row.description" ></p>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef class="col-toggle" scope="col"> Status </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-slide-toggle [(ngModel)]="row.active" (click)="click(row)" [disabled]="row.deleted">
+          </mat-slide-toggle>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="sm-action-group mat-header-center" scope="col">Action</th>
+        <td mat-cell *matCellDef="let row" class="action-group-button mat-header-center">
+          <button appCanAccess perm="Status Candidate:view" mat-icon-button color="primary" (click)="openDialog(this.row)" [disabled]="row.deleted">
+            <mat-icon>remove_red_eye</mat-icon>
+          </button>
+          <button appCanAccess perm="Status Candidate:edit" mat-icon-button color="primary" (click)="edit(row)" class="editbtn" [disabled]="row.deleted">
+            <mat-icon>drive_file_rename_outline</mat-icon>
+          </button>
+          <button appCanAccess perm="Status Candidate:delete" mat-icon-button color="warn" (click)="delete(row)" [disabled]="row.deleted">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button appCanAccess perm="Status Candidate:delete" mat-icon-button color="primary" [disabled]="!row.deleted" (click)="restore(row)">
+            <mat-icon>restore</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell mat-cell-not-found" colspan="5">No Data in Status Candidate</td>
+      </tr>
+    </table>
+
+    <mat-paginator [length]="length" [pageSizeOptions]="paginationSize" showFirstLastButtons></mat-paginator>
+  </div>
+
+</div>

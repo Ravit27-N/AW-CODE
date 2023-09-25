@@ -1,0 +1,154 @@
+<ng-container slot="page-content">
+  <div class="mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <app-aw-container>
+          <div
+            class="aw-panel"
+            cdkDropList
+            (cdkDropListDropped)="orderItem($event)"
+          >
+            <div class="aw-form-container">
+              <div
+                class="aw-btn-item-group my-2 mt-0"
+                *ngFor="let experience of experiences; let i = index"
+                cdkDrag
+              >
+                <button
+                  mat-menu-item
+                  disableRipple
+                  class="aw-btn-item"
+                  [class.active]="getIsActive(i)"
+                  (click)="editExperience(i)"
+                >
+                  <mat-icon class="drag-icon">apps</mat-icon>
+                  <span>{{ experience.companyName }}</span>
+                </button>
+                <!-- Edit experience -->
+
+                <mat-icon class="delete-icon" (click)="removeEducation(i)">delete</mat-icon>
+                <!-- Delete experience -->
+              </div>
+              <!-- Experience form -->
+
+              <div style="width: 200px">
+                <app-aw-rich-button
+                  height="40px"
+                  (click)="addMoreField()"
+                >+ Add experience
+                </app-aw-rich-button>
+              </div>
+              <!-- Add more experience -->
+            </div>
+            <!-- ./ Form -->
+          </div>
+        </app-aw-container>
+      </div>
+
+      <div class="col-md-6">
+        <app-aw-container>
+          <div class="aw-panel">
+            <div class="aw-form-container">
+              <form
+                [formGroup]="formGroup"
+                *ngIf="
+                  experiences.length > 0 &&
+                  formGroup.get('order')?.value !== null
+                "
+              >
+                <div class="col-xl-12">
+                  <div class="row">
+                    <div class="col-xl-10">
+                      <app-aw-input-box-text
+                        awLabel="Company name"
+                        formControlName="companyName"
+                        [awRequired]="true"
+                        [awError]="formGroup.get('companyName')?.errors?.message && shouldShowError"
+                        [awErrorMessage]="formGroup.get('companyName')?.errors?.message"
+                      ></app-aw-input-box-text>
+                      <!-- ./ Field Company Name -->
+
+                      <app-aw-input-box-text
+                        awLabel="Position"
+                        formControlName="position"
+                        [awRequired]="true"
+                        [awError]="formGroup.get('position')?.errors?.message && shouldShowError"
+                        [awErrorMessage]="formGroup.get('position')?.errors?.message"
+                      ></app-aw-input-box-text>
+                      <!-- ./ Field Position -->
+
+                      <app-aw-input-box-date
+                        awLabel="Start date"
+                        formControlName="experienceStartDate"
+                        awPlaceholder="N/A"
+                        [awRequired]="true"
+                        [awError]="formGroup.get('experienceStartDate')?.errors?.message && shouldShowError"
+                        [awErrorMessage]="formGroup.get('experienceStartDate')?.errors?.message"
+                      ></app-aw-input-box-date>
+                      <!-- ./ Start Date Experience -->
+
+                      <app-aw-input-box-date
+                        awLabel="End date"
+                        formControlName="experienceEndDate"
+                        awPlaceholder="N/A"
+                        [awError]="formGroup.get('experienceEndDate')?.errors?.message && shouldShowError"
+                        [awErrorMessage]="formGroup.get('experienceEndDate')?.errors?.message"
+                      ></app-aw-input-box-date>
+                      <!-- ./ End Date Experience -->
+
+                      <app-aw-input-box-select
+                        awLabel="Level"
+                        formControlName="level"
+                        [awRequired]="true"
+                        [awOptions]="levelCriteria"
+                        [awError]="formGroup.get('level')?.errors?.message && shouldShowError"
+                        [awErrorMessage]="formGroup.get('level')?.errors?.message"
+                      ></app-aw-input-box-select>
+                      <!-- ./ Field Level -->
+
+                      <app-aw-input-box-text-area
+                        awLabel="Project Type"
+                        formControlName="projectType"
+                        class="field_remark"
+                        [awMaxLength]="255"
+                        [awError]="formGroup.get('projectType')?.errors?.message && shouldShowError"
+                        [awErrorMessage]="formGroup.get('projectType')?.errors?.message"
+                      ></app-aw-input-box-text-area>
+                      <!-- ./ Field Project Type -->
+
+                      <app-aw-input-box-text-area
+                        awLabel="Technology"
+                        formControlName="technology"
+                        class="field_remark"
+                        [awMaxLength]="255"
+                        [awError]="formGroup.get('technology')?.errors?.message && shouldShowError"
+                        [awErrorMessage]="formGroup.get('technology')?.errors?.message"
+                      ></app-aw-input-box-text-area>
+                      <!-- ./ Field Technology -->
+
+                      <app-aw-rich-button (click)="applyChange()">Apply</app-aw-rich-button>
+                      <!-- ./ Apply change button -->
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <p *ngIf="experiences.length === 0">
+                There are no any experience for selection.
+              </p>
+            </div>
+          </div>
+        </app-aw-container>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<!-- ./ Form -->
+
+<div class="action-button-container mt-4">
+  <div class="d-flex justify-content-end">
+    <app-aw-rich-button (click)="goPrevious()" [outline]="true" class="mr-3">Previous</app-aw-rich-button>
+    <app-aw-rich-button (click)="goNext()">Next</app-aw-rich-button>
+  </div>
+</div>
+<!-- ./ Action button -->

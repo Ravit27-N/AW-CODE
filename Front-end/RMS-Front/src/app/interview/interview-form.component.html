@@ -1,0 +1,87 @@
+<div class="pos-relative">
+  <app-loading-indicator [isloading]="('InterviewFormComponent'|swIsLoading|async)"></app-loading-indicator>
+
+  <form name="interview-form" id="interview-form" [formGroup]="validateForm">
+    <mat-form-field class="w-100">
+      <mat-label>Candidate</mat-label>
+      <mat-select name="candidate" [(ngModel)]="model.candidateId" [formControl]="validateForm.controls.candidate" appAutoFocus
+        required tabindex="1">
+        <mat-option>
+          <ngx-mat-select-search placeholderLabel="search name ...." noEntriesFoundLabel="'no matching data ...'"
+            name="filter" [formControl]="candidateFilterCtrl">
+          </ngx-mat-select-search>
+        </mat-option>
+        <mat-option [value]="x.id.toString()" *ngFor="let x of candiatesSubject$ | async">{{x.firstname}} {{x.lastname}}
+          | {{x.telephone}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="validateForm.controls.candidate.invalid">Must select a candidate</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <mat-label>Status interview</mat-label>
+      <mat-select name="statuscandidate" [(ngModel)]="model.status" [formControl]="validateForm.controls.statusId" tabindex="2">
+        <mat-option [value]="x.name" *ngFor="let x of interviewStatus">{{x.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Date & time</mat-label>
+      <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [(ngModel)]="model.dateTime"
+        [formControl]="validateForm.controls.datetime" tabindex="3" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker [enableMeridian]="true" #picker>
+      </ngx-mat-datetime-picker>
+
+      <mat-error *ngIf="validateForm.controls.datetime.invalid">Date & Time is required</mat-error>
+    </mat-form-field>
+
+    <mat-checkbox *ngIf="!editorMode" name="sendinvite" [(ngModel)]="model.sendInvite" class="d-block label-description" tabindex="4"
+      [ngModelOptions]="standaloneOption">Send invitation mail to candidate</mat-checkbox>
+
+    <div *ngIf="!editorMode" class="d-flex">
+      <mat-checkbox class="align-self-center label-description" [ngModelOptions]="standaloneOption"
+        [(ngModel)]="model.setReminder" tabindex="5">Reminder Me</mat-checkbox>
+      <mat-form-field class="mx-2">
+        <input [disabled]="!model.setReminder" matInput name="remindertime" type="number" min="1"
+          [(ngModel)]="model.reminderTime" [ngModelOptions]="standaloneOption" />
+      </mat-form-field>
+      <p class="align-self-center label-description m-0"><b>minutes in advance</b></p>
+    </div>
+
+    <mat-form-field class="w-100">
+      <mat-label>Apply for</mat-label>
+      <mat-select name="title" [(ngModel)]="model.title" [formControl]="validateForm.controls.title" name="title" tabindex="6">
+        <mat-option hidden *ngIf="editorMode" [value]="model.title">{{model.title}}</mat-option>
+        <mat-option>
+          <ngx-mat-select-search [formControl]="titleDescriptionCtrl" placeholderLabel="Enter title"
+            noEntriesFoundLabel="no matching found">
+            <mat-icon>Search</mat-icon>
+          </ngx-mat-select-search>
+        </mat-option>
+        <button class="w-100" color="primary" mat-button (click)="createTitleDescription()">
+          <mat-icon>add</mat-icon>
+          Add new job description
+        </button>
+
+        <mat-option *ngFor="let job of titleDescriptions" [value]="job">{{job}}</mat-option>
+      </mat-select>
+
+      <mat-error *ngIf="validateForm.controls.title.invalid">Title is required</mat-error>
+    </mat-form-field>
+
+    <div>
+      <mat-label class="label-description">Description</mat-label>
+      <hr class="my-2">
+      <div>
+        <quill-editor [(ngModel)]="model.description" [ngModelOptions]="standaloneOption" tabindex="7"></quill-editor>
+      </div>
+    </div>
+
+    <div class="child-end mt-2">
+      <button mat-flat-button color="warn" (click)="cancel()">Cancel</button>
+      <button mat-flat-button color="primary" type="submit" (click)="save()" tabindex="8">Save</button>
+    </div>
+
+  </form>
+</div>

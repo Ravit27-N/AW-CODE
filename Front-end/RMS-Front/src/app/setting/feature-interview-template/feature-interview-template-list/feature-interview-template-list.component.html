@@ -1,0 +1,120 @@
+<app-aw-layout-list pageTitle="Manage Interview Template" pageSubtitle="List all interview template">
+  <ng-container slot="action-buttons">
+    <app-aw-rich-button (click)="addInterviewTemplate()" class="ml-3">
+      <mat-icon>add</mat-icon>
+      Add
+    </app-aw-rich-button>
+  </ng-container>
+
+  <ng-container slot="page-filter">
+    <section class="search-box d-flex justify-content-end">
+      <app-aw-search-box (valueChange)="searchValueChange($event)" [value]="interviewTemplateCriteria?.filter || ''"
+                         [hasError]="!this.dataSource?.length && interviewTemplateCriteria?.filter?.length > 0">
+
+      </app-aw-search-box>
+    </section>
+  </ng-container>
+
+  <ng-container slot="page-table">
+    <section class="aw-table">
+      <div class="table-demand">
+        <table mat-table matSort [dataSource]='dataSource' matSortDisableClear
+               (matSortChange)="sortColumnTable($event)">
+          <!-- COLUMN NO -->
+          <ng-container matColumnDef='no'>
+            <th mat-header-cell *matHeaderCellDef> {{'No.'}} </th>
+            <td mat-cell
+                *matCellDef='let row, let idx = index;' class="text-nowrap">{{ getCandidateRowNumber(idx) }}</td>
+          </ng-container>
+
+          <!-- COLUMN NAME -->
+          <ng-container matColumnDef='name'>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header
+                arrowPosition='after'> {{'Name'}} </th>
+            <td mat-cell *matCellDef="let row" class="text-truncate" [matTooltip]="row?.name"> {{row?.name}} </td>
+          </ng-container>
+
+          <!-- COLUMN TYPE -->
+          <ng-container matColumnDef='type'>
+            <th mat-header-cell *matHeaderCellDef> {{'Type'}} </th>
+            <td mat-cell *matCellDef="let row" class="pl-2">
+              {{ row?.type ? row?.type : 'N/A'}}
+            </td>
+          </ng-container>
+
+          <!-- COLUMN INTERVIEWER -->
+          <ng-container matColumnDef='interviewer'>
+            <th mat-header-cell *matHeaderCellDef> {{'interviewer'}} </th>
+            <td mat-cell *matCellDef="let row" class="pl-2 interview-column text-truncate"
+                [matTooltip]="row?.interviewer">
+              {{ row?.interviewer || 'N/A' }}
+            </td>
+          </ng-container>
+
+          <!-- COLUMN STATUS -->
+          <ng-container matColumnDef="active">
+            <th mat-header-cell *matHeaderCellDef class="mat-header-center has-right-border"> Status</th>
+            <td mat-cell *matCellDef="let row" class="mat-header-center has-right-border">
+              <app-aw-slider-toggle [disabled]="row?.active && row?.deleted"
+                                    [checked]="row?.active"
+                                    (valueChangeEvent)="slideToggle(row?.id, row?.active)"></app-aw-slider-toggle>
+            </td>
+          </ng-container>
+
+          <!-- COLUMN ACTION -->
+          <ng-container matColumnDef='action'>
+            <th mat-header-cell *matHeaderCellDef
+                class="col-actions">{{'action'}}</th>
+            <td mat-cell *matCellDef='let row' class="col-actions d-flex justify-content-start ml-n1">
+              <div class="center-action-button p-0">
+                <button (click)="edit(row)">Modify</button>
+                <button [matMenuTriggerFor]="actionMenu"
+                        [disableRipple]="true" [matMenuTriggerData]="getCandidateRow(row)" mat-icon-button
+                        style="width: 0;">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef='tableColumnHeader; sticky: true'></tr>
+          <tr mat-row *matRowDef='let row; let i = index; columns: tableColumnHeader'
+              [class.row-selected]='false'></tr>
+          <tr class='mat-row no-data-row' *matNoDataRow>
+            <td class='mat-cell no-data-cell' [colSpan]='dataSource.length'></td>
+          </tr>
+        </table>
+
+        <mat-menu #actionMenu="matMenu" class="common-aw-menu aw-mat-menu mr-1 aw-selection-box-container"
+                  xPosition="before">
+          <ng-template matMenuContent let-row="row">
+            <button mat-menu-item (click)="view(row)">
+              <div class='d-flex flex-row justify-content-start align-items-center'>
+                <img class="delete-icon mr-2" src="assets/icons/view.svg" alt="view icon">
+                <span class='cancel-icon'>View</span>
+              </div>
+            </button>
+            <button mat-menu-item (click)="delete(row)">
+              <div class='d-flex flex-row justify-content-start align-items-center'>
+                <img class="delete-icon mr-2" src="assets/icons/delete.svg" alt="delete icon">
+                <span class='cancel-icon'>Delete</span>
+              </div>
+            </button>
+          </ng-template>
+        </mat-menu>
+      </div>
+    </section>
+  </ng-container>
+<!--  ./Page Table-->
+
+  <ng-container slot="page-pagination">
+    <section class="pagination d-flex justify-content-center my-2">
+      <app-aw-pagination [pageIndex]="interviewTemplateCriteria.defaultCriteria.pageIndex"
+                         [pageSize]="interviewTemplateCriteria.defaultCriteria.pageSize"
+                         [length]="total"
+                         (pageChanged)="pageChangeEvent($event)"
+                         [hasFilter]="true">
+      </app-aw-pagination>
+    </section>
+  </ng-container>
+</app-aw-layout-list>

@@ -1,0 +1,28 @@
+mat-form-field {
+  padding-top: 3px;
+  width: 100%;
+}
+
+.circle {
+  width: 200px;
+  height: 200px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+
+  img {
+    width: 100% !important;
+  }
+}
+.image {
+  cursor: pointer;
+}
+
+
+:host ::ng-deep {
+  .input_text {
+    padding: 0 10% !important;
+  }
+  .app-aw-rich-button{
+    margin: auto !important;
+  }
+}

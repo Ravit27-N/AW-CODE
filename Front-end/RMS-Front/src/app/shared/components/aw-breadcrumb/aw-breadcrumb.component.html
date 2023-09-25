@@ -1,0 +1,17 @@
+<nav class="aw-breadcrumb">
+  <ul>
+    <ng-container *ngFor="let item of breadcrumb$ | async; let last = last">
+      <ng-container *ngIf="!last; else lastItem">
+        <li>
+          <a [routerLink]="item.link">
+            {{ item.label }}
+          </a>
+        </li>
+        <span class="line">{{ symbol }}</span>
+      </ng-container>
+      <ng-template #lastItem>
+        <li><a>{{ customLastLabel.length ? customLastLabel : item.label }}</a></li>
+      </ng-template>
+    </ng-container>
+  </ul>
+</nav>

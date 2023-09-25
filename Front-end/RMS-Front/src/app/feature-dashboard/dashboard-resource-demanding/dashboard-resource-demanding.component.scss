@@ -1,0 +1,41 @@
+.section-title {
+  font-family: var(--aw-font-primary);
+  font-weight: var(--aw-font-weight-medium);
+  font-size: 17px;
+}
+
+.resource-demanding-container {
+  padding: 0 7px 7px;
+  width: 100%;
+  //overflow: auto;
+}
+
+:host ::ng-deep {
+  table{
+    width: 100%;
+
+    th:nth-child(1), td:nth-child(1), th:nth-child(4), td:nth-child(4) {
+      min-width: 3% !important;
+    }
+
+    th:nth-child(2), td:nth-child(2), th:nth-child(3), td:nth-child(3) {
+      min-width: 10% !important;
+    }
+
+    th:nth-child(5), td:nth-child(5) {
+      min-width: 5% !important;
+    }
+
+    th:nth-child(7), td:nth-child(7) {
+      min-width: 5% !important;
+    }
+
+  }
+
+  @media screen and (max-width: 2000px) {
+    .aw-table th:nth-child(4),
+    .aw-table td:nth-child(4) {
+      min-width: 100px !important;
+    }
+  }
+}

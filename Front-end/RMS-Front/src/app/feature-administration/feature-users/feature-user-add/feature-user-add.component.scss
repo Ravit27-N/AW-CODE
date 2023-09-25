@@ -1,0 +1,43 @@
+.user-information, .user-authentication {
+  div {
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    margin-bottom: 10px;
+  }
+
+  mat-icon {
+    cursor: pointer;
+  }
+}
+
+
+:host::ng-deep {
+  .mat-form-field-flex {
+    height: 40px;
+  }
+
+  .mat-form-field-infix {
+    padding: 4px;
+    font-family: var(--aw-font-primary);
+  }
+
+  .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: var(--aw-bg-secondary);
+  }
+
+  .mat-slide-toggle-bar, .mat-slide-toggle-thumb {
+    transition: all 80ms linear;
+    transition-property: background-color;
+    transition-delay: 50ms;
+  }
+
+  .mat-checked .mat-slide-toggle-content {
+    color: var(--aw-text-secondary);
+  }
+
+  .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: rgba(14, 52, 171, 0.37);
+  }
+}

@@ -1,0 +1,19 @@
+<div class="aw-step-container">
+  <div class="aw-step-group">
+    <div
+      class="aw-step-item"
+      *ngFor="let step of awSteps; let i = index"
+      [class.active]="step.active"
+      [class.disabled]="step.disabled"
+      (click)="updateStep(step, i)"
+    >
+      {{ step.title }}
+    </div>
+  </div>
+  <div class="aw-step-container">
+    <div
+      class="aw-step-progress"
+      [ngStyle]="{ width: totalProgress$ | async }"
+    ></div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="p-4 pb-1">
+  <div class="d-flex d-flex-row justify-content-between">
+    <label class="header-label">Calender</label>
+    <label class="header-text px-1">
+      <span style="min-width: 50%;">{{ periodStart }}</span>
+      <span class="font-thin">|</span>
+      <span style="min-width: 50%;">{{ periodEnd }}</span>
+    </label>
+  </div>
+</div>
+
+<div class="mb-2">
+  <div class="d-flex flex-row justify-content-center">
+    <mat-icon (click)="prevClick()" class="arrow cursor-pointer">keyboard_arrow_left</mat-icon>
+    <label class="header-label w-32 text-center">{{ periodLabel }}</label>
+    <mat-icon (click)="nextClick()" class="arrow cursor-pointer">keyboard_arrow_right</mat-icon>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<button class="aw-btn d-flex flex-column align-items-center justify-content-center"
+        [type]="actionType"
+        matRipple
+        [disabled]="disabled"
+        [class.aw-btn-primary]="type === 'primary'"
+        [class.aw-btn-warning]="type === 'warning'"
+        [class.aw-btn-danger]="type === 'danger'"
+        [class.aw-btn-success]="type === 'success'"
+        [class.aw-btn-outline-primary]="outline && type === 'primary'"
+        [class.aw-btn-outline-warning]="outline && type === 'warning'"
+        [class.aw-btn-outline-danger]="outline && type === 'danger'"
+        [class.aw-btn-outline-success]="outline && type === 'success'"
+        [ngStyle]="{
+          'height': height,
+          'padding': padding,
+          'width': width,
+          'border-radius': borderRadius
+        }">
+  <div class="d-flex mx-auto px-2">
+    <mat-icon *ngIf="icon" [inline]="true">{{icon}}</mat-icon>
+    <ng-content></ng-content>
+  </div>
+</button>

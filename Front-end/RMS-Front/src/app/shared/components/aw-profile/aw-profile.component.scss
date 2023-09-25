@@ -1,0 +1,73 @@
+.aw-profile {
+
+  &-header {
+    box-shadow: 0 6px 30px rgba(182, 186, 203, 0.3);
+    margin-bottom: 24px;
+    transition: box-shadow 0.2s ease-in-out;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffffff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, 0.125);
+    border-radius: 10px;
+    cursor: pointer;
+
+    .profile-header-email {
+      font-size: 12px;
+      font-weight: bold;
+      color: #696969;
+    }
+
+    .profile-header-status {
+      font-family: var(--aw-font-primary);
+
+      .failed, .pass, .following, .in-progress, .new-request {
+        border-radius: 10px;
+        text-align: center;
+        display: inline-block;
+        padding: 4px 1rem;
+        margin-left: 10px;
+      }
+
+      .failed {
+        color: var(--aw-text-danger);
+        background: var(--aw-bg-danger-dark);
+      }
+
+      .pass {
+        color: var(--aw-text-secondary);
+        background: var(--aw-bg-secondary-dark);
+      }
+
+      .following {
+        color: var(--aw-text-warning);
+        background: var(--aw-bg-warning-light);
+      }
+
+      .in-progress {
+        color: var(--aw-text-success);
+        background: var(--aw-bg-success-dark);
+      }
+
+      .new-request {
+        color: var(--aw-text-purple);
+        background: var(--aw-bg-purple-dark);
+      }
+    }
+  }
+}
+
+:host ::ng-deep {
+  .profile-header-avatar {
+    height: 120px;
+    width: 120px;
+
+    .aw-avatar-title {
+      font-size: 34px !important;
+    }
+  }
+
+}

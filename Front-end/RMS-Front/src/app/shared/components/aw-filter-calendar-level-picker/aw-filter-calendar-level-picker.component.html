@@ -1,0 +1,40 @@
+<label [matMenuTriggerFor]="dashboardMenu" class="d-flex align-middle align-items-center  filters-button position-relative"
+       style="width: 230px;"
+       (menuOpened)="openMenu()"
+       (menuClosed)="closeMenu()"
+       *ngIf='field|async as calendar'
+       [matMenuTriggerData]="wrapInObject(calendar,'graphFilter')">
+
+  <span class='calendar-wrapper d-flex align-middle align-items-center'>
+    <span class="pr-2"><img class='icon' src='assets/icons/calendar.svg' alt='dates icon'></span>
+
+    <span class="d-flex flex-row btn-dropdown-label active" *ngIf="isInitialize">
+      <span class="mr-2" [class.highLight]="false">Please select date</span>
+    </span>
+
+    <span class="d-flex flex-row btn-dropdown-label active" *ngIf="!isInitialize">
+      <span class="mr-2" [class.highLight]="true">{{ labelForm.controls['startDateLabel']?.value }}</span>
+      <span class="mr-2" >
+        <img class="separate-date-label" [class.highLight]="true" src="assets/icons/right-arrow.png"
+             alt="right arrow icon">
+      </span>
+      <span [class.highLight]="true">{{ labelForm.controls['endDateLabel']?.value }}</span>
+    </span>
+
+
+  </span>
+  <mat-icon class='expand_more ml-auto'>expand_more</mat-icon>
+
+</label>
+
+
+<mat-menu #dashboardMenu="matMenu" xPosition="after" class="common-filter-menu-panel dashboard-menu-panel" style="width: 600px;" customClass="aw-mat-menu-panel">
+  <ng-template matMenuContent let-calendarFilter="graphFilter">
+    <div class="menu-content" (click)='$event.stopPropagation()' style="width: 600px;">
+      <app-aw-calendar-picker [showResetButton]="showResetButton" [labelButton]="labelButton"
+                              [calendarOptions]="calendarFilter"
+                              (calenderChanged)="onCalendarChange($event)">
+      </app-aw-calendar-picker>
+    </div>
+  </ng-template>
+</mat-menu>

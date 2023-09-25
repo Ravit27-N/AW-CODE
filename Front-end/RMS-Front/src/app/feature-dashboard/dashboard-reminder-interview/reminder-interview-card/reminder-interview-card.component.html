@@ -1,0 +1,26 @@
+<mat-card
+  routerLink="/admin/candidate/candidateDetail/{{ interview.candidate.id }}"
+>
+  <mat-card-content>
+    <div class="d-flex justify-content-start">
+      <div class="profile-img mr-3 ml-2">
+        <app-aw-avatar [awTitle]="interview.candidate.shortName" [profileImgURL]="interview.candidate.photoUrl"></app-aw-avatar>
+      </div>
+
+      <div class="profile-info">
+        <h4 class="profile-info-name">
+          {{ interview.candidate.fullName }}
+        </h4>
+        <mat-card-subtitle class="mb-1 mt-0 font-italic small text-nowrap">{{
+          interview.dateTime | awDateFormat
+        }}</mat-card-subtitle>
+        <p class="profile-info-position-title mt-2">
+          <app-aw-badge color="primary">
+            {{ interview.title }}
+          </app-aw-badge>
+        </p>
+      </div>
+      <!-- ./ Profile Info -->
+    </div>
+  </mat-card-content>
+</mat-card>

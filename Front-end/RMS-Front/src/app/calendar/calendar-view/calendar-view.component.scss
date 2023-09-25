@@ -1,0 +1,94 @@
+.calendar-size {
+  width: calc(100vw - 383px);
+  height: 75vh;
+}
+
+:host ::ng-deep {
+
+  .fc-header-toolbar {
+    color: var(--aw-text-primary);
+    padding: 20px 0 0 0;
+  }
+
+  .fc-button {
+    background-color: var(--aw-text-primary) !important;
+    border-color: white !important;
+  }
+
+  .fc-event-main :hover {
+    cursor: pointer;
+    background-color: #f9f9f9;
+    color: black;
+    border: none;
+  }
+
+  .fc-day-sat, .fc-day-sun {
+    background-color: #ffe5e5;
+    color: red;
+    width: 8% !important;
+  }
+
+  .fc-col-header {
+    color: black;
+    .fc-day-sat, .fc-day-sun {
+      background-color: #ffe5e5;
+      color: red;
+    }
+  }
+
+
+  .fc-toolbar-chunk:nth-child(1) {
+    font-family: var(--aw-font-primary);
+    .fc-button  {
+      margin: 2px 2px 2px 0;
+      background-color: var(--aw-text-secondary) !important;
+      border-color: white !important;
+      height: 40px;
+      border-radius: 15px !important;
+    }
+
+    .fc-button:nth-child(3) {
+      background-color: var(--aw-text-secondary) !important;
+      text-transform: capitalize;
+      border-color: white !important;
+      height: 40px;
+      width: 120px;
+      margin-left: 25px !important;
+      border-radius: var(--aw-border-radius-size) !important;
+    }
+
+  }
+
+  .fc-toolbar-chunk:nth-child(2){
+    text-transform: uppercase !important;
+  }
+
+  .fc-toolbar-chunk:nth-child(3) {
+
+    .fc-button {
+      height: 40px;
+      width: 120px;
+      border-radius: var(--aw-border-radius-size) !important;
+      background-color: #598ede !important;
+      margin: 2px 2px 2px 0;
+      &click {
+        border: none;
+      }
+    }
+
+    .fc-button-active {
+      background-color: var(--aw-text-secondary) !important;
+    }
+  }
+
+  .fc-event{
+    border: none;
+    .fc-event-main-frame {
+      color: var(--aw-bg-secondary-light) !important;
+      background-color: var(--aw-text-light-blue) !important;
+      border: 1px white solid;
+    }
+  }
+
+
+}

@@ -1,0 +1,127 @@
+.let-right {
+  position: absolute;
+  right: 0;
+  top: 20%;
+}
+
+.brand-text{
+  font-family: var(--aw-font-primary) !important;
+  font-weight: var(--aw-font-weight-medium);
+  margin-left: 20px;
+}
+
+.top-sidebar{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: row;
+}
+
+.main-sidebar {
+  z-index: 999;
+  border-right: solid white 1px ;
+  box-shadow: 0 14px 28px rgb(59 130 246 / 23%), 0 10px 10px rgb(59 130 246 / 0%) !important;
+  a {
+    color: var(--aw-text-white);
+  }
+}
+
+.parent-menu {
+  color: #3174c3 !important;
+}
+
+.child-menu {
+  background-color: #ffffff;
+}
+
+.child-menu button {
+  font-size: .7rem;
+  padding-left: 2.2rem;
+  transition: padding-left .3s ease;
+}
+
+.child-menu .mat-icon {
+  font-size: 1rem;
+  vertical-align: sub;
+}
+
+.hidden-menu {
+  visibility: hidden;
+  display: none;
+}
+
+.sidebar {
+  background: #FFFFFF;
+}
+
+.brand-link {
+  padding: 17.5px 0 15px 7px;
+  background: var(--aw-bg-secondary) !important;
+}
+
+:host ::ng-deep {
+  .main-sidebar{
+    width: 300px;
+  }
+
+  .sidebar {
+    .mat-button {
+      line-height: 50px;
+      border-radius: 15px;
+      margin-top: 5px;
+      .menu-name {
+        font-family: var(--aw-font-primary) !important;
+        font-size: var(--aw-font-size-btn);
+        margin-left: 10px;
+      }
+    }
+
+
+    .menu-icon {
+      margin-left: 1px;
+      height: 30px;
+      width: 30px;
+      padding: 2.6px;
+      background-color: var(--aw-bg-secondary-light);
+      border-radius: 5px;
+      color: var(--aw-bg-secondary);
+    }
+
+    .child-menu {
+
+
+
+      .mat-button {
+        line-height: 40px;
+        border-radius: 15px;
+        justify-content: center;
+        align-content: center;
+        .menu-name {
+          font-family: var(--aw-font-primary) !important;
+          font-size: var(--aw-font-size-btn);
+          margin-left: 10px;
+        }
+      }
+
+      .menu-icon {
+        height: 23px;
+        width: 23px !important;
+        padding: 3.5px;
+        background-color: var(--aw-bg-secondary-light);
+        border-radius: 5px;
+        color: var(--aw-bg-secondary);
+      }
+
+
+    }
+
+
+  }
+
+
+  .expand-icon{
+    margin-right: 1px;
+  }
+
+}
+

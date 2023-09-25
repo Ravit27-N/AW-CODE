@@ -1,0 +1,23 @@
+<form name="config-form" id="config-form" class="pos-relative">
+  <app-loading-indicator [isloading]="('ConfigurationFormComponent'|swIsLoading|async)"></app-loading-indicator>
+  <mat-form-field class="w-100">
+    <mat-label>key</mat-label>
+    <input matInput name="key" [(ngModel)]="model.configKey" [formControl]="validateForm.controls.key" appAutoFocus />
+    <!-- <mat-error *ngIf="validateForm.controls.title.invalid">Title is required</mat-error> -->
+  </mat-form-field>
+
+  <mat-form-field class="w-100">
+    <mat-label>Value</mat-label>
+    <input matInput name="value" [(ngModel)]="model.configValue"/>
+  </mat-form-field>
+
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Short description</mat-label>
+    <textarea rows="2" matInput name="title" [(ngModel)]="model.description"></textarea>
+  </mat-form-field>
+
+  <div class="child-end mt-2">
+    <button mat-flat-button color="warn" (click)="cancel()">Cancel</button>
+    <button mat-flat-button color="primary" type="submit" (click)="save()">Save</button>
+  </div>
+</form>

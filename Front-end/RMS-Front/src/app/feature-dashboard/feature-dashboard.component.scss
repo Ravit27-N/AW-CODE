@@ -1,0 +1,28 @@
+.left-panel {
+  border-right: 1px solid rgba(206, 206, 206, 0.57);
+  overflow: auto;
+  padding-left: 22px;
+}
+
+.section-title {
+  font-family: var(--aw-font-primary);
+  font-weight: var(--aw-font-weight-medium);
+  font-size: 17px;
+}
+
+.resource-demanding {
+  width: 100%;
+  padding: 0 7px;
+}
+
+.quick-access {
+  padding-right: 5px !important;
+}
+
+.reminder-interview .section-title {
+  margin-bottom: 14px;
+}
+
+.interview-graph-horizontal {
+  margin-top: 36px;
+}

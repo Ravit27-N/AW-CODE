@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+
+$allweb-blue: (
+  50: #e4f1fb,
+  100: #bdddf6,
+  200:#95c8f1,
+  300: #6eb2ea,
+  400: #53a2e7,
+  500: #3e93e3,
+  600: #3886d5,
+  700: #1a214d,
+  800: #2b63b0,
+  900: #214691,
+  A100: #8C9EFF,
+  A200: #536DFE,
+  A400: #3D5AFE,
+  A700: #304FFE,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$allweb-secondary: (
+  50: #fef3e2,
+  100: #fde0b6,
+  200: #fccc87,
+  300: #fab758,
+  400: #f9a839,
+  500: #f89a26,
+  600: #f48e23,
+  700: #ed7f20,
+  800: #e6701e,
+  900: #db591b,
+  A100: #ff8a80,
+  A200: #ff5252,
+  A400: #ff1744,
+  A700: #d50000,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text
+  )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$candy-app-primary: mat-palette($allweb-blue, 700, 800, 900);
+$candy-app-accent:  mat-palette($allweb-blue, 700, 800, 900);
+
+// The warn palette is optional (defaults to red).
+$candy-app-warn:    mat-palette($mat-red);
+$candy-app-keqing:   mat-palette($mat-red, 100, 200, 900);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as `color` or `typography`.
+$candy-app-theme: mat-light-theme((
+  color: (
+    primary: $candy-app-primary,
+    accent: $candy-app-accent,
+    warn: $candy-app-warn,
+    keqing: $candy-app-keqing
+  )
+));
+
+
+@mixin custom-theme($config-or-theme) {
+  $config: mat-get-color-config($config-or-theme);
+
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+  $keqing: map-get($config, keqing);
+
+  // Sidebar theme
+  .sidebar .mat-tree {
+    background-color: #ffffff !important;
+  }
+
+  .sidebar .mat-tree .mat-button {
+    color: #666666;
+  }
+
+  .sidebar .mat-tree .mat-button:hover {
+    color: #ffffff;
+    background-color: var(--aw-bg-secondary);
+  }
+
+  .sidebar .mat-tree .mat-button.active {
+    background-color: var(--aw-bg-secondary);
+    color: #ffffff;
+  }
+
+  .main-header {
+    color: mat-color($accent);
+  }
+
+  .mat-button-toggle {
+    color: black;
+    border-bottom: none;
+  }
+  .mat-button-toggle:not(:last-child) {
+    border-right: 1px dashed rgba(184, 179, 179, 0.637);
+  }
+
+.mat-button-toggle-group{
+  border: none;
+}
+  .mat-button-toggle-checked {
+    background-color: mat-color($accent);
+    color: mat-color($accent, default-contrast);
+  }
+
+  .bg-allweb {
+    background-color: var(--aw-bg-secondary);
+    color: mat-color($accent, default-contrast);;
+  }
+
+  .text-allweb {
+    color: mat-color($accent, default-contrast);;
+  }
+
+  .mat-header-cell {
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .mat-snack-bar-container {
+    color: #353A40;
+    background-color: mat-color($accent, default-contrast);
+  }
+
+  .mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+    height: 32px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: mat-color($accent, default-contrast);
+  }
+
+  .mat-list-single-selected-option, .mat-list-single-selected-option:hover, .mat-list-single-selected-option:focus {
+    background: mat-color($accent) !important;
+    color: white !important;
+  }
+
+  .simple-table th {
+    background-color: mat-color($accent);
+    color: white;
+    font-weight: 400;
+  }
+
+  .check-filter-group label.mat-checkbox-layout {
+    margin-bottom: 0 !important;
+  }
+
+ .mat-checkbox-label {
+  font-weight: normal;
+ }
+
+  .mat-column-action .mat-icon-button, .action-group-button .mat-icon-button {
+    width: 34px !important;
+    height: 38px !important;
+  }
+
+  button.fc-button-primary {
+    background-color: mat-color($accent) !important;
+    outline: none;
+  }
+
+  button.fc-button-primary:active {
+    border: none;
+    outline: none;
+  }
+
+  /** keep this for calendar **/
+  // .fc-daygrid .fc-day-today.x-calendar-cell {
+  //   background-color: mat-color($accent, 200) !important;
+  //   color: mat-color($accent, default-contrast);
+  // }
+
+  // .x-calendar-cell:hover {
+  //   background-color: mat-color($accent, 100);
+  //   color: mat-color($accent, default-contrast, 900);
+  // }
+
+    .mat-header-center {
+      text-align: center !important;
+    }
+    .mat-header-center .mat-sort-header-container  {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .progress-show .mat-progress-bar-buffer {
+      background-color: #ffffff;
+    }
+
+    .overlay-scrollable {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+}
+
+@mixin sidebar-theme($theme) {
+  $color: mat-get-color-config($theme);
+
+  @if $color != null {
+    @include custom-theme($color);
+  }
+}
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($candy-app-theme);
+@include sidebar-theme($candy-app-theme)

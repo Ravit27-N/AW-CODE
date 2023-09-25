@@ -1,0 +1,75 @@
+.aw-profile {
+  box-shadow: 0 6px 30px rgba(182, 186, 203, 0.3);
+  padding: 8px;
+  border-radius: 10px;
+
+  &-body {
+    transition: box-shadow 0.2s ease-in-out;
+    position: relative;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffffff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, 0.125);
+    border-radius: 10px;
+    cursor: pointer;
+
+    &-detail {
+
+      span {
+        padding: 5px 0;
+        font-weight: bold;
+        color: var(--aw-text-gray);
+      }
+
+      span:first-child {
+        color: rgba(0,0,0,.87);
+        font-size: 14px;
+      }
+
+      span:last-child {
+        color: var(--aw-text-primary-dark);
+      }
+
+      @media (max-width: 1366px) {
+        span {
+          font-size: 0.875em !important;
+        }
+      }
+    }
+
+    .aw-profile-list {
+      padding: 16px 8px;
+      border-radius: 10px;
+
+      @media (max-width: 1366px) {
+        padding: 18px 8px;
+
+        &-fisrt, &-second, &-third {
+          span {
+            font-size: 0.875em !important;
+          }
+        }
+
+        &-first {
+          flex: 0 0 41.666667%;
+          max-width: 41.666667%;
+        }
+
+        &-second {
+          flex: 0 0 25%;
+          max-width: 25%;
+        }
+
+        &-third {
+          flex: 0 0 33.333333%;
+          max-width: 33.333333%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1366px) {
+    padding: 0;
+  }
+}

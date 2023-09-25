@@ -1,0 +1,46 @@
+<div class="child-between m-0 p-0">
+    <h2 class="mat-h2 m-0 p-0 self-center">{{data.header}}</h2>
+    <button mat-icon-button matTooltip="Close" class="self-center" (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+    <div class="d-flex flex-column">
+        <h4 class="my-2 d-flex" *ngIf="data.common.id">
+            <span class="labeler w-25">ID: </span>
+            <span class="">{{data.common.id}}</span>
+        </h4>
+
+        <h4 class="my-2 d-flex" *ngIf="data.common.name">
+            <span class="labeler w-25">Title: </span>
+            <span>{{data.common.name}}</span>
+        </h4>
+
+        <h4 class="my-2 d-flex" *ngIf="data.common.description">
+            <span class="labeler w-25">description: </span>
+            <quill-view-html class="flex-grow-1" [content]="data.common.description"></quill-view-html>
+        </h4>
+
+        <h4 class="my-2 d-flex" *ngIf="data.common.createdAt">
+            <span class="labeler w-25">Created at: </span>
+            <span>{{data.common.createdAt}}</span>
+        </h4>
+
+        <h4 class="my-2 d-flex" *ngIf="data.common.updatedAt">
+            <span class="labeler w-25">Last modified: </span>
+            <span>{{data.common.updatedAt}}</span>
+        </h4>
+    </div>
+
+    <mat-divider></mat-divider>
+    <h4 class="my-2 d-flex" *ngIf="data.common.active !== undefined">
+        <span class="labeler w-25">Status: </span>
+        <span>{{data.common.active ? 'Active': 'Inactive'}}</span>
+    </h4>
+
+</mat-dialog-content>
+<br>
+<mat-dialog-actions class="child-end">
+    <button mat-raised-button matDialogClose color="warn">Close</button>
+</mat-dialog-actions>

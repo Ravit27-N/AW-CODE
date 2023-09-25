@@ -1,0 +1,74 @@
+<mat-dialog-content class="pos-relative" appCanAccess perm="Activity:edit">
+  <app-loading-indicator [isloading]="('EditActivityComponent'|swIsLoading|async)"></app-loading-indicator>
+  <div class="row">
+    <div class="col">
+      <h2>Update Activity</h2>
+    </div>
+    <div class="col text-right p-0 m-0">
+      <button mat-icon-button matTooltip="Close" [mat-dialog-close]="false" cdkFocusInitial>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <form #form="ngForm">
+
+    <mat-form-field *ngIf="this.activity?.active === true">
+      <mat-label>Status candidate</mat-label>
+      <mat-select [(ngModel)]="activity.status" name="status" #status="ngModel" required appAutoFocus
+        (selectionChange)="onSelectStatusCandidate(activity.status)" tabindex="1">
+        <mat-option *ngFor="let s of statuses" [value]="s.title">
+          {{s.title}}
+        </mat-option>
+      </mat-select>
+      <button mat-button *ngIf="activity.status" matSuffix mat-icon-button aria-label="Clear" tabindex="-1"
+        (click)="clearSelectStatus()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-error *ngIf="status.hasError('required')">
+        <mat-label>This field is required.</mat-label>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="this.activity?.active === undefined || this.activity?.active === false">
+      <mat-label>Status candidate</mat-label>
+      <mat-select [(ngModel)]="activity.status" name="status" #status="ngModel" required
+        (selectionChange)="onSelectStatusCandidate(activity.status)" tabindex="2">
+        <mat-option [value]="activity.status">{{activity.status}}</mat-option>
+        <mat-option *ngFor="let s of statuses" [value]="s.title">
+          {{s.title}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="status.hasError('required')">
+        <mat-label>This field is required.</mat-label>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="box-title">
+      <mat-label>Title</mat-label>
+      <input type="text" matInput placeholder="Title" [(ngModel)]="activity.title" name="title" #title="ngModel"
+        required maxlength="256" tabindex="3">
+      <button mat-button *ngIf="activity.title" matSuffix mat-icon-button aria-label="Clear" (click)="clearTitle()" tabindex="-1">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-error *ngIf="title.hasError('required')">
+        <mat-label>This field is required.</mat-label>
+      </mat-error>
+      <mat-hint *ngIf="title.value" align="end">{{title.value.length}} / 256</mat-hint>
+    </mat-form-field>
+
+    <div class="d-flex flex-column">
+      <mat-label class="label-description mb-1">Description</mat-label>
+      <quill-editor [(ngModel)]="activity.description" name="description" tabindex="4"></quill-editor>
+    </div>
+
+    <div class="child-end mt-4">
+      <app-aw-rich-button [outline]="true" type="danger" [mat-dialog-close]="false" cdkFocusInitial>
+        <span>Cancel</span></app-aw-rich-button>
+      <app-aw-rich-button (click)="onSubmit()" class="ml-3">
+        <span>Update</span>
+      </app-aw-rich-button>
+    </div>
+  </form>
+
+</mat-dialog-content>

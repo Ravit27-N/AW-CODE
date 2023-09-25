@@ -1,0 +1,89 @@
+:host::ng-deep .aw-table td, .aw-table th {
+  &:first-child {
+    min-width: 44px !important;
+  }
+  min-width: 120px !important;
+}
+
+:host::ng-deep td.col-actions {
+  display: flex;
+  justify-content: start;
+  margin-left: -6px !important;
+}
+
+.aw-table {
+  .has-right-border {
+    border-right: 2px solid var(--aw-border-primary-dark);
+  }
+}
+
+.search-box {
+  margin-top: 21px;
+}
+
+:host::ng-deep td:nth-child(5) {
+  span {
+    width: 160px;
+    display: inline-block;
+    margin-top: 4px;
+    padding: 2px 1rem;
+    border-radius: 10px;
+    text-align: start;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.125;
+
+    span {
+      display: none;
+    }
+  }
+
+  .failed {
+    color: var(--aw-text-danger);
+    background: var(--aw-bg-danger-dark);
+  }
+
+  .pass {
+    color: var(--aw-text-secondary);
+    background: var(--aw-bg-secondary-dark);
+  }
+
+  .following {
+    color: var(--aw-text-warning);
+    background: var(--aw-bg-warning-light);
+  }
+
+  .in-progress {
+    color: var(--aw-text-success);
+    background: var(--aw-bg-success-dark);
+  }
+
+  .new-request {
+    color: var(--aw-text-purple);
+    background: var(--aw-bg-purple-dark);
+  }
+
+  mat-icon {
+    cursor: pointer;
+    position: absolute;
+    margin-left: -32px;
+  }
+}
+
+a {
+  color: var(--aw-text-secondary);
+}
+
+.status-button{
+  width: 30%;
+}
+
+::ng-deep {
+  .aw-selection-box-container {
+    width: 240px !important;
+  }
+}

@@ -1,0 +1,36 @@
+<form [formGroup]="form">
+  <div class="child-between m-0 p-0">
+    <h2 class="mat-h2 m-0 p-0 self-center">Add Status Candidate</h2>
+    <button mat-icon-button matTooltip="Close" class="self-center" (click)="onNoClick()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <mat-form-field class="w-100">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" id="title" required tabindex="1" appAutoFocus />
+    <button mat-button *ngIf="form.controls.title.valid" matSuffix mat-icon-button aria-label="Clear" tabindex="-1"
+      (click)="clearTitle()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-error *ngIf="form.controls.title.hasError('required')">
+      Title required
+    </mat-error>
+  </mat-form-field>
+
+  <div class="mt-2">
+    <mat-label class="label-description">Description *</mat-label>
+    <div>
+      <quill-editor formControlName="description" tabindex="2"></quill-editor>
+    </div>
+  </div>
+  <br>
+
+  <mat-slide-toggle formControlName="active" (click)="onChange()">
+    {{slidevalue}}
+  </mat-slide-toggle>
+
+  <div class="child-end mt-2">
+    <button mat-flat-button class="btncancel" (click)="onNoClick()" color="warn" type="button">Cancel</button>
+    <button mat-flat-button color="primary" (click)="btnsave()" [disabled]="form.invalid" tabindex="3">Save</button>
+  </div>
+</form>

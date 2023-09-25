@@ -1,0 +1,111 @@
+.aw-btn {
+  border-radius: var(--aw-border-radius-btn);
+  font-family: var(--aw-font-primary);
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 48px;
+  padding: var(--aw-padding-btn);
+  color: var(--aw-text-white);
+  font-weight: var(--aw-font-weight-medium);
+  font-size: var(--aw-font-size-btn);
+  border: none;
+  transition: all 0.3s;
+
+  mat-icon {
+    padding-right: 30px;
+    transform: translateY(11px);
+  }
+
+  &.aw-btn-primary {
+    color: var(--aw-text-white);
+    background: var(--aw-bg-secondary);
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &.aw-btn-warning {
+    color: var(--aw-text-white) !important;
+    background: var(--aw-bg-warning) !important;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &.aw-btn-danger {
+    color: var(--aw-text-white) !important;
+    background: var(--aw-bg-danger) !important;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &.aw-btn-success {
+    color: var(--aw-text-white) !important;
+    background: var(--aw-bg-success) !important;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &.aw-btn-outline-primary {
+    color: var(--aw-text-secondary) !important;
+    background: var(--aw-bg-white) !important;
+    border: 2px solid var(--aw-text-secondary) !important;
+
+    &:hover {
+      color: var(--aw-text-white) !important;
+      background: var(--aw-bg-secondary) !important;
+      opacity: 1;
+      border: none !important;
+    }
+  }
+
+  &.aw-btn-outline-warning {
+    color: var(--aw-text-warning) !important;
+    background: var(--aw-bg-white) !important;
+    border: 2px solid var(--aw-text-warning) !important;
+
+    &:hover {
+      color: var(--aw-text-white) !important;
+      background: var(--aw-bg-warning) !important;
+      opacity: 1;
+      border: none !important;
+    }
+  }
+
+  &.aw-btn-outline-danger {
+    color: var(--aw-text-danger) !important;
+    background: var(--aw-bg-white) !important;
+    border: 2px solid var(--aw-text-danger) !important;
+
+    &:hover {
+      color: var(--aw-text-white) !important;
+      background: var(--aw-bg-danger) !important;
+      opacity: 1;
+      border: none !important;
+    }
+  }
+
+  &.aw-btn-outline-success {
+    color: var(--aw-text-success) !important;
+    background: var(--aw-bg-white) !important;
+    border: 2px solid var(--aw-text-success) !important;
+
+    &:hover {
+      color: var(--aw-text-white) !important;
+      background: var(--aw-bg-success) !important;
+      opacity: 1;
+      border: none !important;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

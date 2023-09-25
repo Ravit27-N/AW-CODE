@@ -1,0 +1,29 @@
+<div class="wrapper mt-2">
+  <article class='d-flex flex-row justify-content-between'>
+
+    <header class="page-header mr-5">
+      <app-aw-breadcrumb></app-aw-breadcrumb>
+      <app-aw-page-header>{{ pageTitle }}</app-aw-page-header>
+      <app-aw-page-sub-header>{{ pageSubtitle }}</app-aw-page-sub-header>
+    </header>
+
+    <main class="d-flex flex-column justify-content-end align-self-center">
+      <section class="d-flex justify-content-end">
+        <ng-content select="[slot='action-buttons']"></ng-content>
+      </section>
+    </main>
+  </article>
+  <mat-divider class="common-mat-divider"></mat-divider>
+
+
+  <article>
+    <ng-content select="[slot='page-filter']"></ng-content>
+    <ng-content select="[slot='page-table']"></ng-content>
+    <ng-content select="[slot='page-pagination']"></ng-content>
+  </article>
+
+<!--  DEFAULT SLOT-->
+  <article>
+    <ng-content></ng-content>
+  </article>
+</div>

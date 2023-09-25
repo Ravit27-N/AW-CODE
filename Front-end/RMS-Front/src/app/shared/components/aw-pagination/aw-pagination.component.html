@@ -1,0 +1,35 @@
+<div class="my-2">
+  <div class="d-flex justify-content-center mb-2" *ngIf="totalPageCount > 1">
+    <span *ngIf="length > pageSize" class="page-note page-note-nav cursor-pointer" (click)="navigateToPreviousPage()">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </span>
+    <!-- ./Arrow left -->
+
+    <span *ngFor="let item of getPageRange()"
+          (click)="tryToMove(item)"
+          [ngClass]="{'active': item === pageIndex}"
+          class="page-note page-note-item rounded">
+      {{ item }}
+    </span>
+    <!-- ./Range number -->
+
+    <span *ngIf="length > pageSize"
+          (click)="navigateToNextPage()"
+          class="page-note page-note-nav cursor-pointer">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </span>
+    <!-- ./Arrow right -->
+
+    <form [ngClass]="{'d-none': !isShowPageInputBox || totalPageCount <= 1}"
+          [formGroup]="formGroup"
+          (ngSubmit)="submitPageInput()">
+      <input formControlName="gotoPage"
+             class="input-page-number"
+             type="number"/>
+    </form>
+    <!-- ./Input destination page -->
+  </div>
+
+  <div class="message" *ngIf="hasFilter || length">Total: {{ length }}</div>
+  <div class="message" *ngIf="!hasFilter && !length">No data</div>
+</div>

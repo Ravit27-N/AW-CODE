@@ -1,0 +1,94 @@
+<div class="container-fluid mb-2" appCanAccess perm="Interview:view">
+  <h1 class="mat-h1">Interview</h1>
+
+  <div class="d-flex justify-content-between mb-2">
+    <app-filter-group value="All" [items]="interviewFilters" (onchange)="applyfilter($event)"></app-filter-group>
+    <button appCanAccess perm="Interview:add" mat-raised-button color="primary" routerLink="/admin/interview/create"><i class="fas fa-plus"></i>
+      Add</button>
+  </div>
+
+  <div class="d-flex flex-nowrap justify-content-between align-items-center">
+    <div class="check-filter-group">
+      Filter:
+      <mat-checkbox *ngFor="let item of filterByStatus" [checked]="item.checked" class="mx-2" [name]="item.status.name"
+        (change)="doCheck(item.status.id, $event.checked)"
+        [value]="item.status.id">
+        {{item.status.name}}
+      </mat-checkbox>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input matInput #input (keyup)="searchTerm$.next($event.target.value)">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="mat-elevation-z8 my-2 pos-relative">
+    <app-loading-indicator [isloading]="('interview'|swIsLoading|async)"></app-loading-indicator>
+    <table mat-table [dataSource]="interviews" matSort class="w-100">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef class="col-id"> No. </th>
+        <td mat-cell *matCellDef="let row; let index;let i = index;"> {{i+1}}</td>
+      </ng-container>
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Apply for </th>
+        <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+        <td class="cell-description" mat-cell *matCellDef="let row">
+          <quill-view class="" [content]="row.description"></quill-view>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="candidate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Candidate </th>
+        <td mat-cell *matCellDef="let row"> <a [routerLink]="'/admin/candidate/candidateDetail/' + row.candidate.id">{{row.candidate.fullName}}</a> </td>
+      </ng-container>
+      <ng-container matColumnDef="dateTime">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-center"> Date & Time </th>
+        <td mat-cell *matCellDef="let row" class="mat-header-center"> {{row.dateTime | awDateFormat}} </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef class="col-status mat-header-center"> Status </th>
+        <td mat-cell *matCellDef="let row" class="mat-header-center">
+          <button class="status-button" disableRipple="true" mat-flat-button
+            [matMenuTriggerFor]="menu">{{row.status}} <span>&#9662;</span></button>
+          <mat-menu class="m-0 p-0" #menu="matMenu">
+            <button *ngFor="let item of statusInterview" mat-menu-item
+              (click)="changeStatus(row, item)">{{item.name}}</button>
+          </mat-menu>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="md-action-group mat-header-center"> Action </th>
+        <td mat-cell *matCellDef="let row" class="action-group-button mat-header-center">
+          <button *ngIf="row.hasResult === false" mat-icon-button matTooltip="Add result" (click)="seeResult(row)">
+            <mat-icon>wysiwyg</mat-icon>
+          </button>
+          <button *ngIf="row.hasResult === true" mat-icon-button color="primary" matTooltip="Change result"
+            (click)="seeResult(row)">
+            <mat-icon>wysiwyg</mat-icon>
+          </button>
+          <button appCanAccess perm="Reminder:add|edit" mat-icon-button matTooltip="Set reminder" (click)="setReminder(row.id)">
+            <mat-icon>add_alert</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" matTooltip="View" (click)="view(row)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button appCanAccess perm="Interview:edit" mat-icon-button color="primary" matTooltip="Edit" (click)="edit(row)">
+            <mat-icon>drive_file_rename_outline</mat-icon>
+          </button>
+          <button appCanAccess perm="Interview:delete" mat-icon-button color="warn" matTooltip="Delete" (click)="delete(row)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="resultLength" [pageSizeOptions]="paginationSize"></mat-paginator>
+  </div>
+
+</div>

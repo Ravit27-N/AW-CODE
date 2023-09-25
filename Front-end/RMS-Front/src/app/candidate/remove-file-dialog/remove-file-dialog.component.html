@@ -1,0 +1,16 @@
+<mat-dialog-content mat-dialog-content>
+  <div class="d-flex flex-row justify-content-between">
+    <h2 class="flex-grow-1 text-center">Remove File</h2>
+    <button mat-icon-button matTooltip="Close" [mat-dialog-close]="false" cdkFocusInitial>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+   <div class="text-center">
+    <p>Are you sure you want to remove this file?</p>
+    <p class="labeler">{{this.dailogData.filename}}</p>
+   </div>
+</mat-dialog-content>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="warn" mat-dialog-close class="mb-2">Cancel</button>
+    <button mat-raised-button color="primary" mat-dialog-close class="mb-2" (click)="ok()">Ok</button>
+</div>

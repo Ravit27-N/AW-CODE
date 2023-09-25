@@ -1,0 +1,141 @@
+:host::ng-deep .aw-table td, .aw-table th {
+  &:first-child {
+    min-width: 86px !important;
+  }
+  min-width: 120px !important;
+}
+
+:host::ng-deep td.col-actions {
+  display: flex;
+  justify-content: start;
+  margin-left: -6px !important;
+}
+
+.aw-table {
+  .has-right-border {
+    border-right: 2px solid var(--aw-border-primary-dark);
+  }
+
+  td {
+    &:first-child {
+      width: 10px;
+    }
+  }
+}
+
+:host::ng-deep tr {
+  th:nth-child(2) {
+    width: 20%;
+  }
+
+  td:nth-child(2) {
+    max-width: 30px;
+
+    a {
+      max-width: 500px;
+      display: inline-block;
+      margin-top: 2px;
+    }
+  }
+
+  th:nth-child(3) {
+    width: 20%;
+
+    div {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  td:nth-child(3) {
+    text-align: center;
+
+    span {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 2px 1rem;
+      width: 60%;
+
+      @media (max-width: 2250px) {
+        font-size: 13px;
+        width: 65%;
+      }
+      @media (max-width: 1820px) {
+        width: 85%;
+      }
+      @media (max-width: 1560px) {
+        font-size: 12px;
+        width: 90%;
+      }
+      @media (max-width: 1366px) {
+        width: 95%;
+      }
+    }
+  }
+
+  th:nth-child(4) {
+    width: 30%;
+
+    div {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  td:nth-child(4) {
+    text-align: center;
+  }
+
+  td:nth-child(5) {
+    max-width: 25px;
+  }
+}
+
+.search-box {
+  margin-top: 21px;
+}
+
+.pass {
+  padding: 4px 1rem;
+  border-radius: 10px;
+  background: var(--aw-bg-secondary-dark);
+  color: var(--aw-text-secondary);
+  width: 138px;
+  text-align: center;
+}
+
+.failed {
+  padding: 4px 1rem;
+  border-radius: 10px;
+  background: var(--aw-bg-danger-dark);
+  color: var(--aw-text-danger);
+  width: 138px;
+  text-align: center;
+}
+
+.following {
+  padding: 4px 1rem;
+  border-radius: 10px;
+  background: var(--aw-bg-warning-light);
+  color: var(--aw-text-warning);
+  width: 138px;
+  text-align: center;
+}
+
+.in-progress {
+  padding: 4px 1rem;
+  border-radius: 10px;
+  background: var(--aw-bg-success-dark);
+  color: var(--aw-text-success);
+  width: 138px;
+  text-align: center;
+}
+
+.new-request {
+  padding: 4px 1rem;
+  border-radius: 10px;
+  background: var(--aw-bg-purple-dark);
+  color: var(--aw-text-purple);
+  width: 138px;
+  text-align: center;
+}

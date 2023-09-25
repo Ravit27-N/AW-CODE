@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <h1 class="mat-h1 pl-2">Universities</h1>
+
+  <div class="d-flex justify-content-end my-2">
+    <button class="float-right" mat-flat-button color="primary" (click)="add()">
+      <em class="fas fa-plus"></em>
+      Add
+    </button>
+  </div>
+
+  <div class="d-flex justify-content-end">
+    <mat-form-field>
+      <mat-label>Seach</mat-label>
+      <input matInput [(ngModel)]="search" (keyup)="applyFilter($event)">
+      <button mat-button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="clear()" tabindex="-1">
+        <mat-icon matSuffix>close</mat-icon>
+      </button>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="mat-elevation-z2 pos-relative">
+    <app-loading-indicator [isloading]="('university'|swIsLoading|async)"></app-loading-indicator>
+    <table mat-table [dataSource]="dataSource" matSort class="w-100" aria-label="University">
+      <ng-container matColumnDef="#">
+        <th mat-header-cell *matHeaderCellDef class="col-id " id="id"> # </th>
+        <td mat-cell *matCellDef="let row, let i = index;"> {{paginator.pageIndex * paginator.pageSize + i + 1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="page()" scope="col"> Name </th>
+        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="page()" scope="col" class="w-50"> Address </th>
+        <td mat-cell *matCellDef="let row">
+          <p [line-truncation]="1" [innerHTML]="row.address" ></p>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef class="mat-header-center" scope="col"> Created At </th>
+        <td mat-cell *matCellDef="let row" class="mat-header-center">{{row.createdAt|awDateFormat }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="sm-action-group mat-header-center" scope="col">Action</th>
+        <td mat-cell *matCellDef="let row" class="action-group-button mat-header-center">
+          <button mat-icon-button color="primary" (click)="openDialog(this.row)">
+            <mat-icon>remove_red_eye</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" (click)="openEdit(this.row)" class="editbtn">
+            <mat-icon>drive_file_rename_outline</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="delete(row)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell mat-cell-not-found" colspan="5">No Data in University</td>
+      </tr>
+    </table>
+
+    <mat-paginator [length]="length" [pageSizeOptions]="paginationSize" showFirstLastButtons></mat-paginator>
+  </div>
+
+</div>

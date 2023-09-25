@@ -1,0 +1,11 @@
+.mat-row {
+  height: auto;
+}
+
+.mat-cell {
+  padding: 8px 8px 8px 0;
+}
+table {
+  overflow-x: auto;
+  overflow-y: hidden;
+}

@@ -1,0 +1,27 @@
+<div class="d-flex align-self-stretch widget-wrapper">
+  <div class="list-view px-2">
+    <mat-selection-list #roleSelection [multiple]="false" class="allweb-selection-list">
+      <div mat-subheader class="d-flex justify-content-between bg-white">
+        <span>Roles :</span>
+        <button appCanAccess perm="User:add" mat-icon-button color="primary" (click)="create()">
+          <mat-icon>add_circle</mat-icon>
+        </button>
+      </div>
+      <mat-list-option *ngFor="let role of userRoles" [value]="role">
+        <mat-icon mat-list-icon>vpn_key</mat-icon>
+        {{role.name}}
+      </mat-list-option>
+    </mat-selection-list>
+
+    <mat-paginator [pageSizeOptions]="paginationSize" [length]="resultLength"></mat-paginator>
+  </div>
+
+  <div class="flex-grow-1">
+    <mat-card>
+      <mat-card-content>
+        <app-role-form (onsuccess)="loadUserRole()" (ondelete)="clearSelect()" [editMode]="true"
+          [userRole]="roleSelection.selectedOptions.selected[0]?.value"></app-role-form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+:host::ng-deep .aw-table td, .aw-table th {
+  &:first-child {
+    min-width: 40px !important;
+  }
+
+  min-width: 120px !important;
+}
+
+:host::ng-deep td.col-actions {
+  display: flex;
+  justify-content: start;
+  margin-left: -6px !important;
+}
+
+.aw-table {
+  .table-user {
+    margin-top: 40px;
+    border-radius: 10px;
+    box-shadow: 0 1px 9px #7492c447 !important;
+
+    .has-right-border {
+      border-right: 2px solid var(--aw-border-primary-dark);
+    }
+  }
+}
+
+.search-box {
+  margin-top: 21px;
+}

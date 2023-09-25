@@ -1,0 +1,218 @@
+<header class="d-flex justify-content-between flex-wrap">
+  <h3 class="section-title">Resource Demanding</h3>
+
+  <main class="d-flex flex-column justify-content-end align-self-center ml-3">
+    <section class="d-flex justify-content-end">
+      <app-aw-rich-button
+        width="200px"
+        type="danger"
+        (click)="fetchArchive()"
+        [outline]="!isArchive"
+      >
+        <mat-icon>archive</mat-icon>
+        <span>Archive</span>
+      </app-aw-rich-button>
+
+      <app-aw-rich-button width="200px" (click)="addDemand()" class="ml-3">
+        <mat-icon>add</mat-icon>
+        <span>Add</span>
+      </app-aw-rich-button>
+    </section>
+  </main>
+</header>
+
+<div class="row d-flex justify-content-center">
+  <div class="resource-demanding-container">
+    <section class="aw-table">
+      <div class="table-demand">
+        <div class="width-full overflow-auto">
+          <table
+            mat-table
+            matSort
+            [dataSource]="demandTableDatasource"
+            matSortDisableClear
+          >
+            <!-- COLUMN NO -->
+            <ng-container matColumnDef="no">
+              <th mat-header-cell *matHeaderCellDef>{{ "No." }}</th>
+              <td mat-cell *matCellDef="let row">{{ row.no }}</td>
+            </ng-container>
+
+            <!-- COLUMN PROJECT NAME -->
+            <ng-container matColumnDef="project">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                arrowPosition="after"
+              >
+                {{ "Project Name" }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <a [routerLink]="'/admin/demand/detail/'+ row?.project?.id">{{ row.project.name }}</a>
+              </td>
+            </ng-container>
+
+            <!-- COLUMN POSITION -->
+            <ng-container matColumnDef="jobDescription">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                arrowPosition="after"
+              >
+                {{ "Position" }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{ row.jobDescription.title }}
+              </td>
+            </ng-container>
+
+            <!-- COLUMN QUANTITY -->
+            <ng-container matColumnDef="qty">
+              <th mat-header-cell *matHeaderCellDef>{{ "QTY" }}</th>
+              <td mat-cell *matCellDef="let row">{{ row.nbRequired }}</td>
+            </ng-container>
+
+            <!-- COLUMN EXPERIENCE LEVEL -->
+            <ng-container matColumnDef="experienceLevel">
+              <th mat-header-cell *matHeaderCellDef>{{ "Exp. Level" }}</th>
+              <td mat-cell *matCellDef="let row">{{ row.experienceLevel }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="deadLine">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                arrowPosition="after"
+              >
+                {{ "Deadline" }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <app-aw-badge
+                  [color]="getWarningDate(row.deadLine)"
+                  [title]="getRemandDeadlineMessage(row.deadLine)"
+                >
+                  {{ row.deadLine | awDateNoTimeFormat }}
+                </app-aw-badge>
+              </td>
+            </ng-container>
+
+            <!-- COLUMN RESOURCE -->
+            <ng-container matColumnDef="resources">
+              <th mat-header-cell *matHeaderCellDef>{{ "Resources" }}</th>
+              <td mat-cell *matCellDef="let row">
+                <app-aw-increment
+                  [value]="row.resources.length"
+                  [disabled]="isArchive || !row.status"
+                  (addEvent)="increaseResource(row.resources, row.id, row.nbRequired)"
+                >
+                </app-aw-increment>
+              </td>
+            </ng-container>
+
+            <!-- COLUMN STATUS -->
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>{{ "Status" }}</th>
+              <td mat-cell *matCellDef="let row">
+                <app-aw-badge color="success" *ngIf="row.status"
+                  >{{'In progress' | uppercase}}</app-aw-badge
+                >
+                <app-aw-badge color="primary" *ngIf="!row.status"
+                  >{{'Completed' | uppercase}}</app-aw-badge
+                >
+              </td>
+            </ng-container>
+
+            <tr
+              mat-header-row
+              *matHeaderRowDef="demandTableColumns; sticky: true"
+            ></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; let i = index; columns: demandTableColumns"
+              [class.row-selected]="false"
+            ></tr>
+            <tr class="mat-row no-data-row" *matNoDataRow>
+              <td
+                class="mat-cell no-data-cell"
+                [colSpan]="demandTableColumns.length"
+              ></td>
+            </tr>
+          </table>
+
+          <mat-menu
+            #actionMenu="matMenu"
+            class="common-aw-menu aw-mat-menu"
+            xPosition="before"
+          >
+            <ng-template matMenuContent let-rowId="id">
+              <button
+                mat-menu-item
+                (click)="restoreFromArchive(rowId)"
+                *ngIf="isArchive"
+              >
+                <div
+                  class="d-flex flex-row justify-content-start align-items-center"
+                >
+                  <mat-icon class="action-icon">history</mat-icon>
+                  <span class="action-label">Restore</span>
+                </div>
+              </button>
+              <!-- ./Restore demand -->
+
+              <button
+                mat-menu-item
+                (click)="addToArchive(rowId)"
+                *ngIf="!isArchive"
+              >
+                <div
+                  class="d-flex flex-row justify-content-start align-items-center"
+                >
+                  <img
+                    class="delete-icon mr-2"
+                    src="assets/icons/delete.svg"
+                    alt="delete icon"
+                  />
+                  <span class="cancel-icon">Add to archive</span>
+                </div>
+              </button>
+              <!-- ./Add to archive -->
+
+              <button
+                mat-menu-item
+                (click)="deleteDemandPermanent(rowId)"
+                *ngIf="isArchive"
+              >
+                <div
+                  class="d-flex flex-row justify-content-start align-items-center"
+                >
+                  <img
+                    class="delete-icon mr-2"
+                    src="assets/icons/delete.svg"
+                    alt="delete icon"
+                  />
+                  <span class="cancel-icon">Delete</span>
+                </div>
+              </button>
+              <!-- ./Delete demand -->
+            </ng-template>
+          </mat-menu>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="w-100">
+    <section class="pagination d-flex justify-content-center my-2">
+      <app-aw-pagination
+        [pageIndex]="requestListCriteria.pageIndex"
+        [pageSize]="requestListCriteria.pageSize"
+        [length]="totalDemands"
+        (pageChanged)="pageChangeEvent($event)"
+        [hasFilter]="true"
+      >
+      </app-aw-pagination>
+    </section>
+  </div>
+</div>

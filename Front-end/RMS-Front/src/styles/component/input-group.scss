@@ -1,0 +1,27 @@
+.aw-search-box {
+  width: 231px;
+  padding: 0 10px;
+  height: 40px;
+  background: var(--aw-bg-white);
+  border: 0.5px solid var(--aw-border-secondary);
+  border-radius: 10px;
+  opacity: 1;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+
+  .aw-search-icon {
+    color: var(--aw-text-secondary) !important;
+  }
+
+  input {
+    font: normal 16px/19px Rubik;
+    font-size: var(--aw-font-size-input);
+    font-family: var(--aw-font-primary);
+    letter-spacing: 0;
+    text-align: left;
+    opacity: 1;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent !important;
+  }
+}

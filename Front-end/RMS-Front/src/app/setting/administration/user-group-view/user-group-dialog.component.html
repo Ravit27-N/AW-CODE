@@ -1,0 +1,16 @@
+<div class="child-between m-0 p-0">
+  <h2 class="mat-h2 m-0 p-0 self-center">Create new group</h2>
+  <button mat-icon-button matTooltip="Close" (click)="onNoClick()" class="self-center">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+
+<div class="d-flex flex-column" *ngIf="data">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="data.name" />
+  </mat-form-field>
+</div>
+
+<button mat-flat-button color="primary" type="button" (click)="success()">Save</button>

@@ -1,0 +1,48 @@
+.role-information, .role-privilege {
+  div {
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    margin-bottom: 10px;
+
+    .invalid-description {
+      color: var(--aw-text-danger);
+    }
+  }
+}
+
+.role-privilege {
+  &-checklist {
+    max-height: 810px !important;
+    overflow: auto;
+  }
+}
+
+
+:host::ng-deep {
+
+  .ng-invalid  {
+    .ql-editor, .ql-toolbar {
+      border: 2px solid var(--aw-text-danger);
+    }
+    .ql-editor {
+      border-top: none;
+    }
+  }
+
+  .ng-valid  {
+    .ql-editor, .ql-toolbar {
+      border: 1px solid var(--aw-toolbar-color-gray);
+    }
+  }
+
+  .mat-form-field-flex {
+    height: 40px;
+  }
+
+  .mat-form-field-infix {
+    padding: 4px;
+    font-family: var(--aw-font-primary);
+  }
+}

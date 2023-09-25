@@ -1,0 +1,64 @@
+<div class="pos-relative" appCanAccess perm="Job Description:edit">
+  <app-loading-indicator [isloading]="('UpdateJobComponent'|swIsLoading|async)"></app-loading-indicator>
+  <form [formGroup]="form">
+
+    <div class="child-between m-0 p-0">
+      <h2 class="mat-h2 m-0 p-0 self-center">Update Job Description</h2>
+      <button mat-icon-button matTooltip="Close" class="self-center" (click)="onNoClick()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <mat-form-field class="w-100">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" id="title" required tabindex="1" appAutoFocus />
+      <button mat-button *ngIf="form.controls.title.value" matSuffix mat-icon-button aria-label="Clear"
+        (click)="clearName()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-error *ngIf="form.controls.title.hasError('required')">
+        Title required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="mt-2">
+      <mat-label class="label-body">
+        description
+      </mat-label>
+      <hr class="my-2">
+      <div>
+        <quill-editor formControlName="description" tabindex="2"></quill-editor>
+      </div>
+    </div>
+    <br>
+    <strong>Upload File :</strong>
+    <div class="mt-3">
+      <mat-chip-list>
+        <mat-chip *ngIf="form.controls.filename.value" color="primary" selected [removable]="removable"
+          (removed)="removeFile()" class="chips-new-line-100 chip" (click)="viewFile()">
+          <mat-icon  >{{this.getFileIcon(form.controls.filename.value)}}</mat-icon>
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+
+
+    <br *ngIf="!afterRemove">
+    <mat-slide-toggle class="my-1 mb-3" formControlName="active" (click)="onChange()">
+      {{slideValue}}
+    </mat-slide-toggle>
+
+    <div class="child-end mt-2">
+      <button mat-flat-button class="btncancel" color="warn" type="button" (click)="onNoClick()">Cancel</button>
+      <div class="">
+        <button mat-flat-button color="primary" (click)="btnsave()" [disabled]="form.invalid" type="submit" tabindex="3"
+          class="savebutton">Save</button>
+        <button mat-flat-button color="primary" (click)="UploadFileInput.click()" class="float-right" [disabled]="!(form.controls.filename.value === '')" tabindex="4" >
+          Attach
+        </button>
+        <input type="file" #UploadFileInput (change)="fileUpload($event)" hidden accept=".pdf" />
+      </div>
+    </div>
+
+  </form>
+</div>

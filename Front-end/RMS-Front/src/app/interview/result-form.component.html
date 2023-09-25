@@ -1,0 +1,115 @@
+<div class="pos-relative">
+  <app-loading-indicator [isloading]="('ResultFormComponent'|swIsLoading|async)"></app-loading-indicator>
+
+  <form name="result-form" id="result-form" [formGroup]="validateForm">
+    <h2 class="mat-h2 m-0 my-3">Technical Interview</h2>
+
+
+    <div class="d-flex">
+      <mat-form-field class="w-50 mr-3">
+        <mat-label>Quiz</mat-label>
+        <input [(ngModel)]="model.quizScore" [formControl]="validateForm.controls.quizScore" name="quiz-score"
+               type="number" matInput placeholder="Score" tabindex="1"/>
+        <mat-error *ngIf="validateForm.controls.quizScore || validateForm.controls.quizMax">Quiz score/max are required
+          and must not exceed maximum value
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-50">
+        <input [(ngModel)]="model.quizMax" type="number" name="quiz-max" [formControl]="validateForm.controls.quizMax"
+               placeholder="Max Score" matInput step="5"/>
+        <mat-error *ngIf="validateForm.controls.quizMax">Quiz score/max are required
+          and must not exceed maximum value
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="d-flex">
+      <mat-form-field class="w-50 mr-3">
+        <mat-label>Coding</mat-label>
+        <input [(ngModel)]="model.codeScore" [formControl]="validateForm.controls.codeScore" name="code-score"
+               type="number" matInput placeholder="Score" tabindex="2"/>
+        <mat-error *ngIf="validateForm.controls.codeScore">Core score/max are required
+          and must not exceed maximum value
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-50">
+        <input [(ngModel)]="model.codeMax" type="number" placeholder="Max score"
+               [formControl]="validateForm.controls.codeMax"
+               name="code-max" matInput step="5"/>
+        <mat-error *ngIf="validateForm.controls.codeMax">Core score/max are required
+          and must not exceed maximum value
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="d-block m-0">
+      <mat-label>Average</mat-label>
+      <div class="d-flex">
+        <input [formControl]="validateForm.controls.avarage" [value]="calcAverage | number:'2.2-5'" name="average"
+               type="number" matInput tabindex="3"/>
+      </div>
+    </mat-form-field>
+
+    <h2 class="mat-h2 m-0 my-3">HR Interview</h2>
+
+    <mat-form-field class="m-0">
+      <mat-label>English</mat-label>
+      <mat-select name="english" [(ngModel)]="model.english" [ngModelOptions]="standaloneOption" tabindex="4">
+        <mat-option value="Poor">Poor</mat-option>
+        <mat-option value="Fair">Fair</mat-option>
+        <mat-option value="Good">Good</mat-option>
+        <mat-option value="Very Good">Very Good</mat-option>
+        <mat-option value="Excellant">Excellant</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="m-0">
+      <mat-label>Logical</mat-label>
+      <mat-select name="logical" [(ngModel)]="model.logical" [ngModelOptions]="standaloneOption" tabindex="5">
+        <mat-option value="Poor">Poor</mat-option>
+        <mat-option value="Fair">Fair</mat-option>
+        <mat-option value="Good">Good</mat-option>
+        <mat-option value="Very Good">Very Good</mat-option>
+        <mat-option value="Excellant">Excellant</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field class="m-0">
+      <mat-label>Flexibility</mat-label>
+      <mat-select name="flex" [(ngModel)]="model.flexibily" [ngModelOptions]="standaloneOption" tabindex="6">
+        <mat-option value="Poor">Poor</mat-option>
+        <mat-option value="Fair">Fair</mat-option>
+        <mat-option value="Good">Good</mat-option>
+        <mat-option value="Very Good">Very Good</mat-option>
+        <mat-option value="Excellant">Excellant</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="m-0">
+      <mat-label>Oral question</mat-label>
+      <mat-select name="qa" [(ngModel)]="model.qa" [ngModelOptions]="standaloneOption" tabindex="7">
+        <mat-option value="Poor">Poor</mat-option>
+        <mat-option value="Fair">Fair</mat-option>
+        <mat-option value="Good">Good</mat-option>
+        <mat-option value="Very Good">Very Good</mat-option>
+        <mat-option value="Excellant">Excellant</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-label class="label-description">Description</mat-label>
+    <div>
+      <quill-editor name="remark" [(ngModel)]="model.remark" [ngModelOptions]="standaloneOption"
+                    tabindex="8"></quill-editor>
+    </div>
+
+    <div class="child-end p-0 footer-button">
+      <app-aw-rich-button [outline]="true" type="danger" (click)="cancel()">
+        <span>Cancel</span></app-aw-rich-button>
+      <app-aw-rich-button (click)="saveChange()" class="ml-3">
+        Update
+      </app-aw-rich-button>
+    </div>
+  </form>
+</div>

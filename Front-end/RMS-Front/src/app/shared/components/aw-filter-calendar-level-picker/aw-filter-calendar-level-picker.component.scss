@@ -1,0 +1,98 @@
+.filters-button {
+  background: var(--aw-bg-secondary) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #9DB2BF1A;
+  border-radius: 20px;
+  opacity: 1;
+  height: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+  transition: all 0.3s ease;
+  min-width: 225px;
+
+  .material-icons{
+    color: var(--aw-text-white);
+    opacity: 1;
+  }
+
+  &:hover{
+    cursor: pointer;
+    background-color: rgba(59, 130, 246, 0.9);
+  }
+}
+
+.btn-dropdown-label{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sortValue {
+  font: var(--aw-font-style-normal) normal var(--aw-font-weight-medium) var(--aw-font-size-14)/var(--aw-line-spacing-17) var(--aw-font-family-rubik);
+  letter-spacing: var(--aw-character-spacing-0);
+  color: var(--aw-color-ffffff);
+  opacity: 1;
+  padding-left: 11px;
+  padding-right: 5px;
+}
+
+.menu-content {
+  background: var(--aw-color-ffffff) 0% 0% no-repeat padding-box;
+  border: 1px solid var(--aw-color-f5f5f5);
+  border-radius: 5px;
+  padding: 1rem;
+  width: 500px !important;
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.common-filter-menu-panel {
+  max-width: 500px !important;
+}
+
+.calendar-wrapper {
+  font: var(--aw-font-style-normal) normal var(--aw-font-weight-medium) var(--aw-font-size-14)/var(--aw-line-spacing-17) var(--aw-font-family-rubik);
+  letter-spacing: var(--aw-character-spacing-0);
+  color: var(--aw-color-ffffff);
+}
+
+.separate-date-label {
+  @apply px-2;
+  width: 34px;
+}
+
+span.highLight {
+  color: #feb037;
+}
+
+
+img.highLight {
+  filter: invert(24%) sepia(81%) saturate(2077%) hue-rotate(331deg) brightness(104%) contrast(99%)
+}
+
+img.icon {
+  transform: translateY(-2px);
+}
+
+
+mat-menu{
+  width: 600px !important;
+
+}
+
+
+::ng-deep {
+  [customClass] {
+    .mat-menu-panel {
+      min-width: 112px;
+      max-width: none;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      max-height: calc(100vh - 48px);
+      border-radius: 4px;
+      outline: 0;
+      min-height: 64px;
+    }
+  }
+}

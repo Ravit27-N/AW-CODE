@@ -1,0 +1,108 @@
+.demand-details {
+  margin-left: 40px;
+
+  .project-detail-container {
+    height: 100%;
+    width: 100%;
+    margin: 26px 0;
+
+    .project-detail {
+      font-family: var(--aw-font-primary);
+      width: 32%;
+      color: #4a4a4a;
+      font-weight: 700;
+      font-size: large;
+      margin-bottom: 25px;
+
+      @media (max-width: 1366px) {
+        width: 60% !important;
+      }
+
+      .project-name{
+        display: flex;
+        justify-items: center;
+
+        label, span{
+          color: #0062ad !important;
+        }
+      }
+    }
+
+    .position-detail {
+      width: 100%;
+
+      .position-detail-card {
+        background: #fff 0 0 no-repeat padding-box;
+        box-shadow: 0 1px 9px #8dc2e548;
+        border: 1px solid #e2e2e2;
+        border-radius: 10px;
+        position: relative;
+        word-break: break-word;
+        height: 250px;
+        width: 340px;
+        margin: 0 30px 30px 30px;
+
+        .position-title {
+          padding: 2px 0.5rem;
+          border-radius: 10px;
+          color: #d55d6c;
+          background-color: #f8f3f4;
+          display: inline-block;
+        }
+
+        .candidate-title {
+          font-weight: 700;
+          color: #293077;
+        }
+
+        .dots {
+          height: 150px !important;
+          overflow-y: hidden;
+
+          .container {
+            padding: 15px;
+            display: inline-flex;
+            flex-direction: column;
+            font-weight: 400;
+            height: auto;
+
+            .circle {
+              width: 8px;
+              height: 8px;
+              background: #3b82f6 0 0 no-repeat padding-box;
+              border-radius: 50%;
+            }
+
+            .letter {
+              height: 25px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              color: #007bff !important;
+              margin-left: 15px;
+            }
+
+            .separator {
+              width: 1px;
+              height: 10px;
+              border-radius: 10px;
+              background-color: #bcd5ff;
+              margin-left: 4px;
+              transform: translateX(-50%);
+            }
+          }
+
+          .empty-text {
+            color: #343a40 !important;
+            margin-top: 1rem;
+            display: inline-block;
+          }
+        }
+
+        @media (max-width: 1366px) {
+          width: 316px;
+        }
+      }
+    }
+  }
+}

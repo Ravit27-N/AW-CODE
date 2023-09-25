@@ -1,0 +1,32 @@
+<div class="aw-card">
+  <div class="aw-card-body">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-auto mb-3 mb-sm-0">
+        <div class="d-flex align-items-center">
+          <div
+            [class.aw-bg-primary]="type === 'primary'"
+            [class.aw-bg-warning]="type === 'warning'"
+            [class.aw-bg-success]="type === 'success'"
+            [class.aw-bg-danger]="type === 'danger'"
+            [class.aw-bg-secondary]="type === 'secondary'"
+            [class.aw-bg-passed]="type === 'passed'"
+            [class.aw-bg-failed]="type === 'failed'"
+            class="aw-theme-avtar">
+            <mat-icon>
+              {{ icon }}
+            </mat-icon>
+          </div>
+
+          <div class="ms-3">
+            <small class="aw-text-muted">{{ primaryText }}</small>
+            <h6 class="aw-topic">{{ secondaryText }}</h6>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-auto text-end">
+        <h4 class="m-0 aw-text-primary">{{ thirdText }}</h4>
+      </div>
+    </div>
+  </div>
+</div>

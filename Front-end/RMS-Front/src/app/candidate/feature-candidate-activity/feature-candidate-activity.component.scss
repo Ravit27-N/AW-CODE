@@ -1,0 +1,71 @@
+.candidate-activity-container {
+  cursor: pointer;
+
+  h2 {
+    font-family: inherit !important;
+    margin-bottom: 25px;
+  }
+
+  .candidate-activity-details {
+    box-shadow: 0 1px 9px #7492c447 !important;
+    border-radius: 7px;
+    padding: 18px 36px 7px 12px;
+    margin-bottom: 34px;
+
+    .failed, .pass, .following, .in-progress, .new-request {
+      padding: 2px 0.5rem !important;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .failed {
+      color: var(--aw-text-danger);
+      background-color: var(--aw-bg-danger-lighter)
+    }
+
+    .pass {
+      color: var(--aw-text-secondary);
+      background-color: var(--aw-bg-secondary-dark);
+    }
+
+    .following {
+      color: var(--aw-text-warning);
+      background-color: var(--aw-bg-warning-light);
+    }
+
+    .in-progress {
+      color: var(--aw-text-success);
+      background-color: var(--aw-bg-success-light);
+    }
+
+    .new-request {
+      color: var(--aw-text-purple);
+      background-color: var(--aw-bg-purple-dark);
+    }
+
+    &:last-child {
+      border-bottom: none !important;
+    }
+  }
+
+  .failed-border-left {
+    border-left: 15px solid var(--aw-bg-danger-lighter);
+  }
+
+  .pass-border-left {
+    border-left: 15px solid var(--aw-bg-secondary-dark);
+  }
+
+  .following-border-left {
+    border-left: 15px solid var(--aw-bg-warning-light);
+  }
+
+  .in-progress-border-left {
+    border-left: 15px solid var(--aw-bg-success-light);
+  }
+
+  .new-request-border-left {
+    border-left: 15px solid var(--aw-bg-purple-dark);
+  }
+}

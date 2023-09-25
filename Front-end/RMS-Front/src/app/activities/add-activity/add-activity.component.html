@@ -1,0 +1,73 @@
+<div class="container-fluid pos-relative" appCanAccess perm="Activity:add">
+  <app-loading-indicator [isloading]="('AddActivityComponent'|swIsLoading|async)"></app-loading-indicator>
+  <mat-card>
+    <mat-card-content>
+      <form #form="ngForm">
+        <h1>Add Activity</h1>
+        <mat-form-field class="select">
+          <mat-label>{{this.candidateTitle}}</mat-label>
+          <mat-select [disabled]="disMatSelect" [(ngModel)]="activity.candidateId" name="candidateId" #candidateId="ngModel"
+          appAutoFocus
+          (selectionChange)="onSelectCandidateChange(activity.candidateId)" required tabindex="1">
+            <mat-option>
+              <ngx-mat-select-search placeholderLabel="search name ...."  noEntriesFoundLabel="'no matching data ...'" [(ngModel)]="filterValue" name="filter" (ngModelChange)="applyFilter()" >
+              </ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let c of candidates " [value]="c.id">
+              {{c.fullName}}
+            </mat-option>
+          </mat-select>
+          <button mat-button *ngIf="activity.candidateId" matSuffix mat-icon-button aria-label="Clear" (click)="clearSelectCandidate()" tabindex="-1">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="candidateId.hasError('required')">
+            {{this.validationMessage.requied}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="select">
+          <mat-label>Select status candidate</mat-label>
+          <mat-select [(ngModel)]="activity.status" name="status" #status="ngModel" (selectionChange)="onSelectStatusCandidate(activity.status)" required tabindex="2">
+            <mat-option *ngFor="let s of statuses" [value]="s.title">
+              {{s.title}}
+            </mat-option>
+          </mat-select>
+
+          <button mat-button *ngIf="activity.status" matSuffix mat-icon-button aria-label="Clear" (click)="clearSelectStatus()" tabindex="-1">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="status.hasError('required')">
+            {{this.validationMessage.requied}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="box-title">
+          <mat-label>Title</mat-label>
+          <input type="text" matInput placeholder="Title" [(ngModel)]="activity.title" name="title" #title="ngModel" required maxlength="256" tabindex="2">
+          <button mat-button *ngIf="activity.title" matSuffix mat-icon-button aria-label="Clear" (click)="clearTitle()" tabindex="-1">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="title.hasError('required')">
+            {{this.validationMessage.requied}}
+          </mat-error>
+          <mat-hint *ngIf="title.value" align="end">{{title.value.length}} / 256</mat-hint>
+        </mat-form-field>
+
+        <div class="d-flex flex-column">
+          <mat-label class="label-description mb-1">Description</mat-label>
+          <quill-editor tabindex="3" [(ngModel)]="activity.description" name="description"></quill-editor>
+        </div>
+
+        <div  class="child-end mt-2">
+          <button mat-raised-button color="warn" (click)="back()">Cancel</button>
+          <button type="submit" mat-raised-button color="primary" class="button-save" [disabled]="form.invalid" (click)="onSubmit()" tabindex="4">Save</button>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<button mat-raised-button color="primary" (click)="back()" class="bottom-back-button" tabindex="6">
+  <i class="fas fa-chevron-circle-left mr-1"></i>Back
+</button>

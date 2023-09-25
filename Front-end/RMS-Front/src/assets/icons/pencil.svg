@@ -1,0 +1,14 @@
+<svg id="SvgjsSvg1001" width="17.679" height="17.459" xmlns="http://www.w3.org/2000/svg">
+  <defs id="SvgjsDefs1002"></defs>
+  <g id="SvgjsG1008">
+    <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 512 512" width="17.679" height="17.459">
+      <polygon points="81.991 430.381 170.309 405.556 106.188 341.436 81.991 430.381" fill="#2d6cdf"
+               class="color000 svgShape"></polygon>
+      <path
+        d="M385.891,90.392a30.033,30.033,0,0,0-42.426,0L329.58,104.276l77.35,78.192,14.306-14.3a30.033,30.033,0,0,0,0-42.426Z"
+        fill="#2d6cdf" class="color000 svgShape"></path>
+      <polygon points="113.447 320.409 191.218 398.18 392.788 196.61 315.438 118.419 113.447 320.409" fill="#2d6cdf"
+               class="color000 svgShape"></polygon>
+    </svg>
+  </g>
+</svg>

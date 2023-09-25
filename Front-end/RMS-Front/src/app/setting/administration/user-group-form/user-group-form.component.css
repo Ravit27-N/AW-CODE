@@ -1,0 +1,4 @@
+span.clickable :hover, span.clickable :active {
+  color: #F44336;
+  cursor: pointer;
+}

@@ -1,0 +1,105 @@
+<div class="container-fluid" appCanAccess perm="Company Profile">
+  <h1 class="mat-h1">Company Profile</h1>
+  <mat-card>
+    <mat-card-content class="pos-relative">
+      <app-loading-indicator [isloading]="('company'|swIsLoading|async)"></app-loading-indicator>
+      <div class="row pt-3">
+        <div class="col-sm-2 text-center">
+          <div class="pos-relative">
+            <app-loading-indicator [isloading]="('image'|swIsLoading|async)"></app-loading-indicator>
+            <div class="circle">
+              <img [src]="image" alt="Cover" class="image" crossorigin="use-credentials" (click)="file.click()" />
+            </div>
+          </div>
+          <div class="">
+            <input type="file" hidden #file accept="image/*" (change)="onValueChange($event)">
+            <button mat-raised-button color="primary" class="button-save" (click)="file.click()"
+                    matTooltip="File upload must not more than 1MB">Upload</button>
+          </div>
+        </div>
+        <div class="col-sm-9 ml-3">
+          <form [formGroup]="form" (ngSubmit)="update()">
+            <mat-form-field>
+              <mat-label>Title</mat-label>
+              <input matInput formControlName='title' tabindex="1" appAutoFocus>
+              <button mat-button *ngIf="form.controls.title.valid" matSuffix mat-icon-button (click)="clearTitle()">
+                <mat-icon>close</mat-icon>
+              </button>
+              <mat-error *ngIf="form.controls.title.hasError('required')">
+                Title required
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Address</mat-label>
+              <input matInput formControlName="address" tabindex="2">
+              <button mat-button *ngIf="form.controls.address.valid" matSuffix mat-icon-button (click)="clearAddress()">
+                <mat-icon>close</mat-icon>
+              </button>
+              <mat-error *ngIf="form.controls.address.hasError('required')">
+                Address required
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Telephone</mat-label>
+              <input [textMask]="{mask: mask, guide: false}" placeholder="023 221 320" matInput
+                     formControlName="telephone" minlength="11" maxlength="12" required type="tel" tabindex="3">
+              <button mat-button *ngIf="form.controls.telephone.value" matSuffix mat-icon-button
+                      (click)="clearTelephone()">
+                <mat-icon>close</mat-icon>
+              </button>
+              <mat-error *ngIf="form.controls.telephone.hasError('required')">
+                Telephone required
+              </mat-error>
+              <mat-error *ngIf="form.controls.telephone.hasError('minlength')">
+                Telephones should have 9 charactes up
+              </mat-error>
+              <mat-error *ngIf="form.controls.telephone.hasError('maxlength')">
+                Telephones cannot have 10 character up
+              </mat-error>
+              <mat-error *ngIf="form.controls.telephone.hasError('pattern')">
+                Please enter a valid telephone
+              </mat-error>
+
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" name="email" required tabindex="4"
+                     pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+              <button mat-button *ngIf="form.controls.email.value" matSuffix mat-icon-button (click)="clearEmail()">
+                <mat-icon>close</mat-icon>
+              </button>
+              <mat-error
+                *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required') && form.controls.email.hasError('pattern')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="form.controls.email.hasError('required')">
+                Email required
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Website</mat-label>
+              <input matInput formControlName="website" tabindex="5">
+              <button mat-button *ngIf="form.controls.website.value" matSuffix mat-icon-button (click)="clearWebsite()">
+                <mat-icon>close</mat-icon>
+              </button>
+              <mat-error *ngIf="form.controls.website.hasError('required')">
+                Website required
+              </mat-error>
+            </mat-form-field>
+            <mat-label class="label-body">
+              Description
+            </mat-label>
+            <hr class="my-2">
+            <div>
+              <quill-editor formControlName="description" tabindex="7"></quill-editor>
+            </div>
+            <div class="text-center pt-3">
+              <button mat-raised-button color="primary" tabindex="8" type="submit">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

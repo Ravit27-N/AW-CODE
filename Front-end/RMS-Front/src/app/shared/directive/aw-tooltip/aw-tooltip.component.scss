@@ -1,0 +1,45 @@
+.aw-tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  animation: tooltip-animation 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.tooltip_text {
+  visibility: visible;
+  width: 20rem;
+  min-height: 5rem;
+  padding: 2rem 1rem;
+  background-color: var(--aw-bg-danger-normal);
+  color: #fff;
+  text-align: start;
+  position: absolute;
+  z-index: 1;
+  font-family: var(--aw-font-primary) !important;
+  font-weight: var(--aw-font-weight-normal);
+  font-size: 16px;
+}
+
+.tooltip_text::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 15px;
+  border-style: solid;
+  border-color: transparent transparent var(--aw-bg-danger-normal) transparent;
+}
+
+@keyframes tooltip-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

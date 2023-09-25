@@ -1,0 +1,45 @@
+<div class="pb-3 interview-template-detail">
+  <div class="child-between m-0 p-0 d-flex align-items-center">
+    <h2 class="mat-h2 m-0 p-0 self-center">Interview Template Detail </h2>
+    <button mat-icon-button matTooltip="Close" class="self-center" (click)="dialogRef.close();">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <mat-dialog-content>
+    <div class="d-flex flex-column interview-template-detail-body">
+      <div class="my-2 d-flex align-items-center">
+        <h4 class="font-weight-bold w-25 m-0">Name : </h4>
+        <span [innerText]="data.name"></span>
+      </div>
+      <div class="my-2 d-flex align-items-center">
+        <h4 class="font-weight-bold w-25 m-0">Type : </h4>
+        <span>{{ data.type }}</span>
+      </div>
+      <div class="my-2 d-flex align-items-start">
+        <h4 class="font-weight-bold w-25 m-0">Interviewers : </h4>
+        <div class="d-flex flex-column interviewer-container overflow-auto h-100">
+          <div *ngFor="let interviewer of interviewers; let idx = index;">
+            <div class="d-flex flex-wrap align-items-center interviewer-wrapper">
+              <div *ngIf="interviewer" class="circle"></div>
+              <span [ngClass]="{'ml-0': !interviewer}" class="interviewer-item"
+                    [innerText]="interviewer || 'N/A'"></span>
+            </div>
+            <div *ngIf="idx !== interviewers?.length - 1" class="separator"></div>
+          </div>
+        </div>
+      </div>
+      <div class="my-2 d-flex align-items-center">
+        <h4 class="font-weight-bold w-25 m-0">Status : </h4>
+        <span class="status" [class]="getStatusCss(this.data.active)" [innerText]="active"></span>
+      </div>
+      <div class="my-2 d-flex align-items-center">
+        <h4 class="font-weight-bold w-25 m-0">Created At : </h4>
+        <span class="">{{data.createdAt | awDateFormat}}</span>
+      </div>
+      <div class="my-2 d-flex align-items-center">
+        <h4 class="font-weight-bold w-25 m-0">Updated At : </h4>
+        <span class="">{{ data.updatedAt | awDateFormat }}</span>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>

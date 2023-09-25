@@ -1,0 +1,13 @@
+<div class="candidate-activity-container">
+  <h2>{{ title }}</h2>
+  <div class="candidate-activity">
+    <div class="candidate-activity-details d-flex flex-column align-items-start border-bottom"
+         [class]="getActivityBorderCssClass(activity?.title)"
+         *ngFor="let activity of activities" (click)="editActivity.emit(activity.id)">
+    <span class="text-wrap d-inline-block mb-2"
+          [class]="getActivityTitleCssClass(activity?.title)">{{ activity?.title }}</span>
+      <strong>Author: {{ activity?.userId }}</strong>
+      <span class="mat-card-subtitle font-italic my-1">{{ activity?.updatedAt | awDateFormat }}</span>
+    </div>
+  </div>
+</div>

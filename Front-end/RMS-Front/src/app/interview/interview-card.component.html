@@ -1,0 +1,27 @@
+<div class="d-flex align-items-start my-2">
+
+  <div class="d-flex flex-column mr-2 text-center flex-grow-1">
+    <div *ngIf="imgUrl" class="avatar mx-auto img-profile">
+      <app-image [photoUrl]="imgUrl" fallback="{{assetPrefix}}/assets/img/1.png"></app-image>
+    </div>
+    <div *ngIf="!imgUrl" class="avatar mx-auto img-profile">
+      <img src="{{assetPrefix}}/assets/img/user-icon.png" alt="User_img">
+    </div>
+    <h2 class="my-3 text-wrap"><a class="primary-link"
+                                  [routerLink]="'/admin/candidate/candidateDetail/' + interview.candidate.id.toString()">
+      {{interview.candidate.fullName}}</a>
+    </h2>
+  </div>
+
+  <div class="d-flex flex-column p-2 flex-grow-1">
+    <h2><span class="labeler">Apply for:</span> {{interview.title}}</h2>
+    <h4 class="my-2"><span class="labeler">Date & Time:</span> {{interview.dateTime | awDateFormat}}</h4>
+    <h4><span class="labeler">Status:</span> <span
+      [class]="getStatusCssClass(interview.status)">{{interview.status}}</span></h4>
+    <span class="labeler my-1">Description:</span>
+    <div class="px-1">
+      <quill-view *ngIf="interview.description !== ''" [content]="interview.description"></quill-view>
+      <span class="empty" *ngIf="interview.description === ''">(Empty)</span>
+    </div>
+  </div>
+</div>

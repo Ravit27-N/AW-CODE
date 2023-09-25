@@ -1,0 +1,8 @@
+<div class="child-between m-0 p-0 pb-1">
+  <h2 class="mat-h2 m-0 p-0 self-center">{{data.header}}</h2>
+  <button mat-icon-button matTooltip="Close" class="self-center" (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<app-file-manager (fileChoose)="recieveFile($event)" [width]="data.width" [height]="data.height" [start]="data.start" ></app-file-manager>

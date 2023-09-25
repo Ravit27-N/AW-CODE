@@ -1,0 +1,40 @@
+<div class="child-between m-0 p-0">
+  <h2 class="mat-h2 m-0 p-0 self-center">Job Description</h2>
+  <button mat-icon-button matTooltip="Close" class="self-center" (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+
+  <div class="d-flex flex-column">
+    <h4 class="my-2 d-flex">
+      <span class="labeler w-25">Title : </span>
+      <span class="">{{data.title}}</span>
+    </h4>
+    <h4 class="my-2 d-flex">
+      <span class="labeler w-25">Created At : </span>
+      <span class="">{{data.createdAt | awDateFormat}}</span>
+    </h4>
+    <h4 class="my-2 d-flex">
+      <span class="labeler w-25">Updated At : </span>
+      <span class="">{{data.updatedAt | awDateFormat}}</span>
+    </h4>
+    <h4 class="my-2 d-flex">
+      <span class="labeler w-25">Status : </span>
+      <span class="">{{status}}</span>
+    </h4>
+    <h4 class="my-2 d-flex">
+      <span class="labeler w-25">File : </span>
+      <button class="filebutton" mat-raised-button color="primary" (click)="getFile(data)"
+        [disabled]="data.filename === ''">View File</button>
+    </h4>
+    <h4 class="my-2 d-flex">
+      <span class="labeler w-25">Description: </span>
+      <p>: {{this.htmlToPlaintext(data.description)}}</p>
+    </h4>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="child-end mt-2">
+  <button color="warn" mat-raised-button matDialogClose>Close</button>
+</mat-dialog-actions>

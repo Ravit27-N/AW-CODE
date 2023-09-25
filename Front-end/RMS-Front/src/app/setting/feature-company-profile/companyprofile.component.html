@@ -1,0 +1,101 @@
+<app-aw-layout pageTitle="Manage Company Profile" pageSubtitle="List all information company">
+  <ng-container slot="page-content">
+
+    <app-aw-container>
+      <div class="aw-panel">
+        <div class="aw-form-container">
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="aw-form-group mb-4">
+
+                <form [formGroup]="form">
+                  <div class="d-flex justify-content-center">
+                    <div class="mb-3">
+                      <app-loading-indicator [isloading]="('image'|swIsLoading|async)"></app-loading-indicator>
+                      <div class="circle align-items-center">
+                        <img [src]="image" alt="Cover" class="image" crossorigin="use-credentials"
+                             (click)="file.click()"/>
+                      </div>
+                      <input type="file" hidden #file accept="image/*" (change)="onValueChange($event)">
+                      <app-aw-rich-button width="200px" height="35px" [outline]="false"
+                                          (click)="file.click()">Upload Photo
+                      </app-aw-rich-button>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center flex-column align-items-center">
+
+                    <app-aw-input-box-text
+                      awLabel="Title"
+                      class="input_text  w-100"
+                      awPlaceholder="Title"
+                      formControlName="title"
+                      [awError]="form.controls['title']?.errors !== null &&shouldShowError "
+                      [awErrorMessage]="form.controls['title']?.errors?.message"
+                      [awRequired]="true"
+                    ></app-aw-input-box-text>
+
+                    <app-aw-input-box-text
+                      awLabel="Address"
+                      class="input_text w-100"
+                      awPlaceholder="Address"
+                      formControlName="address"
+                      [awError]="form.controls['address']?.errors !== null &&shouldShowError "
+                      [awErrorMessage]="form.controls['address']?.errors?.message"
+                      [awRequired]="true"
+                    ></app-aw-input-box-text>
+
+                    <app-aw-input-box-text
+                      awLabel="Telephone"
+                      class="input_text w-100"
+                      awPlaceholder="Telephone"
+                      formControlName="telephone"
+                      [awError]="form.controls['telephone']?.errors !== null &&shouldShowError "
+                      [awErrorMessage]="form.controls['telephone']?.errors?.message"
+                      [awRequired]="true"
+                    ></app-aw-input-box-text>
+
+                    <app-aw-input-box-text
+                      awLabel="Email"
+                      class="input_text w-100"
+                      awPlaceholder="Email"
+                      formControlName="email"
+                      [awError]="form.controls['email']?.errors !== null &&shouldShowError "
+                      [awErrorMessage]="form.controls['email']?.errors?.message"
+                      [awRequired]="true"
+                    ></app-aw-input-box-text>
+
+                    <app-aw-input-box-text
+                      awLabel="website"
+                      class="input_text w-100"
+                      awPlaceholder="Website"
+                      formControlName="website"
+                      [awError]="form.controls['website']?.errors !== null &&shouldShowError "
+                      [awErrorMessage]="form.controls['website']?.errors?.message"
+                      [awRequired]="true"
+                    ></app-aw-input-box-text>
+
+
+                    <div class="input_text w-100">
+                      <mat-label class="label-body text-bold">
+                        Description
+                      </mat-label>
+                      <quill-editor formControlName="description" tabindex="7"></quill-editor>
+                    </div>
+
+                    <app-aw-rich-button width="300px" class="mt-5" [outline]="true"
+                                        (click)="update()">Update
+                    </app-aw-rich-button>
+
+                  </div>
+                </form>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-aw-container>
+
+  </ng-container>
+</app-aw-layout>

@@ -1,0 +1,180 @@
+<div class="px-2 pb-1 border-bottom">
+  <form [formGroup]="advanceForm" name="search-form" id="search-form">
+    <div class="d-flex w-100 align-items-center">
+      <mat-form-field class="flex-grow-1 mx-1">
+        <mat-label>Enter candidate</mat-label>
+        <input formControlName="term" name="name" matInput [(ngModel)]="model.name" appAutoFocus/>
+      </mat-form-field>
+
+      <mat-form-field class="flex-grow-1 mx-1">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender" name="gender" [(ngModel)]="model.gender">
+          <mat-option>None</mat-option>
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="flex-grow-1 mx-1">
+        <mat-label>University</mat-label>
+        <mat-select formControlName="university" name="from" [(ngModel)]="model.from">
+          <mat-option>
+            <ngx-mat-select-search [formControl]="universityCtrl" placeholderLabel="Enter university name"
+                                   noEntriesFoundLabel="no matching found">
+              <mat-icon>Search</mat-icon>
+            </ngx-mat-select-search>
+          </mat-option>
+
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let item of schools" [value]="item">{{item}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="flex-grow-1 mx-1">
+        <mat-label>GPA</mat-label>
+        <mat-select formControlName="gpa" name="gpa" [(ngModel)]="model.gpa">
+          <mat-option>None</mat-option>
+          <mat-option value="4">4.0</mat-option>
+          <mat-option value="3">3.0+</mat-option>
+          <mat-option value="2">2.0+</mat-option>
+          <mat-option value="1">1.0+</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="flex-grow-1 mx-1">
+        <mat-label>Position</mat-label>
+        <mat-select formControlName="position" name="position" [(ngModel)]="model.position">
+          <mat-option>
+            <ngx-mat-select-search [formControl]="postionCtrl" placeholderLabel="Enter title" noEntriesFoundLabel="no matching found">
+              <mat-icon>Search</mat-icon>
+            </ngx-mat-select-search>
+          </mat-option>
+
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let item of positions" [value]="item">{{item}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="ml-4">
+        <button (click)="explicitSearch()" mat-raised-button class="self-center" color="primary">
+          <mat-icon>search</mat-icon>
+          Search
+        </button>
+        <button (click)="clear()" mat-raised-button class="self-center mx-2">
+          <mat-icon>clear_all</mat-icon>
+          Clear
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>
+<div class="avance-search-table-wrapper">
+  <div class="avance-search-table-wrapper-overlay" *ngIf="isloading">
+    <mat-spinner></mat-spinner>
+  </div>
+  <table mat-table [dataSource]="list" matSort class="mat-elevation-z0 mt-0 pt-0 w-100">avatar
+
+    <ng-container matColumnDef="avatar">
+      <th mat-header-cell *matHeaderCellDef class="col-img">Photo</th>
+      <td mat-cell *matCellDef="let row" class="px-2">
+        <div *ngIf="!!row.photoUrl" class="img-circle">
+          <app-image [photoUrl]="this.getUrl(row.id, row.photoUrl)"></app-image>
+        </div>
+        <div *ngIf="row.photoUrl === undefined || row.photoUrl === null || row.photoUrl === ''" class="img-circle">
+          <img [src]="bIcon" alt="Photo" *ngIf="row.gender.toLowerCase() === 'male'">
+          <img [src]="gIcon" alt="Photo" *ngIf="row.gender.toLowerCase() === 'female'">
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="firstname">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Candidate</th>
+      <td mat-cell *matCellDef="let row">
+        <a [routerLink]="'/admin/candidate/candidateDetail/'+ row.id">{{row.fullName}}</a>
+        <span class="d-block text-info small" *ngIf="row.interviews">{{row.interviews.title}}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="age">
+      <th mat-header-cell *matHeaderCellDef class="mat-header-center">Age</th>
+      <td mat-cell *matCellDef="let row" class="mat-header-center"><span class="ml-1">{{getAge(row.dateOfBirth)|na}}</span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef class="mat-header-center">Phone</th>
+      <td mat-cell *matCellDef="let row" class="mat-header-center">{{row.telephone}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="university">
+      <th mat-header-cell *matHeaderCellDef>University</th>
+      <td mat-cell *matCellDef="let row"><span class="d-block" *ngFor="let u of row.universities">{{u.name}}</span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="gpa">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-center">GPA</th>
+      <td mat-cell *matCellDef="let row" class="mat-header-center"><span class="ml-1">{{row.gpa|na}}</span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="yearOfExperience">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-center">Experience</th>
+      <td mat-cell *matCellDef="let row" class="mat-header-center"><span class="ml-1">{{row.yearOfExperience|na}}</span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="priority">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Priority</th>
+      <td mat-cell *matCellDef="let row"><span class="ml-1">{{row. priority}}</span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let row"><span class="ml-1">{{row.candidateStatus.title}}</span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="interview">
+      <th mat-header-cell *matHeaderCellDef class="mat-header-center">Last interview</th>
+      <td mat-cell *matCellDef="let row" class="mat-header-center">
+        <span class="ml-1" *ngIf="row.interviews?.lastInterview">{{row.interviews?.lastInterview | awDateFormat}}</span>
+        <span class="ml-1" *ngIf="!row.interviews?.lastInterview">N/A</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let row">
+        <quill-view [content]="row.description"></quill-view>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-center">Created At</th>
+      <td mat-cell *matCellDef="let row" class="mat-header-center">
+        {{row.createdAt | awDateFormat}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef class="sm-action-group mat-header-center">Action</th>
+      <td mat-cell *matCellDef="let row" class="mat-header-center action-group-button">
+        <button mat-icon-button color="primary" (click)="view(row)" matTooltip="View">
+          <mat-icon>visibility</mat-icon>
+        </button>
+
+        <button mat-icon-button color="primary" (click)="edit(row)" matTooltip="Edit">
+          <mat-icon>drive_file_rename_outline</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<div class="mat-dialog-action d-flex justify-content-between align-content-center border-top">
+  <div class="p-2"><button *ngIf="list && list.length > 0" class="mr-4" mat-raised-button color="primary"
+                           (click)="export()">
+    <i class="mr-2 far fa-file-excel"></i>
+    Export</button></div>
+  <mat-paginator [length]="resultLength" [pageSizeOptions]="paginationSize"></mat-paginator>
+</div>

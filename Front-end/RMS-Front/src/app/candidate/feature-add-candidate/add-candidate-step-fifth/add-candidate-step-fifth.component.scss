@@ -1,0 +1,84 @@
+embed,
+iframe {
+  height: 60vh;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+}
+
+.aw-form-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.board {
+  .label {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+
+    span {
+      display: inline-block;
+      min-width: 300px;
+    }
+
+    .value {
+      padding-left: 5px;
+      font-weight: 400;
+    }
+  }
+}
+
+.edit-btn {
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.first-name {
+  text-transform: capitalize;
+}
+
+.last-name {
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 1434px) {
+  .board {
+    .label {
+      span {
+        display: inline-block;
+        min-width: 130px;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+:host ::ng-deep {
+  .profile-box {
+    height: 130px;
+    width: 130px;
+    display: block;
+
+    .aw-avatar-title {
+      transform: translateY(60px) !important;
+      font-size: 35px;
+    }
+
+    .edit-btn {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+    }
+  }
+
+
+  .field_description {
+    .aw-form-control {
+      height: auto;
+      max-height: calc(60vh - 800px);
+      min-height: 100px;
+    }
+  }
+}

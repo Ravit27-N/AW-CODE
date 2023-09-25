@@ -1,0 +1,73 @@
+<app-aw-layout-list pageTitle="Manage Roles" [pageSubtitle]="isUpdateRole.value ? 'Update role' : 'Create role'">
+  <form [formGroup]="form" class="create-role mt-4" (ngSubmit)="submit()">
+    <div class="row">
+      <section class="role-information col-6">
+        <app-aw-container>
+          <h2>Role information</h2>
+          <div>
+            <mat-form-field appearance="outline" floatLabel="always" class="w-100" tabindex="1">
+              <mat-label>Role</mat-label>
+              <input type="text" matInput formControlName="name">
+              <mat-error *ngIf="roleValidator.value && form.get('name').value.length"
+                         [innerText]="'Role already existed.'">
+              </mat-error>
+              <mat-error
+                *ngIf="!roleValidator.value && form.controls.name.invalid"
+                [innerText]="'Role name required.'">
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <!-- ./ Role -->
+
+          <div>
+            <mat-label class="aw-label" [class]="form.controls.description.invalid ? 'invalid-description' : ''">
+              Description
+            </mat-label>
+            <quill-editor formControlName="description" class="ng-invalid">
+            </quill-editor>
+            <div style="padding: 0 1em;">
+              <mat-error
+                style="font-size: 75%;"
+                *ngIf="form.controls.description.invalid"
+                [innerText]="'Description name required.'">
+              </mat-error>
+            </div>
+
+          </div>
+          <!-- ./ Description -->
+        </app-aw-container>
+      </section>
+      <section class="role-privilege col-6">
+        <app-aw-container>
+          <h2>Privilege</h2>
+          <div class="role-privilege-checklist">
+            <app-aw-tree-checklist
+              *ngFor="let privilege of rolePrivilegesChecklist"
+              [filterGroup]="privilege"
+              (filterGroupResult)="checklistResult($event)">
+            </app-aw-tree-checklist>
+          </div>
+        </app-aw-container>
+
+        <!-- ./ Privilege Checklist -->
+      </section>
+    </div>
+    <div class="d-flex mt-3 justify-content-end">
+      <app-aw-rich-button
+        [outline]="true"
+        [width]="'168px'"
+        [height]="'48px'"
+        (click)="cancel()"
+      >Cancel
+      </app-aw-rich-button>
+      <app-aw-rich-button
+        [actionType]="'submit'"
+        [width]="'168px'"
+        [height]="'48px'"
+        class="ml-2"
+      >
+        {{ isUpdateRole.value ? 'Update' : 'Save' }}
+      </app-aw-rich-button>
+    </div>
+  </form>
+</app-aw-layout-list>

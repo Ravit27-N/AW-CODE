@@ -1,0 +1,53 @@
+/* Page title */
+.title {
+  font-family: var(--aw-font-primary) !important;
+  font-weight: var(--aw-font-weight-strong) !important;
+  font-size: var(--aw-font-size-title) !important;
+  color: var(--aw-text-primary) !important;
+  text-align: left;
+  margin: 0 !important;
+  white-space: nowrap;
+  margin-bottom: 8px !important;
+  letter-spacing: 0 !important;
+}
+
+/* Page subtitle */
+.sub-title {
+  color: var(--aw-text-primary-light);
+  font-size: var(--aw-font-size-sub-title);
+  font-family: var(--aw-font-primary);
+  letter-spacing: 0;
+  text-align: left;
+  opacity: 1;
+  white-space: nowrap;
+  margin: 0 !important;
+  margin-bottom: 16px !important;
+}
+
+/* Reminder Detail */
+.modal-title {
+  font: normal normal 600 18px/19px var(--aw-font-primary) !important;
+  color: var(--aw-text-primary) !important;
+  margin-bottom: 30px;
+}
+
+.aw-font-primary {
+  font-family: var(--aw-font-primary) !important;
+}
+
+.aw-font-15 {
+  font-size: 15px !important;
+}
+
+.aw-font-22 {
+  font-size: 21px !important;
+}
+
+.aw-form-title {
+  text-align: left;
+  color: var(--aw-text-primary-dark);
+  font-family: var(--aw-font-primary);
+  font-weight: var(--aw-font-weight-medium);
+  font-size: 18px;
+  margin-bottom: 15px;
+}

@@ -1,0 +1,18 @@
+<form [formGroup]="filterFormGroup" class="tree-wrapper">
+  <span class="tree-parent-section d-flex align-items-center">
+    <app-aw-checkbox [formControlName]="filterGroup.name" [value]="filterGroup.completed" class="parent-margin">
+      {{filterGroup.title}}
+    </app-aw-checkbox>
+    <span class="text-bold">{{ filterGroup.description || '' }}</span>
+    <mat-icon (click)="showItems()" class="mat-icon-rtl-mirror mt-1">
+        {{isShow ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+  </span>
+  <div *ngIf="isShow" class="tree-child-section ml-4">
+    <app-aw-checkbox
+      *ngFor="let subtask of filterGroup.subtasks"
+      [formControlName]="subtask.name"
+      [value]="subtask.completed"
+    >{{ subtask.title | uppercase }}</app-aw-checkbox>
+  </div>
+</form>

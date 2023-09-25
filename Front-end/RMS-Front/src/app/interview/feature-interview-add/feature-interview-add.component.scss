@@ -1,0 +1,71 @@
+.interviewer-container {
+  max-height: 620px;
+  margin-left: 40px;
+  padding-top: 20px;
+
+  .interviewer-wrapper {
+    .circle {
+      width: 8px;
+      height: 8px;
+      background: var(--aw-bg-secondary) 0 0 no-repeat padding-box;
+      border-radius: 50%;
+    }
+
+    .interviewer-item {
+      margin-left: 10px;
+      color: var(--aw-text-secondary);
+      font-family: var(--aw-font-primary);
+    }
+  }
+
+  .separator {
+    width: 1px;
+    height: 25px;
+    border-radius: 10px;
+    background-color: #bcd5ff;
+    margin-left: 4px;
+    transform: translateX(-50%);
+  }
+}
+
+
+.label-description {
+  font-family: var(--aw-font-primary);
+  font-weight: normal;
+}
+
+.mat-card-subtitle {
+  font-size: 12px;
+}
+
+
+:host::ng-deep {
+  .mat-form-field-subscript-wrapper {
+    padding: 0 !important;
+  }
+
+  .mat-form-field-flex {
+    height: 40px;
+  }
+
+  .mat-form-field-infix {
+    padding: 4px;
+    font-family: var(--aw-font-primary);
+
+    .mat-select-arrow-wrapper {
+      transform: translateY(18%);
+    }
+  }
+
+  .mat-form-field-outline-thick {
+    color: rgb(129, 148, 180);
+  }
+
+
+  @media (max-width: 1366px) {
+    .aw-btn {
+      width: 200px !important;
+    }
+  }
+}
+

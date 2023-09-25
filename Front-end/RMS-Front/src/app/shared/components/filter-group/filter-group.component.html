@@ -1,0 +1,3 @@
+<mat-button-toggle-group [value]="value" (change)="onchange.emit($event.value)" appearance="legacy" name="fontStyle" aria-label="Font Style">
+  <mat-button-toggle *ngFor="let item of items" [value]="item.title">{{item.title}}</mat-button-toggle>
+</mat-button-toggle-group>

@@ -1,0 +1,10 @@
+<div class="navigation-container d-flex flex-wrap align-items-end">
+  <div *ngFor="let navigation of navigationItem;"
+       (click)="navigation?.link.length ? navigateTo(navigation?.link, navigation?.queryParams) : navigation.function()"
+       class="sub-navigation d-flex align-items-center">
+    <div class="ml-3">
+      <img [src]="navigation?.icon" alt="navigation-icon">
+    </div>
+    <span class="m-0 btn-text">{{ navigation?.title }}</span>
+  </div>
+</div>

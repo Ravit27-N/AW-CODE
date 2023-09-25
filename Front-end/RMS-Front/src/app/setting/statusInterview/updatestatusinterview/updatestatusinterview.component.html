@@ -1,0 +1,27 @@
+<form [formGroup]="form" appCanAccess perm="Interview:edit">
+  <div class="child-between m-0 p-0">
+    <h2 class="mat-h2 m-0 p-0 self-center">Update Interview Status </h2>
+    <button mat-icon-button matTooltip="Close" class="self-center" (click)="onNoClick()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <mat-form-field class="w-100">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" id="name" required tabindex="1" appAutoFocus />
+    <button mat-button *ngIf="form.controls.name.valid" matSuffix mat-icon-button aria-label="Clear"
+      (click)="clearName()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-error *ngIf="form.controls.name.hasError('required')">
+      Name required
+    </mat-error>
+  </mat-form-field>
+  <mat-slide-toggle class="my-1" formControlName="active" (click)="onChange()">
+    {{slidevalue}}
+  </mat-slide-toggle>
+  <br>
+  <div class="child-end mt-2">
+    <button mat-flat-button class="btncancel" (click)="onNoClick()" color="warn" type="button">Cancel</button>
+    <button mat-flat-button color="primary" (click)="btnsave()" [disabled]="form.invalid" tabindex="3">Save</button>
+  </div>
+</form>

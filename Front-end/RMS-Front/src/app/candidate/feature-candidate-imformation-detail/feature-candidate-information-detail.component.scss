@@ -1,0 +1,103 @@
+.candidate-detail{
+  width: 100%;
+  .profile-header-name{
+    color: var(--aw-bg-primary) !important;
+    font-weight: bold;
+    font-size: var(--aw-font-size-25);
+  }
+  //profile
+  .profile-header-status {
+    font-family: var(--aw-font-primary);
+
+    .failed, .pass, .following, .in-progress, .new-request {
+      border-radius: 10px;
+      text-align: center;
+      display: inline-block;
+      padding: 4px 1rem;
+      margin-left: 10px;
+    }
+
+    .failed {
+      color: var(--aw-text-danger);
+      background: var(--aw-bg-danger-dark);
+    }
+
+    .pass {
+      color: var(--aw-text-secondary);
+      background: var(--aw-bg-secondary-dark);
+    }
+
+    .following {
+      color: var(--aw-text-warning);
+      background: var(--aw-bg-warning-light);
+    }
+
+    .in-progress {
+      color: var(--aw-text-success);
+      background: var(--aw-bg-success-dark);
+    }
+
+    .new-request {
+      color: var(--aw-text-purple);
+      background: var(--aw-bg-purple-dark);
+    }
+  }
+
+
+  //information detail
+
+  .information-detail{
+    padding: 20px;
+    border: 1px solid rgba(0, 82, 204, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 6px 30px rgba(182, 186, 203, 0.3);
+    height: 250px;
+    display: flex;
+
+    .profile-header-avatar {
+      height: 150px;
+      width: 150px;
+    }
+
+    .row-value {
+
+      height: 32%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      .text-label {
+        font-size: 13px;
+        color: var(--aw-text-primary-light);
+      }
+
+      .text-value {
+        font-size: 15px;
+        font-weight: var(--aw-font-weight-medium);
+        width: 100%;
+        @media (max-width: 1366px) {
+          font-size: 13px;
+        }
+      }
+    }
+
+    .description{
+      height: 60%;
+    }
+
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .information-detail {
+    .text-value {
+      font-size: 14px;
+      font-weight: var(--aw-font-weight-medium);
+    }
+
+    .profile-header-avatar {
+      height: 120px !important;
+      width: 120px !important;
+    }
+  }
+}
+

@@ -1,0 +1,37 @@
+<div class="pos-relative">
+  <app-loading-indicator [isloading]="('ResultCardComponent'|swIsLoading|async)"></app-loading-indicator>
+  <div *ngIf="result !== null">
+    <div class="child-between p-0">
+      <h2 class="mat-h2 my-1">Result</h2>
+      <button *ngIf="enableEdit" mat-icon-button matTooltip="Change result" class="self-center" (click)="editClick()">
+        <mat-icon>drive_file_rename_outline</mat-icon>
+      </button>
+    </div>
+
+    <table class="table border border-1 simple-table">
+      <tr class="">
+        <th>Quiz</th>
+        <th>Coding</th>
+        <th>Average</th>
+        <th>Logical</th>
+        <th>English</th>
+        <th>Flexibility</th>
+        <th>Q&A</th>
+      </tr>
+      <tr>
+        <td>{{result.score.quiz.score}} / {{result.score.quiz.max}}</td>
+        <td>{{result.score.coding.score}} / {{result.score.coding.max}}</td>
+        <td>{{result.average|number:'2.2-2'}} %</td>
+        <td>{{result.logical}}</td>
+        <td>{{result.english}}</td>
+        <td>{{result.flexibility}}</td>
+        <td>{{result.oral}}</td>
+      </tr>
+      <tr class="h-50">
+        <td colspan="7">
+          <quill-view [content]="result.remark"></quill-view>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

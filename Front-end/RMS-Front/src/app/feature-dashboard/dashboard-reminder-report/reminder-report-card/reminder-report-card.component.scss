@@ -1,0 +1,63 @@
+:host ::ng-deep {
+  mat-card {
+    font-family: var(--aw-font-primary);
+    box-shadow: 0 1px 9px #7492c447 !important;
+    border-radius: 7px;
+
+    border-left: 15px solid #e3edfe;
+    padding: 18px 36px 7px 12px;
+
+    &.left-panel-primary {
+      border-left-color: #e3edfe;
+    }
+
+    &.left-panel-warning {
+      border-left-color: var(--aw-bg-warning-light);
+    }
+
+    &.left-panel-success {
+      border-left-color: #edfbee;
+    }
+  }
+
+  app-aw-badge {
+    font-weight: 600;
+    font-size: 12px;
+    margin-left: 4px;
+
+    span {
+      padding: 2px 0.5rem !important;
+    }
+  }
+}
+
+.reminder-title {
+  font-family: var(--aw-font-primary);
+  font-weight: var(--aw-font-weight-medium);
+  font-size: 16px;
+}
+
+.app-aw-badge-container {
+  margin-bottom: 8px !important;
+}
+
+.right-panel {
+  overflow: hidden;
+  width: 100%;
+}
+
+.text-container {
+  max-height: 3em; /* Set the maximum height for three lines of text */
+  overflow: hidden;
+  padding-left: 20px;
+  text-overflow: ellipsis;
+  display: -webkit-box; /* For older versions of Safari and iOS */
+  -webkit-line-clamp: 2; /* Limit the number of displayed lines */
+  -webkit-box-orient: vertical; /* Required for -webkit-line-clamp */
+}
+
+.candidate-name {
+  font-weight: bold;
+  color: var(--aw-text-light-blue);
+  padding-left: 10px;
+}

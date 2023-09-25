@@ -1,0 +1,95 @@
+.add-interview-template {
+  div {
+    &:first-child {
+      margin: 0 !important;
+      align-items: center;
+    }
+
+    &:nth-child(2) {
+      margin-bottom: 28px !important;
+    }
+
+    &:last-child {
+      margin: 0 !important;
+    }
+
+    margin: 20px 0 !important;
+
+    .remark-textarea {
+      resize: none !important;
+    }
+  }
+
+  .aw-dropdown-item {
+    display: flex;
+    flex-direction: column;
+
+    .mat-menu-item:hover {
+      cursor: default;
+      background-color: transparent !important;
+    }
+
+    ::ng-deep [customClass="radio-button-interview-template"] {
+      mat-radio-button {
+        margin-left: 10px;
+
+        .mat-radio-label {
+          margin: 0;
+        }
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+
+      .mat-radio-label {
+        font-weight: normal !important;
+
+        .mat-radio-outer-circle {
+          border: 1px solid var(--aw-border-secondary);
+        }
+      }
+
+      .mat-radio-checked > .mat-radio-label {
+
+        .mat-radio-container {
+          .mat-radio-inner-circle {
+            font-weight: normal !important;
+            background-color: var(--aw-bg-secondary);
+          }
+        }
+      }
+    }
+  }
+}
+
+:host::ng-deep .mat-form-field-infix {
+  padding: 0.5em 0;
+}
+
+:host::ng-deep .mat-form-field-wrapper {
+  margin: 0 !important;
+  padding: 0;
+}
+
+:host::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: var(--aw-text-secondary);
+}
+
+:host::ng-deep .mat-checked .mat-slide-toggle-content {
+  color: var(--aw-text-secondary);
+}
+
+:host::ng-deep .mat-slide-toggle-bar, .mat-slide-toggle-thumb {
+  transition: all 80ms linear;
+  transition-property: background-color;
+  transition-delay: 50ms;
+}
+
+:host::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: rgba(14, 52, 171, 0.37);
+}
+
+::ng-deep .mat-primary .mat-pseudo-checkbox-checked {
+  background-color: var(--aw-bg-secondary);
+}

@@ -1,0 +1,35 @@
+<div class="candidate-interview-container">
+  <h2>{{ title }}</h2>
+  <div class="candidate-interview">
+    <div class="candidate-interview-details d-flex flex-column align-items-start border-bottom"
+         *ngFor="let interview of interviews; let idx = index;"
+         (click)="gotToViewDetails.emit(interview.id)"
+         [class]="getInterviewBorderCssClass(listInterviewsStatus[idx])">
+      <img class="close-icon" (click)="remove(interview, $event)"
+           [src]="iconPrefix?.concat('/assets/icons/close.svg')" alt="close-icon">
+      <span class="text-nowrap d-inline-block mb-2"
+            [class]="getInterviewTitleCssClass(listInterviewsStatus[idx])">{{ interview?.title }}</span>
+      <strong>Author: {{ interview?.createdBy }}</strong>
+      <span class="mat-card-subtitle font-italic my-1">{{ interview?.dateTime | awDateFormat }}</span>
+      <span (click)="edit(interview, $event)" class="text-bold mt-1" style="cursor: pointer;">Result: <img
+        [src]="iconPrefix?.concat('/assets/icons/pencil.svg')"
+        alt="pencil-icon"></span>
+      <div class="ml-2 candidate-interview-result">
+        <div *ngIf="interview.result?.average">
+          <span>Score:</span>
+          <span class="text-wrap ml-1">{{ interview?.result?.score }}</span></div>
+        <div class="d-flex align-items-center" *ngIf="interview.result?.english">
+          <span class="d-inline-block">English:</span>
+          <span class="ml-1">{{ interview?.result?.english  }}</span></div>
+        <div class="d-flex align-items-center" *ngIf="interview.result?.logical">
+          <span class="d-inline-block">Logical:</span>
+          <span class="ml-1">{{ interview?.result?.logical  }}</span></div>
+        <div class="d-flex align-items-center" *ngIf="interview.result?.flexibility">
+          <span class="d-inline-block">Flexibility:</span>
+          <span class="ml-1">{{ interview?.result?.flexibility  }}</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

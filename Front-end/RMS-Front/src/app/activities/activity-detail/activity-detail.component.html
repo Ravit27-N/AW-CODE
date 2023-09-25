@@ -1,0 +1,42 @@
+<mat-dialog-content appCanAccess perm="Activity:view">
+  <div class="row">
+    <div class="col">
+      <h2>Activity Detail</h2>
+    </div>
+    <div class="col text-right">
+      <button mat-icon-button matTooltip="Close" [mat-dialog-close]="false" cdkFocusInitial>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 text-center">
+      <div class="circle m-auto">
+          <div *ngIf="this.data?.photoUrl === undefined || this.data?.photoUrl === null || this.data?.photoUrl === ''">
+            <img  [src]="this.bIcon" alt="Photo" *ngIf="this.activity?.candidate?.gender === 'Male'">
+            <img  [src]="this.gIcon" alt="Photo" *ngIf="this.activity?.candidate?.gender === 'Female' ">
+          </div>
+          <div *ngIf="!!this.data?.photoUrl">
+            <app-image [photoUrl]="this.getUrl(this.data?.id, this.data?.photoUrl)"></app-image>
+          </div>
+      </div>
+      <a [routerLink]="'/admin/candidate/candidateDetail/'+ this.activity.candidate.id">
+        <h2 class="my-1">{{this.activity.candidate.fullname}}</h2>
+      </a>
+    </div>
+
+    <div class="col-sm-8 d-flex flex-column">
+      <h2>Title: {{this.activity.title}}</h2>
+      <p><span class="labeler">Author:</span> {{this.activity.author}}</p>
+      <p><span class="labeler">Current Status:</span> {{this.activity.candidate?.status?.title}}</p>
+      <p><span class="labeler">Created at:</span> {{this.activity.createdAt | awDateFormat}}</p>
+      <p><span class="labeler">Last Modified:</span> {{this.activity.updatedAt | awDateFormat}}</p>
+      <p><span class="labeler">Description: </span></p>
+      <quill-view [content]="this.activity.description"></quill-view>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="pb-3">
+  <button mat-raised-button color="warn" [mat-dialog-close]="true" cdkFocusInitial>Close</button>
+</mat-dialog-actions>

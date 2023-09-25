@@ -1,0 +1,27 @@
+
+* {
+  font-family: var(--aw-font-primary) !important;
+}
+
+.material-icons {
+  font-family: 'Material Icons' !important;
+}
+
+.fa, .far, .fas {
+  font-family: "Font Awesome 5 Free" !important;
+}
+body {
+  font-family: var(--aw-font-primary) !important;
+
+  table {
+    font-family: var(--aw-font-primary) !important;
+  }
+
+  mat-card {
+    font-family: var(--aw-font-primary);
+  }
+
+
+
+}
+

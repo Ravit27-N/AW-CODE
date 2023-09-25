@@ -1,0 +1,67 @@
+::ng-deep .hidden-overflow-custom {
+  mat-dialog-container {
+    overflow: hidden;
+  }
+}
+
+:host::ng-deep .ql-editor {
+  div {
+    line-height: 1.5rem;
+  }
+}
+
+.activity-detail-container {
+  :nth-child(2) {
+    max-height: 100%;
+    .pass {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 4px 1rem;
+      border-radius: 10px;
+      background: var(--aw-bg-secondary-dark);
+      color: var(--aw-text-secondary);
+      text-align: center;
+    }
+
+    .failed {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 4px 1rem;
+      border-radius: 10px;
+      background: var(--aw-bg-danger-dark);
+      color: var(--aw-text-danger);
+      text-align: center;
+    }
+
+    .following {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 4px 1rem;
+      border-radius: 10px;
+      background: var(--aw-bg-warning-light);
+      color: var(--aw-text-warning);
+      text-align: center;
+    }
+
+    .in-progress {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 4px 1rem;
+      border-radius: 10px;
+      background: var(--aw-bg-success-dark);
+      color: var(--aw-text-success);
+      text-align: center;
+    }
+
+    .new-request {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 4px 1rem;
+      border-radius: 10px;
+      background: var(--aw-bg-purple-dark);
+      color: var(--aw-text-purple);
+      text-align: center;
+    }
+  }
+}
+

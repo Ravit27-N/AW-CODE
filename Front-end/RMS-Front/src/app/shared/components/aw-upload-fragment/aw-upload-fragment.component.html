@@ -1,0 +1,45 @@
+<div *ngIf='isHidden === false' #fragmentContainer [class.disabled]='isDisabled' class='fragment_container'>
+
+  <div class='img-container' *ngIf='!showName' (fileDropped)='onDropFile($event)' appAwDragDrop
+       (dragover)='handleDragover($event, false)' (dragleave)='handleDragover($event, true)'>
+    <input hidden [accept]='acceptExtension' (change)='onFileSelected($event)' type='file' #fileUpload/>
+    <div class='upload-panel'>
+
+      <!-- before file upload -->
+      <div onmousedown='return false' class='upload-container' [style.width]='width'>
+        <div onmousedown='return false' class='drag-file-info absolute'
+             [ngStyle]='{"left": titleOffsetX, "opacity": dragOpacity}'>
+          <img onmousedown='return false' draggable='false' class='pdf-icon' [src]='icon' alt='Image' loading='lazy'>
+          <span onmousedown='return false'>Drag Here</span>
+          <span onmousedown='return false'>your file</span>
+        </div>
+
+        <div onmousedown='return false' class='title-wrapper'
+             [ngStyle]='{"opacity": dragOpacity, "left": buttonOffsetX}'>
+          <span onmousedown='return false' class='or'>Or</span>
+          <button onmousedown='return false' class='btn-upload' (click)='fileUpload.click()'>
+            Browse
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Format accepted file. -->
+  <div class='wrapper' *ngIf='showName'>
+    <div class='d-flex justify-content-between w-100 align-items-center position-relative oe px-4' [style.width]='width'
+         #container>
+      <div filename [style.width]='width'>
+        <img [src]='uploadedIcon' class='mr-2' alt='PDF'>
+        <span [style.width]='getWidth(container)' class='text-truncate'
+              [title]='getFileName(fileName)'>{{getFileName(fileName)}}</span>
+      </div>
+      <div class="d-flex justify-content-between size-container">
+        <span class='file-size'>({{fileSize}})</span>
+        <mat-icon class='text-red cursor-pointer close-icon mr-2' (click)='reset()'>close</mat-icon>
+      </div>
+
+    </div>
+  </div>
+
+</div>

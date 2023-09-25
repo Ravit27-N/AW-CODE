@@ -1,0 +1,42 @@
+<div class="d-flex flex-column" *ngIf="model">
+  <div *ngIf="editMode" class="d-flex align-items-center justify-content-between">
+    <h2 class="m-0" mat-h2>Role: {{model.name}}</h2>
+    <button color="warn" (click)="remove()" mat-icon-button>
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="model.name" name="name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>role descriptions</mat-label>
+    <textarea row="2" matInput name="description" [(ngModel)]="model.description"></textarea>
+  </mat-form-field>
+
+  <div *ngIf="editMode">
+    <h3 mat-h3 class="mt-4 mb-2">Role settings</h3>
+    <div class="pt-2 w-100 border-bottom" *ngFor="let feature of model.features">
+      <h4>{{feature.name}}</h4>
+      <div class="w-100 d-flex justify-content-between pl-2">
+        <mat-checkbox [(ngModel)]="feature.allChecked" [checked]="feature.allChecked"
+          (change)="setAll($event.checked, feature)"><span class="fw-normal">All</span></mat-checkbox>
+        <mat-checkbox [(ngModel)]="feature.viewAble" (ngModelChange)="updateAllComplete(feature)"><span
+            class="fw-normal">View</span></mat-checkbox>
+        <mat-checkbox [(ngModel)]="feature.insertAble" (ngModelChange)="updateAllComplete(feature)"><span
+            class="fw-normal">Create</span></mat-checkbox>
+        <mat-checkbox [(ngModel)]="feature.editAble" (ngModelChange)="updateAllComplete(feature)"><span
+            class="fw-normal">Modify</span></mat-checkbox>
+        <mat-checkbox [(ngModel)]="feature.deleteAble" (ngModelChange)="updateAllComplete(feature)"><span
+            class="fw-normal">Delete</span></mat-checkbox>
+      </div>
+      <p class="text-sm pl-2">{{feature.description}}</p>
+    </div>
+  </div>
+
+  <div class="child-between">
+    <button mat-flat-button color="primary" type="button" (click)="save()">Save changes</button>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="child-between m-0 p-0">
+  <h2 class="mat-h2 m-0 p-0 self-center">Interview details</h2>
+  <button mat-icon-button matTooltip="Close" class="self-center" (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<app-interview-card [interview]="data"></app-interview-card>
+<app-result-card *ngIf="data.hasResult" [interview]="data"></app-result-card>

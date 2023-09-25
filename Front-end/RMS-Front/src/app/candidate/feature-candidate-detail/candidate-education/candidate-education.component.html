@@ -1,0 +1,35 @@
+<div class="candidate-education">
+
+  <div class="contain-tab pb-3">
+    <div class="label ml-3 d-flex">
+      <h2>Education </h2><mat-icon class="ml-2 mt-1">school</mat-icon>
+    </div>
+    <mat-tab-group mat-align-tabs="start" class="ml-3 pt-3" animationDuration="0" disableRipple="true"
+                   (selectedTabChange)="tabChanged($event)">
+      <mat-tab *ngFor="let label of tableLabel; let index = index" [label]="label.toUpperCase()">
+        <div class="information-container d-flex">
+          <div class="row-value">
+            <span class="text-label">Major</span><br>
+            <span class="text-value">{{informationDisplay?.major || '--'}}</span>
+          </div>
+          <div class="row-value">
+            <span class="text-label">Degress</span><br>
+            <span class="text-value">{{informationDisplay?.degree || '--'}}</span>
+          </div>
+          <div class="row-value">
+            <span class="text-label">GPA</span><br>
+            <span class="text-value">{{informationDisplay?.gpa || '--'}}</span>
+          </div>
+          <div class="row-value">
+            <span class="text-label">Start Date</span><br>
+            <span class="text-value">{{informationDisplay?.startDate | awDateFormat}}</span>
+          </div>
+          <div class="row-value">
+            <span class="text-label">End Date</span><br>
+            <span class="text-value">{{informationDisplay?.endDate | awDateFormat}}</span>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

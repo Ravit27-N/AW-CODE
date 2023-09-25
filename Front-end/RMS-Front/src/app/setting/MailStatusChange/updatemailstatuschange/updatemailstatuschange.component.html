@@ -1,0 +1,125 @@
+<div class="pos-relative" appCanAccess perm="Mail Template:edit">
+  <app-loading-indicator [isloading]="('UpdatemailstatuschangeComponent'|swIsLoading|async)"></app-loading-indicator>
+  <form [formGroup]="form">
+    <mat-card>
+      <mat-card-title>
+        <mat-label>
+          Update Mail Configuration
+        </mat-label>
+        <hr>
+      </mat-card-title>
+
+      <mat-form-field class="w-100">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" id="title" required tabindex="1" appAutoFocus />
+        <button mat-button *ngIf="form.controls.title.valid" matSuffix mat-icon-button aria-label="Clear" tabindex="-1"
+          (click)="clearTitle()">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="form.controls.title.hasError('required')">
+          Title required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100">
+        <mat-label>From</mat-label>
+        <input matInput formControlName="from" id="from" required tabindex="2" />
+        <button mat-button *ngIf="form.controls.from.valid" matSuffix mat-icon-button aria-label="Clear" tabindex="-1"
+          (click)="clearFrom()">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="form.controls.from.hasError('required')">
+          From required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100">
+        <mat-label>To</mat-label>
+        <mat-chip-list #chipListTo required tabindex="3">
+          <mat-chip *ngFor="let toEmail of toEmails" [selectable]="selectable" [removable]="removable"
+            (removed)="remove(toEmail)">
+            {{toEmail}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input formControlName="to" [matChipInputFor]="chipListTo"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" name="to"
+            (input)="enableSave()">
+          <button *ngIf="form.controls.to.value" matSuffix mat-icon-button aria-label="Clear" (click)="clearTo()" tabindex="-1">
+            <mat-icon class="chip-icon">close</mat-icon>
+          </button>
+        </mat-chip-list>
+        <mat-error *ngIf="this.chipListTo.errorState">
+          Please Enter Validate Email
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100">
+        <mat-label>Cc</mat-label>
+        <mat-chip-list #chipListCc tabindex="3">
+          <mat-chip *ngFor="let ccEmail of ccEmails" [selectable]="selectable" [removable]="removable"
+            (removed)="removeCc(ccEmail)">
+            {{ccEmail}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input matInput formControlName="cc" [matChipInputFor]="chipListCc"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="addCc($event)">
+          <button *ngIf="form.controls.cc.value" matSuffix mat-icon-button aria-label="Clear" (click)="clearCc()" tabindex="-1">
+            <mat-icon class="chip-icon">close</mat-icon>
+          </button>
+        </mat-chip-list>
+        <mat-error *ngIf="this.chipListCc.errorState">
+          Please Enter Validate Email
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100">
+        <mat-label>Select Status Candidate</mat-label>
+        <mat-select formControlName='statuscandidate' disableOptionCentering tabindex="4">
+          <mat-option>
+            <ngx-mat-select-search placeholderLabel="Search Candidate ...."
+              noEntriesFoundLabel="No Matching Status Candidate ..." formControlName="filtercandidate"
+              (ngModelChange)="onFilterCandidate()">
+            </ngx-mat-select-search>
+          </mat-option>
+          <mat-option *ngFor="let candidate of candidates" [value]="candidate.id">{{candidate.title}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.controls.mailtemplate.hasError('required')">
+          Status Candidate Requied
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100">
+        <mat-label>Select Mail Template</mat-label>
+        <mat-select formControlName='mailtemplate' disableOptionCentering tabindex="5">
+          <mat-option>
+            <ngx-mat-select-search placeholderLabel="Search Mail Template ...."
+              noEntriesFoundLabel="No Matching Mail Template ..." formControlName="filterMailStatus"
+              (ngModelChange)="onFilterMail()">
+            </ngx-mat-select-search>
+          </mat-option>
+          <mat-option *ngFor="let mailTemplate of mailTemplates" [value]="mailTemplate.id">{{mailTemplate.subject}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.controls.mailtemplate.hasError('required')">
+          Mail Template Requied
+        </mat-error>
+      </mat-form-field>
+
+      <mat-slide-toggle class="my-1" formControlName="active" (click)="onChange()">
+        {{slideValue}}
+      </mat-slide-toggle>
+
+      <div class="child-end mt-2">
+        <button mat-flat-button color="warn" routerLink="/admin/setting/mailconfiguration">Cancel</button>
+        <button mat-flat-button color="primary" (click)="savebtn()" [disabled]="saveButtonEnable && true" tabindex="7">Save</button>
+      </div>
+
+    </mat-card>
+  </form>
+</div>
+
+<button mat-raised-button color="primary" class="my-3" (click)="back()" class="bottom-back-button" tabindex="9">
+  <em class="fas fa-chevron-circle-left mr-1"></em>Back
+</button>

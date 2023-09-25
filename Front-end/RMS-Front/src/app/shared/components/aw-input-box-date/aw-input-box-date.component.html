@@ -1,0 +1,41 @@
+<div class="aw-form-group">
+  <label class="aw-form-title" [for]="datePicker">{{ awLabel }} <span class="text-danger" title="This field is required" *ngIf="awRequired">*</span></label>
+ <div class="position-relative">
+   <input
+     matInput
+     #pickerData
+     [matDatepicker]="datePicker"
+     style="height: 0; visibility: hidden"
+     [(ngModel)]="value"
+     (dateInput)="onInputChange($event.target.value)"
+   />
+   <!-- ./ Hidden input date -->
+
+   <div class="position-absolute date-icon">
+     <mat-icon [class.error-icon]="awError" matDatepickerToggleIcon (click)="datePicker.open()" *ngIf="!value">date_range</mat-icon>
+     <mat-icon [class.error-icon]="awError" matDatepickerToggleIcon (click)="reset()" *ngIf="value">clear</mat-icon>
+   </div>
+   <!-- ./ Date range -->
+ </div>
+
+  <input
+    appAwTooltip
+    [shouldShowTooltip]="awError"
+    [tooltipContent]="awErrorMessage"
+    type="text"
+    (click)="datePicker.open()"
+    readonly
+    class="aw-form-control"
+    [placeholder]="awPlaceholder"
+    [value]="pickerData.value | date : 'MMM/d/y'"
+  />
+  <!-- ./ Date input info -->
+
+  <mat-datepicker #datePicker>
+    <mat-datepicker-actions (click)='$event.stopPropagation()'>
+      <button mat-button matDatepickerCancel>Cancel</button>
+      <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+    </mat-datepicker-actions>
+  </mat-datepicker>
+  <!-- ./ Date Picker -->
+</div>

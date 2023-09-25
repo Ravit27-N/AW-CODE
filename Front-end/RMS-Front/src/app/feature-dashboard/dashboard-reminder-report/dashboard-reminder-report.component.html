@@ -1,0 +1,10 @@
+<div class="reminder-card">
+  <ng-container *ngFor="let reminder of reminders.contents">
+    <div class="my-3">
+      <app-reminder-report-card [reminder]="reminder" title="View reminder" (click)="previewReminder(reminder)"></app-reminder-report-card>
+    </div>
+  </ng-container>
+
+  <app-reminder-report-card-see-more *ngIf="reminders.total > 5"></app-reminder-report-card-see-more>
+</div>
+<p *ngIf="reminders.contents.length === 0">There are no reminders.</p>

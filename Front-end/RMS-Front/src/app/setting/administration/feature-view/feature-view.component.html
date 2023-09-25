@@ -1,0 +1,19 @@
+<div class="d-flex align-self-stretch widget-wrapper">
+  <div class="list-view px-2">
+    <button color="primary" mat-flat-button class="w-100 text-left" (click)="create()">
+      <mat-icon>add</mat-icon>
+      Add feature
+    </button>
+    <mat-selection-list #featureSelection [multiple]="false">
+      <mat-list-option *ngFor="let feature of features" [value]="feature">{{feature.name}}</mat-list-option>
+    </mat-selection-list>
+  </div>
+
+  <div class="flex-grow-1">
+    <mat-card>
+      <mat-card-content>
+        <app-feature-form (onsuccess)="loadFeature()" [editMode]="true" [feature]="featureSelection.selectedOptions.selected[0]?.value"></app-feature-form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-xl-6 col-lg-12">
+    <app-aw-card
+      primaryText="Total"
+      secondaryText="Interview"
+      [thirdText]="(dashboardQuickAccess?.interviews || 0) + ' interviews'"
+      type="primary"
+      routerLink="/admin/interview"
+      icon="calendar_month"
+      class="link-effect"
+    >
+    </app-aw-card>
+  </div>
+
+  <div class="col-xl-6 col-lg-12">
+    <app-aw-card
+      primaryText="Total"
+      secondaryText="Passed Candidate"
+      [thirdText]="dashboardQuickAccess?.totalPassedCandidate <= 1 ? dashboardQuickAccess?.totalPassedCandidate + ' candidate' : dashboardQuickAccess?.totalPassedCandidate + ' candidates'"
+      icon="group"
+      routerLink="/admin/candidate"
+      [queryParams]="{status:'Passed'}"
+      type="passed"
+      class="link-effect"
+    >
+    </app-aw-card>
+  </div>
+
+  <div class="col-xl-6 col-lg-12">
+    <app-aw-card
+      primaryText="Total"
+      secondaryText="Failed Candidate"
+      [thirdText]="dashboardQuickAccess?.totalFailedCandidate <= 1  ? dashboardQuickAccess?.totalFailedCandidate + ' candidate' : dashboardQuickAccess?.totalFailedCandidate + ' candidates'"
+      type="failed"
+      routerLink="/admin/candidate"
+      [queryParams]="{status:'Failed'}"
+      icon="group"
+      class="link-effect"
+    >
+    </app-aw-card>
+  </div>
+
+  <div class="col-xl-6 col-lg-12">
+    <app-aw-card
+      primaryText="Total"
+      secondaryText="Candidate"
+      [thirdText]="(dashboardQuickAccess?.candidates || 0) + ' candidate'"
+      type="danger"
+      routerLink="/admin/candidate"
+      icon="group"
+      class="link-effect"
+    >
+    </app-aw-card>
+  </div>
+</div>

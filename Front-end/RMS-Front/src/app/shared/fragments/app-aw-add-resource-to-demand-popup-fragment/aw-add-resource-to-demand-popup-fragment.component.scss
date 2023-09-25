@@ -1,0 +1,35 @@
+button {
+  outline: none;
+  border: none;
+  background: none;
+  color: var(--aw-text-secondary);
+  float: right;
+}
+
+main h1 {
+  font-variant: normal;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  font-family: Rubik, sans-serif;
+  color: var(--aw-text-primary);
+  margin-bottom: 30px;
+}
+
+label {
+  color: var(--aw-text-primary);
+  font-size: 16px;
+  text-align: left;
+  font-variant: normal;
+  font-style: normal;
+  font-family: Rubik, sans-serif;
+  display: inline-block;
+  line-height: 38px;
+  width: 300px;
+  font-weight: 500 !important;
+}
+
+.field-select {
+  height: auto;
+  width: 100%;
+}

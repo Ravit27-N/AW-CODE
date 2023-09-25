@@ -1,0 +1,33 @@
+<div class="aw-form-group">
+  <label class="aw-form-title">{{ awLabel }} <span class="text-danger" *ngIf="awRequired" title="This field is required">*</span> </label>
+  <div class="btn-container position-relative" [class.disabled]="disabled">
+    <input
+      type="text"
+      [placeholder]=placeholder
+      [matMenuTriggerFor]="menu"
+      #triggerMenu
+      class="aw-form-control w-100"
+      readonly
+      [value]="selectedText || ''"
+      appAwTooltip
+      [shouldShowTooltip]="awError"
+      [tooltipContent]="awErrorMessage"
+    />
+    <mat-icon [class.error-icon]="awError" class="position-absolute icon" (click)="triggerMenu.click()">arrow_drop_down</mat-icon>
+  </div>
+
+  <!-- Menu trigger button -->
+
+  <mat-menu #menu="matMenu" class="aw-selection-box-container">
+    <button
+      mat-menu-item
+      class="w-100"
+      [class.active]="awOption.key === selectedValue"
+      (click)="selectOption(awOption)"
+      *ngFor="let awOption of awOptions"
+    >
+      <span class="selected-text">{{ awOption.value }}</span>
+    </button>
+  </mat-menu>
+  <!-- ./ Menu selection dialog -->
+</div>

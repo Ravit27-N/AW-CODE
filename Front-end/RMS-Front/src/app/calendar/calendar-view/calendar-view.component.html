@@ -1,0 +1,12 @@
+<app-aw-layout-list pageTitle="Manage Calendar" pageSubtitle="List all candidates interview">
+  <ng-container slot="action-buttons">
+    <app-aw-rich-button [outline]="false" class="ml-3" routerLink="/admin/interview/create" >
+      <mat-icon>add</mat-icon>Create Interview
+    </app-aw-rich-button>
+  </ng-container>
+  <ng-container slot="page-table">
+    <div class="calendar-size">
+      <full-calendar #calendar deepChangeDetection="true" [options]="calendarOptions"></full-calendar>
+    </div>
+  </ng-container>
+</app-aw-layout-list>

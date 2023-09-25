@@ -1,0 +1,78 @@
+.candidate-container {
+  font-family: var(--aw-font-primary);
+  margin: 0 40px;
+
+  .candidate-detail {
+    margin-top: 40px;
+
+    @media (max-width: 1366px) {
+      &-left {
+        max-width: 100%;
+        flex: 0 0 100%;
+
+        .candidate-detail-profile-detail {
+          flex: 0 0 75%;
+          max-width: 75%;
+        }
+      }
+      &-right {
+        display: none;
+      }
+
+      &-small-screen {
+        ::ng-deep .candidate-activity, ::ng-deep .candidate-interview {
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+
+          &-details {
+            flex: 0 0 49%;
+            max-width: 49%;
+
+            &:nth-child(odd) {
+              position: relative;
+              margin-right: 10px;
+            }
+
+            &:nth-child(even) {
+              position: relative;
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+    }
+
+    @media (min-width: 1367px) {
+      &-small-screen {
+        display: none;
+      }
+    }
+  }
+
+  .file-manager-container {
+    box-shadow: 0 6px 30px rgba(182, 186, 203, 0.3);
+    margin-bottom: 24px;
+    transition: box-shadow 0.2s ease-in-out;
+    background-color: #ffffff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, 0.125);
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 1.5rem;
+
+    .label {
+      color: var(--aw-bg-primary);
+    }
+  }
+}
+
+@media (max-width: 1400px) {
+  app-aw-navigation {
+    .navigation-container {
+      background-color: red;
+    }
+  }
+
+}

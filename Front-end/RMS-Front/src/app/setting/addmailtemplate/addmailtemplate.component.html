@@ -1,0 +1,77 @@
+<form [formGroup]="form" class="pos-relative" #dialogElement>
+  <app-loading-indicator [isloading]="('AddmailtemplateComponent'|swIsLoading|async)"></app-loading-indicator>
+  <div class="child-between m-0 p-0">
+    <h2 class="mat-h2 m-0 p-0 self-center">Add Mail Template</h2>
+    <button mat-icon-button matTooltip="Close" class="self-center" (click)="onNoClick()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <br>
+
+  <app-aw-input-box-text
+    awLabel="Subject"
+    class="subject"
+    awPlaceholder="Subject"
+    formControlName="subject"
+    [awError]="form.controls.subject.hasError('required') &&shouldShowError"
+    awErrorMessage="Subject is require"
+    [awRequired]="true"
+  ></app-aw-input-box-text>
+
+
+
+  <div class=" h-auto">
+    <mat-label>
+      <strong>Body</strong>
+    </mat-label>
+    <div>
+      <div class="container-mail-body position-relative" (contextmenu)="rightClick($event)">
+        <quill-editor formControlName="body" (onEditorChanged)="getIndex()" tabindex="2"></quill-editor>
+
+        <div class="mail-body position-absolute" *ngIf="buttonClick" [style.left]="contextMenuPosition.x"
+             [style.top]="contextMenuPosition.y">
+          <span class="text-bold">Please select mail body</span>
+
+          <div class="contain-button">
+            <div class="button-space" *ngFor="let d of mailTemplate;">
+              <button [value]="d.key" (click)="changeSelection(d.key)">{{d.value}}</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div> <mat-slide-toggle class="mt-2" formControlName="active" (click)="onChange()">
+    {{slidevalue}}
+  </mat-slide-toggle></div>
+
+
+  <div class="child-end mt-2">
+
+    <app-aw-rich-button
+      [actionType]="'submit'"
+      [width]="'150px'"
+      [height]="'35px'"
+      class="ml-2"
+      (click)="onNoClick()"
+      type="danger"
+      outline="false"
+    >
+      Cancel
+    </app-aw-rich-button>
+    <app-aw-rich-button
+      [actionType]="'submit'"
+      [width]="'150px'"
+      [height]="'35px'"
+      class="ml-2"
+      [disabled]="form.invalid"
+      (click)="btnsave()"
+    >
+      Save
+    </app-aw-rich-button>
+  </div>
+</form>

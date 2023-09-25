@@ -1,0 +1,71 @@
+<div class="candidate-detail">
+  <div class="user-information">
+    <div class="user-with-status d-flex align-items-center">
+      <h2 class="profile-header-name m-0"> {{candidateDetail?.fullName}}</h2>
+      <div *ngIf="profile?.status?.length" class="profile-header-status ml-2"><span
+        [class]="getStatusCssClass(profile?.status)">{{ profile?.status }}</span></div>
+    </div>
+<!--    <span class="profile-header-email my-2">{{profile?.email}}</span>-->
+  </div>
+  <div class="information-detail d-flex mt-3">
+    <div class="col-2 d-flex align-items-center ml-2">
+      <div class="profile-header-avatar">
+        <app-aw-avatar [awTitle]="sortName(profile)"
+                       [profileImgURL]='candidateDetail?.photoUrl'>
+        </app-aw-avatar>
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="row-value">
+        <span class="text-label">Gender</span><br>
+        <span class="text-value">{{candidateDetail?.gender}}</span>
+      </div>
+      <div class="row-value">
+        <span class="text-label">Date of Birth</span><br>
+        <span class="text-value">{{candidateDetail?.dateOfBirth | awDateNoTimeFormat}}</span>
+      </div>
+      <div class="row-value">
+        <span class="text-label">Email</span><br>
+        <span class="text-value">{{profile?.email}}</span>
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="row-value">
+        <span class="text-label">Telephone Line 1</span><br>
+        <span class="text-value">{{telephone1}}</span>
+      </div>
+      <div class="row-value">
+        <span class="text-label">Telephone Line 2</span><br>
+        <span class="text-value">{{telephone2}}</span>
+      </div>
+      <div class="row-value">
+        <span class="text-label">Year of Experience</span><br>
+        <span class="text-value">--</span>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="row-value">
+        <span class="text-label">Created By</span><br>
+        <span class="text-value">{{candidateDetail?.createdBy}}</span>
+      </div>
+      <div class="row-value">
+        <span class="text-label">Create at</span><br>
+        <span class="text-value">{{candidateDetail?.createdAt | awDateFormat}}</span>
+      </div>
+      <div class="row-value">
+        <span class="text-label">Last Modify</span><br>
+        <span class="text-value">--</span>
+      </div>
+    </div>
+    <div class="col-3 col-description">
+      <div class="row-value">
+        <span class="text-label">Priority</span><br>
+        <span class="text-value">{{candidateDetail?.priority}}</span>
+      </div>
+      <div class="row-value description">
+        <span class="text-label">Description</span><br>
+        <span class="text-value">{{candidateDetail?.description}}</span>
+      </div>
+    </div>
+  </div>
+</div>

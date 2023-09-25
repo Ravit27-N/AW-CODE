@@ -1,0 +1,16 @@
+<div class="reminder-interview">
+  <ng-container *ngFor="let interview of interviews.contents">
+    <div class="my-1 mx-2 ml-0">
+      <app-reminder-interview-card
+        [interview]="interview"
+      ></app-reminder-interview-card>
+    </div>
+
+  </ng-container>
+  <div class="my-1 mx-2 ml-0">
+    <app-reminder-review-card-see-more
+      *ngIf="interviews.total > 3"
+    ></app-reminder-review-card-see-more>
+  </div>
+</div>
+  <p *ngIf="interviews.contents.length === 0">There are no interview.</p>

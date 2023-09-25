@@ -1,0 +1,7 @@
+.list-view {
+  min-width: 300px;
+}
+
+.widget-wrapper {
+  height: calc(98vh - 120px);
+}
