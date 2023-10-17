@@ -1,0 +1,365 @@
+{
+  "title": {
+    "welcome to signature": "Bienvenue",
+    "I accept the": "J’accepte les ",
+    "log in to your": "Connectez-vous à votre",
+    "signature space": "espace de signature",
+    "Terms and Conditions of Use": "Conditions Générales d’Utilisation",
+    "you-have-been-disconnected": "Vous avez bien été deconnecté.e"
+  },
+
+  "status": {
+    "success": "Succès",
+    "required": "Exigée",
+    "invalid": "Invalide",
+    "your-email-address-and/or-password-is-not-correct": "Votre adresse mail et/ou votre mot de passe n’est pas correct",
+    "no-longer": "Le lien n’est plus valable merci de vous rapprocher de votre administrateur.",
+    "expired": "Le lien n’est plus valable merci de vous rapprocher de votre administrateur."
+  },
+  
+  "form": {
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "login": "Se connecter",
+    "email-placeholder": "Entrez votre identifiant",
+    "password-placeholder": "Entrez votre mot de passe",
+    "name": "Nom",
+    "phone-number": "Numéro de téléphone mobile",
+    "forget-password": "Mot de passe oublié ?",
+    "The format of the email is incorrect": "Le format de l’email est incorrect",
+    "Re-enter the chosen password": "Saisissez à nouveau le mot de passe choisi",
+    "Send-link": "Envoyer le lien",
+    "Back to the connection": "Retour à la connexion",
+    "Choose a new password": "choisir un nouveau de passe.",
+    "special-character-check": " La liste des caractères spéciaux autorisée est (~! @ # $% ^& * _-+ =' | \\ \\ (){}\\ []:; \"' <>,.? /)",
+    "confirm-your-new-password": "Valider votre nouveau mot de passe",
+    "new password": "Nouveau mot de passe",
+    "set-your-personal": "Définissez votre mot",
+    "personal-password": "de passe personnel",
+    "your-password": "Votre mot de passe doit contenir :",
+    "least-12-characters": "Au moins 12 caractères",
+    "e-mail-address": "Adresse email",
+    "my-profile": "Mon profil",
+    "logout": "Déconnexion",
+    "text-bottom-forgot-password": "Pas d’inquiétude. Entrez votre adresse e-mail et nous vous enverrons un lien pour définir un nouveau mot de passe.",
+    "request-sent": "Demande envoyée",
+    "text-request-sent": "Si un compte existe pour l’adresse mail renseigné, vous allez recevoir un mail pour réinitialiser votre mot de passe. S'il n'arrive pas, vérifiez votre dossier de courrier indésirable.",
+    "password-re-password-must-same": "Le mot de passe et la confirmation du mot de passe doivent être identiques",
+    "more-than-12-characters": "Taille des champs de mots de passe limitée à 12 caractères"
+  },
+
+  "form-error": {
+    "name": "Saisissez le nom",
+    "email": "Saisissez l'adresse e-mail",
+    "email-invalid": "Le format de l’email est incorrect",
+    "phone-invalid": "Le format du numéro de téléphone mobile est incorrect",
+    "existed-email": "Cet email est déjà utilisé",
+    "company-name": "Saisissez le nom de l'entreprise",
+    "phone-number": "Saisissez le numéro de téléphone mobile",
+    "siret-number": "Saisissez le Siret number",
+    "required-field": "Champs Obligatoire"
+  },
+
+  "folder": {
+    "dashboard": "Dashboard",
+    "signature-project": "Projets de signature",
+    "assign-project": "Mes projets assignés",
+    "model-signature-path": "Modèles de parcours de signature",
+    "contacts": "Carnet d'adresses"
+  },
+
+  "text": {
+    "1 capital letter ": "1 majuscule",
+    "1 special character": "1 caractère spécial",
+    "1 lower case letter": "1 minuscule",
+    "1 number": "1 chiffre",
+    "Nouveau projet": "Nouveau projet",
+    "à partir de zéro": "à partir de zéro",
+    "Rechercher un document, un signataire, un contact": "Rechercher un projet, un contact, un utilisateur...",
+    "MODÈLE": "MODÈLE"
+  },
+
+  "table": {
+    "signature project": "Projet de signature",
+    "model": "Modèle",
+    "documents": "Documents",
+    "recipient": "Recepcient",
+    "recipients": "Participant",
+    "completions": "Achèvements",
+    "deadline": "Date limite",
+    "actions": "Actions",
+    "participants": "Participants",
+    "title": "Vos projets de signature",
+    "order": "Ordre",
+    "name": "Nom",
+    "role": "Rôle",
+    "signatory": "Signataire",
+    "approval": "Approbateur",
+    "receipt": "Destinataire",
+    "viewer": "Lecteur",
+    "invitation-status": "Statut de l’invitation",
+    "file-status": "Statut du dossier",
+    "signed": "a signé",
+    "approved": "a approuvé",
+    "received": "reçu",
+    "did-not-sign": "n’a pas signé",
+    "did-not-approve": "n’a pas approuvé",
+    "did-not-recipient": "n’a pas reçu",
+    "service": "Service",
+    "members": "Membres",
+    "project": "Projets",
+    "percentage": "Pourcentage",
+    "users": "Utilisateurs"
+  },
+
+  "company-form": {
+    "company-name": "Nom de l'entreprise",
+    "siret-number": "Siret number",
+    "contact-name": "Nom du contact",
+    "fix-number": "Numéro de téléphone fixe",
+    "address": "Adresse",
+    "existed-name": "Le nom de cette entreprise existe déjà",
+    "required-contact-first-name": "Saisissez le contact prénom",
+    "required-contact-last-name": "Saisissez le contact nom de famille",
+    "duplicate-company-name": "Le nom de cette entreprise existe déjà",
+    "duplicate-company-siret": "Le siret de cette société existe déjà",
+    "add-success-message": "L’entreprise “ {{name}} “ a bien été ajoutée"
+  },
+
+  "company-form-error": {
+    "siret-number-invalid": "Un numéro de siret doit comporter 14 chiffres"
+  },
+
+  "corporate-form": {
+    "resetMessage": "Voulez-vous vraiment réinitilaiser les paramètres par défaut ?",
+    "your-changes-have-been-saved": "Vos changements ont bien été enregistrés"
+  },
+
+  "invitation": {
+    "Your message exceeds the allowed message size": "Votre message dépasse la taille de message autorisée"
+  },
+
+  "upload-document": {
+    "drag-and-drop-your-files-here": "Glissez déposez vos documents ici",
+    "adding-files": "Ajouter des fichiers",
+    "cancel": "Annuler"
+  },
+
+  "upload-logo": {
+    "maximum-number-of-logos-reached": "Nombre maximum de logos atteints",
+    "format-not-accepted": "Format non supporté pour le logo de l’entreprise",
+    "logo-dimensions-error-message": "L’image pour le logo de l’entreprise doit mesurer entre 500x500 et 2000×2000 pixels",
+    "logo-support": "Format accepté: .png, Dimension: entre 500x500 et 2000×2000 pixels",
+    "adding-logo": "Ajout d’un logo"
+  },
+
+  "upload-signatories": {
+    "first-name": "Prénom",
+    "last-name": "Nom de contact"
+  },
+
+  "pdf-edit": {
+    "cancel": "Annuler",
+    "confirm": "Confirmer"
+  },
+
+  "superadmin-dashboard": {
+    "welcome": "Bienvenue {{name}}",
+    "select-company-to-manage": "Sélectionnez une entreprise à gérer",
+    "search-for-a-company": "Rechercher une entreprise",
+    "add-a-company": "Ajouter une entreprise",
+    "users": "Administrateurs",
+    "add": "Ajouter",
+    "cancel": "Annuler",
+    "change-logo": "Changer le logo",
+    "remove-logo": "Retirer le logo",
+    "users-count": "{{num}} Administrateurs"
+  },
+
+  "super-admin-add-corporate-user": {
+    "create-corporate-admin": "Ajouter un administrateur",
+    "edit-user": "Modifier l’administrateur",
+    "delete-user": "Supprimer l’administrateur",
+    "first-name": "Prénom",
+    "last-name": "Nom",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "phone-number": "Numéro de téléphone",
+    "function": "Fonction",
+    "team": "Département",
+    "select-a-team": "Sélectionnez une département",
+    "access-right": "Droits d’accès",
+    "select-an-access-right": "Sélectionner un droit d’accès",
+    "cancel": "Annuler",
+    "submit": "Ajouter",
+    "create-successfully": "L’administrateur d'entreprise “ {{name}} “ a été ajouté"
+  },
+
+  "super-admin-update-corporate-user": {
+    "update-corporate-admin": "Modifier l’administrateurs",
+    "first-name": "Prénom",
+    "last-name": "Nom",
+    "email": "E-mail",
+    "phone-number": "Numéro de téléphone",
+    "function": "Fonction",
+    "team": "Département",
+    "select-a-team": "Sélectionnez une département",
+    "access-right": "Droits d’accès",
+    "select-an-access-right": "Sélectionner un droit d’accès",
+    "cancel": "Annuler",
+    "submit": "Editer",
+    "update-successfully": "L’administrateur “ {{name}} “ a été mis à jour"
+  },
+
+  "super-admin-delete-corporate-user": {
+    "delete-corporate-admin": "Supprimer l’administrateur :",
+    "delete-waring": "Vous allez supprimer l’administrateur, cette action est irréversible.",
+    "helper-text": "Vous pouvez attribuer ses dossiers à un autre administrateur :",
+    "assign-user": "Attribuer ses dossiers à un autre administrateur",
+    "select-a-user": "Sélectionner un administrateur",
+    "cancel": "Annuler",
+    "submit": "Supprimer l’administrateur",
+    "delete-successfully": "L’administrateur a été supprimé."
+  },
+
+  "list-action": {
+    "modify-expire-date": "Modifier la date d’expiration",
+    "download-document": "Télécharger les documents",
+    "cancel-project": "Annuler le projet"
+  },
+
+  "month": {
+    "Jan": "janvier",
+    "Feb": "février",
+    "Mar": "mars",
+    "Apr": "avril",
+    "May": "mai",
+    "Jun": "juin",
+    "Jul": "juillet",
+    "Aug": "août",
+    "Sep": "septembre",
+    "Oct": "octobre",
+    "Nov": "novembre",
+    "Dem": "décembre"
+  },
+  "day": {
+    "Mon": "lundi",
+    "Tue": "mardi",
+    "Wed": "mercredi ",
+    "Thu": "jeudi ",
+    "Fri": "vendredi ",
+    "Sat": "samedi",
+    "Sun": "dimanche"
+  },
+
+  "project": {
+    "projects": "Projets de signature",
+    "created-by": "Créé par"
+  },
+
+  "invitationStatus": {
+    "APPROVED": "Approuvé",
+    "SIGNED": "Signed",
+    "SENT": "Envoyé ",
+    "ON_HOLD": "En attente",
+    "IN_PROGRESS": "En cours"
+  },
+
+  "documentStatus": {
+    "IN_PROGRESS": "En cours",
+    "SIGNED": "Signé",
+    "APPROVED": "Approuvé",
+    "RECEIVED": "Reçu",
+    "REFUSED": "Refusé",
+    "READ": "Lu"
+  },
+
+  "historyStatus": {
+    "CREATED": "Projet créé",
+    "SENT": "Projet envoyé",
+    "SIGNED": "Projet signé",
+    "COMPLETED": "Projet complet",
+    "APPROVED": "Projet approuvé",
+    "REFUSED": "Projet refusé",
+    "EXPIRED": "Projet expiré",
+    "READ": "Projet lu"
+  },
+
+  "projectStatus": {
+    "COMPLETED": "Signé",
+    "DRAFT": "Brouillon",
+    "IN_PROGRESS": "En cours",
+    "REFUSED": "Project refusé",
+    "EXPIRED": "Expiré"
+  },
+
+  "enterprise-brand": {
+    "your-brand": "Votre Marque",
+    "personal-organize": "Personnalisez l’interface de votre organisation aux couleurs de votre marque.",
+    "color-theme": "Votre thème de couleur",
+    "reset-to-default": "Réinitialiser par défaut",
+    "preview": "Prévisualisation",
+    "platform": "Plateforme",
+    "new-project": "Nouveau projet",
+    "brand": "Marque",
+    "save-change": "Enregistrer les modifications"
+  },
+
+  "enterprise-services": {
+    "add-a-team": "Ajouter une département",
+    "search": "Rechercher un administrateur",
+    "import-users": "Importer des administrateurs",
+    "export-list": "Exporter la liste",
+    "create-user": "Create a user",
+    "services": "Services",
+    "department": "Département",
+    "add": "Ajouter",
+    "name-service": "Nom du département",
+    "create-successfully": "Département “ {{name}} “ a été ajouté"
+  },
+
+  "enterprise-setting": {
+    "parameters": "Paramètres"
+  },
+
+  "project-detail": {
+    "reason-reject": "Motif de rejet : ",
+    "detail": "Détail"
+  },
+
+  "message-error-validation-password": {
+    "special": "Le mot de passe doit contenir au moins un caractère spécial  (~! @ # $% ^& * _-+ =' | \\ \\ (){}\\ []:; \"' <>,.? /)",
+    "num": "Le mot de passe doit contenir au moins un chiffre",
+    "upper-case": "Le mot de passe doit contenir au moins une majuscule",
+    "lower-case": "Le mot de passe doit contenir au moins une minuscule",
+    "character-12": "Le mot de passe doit contenir 12 caractères",
+    "special-match": "La liste des caractères spéciaux autorisée dans le mot de passe est (~! @ # $% ^& * _-+ =' | \\ \\ (){}\\ []:; \"' <>,.? /)"
+  },
+
+  "models-corporate": {
+    "search-for-model": "Rechercher un modèle"
+  },
+  
+  "setting": {
+    "text-personal-data": "Données personnelles",
+    "semi-signatory-accesses-platform": "Ce message apparaîtra au moment où le signataire accède à la plateforme.",
+    "placeholder-condition-use": "Pour continuer, consultez les conditions générales d’utilisation de la plateforme.",
+    "text-proof-identity": "Justificatif d’identité",
+    "semi-import-voucher": "Ce message apparaîtra au moment où le signataire va importer sa pièce justificative.",
+    "placeholder-supporting-documents": "En continuant, vous acceptez de partager vos pièces justificatives.",
+    "text-supporting-documents": "Pièce justificatives",
+    "semi-import-document": "Ces éléments concernent l’étape où le signataire doit importer sa pièce justificative.",
+    "placeholder-import-your-id": "Importez votre pièce d’identité afin de prouver votre identité.",
+    "allow-file-type": "Types de fichiers autorisés",
+    "pdf": "Document au format PDF (.pdf)",
+    "jpg": "Image au format JPG (.jpg)",
+    "png": "Image au format PNG (.png)",
+    "recovery-channel": "Canal de relance",
+    "relaunch-participants": "Le canal de relance correspond au moyen utilisé pour relancer manuellement les participants.",
+    "setting": "Paramètres",
+    "signature-settings": "Paramètres de signature",
+    "different-signature-levels": "Définissez les paramètres pour vos différents niveaux de signature.",
+    "channel-glance": "Canal de relance",
+    "follow-up-channel": "Le canal de relance correspond au moyen utilisé pour relancer manuellement les participants."
+  }
+}

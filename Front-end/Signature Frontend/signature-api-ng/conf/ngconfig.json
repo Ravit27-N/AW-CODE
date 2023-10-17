@@ -1,0 +1,71 @@
+{
+	"accept-forced-closure": true,
+	"certificate-ttl": 1200,
+	"client-upload-number-max": 100000,
+	"client-upload-size-max":   1073741824,
+	"default-language": "fr",
+	"document-approval-categories": {
+		"legal": {
+			"fr": "Approbation par le service juridique",
+			"en": "Legal approval"
+		},
+		"comm": {
+			"fr": "Approbation par le service commercial",
+			"en": "Commercial approval"
+		},
+		"tech": {
+			"fr": "Approbation technique",
+			"en": "Technical approval"
+		},
+		"head": {
+			"fr": "Approbation par la direction",
+			"en": "Direction approval"
+		}
+	},
+	"manifest-on-closure": false,
+	"manifest-generation-options":{
+		"footer": {
+			"pageNumber": "end"
+		}
+	},
+	"otp-ttl": 600,
+	"port": 8008,
+	"activate-manifest-data":{
+		"activation-reference":{
+			"fr": "Ref. d'activation",
+			"en": "Activation ID #"
+		}
+	},
+	"session-manifest-data":{
+		"operationDesc": {
+			"fr":"Signature du contrat Innovation & Trust",
+			"en":"Signature du contrat Innovation & Trust"
+		},
+    "sourceService":{
+			"fr": "Service Juridique",
+			"en": "Service Juridique"
+		},
+		"title":{
+			"fr": "Titre",
+			"en": "Title"
+		},
+		"folder-reference":{
+			"fr": "No de dossier",
+			"en": "Directory #"
+		}
+	},
+	
+	"session-documents-number-max": 50,
+	"session-documents-size-max": 4194304,
+	"ttl-max": 864000,
+	"ttl-min": 300,
+	"upload-bandwidth-max": 1048576,
+	"upload-size-max": 204857600,
+	"upload-ttl": 900,
+	"db-transaction-timeout": 16000000,
+	"log-file-size-max": 50,
+	"keep-logs-max": 10,
+	"request-body-size": 20971520,
+	"certificate-requests-timeout": 1200000,
+	"signature-requests-timeout": 1200000
+}

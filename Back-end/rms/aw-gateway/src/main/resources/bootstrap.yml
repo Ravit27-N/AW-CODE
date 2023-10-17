@@ -1,0 +1,107 @@
+server:
+  port: ${SERVICE_GATEWAY_SERVER_PORT:8183}
+
+spring:
+  application:
+    name: aw-rms-gateway
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: aw-server-config
+      retry:
+        max-attempts: 6
+        max-interval: 2000
+        multiplier: 1.1
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      routes:
+        - id: aw-rms-service
+          uri: lb://aw-rms-service
+          predicates:
+            - Path=/rms-service/**
+          filters:
+            - TokenRelay=
+            - StripPrefix=1
+            - RewritePath=/rms-service/(?<segment>.*),/api/$\{segment}
+
+  mvc:
+    servlet:
+      path: /
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      rmsService:
+        slidingWindowSize: 10                     #unit request
+        permittedNumberOfCallsInHalfOpenState: 5  #unit request
+        failureRateThreshold: 50                  #percent
+        waitDurationInOpenState: 10000            #10 seconds
+        registerHealthIndicator: true
+    configs:
+      default:
+        registerHealthIndicator: true
+        slidingWindowSize: 50
+  timelimiter:
+    configs:
+      default:
+        timeoutDuration: 5s
+        cancelRunningFuture: true
+    instances:
+      rmsService:
+        timeoutDuration: 2s
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.name}-${random.int}
+    status-page-url-path: ${spring.mvc.servlet.path}/actuator/info
+    health-check-url-path: ${spring.mvc.servlet.path}/actuator/health
+  client:
+    service-url:
+      defaultZone: http://${DISCOVERY_HOST:${discovery.hostname:10.2.2.127}}:${DISCOVERY_PORT:${discovery.port:8761}}/eureka
+    register-with-eureka: true
+    healthcheck:
+      enabled: true
+    fetch-registry: true
+
+logging:
+  level:
+    root: INFO
+  file:
+    # The OS system must give permission to write files in the target directories you configured.
+    path: ./logs
+    name: ${logging.file.path}/gateway.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${logging.file.path}/gateway-%d{yyyy-MM-dd}.%i.log
+      max-file-size: 10MB
+
+openapi:
+  service:
+    title: API Gateway Doc
+    description: Documentation API Gateway v1.0.0
+    version: 1.0.0
+springdoc:
+  enable-native-support: true
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /v3/api-docs
+        name: API Gateway Service
+
+      - url: /rms-service/v3/api-docs
+        name: MS rms service
+cors:
+  allowed:
+    origins: ${FRONT_END_URI:${keycloak.redirect.front-end-uri:http://localhost:4200}}, http://localhost:8183

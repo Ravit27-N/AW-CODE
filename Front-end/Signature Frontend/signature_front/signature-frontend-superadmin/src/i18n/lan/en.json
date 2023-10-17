@@ -1,0 +1,365 @@
+{
+  "title": {
+    "welcome to signature": "Welcome",
+    "I accept the": "I accept the ",
+    "log in to your": "Log in to your",
+    "signature space": "signature space",
+    "Terms and Conditions of Use": "Terms and Conditions of Use",
+    "you-have-been-disconnected": "You have been disconnected"
+  },
+
+  "status": {
+    "success": "Success",
+    "required": "Required",
+    "invalid": "Invalid",
+    "your-email-address-and/or-password-is-not-correct": "Your email address and/or password is incorrect",
+    "no-longer": "The link is no longer valid please contact your administrator",
+    "expired": "The link is no longer valid please contact your administrator"
+  },
+  
+  "form": {
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "email-placeholder": "Enter your username",
+    "password-placeholder": "Enter your password",
+    "name": "Name",
+    "phone-number": "Phone number",
+    "forget-password": "Forgot your password?",
+    "The format of the email is incorrect": "The format of the email is incorrect",
+    "Re-enter the chosen password": "Re-enter the chosen password",
+    "Send-link": "Send Link",
+    "Back to the connection": "Back to the connection",
+    "Choose a new password": "Choose a new password",
+    "special-character-check": "The list of special characters allowed is  (~! @ # $% ^& * _-+ =' | \\ \\ (){}\\ []:; \"' <>,.? /)",
+    "confirm-your-new-password": "Confirm your new password",
+    "new password": "New password",
+    "set-your-personal": "Set your",
+    "personal-password": "personal password",
+    "your-password": "Your password must contain :",
+    "least-12-characters": "At least 12 characters",
+    "e-mail-address": "Email address",
+    "my-profile": "My profile",
+    "logout": "logout",
+    "text-bottom-forgot-password": "Don't worry. Enter your e-mail address and we'll send you a link to set a new password.",
+    "request-sent": "Request sent",
+    "text-request-sent": "If an account exists for the e-mail address you have entered, you will receive an e-mail to reset your password. If it doesn't arrive, check your spam folder.",
+    "password-re-password-must-same": "Password and password confirmation must be identical",
+    "more-than-12-characters": "Password field size limited to 12 characters"
+  },
+
+  "form-error": {
+    "name": "Name is required",
+    "email": "Email is required",
+    "email-invalid": "Incorrect email format",
+    "phone-invalid": "Incorrect cell phone number format",
+    "existed-email": "This email is already in use",
+    "company-name": "Company is required",
+    "phone-number": "Phone number is required",
+    "siret-number": "Siret number is required",
+    "required-field": "Required field"
+  },
+  
+  "folder": {
+    "dashboard": "Dashboard",
+    "signature-project": "Signature projects",
+    "assign-project": "My assigned projects",
+    "model-signature-path": "Model signature paths",
+    "contacts": "Contacts"
+  },
+
+  "text": {
+    "1 capital letter ": "1 capital letter",
+    "1 special character": "1 special character",
+    "1 lower case letter": "1 lower case letter",
+    "1 number": "1 number",
+    "Nouveau projet": "New project", 
+    "à partir de zéro": "from scratch",
+    "Rechercher un document, un signataire, un contact": "Search for a document, a signatory, a contact",
+    "MODÈLE": "MODEL"
+  },
+
+  "table": {
+    "signature project": "Signature project",
+    "model": "Model",
+    "documents": "Documents",
+    "recipient": "Recipients",
+    "recipients": "Recipient",
+    "completions": "Completion",
+    "deadline": "Deadline",
+    "actions": "Action",
+    "participants": "Participants",
+    "title": "Your recent signature projects",
+    "order": "Order",
+    "name": "Name",
+    "role": "Role",
+    "signatory": "Signatory",
+    "approval": "Approval",
+    "receipt": "Recipient",
+    "viewer": "Viewer",
+    "invitation-status": "Invitation Status",
+    "file-status": "File Status",
+    "signed": "signed",
+    "approved": "approved",
+    "received": "received",
+    "did-not-sign": "did not sign",
+    "did-not-approve": "did not approve",
+    "did-not-recipient": "did not recipient",
+    "service": "Service",
+    "members": "Members",
+    "project": "Projects",
+    "percentage": "Percentage",
+    "users": "Users"
+  },
+
+  "company-form": {
+    "company-name": "Company name",
+    "siret-number": "Siret number",
+    "contact-name": "Contact name",
+    "fix-number": "Fix number",
+    "address": "Address",
+    "existed-name": "The name of this company already exists",
+    "required-contact-first-name": "Contact first name is required",
+    "required-contact-last-name": "Contact last name is required",
+    "duplicate-company-name": "The name of this company already exists",
+    "duplicate-company-siret": "The siret of this company already exists",
+    "add-success-message": "The company “ {{name}} “ has been added"
+  },
+
+  "company-form-error": {
+    "siret-number-invalid": "A siret number must have 14 digits"
+  },
+
+  "corporate-form": {
+    "resetMessage": "Do you want to reset the default settings?",
+    "your-changes-have-been-saved": "Your changes have been saved"
+  },
+
+  "invitation": {
+    "Your message exceeds the allowed message size": "Your message exceeds the allowed message size"
+   },
+
+  "upload-document": {
+    "drag-and-drop-your-files-here": "Drag and drop your files here",
+    "adding-files": "Adding files",
+    "cancel": "Cancel"
+  },
+
+  "upload-logo": {
+    "maximum-number-of-logos-reached": "Maximum number of logos reached",
+    "format-not-accepted": "Format not accepted",
+    "logo-dimensions-error-message": "The image for the company logo should measure between 500x500 and 2000×2000 pixels.",
+    "logo-support": "Accepted format: .png, Dimension: between 500x500 and 2000×2000 pixels",
+    "adding-logo": "Adding Logo"
+  },
+
+  "upload-signatories": {
+    "first-name": "First name",
+    "last-name": "Last name"
+  },
+
+  "pdf-edit": {
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+
+  "superadmin-dashboard": {
+    "welcome": "Welcome {{name}}",
+    "select-company-to-manage": "Select company to manage",
+    "search-for-a-company": "Search for a company",
+    "add-a-company": "Add a company",
+    "users": "Operators",
+    "add": "Add",
+    "cancel": "Cancel",
+    "change-logo": "Changer le logo",
+    "remove-logo": "Retirer le logo",
+    "users-count": "{{num}} Operators"
+  },
+
+  "super-admin-add-corporate-user": {
+    "create-corporate-admin": "Add a operator",
+    "edit-user": "Edit the operator",
+    "delete-user": "Delete the operator",
+    "first-name": "First name",
+    "last-name": "Last name",
+    "email": "Email",
+    "password": "Password",
+    "phone-number": "Phone number",
+    "function": "Function",
+    "team": "Department",
+    "select-a-team": "Select a department",
+    "access-right": "Access rights",
+    "select-an-access-right": "Select an access rights",
+    "cancel": "Cancel",
+    "submit": "Add",
+    "create-successfully": "Corporate Admin “ {{name}} “ has been added"
+  },
+
+  "super-admin-update-corporate-user": {
+    "update-corporate-admin": "Update Operator",
+    "first-name": "First name",
+    "last-name": "Last name",
+    "email": "Email",
+    "phone-number": "Phone number",
+    "function": "Function",
+    "team": "Department",
+    "select-a-team": "Select a department",
+    "access-right": "Access rights",
+    "select-an-access-right": "Select an access rights",
+    "cancel": "Cancel",
+    "submit": "Edit",
+    "update-successfully": "Operator “ {{name}} “ has been updated"
+  },
+
+  "super-admin-delete-corporate-user": {
+    "delete-corporate-admin": "Delete Operator :",
+    "delete-waring": "This action is irreversible.",
+    "helper-text": "You can assign these folders to another user :",
+    "assign-user": "Assign folders to another user",
+    "select-a-user": "Select a user",
+    "cancel": "Cancel",
+    "submit": "Delete user",
+    "delete-successfully": "Operator has been deleted."
+  },
+
+  "list-action": {
+    "modify-expire-date": "Change the expiration date",
+    "download-document": "Download the documents",
+    "cancel-project": "Cancel the project"
+  },
+
+  "month": {
+    "Jan": "january",
+    "Feb": "february",
+    "Mar": "march",
+    "Apr": "april",
+    "May": "may",
+    "Jun": "june",
+    "Jul": "july",
+    "Aug": "august",
+    "Sep": "september",
+    "Oct": "october",
+    "Nov": "november",
+    "Dem": "december"
+  },
+  "day": {
+    "Mon": "monday",
+    "Tue": "tuesday",
+    "Wed": "wednesday",
+    "Thu": "thursday",
+    "Fri": "friday",
+    "Sat": "saturday",
+    "Sun": "sunday"
+  },
+
+  "project": {
+    "projects": "Projects",
+    "created-by": "created by"
+  },
+
+  "invitationStatus": {
+    "APPROVED": "Approved",
+    "SIGNED": "Signed",
+    "SENT": "Sent",
+    "ON_HOLD": "On hold",
+    "IN_PROGRESS": "In process"
+  },
+
+  "documentStatus": {
+    "IN_PROGRESS": "In process",
+    "SIGNED": "Signed",
+    "APPROVED": "Approved",
+    "RECEIVED": "Received",
+    "REFUSED": "Refuse",
+    "READ": "Read"
+  },
+  
+  "historyStatus": {
+    "CREATED": "Project created",
+    "SENT": "Project sent",
+    "SIGNED": "Project signed",
+    "COMPLETED": "Project completed",
+    "APPROVED": "Projet approval",
+    "REFUSED": "Project refuse",
+    "EXPIRED": "Project expired",
+    "READ": "Project read"
+  },
+
+  "projectStatus": {
+    "COMPLETED": "Signed",
+    "DRAFT": "Draft",
+    "IN_PROGRESS": "In progress",
+    "REFUSED": "Project refuse",
+    "EXPIRED": "Expired"
+  },
+
+  "enterprise-brand": {
+    "your-brand": "Your brand",
+    "personal-organize": "Personalize your organization's interface with your brand's colors",
+    "color-theme": "Your color theme",
+    "reset-to-default": "Reset to default",
+    "preview": "Preview",
+    "platform": "Platform",
+    "new-project": "New project",
+    "brand": "Brand",
+    "save-change": "Save changes"
+  },
+
+  "enterprise-services": {
+    "add-a-team": "Add a team",
+    "search": "Search for a operator",
+    "import-users": "Import operators",
+    "export-list": "Export list",
+    "create-user": "Create a user",
+    "services": "Services",
+    "department": "Department",
+    "add": "Add",
+    "name-service": "Name service",
+    "create-successfully": "Service “ {{name}} “ has been added"
+  },
+
+  "enterprise-setting": {
+    "parameters": "Parameters"
+  },
+
+  "project-detail": {
+    "reason-reject": "Reason for rejection : ",
+    "detail": "Detail"
+  },
+
+  "message-error-validation-password": {
+    "special": "Le mot de passe doit contenir au moins un caractère spécial  (~! @ # $% ^& * _-+ =' | \\ \\ (){}\\ []:; \"' <>,.? /)",
+    "num": "Le mot de passe doit contenir au moins un chiffre",
+    "upper-case": "Le mot de passe doit contenir au moins une majuscule",
+    "lower-case": "Le mot de passe doit contenir au moins une minuscule",
+    "character-12": "Le mot de passe doit contenir 12 caractères",
+    "special-match": "La liste des caractères spéciaux autorisée dans le mot de passe est (~! @ # $% ^& * _-+ =' | \\ \\ (){}\\ []:; \"' <>,.? /)"
+  },
+
+  "models-corporate": {
+    "search-for-model": "Search for a model"
+  },
+  
+  "setting": {
+    "text-personal-data": "Personal data",
+    "semi-signatory-accesses-platform": "This message will appear when the signatory accesses the platform.",
+    "placeholder-condition-use": "To continue, consult the general conditions of use of the platform.",
+    "text-proof-identity": "Identity document",
+    "semi-import-voucher": "This message will appear when the signatory will import their supporting document.",
+    "placeholder-supporting-documents": "By continuing, you agree to share your supporting documents.",
+    "text-supporting-documents": "Supporting documents",
+    "semi-import-document": "These elements concern the step where the signatory must import his supporting document.",
+    "placeholder-import-your-id": "Import your ID to prove your identity.",
+    "allow-file-type": "Allowed file types",
+    "pdf": "Document in PDF format (.pdf)",
+    "jpg": "Image in JPEG format (.jpg)",
+    "png": "Image in PNG format (.png)",
+    "recovery-channel": "dunning channel",
+    "relaunch-participants": "The follow-up channel corresponds to the means used to manually follow up on participants.",
+    "setting": "Setting",
+    "signature-settings": "Signature Settings",
+    "different-signature-levels": "Define the parameters for your different signature levels.",
+    "channel-glance": "channel at a glance",
+    "follow-up-channel": "The follow-up channel corresponds to the means used to manually follow up on participants."
+  }
+}

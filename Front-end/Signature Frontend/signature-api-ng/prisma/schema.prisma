@@ -1,0 +1,336 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model CA {
+  id        BigInt    @id @default(autoincrement())
+  publicId  BigInt    @map("public_id")
+  createdAt DateTime? @default(now()) @map("created_at") @db.Timestamp(3)
+  updatedAt DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamp(3)
+  importId  String    @unique(map: "ca_importid_unique") @map("import_id") @db.VarChar(36)
+  status    BigInt    @default(1)
+  name      String    @db.VarChar(200)
+  caData    Json?
+  caTokens  CaToken[]
+
+  @@index([status], map: "ca_status_index")
+  @@index([publicId], map: "ca_publicid_index")
+  @@map("ca")
+}
+
+model DocFile {
+  id         BigInt   @id @default(autoincrement())
+  rank       Int      @default(0)
+  status     Int      @default(1)
+  usage      Int      @default(0)
+  type       Int      @default(0)
+  usageTitle String?  @map("usage_title") @db.VarChar(200)
+  documentId BigInt   @map("document_id")
+  fileId     BigInt   @map("file_id")
+  document   Document @relation("document_doc_files", fields: [documentId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "doc_files_documentid_foreign")
+  file       File     @relation("document_file", fields: [fileId], references: [id], onUpdate: NoAction, map: "doc_files_fileid_foreign")
+
+  @@index([rank], map: "doc_files_rank_index")
+  @@index([documentId], map: "doc_files_documentid_index")
+  @@index([fileId], map: "doc_files_fileid_index")
+  @@map("doc_files")
+}
+
+model Download {
+  id             BigInt    @id @default(autoincrement())
+  publicId       BigInt    @map("public_id")
+  createdAt      DateTime? @default(now()) @map("created_at") @db.Timestamp(3)
+  updatedAt      DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamp(3)
+  user           String    @db.VarChar(64)
+  downloadsCount Int       @default(0) @map("downloads_count")
+  expiresAt      DateTime? @map("expires_at") @db.Timestamp(3)
+  path           String?   @db.VarChar(4096)
+  size           Int       @default(0)
+  ttl            Int       @default(7200)
+  fileId         BigInt?   @map("file_id")
+  sessionId      BigInt    @map("session_id")
+  file           File?     @relation(fields: [fileId], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "downloads_fileid_foreign")
+  session        Session   @relation(fields: [sessionId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "downloads_sessionid_foreign")
+
+  @@index([user], map: "downloads_user_index")
+  @@index([expiresAt], map: "downloads_expires_at_index")
+  @@index([fileId], map: "downloads_fileid_index")
+  @@index([publicId], map: "downloads_publicid_index")
+  @@index([sessionId], map: "downloads_sessionid_index")
+  @@map("downloads")
+}
+
+model File {
+  id               BigInt            @id @default(autoincrement())
+  createdAt        DateTime?         @default(now()) @map("created_at") @db.Timestamp(3)
+  fileName         String            @map("file_name") @db.VarChar(260)
+  fileType         Int               @map("file_type")
+  hash             String            @db.VarChar(128)
+  path             String            @db.VarChar(4096)
+  sealPath         String?           @map("seal_path") @db.VarChar(4096)
+  size             Int               @default(0)
+  status           Int               @default(1)
+  ttl              Int               @default(300)
+  timestampedAt    DateTime          @map("timestamped_at") @db.Timestamp(3)
+  uploadedAt       DateTime?         @map("uploaded_at") @db.Timestamp(3)
+  user             String            @db.VarChar(64)
+  fileMetaData     Json?             @map("file_meta_data")
+  otherData        Json?             @map("other_data")
+  certificateFiles CertificateFile[]
+  docFiles         DocFile[]         @relation("document_file")
+  downloads        Download[]
+  sessions         Session[]
+  documents        Document[]        @relation("document_genuine_file")
+
+  @@index([status], map: "files_status_index")
+  @@index([user], map: "files_user_index")
+  @@map("files")
+}
+
+model OTP {
+  id        BigInt    @id @default(autoincrement())
+  otp       String    @unique(map: "otp_otp_unique") @db.VarChar(256)
+  createdAt DateTime? @default(now()) @map("created_at") @db.Timestamp(3)
+  otherData Json?     @map("other_data")
+  expiresAt DateTime? @map("expires_at") @db.Timestamp(3)
+  ttl       Int       @default(600)
+  actorId   BigInt    @map("actor_id")
+  actor     Actor     @relation(fields: [actorId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "otp_actorid_foreign")
+
+  @@index([expiresAt], map: "otp_expires_at_index")
+  @@index([actorId], map: "otp_actorid_index")
+  @@map("otp")
+}
+
+model Request {
+  id            BigInt    @id @default(autoincrement())
+  requestId     String?   @map("request_id") @db.VarChar(36)
+  createdAt     DateTime? @default(now()) @map("created_at") @db.Timestamp(3)
+  user          String    @db.VarChar(64)
+  role          Int
+  apiRole       Int       @map("api_role")
+  duration      Int
+  requestMethod String    @map("request_method") @db.VarChar(40)
+  requestUrl    String    @map("request_url") @db.VarChar(4096)
+  date          DateTime  @default(now()) @db.Timestamp(3)
+  status        BigInt
+  ip            String?   @db.VarChar(40)
+  error         String?   @db.VarChar(128)
+  request       Json?
+  reply         Json?
+
+  @@map("requests")
+}
+
+model Upload {
+  id         BigInt    @id @default(autoincrement())
+  publicId   BigInt    @unique(map: "uploads_publicid_unique") @map("public_id")
+  createdAt  DateTime? @default(now()) @map("created_at") @db.Timestamp(3)
+  expiresAt  DateTime? @map("expires_at") @db.Timestamp(3)
+  fileType   Int       @map("file_type")
+  hash       String    @db.VarChar(128)
+  path       String    @db.VarChar(4096)
+  sealPath   String?   @map("seal_path") @db.VarChar(4096)
+  size       Int       @default(0)
+  ttl        Int       @default(300)
+  uploadedAt DateTime? @default(now()) @map("uploaded_at") @db.Timestamp(3)
+  user       String    @db.VarChar(64)
+
+  @@index([expiresAt], map: "uploads_expires_at_index")
+  @@index([user], map: "uploads_user_index")
+  @@map("uploads")
+}
+
+model UserJwt {
+  id        BigInt    @id @default(autoincrement())
+  createdAt DateTime? @default(now()) @map("created_at") @db.Timestamp(3)
+  updatedAt DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamp(3)
+  user      String    @unique(map: "user_jwt_user_unique") @db.VarChar(64)
+  authData  Json      @map("auth_data")
+
+  @@map("user_jwt")
+}
+
+model Actor {
+  id                 BigInt    @id @default(autoincrement())
+  publicId           BigInt    @map("public_id")
+  createdAt          DateTime? @default(now()) @map("created_at") @db.Timestamp(3)
+  updatedAt          DateTime? @default(now()) @map("updated_at") @db.Timestamp(3)
+  administrativeCode String?   @map("administrative_code") @db.VarChar(400)
+  country            String    @default("FR") @db.VarChar(2)
+  email              String    @db.VarChar(320)
+  firstName          String?   @map("first_name") @db.VarChar(200)
+  login              String?   @db.VarChar(64)
+  name               String    @db.VarChar(200)
+  mobile             String?   @db.VarChar(320)
+  authType           Int       @default(0) @map("auth_type")
+  type               Int       @default(0)
+  rolesArray         Json?     @map("roles_array")
+  userData           Json?     @map("user_data")
+  manifestData       Json?     @map("manifest_data")
+  sessionId          BigInt    @map("session_id")
+  session            Session   @relation(fields: [sessionId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "actor_sessionid_foreign")
+  caTokens           CaToken[]
+  otps               OTP[]
+
+  @@index([administrativeCode], map: "actor_administrativecode_index")
+  @@index([login], map: "actor_login_index")
+  @@index([publicId], map: "actor_publicid_index")
+  @@index([sessionId], map: "actor_sessionid_index")
+  @@map("actors")
+}
+
+model CaToken {
+  id           BigInt        @id @default(autoincrement())
+  sessionId    BigInt        @map("session_id")
+  token        String        @unique(map: "catoken_token_unique") @db.VarChar(36)
+  createdAt    DateTime?     @default(now()) @map("created_at") @db.Timestamp(3)
+  updatedAt    DateTime?     @default(now()) @map("updated_at") @db.Timestamp(3)
+  status       Int           @default(1)
+  cguVersion   String        @map("cgu_version") @db.VarChar(16)
+  actorId      BigInt        @map("actor_id")
+  caId         BigInt        @map("ca_id")
+  actor        Actor         @relation(fields: [actorId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "catoken_actorid_foreign")
+  ca           CA            @relation(fields: [caId], references: [id], onUpdate: NoAction, map: "catoken_caid_foreign")
+  certificates Certificate[]
+
+  @@index([actorId], map: "catoken_actorid_index")
+  @@index([caId], map: "catoken_caid_index")
+  @@index([sessionId], map: "catoken_sessionid_index")
+  @@index([status], map: "catoken_status_index")
+  @@map("ca_tokens")
+}
+
+model CertificateFile {
+  id            BigInt      @id @default(autoincrement())
+  rank          Int         @default(0)
+  status        Int         @default(1)
+  usage         Int         @default(0)
+  type          Int         @default(0)
+  usageTitle    String?     @map("usage_title") @db.VarChar(200)
+  certificateId BigInt      @map("certificate_id")
+  fileId        BigInt      @map("file_id")
+  certificate   Certificate @relation(fields: [certificateId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "cert_files_certificateid_foreign")
+  file          File        @relation(fields: [fileId], references: [id], onUpdate: NoAction, map: "cert_files_fileid_foreign")
+
+  @@index([certificateId], map: "cert_files_certificateid_index")
+  @@index([fileId], map: "cert_files_fileid_index")
+  @@index([rank], map: "cert_files_rank_index")
+  @@map("certificate_files")
+}
+
+model Certificate {
+  id              BigInt            @id @default(autoincrement())
+  publicId        BigInt            @map("public_id")
+  sessionId       BigInt            @map("session_id")
+  createdAt       DateTime?         @default(now()) @map("created_at") @db.Timestamp(3)
+  expiresAt       DateTime?         @map("expires_at") @db.Timestamp(3)
+  status          Int               @default(1)
+  ttl             Int               @default(60)
+  user            String?           @db.VarChar(64)
+  certificateData Json?             @map("certificate_data")
+  caTokenId       BigInt            @map("ca_token_id")
+  certFiles       CertificateFile[]
+  caToken         CaToken           @relation(fields: [caTokenId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "certificate_catokenid_foreign")
+
+  @@index([caTokenId], map: "certificate_catokenid_index")
+  @@index([expiresAt], map: "certificate_expires_at_index")
+  @@index([publicId], map: "certificate_publicid_index")
+  @@index([sessionId], map: "certificate_sessionid_index")
+  @@index([status], map: "certificate_status_index")
+  @@index([user], map: "certificate_user_index")
+  @@map("certificates")
+}
+
+model Document {
+  id           BigInt    @id @default(autoincrement())
+  publicId     BigInt    @map("public_id")
+  createdAt    DateTime? @default(now()) @map("created_at") @db.Timestamp(3)
+  updatedAt    DateTime? @default(now()) @map("updated_at") @db.Timestamp(3)
+  abstract     String?   @db.Text
+  fileName     String    @map("file_name") @db.VarChar(260)
+  title        String    @db.VarChar(200)
+  otherData    Json?     @map("other_data")
+  userData     Json?     @map("user_data")
+  manifestData Json?     @map("manifest_data")
+  fileId       BigInt?   @map("file_id")
+  sessionId    BigInt    @map("session_id")
+  docFiles     DocFile[] @relation("document_doc_files")
+  genuineFile  File?     @relation("document_genuine_file", fields: [fileId], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "document_genuinefileid_foreign")
+  session      Session   @relation("document_session", fields: [sessionId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "document_sessionid_foreign")
+
+  @@index([fileId], map: "document_genuinefileid_index")
+  @@index([publicId], map: "document_publicid_index")
+  @@index([sessionId], map: "document_sessionid_index")
+  @@map("documents")
+}
+
+model NgConf {
+  id        BigInt    @id @default(autoincrement())
+  createdAt DateTime? @default(now()) @map("created_at") @db.Timestamp(3)
+  updatedAt DateTime? @default(now()) @map("updated_at") @db.Timestamp(3)
+  key       String    @db.VarChar(40)
+  value     String?   @db.VarChar(128)
+  rank      Int       @default(0)
+  type      Int       @default(0)
+  user      String    @default("$_api_ng_dbuser_") @db.VarChar(64)
+
+  @@index([key], map: "ngconf_key_index")
+  @@index([user], map: "ngconf_user_index")
+  @@map("ng_conf")
+}
+
+model Scenario {
+  id              BigInt    @id @default(autoincrement())
+  publicId        BigInt    @map("public_id")
+  createdAt       DateTime? @default(now()) @map("created_at") @db.Timestamp(3)
+  updatedAt       DateTime? @default(now()) @map("updated_at") @db.Timestamp(3)
+  rank            Int       @default(0)
+  signatureFormat Int       @default(1) @map("signature_format")
+  signatureLevel  Int       @default(1) @map("signature_level")
+  status          Int       @default(1)
+  otherData       Json?     @map("other_data")
+  stepsDefinition Json?     @map("steps_definition")
+  userData        Json?     @map("user_data")
+  manifestData    Json?     @map("manifest_data")
+  sessionId       BigInt    @map("session_id")
+  session         Session   @relation("scenario_sessionIdTosession", fields: [sessionId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "scenario_sessionid_foreign")
+
+  @@index([publicId], map: "scenario_publicid_index")
+  @@index([rank], map: "scenario_rank_index")
+  @@index([sessionId], map: "scenario_sessionid_index")
+  @@index([status], map: "scenario_status_index")
+  @@map("scenarios")
+}
+
+model Session {
+  id             BigInt     @id @default(autoincrement())
+  publicId       BigInt     @unique(map: "session_publicid_unique") @map("public_id")
+  createdAt      DateTime?  @default(now()) @map("created_at") @db.Timestamp(3)
+  updatedAt      DateTime?  @default(now()) @map("updated_at") @db.Timestamp(3)
+  expiresAt      DateTime?  @map("expires_at") @db.Timestamp(3)
+  lastPubObject  Int        @default(0) @map("last_pub_object")
+  status         Int?       @default(1)
+  ttl            Int        @default(86400)
+  user           String     @db.VarChar(64)
+  otherData      Json?      @map("other_data")
+  userData       Json?      @map("user_data")
+  manifestData   Json?      @map("manifest_data")
+  manifestFileId BigInt?    @map("manifest_file_id")
+  actors         Actor[]
+  documents      Document[] @relation("document_session")
+  downloads      Download[]
+  scenarios      Scenario[] @relation("scenario_sessionIdTosession")
+  file           File?      @relation(fields: [manifestFileId], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "session_manifestfileid_foreign")
+
+  @@index([expiresAt], map: "session_expires_at_index")
+  @@index([manifestFileId], map: "session_manifestfileid_index")
+  @@index([status], map: "session_status_index")
+  @@index([user], map: "session_user_index")
+  @@map("sessions")
+}

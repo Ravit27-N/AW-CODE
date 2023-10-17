@@ -1,0 +1,13 @@
+node_modules/
+dist/
+tdist/
+tests/
+run/
+logs/
+package-lock.json
+.DS_Store
+.VSCodeCounter
+.idea/
+run/uploaded_files/
+dev.env
+prod.env

@@ -1,0 +1,63 @@
+{
+	"name": "api-ng",
+	"version": "1.16.0",
+	"description": "api-ng server",
+	"main": "main.js",
+	"scripts": {
+		"prisma:dev:deploy": "npx dotenv -e dev.env prisma migrate deploy",
+		"prisma:dev:migrate": "npx dotenv -e dev.env prisma migrate dev",
+		"prisma:prod:deploy": "npx dotenv -e prod.env prisma migrate deploy",
+		"prisma:prod:migrate": "npx dotenv -e prod.env prisma migrate deploy --name certigna_preprod_v180",
+		"prisma:generate": "prisma generate",
+		"prisma:studio": "prisma studio",
+		"prisma:seed": "ts-node ./prisma/seed.ts",
+		"clean": "rm -rf dist tdist",
+		"start": "npm run migrate",
+		"host": "npm run build --omit=dev && node dist/main.js",
+		"build": "tsc",
+		"dev": "set NODE_ENV=development && nodemon main.ts --cache-clear",
+		"dev:unload": "set NODE_ENV=development && ts-node main.ts --cache-clear",
+		"prod": "export NODE_ENV=production&& node dist/main.js",
+		"test-client": "ts-node test-client.ts",
+		"test-sig": "ts-node test-sig.ts",
+		"test": "yarn clean && tsc --project tsconfig.test.json && node --async-stack-traces --experimental-modules tdist/test/index.test.js",
+		"test:utils": "node --async-stack-traces --experimental-modules tdist/test/utils/index.test.js"
+	},
+	"engines": {
+		"node": "18.x"
+	},
+	"private": true,
+	"author": "Business Card Associates",
+	"license": "(c) CERTIGNA",
+	"dependencies": {
+		"@fastify/swagger": "^8.1.0",
+		"@fastify/swagger-ui": "^1.2.0",
+		"@peculiar/webcrypto": "^1.4.1",
+		"@prisma/client": "^4.12.0",
+		"adm-zip": "^0.5.9",
+		"axios": "^1.1.3",
+		"crypto": "^1.0.1",
+		"fastify": "^4.10.2",
+		"file-stream-rotator": "^1.0.0",
+		"mysql": "^2.18.1",
+		"pino": "^8.8.0",
+		"puppeteer": "^19.2.2",
+		"ts-json-object": "^0.4.0",
+		"ts-node": "^10.9.1",
+		"tsyringe": "^4.7.0",
+		"typescript": "^4.9.3",
+		"xadesjs": "^2.4.4"
+	},
+	"devDependencies": {
+		"@types/adm-zip": "^0.5.0",
+		"@types/node": "^18.11.9",
+		"dotenv-cli": "^7.1.0",
+		"install": "^0.13.0",
+		"nodemon": "^2.0.20",
+		"npm": "^9.1.2",
+		"prisma": "^4.12.0"
+	},
+	"prisma": {
+		"seed": "ts-node prisma/seed.ts"
+	}
+}

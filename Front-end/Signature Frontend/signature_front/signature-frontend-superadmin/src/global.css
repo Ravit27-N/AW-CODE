@@ -1,0 +1,22 @@
+
+@font-face {
+  font-family: 'verdana';
+  src:  url('@assets/fonts/verdana.ttf') format('truetype')
+}
+@font-face {
+  font-family: 'verdana-bold-italic';
+  src:  url('@assets/fonts/verdana-bold-italic.ttf') format('truetype')
+}
+@font-face {
+  font-family: 'verdana-bold';
+  src:  url('@assets/fonts/verdana-bold.ttf') format('truetype')
+}
+*{
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+

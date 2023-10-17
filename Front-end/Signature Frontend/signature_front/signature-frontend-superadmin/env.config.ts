@@ -1,0 +1,20 @@
+const env = {
+  VITE_PORT: Number(import.meta.env.VITE_PORT),
+  VITE_API: import.meta.env.VITE_API,
+  VITE_VERSION: import.meta.env.VITE_VERSION,
+  VITE_BASE_URL_PROFILE: import.meta.env.VITE_BASE_URL_PROFILE,
+  VITE_BASE_URL_CORPORATE: import.meta.env.VITE_BASE_URL_CORPORATE,
+  VITE_BASE_URL_KEYCLOAK: import.meta.env.VITE_BASE_URL_KEYCLOAK,
+  VITE_BASE_URL_FORGOT_PASSWORD: import.meta.env.VITE_BASE_URL_FORGOT_PASSWORD,
+  VITE_BASE_URL_CORPORATE_PUBLIC: import.meta.env
+    .VITE_BASE_URL_CORPORATE_PUBLIC,
+  VITE_REALM: import.meta.env.VITE_REALM,
+  VITE_CLIENT_ID: import.meta.env.VITE_CLIENT_ID,
+  VITE_CLIENT_SECRET: import.meta.env.VITE_CLIENT_SECRET,
+  VITE_GRANT_TYPE: import.meta.env.VITE_GRANT_TYPE,
+  VITE_GRANT_TYPE_FRONT: import.meta.env.VITE_GRANT_TYPE_FRONT,
+  VITE_MAX_FILES: import.meta.env.VITE_MAX_FILES,
+  VITE_MAX_FILE_SIZE_UPLOAD: import.meta.env.VITE_MAX_FILE_SIZE_UPLOAD,
+};
+
+export default env;
