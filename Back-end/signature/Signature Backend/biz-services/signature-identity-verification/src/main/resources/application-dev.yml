@@ -1,0 +1,74 @@
+server:
+  port: ${SIGNATURE_IDENTITY_VERIFICATION_PORT:3009}
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mysql://${SIGNATURE_DATABASE_HOST:localhost}:${SIGNATURE_DATABASE_PORT:3306}/${DB_SIGNATURE_IDENTITY_VERIFICATION:esign_identity_verification_dev}?useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    username: ${SIGNATURE_DATABASE_USERNAME:root}
+    password: ${SIGNATURE_DATABASE_PASSWORD:mysql}
+  jpa:
+    database: mysql
+    open-in-view: false
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          batch-size: 20
+        enable_lazy_load_no_trans: true
+        format-sql: true
+        use-sql: true
+        generate-statistics: true
+        order-inserts: true
+        order-updates: true
+        bytecode:
+          use-reflection-optimizer: false
+        dialect: org.hibernate.dialect.MySQLDialect
+    database-platform: org.hibernate.dialect.MySQLDialect
+    defer-datasource-initialization: true
+
+#Log configuration
+logging:
+  level:
+    root: INFO
+    web: debug
+    "[com.zaxxer.hikari.HikariConfig]": debug
+    "[com.zaxxer.hikari.HikariDataSource]": debug
+    "[org.hibernate.SQL]": debug
+    "[org.hibernate.type.descriptor.sql.BasicBinder]": trace
+    "[org.hibernate.type.descriptor.sql.BasicExtractor]": trace
+    "[org.springframework.security]": debug
+    "[org.springframework.security.oauth2]": debug
+    "[org.springframework.security.oauth2.provider.endpoint]": debug
+    "[org.springframework.security.oauth2.provider.token]": debug
+    "[org.springframework.security.oauth2.provider.authentication]": debug
+    "[org.springframework.security.oauth2.provider.request]": debug
+    "[org.springframework.security.oauth2.provider.client]": debug
+    "[org.springframework.security.oauth2.provider.approval]": debug
+    "[org.springframework.security.oauth2.provider.error]": debug
+    "[org.springframework.security.oauth2.provider.expression]": debug
+    "[org.springframework.security.oauth2.provider.token.store]": debug
+    "[org.springframework.security.oauth2.provider.token.store.JwtTokenStore]": debug
+    "[org.springframework.security.oauth2.provider.token.DefaultTokenServices]": debug
+    "[org.springframework.security.oauth2.provider.endpoint.TokenEndpoint]": debug
+    "[org.springframework.security.oauth2.provider.endpoint.CheckTokenEndpoint]": debug
+    "[org.springframework.security.oauth2.provider.endpoint.AuthorizationEndpoint]": debug
+    "[org.springframework.security.oauth2.provider.endpoint.RedirectResolver]": debug
+  file:
+    path: ./logs
+    name: ${logging.file.path}/${spring.application.name}.log
+  logback:
+    rollingpolicy:
+      max-file-size: 1MB
+      file-name-pattern: ${logging.file.path}/${spring.application.name}-%d{yyyy-MM-dd}.%i.log
+
+signature:
+  file:
+    base-path: ${SIGNATURE_IDENTITY_VERIFICATION_UPLOAD_FILE_PATH:/apps/signature/signature-identity-verification}
+    data-unit: MB
+    max-upload-size: 1000

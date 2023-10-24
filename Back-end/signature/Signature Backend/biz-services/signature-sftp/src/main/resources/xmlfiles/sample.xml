@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <autoReminder>false</autoReminder>
+  <channelReminder>1</channelReminder>
+  <details>
+    <detail>
+      <invitationMessage>Message</invitationMessage>
+      <invitationSubject>Title</invitationSubject>
+      <type>signatory</type>
+    </detail>
+  </details>
+  <documents>
+    <document>
+      <documentDetails>
+        <documentDetail>
+          <height>100.0</height>
+          <pageNum>1</pageNum>
+          <type>signatory</type>
+          <width>100.0</width>
+          <x>100.0</x>
+          <y>100.0</y>
+        </documentDetail>
+      </documentDetails>
+      <fileName>sample-project-model.pdf</fileName>
+    </document>
+  </documents>
+  <expireDate>1689137523407</expireDate>
+  <name>project-name</name>
+  <orderApprove>true</orderApprove>
+  <orderSign>true</orderSign>
+  <participants>
+    <participant>
+      <email>mail@example</email>
+      <firstName>firstName</firstName>
+      <lastName>lastName</lastName>
+      <phone>+3388</phone>
+      <role>signatory</role>
+      <sortOrder>1</sortOrder>
+    </participant>
+  </participants>
+  <reminderOption>1</reminderOption>
+  <templateId>1</templateId>
+</project>

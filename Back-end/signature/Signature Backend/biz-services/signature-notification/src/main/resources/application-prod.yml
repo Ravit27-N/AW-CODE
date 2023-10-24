@@ -1,0 +1,27 @@
+server:
+  port: ${SIGNATURE_NOTIFICATION_PORT}
+
+signature:
+  mail:
+    sender: ${EMAIL_SENDER}
+    # If you using gmail of Google, no need to set host and port
+    host: ${EMAIL_SERVICE_HOST}
+    port: ${EMAIL_SERVICE_PORT}
+    username: ${EMAIL_SERVICE_ADDRESS}
+    password: ${EMAIL_SERVICE_PASSWORD}
+    enable-tls: ${EMAIL_SERVICE_ENABLE_TLS}
+
+#Log configuration
+logging:
+  level:
+    root: info
+    web: debug
+    "[com.zaxxer.hikari.HikariConfig]": debug
+    "[com.innovationandtrust.signature.configuration.security]": debug
+  file:
+    path: ./logs
+    name: ${logging.file.path}/${spring.application.name}.log
+  logback:
+    rollingpolicy:
+      max-file-size: 1MB
+      file-name-pattern: ${logging.file.path}/${spring.application.name}-%d{yyyy-MM-dd}.%i.log

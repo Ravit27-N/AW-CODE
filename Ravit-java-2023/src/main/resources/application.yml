@@ -1,0 +1,26 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: ravit-project
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ravit-2023
+    type: com.zaxxer.hikari.HikariDataSource
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  sql:
+    init:
+      mode: always
+      platform: postgres
+
+springdoc:
+  api-docs:
+    path: /api-doc
+  swagger-ui:
+    path: /swagger
+

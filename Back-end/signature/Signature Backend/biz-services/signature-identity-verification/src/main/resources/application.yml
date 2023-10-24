@@ -1,0 +1,114 @@
+server:
+  shutdown: graceful
+  tomcat:
+    connection-timeout: 10m
+signature:
+  security:
+    keycloak-realm: ${SIGNATURE_KEYCLOAK_REALM}
+    keycloak-base-url: ${SIGNATURE_KEYCLOAK_URL}
+    origins: ${SIGNATURE_ALLOWED_ORIGIN}
+  keycloak:
+    auth-server-url: ${signature.security.keycloak-base-url}
+    realm: ${signature.security.keycloak-realm}
+    resource: ${SIGNATURE_IDENTITY_VERIFICATION_CLIENT}
+    secret: ${SIGNATURE_IDENTITY_VERIFICATION_SECRET}
+    technical-user-id: ${SIGNATURE_KEYCLOAK_TECHNICAL_USER_UUID}
+  swagger:
+    info:
+      version: 1.15.0
+      title: SIGNATURE-IDENTITY-VERIFICATION
+      description: SIGNATURE-IDENTITY-VERIFICATION-API
+      security-key: SIGNATURE-IDENTITY-VERIFICATION
+
+share-id:
+  base-url: ${SHARE_ID_BASE_URL}
+  business-identifier: ${SHARE_ID_BUSINESS_IDENTIFIER}
+  business-secret: ${SHARE_ID_BUSINESS_SECRET}
+  callback-url: http://localhost/signature-identity-verification-public/api/cvi-identity-verification/shareid/callback
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: signature-identity-verification
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      pool-name: ${spring.application.name}
+      auto-commit: false
+      maximum-pool-size: 5
+      minimum-idle: 1
+      idle-timeout: 30000
+      max-lifetime: 200000
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        rewriteBatchedStatements: true
+        rewriteBatchedInserts: true
+        useServerPrepStmts: true
+        useLocalSessionState: true
+        useLocalTransactionState: true
+        cacheResultSetMetadata: true
+        cacheServerConfiguration: true
+        elideSetAutoCommits: true
+        maintainTimeStats: false
+        useUnbufferedInput: false
+        useReadAheadInput: true
+        useDirectRowUnpack: true
+        useDynamicRowUnpack: false
+        defaultFetchSize: 1000
+        enablePacketDebug: false
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            authorization-uri: ${signature.security.keycloak-base-url}/realms/${signature.security.keycloak-realm}/protocol/openid-connect/authorize
+            token-uri: ${signature.security.keycloak-base-url}/realms/${signature.security.keycloak-realm}/protocol/openid-connect/token
+        registration:
+          signature-identity-verification:
+            provider: keycloak
+            client-id: ${SIGNATURE_IDENTITY_VERIFICATION_CLIENT}
+            client-secret: ${SIGNATURE_IDENTITY_VERIFICATION_SECRET}
+            authorization-grant-type: client_credential
+            scope: openid
+  cloud:
+    openfeign:
+      lazy-attributes-resolution: true
+#  quartz:
+#    job-store-type: jdbc
+#    jdbc:
+#      initialize-schema: always
+#      schema: classpath:quartz/quartz_script.sql
+#      platform: mysql
+#    scheduler-name: quartzScheduler
+  sql:
+    init:
+      mode: always
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  mvc:
+    servlet:
+      path: /api
+  web:
+    locale: fr
+
+management:
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: info, health
+
+springdoc:
+  swagger-ui:
+    oauth:
+      client-id: ${SIGNATURE_IDENTITY_VERIFICATION_CLIENT}
+      client-secret: ${SIGNATURE_IDENTITY_VERIFICATION_SECRET}

@@ -1,0 +1,37 @@
+server:
+  port: ${SIGNATURE_PROJECT_MANAGEMENT_PORT:8002}
+
+spring:
+  datasource:
+    url: jdbc:mysql://${SIGNATURE_DATABASE_HOST:localhost}:${SIGNATURE_DATABASE_PORT:3306}/${DB_PROJECT_MANAGEMENT:esign_project_dev}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${SIGNATURE_DATABASE_USERNAME:root}
+    password: ${SIGNATURE_DATABASE_PASSWORD:allweb17}
+  config:
+    activate:
+      on-profile: dev
+  jpa:
+    properties:
+      hibernate:
+        generate-statistics: true
+
+signature:
+  file:
+    base-path: ${PROJECT_MANAGEMENT_UPLOAD_FILE_PATH:/apps/signature/project-management}
+    max-upload-size: 20
+    # Available value of `data-unit` property are B, KB, MB, GB and TB.
+    data-unit: MB
+
+#Log configuration
+logging:
+  level:
+    root: info
+    web: debug
+    "[com.zaxxer.hikari.HikariConfig]": debug
+    "[com.innovationandtrust.signature.configuration.security]": debug
+  file:
+    path: ./logs
+    name: ${logging.file.path}/${spring.application.name}.log
+  logback:
+    rollingpolicy:
+      max-file-size: 1MB
+      file-name-pattern: ${logging.file.path}/${spring.application.name}-%d{yyyy-MM-dd}.%i.log

@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>SMS template for inviting a user to approve</title>
+  <meta charset="UTF-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+</head>
+<body>
+<p>Bonjour <span th:text="${firstName}"></span>, nous vous rappelons que vous avez un document à approver avant le <span th:text="${expireDate}"></span>. Pour le consulter: <span th:text="${linkUrl}"><a th:href="${linkUrl}"></a></span></p>
+</body>
+</html>

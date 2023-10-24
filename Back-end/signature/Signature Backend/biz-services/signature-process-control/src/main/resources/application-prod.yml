@@ -1,0 +1,65 @@
+server:
+  port: ${SIGNATURE_PROCESS_CONTROL_PORT:3005}
+
+spring:
+  quartz:
+    jdbc:
+      initialize-schema: always
+      schema: classpath:quartz/sql/schema.sql
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://${SIGNATURE_DATABASE_HOST}:${SIGNATURE_DATABASE_PORT}/${DB_PROCESS_CONTROL}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${SIGNATURE_DATABASE_USERNAME}
+      password: ${SIGNATURE_DATABASE_PASSWORD}
+      hikari:
+        pool-name: ${spring.application.name}
+        auto-commit: true
+        maximum-pool-size: 5
+        minimum-idle: 1
+        idle-timeout: 30000
+        max-lifetime: 200000
+        data-source-properties:
+          cachePrepStmts: true
+          prepStmtCacheSize: 250
+          prepStmtCacheSqlLimit: 2048
+          rewriteBatchedStatements: true
+          rewriteBatchedInserts: true
+    job-store-type: jdbc
+  config:
+    activate:
+      on-profile: prod
+  task:
+    execution:
+      pool:
+        max-size: 16
+        queue-capacity: 100
+        keep-alive: 10s
+
+#Log configuration
+logging:
+  level:
+    root: info
+    web: error
+    "[com.zaxxer.hikari.HikariConfig]": error
+    "[com.innovationandtrust.process.config.SmsServiceProviderConfig]": error
+    "[org.quartz]": error
+    "[com.innovationandtrust.process.restclient]": error
+    "[com.innovationandtrust.utils.aping.feignclient]": error
+    "[com.innovationandtrust.process.chain.handler]": error
+
+  file:
+    path: ./logs
+    name: ${logging.file.path}/${spring.application.name}.log
+  logback:
+    rollingpolicy:
+      max-file-size: 1MB
+      file-name-pattern: ${logging.file.path}/${spring.application.name}-%d{yyyy-MM-dd}.%i.log
+
+signature:
+  file:
+    base-path: ${PROCESS_CONTROL_UPLOAD_FILE_PATH:/apps/signature/process-control}
+    data-unit: MB
+    max-upload-size: 20
+  tiny-url:
+    token: ${TINYURL_API_TOKEN}
+    url: ${TINYURL_URL}

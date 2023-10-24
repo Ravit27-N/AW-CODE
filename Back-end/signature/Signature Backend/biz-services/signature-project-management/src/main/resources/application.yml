@@ -1,0 +1,129 @@
+server:
+  shutdown: graceful
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    servlet:
+      path: /api
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  application:
+    name: signature-project-management
+  cloud:
+    openfeign:
+      lazy-attributes-resolution: true
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            authorization-uri: ${signature.security.keycloak-base-url}/realms/${signature.security.keycloak-realm}/protocol/openid-connect/authorize
+            token-uri: ${signature.security.keycloak-base-url}/realms/${signature.security.keycloak-realm}/protocol/openid-connect/token
+        registration:
+          project-management:
+            provider: keycloak
+            client-id: ${SIGNATURE_PROJECT_CLIENT_ID}
+            client-secret: ${SIGNATURE_PROJECT_CLIENT_SECRET}
+            authorization-grant-type: client_credentials
+            scope: openid
+  # Datasource configuration
+  jpa:
+    database: mysql
+    open-in-view: false
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          batch-size: 20
+        enable_lazy_load_no_trans: true
+        format-sql: true
+        use-sql: true
+        order-inserts: true
+        order-updates: true
+        bytecode:
+          use-reflection-optimizer: true
+        dialect: org.hibernate.dialect.MySQLDialect
+        cache:
+          use_second_level_cache: true
+          use_query_cache: true
+        javax:
+          cache:
+            missing_cache_strategy: create
+            persistence:
+              sharedCache:
+                mode: ENABLE_SELECTIVE
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      pool-name: ${spring.application.name}
+      auto-commit: false
+      maximum-pool-size: 5
+      minimum-idle: 1
+      idle-timeout: 30000
+      max-lifetime: 200000
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        rewriteBatchedStatements: true
+        rewriteBatchedInserts: true
+
+
+management:
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: info, health
+
+signature:
+  security:
+    keycloak-realm: ${SIGNATURE_KEYCLOAK_REALM:signature-identification}
+    keycloak-base-url: ${SIGNATURE_KEYCLOAK_URL:http://10.2.50.146:8020}
+    origins: ${SIGNATURE_ALLOWED_ORIGIN}
+  keycloak:
+    auth-server-url: ${signature.security.keycloak-base-url}
+    realm: ${signature.security.keycloak-realm}
+    resource: ${SIGNATURE_PROJECT_CLIENT_ID}
+    secret: ${SIGNATURE_PROJECT_CLIENT_SECRET}
+    technical-user-id: ${SIGNATURE_KEYCLOAK_TECHNICAL_USER_UUID}
+  feign-client:
+    client-registration-id: project-management
+    client-id: ${SIGNATURE_PROJECT_CLIENT_ID}
+    enabled: true
+    #Feign client configuration
+    clients:
+      process-control-url: ${SIGNATURE_PROCESS_CONTROL_URL}
+      corporate-profile-url: ${SIGNATURE_CORPORATE_PROFILE_URL}
+      profile-url: ${SIGNATURE_PROFILE_URL}
+    contexts:
+      profile-context-path: ${SIGNATURE_PROFILE_CONTEXT_PATH}
+      process-control-context-path: ${SIGNATURE_PROCESS_CONTROL_CONTEXT_PATH}
+      corporate-profile-context-path: ${SIGNATURE_CORPORATE_PROFILE_CONTEXT_PATH}
+  swagger:
+    info:
+      securityKey: project-management
+  api-ng:
+    url: ${API_NG_HOST}
+    context-path: ${API_NG_BASE_PATH}
+    access-token: ${API_NG_ACCESS_TOKEN}
+    certigna-user: ${API_NG_USER:pps#test}
+    certigna-hash: ${API_NG_HASH:ySsPUR23}
+    certigna-role: ${API_NG_ROLE:2}
+    default-language: ${API_NG_DEFAULT_LANGUAGE:fr}
+    test-file-path: ${API_NG_TEST_FILE}
+    front-end-url: ${FRONT_END_URL}
+  setting:
+    urgent-project: 48
+springdoc:
+  swagger-ui:
+    oauth:
+      client-id: ${signature.keycloak.resource}
+      client-secret: ${signature.keycloak.secret}
+      realm: ${signature.keycloak.realm}

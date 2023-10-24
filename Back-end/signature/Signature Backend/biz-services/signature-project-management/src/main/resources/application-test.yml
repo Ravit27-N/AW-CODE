@@ -1,0 +1,42 @@
+server:
+  port: ${SERVER_PORT:8002}
+
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:mysql://${SIGNATURE_DATABASE_HOST:localhost}:${SIGNATURE_DATABASE_PORT:3306}/esign_project_test?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${SIGNATURE_DATABASE_USERNAME:root}
+    password: ${SIGNATURE_DATABASE_PASSWORD:allweb17}
+  config:
+    activate:
+      on-profile: test
+signature:
+  file:
+    base-path: ${PROJECT_MANAGEMENT_UPLOAD_FILE_PATH:/apps/signature/project-management}
+    max-upload-size: 20
+    # Available value of `data-unit` property are B, KB, MB, GB and TB.
+    data-unit: MB
+
+  api-ng:
+    url: ${API_NG_URL:http://10.2.50.146:8081/api/v1}
+    certigna-user: pps#test
+    certigna-hash: ySsPUR23
+    certigna-role: 2
+    default-language: fr
+    front-end-url: ${FRONT_END_URL:http://localhost:3000}
+#Log configuration
+logging:
+  level:
+    root: INFO
+    web: ERROR
+    "[com.zaxxer.hikari.HikariConfig]": debug
+  file:
+    path: ./logs
+    name: ${logging.file.path}/${spring.application.name}.log
+  logback:
+    rollingpolicy:
+      max-file-size: 1MB
+      file-name-pattern: ${logging.file.path}/${spring.application.name}-%d{yyyy-MM-dd}.%i.log

@@ -1,0 +1,85 @@
+server:
+  shutdown: graceful
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    servlet:
+      path: /api
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  application:
+    name: signature-notification
+  cloud:
+    openfeign:
+      lazy-attributes-resolution: true
+  sql:
+    init:
+      mode: always
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            authorization-uri: ${signature.security.keycloak-base-url}/realms/${signature.security.keycloak-realm}/protocol/openid-connect/authorize
+            token-uri: ${signature.security.keycloak-base-url}/realms/${signature.security.keycloak-realm}/protocol/openid-connect/token
+        registration:
+          signature-notification:
+            provider: keycloak
+            client-id: ${SIGNATURE_NOTIFICATION_CLIENT}
+            client-secret: ${SIGNATURE_NOTIFICATION_CLIENT_SECRET}
+            authorization-grant-type: client_credentials
+            scope: openid
+
+management:
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: info, health
+
+signature:
+  security:
+    keycloak-realm: ${SIGNATURE_KEYCLOAK_REALM:signature-identification}
+    keycloak-base-url: ${SIGNATURE_KEYCLOAK_URL:http://10.2.50.146:8020}
+    origins: ${SIGNATURE_ALLOWED_ORIGIN}
+  keycloak:
+    auth-server-url: ${signature.security.keycloak-base-url}
+    realm: ${signature.security.keycloak-realm}
+    resource: ${SIGNATURE_NOTIFICATION_CLIENT}
+    secret: ${SIGNATURE_NOTIFICATION_CLIENT_SECRET}
+    technical-user-id: ${SIGNATURE_KEYCLOAK_TECHNICAL_USER_UUID}
+  sms-service:
+    is-enable: ${SMS_SERVICE_ENABLE}
+    url: ${SMS_SERVICE_URL}
+    access-token: ${SMS_SERVICE_ACCESS_TOKEN}
+    product-token: ${SMS_SERVICE_PRODUCT_TOKEN}
+    sender: ${SMS_SERVICE_SENDER}
+  feign-client:
+    client-registration-id: signature-notification
+    client-id: ${SIGNATURE_NOTIFICATION_CLIENT}
+    enabled: true
+    #Feign client configuration
+    clients:
+      corporate-profile-url: ${SIGNATURE_CORPORATE_PROFILE_URL}
+    contexts:
+      corporate-profile-context-path: ${SIGNATURE_CORPORATE_PROFILE_CONTEXT_PATH}
+  swagger:
+    info:
+      securityKey: signature-notification
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: alpha
+    oauth:
+      client-id: ${signature.keycloak.resource}
+      client-secret: ${signature.keycloak.secret}
+      realm: ${signature.keycloak.realm}
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000

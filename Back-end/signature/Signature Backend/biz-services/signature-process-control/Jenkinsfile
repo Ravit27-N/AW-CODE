@@ -1,0 +1,8 @@
+node {
+  stage('SCM') {
+    checkout scm
+  }
+  stage('SonarQube Analysis') {
+    sh "mvn clean verify sonar:sonar  -Dsonar.projectKey=Signature-process-control -Dsonar.projectName='Signature-process-control' -Dsonar.token=sqp_8ec71f618f0151ed8e6b055c4f1edd3184e2f9e9"
+  }
+}

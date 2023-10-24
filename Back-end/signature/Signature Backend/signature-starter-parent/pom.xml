@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.innovationandtrust.signature</groupId>
+  <artifactId>signature-starter-parent</artifactId>
+  <version>1.17.1</version>
+  <name>signature-starter-parent</name>
+  <description>For controlling version and framework version of application</description>
+  <properties>
+    <!--Project build properties-->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <java.version>17</java.version>
+
+    <!--Maven compilation and plugin version-->
+    <maven.version>3.9.3</maven.version>
+    <maven.plugin.tools.version>3.9.0</maven.plugin.tools.version>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.release>17</maven.compiler.release>
+    <maven.test.skip>true</maven.test.skip>
+    <maven.surefire-plugin.version>3.1.2</maven.surefire-plugin.version>
+    <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
+    <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+    <maven.plugins.version>3.3.0</maven.plugins.version>
+
+    <!--Spring boot version-->
+    <spring-boot.version>3.1.4</spring-boot.version>
+
+    <!--Spring cloud version-->
+    <spring-cloud.version>2022.0.4</spring-cloud.version>
+
+    <!--Keycloak-->
+    <keycloak.version>22.0.1</keycloak.version>
+
+    <!--Model mapper version-->
+    <org.modelmapper.version>3.1.1</org.modelmapper.version>
+
+    <!--Lombok-->
+    <lombok.version>1.18.28</lombok.version>
+
+    <!--Hibernate-->
+    <hibernate-jpamodelgen.version>6.2.7.Final</hibernate-jpamodelgen.version>
+
+    <hypersistence-utils.version>3.5.1</hypersistence-utils.version>
+
+    <!-- Common library version-->
+    <lib-common-configuration.version>1.17.1</lib-common-configuration.version>
+    <lib-common-share.version>1.17.1</lib-common-share.version>
+    <lib-common-utils.version>1.17.1</lib-common-utils.version>
+
+    <!--yaml version-->
+    <snakeyaml.version>2.1</snakeyaml.version>
+
+    <itext.version>8.0.0</itext.version>
+
+    <org.springdoc.version>2.1.0</org.springdoc.version>
+
+    <sonar.coverage.jacoco.xmlReportPaths>
+      ${project.basedir}/target/site/jacoco/jacoco.xml
+    </sonar.coverage.jacoco.xmlReportPaths>
+    <jacoco.version>0.8.10</jacoco.version>
+
+    <apache.commons-compress.version>1.23.0</apache.commons-compress.version>
+    <apache.pdfbox.version>3.0.0-alpha2</apache.pdfbox.version>
+    <apache.commons-csv.version>1.10.0</apache.commons-csv.version>
+    <commons-io.version>2.11.0</commons-io.version>
+    <org.jsoup.version>1.16.1</org.jsoup.version>
+
+    <com.auth0.java-jwt>4.4.0</com.auth0.java-jwt>
+    <googlecode.libphonenumber.version>8.12.10</googlecode.libphonenumber.version>
+
+    <org.apache.pdfbox.version>3.0.0-alpha2</org.apache.pdfbox.version>
+    <org.apache.pdfbox.tools.version>2.0.15</org.apache.pdfbox.tools.version>
+    <com.github.hkirk.java-html2.image.version>0.9</com.github.hkirk.java-html2.image.version>
+  </properties>
+  <packaging>pom</packaging>
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <modules>
+        <module>../common-libs/lib-common-configuration</module>
+        <module>../common-libs/lib-common-utils</module>
+        <module>../common-libs/lib-common-share</module>
+        <module>../biz-services/signature-profile-management</module>
+        <module>../biz-services/signature-corporate-profile</module>
+        <module>../biz-services/signature-project-management</module>
+        <module>../biz-services/signature-process-control</module>
+        <module>../biz-services/signature-sftp</module>
+        <module>../biz-services/signature-notification</module>
+        <module>../biz-services/signature-identity-verification</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>test</id>
+      <modules>
+        <module>../common-libs/lib-common-configuration</module>
+        <module>../common-libs/lib-common-utils</module>
+        <module>../common-libs/lib-common-share</module>
+        <module>../biz-services/signature-project-management</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>deploy-nexus</id>
+      <modules>
+        <module>../common-libs/lib-common-configuration</module>
+        <module>../common-libs/lib-common-utils</module>
+        <module>../common-libs/lib-common-share</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>build-libs</id>
+      <modules>
+        <module>../common-libs/lib-common-configuration</module>
+        <module>../common-libs/lib-common-utils</module>
+        <module>../common-libs/lib-common-share</module>
+      </modules>
+    </profile>
+  </profiles>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.yaml</groupId>
+      <artifactId>snakeyaml</artifactId>
+      <version>${snakeyaml.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+      <version>3.0.2</version>
+    </dependency>
+  </dependencies>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>${spring-boot.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+          </exclusion>
+        </exclusions>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.keycloak.bom</groupId>
+        <artifactId>keycloak-bom-parent</artifactId>
+        <version>${keycloak.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.keycloak.bom</groupId>
+        <artifactId>keycloak-adapter-bom</artifactId>
+        <version>${keycloak.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>itext7-core</artifactId>
+        <version>${itext.version}</version>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version>
+        <configuration>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco.version}</version>
+        <executions>
+          <execution>
+            <id>report-aggregate</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>report-aggregate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-plugin-plugin</artifactId>
+        <version>${maven.plugin.tools.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>${maven.plugins.version}</version>
+        <executions>
+          <execution>
+            <id>enforce-maven</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <version>${maven.version}</version>
+                </requireMavenVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven.surefire-plugin.version}</version>
+          <configuration>
+            <skipTests>${maven.test.skip}</skipTests>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.sonarsource.scanner.maven</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>3.9.1.2184</version>
+        </plugin>
+        <plugin>
+          <groupId>org.hibernate.orm.tooling</groupId>
+          <artifactId>hibernate-enhance-maven-plugin</artifactId>
+          <version>${hibernate-jpamodelgen.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>

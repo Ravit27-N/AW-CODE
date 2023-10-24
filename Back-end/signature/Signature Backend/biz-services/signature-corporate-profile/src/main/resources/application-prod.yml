@@ -1,0 +1,34 @@
+server:
+  port: ${SIGNATURE_CORPORATE_PROFILE_PORT:3006}
+
+spring:
+  datasource:
+    url: jdbc:mysql://${SIGNATURE_DATABASE_HOST}:${SIGNATURE_DATABASE_PORT}/${DB_CORPORATE_PROFILE}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${SIGNATURE_DATABASE_USERNAME}
+    password: ${SIGNATURE_DATABASE_PASSWORD}
+  config:
+    activate:
+      on-profile: prod
+  jpa:
+    properties:
+      hibernate:
+        generate_statistics: false
+#Log configuration
+logging:
+  level:
+    root: info
+    web: error
+    "[com.zaxxer.hikari.HikariConfig]": error
+  file:
+    path: ./logs
+    name: ${logging.file.path}/${spring.application.name}.log
+  logback:
+    rollingpolicy:
+      max-file-size: 1MB
+      file-name-pattern: ${logging.file.path}/${spring.application.name}-%d{yyyy-MM-dd}.%i.log
+
+signature:
+  file:
+    base-path: ${CORPORATE_PROFILE_UPLOAD_FILE_PATH:/apps/signature/corporate_profile}
+    data-unit: MB
+    max-upload-size: 20

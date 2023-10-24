@@ -1,0 +1,184 @@
+{
+    "id": 707,
+    "flowId": "3b0d2981-111e-4462-a7bc-f43b64f8303d",
+    "name": "Project 9:41:8",
+    "status": "EXPIRED",
+    "detail": {
+        "invitationMessages": [
+            {
+                "invitationSubject": "This invite message for approver 1",
+                "invitationMessage": "This message for approver 1",
+                "type": "approval"
+            },
+            {
+                "invitationSubject": "This invite message for signer 1",
+                "invitationMessage": "This message for signer 1",
+                "type": "signatory"
+            }
+        ],
+        "expireDate": 1695350468000,
+        "sessionId": 4085,
+        "scenarioId": 3
+    },
+    "template": {
+        "id": null,
+        "name": null,
+        "signProcess": "countersign",
+        "approvalProcess": "approval",
+        "level": 3,
+        "format": 1,
+        "notificationService": "sms",
+        "orderApprove": true,
+        "orderSign": true,
+        "approval": 0,
+        "signature": 0,
+        "recipient": 0,
+        "viewer": 0,
+        "companyId": 0,
+        "businessUnitId": 0,
+        "createdBy": null,
+        "tagAllowBackup": true
+    },
+    "createdBy": 10,
+    "userKeycloakId": "bfecf77e-3779-4746-b16d-309357abba80",
+    "assignedTo": null,
+    "signatureLevel": "ADVANCE",
+    "paraph": "LSE/LSE/LSE/PKU",
+    "corporateInfo": {
+        "settingId": 5,
+        "companyUuid": "244eb546-2343-41d4-8c47-9c5d1ec947e0",
+        "companyId": 5,
+        "companyName": "ECOM ANA",
+        "mainColor": "#2A8833",
+        "secondaryColor": "#2A8833",
+        "linkColor": "#2A8833",
+        "logo": "af21a389-15c3-4c63-9616-5c285a64a291.png"
+    },
+    "setting": {
+        "id": null,
+        "companyUuid": "244eb546-2343-41d4-8c47-9c5d1ec947e0",
+        "signatureLevel": "ADVANCE",
+        "personalTerms": "Pour continuer, consultez les conditions générales d’utilisation de la plateforme.",
+        "identityTerms": "Importez votre pièce d’identité afin de prouver votre identité.",
+        "documentTerms": "En continuant, vous acceptez de partager vos pièces justificatives.",
+        "channelReminder": "email",
+        "fileType": [
+            "JPG",
+            "PDF",
+            "PNG"
+        ],
+        "companyChannel": null,
+        "companyFileType": []
+    },
+    "documents": [
+        {
+            "id": 728,
+            "uuid": "6eba5088-6d5e-4c5f-a0ba-2ed38ed3eb0d",
+            "name": "57d6361c-0ef1-460e-9284-1b76fa8d22a0.pdf",
+            "fullPath": "",
+            "fileName": "57d6361c-0ef1-460e-9284-1b76fa8d22a0.pdf",
+            "originalFileName": "Lorem ipsum dolor sit amet 1 5 pages.pdf",
+            "contentType": "application/pdf",
+            "size": 82365,
+            "extension": "pdf",
+            "totalPages": 6,
+            "docUrl": "/api/v1/session/4085/document/2",
+            "details": [
+                {
+                    "x": 20,
+                    "y": 790,
+                    "width": 190,
+                    "height": 50,
+                    "contentType": "text",
+                    "fileName": "",
+                    "text": "SIGNER ONE ",
+                    "textAlign": "1",
+                    "fontSize": 8,
+                    "type": "Signatory-1-------------",
+                    "fontName": "Arial",
+                    "pageNum": 1,
+                    "signatoryId": 1635,
+                    "documentId": 728
+                },
+                {
+                    "x": 20,
+                    "y": 700,
+                    "width": 190,
+                    "height": 50,
+                    "contentType": "text",
+                    "fileName": "",
+                    "text": "SIGNER ONE",
+                    "textAlign": "1",
+                    "fontSize": 8,
+                    "type": "Signatory-",
+                    "fontName": "Arial",
+                    "pageNum": 1,
+                    "signatoryId": 1635,
+                    "documentId": 728
+                },
+                {
+                    "x": 560,
+                    "y": 825,
+                    "width": 64,
+                    "height": 10,
+                    "contentType": "text",
+                    "fileName": "",
+                    "text": "SIGNER ONE",
+                    "textAlign": "1",
+                    "fontSize": 8,
+                    "type": "Paraph-5",
+                    "fontName": "Arial",
+                    "pageNum": 1,
+                    "signatoryId": 1635,
+                    "documentId": 728
+                }
+            ],
+            "tdcDocument": null
+        }
+    ],
+    "participants": [
+        {
+            "id": 1635,
+            "uuid": "b17c7e52-c605-4f0d-a809-1f3449008343",
+            "order": 1,
+            "firstName": "P Ks",
+            "lastName": "U",
+            "role": "signatory",
+            "email": "ecoma.own@gmail.com",
+            "phone": "+85510826027",
+            "comment": null,
+            "actorUrl": "/api/v1/session/4085/actor/1",
+            "invitationDate": 1695091287560,
+            "otp": {
+                "otp": "443722",
+                "date": "2023-10-02T06:39:35.613Z",
+                "expires": "2023-10-02T08:19:35.617Z",
+                "errorValidation": 0,
+                "validated": true
+            },
+            "caCgu": null,
+            "certificate": "",
+            "validPhone": {
+                "totalAttempts": 0,
+                "number": "",
+                "missingLength": 4,
+                "valid": true
+            },
+            "signedDate": 1695610791656,
+            "dossierId": "359140b0-f995-4b00-8e07-a3fb1e41d12d",
+            "documentVerified": false,
+            "signatureMode": "IMPORT",
+            "signatureImage": "b17c7e52-c605-4f0d-a809-1f3449008343.png",
+            "signed": false,
+            "approved": false,
+            "invited": true,
+            "endUser": false,
+            "refused": false,
+            "received": false
+        }
+    ],
+    "autoReminder": true,
+    "reminderOption": 1,
+    "reminderChannel": 2,
+    "manifestData": null
+}

@@ -1,0 +1,55 @@
+server:
+  shutdown: graceful
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    servlet:
+      path: /api
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  application:
+    name: signature-sftp
+  cloud:
+    openfeign:
+      lazy-attributes-resolution: true
+      oauth2:
+        enabled: true
+      okhttp:
+        enabled: true
+#        clientRegistrationId: signature-sftp-registration
+signature:
+  security:
+    keycloak-realm: ${SIGNATURE_KEYCLOAK_REALM}
+    keycloak-base-url: ${SIGNATURE_KEYCLOAK_URL}
+    origins: ${SIGNATURE_ALLOWED_ORIGIN}
+  keycloak:
+    auth-server-url: ${signature.security.keycloak-base-url}
+    realm: ${signature.security.keycloak-realm}
+    resource: ${SIGNATURE_SFTP_CLIENT_ID}
+    secret: ${SIGNATURE_SFTP_CLIENT_SECRET}
+    technical-user-id: ${SIGNATURE_KEYCLOAK_TECHNICAL_USER_UUID}
+  feign-client:
+    # To disable client credentials request of feign client
+    enabled: false
+    #Feign client configuration
+    clients:
+      # Signature project management API base url endpoint
+      profile-url: ${SIGNATURE_PROFILE_URL}
+      project-url: ${SIGNATURE_PROJECT_URL}
+      notification-url: ${SIGNATURE_NOTIFICATION_URL}
+    contexts:
+      profile-context-path: ${SIGNATURE_PROFILE_CONTEXT_PATH}
+      project-context-path: ${SIGNATURE_PROJECT_CONTEXT_PATH}
+      notification-context-path: ${SIGNATURE_NOTIFICATION_CONTEXT_PATH}
+  swagger:
+    info:
+      securityKey: signature-sftp
+management:
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: info, health

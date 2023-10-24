@@ -1,0 +1,31 @@
+server:
+  port: ${SIGNATURE_SFTP_PORT:3007}
+spring:
+  config:
+    activate:
+      on-profile: prod
+signature:
+  file:
+    base-path: ${SFTP_UPLOAD_FILE_PATH:/apps/signature/signature-sftp}
+    max-upload-size: 40
+    data-unit: MB
+  integration:
+    base-path-in: /source-in
+    base-path-out: /source-out
+    delay-time: ${SFTP_DELAY_TIME:5}
+
+#Log configuration
+logging:
+  level:
+    root: info
+    web: info
+    "[com.zaxxer.hikari.HikariConfig]": info
+    "[com.innovationandtrust.sftp.config.SecurityConfig]": info
+
+  file:
+    path: ./logs
+    name: ${logging.file.path}/${spring.application.name}.log
+  logback:
+    rollingpolicy:
+      max-file-size: 1MB
+      file-name-pattern: ${logging.file.path}/${spring.application.name}-%d{yyyy-MM-dd}.%i.log

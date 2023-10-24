@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>SMS template for inviting a user to approve</title>
+  <meta charset="UTF-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+</head>
+<body>
+<p>Bonjour <span th:text="${firstName}"></span></p>
+<p th:if="${invitationMessage != null}"><span th:text="${invitationMessage}"></span></p>
+<p th:if="${invitationMessage == null}"><span>Vous êtes invité(e) à signer le(s) document(s) du projet</span>
+</p>
+<p th:text="${newProjectName}"></p>
+<p>Vous avez jusqu’au <span th:text="${expireDate}"></span> pour signer le(s) document(s)</p>
+<p>Si vous ne parvenez pas à ouvrir le lien, veuillez copier/coller l’adresse suivante dans votre
+  barre de
+  recherche:</p>
+<p th:text="${linkUrl}"><a th:href="${linkUrl}"></a></p>
+<p>Cordialement,</p>
+<p>L'équipe Certigna</p>
+<p>Toutes les dates sont fixées à <span th:text="${dateOffset}"></span> Europe/Paris</p>
+</body>
+</html>
