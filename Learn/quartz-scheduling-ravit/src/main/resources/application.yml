@@ -1,0 +1,42 @@
+server:
+  port: 9091
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/quartz-scheduler?useLegacyDatetimeCode=true&logger=Slf4JLogger&profileSQL=true&sslmode=disable
+    hikari:
+      pool-name: quartz-scheduler
+      username: postgres
+      password: postgres
+      maximum-pool-size: 30
+      allow-pool-suspension: true
+      minimum-idle: 5
+      idle-timeout: 30000
+      max-lifetime: 200000
+      connection-timeout: 30000
+      register-mbeans: true
+      auto-commit: false
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        rewriteBatchedStatements: true
+        reWriteBatchedInserts: true
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: always
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    open-in-view: false
+  application:
+    name: quartz-scheduler
+
+springdoc:
+  swagger-ui:
+    path: /swagger
+
+
+cron-string: 0/5 * * * * ?
