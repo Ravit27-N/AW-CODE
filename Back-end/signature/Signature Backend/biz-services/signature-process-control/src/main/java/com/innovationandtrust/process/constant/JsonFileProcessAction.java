@@ -1,6 +1,9 @@
 package com.innovationandtrust.process.constant;
 
-
 public enum JsonFileProcessAction {
-  CREATE, UPDATE, READ
+  CREATE,
+  UPDATE,
+  UPDATE_MULTIPLE,
+  READ,
+  READ_MULTIPLE
 }

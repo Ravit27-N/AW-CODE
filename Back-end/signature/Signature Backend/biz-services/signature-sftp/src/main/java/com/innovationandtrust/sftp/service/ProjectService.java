@@ -10,22 +10,27 @@ import com.innovationandtrust.share.model.project.Document;
 import com.innovationandtrust.share.model.sftp.DocumentDetailModel;
 import com.innovationandtrust.share.model.sftp.ProjectDocumentModel;
 import com.innovationandtrust.share.model.sftp.ProjectModel;
+import com.innovationandtrust.share.model.sftp.ProjectParticipantModel;
 import com.innovationandtrust.share.service.ProjectGenerator;
 import com.innovationandtrust.utils.commons.FormatValidator;
 import com.innovationandtrust.utils.file.exception.FileNotFoundException;
 import com.innovationandtrust.utils.file.model.FileResponse;
 import com.innovationandtrust.utils.file.provider.FileProvider;
 import com.innovationandtrust.utils.keycloak.provider.IKeycloakTokenExchange;
+import com.innovationandtrust.utils.pdf.provider.PdfProvider;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfReader;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
+import jakarta.validation.constraints.NotEmpty;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
@@ -43,6 +48,8 @@ public class ProjectService {
   private final Validator validator;
   private final ProjectFeignClient projectFeignClient;
   private final IKeycloakTokenExchange keycloakTokenExchange;
+  private final FileService fileService;
+  private final PdfProvider pdfProvider;
 
   private static final String LINE_BREAK = "\n";
   private final List<String> actorEmails = new ArrayList<>();
@@ -53,11 +60,19 @@ public class ProjectService {
    * @return Resource of the project XML file.
    */
   public Resource getSampleXml() {
-    Resource resource = ProjectGenerator.downloadSample();
+    var resource = ProjectGenerator.downloadSample();
     if (resource == null) {
       throw new FileNotFoundException("Could not find sample XML file");
     }
     return resource;
+  }
+
+  public void insertFileToZipped(
+      String corporateUuid,
+      String zipFile,
+      MultipartFile[] signedFiles,
+      MultipartFile manifestFile) {
+    this.fileService.insertFilesToZipped(corporateUuid, zipFile, signedFiles, manifestFile);
   }
 
   /**
@@ -67,29 +82,33 @@ public class ProjectService {
    * @return true if successful.
    */
   public boolean createProject(ProjectModel projectModel) {
-    var token =
-        String.format(
-            "Bearer %s", keycloakTokenExchange.getToken(projectModel.getAuthor().getUserUuid()));
     try {
+      var projectDocuments = projectModel.getDocuments();
+      if (projectModel.isMergeDocuments()) {
+        projectDocuments = this.mergeDocuments(projectModel.getDocuments());
+      }
+
+      var token =
+          String.format(
+              "Bearer %s", keycloakTokenExchange.getToken(projectModel.getAuthor().getUserUuid()));
       List<FileResponse> files =
           this.projectFeignClient.uploadDocument(
-              token,
-              this.convertToMultipartFiles(projectModel.getDocuments()),
-              projectModel.getFlowId());
+              token, this.convertToMultipartFiles(projectDocuments), projectModel.getFlowId());
       var documents =
-          projectModel.getDocuments().stream()
+          projectDocuments.stream()
               .flatMap(
-                  doc ->
+                  (ProjectDocumentModel doc) ->
                       files.stream()
                           .filter(fr -> Objects.equals(fr.getOriginalFileName(), doc.getFileName()))
                           .map(
-                              obj -> {
+                              (FileResponse obj) -> {
                                 doc.setFullPath(obj.getFullPath());
                                 doc.setFileName(obj.getFileName());
                                 doc.setContentType(obj.getContentType());
                                 doc.setExtension(
                                     FilenameUtils.getExtension(obj.getOriginalFileName()));
                                 doc.getInfo().setSize(obj.getSize());
+                                doc.getInfo().setOriginalFileName(obj.getFileName());
                                 return doc;
                               }))
               .toList();
@@ -98,6 +117,49 @@ public class ProjectService {
     } catch (Exception e) {
       log.error("Failed to create project", e);
       return false;
+    }
+  }
+
+  private List<ProjectDocumentModel> mergeDocuments(
+      @NotEmpty List<ProjectDocumentModel> documentsModel) {
+    if (documentsModel.size() <= 1) {
+      return documentsModel;
+    }
+    var visibleSignatures = new ArrayList<DocumentDetailModel>();
+    var numberOfMergedPdf = new AtomicInteger(0);
+    List<File> filesToMerge = new ArrayList<>();
+    documentsModel.forEach(
+        (ProjectDocumentModel doc) -> {
+          doc.getDocumentDetails()
+              .forEach(
+                  (DocumentDetailModel v) -> {
+                    v.setPageNum(v.getPageNum() + numberOfMergedPdf.get());
+                    visibleSignatures.add(v);
+                  });
+          numberOfMergedPdf.getAndAdd(getPageNumber(doc, filesToMerge));
+        });
+
+    var mergePath = Path.of(documentsModel.get(0).getFullPath());
+    this.pdfProvider.mergePdf(filesToMerge, mergePath.toString());
+
+    var document = new ProjectDocumentModel();
+    document.setFullPath(mergePath.toString());
+    document.setFileName(FilenameUtils.getName(mergePath.toString()));
+    document.setExtension(FilenameUtils.getExtension(mergePath.toString()));
+    document.setContentType(MediaType.APPLICATION_PDF_VALUE);
+    document.setDocumentDetails(visibleSignatures);
+    document.setInfo(new Document());
+    return List.of(document);
+  }
+
+  private static Integer getPageNumber(
+      ProjectDocumentModel documentModel, List<File> filesToMerge) {
+    try (var document = new PdfDocument(new PdfReader(documentModel.getFullPath())); ) {
+      var file = new File(documentModel.getFullPath());
+      filesToMerge.add(file);
+      return document.getNumberOfPages();
+    } catch (IOException e) {
+      throw new IllegalArgumentException(e);
     }
   }
 
@@ -127,7 +189,7 @@ public class ProjectService {
 
   private void validateProjectData(ProjectModel projectModel, List<String> pdfFiles) {
     Set<ConstraintViolation<ProjectModel>> violations = validator.validate(projectModel);
-    StringBuilder sb = new StringBuilder();
+    var sb = new StringBuilder();
     if (!projectModel.hasSignatory()) {
       sb.append("-Participants: at least have one signatory.").append(LINE_BREAK);
     }
@@ -155,10 +217,10 @@ public class ProjectService {
     projectModel
         .getDocuments()
         .forEach(
-            d ->
+            (ProjectDocumentModel d) ->
                 d.getDocumentDetails()
                     .forEach(
-                        dt -> {
+                        (DocumentDetailModel dt) -> {
                           dt.setContentType(DocumentDetailConstant.TEXT_SIGNATURE);
                           dt.setWidth(DocumentDetailConstant.WIDTH);
                           dt.setHeight(DocumentDetailConstant.HEIGHT);
@@ -210,7 +272,7 @@ public class ProjectService {
     projectModel
         .getParticipants()
         .forEach(
-            p -> {
+            (ProjectParticipantModel p) -> {
               if (FormatValidator.isValidEmailAddress(p.getEmail())) {
                 if (p.isActor()) {
                   this.actorEmails.add(p.getEmail());

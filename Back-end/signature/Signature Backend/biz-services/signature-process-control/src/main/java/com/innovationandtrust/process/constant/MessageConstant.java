@@ -39,4 +39,10 @@ public class MessageConstant {
   public static final String SIGN_COMPLETED_SUBJECT = "Téléchargement le(s) document(s) final(aux)";
   public static final String SIGN_COMPLETED_MESSAGE =
       "Tous les signataires ont signé le(s) document(s). Vous pouvez télécharger le(s) document(s) final(aux).";
+  public static final String VIDEO_ACCEPTED_SUBJECT = "Identité vérifiée idée avec succès";
+  public static final String VIDEO_ACCEPTED_MESSAGE =
+      "Pour consulter le(s) document(s), cliquez sur le bouton ci-dessous:";
+  public static final String VIDEO_REJECTED_SUBJECT = "Echec de vérification d’identité";
+  public static final String VIDEO_REJECTED_MESSAGE =
+      "Nous vous informons que la vérification de votre identité a échoué. Veuillez contacter votre opérateur.";
 }

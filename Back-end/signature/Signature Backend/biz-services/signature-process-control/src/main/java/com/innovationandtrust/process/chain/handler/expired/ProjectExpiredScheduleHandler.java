@@ -3,7 +3,6 @@ package com.innovationandtrust.process.chain.handler.expired;
 import com.innovationandtrust.process.constant.SignProcessConstant;
 import com.innovationandtrust.process.job.UpdateProjectStatusJob;
 import com.innovationandtrust.process.model.UpdateProjectStatusJobData;
-import com.innovationandtrust.share.constant.ProjectStatus;
 import com.innovationandtrust.share.model.SettingProperties;
 import com.innovationandtrust.share.model.project.Project;
 import com.innovationandtrust.utils.chain.ExecutionContext;
@@ -14,7 +13,6 @@ import com.innovationandtrust.utils.schedule.model.JobDetailDescriptor;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.SchedulerException;
 import org.quartz.SimpleScheduleBuilder;
@@ -25,7 +23,6 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class ProjectExpiredScheduleHandler extends AbstractExecutionHandler {
 
   public static final String EXPIRE = "EXPIRE-";
@@ -34,6 +31,12 @@ public class ProjectExpiredScheduleHandler extends AbstractExecutionHandler {
   private final SettingProperties settingProperties;
 
   private final SchedulerHandler schedulerHandler;
+
+  public ProjectExpiredScheduleHandler(
+      SettingProperties settingProperties, SchedulerHandler schedulerHandler) {
+    this.settingProperties = settingProperties;
+    this.schedulerHandler = schedulerHandler;
+  }
 
   @Override
   public ExecutionState execute(ExecutionContext context) {
@@ -53,8 +56,12 @@ public class ProjectExpiredScheduleHandler extends AbstractExecutionHandler {
   private void setScheduler(Project project, String type) {
     try {
       log.info("Setting schedule for update {}project: {} ", type, project.getFlowId());
-
-      this.schedulerHandler.scheduleJob(getTrigger(project, type), getJob(project, type));
+      var triggerKey = this.getTriggerKey(project, type);
+      if (this.schedulerHandler.exists(triggerKey)) {
+        this.updateScheduler(project, type);
+      } else {
+        this.schedulerHandler.scheduleJob(getTrigger(project, type), getJob(project, type));
+      }
     } catch (SchedulerException e) {
       String message = "Failed to set schedule...";
       log.error(message, e);
@@ -64,9 +71,7 @@ public class ProjectExpiredScheduleHandler extends AbstractExecutionHandler {
 
   private void updateScheduler(Project project, String type) {
     try {
-      var triggerKey =
-          TriggerKey.triggerKey(
-              project.getFlowId(), type + project.getTemplate().getSignProcess().name());
+      var triggerKey = this.getTriggerKey(project, type);
 
       if (Objects.nonNull(this.schedulerHandler.getTrigger(triggerKey))) {
         log.info("Updating schedule for update {}project: {} ", type, project.getFlowId());
@@ -112,12 +117,8 @@ public class ProjectExpiredScheduleHandler extends AbstractExecutionHandler {
     return trigger.build();
   }
 
-  private boolean checkUrgent(Project project) {
-    var calendar = Calendar.getInstance();
-    calendar.setTime(project.getDetail().getExpireDate());
-    calendar.add(Calendar.HOUR, -settingProperties.getUrgentProject());
-    // If expiration date less than urgent project setting hours
-    return !Objects.equals(ProjectStatus.URGENT.name(), project.getStatus())
-        && (new Date()).before(calendar.getTime());
+  private TriggerKey getTriggerKey(Project project, String type) {
+    return TriggerKey.triggerKey(
+        project.getFlowId(), type + project.getTemplate().getSignProcess().name());
   }
 }

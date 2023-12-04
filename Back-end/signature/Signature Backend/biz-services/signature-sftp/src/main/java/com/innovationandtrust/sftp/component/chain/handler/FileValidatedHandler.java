@@ -12,8 +12,12 @@ import com.innovationandtrust.utils.chain.ExecutionState;
 import com.innovationandtrust.utils.chain.handler.AbstractExecutionHandler;
 import com.innovationandtrust.utils.file.provider.FileProvider;
 import com.innovationandtrust.utils.file.utils.FileUtils;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
@@ -37,18 +41,33 @@ public class FileValidatedHandler extends AbstractExecutionHandler {
     var destinationPath = FileUtils.toPath(source);
 
     this.fileProvider.unZipCommand(source, destinationPath);
-    var pdfFiles =
-        this.fileProvider.getFiles(destinationPath).stream()
-            .filter(
-                file ->
-                    Objects.equals(FilenameUtils.getExtension(file), FileValidator.PDF_EXTENSION))
-            .toList();
+    // If annexe's file out of ANNEXE FOLDER is error.
+    var xmlFile = new AtomicReference<String>(null);
+    var totalXml = new AtomicInteger();
+    var pdfFiles = new ArrayList<String>();
+    this.fileProvider
+        .getFiles(destinationPath)
+        .forEach(
+            file -> {
+              if (!file.toLowerCase().contains(FileValidator.ANNEXE_FOLDER)
+                  && Files.isRegularFile(Path.of(file))) {
+                if (Objects.equals(FilenameUtils.getExtension(file), FileValidator.PDF_EXTENSION)) {
+                  pdfFiles.add(file);
+                } else if (Objects.equals(
+                    FilenameUtils.getExtension(file), FileValidator.XML_EXTENSION)) {
+                  xmlFile.set(file);
+                  totalXml.getAndIncrement();
+                }
+              }
+            });
+    if (totalXml.get() != 1) {
+      this.fileErrorHandler.errorDocsNotMatched(request);
+      return ExecutionState.END;
+    }
     log.info("Pdf files name: {}", pdfFiles);
     ProjectModel project;
     try {
-      project =
-          projectService.validateProject(
-              this.fileProvider.getXmlPath(destinationPath).toString(), pdfFiles);
+      project = projectService.validateProject(xmlFile.get(), pdfFiles);
     } catch (Exception e) {
       log.error("Project validation failed", e);
       if (e instanceof InvalidProjectDocumentException) {

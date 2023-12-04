@@ -8,57 +8,113 @@ import com.innovationandtrust.process.chain.execution.SignatureFileExecutionMana
 import com.innovationandtrust.process.chain.execution.SigningInfoExecutionManager;
 import com.innovationandtrust.process.chain.execution.UploadModifiedDocumentExecutionHandler;
 import com.innovationandtrust.process.chain.execution.VerifyDocumentExecutionManager;
+import com.innovationandtrust.process.chain.execution.eid.EIDRequestToSignExecutionManager;
+import com.innovationandtrust.process.chain.execution.eid.EIDSigningProcessExecutionManager;
+import com.innovationandtrust.process.chain.execution.eid.EIDVideoAuthorizationProcessExecutionManager;
+import com.innovationandtrust.process.chain.execution.eid.EIDVideoVerificationProcessExecutionManager;
 import com.innovationandtrust.process.chain.execution.sign.SigningProcessExecutionManager;
+import com.innovationandtrust.process.chain.handler.sign.MultiSigningProcessHandler;
 import com.innovationandtrust.process.constant.DocumentProcessAction;
 import com.innovationandtrust.process.constant.JsonFileProcessAction;
 import com.innovationandtrust.process.constant.OtpProcessAction;
+import com.innovationandtrust.process.constant.PathConstant;
 import com.innovationandtrust.process.constant.SignProcessConstant;
 import com.innovationandtrust.process.constant.SignatureFileConstant;
+import com.innovationandtrust.process.model.DocumentsVerificationRequest;
 import com.innovationandtrust.process.model.FileResponse;
+import com.innovationandtrust.process.model.OtpInfo;
 import com.innovationandtrust.process.model.SignInfo;
+import com.innovationandtrust.process.model.SigningProcessDto;
+import com.innovationandtrust.process.restclient.ProfileFeignClient;
 import com.innovationandtrust.process.utils.ProcessControlUtils;
+import com.innovationandtrust.share.constant.DocumentStatus;
 import com.innovationandtrust.share.enums.FileAction;
 import com.innovationandtrust.share.enums.SignatureMode;
 import com.innovationandtrust.share.model.project.Participant;
 import com.innovationandtrust.share.model.project.Participant.ValidPhone;
 import com.innovationandtrust.share.model.project.Project;
+import com.innovationandtrust.utils.authenticationUtils.AuthenticationUtils;
 import com.innovationandtrust.utils.chain.ExecutionContext;
+import com.innovationandtrust.utils.commons.CommonUsages;
+import com.innovationandtrust.utils.eid.model.RequestSignViaSmsResponse;
+import com.innovationandtrust.utils.eid.model.SignDocumentResponse;
+import com.innovationandtrust.utils.eid.model.VideoIDAuthorizationDto;
+import com.innovationandtrust.utils.eid.model.VideoIDVerificationDto;
 import com.innovationandtrust.utils.encryption.ImpersonateTokenService;
 import com.innovationandtrust.utils.encryption.TokenParam;
 import com.innovationandtrust.utils.exception.exceptions.InvalidRequestException;
+import com.innovationandtrust.utils.file.provider.FileProvider;
 import com.innovationandtrust.utils.file.utils.FileUtils;
 import com.innovationandtrust.utils.signatureidentityverification.dto.DocumentVerificationRequest;
 import com.innovationandtrust.utils.signatureidentityverification.dto.VerificationDocumentResponse;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import lombok.RequiredArgsConstructor;
+import java.util.UUID;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.compress.utils.FileNameUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-@RequiredArgsConstructor
+@Slf4j
 public class SigningProcessingService {
 
   private final GenerateOTPExecutionManager otpExecutionManager;
-
   private final SigningProcessExecutionManager signingProcessExecutionManager;
-
   private final SigningInfoExecutionManager signingInfoExecutionManager;
-
   private final CompleteSignProcessExecutionManager completeSignProcessExecutionManager;
-
   private final UploadModifiedDocumentExecutionHandler uploadModifiedDocumentExecutionHandler;
-
   private final DocumentProcessExecutionManager documentProcessExecutionManager;
-
   private final SetupIndividualSignProcessExecutionManager individualSignProcessExecutionManager;
-
   private final ImpersonateTokenService impersonateTokenService;
-
   private final VerifyDocumentExecutionManager verifyDocumentExecutionManager;
-
   private final SignatureFileExecutionManager signatureFileExecutionManager;
+  private final EIDVideoAuthorizationProcessExecutionManager
+      videoAuthorizationProcessExecutionManager;
+  private final EIDVideoVerificationProcessExecutionManager
+      videoVerificationProcessExecutionManager;
+  private final EIDRequestToSignExecutionManager eidRequestToSignExecutionManager;
+  private final MultiSigningProcessHandler multiSigningProcessHandler;
+  private final EIDSigningProcessExecutionManager eIDSignDocumentExecuteManager;
+
+  private final FileProvider fileProvider;
+
+  public SigningProcessingService(
+      GenerateOTPExecutionManager otpExecutionManager,
+      SigningProcessExecutionManager signingProcessExecutionManager,
+      SigningInfoExecutionManager signingInfoExecutionManager,
+      CompleteSignProcessExecutionManager completeSignProcessExecutionManager,
+      UploadModifiedDocumentExecutionHandler uploadModifiedDocumentExecutionHandler,
+      DocumentProcessExecutionManager documentProcessExecutionManager,
+      SetupIndividualSignProcessExecutionManager individualSignProcessExecutionManager,
+      ImpersonateTokenService impersonateTokenService,
+      VerifyDocumentExecutionManager verifyDocumentExecutionManager,
+      SignatureFileExecutionManager signatureFileExecutionManager,
+      EIDVideoAuthorizationProcessExecutionManager videoAuthorizationProcessExecutionManager,
+      EIDVideoVerificationProcessExecutionManager videoVerificationProcessExecutionManager,
+      EIDRequestToSignExecutionManager eidRequestToSignExecutionManager,
+      MultiSigningProcessHandler multiSigningProcessHandler,
+      EIDSigningProcessExecutionManager eIDSignDocumentExecuteManager,
+      FileProvider fileProvider) {
+    this.otpExecutionManager = otpExecutionManager;
+    this.signingProcessExecutionManager = signingProcessExecutionManager;
+    this.signingInfoExecutionManager = signingInfoExecutionManager;
+    this.completeSignProcessExecutionManager = completeSignProcessExecutionManager;
+    this.uploadModifiedDocumentExecutionHandler = uploadModifiedDocumentExecutionHandler;
+    this.documentProcessExecutionManager = documentProcessExecutionManager;
+    this.individualSignProcessExecutionManager = individualSignProcessExecutionManager;
+    this.impersonateTokenService = impersonateTokenService;
+    this.verifyDocumentExecutionManager = verifyDocumentExecutionManager;
+    this.signatureFileExecutionManager = signatureFileExecutionManager;
+    this.videoAuthorizationProcessExecutionManager = videoAuthorizationProcessExecutionManager;
+    this.videoVerificationProcessExecutionManager = videoVerificationProcessExecutionManager;
+    this.eidRequestToSignExecutionManager = eidRequestToSignExecutionManager;
+    this.multiSigningProcessHandler = multiSigningProcessHandler;
+    this.eIDSignDocumentExecuteManager = eIDSignDocumentExecuteManager;
+    this.fileProvider = fileProvider;
+  }
 
   /**
    * To retrieve information on the project to be signed.
@@ -89,22 +145,29 @@ public class SigningProcessingService {
    * @return object of {@link ValidPhone}
    */
   public ValidPhone validatePhoneNumber(String flowId, String uuid, String phoneNumber) {
-    if (!StringUtils.hasText(phoneNumber)) {
-      throw new IllegalArgumentException(
-          "Invalid phone number! The phone number cannot be null or empty!");
-    }
     var ctx = ProcessControlUtils.getProject(flowId, uuid);
     ctx.put(SignProcessConstant.JSON_FILE_PROCESS_ACTION, JsonFileProcessAction.READ);
+    return validatePhoneExecute(ctx, phoneNumber);
+  }
+
+  private ValidPhone validatePhoneExecute(ExecutionContext ctx, String phoneNumber) {
+    isValidPhone(phoneNumber);
     ctx.put(SignProcessConstant.PHONE_NUMBER, phoneNumber);
     ctx.put(SignProcessConstant.OTP_PROCESS_ACTION, OtpProcessAction.VALIDATE_PHONE_NUMBER);
     this.otpExecutionManager.execute(ctx);
-    return ctx
-        .get(SignProcessConstant.PROJECT_KEY, Project.class)
-        .getParticipantByUuid(uuid)
-        .stream()
-        .findAny()
-        .orElseThrow(() -> new IllegalArgumentException("Failed to validate the phone number!"))
-        .getValidPhone();
+    return ctx.get(SignProcessConstant.VALID_PHONE, ValidPhone.class);
+  }
+
+  public ValidPhone validatePhoneNumber(List<SigningProcessDto> requests, String phoneNumber) {
+    var ctx = ProcessControlUtils.getProjects(requests);
+    return validatePhoneExecute(ctx, phoneNumber);
+  }
+
+  private static void isValidPhone(String phone) {
+    if (!StringUtils.hasText(phone)) {
+      throw new IllegalArgumentException(
+          "Invalid phone number! The phone number cannot be null or empty!");
+    }
   }
 
   public ValidPhone validatePhoneNumberExternal(
@@ -117,11 +180,22 @@ public class SigningProcessingService {
       String flowId, String uuid, DocumentVerificationRequest request) {
     var ctx = ProcessControlUtils.getProject(flowId, uuid);
     ctx.put(SignProcessConstant.JSON_FILE_PROCESS_ACTION, JsonFileProcessAction.READ);
-    ctx.put(SignProcessConstant.DOCUMENTS_TO_VERIFY, request);
 
-    this.verifyDocumentExecutionManager.execute(ctx);
+    return validateDocumentExecute(ctx, request);
+  }
 
-    return ctx.get(
+  public VerificationDocumentResponse validateDocument(DocumentsVerificationRequest request) {
+    var context = ProcessControlUtils.getProjects(request.getProjects());
+    return validateDocumentExecute(context, request.getVerificationRequest());
+  }
+
+  private VerificationDocumentResponse validateDocumentExecute(
+      ExecutionContext context, DocumentVerificationRequest request) {
+    context.put(SignProcessConstant.DOCUMENTS_TO_VERIFY, request);
+
+    this.verifyDocumentExecutionManager.execute(context);
+
+    return context.get(
         SignProcessConstant.VERIFY_DOCUMENT_RESPONSE, VerificationDocumentResponse.class);
   }
 
@@ -140,6 +214,12 @@ public class SigningProcessingService {
    */
   public void generateOtp(String flowId, String uuid) {
     var context = ProcessControlUtils.getProject(flowId, uuid);
+    context.put(SignProcessConstant.OTP_PROCESS_ACTION, OtpProcessAction.GENERATE);
+    otpExecutionManager.execute(context);
+  }
+
+  public void generateOtp(List<SigningProcessDto> requests) {
+    var context = ProcessControlUtils.getProjects(requests);
     context.put(SignProcessConstant.OTP_PROCESS_ACTION, OtpProcessAction.GENERATE);
     otpExecutionManager.execute(context);
   }
@@ -175,19 +255,25 @@ public class SigningProcessingService {
    * @see SigningProcessingService#generateOtp(String, String)
    * @return OtpResponse, isValidated true if valid, nor false
    */
-  public boolean validateOtp(String flowId, String uuid, String otpCode) {
+  public OtpInfo validateOtp(String flowId, String uuid, String otpCode) {
     var context = ProcessControlUtils.getProject(flowId, uuid);
+    context.put(SignProcessConstant.JSON_FILE_PROCESS_ACTION, JsonFileProcessAction.READ);
+    return validateOtpExecute(context, otpCode);
+  }
+
+  private OtpInfo validateOtpExecute(ExecutionContext context, String otpCode) {
     context.put(SignProcessConstant.OTP_VALUE, otpCode);
     context.put(SignProcessConstant.OTP_PROCESS_ACTION, OtpProcessAction.VALIDATE);
     this.otpExecutionManager.execute(context);
-    return context
-        .get(SignProcessConstant.PROJECT_KEY, Project.class)
-        .getParticipantByUuid(uuid)
-        .stream()
-        .anyMatch(p -> p.getOtp().isValidated());
+    return context.get(SignProcessConstant.VALID_OTP, OtpInfo.class);
   }
 
-  public boolean validateOtpExternal(String companyUuid, String token, String otpCode) {
+  public OtpInfo validateOtp(List<SigningProcessDto> requests, String otpCode) {
+    var context = ProcessControlUtils.getProjects(requests);
+    return validateOtpExecute(context, otpCode);
+  }
+
+  public OtpInfo validateOtpExternal(String companyUuid, String token, String otpCode) {
     var param = this.getParams(companyUuid, token);
     return this.validateOtp(param.getFlowId(), param.getUuid(), otpCode);
   }
@@ -200,29 +286,202 @@ public class SigningProcessingService {
    *     com.innovationandtrust.share.model.project.Participant}
    */
   public void signDocuments(String flowId, String uuid) {
-    this.signingProcessExecutionManager.execute(ProcessControlUtils.getProject(flowId, uuid));
+    var context = ProcessControlUtils.getProject(flowId, uuid);
+    // For update participant document status to in processing
+    context.put(SignProcessConstant.PARTICIPANT_DOCUMENT_STATUS, DocumentStatus.IN_SIGNING);
+    this.signingProcessExecutionManager.execute(context);
+  }
+
+  /**
+   * To sign multiple projects at the same time
+   *
+   * @param requests refers to {@link SigningProcessDto}
+   */
+  public List<SigningProcessDto> signProjects(List<SigningProcessDto> requests) {
+    var context = ProcessControlUtils.getProjects(requests);
+    this.multiSigningProcessHandler.execute(context);
+
+    return CommonUsages.convertToList(
+        context.get(SignProcessConstant.MULTI_SIGNING_PROJECTS), SigningProcessDto.class);
+  }
+
+  /**
+   * Handling the process of request videoID authorization.
+   *
+   * @param flowId refers to flowId of {@link Project}.
+   * @param uuid refers to uuid of {@link Participant}.
+   * @return the {@link VideoIDAuthorizationDto}.
+   */
+  public VideoIDAuthorizationDto requestVideoIDAuthentication(String flowId, String uuid) {
+    ExecutionContext ctx = ProcessControlUtils.getProject(flowId, uuid);
+    ctx.put(SignProcessConstant.JSON_FILE_PROCESS_ACTION, JsonFileProcessAction.READ);
+    this.videoAuthorizationProcessExecutionManager.execute(ctx);
+
+    return ctx.get(SignProcessConstant.VIDEOID_AUTHORIZATION, VideoIDAuthorizationDto.class);
+  }
+
+  /**
+   * Handling external process of request videoID authorization.
+   *
+   * @param companyUuid refers to companyUuid of {@link
+   *     com.innovationandtrust.share.model.project.CorporateInfo}.
+   * @param token refers to the token provided.
+   * @return the {@link VideoIDAuthorizationDto}
+   */
+  public VideoIDAuthorizationDto requestVideoIDAuthenticationExternal(
+      String companyUuid, String token) {
+    TokenParam param = this.getParams(companyUuid, token);
+    return this.requestVideoIDAuthentication(param.getFlowId(), param.getUuid());
+  }
+
+  /**
+   * Handling the process of request videoID authorization.
+   *
+   * @param flowId refers to flowId of {@link Project}.
+   * @param uuid refers to uuid of {@link Participant}.
+   * @param videoId refers to the video ID provided by videoId.
+   * @return the {@link VideoIDVerificationDto}.
+   */
+  public VideoIDVerificationDto requestVerificationVideoID(
+      String flowId, String uuid, String videoId) {
+
+    ExecutionContext ctx = ProcessControlUtils.getProject(flowId, uuid);
+    ctx.put(SignProcessConstant.JSON_FILE_PROCESS_ACTION, JsonFileProcessAction.READ);
+    ctx.put(SignProcessConstant.VIDEO_ID, videoId);
+    this.videoVerificationProcessExecutionManager.execute(ctx);
+
+    return ctx.get(SignProcessConstant.VIDEOID_VERIFICATION, VideoIDVerificationDto.class);
+  }
+
+  /**
+   * Handling external process of request videoID authorization.
+   *
+   * @param companyUuid refers to companyUuid of {@link
+   *     com.innovationandtrust.share.model.project.CorporateInfo}.
+   * @param token refers to the token provided.
+   * @param videoId refers to the video ID provided by videoId.
+   * @return the {@link VideoIDVerificationDto}
+   */
+  public VideoIDVerificationDto requestVerificationVideoIDExternal(
+      String companyUuid, String token, String videoId) {
+    TokenParam param = this.getParams(companyUuid, token);
+    return this.requestVerificationVideoID(param.getFlowId(), param.getUuid(), videoId);
+  }
+
+  /**
+   * Request to sign documents.
+   *
+   * @param flowId refers to flowId of {@link Project}.
+   * @param uuid refers to uuid of {@link Participant}.
+   * @return {@link RequestSignViaSmsResponse}
+   */
+  public RequestSignViaSmsResponse requestToSignDocuments(String flowId, String uuid) {
+
+    ExecutionContext ctx = ProcessControlUtils.getProject(flowId, uuid);
+    ctx.put(SignProcessConstant.JSON_FILE_PROCESS_ACTION, JsonFileProcessAction.READ);
+    this.eidRequestToSignExecutionManager.execute(ctx);
+
+    return ctx.get(SignProcessConstant.REQUEST_SIGN, RequestSignViaSmsResponse.class);
+  }
+
+  /**
+   * Request to sign documents external.
+   *
+   * @param companyUuid refers to companyUuid of {@link
+   *     com.innovationandtrust.share.model.project.CorporateInfo}.
+   * @param token refers to the token provided.
+   * @return {@link RequestSignViaSmsResponse}
+   */
+  public RequestSignViaSmsResponse requestToSignDocumentsExternal(
+      String companyUuid, String token) {
+    TokenParam param = this.getParams(companyUuid, token);
+    return this.requestToSignDocuments(param.getFlowId(), param.getUuid());
+  }
+
+  /**
+   * Sign Document.
+   *
+   * @param flowId refers to flowId of {@link Project}.
+   * @param uuid refers to uuid of {@link Participant}.
+   * @param optCode refers to otp get from sms.
+   * @return {@link SignDocumentResponse}
+   */
+  public Boolean signDocument(String flowId, String uuid, String optCode) {
+
+    ExecutionContext ctx = ProcessControlUtils.getProject(flowId, uuid);
+    ctx.put(SignProcessConstant.JSON_FILE_PROCESS_ACTION, JsonFileProcessAction.READ);
+    ctx.put(SignProcessConstant.OTP_CODE, optCode);
+    this.eIDSignDocumentExecuteManager.execute(ctx);
+
+    return ctx.get(SignProcessConstant.SIGN_DOCUMENT, Boolean.class);
+  }
+
+  /**
+   * Sign Document External.
+   *
+   * @param companyUuid refers to companyUuid of {@link
+   *     com.innovationandtrust.share.model.project.CorporateInfo}.
+   * @param token refers to the token provided.
+   * @param optCode refers to otp get from sms.
+   * @return {@link SignDocumentResponse}
+   */
+  public Boolean signDocumentExternal(String companyUuid, String token, String optCode) {
+    TokenParam param = this.getParams(companyUuid, token);
+    return this.signDocument(param.getFlowId(), param.getUuid(), optCode);
   }
 
   public void uploadSignatureFile(
       String flowId, String uuid, MultipartFile file, SignatureMode mode) {
-    if (mode.equals(SignatureMode.WRITE)) {
-      throw new InvalidRequestException(
-          "Signature mode must be " + SignatureMode.IMPORT + " or " + SignatureMode.DESIGN);
-    }
-
     if (Objects.isNull(file)) {
       throw new InvalidRequestException("Signature file cannot be null.");
     }
-
-    FileUtils.validateImageType(file, SignatureFileConstant.getFileExtensions());
-
-    FileUtils.validateFileSize(file, SignatureFileConstant.MAX_SIZE);
-
     var context = ProcessControlUtils.getProject(flowId, uuid);
+    this.uploadSignatureFileExecute(context, file, mode);
+  }
+
+  public void uploadSignatureFile(
+      List<SigningProcessDto> requests, String fileName, SignatureMode mode) {
+
+    if (!StringUtils.hasText(fileName)) {
+      throw new InvalidRequestException("File name required.");
+    }
+    var context = ProcessControlUtils.getProjects(requests);
+    context.put(SignProcessConstant.TEMP_SIGNATURE_IMAGE, fileName);
+    this.uploadSignatureFileExecute(context, null, mode);
+  }
+
+  public String uploadSignatureFile(MultipartFile file) {
+    validateSignatureFile(file, SignatureMode.IMPORT);
+    var fileName =
+        String.format(
+            "%s_%s.%s",
+            AuthenticationUtils.getUserUuid(),
+            UUID.randomUUID(),
+            FileNameUtils.getExtension(file.getOriginalFilename()));
+    this.fileProvider.upload(file.getResource(), PathConstant.SIGNATURE_FILE_PATH_TEMP, fileName);
+    return fileName;
+  }
+
+  private void uploadSignatureFileExecute(
+      ExecutionContext context, MultipartFile file, SignatureMode mode) {
+    validateSignatureFile(file, mode);
     context.put(SignProcessConstant.SIGNATURE_IMAGE, file);
     context.put(SignProcessConstant.FILE_ACTION, FileAction.UPLOAD);
     context.put(SignProcessConstant.SIGNATURE_MODE, mode);
     this.signatureFileExecutionManager.execute(context);
+  }
+
+  private static void validateSignatureFile(MultipartFile file, SignatureMode mode) {
+    if (Objects.equals(mode, SignatureMode.WRITE)) {
+      throw new InvalidRequestException(
+          "Signature mode must be " + SignatureMode.IMPORT + " or " + SignatureMode.DESIGN);
+    } else {
+      if (Objects.nonNull(file)) {
+        FileUtils.validateImageType(file, SignatureFileConstant.getFileExtensions());
+
+        FileUtils.validateFileSize(file, SignatureFileConstant.MAX_SIZE);
+      }
+    }
   }
 
   public void uploadSignatureFileExternal(
@@ -245,6 +504,15 @@ public class SigningProcessingService {
 
   public void removeSignatureFile(String flowId, String uuid) {
     var context = ProcessControlUtils.getProject(flowId, uuid);
+    this.removeSignatureFileExecute(context);
+  }
+
+  public void removeSignatureFile(List<SigningProcessDto> requests) {
+    var context = ProcessControlUtils.getProjects(requests);
+    this.removeSignatureFileExecute(context);
+  }
+
+  private void removeSignatureFileExecute(ExecutionContext context) {
     context.put(SignProcessConstant.FILE_ACTION, FileAction.REMOVE);
     this.signatureFileExecutionManager.execute(context);
   }

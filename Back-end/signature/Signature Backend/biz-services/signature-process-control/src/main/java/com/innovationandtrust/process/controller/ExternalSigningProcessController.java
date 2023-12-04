@@ -1,15 +1,18 @@
 package com.innovationandtrust.process.controller;
 
+import com.innovationandtrust.process.model.OtpInfo;
 import com.innovationandtrust.process.model.SignInfo;
 import com.innovationandtrust.process.service.SigningProcessingService;
 import com.innovationandtrust.share.enums.SignatureMode;
 import com.innovationandtrust.share.model.project.Participant.ValidPhone;
+import com.innovationandtrust.utils.eid.model.RequestSignViaSmsResponse;
+import com.innovationandtrust.utils.eid.model.VideoIDAuthorizationDto;
+import com.innovationandtrust.utils.eid.model.VideoIDVerificationDto;
 import com.innovationandtrust.utils.signatureidentityverification.dto.DocumentVerificationRequest;
 import com.innovationandtrust.utils.signatureidentityverification.dto.VerificationDocumentResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.Optional;
-import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
@@ -20,18 +23,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/")
 public class ExternalSigningProcessController {
 
   private final SigningProcessingService signService;
+
+  public ExternalSigningProcessController(SigningProcessingService signService) {
+    this.signService = signService;
+  }
 
   @Tag(name = "1. Sign info")
   @GetMapping("/sign-info/{companyUuid}")
@@ -89,7 +94,7 @@ public class ExternalSigningProcessController {
 
   @Tag(name = "7. Validate OTP")
   @PostMapping("/otp/validate/{companyUuid}")
-  public ResponseEntity<Boolean> validateOtp(
+  public ResponseEntity<OtpInfo> validateOtp(
       @PathVariable("companyUuid") String companyUuid,
       @RequestParam("otp") String opt,
       @RequestParam("token") String token) {
@@ -167,5 +172,38 @@ public class ExternalSigningProcessController {
       @PathVariable("companyUuid") String companyUuid, @RequestParam("token") String token) {
     this.signService.removeSignatureFileExternal(companyUuid, token);
     return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @GetMapping("/sign/authorization/{companyUuid}/video-id")
+  public ResponseEntity<VideoIDAuthorizationDto> requestVideoIDAuthentication(
+      @PathVariable("companyUuid") String companyUuid, @RequestParam("token") String token) {
+    return new ResponseEntity<>(
+        this.signService.requestVideoIDAuthenticationExternal(companyUuid, token), HttpStatus.OK);
+  }
+
+  @PostMapping("/sign/verification/{companyUuid}/video-id")
+  public ResponseEntity<VideoIDVerificationDto> requestVerificationVideoID(
+      @PathVariable("companyUuid") String companyUuid,
+      @RequestParam("token") String token,
+      @RequestParam("videoId") String videoId) {
+    return new ResponseEntity<>(
+        this.signService.requestVerificationVideoIDExternal(companyUuid, token, videoId),
+        HttpStatus.OK);
+  }
+
+  @PostMapping("/sign/request-sign/{companyUuid}")
+  public ResponseEntity<RequestSignViaSmsResponse> requestToSignDocument(
+      @PathVariable("companyUuid") String companyUuid, @RequestParam("token") String token) {
+    return new ResponseEntity<>(
+        this.signService.requestToSignDocumentsExternal(companyUuid, token), HttpStatus.OK);
+  }
+
+  @PostMapping("/sign/sign-document/{companyUuid}")
+  public ResponseEntity<Boolean> signDocument(
+      @PathVariable("companyUuid") String companyUuid,
+      @RequestParam("token") String token,
+      @RequestParam("otpCode") String otpCode) {
+    return new ResponseEntity<>(
+        this.signService.signDocumentExternal(companyUuid, token, otpCode), HttpStatus.OK);
   }
 }

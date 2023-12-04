@@ -7,11 +7,9 @@ import com.innovationandtrust.process.utils.ProcessControlUtils;
 import com.innovationandtrust.utils.chain.ExecutionContext;
 import com.innovationandtrust.utils.chain.ExecutionState;
 import com.innovationandtrust.utils.chain.handler.AbstractExecutionHandler;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 public class ApprovingDecisionHandler extends AbstractExecutionHandler {
 
   private final ApprovingCounterSignExecutionManager approvingCounterSignExecutionManager;
@@ -19,6 +17,15 @@ public class ApprovingDecisionHandler extends AbstractExecutionHandler {
   private final ApprovingCoSignExecutionManager approvingCoSignExecutionManager;
 
   private final ApprovingIndividualSignExecutionManager approvingIndividualSignExecutionManager;
+
+  public ApprovingDecisionHandler(
+      ApprovingCounterSignExecutionManager approvingCounterSignExecutionManager,
+      ApprovingCoSignExecutionManager approvingCoSignExecutionManager,
+      ApprovingIndividualSignExecutionManager approvingIndividualSignExecutionManager) {
+    this.approvingCounterSignExecutionManager = approvingCounterSignExecutionManager;
+    this.approvingCoSignExecutionManager = approvingCoSignExecutionManager;
+    this.approvingIndividualSignExecutionManager = approvingIndividualSignExecutionManager;
+  }
 
   @Override
   public ExecutionState execute(ExecutionContext context) {

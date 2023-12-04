@@ -1,6 +1,6 @@
 package com.innovationandtrust.process.model.sms;
 
-import com.innovationandtrust.process.utils.DateUtil;
+import com.innovationandtrust.utils.date.DateUtil;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Locale;

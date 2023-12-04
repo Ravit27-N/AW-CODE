@@ -1,11 +1,13 @@
 package com.innovationandtrust.process.utils;
 
+import static com.innovationandtrust.process.constant.PathConstant.SIGNATURE_PATH;
 import static com.innovationandtrust.utils.commons.CommonUsages.getTextWidth;
 
 import com.innovationandtrust.share.enums.SignatureMode;
 import com.innovationandtrust.share.model.project.DocumentDetail;
 import com.innovationandtrust.share.model.project.Participant;
 import com.innovationandtrust.share.model.project.Project;
+import com.innovationandtrust.utils.date.DateUtil;
 import com.innovationandtrust.utils.exception.exceptions.InternalErrorException;
 import com.innovationandtrust.utils.file.utils.FileUtils;
 import com.itextpdf.html2pdf.HtmlConverter;
@@ -17,16 +19,15 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.imageio.ImageIO;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.Loader;
-import org.apache.commons.lang3.ObjectUtils;
 import org.apache.pdfbox.cos.COSDictionary;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -48,12 +49,11 @@ import org.jsoup.nodes.Document;
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PdfUtils {
-  public static final String SIGNATURE_FILE_PATH = "signature_file";
-  public static final String PARAPH = "Paraph-";
-  public static final String SIGNATORY = "Signatory-";
+
+  public static final String PARAPH = "Paraph";
+  public static final String SIGNATORY = "Signatory";
   private static final String PDF = ".pdf";
   private static final String PNG = ".png";
-  public static final String SIGN_DIR = "sign";
   private static final String FONT = "Arial";
   private static final String P_TAG =
       "<p style=\"font-family: Arial, Helvetica, sans-serif; text-align: center;";
@@ -63,11 +63,11 @@ public class PdfUtils {
     return FileUtils.toPath(path) + addition;
   }
 
-  public static File createParah(String paraph, Participant participant, Path dir) {
-    String sign = String.format("%s%s%s", P_TAG + "font-size: 50px;\">", paraph, "</p>");
+  public static File createParaphrase(String paraphrase, Participant participant, Path dir) {
+    String sign = String.format("%s%s%s", P_TAG + "font-size: 50px;\">", paraphrase, "</p>");
 
-    log.info("Generating paraph image from HTML...");
-    var fileName = participant.getUuid() + "_paraph.png";
+    log.info("Generating paraphrase image from HTML...");
+    var fileName = participant.getUuid() + "_paraphrase.png";
     return convertHtmlToImage(dir, fileName, sign, false, false);
   }
 
@@ -85,7 +85,7 @@ public class PdfUtils {
             P_TAG + "font-size: 100px;\">",
             signature,
             "<br><br>",
-            DateUtil.toSignedDate(new Date()),
+            DateUtil.toSignedDate(participant.getSignedDate()),
             "<br>",
             participant.getFullName(),
             participant.getPhone(),
@@ -119,7 +119,7 @@ public class PdfUtils {
             P_TAG + "font-size: 60px;\">",
             signature,
             "<br><br>",
-            DateUtil.toSignedDate(new Date()),
+            DateUtil.toSignedDate(participant.getSignedDate()),
             "<br>",
             participant.getFullName(),
             participant.getPhone(),
@@ -127,10 +127,12 @@ public class PdfUtils {
             participant.getOtpCode(),
             "</p></div>");
 
-    FileUtils.createDirIfNotExist(dir.resolve(SIGN_DIR));
+    FileUtils.createDirIfNotExist(dir.resolve(SIGNATURE_PATH));
     log.info("Generating signature image from HTML...");
     var fileName = participant.getUuid();
-    var signImage = parseHtmlToImage(sign, dir.resolve(SIGN_DIR).resolve(fileName));
+
+    // We chose write html to pdf and then to image. Because it supports modern css styles
+    var signImage = parseHtmlToImage(sign, dir.resolve(SIGNATURE_PATH).resolve(fileName));
     if (FileUtils.isTransparentImage(signImage)) {
       FileUtils.removeWhiteBackground(signImage);
     }
@@ -139,6 +141,7 @@ public class PdfUtils {
 
   private static String getImageUrl(Path path) {
     try {
+      // This URL provide full path for display image on web page
       return path.toUri().toURL().toString();
     } catch (Exception e) {
       log.error("Error getting image url", e);
@@ -146,14 +149,18 @@ public class PdfUtils {
     }
   }
 
+  /**
+   * @param half mean you want to crop that half. It because of HtmlImageGenerator will produce
+   *     white space equals to half of expected
+   */
   private static File convertHtmlToImage(
       Path dir, String fileName, String html, boolean removeBg, boolean half) {
 
     log.info("Generating image from HTML...");
     HtmlImageGenerator hig = new HtmlImageGenerator();
     hig.loadHtml(html);
-    FileUtils.createDirIfNotExist(dir.resolve(SIGN_DIR));
-    File file = dir.resolve(SIGN_DIR).resolve(fileName).toFile();
+    FileUtils.createDirIfNotExist(dir.resolve(SIGNATURE_PATH));
+    File file = dir.resolve(SIGNATURE_PATH).resolve(fileName).toFile();
     log.info("Saving file PATH: " + file.getPath());
     hig.saveAsImage(file);
 
@@ -183,7 +190,7 @@ public class PdfUtils {
         "%s %sSigné électroniquement le %s%sPar %s %s%sAvec le code à usage unique %s",
         signature,
         "\n\n",
-        DateUtil.toSignedDate(new Date()),
+        DateUtil.toSignedDate(participant.getSignedDate()),
         "\n",
         participant.getFullName(),
         participant.getPhone(),
@@ -196,46 +203,56 @@ public class PdfUtils {
    *
    * @param document the project document file.
    * @param participant refers to participant who actioning
-   * @param detail refers to paraph of signers
+   * @param detail refers to paraphrase of signers
+   * @param basePath refers to base path that stored documents.
    * @throws IOException if any issue while generating annotations
    */
-  public static void setParaphAnnotations(
+  public static void setParaphraseAnnotations(
       PDDocument document,
       Project project,
       Participant participant,
       DocumentDetail detail,
-      String basePath,
-      String participantName)
+      String basePath)
       throws IOException {
 
     var input =
-        createParah(project.getParaph(), participant, Path.of(basePath, project.getFlowId()));
+        createParaphrase(project.getParaph(), participant, Path.of(basePath, project.getFlowId()));
     if (Objects.isNull(input)) {
-      throw new InternalErrorException("Error while creating paraph for docuemnts");
+      throw new InternalErrorException("Error while creating paraphrase for documents");
     }
 
     // This participant name  include slash if one signed
-    int width = getTextWidth(new Font(FONT, Font.PLAIN, detail.getFontSize()), participantName);
+    int width =
+        getTextWidth(new Font(FONT, Font.PLAIN, detail.getFontSize()), participant.getShortName());
+    // full width is about 100% width of signers name who signed and signer to sign
     int fullWidth =
         getTextWidth(new Font(FONT, Font.PLAIN, detail.getFontSize()), project.getParaph());
 
-    PDPageTree pages = document.getDocumentCatalog().getPages();
-    for (PDPage page : pages) {
-      float x = (float) detail.getX();
-      detail.setX(x - (project.isOneSigned() ? fullWidth - width : 0));
-      detail.setWidth(fullWidth);
-      detail.setHeight((double) ObjectUtils.defaultIfNull( detail.getFontSize(), 0) + 2);
+    try (var img = new FileInputStream(input)) {
+      // Reading generated image for PDImage
+      PDImageXObject xImage =
+          PDImageXObject.createFromByteArray(document, img.readAllBytes(), input.getName());
 
-      // Reading generated sign image for PDImage
-      PDAnnotationRubberStamp stamp =
-          placeImage(document, page, detail, input, SIGNATORY + participant.getFullName());
-      detail.setX(x); // reset x to default, prevent update object
+      PDPageTree pages = document.getDocumentCatalog().getPages();
+      for (PDPage page : pages) {
+        float x = (float) detail.getX();
+        // To move paraphrase x axis
+        detail.setX(x - (project.isOneSigned() ? fullWidth - width : 0));
+        detail.setWidth(fullWidth);
+        // plus 2 for accurate the height of image annotation, if not plus it looks short
+        detail.setHeight((double) ObjectUtils.defaultIfNull(detail.getFontSize(), 0) + 2);
 
-      addAnnotation(page.getAnnotations(), stamp, page);
+        // Reading generated sign image for PDImage
+        PDAnnotationRubberStamp stamp =
+            placeImage(document, page, detail, xImage, SIGNATORY + participant.getFullName());
+        detail.setX(x); // reset x to default, prevent update object
+
+        addAnnotation(page.getAnnotations(), stamp, page);
+      }
+
+      org.apache.commons.io.FileUtils.deleteQuietly(input);
+      log.info("Paraphrase file which was generated, was deleted...");
     }
-
-    org.apache.commons.io.FileUtils.deleteQuietly(input);
-    log.info("Paraph file which was generated, was deleted...");
   }
 
   /**
@@ -257,45 +274,50 @@ public class PdfUtils {
     float padding = width - 20;
 
     if (!StringUtils.equals(participant.getSignatureMode(), SignatureMode.WRITE.name())) {
+      // multiply by 2, because default value is for WRITE mode
       detail.setHeight(height * 2);
       detail.setY(detail.getY() - height);
       padding = width - 10; // 10 pixels is the padding
     }
 
     detail.setWidth(padding);
-
-    PDAnnotationRubberStamp stamp =
-        placeImage(document, page, detail, input, SIGNATORY + participant.getFullName());
-
-    addAnnotation(page.getAnnotations(), stamp, page);
-  }
-
-  private static PDAnnotationRubberStamp placeImage(
-      PDDocument document, PDPage page, DocumentDetail detail, File input, String stampName)
-      throws IOException {
     try (var img = new FileInputStream(input)) {
       // Reading generated image for PDImage
       PDImageXObject xImage =
           PDImageXObject.createFromByteArray(document, img.readAllBytes(), input.getName());
 
-      PDRectangle rectangle = createRectangle(page, detail);
-      PDAnnotationRubberStamp stamp = createStamp(rectangle, stampName);
-      PDResources resources = new PDResources();
-      resources.add(xImage);
-      PDFormXObject form = createForm(document, rectangle, resources);
-      PDPageContentStream stream = new PDPageContentStream(document, createAppearance(stamp, form));
+      PDAnnotationRubberStamp stamp =
+          placeImage(document, page, detail, xImage, SIGNATORY + participant.getFullName());
 
-      // Drawing image to pdf file
-      stream.drawImage(
-          xImage,
-          rectangle.getLowerLeftX(),
-          rectangle.getLowerLeftY(),
-          rectangle.getWidth(),
-          rectangle.getHeight());
-      stream.close();
-
-      return stamp;
+      addAnnotation(page.getAnnotations(), stamp, page);
     }
+  }
+
+  private static PDAnnotationRubberStamp placeImage(
+      PDDocument document,
+      PDPage page,
+      DocumentDetail detail,
+      PDImageXObject xImage,
+      String stampName)
+      throws IOException {
+
+    PDRectangle rectangle = createRectangle(page, detail);
+    PDAnnotationRubberStamp stamp = createStamp(rectangle, stampName);
+    PDResources resources = new PDResources();
+    resources.add(xImage);
+    PDFormXObject form = createForm(document, rectangle, resources);
+    PDPageContentStream stream = new PDPageContentStream(document, createAppearance(stamp, form));
+
+    // Drawing image to pdf file
+    stream.drawImage(
+        xImage,
+        rectangle.getLowerLeftX(),
+        rectangle.getLowerLeftY(),
+        rectangle.getWidth(),
+        rectangle.getHeight());
+    stream.close();
+
+    return stamp;
   }
 
   private static void addAnnotation(
@@ -371,6 +393,7 @@ public class PdfUtils {
       doc = Jsoup.parse(html);
     }
     // display code to render screen for HTML image file.
+    // this pdf size only for this signature. Because it related to font size of texts to add
     doc.head().append("<style>@page{size: 15in 9in; }</style>");
     // create a new temporary file.
     var tempPdf = convertHtmlToPdf(doc, Path.of(dir + PDF));

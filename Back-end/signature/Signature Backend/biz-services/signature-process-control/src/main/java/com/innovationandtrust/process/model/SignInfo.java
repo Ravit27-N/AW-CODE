@@ -33,6 +33,9 @@ public class SignInfo implements Serializable {
   private List<DocumentInfo> documents;
   private CompanySettingDto setting;
   private boolean isAllSigned;
+  private String identityId;
+  private Boolean requestToSign;
+  private int errorValidationOtp;
 
   @Getter
   @Setter
@@ -55,13 +58,12 @@ public class SignInfo implements Serializable {
     }
   }
 
-
   @Getter
   @Setter
   @Builder
   @NoArgsConstructor
   @AllArgsConstructor
-  public static class Actor implements Serializable{
+  public static class Actor implements Serializable {
     private String firstName;
     private String lastName;
     private String role;
@@ -72,5 +74,7 @@ public class SignInfo implements Serializable {
     private String signatureMode;
     private String signatureImage;
     @Builder.Default private boolean documentVerified = false;
+    @Builder.Default private boolean isProcessing = false;
+    private String eidStatus;
   }
 }

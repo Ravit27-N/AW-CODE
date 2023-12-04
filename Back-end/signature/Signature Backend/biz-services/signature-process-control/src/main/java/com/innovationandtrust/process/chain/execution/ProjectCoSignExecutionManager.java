@@ -9,32 +9,47 @@ import com.innovationandtrust.process.chain.handler.ParticipantUnorderedInvitati
 import com.innovationandtrust.process.chain.handler.RequestSigningHandler;
 import com.innovationandtrust.process.chain.handler.ViewerInvitationHandler;
 import com.innovationandtrust.process.chain.handler.expired.ProjectExpiredScheduleHandler;
+import com.innovationandtrust.process.chain.handler.webhook.ProjectWebHookHandler;
 import com.innovationandtrust.utils.chain.ExecutionManager;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 public class ProjectCoSignExecutionManager extends ExecutionManager {
 
   private final DocumentProcessingHandler documentHandler;
-
   private final RequestSigningHandler requestSigningHandler;
-
   private final JsonFileProcessHandler jsonFileProcessHandler;
-
   private final ParticipantUnorderedInvitationHandler unorderedInvitationHandler;
-
   private final CreateProjectCompleteHandler createProjectCompleteHandler;
-
+  private final ProjectWebHookHandler projectWebHookHandler;
   private final NotificationReminderScheduleHandler reminderScheduleHandler;
-
   private final ViewerInvitationHandler viewerInvitationHandler;
-
   private final ProjectExpiredScheduleHandler expiredProjectScheduleHandler;
-
   private final DossierProcessHandler dossierProcessHandler;
+
+  public ProjectCoSignExecutionManager(
+      DocumentProcessingHandler documentHandler,
+      RequestSigningHandler requestSigningHandler,
+      JsonFileProcessHandler jsonFileProcessHandler,
+      ParticipantUnorderedInvitationHandler unorderedInvitationHandler,
+      CreateProjectCompleteHandler createProjectCompleteHandler,
+      ProjectWebHookHandler projectWebHookHandler,
+      NotificationReminderScheduleHandler reminderScheduleHandler,
+      ViewerInvitationHandler viewerInvitationHandler,
+      ProjectExpiredScheduleHandler expiredProjectScheduleHandler,
+      DossierProcessHandler dossierProcessHandler) {
+    this.documentHandler = documentHandler;
+    this.requestSigningHandler = requestSigningHandler;
+    this.jsonFileProcessHandler = jsonFileProcessHandler;
+    this.unorderedInvitationHandler = unorderedInvitationHandler;
+    this.createProjectCompleteHandler = createProjectCompleteHandler;
+    this.projectWebHookHandler = projectWebHookHandler;
+    this.reminderScheduleHandler = reminderScheduleHandler;
+    this.viewerInvitationHandler = viewerInvitationHandler;
+    this.expiredProjectScheduleHandler = expiredProjectScheduleHandler;
+    this.dossierProcessHandler = dossierProcessHandler;
+  }
 
   @Override
   public void afterPropertiesSet() {
@@ -48,6 +63,7 @@ public class ProjectCoSignExecutionManager extends ExecutionManager {
             viewerInvitationHandler,
             unorderedInvitationHandler,
             createProjectCompleteHandler,
+            projectWebHookHandler,
             // To set notification reminder
             reminderScheduleHandler,
             expiredProjectScheduleHandler,

@@ -126,9 +126,11 @@ public class FileErrorHandler extends AbstractExecutionHandler {
             .subject("Le client de référence n'est pas valide.")
             .message("Le client de référence n'est pas valide: ")
             .build();
-    if (Objects.nonNull(request.getCorporateUser().getEmail()))
+    if (Objects.nonNull(request.getCorporateUser().getEmail())) {
       this.processErrorFileAndSendMail(request, errorEmail);
-    else this.processErrorFileAndSendMail(request, null);
+    } else {
+      this.processErrorFileAndSendMail(request, null);
+    }
   }
 
   public void errorTemplateNotFound(SftpFileRequest request) {
@@ -169,7 +171,8 @@ public class FileErrorHandler extends AbstractExecutionHandler {
     // copy file from processing folder into error folder in source-in
     this.fileService.moveFileToErrorIN(request);
     // send error mail to corporate user
-    if (Objects.nonNull(request.getCorporateUser()) && Objects.nonNull(emailModel))
+    if (Objects.nonNull(request.getCorporateUser()) && Objects.nonNull(emailModel)) {
       this.mailService.sendErrorMail(request, emailModel);
+    }
   }
 }

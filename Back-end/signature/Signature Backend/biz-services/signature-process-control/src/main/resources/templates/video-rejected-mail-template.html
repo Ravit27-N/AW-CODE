@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+
+  <!--[if (gte mso 9)|(IE)]><!-->
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+  />
+  <script>
+    (function () {
+      var link = document.querySelector('link[href*="fonts.googleapis.com"]');
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        var rule = {
+          name: 'Poppins Font',
+          action: 'add-stylesheet',
+          stylesheet: link.href
+        };
+        Mailtrap.addRule(rule);
+      });
+    })();
+  </script>
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/poppins');
+
+    @font-face {
+      font-family: 'Poppins';
+      src: url('https://fonts.googleapis.com/css2?family=Poppins&display=swap') format('woff2'),
+      url('https://fonts.googleapis.com/css2?family=Poppins&display=swap') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      mso-font-alt: ‘Poppins’;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif !important;
+    }
+  </style>
+  <!--<![endif]-->
+</head>
+<body>
+<div class="outer-container"
+     style="color: black !important; width: 100%; table-layout: fixed; margin: 0 auto; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: 'Poppins', Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;">
+  <!--[if (gte mso 9)|(IE)]>
+  <table align="center" cellpadding="0" cellspacing="0" border="0">
+  <![endif]-->
+  <table bgcolor="#F7F9FC"
+         style="width: 600px; text-align: center; border-radius: 5px; background-color: #F7F9FC;">
+    <tr style="height: 24px;">
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <img alt="logo.png" height="auto"
+             src="logo.png" style="box-sizing: border-box; object-fit: cover;" th:src="|cid:logo|"
+             width="128">
+      </td>
+      <td></td>
+    </tr>
+    <tr style="height: 24px;"></tr>
+    <tr style="background-color: #FFFFFF;">
+      <td style="width: 10%; visibility: hidden; background-color: #F7F9FC;"></td>
+      <td style="background: #FFFFFF; border-radius: 10px; padding: 30px 30px; box-shadow: 2px 3px 16px rgba(112, 144, 176, 0.2);">
+        <p style="font-size: 24px; margin: 0; font-weight: 600; font-family: 'Poppins',Arial,sans-serif;">
+          Bonjour
+          <span th:text="${firstName}"></span>,
+        </p>
+        <p style="font-size: 18px; margin: 0.3rem; font-family: 'Poppins',Arial,sans-serif;"
+           th:text="${invitationMessage}"></p>
+        <p style="margin: 0.7rem 0 0 0;font-family: 'Poppins',Arial,sans-serif;">Cordialement,</p>
+        <p style="font-weight: 600;font-family: 'Poppins',Arial,sans-serif;margin-top: 6px;">
+          L'équipe
+          <span th:text="${companyName} ? ${companyName} : 'Certigna'">companyName</span></p>
+        <p style="font-family: 'Poppins',Arial,sans-serif;">Toutes les dates sont fixées à <span
+            style="font-weight: bolder" th:text="${dateOffset}"></span>, Europe/Paris</p>
+      </td>
+      <td style="width: 10%; visibility: hidden; background-color: #F7F9FC;"></td>
+    </tr>
+    <tr style="height: 24px;"></tr>
+  </table>
+  <!--[if (gte mso 9)|(IE)]>
+  </table>
+  <![endif]-->
+</div>
+</body>
+</html>

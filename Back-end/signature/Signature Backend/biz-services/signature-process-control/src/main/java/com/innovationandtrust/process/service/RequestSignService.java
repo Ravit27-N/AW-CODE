@@ -1,49 +1,69 @@
 package com.innovationandtrust.process.service;
 
+import static com.innovationandtrust.utils.commons.CommonUsages.convertToList;
+
 import com.innovationandtrust.process.chain.execution.CompleteSignProcessExecutionManager;
 import com.innovationandtrust.process.chain.execution.ProjectCoSignExecutionManager;
 import com.innovationandtrust.process.chain.execution.ProjectCounterSignExecutionManager;
 import com.innovationandtrust.process.chain.execution.ProjectIndividualSignExecutionManager;
 import com.innovationandtrust.process.chain.execution.expired.UpdateProjectExecutionManager;
+import com.innovationandtrust.process.chain.handler.eid.IdentityDocumentHandler;
 import com.innovationandtrust.process.constant.DocumentProcessAction;
 import com.innovationandtrust.process.constant.JsonFileProcessAction;
 import com.innovationandtrust.process.constant.SignProcessConstant;
 import com.innovationandtrust.process.model.FileResponse;
-import com.innovationandtrust.process.utils.DateUtil;
 import com.innovationandtrust.process.utils.ProcessControlUtils;
+import com.innovationandtrust.share.enums.FileAction;
+import com.innovationandtrust.share.model.SettingProperties;
 import com.innovationandtrust.share.model.project.Project;
 import com.innovationandtrust.utils.aping.ApiNGProperty;
 import com.innovationandtrust.utils.chain.ExecutionContext;
 import com.innovationandtrust.utils.corporateprofile.feignclient.CorporateProfileFeignClient;
-import com.innovationandtrust.utils.exception.exceptions.InvalidTTLValueException;
+import com.innovationandtrust.utils.signatureidentityverification.dto.DocumentResponse;
 import java.net.URI;
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
 public class RequestSignService {
 
   private final ProjectCoSignExecutionManager coSignExecutionManager;
-
   private final ProjectCounterSignExecutionManager counterSignExecutionManager;
-
   private final ProjectIndividualSignExecutionManager individualSignExecutionManager;
-
   private final CorporateProfileFeignClient corporateProfileFeignClient;
-
   private final UpdateProjectExecutionManager updateProjectExecutionManager;
-
   private final ApiNGProperty apiNgProperty;
-
   private final CompleteSignProcessExecutionManager completeSignProcessExecutionManager;
+  private final IdentityDocumentHandler identityDocumentHandler;
+  private final SettingProperties settingProperties;
+
+  public RequestSignService(
+      ProjectCoSignExecutionManager coSignExecutionManager,
+      ProjectCounterSignExecutionManager counterSignExecutionManager,
+      ProjectIndividualSignExecutionManager individualSignExecutionManager,
+      CorporateProfileFeignClient corporateProfileFeignClient,
+      UpdateProjectExecutionManager updateProjectExecutionManager,
+      ApiNGProperty apiNgProperty,
+      CompleteSignProcessExecutionManager completeSignProcessExecutionManager,
+      IdentityDocumentHandler identityDocumentHandler,
+      SettingProperties settingProperties) {
+    this.coSignExecutionManager = coSignExecutionManager;
+    this.counterSignExecutionManager = counterSignExecutionManager;
+    this.individualSignExecutionManager = individualSignExecutionManager;
+    this.corporateProfileFeignClient = corporateProfileFeignClient;
+    this.updateProjectExecutionManager = updateProjectExecutionManager;
+    this.apiNgProperty = apiNgProperty;
+    this.completeSignProcessExecutionManager = completeSignProcessExecutionManager;
+    this.identityDocumentHandler = identityDocumentHandler;
+    this.settingProperties = settingProperties;
+  }
 
   /**
    * Handling a process of request to sign the documents.
@@ -51,11 +71,6 @@ public class RequestSignService {
    * @param project refers to an object of {@link Project}
    */
   public void requestSign(Project project) {
-    var checkDate = DateUtil.plushDays(new Date(), 1);
-    var expiredDate = project.getDetail().getExpireDate();
-    if (DateUtil.removeTime(checkDate).after(expiredDate)) {
-      throw new InvalidTTLValueException("You must select a date in the future");
-    }
     var context = new ExecutionContext();
     if (!StringUtils.hasText(project.getFlowId())) {
       project.setFlowId(UUID.randomUUID().toString());
@@ -67,6 +82,7 @@ public class RequestSignService {
       project.setCorporateInfo(corporateInfo);
       log.info("Corporate info: {}", project.getCorporateInfo());
     }
+
     context.put(SignProcessConstant.PROJECT_KEY, project);
     context.put(
         SignProcessConstant.DOCUMENT_PROCESS_ACTION, DocumentProcessAction.DOWNLOAD_DOC_FOR_SIGN);
@@ -120,5 +136,13 @@ public class RequestSignService {
         SignProcessConstant.DOCUMENT_PROCESS_ACTION, DocumentProcessAction.CHECK_PROJECT_FINISH);
     this.completeSignProcessExecutionManager.execute(ctx);
     return ctx.get(SignProcessConstant.IS_PROJECT_FINISHED, Boolean.class);
+  }
+
+  public List<DocumentResponse> getIdentityDocuments(String flowId) {
+    var ctx = new ExecutionContext();
+    ctx.put(SignProcessConstant.PROJECT_KEY, new Project(flowId));
+    ctx.put(SignProcessConstant.FILE_ACTION, FileAction.DOWNLOAD);
+    this.identityDocumentHandler.execute(ctx);
+    return convertToList(ctx.get(SignProcessConstant.IDENTITY_DOCUMENTS), DocumentResponse.class);
   }
 }

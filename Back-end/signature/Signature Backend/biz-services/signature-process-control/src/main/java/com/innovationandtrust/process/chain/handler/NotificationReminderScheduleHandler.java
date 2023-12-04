@@ -1,22 +1,21 @@
 package com.innovationandtrust.process.chain.handler;
 
-import com.innovationandtrust.share.constant.NotificationChannel;
-import com.innovationandtrust.share.enums.NotificationReminderOption;
 import com.innovationandtrust.process.constant.SignProcessConstant;
 import com.innovationandtrust.process.job.NotificationReminderJob;
 import com.innovationandtrust.process.model.NotificationReminderJobData;
 import com.innovationandtrust.process.utils.CronExpressionUtils;
-import com.innovationandtrust.process.utils.DateUtil;
+import com.innovationandtrust.share.constant.NotificationChannel;
+import com.innovationandtrust.share.enums.NotificationReminderOption;
 import com.innovationandtrust.share.model.project.Project;
 import com.innovationandtrust.utils.chain.ExecutionContext;
 import com.innovationandtrust.utils.chain.ExecutionState;
 import com.innovationandtrust.utils.chain.handler.AbstractExecutionHandler;
+import com.innovationandtrust.utils.date.DateUtil;
 import com.innovationandtrust.utils.schedule.handler.SchedulerHandler;
 import com.innovationandtrust.utils.schedule.model.CronTriggerDescriptor;
 import com.innovationandtrust.utils.schedule.model.JobDetailDescriptor;
 import java.util.Date;
 import java.util.Objects;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
@@ -24,13 +23,17 @@ import org.quartz.TriggerKey;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+/** This class about reminder scheduler of signature project. */
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class NotificationReminderScheduleHandler extends AbstractExecutionHandler {
 
   private static final String MESSAGE = "Failed to set schedule";
   private final SchedulerHandler schedulerHandler;
+
+  public NotificationReminderScheduleHandler(SchedulerHandler schedulerHandler) {
+    this.schedulerHandler = schedulerHandler;
+  }
 
   @Override
   public ExecutionState execute(ExecutionContext context) {
@@ -107,7 +110,8 @@ public class NotificationReminderScheduleHandler extends AbstractExecutionHandle
     }
   }
 
-  private Trigger getTrigger(Project project, String expression, JobDetailDescriptor jobDetail) {
+  private static Trigger getTrigger(
+      Project project, String expression, JobDetailDescriptor jobDetail) {
     return new CronTriggerDescriptor(
             project.getFlowId(),
             project.getTemplate().getSignProcess().name(),
@@ -116,7 +120,7 @@ public class NotificationReminderScheduleHandler extends AbstractExecutionHandle
         .buildTrigger(jobDetail.buildJobDetail());
   }
 
-  private JobDetailDescriptor getJob(Project project) {
+  private static JobDetailDescriptor getJob(Project project) {
     var jobDetail =
         new JobDetailDescriptor(
             project.getFlowId(),

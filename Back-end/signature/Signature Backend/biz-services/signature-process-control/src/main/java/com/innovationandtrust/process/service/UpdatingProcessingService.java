@@ -5,21 +5,28 @@ import com.innovationandtrust.process.chain.execution.refuse.RefusingProcessExec
 import com.innovationandtrust.process.constant.JsonFileProcessAction;
 import com.innovationandtrust.process.constant.SignProcessConstant;
 import com.innovationandtrust.process.utils.ProcessControlUtils;
+import com.innovationandtrust.share.constant.ProjectStatus;
 import com.innovationandtrust.share.model.project.Project;
 import com.innovationandtrust.utils.chain.ExecutionContext;
 import com.innovationandtrust.utils.encryption.ImpersonateTokenService;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class UpdatingProcessingService {
 
   private final RefusingProcessExecutionManager refusingProcessExecutionManager;
-
   private final CancelProcessExecutionManager cancelProcessExecutionManager;
-
   private final ImpersonateTokenService impersonateTokenService;
+
+  public UpdatingProcessingService(
+      RefusingProcessExecutionManager refusingProcessExecutionManager,
+      CancelProcessExecutionManager cancelProcessExecutionManager,
+      ImpersonateTokenService impersonateTokenService) {
+    this.refusingProcessExecutionManager = refusingProcessExecutionManager;
+    this.cancelProcessExecutionManager = cancelProcessExecutionManager;
+    this.impersonateTokenService = impersonateTokenService;
+  }
 
   public void refuse(String flowId, String uuid, String comment) {
     var context = ProcessControlUtils.getProject(flowId, uuid);
@@ -37,6 +44,14 @@ public class UpdatingProcessingService {
     var context = new ExecutionContext();
     context.put(SignProcessConstant.PROJECT_KEY, new Project(flowId));
     context.put(SignProcessConstant.JSON_FILE_PROCESS_ACTION, JsonFileProcessAction.READ);
+    this.cancelProcessExecutionManager.execute(context);
+  }
+
+  public void updateExpired(List<String> flowIds) {
+    var context = new ExecutionContext();
+    context.put(SignProcessConstant.STATUS, ProjectStatus.EXPIRED.name());
+    context.put(SignProcessConstant.FLOW_IDS, flowIds);
+    context.put(SignProcessConstant.JSON_FILE_PROCESS_ACTION, JsonFileProcessAction.READ_MULTIPLE);
     this.cancelProcessExecutionManager.execute(context);
   }
 }

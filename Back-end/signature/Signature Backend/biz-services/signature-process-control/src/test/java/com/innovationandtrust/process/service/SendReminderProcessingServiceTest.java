@@ -28,7 +28,7 @@ class SendReminderProcessingServiceTest {
 
   @Test
   @DisplayName("Project send reminder test")
-  void send_reminder_test() {
+  void testSendReminderTest() {
     // when
     String flowId = "022e2923-924b-4745-a2a8-250077141b83";
     var context = new ExecutionContext();

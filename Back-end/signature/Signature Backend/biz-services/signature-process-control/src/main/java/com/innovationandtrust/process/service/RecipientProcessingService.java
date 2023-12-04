@@ -5,16 +5,20 @@ import com.innovationandtrust.process.constant.JsonFileProcessAction;
 import com.innovationandtrust.process.constant.SignProcessConstant;
 import com.innovationandtrust.process.utils.ProcessControlUtils;
 import com.innovationandtrust.utils.encryption.ImpersonateTokenService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class RecipientProcessingService {
 
   private final RecipientExecutionManager recipientExecutionManager;
-
   private final ImpersonateTokenService impersonateTokenService;
+
+  public RecipientProcessingService(
+      RecipientExecutionManager recipientExecutionManager,
+      ImpersonateTokenService impersonateTokenService) {
+    this.recipientExecutionManager = recipientExecutionManager;
+    this.impersonateTokenService = impersonateTokenService;
+  }
 
   public void recipient(String flowId, String uuid) {
     var cxt = ProcessControlUtils.getProject(flowId, uuid);

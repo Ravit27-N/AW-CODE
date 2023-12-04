@@ -1,5 +1,6 @@
 package com.innovationandtrust.process.constant;
 
+import com.innovationandtrust.share.constant.ProcessStatus;
 import com.innovationandtrust.share.constant.RoleConstant;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -50,14 +51,32 @@ public enum EmailDefaultValue {
           Type.TEMPLATE,
           InvitationTemplateConstant.EMAIL_RECIPIENT_TEMPLATE)),
   SIGN_COMPLETED(
-      RoleConstant.SIGN_COMPLETED,
+      ProcessStatus.SIGN_COMPLETED,
       Map.of(
           Type.SUBJECT,
           MessageConstant.SIGN_COMPLETED_SUBJECT,
           Type.MESSAGE,
           MessageConstant.SIGN_COMPLETED_MESSAGE,
           Type.TEMPLATE,
-          InvitationTemplateConstant.SIGN_COMPLETED_TEMPLATE));
+          InvitationTemplateConstant.SIGN_COMPLETED_TEMPLATE)),
+  VIDEO_ACCEPTED(
+      ProcessStatus.EID_ACCEPTED,
+      Map.of(
+          Type.SUBJECT,
+          MessageConstant.VIDEO_ACCEPTED_SUBJECT,
+          Type.MESSAGE,
+          MessageConstant.VIDEO_ACCEPTED_MESSAGE,
+          Type.TEMPLATE,
+          InvitationTemplateConstant.VIDEO_ACCEPTED_TEMPLATE)),
+  VIDEO_REJECTED(
+      ProcessStatus.EID_REJECTED,
+      Map.of(
+          Type.SUBJECT,
+          MessageConstant.VIDEO_REJECTED_SUBJECT,
+          Type.MESSAGE,
+          MessageConstant.VIDEO_REJECTED_MESSAGE,
+          Type.TEMPLATE,
+          InvitationTemplateConstant.VIDEO_REJECTED_TEMPLATE));
 
   private static final Map<String, EmailDefaultValue> BY_ROLE = new HashMap<>();
 

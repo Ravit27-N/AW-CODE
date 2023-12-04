@@ -2,7 +2,6 @@ package com.innovationandtrust.process.controller;
 
 import com.innovationandtrust.process.service.UpdatingProcessingService;
 import io.swagger.v3.oas.annotations.Hidden;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,10 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/v1/project")
-@RequiredArgsConstructor
 public class InternalUpdatingProcessController {
 
   private final UpdatingProcessingService updatingProcessingService;
+
+  public InternalUpdatingProcessController(UpdatingProcessingService updatingProcessingService) {
+    this.updatingProcessingService = updatingProcessingService;
+  }
 
   @PostMapping("/refuse/{flowId}")
   public ResponseEntity<Void> refuse(

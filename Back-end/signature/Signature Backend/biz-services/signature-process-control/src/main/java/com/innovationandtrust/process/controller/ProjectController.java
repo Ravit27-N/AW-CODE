@@ -2,9 +2,12 @@ package com.innovationandtrust.process.controller;
 
 import com.innovationandtrust.process.service.RequestSignService;
 import com.innovationandtrust.process.service.SendReminderService;
+import com.innovationandtrust.process.service.UpdatingProcessingService;
 import com.innovationandtrust.share.model.project.Project;
+import com.innovationandtrust.utils.signatureidentityverification.dto.DocumentResponse;
 import io.swagger.v3.oas.annotations.Hidden;
-import lombok.RequiredArgsConstructor;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
@@ -13,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,18 +24,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 /** Project processing controller. */
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/v1/process-controls")
 public class ProjectController {
 
   private final RequestSignService requestSignService;
   private final SendReminderService sendReminderService;
+  private final UpdatingProcessingService updatingProcessingService;
+
+  public ProjectController(
+      RequestSignService requestSignService,
+      SendReminderService sendReminderService,
+      UpdatingProcessingService updatingProcessingService) {
+    this.requestSignService = requestSignService;
+    this.sendReminderService = sendReminderService;
+    this.updatingProcessingService = updatingProcessingService;
+  }
 
   /**
    * To initialize project for signing process.
    *
    * @param project refers to project object {@link Project}
    */
+  @Hidden
   @PostMapping("/project/send")
   public ResponseEntity<Void> requestSign(@Validated @RequestBody Project project) {
     this.requestSignService.requestSign(project);
@@ -68,5 +82,23 @@ public class ProjectController {
   @GetMapping("/is-finished/{flowId}")
   public ResponseEntity<Boolean> isFinished(@PathVariable("flowId") String flowId) {
     return new ResponseEntity<>(this.requestSignService.isFinished(flowId), HttpStatus.OK);
+  }
+
+  @Hidden
+  @GetMapping("/{flowId}/identity/documents")
+  @Tag(
+      name = "Get participant identity document",
+      description = "To get the participant's identity document")
+  public ResponseEntity<List<DocumentResponse>> getIdentityDocuments(
+      @PathVariable("flowId") String flowId) {
+    return new ResponseEntity<>(
+        this.requestSignService.getIdentityDocuments(flowId), HttpStatus.OK);
+  }
+
+  @Hidden
+  @PutMapping("/projects/expired")
+  public ResponseEntity<Void> updateProjectsStatus(@RequestBody List<String> flowIds) {
+    updatingProcessingService.updateExpired(flowIds);
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 }

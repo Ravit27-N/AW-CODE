@@ -38,4 +38,10 @@ public class SwaggerConfiguration extends SwaggerConfig {
     return super.groupedOpenApi(
             "Refuse Process", "/**/refuse/**");
   }
+
+  @Bean
+  GroupedOpenApi webHookApi() {
+    return super.groupedOpenApi(
+        "Webhook EID", "/**/webhook/**");
+  }
 }

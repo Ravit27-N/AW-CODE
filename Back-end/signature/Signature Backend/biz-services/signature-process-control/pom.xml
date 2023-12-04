@@ -6,11 +6,11 @@
   <parent>
     <groupId>com.innovationandtrust.signature</groupId>
     <artifactId>signature-starter-parent</artifactId>
-    <version>1.17.1</version>
+    <version>1.20.0</version>
     <relativePath>../../signature-starter-parent</relativePath>
   </parent>
   <artifactId>signature-process-control</artifactId>
-  <version>1.17.1</version>
+  <version>1.20.0</version>
   <name>signature-process-control</name>
   <description>signature process control</description>
   <properties>
@@ -23,6 +23,9 @@
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
     <sonar.language>java</sonar.language>
+    <sonar.dependencyCheck.htmlReportPath>
+      ${project.basedir}\target\dependency-check-report.html
+    </sonar.dependencyCheck.htmlReportPath>
   </properties>
   <repositories>
     <repository>
@@ -76,6 +79,7 @@
       <version>${org.modelmapper.version}</version>
       <scope>compile</scope>
     </dependency>
+
     <dependency>
       <groupId>com.innovationandtrust.signature</groupId>
       <artifactId>lib-common-configuration</artifactId>
@@ -116,24 +120,12 @@
     <dependency>
       <groupId>com.itextpdf</groupId>
       <artifactId>html2pdf</artifactId>
-      <version>5.0.0</version>
+      <version>${html2pdf.version}</version>
     </dependency>
     <dependency>
       <groupId>com.itextpdf</groupId>
       <artifactId>layout</artifactId>
-      <version>8.0.1</version>
-    </dependency>
-      <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>5.9.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-inline</artifactId>
-      <version>4.5.1</version>
-      <scope>test</scope>
+      <version>${itext.version}</version>
     </dependency>
   </dependencies>
 
@@ -177,6 +169,15 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <nonFilteredFileExtensions>
+            <nonFilteredFileExtension>pdf</nonFilteredFileExtension>
+          </nonFilteredFileExtensions>
+        </configuration>
       </plugin>
     </plugins>
   </build>

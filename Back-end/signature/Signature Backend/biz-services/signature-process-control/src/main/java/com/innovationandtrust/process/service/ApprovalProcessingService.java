@@ -7,18 +7,23 @@ import com.innovationandtrust.process.constant.SignProcessConstant;
 import com.innovationandtrust.process.utils.ProcessControlUtils;
 import com.innovationandtrust.utils.encryption.ImpersonateTokenService;
 import com.innovationandtrust.utils.encryption.TokenParam;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class ApprovalProcessingService {
 
   private final ApprovingProcessExecutionManager approvingProcessExecutionManager;
-
   private final ReadProcessExecutionManager readProcessExecutionManager;
-
   private final ImpersonateTokenService impersonateTokenService;
+
+  public ApprovalProcessingService(
+      ApprovingProcessExecutionManager approvingProcessExecutionManager,
+      ReadProcessExecutionManager readProcessExecutionManager,
+      ImpersonateTokenService impersonateTokenService) {
+    this.approvingProcessExecutionManager = approvingProcessExecutionManager;
+    this.readProcessExecutionManager = readProcessExecutionManager;
+    this.impersonateTokenService = impersonateTokenService;
+  }
 
   public void approve(String flowId, String uuid) {
     var cxt = ProcessControlUtils.getProject(flowId, uuid);

@@ -13,13 +13,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DocumentInfo implements Serializable {
-
+  private long id;
   private String docId;
   private String name;
   private String signedDocUrl = "";
   private int totalPages;
 
   public DocumentInfo(Document doc) {
+    this.id = doc.getId();
     this.docId = doc.getUuid();
     this.name = doc.getOriginalFileName();
     this.totalPages = doc.getTotalPages();

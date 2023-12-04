@@ -2,8 +2,11 @@ package com.innovationandtrust.process.model.email;
 
 import com.innovationandtrust.process.constant.InvitationTemplateConstant;
 import com.innovationandtrust.process.constant.MessageConstant;
-import com.innovationandtrust.process.utils.DateUtil;
+
+import com.innovationandtrust.utils.date.DateUtil;
 import java.util.Date;
+
+import com.innovationandtrust.utils.date.DateUtil;
 import org.springframework.core.io.Resource;
 import org.thymeleaf.TemplateEngine;
 
@@ -19,7 +22,6 @@ public class ModificationProjectEmailRequest extends EmailInvitationModel {
       EmailParametersModel emailParametersModel,
       String companyName,
       String theme,
-      Resource logo,
       Date newExpireDate,
       boolean isApproval) {
     super(
@@ -30,8 +32,8 @@ public class ModificationProjectEmailRequest extends EmailInvitationModel {
         emailParametersModel.getLinkUrl(),
         emailParametersModel.getEmail(),
         companyName,
-        theme,
-        logo);
+        theme
+        );
     this.newExpireDate = newExpireDate;
     this.isApproval = isApproval;
   }

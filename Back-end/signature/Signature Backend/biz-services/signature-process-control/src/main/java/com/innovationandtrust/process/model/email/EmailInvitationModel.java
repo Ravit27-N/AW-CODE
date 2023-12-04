@@ -4,6 +4,7 @@ import com.innovationandtrust.utils.mail.model.MailRequest;
 import java.util.Locale;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.core.io.Resource;
 import org.thymeleaf.TemplateEngine;
@@ -15,22 +16,20 @@ public class EmailInvitationModel implements EmailInvitationRequestInterface {
   private String firstName;
   @Getter private String projectName;
   private String message;
-  private String subject;
+  @Setter private String subject;
   private String linkUrl;
   @Getter private String email;
   private String companyName;
   private String theme;
-  private Resource logo;
 
   protected Context getParamsContext() {
     var context = new Context(Locale.FRENCH);
     context.setVariable("firstName", this.firstName);
-    context.setVariable("newProjectName", this.projectName.trim());
+    context.setVariable("newProjectName", this.projectName);
     context.setVariable("invitationMessage", this.getMessage());
     context.setVariable("theme", this.getTheme());
     context.setVariable("companyName", this.companyName);
     context.setVariable("linkUrl", this.linkUrl);
-    context.setVariable("logo", logo);
     context.setVariable("BtnTextColor", "#ffffff");
     return context;
   }

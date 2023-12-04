@@ -26,5 +26,4 @@ public class ProjectController {
     headers.setContentDisposition(ContentDisposition.attachment().build());
     return ResponseEntity.ok().headers(headers).body(resource);
   }
-
 }

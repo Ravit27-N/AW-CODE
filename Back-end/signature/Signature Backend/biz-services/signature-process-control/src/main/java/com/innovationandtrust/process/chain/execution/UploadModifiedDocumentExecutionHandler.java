@@ -4,18 +4,23 @@ import com.innovationandtrust.process.chain.handler.DocumentProcessingHandler;
 import com.innovationandtrust.process.chain.handler.JsonFileProcessHandler;
 import com.innovationandtrust.utils.chain.ExecutionManager;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class UploadModifiedDocumentExecutionHandler extends ExecutionManager {
 
   private final JsonFileProcessHandler jsonFileProcessHandler;
 
   private final DocumentProcessingHandler documentProcessingHandler;
+
+  public UploadModifiedDocumentExecutionHandler(
+      JsonFileProcessHandler jsonFileProcessHandler,
+      DocumentProcessingHandler documentProcessingHandler) {
+    this.jsonFileProcessHandler = jsonFileProcessHandler;
+    this.documentProcessingHandler = documentProcessingHandler;
+  }
 
   @Override
   public void afterPropertiesSet() {

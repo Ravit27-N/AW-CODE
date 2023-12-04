@@ -5,15 +5,18 @@ import com.innovationandtrust.process.constant.JsonFileProcessAction;
 import com.innovationandtrust.process.constant.SignProcessConstant;
 import com.innovationandtrust.share.model.project.Project;
 import com.innovationandtrust.utils.chain.ExecutionContext;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class SendReminderService {
   private final SendReminderProcessExecutionManager sendReminderProcessExecutionManager;
+
+  public SendReminderService(
+      SendReminderProcessExecutionManager sendReminderProcessExecutionManager) {
+    this.sendReminderProcessExecutionManager = sendReminderProcessExecutionManager;
+  }
 
   public void sendReminder(String flowId) {
     var context = new ExecutionContext();

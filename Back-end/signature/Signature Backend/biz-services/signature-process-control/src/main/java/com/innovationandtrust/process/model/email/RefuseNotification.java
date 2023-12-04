@@ -21,8 +21,7 @@ public class RefuseNotification extends EmailInvitationModel {
       String fullName,
       String comment,
       String companyName,
-      String theme,
-      Resource logo) {
+      String theme) {
     super(
         emailParametersModel.getFirstName(),
         emailParametersModel.getProjectName(),
@@ -31,8 +30,8 @@ public class RefuseNotification extends EmailInvitationModel {
         emailParametersModel.getLinkUrl(),
         emailParametersModel.getEmail(),
         companyName,
-        theme,
-        logo);
+        theme
+        );
     this.fullName = fullName;
     this.comment = comment;
   }

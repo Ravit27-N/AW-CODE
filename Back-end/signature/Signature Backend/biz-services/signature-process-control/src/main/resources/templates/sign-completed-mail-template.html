@@ -9,38 +9,38 @@
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
   <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet"
   />
   <script>
-    (function () {
-      var link = document.querySelector('link[href*="fonts.googleapis.com"]');
-      link.addEventListener('click', function (event) {
-        event.preventDefault();
-        var rule = {
-          name: 'Poppins Font',
-          action: 'add-stylesheet',
-          stylesheet: link.href
-        };
-        Mailtrap.addRule(rule);
-      });
-    })();
+      (function () {
+          var link = document.querySelector('link[href*="fonts.googleapis.com"]');
+          link.addEventListener('click', function (event) {
+              event.preventDefault();
+              var rule = {
+                  name: 'Poppins Font',
+                  action: 'add-stylesheet',
+                  stylesheet: link.href
+              };
+              Mailtrap.addRule(rule);
+          });
+      })();
   </script>
   <style>
-    @import url('https://fonts.cdnfonts.com/css/poppins');
+      @import url('https://fonts.cdnfonts.com/css/poppins');
 
-    @font-face {
-      font-family: 'Poppins';
-      src: url('https://fonts.googleapis.com/css2?family=Poppins&display=swap') format('woff2'),
-      url('https://fonts.googleapis.com/css2?family=Poppins&display=swap') format('woff');
-      font-weight: normal;
-      font-style: normal;
-      mso-font-alt: ‘Poppins’;
-    }
+      @font-face {
+          font-family: 'Poppins';
+          src: url('https://fonts.googleapis.com/css2?family=Poppins&display=swap') format('woff2'),
+          url('https://fonts.googleapis.com/css2?family=Poppins&display=swap') format('woff');
+          font-weight: normal;
+          font-style: normal;
+          mso-font-alt: ‘Poppins’;
+      }
 
-    body {
-      font-family: 'Poppins', sans-serif !important;
-    }
+      body {
+          font-family: 'Poppins', sans-serif !important;
+      }
   </style>
   <!--<![endif]-->
 </head>
@@ -72,15 +72,17 @@
       <td style="background: #FFFFFF; border-radius: 10px; padding: 30px 30px; box-shadow: 2px 3px 16px rgba(112, 144, 176, 0.2);">
         <p style="font-size: 24px; margin: 0; font-weight: 600; font-family: 'Poppins',Arial,sans-serif;">
           Bonjour
-          <span th:text="${firstName}"></span>,
+          <span th:text="${fullName}"></span>,
         </p>
-        <p style="font-size: 18px; margin: 0.3rem; font-family: 'Poppins',Arial,sans-serif;"
-           th:text="${invitationMessage}"></p>
-        <p style="align-content: center; color: #D6056A; font-family: 'Poppins',Arial,sans-serif;"
-           th:style="${theme} ? 'color: '+${theme} : 'color: #D6056A'">"<span
-            style="font-weight: 900; "
-            th:text="${newProjectName}"> </span>"</p>
-        <p style="padding: 1rem; font-size: 14px; font-family: 'Poppins',Arial,sans-serif;">Pour télécharger le(s) document(s) final(aux), cliquez sur le bouton ci-dessous :</p>
+        <p style="font-size: 14px; font-family: 'Poppins',Arial,sans-serif; padding: 1rem 1rem 0;">
+          Nous vous informons que le(s) documents associés au projet
+          <span style="color: #D6056A; display: inline-block"
+                th:style="${theme} ? 'color: '+${theme} : 'color: #D6056A'"><span
+                  style="font-weight: 600; font-size: 16px; "
+                  th:text="${newProjectName}"> </span></span> sont signés.
+        </p>
+        <p style="text-align: left; padding: 1rem; font-size: 14px; font-family: 'Poppins',Arial,sans-serif;">Vous
+          pouvez le(s) télécharger via le bouton ci-dessous:</p>
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
           <tr>
             <td align="center" style="vertical-align: middle; text-align: center;">
@@ -120,13 +122,13 @@
         <p style="font-size: 14px;font-family: 'Poppins',Arial,sans-serif;">Si vous ne parvenez pas
           à ouvrir le
           lien, veuillez copier/coller l’adresse
-          suivante dans votre barre de recherche: <br/> <span th:text="${linkUrl}">linkUrl</span>
+          suivante dans votre barre de recherche: <br/> <span style="font-size: 8px;" th:text="${linkUrl}">linkUrl</span>
         <p style="margin: 0.7rem 0 0 0;font-family: 'Poppins',Arial,sans-serif;">Cordialement,</p>
         <p style="font-weight: 600;font-family: 'Poppins',Arial,sans-serif;margin-top: 6px;">
           L'équipe
           <span th:text="${companyName} ? ${companyName} : 'Certigna'">companyName</span></p>
         <p style="font-family: 'Poppins',Arial,sans-serif;">Toutes les dates sont fixées à <span
-            style="font-weight: bolder" th:text="${dateOffset}"></span>, Europe/Paris</p>
+                style="font-weight: bolder" th:text="${dateOffset}"></span>, Europe/Paris</p>
       </td>
       <td style="width: 10%; visibility: hidden; background-color: #F7F9FC;"></td>
     </tr>

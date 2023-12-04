@@ -3,6 +3,7 @@ package com.innovationandtrust.process.chain.handler;
 import com.innovationandtrust.process.constant.SignProcessConstant;
 import com.innovationandtrust.share.constant.ParticipantRole;
 import com.innovationandtrust.share.enums.SignatureSettingLevel;
+import com.innovationandtrust.share.model.project.Participant;
 import com.innovationandtrust.share.model.project.Project;
 import com.innovationandtrust.utils.chain.ExecutionContext;
 import com.innovationandtrust.utils.chain.ExecutionState;
@@ -14,16 +15,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+/** This class about processing on dossier for advanced signature project. */
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class DossierProcessHandler extends AbstractExecutionHandler {
 
   private final SignatureIdentityVerificationFeignClient verificationFeignClient;
+
+  public DossierProcessHandler(SignatureIdentityVerificationFeignClient verificationFeignClient) {
+    this.verificationFeignClient = verificationFeignClient;
+  }
 
   @Override
   public ExecutionState execute(ExecutionContext context) {
@@ -40,15 +44,8 @@ public class DossierProcessHandler extends AbstractExecutionHandler {
 
     var participants = project.getParticipantsByRole(ParticipantRole.SIGNATORY.getRole());
     participants.forEach(
-        participant -> {
-          var dossier =
-              DossierDto.builder()
-                  .dossierName(participant.getFullName())
-                  .firstname(participant.getFirstName())
-                  .tel(participant.getPhone())
-                  .participantUuid(participant.getUuid())
-                  .verificationChoice(VerificationChoice.CLASSIC_DOCUMENT)
-                  .build();
+        (Participant participant) -> {
+          var dossier = buildDossier(participant);
           log.info("Creating dossier: {}", dossier.toString());
           dossierDtoS.add(dossier);
         });
@@ -65,6 +62,16 @@ public class DossierProcessHandler extends AbstractExecutionHandler {
                 .ifPresent(d -> participant.setDossierId(d.getDossierId())));
 
     return ExecutionState.NEXT;
+  }
+
+  private static DossierDto buildDossier(Participant participant) {
+    return DossierDto.builder()
+        .dossierName(participant.getFullName())
+        .firstname(participant.getFirstName())
+        .tel(participant.getPhone())
+        .participantUuid(participant.getUuid())
+        .verificationChoice(VerificationChoice.CLASSIC_DOCUMENT)
+        .build();
   }
 
   private void generateParticipantsUuid(Project project) {

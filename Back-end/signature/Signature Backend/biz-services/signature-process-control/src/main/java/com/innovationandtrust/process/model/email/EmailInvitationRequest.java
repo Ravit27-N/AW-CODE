@@ -1,11 +1,10 @@
 package com.innovationandtrust.process.model.email;
 
 import com.innovationandtrust.process.constant.EmailDefaultValue;
-import com.innovationandtrust.process.utils.DateUtil;
+import com.innovationandtrust.utils.date.DateUtil;
 import java.util.Date;
 import java.util.Objects;
 import lombok.Setter;
-import org.springframework.core.io.Resource;
 import org.thymeleaf.TemplateEngine;
 
 public class EmailInvitationRequest extends EmailInvitationModel {
@@ -14,8 +13,10 @@ public class EmailInvitationRequest extends EmailInvitationModel {
 
   @Setter private String role;
 
+  @Setter private String fullName;
+
   public EmailInvitationRequest(
-      EmailParametersModel emailParametersModel, String companyName, String theme, Resource logo) {
+      EmailParametersModel emailParametersModel, String companyName, String theme) {
     super(
         emailParametersModel.getFirstName(),
         emailParametersModel.getProjectName(),
@@ -24,8 +25,7 @@ public class EmailInvitationRequest extends EmailInvitationModel {
         emailParametersModel.getLinkUrl(),
         emailParametersModel.getEmail(),
         companyName,
-        theme,
-        logo);
+        theme);
   }
 
   @Override
@@ -50,6 +50,8 @@ public class EmailInvitationRequest extends EmailInvitationModel {
       context.setVariable("expireDate", DateUtil.toFrenchDate(this.expireDate));
       context.setVariable("dateOffset", DateUtil.getOffsetOfDate(this.expireDate));
     }
+
+    context.setVariable("fullName", this.fullName);
     return templateEngine.process(EmailDefaultValue.getTemplate(role), context);
   }
 }

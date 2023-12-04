@@ -1,12 +1,11 @@
 package com.innovationandtrust.process.model.email;
 
 import com.innovationandtrust.process.constant.InvitationTemplateConstant;
-import org.springframework.core.io.Resource;
 import org.thymeleaf.TemplateEngine;
 
 public class FailedValidatePhoneMailModel extends EmailInvitationModel {
   public FailedValidatePhoneMailModel(
-      EmailParametersModel emailParametersModel, String companyName, String theme, Resource logo) {
+      EmailParametersModel emailParametersModel, String companyName, String theme) {
     super(
         emailParametersModel.getFirstName(),
         emailParametersModel.getProjectName(),
@@ -15,8 +14,7 @@ public class FailedValidatePhoneMailModel extends EmailInvitationModel {
         null,
         emailParametersModel.getEmail(),
         companyName,
-        theme,
-        logo);
+        theme);
   }
 
   @Override

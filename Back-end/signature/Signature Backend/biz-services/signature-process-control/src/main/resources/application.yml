@@ -47,6 +47,7 @@ signature:
       missing-length: ${SIGNATURE_PHONE_NUMBER_MISSING_LENGTH}
     recipient-context-path: ${RECIPIENT_CONTEXT_PATH}
     approval-context-path: ${APPROVAL_CONTEXT_PATH}
+    video-verified-context-path: ${EID_VIDEO_VERIFIED_CONTEXT_PATH}
     view-context-path: ${VIEW_CONTEXT_PATH},
     sign-completed-context-path: ${SIGN_COMPLETED_CONTEXT_PATH}
   security:
@@ -73,12 +74,14 @@ signature:
       corporate-profile-url: ${SIGNATURE_CORPORATE_PROFILE_URL}
       notification-url: ${SIGNATURE_NOTIFICATION_URL}
       signature-identity-verification-url: ${SIGNATURE_IDENTITY_VERIFICATION_URL}
+      sftp-url: ${SIGNATURE_SFTP_URL}
     contexts:
       corporate-profile-context-path: ${SIGNATURE_CORPORATE_PROFILE_CONTEXT_PATH}
       project-context-path: ${SIGNATURE_PROJECT_CONTEXT_PATH}
       profile-context-path: ${SIGNATURE_PROFILE_CONTEXT_PATH}
       notification-context-path: ${SIGNATURE_NOTIFICATION_CONTEXT_PATH}
       signature-identity-verification-context-path: ${SIGNATURE_IDENTITY_VERIFICATION_CONTEXT_PATH}
+      sftp-context-path: ${SIGNATURE_SFTP_CONTEXT_PATH}
   swagger:
     info:
       securityKey: signature-process-control
@@ -102,6 +105,21 @@ signature:
     secrete-key: ${IMPERSONATE_TOKEN_SECRETE_KEY}
   setting:
     urgent-project: 48
+    project-max-hours: 1
+    project-max-expire: 31
+  eid-service:
+    url: ${SIGNATURE_ELECTRONIC_IDENTIFICATION_URL}
+    api-token: ${SIGNATURE_ELECTRONIC_IDENTIFICATION_API_TOKEN}
+    context-path: ${SIGNATURE_ELECTRONIC_IDENTIFICATION_CONTEXT_PATH}
+    tenant-id: ${SIGNATURE_ELECTRONIC_IDENTIFICATION_TENANT_ID}
+    rauthority-id: ${SIGNATURE_ELECTRONIC_IDENTIFICATION_RAUTHORITY_ID}
+    external-reference: ${SIGNATURE_ELECTRONIC_IDENTIFICATION_EXTERNAL_REFERENCE}
+    ttl: 15
+    ttl-unit: m #s(seconds) m(minutes) h(hours) d(days)
+    challenge-code-charset: numeric #alpha, numeric or alphanumeric
+    challenge-code-length: 6 #6-32
+    date-format: "yyyy/MM/dd HH:mm:ss"
+    time-zone: "GMT+2"
 springdoc:
   swagger-ui:
     tags-sorter: alpha
@@ -116,3 +134,6 @@ feign:
       default:
         connectTimeout: 160000000
         readTimeout: 160000000
+ribbon:
+  ReadTimeout: 600000
+  ConnectTimeout: 600000

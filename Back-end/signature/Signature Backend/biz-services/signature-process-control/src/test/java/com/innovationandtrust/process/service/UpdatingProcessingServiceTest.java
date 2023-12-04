@@ -10,7 +10,7 @@ import com.innovationandtrust.process.chain.execution.CancelProcessExecutionMana
 import com.innovationandtrust.process.chain.execution.refuse.RefusingProcessExecutionManager;
 import com.innovationandtrust.process.constant.JsonFileProcessAction;
 import com.innovationandtrust.process.constant.SignProcessConstant;
-import com.innovationandtrust.process.utils.ProcessControlUtils;
+import com.innovationandtrust.process.constant.UnitTestProvider;
 import com.innovationandtrust.utils.chain.ExecutionContext;
 import com.innovationandtrust.utils.encryption.ImpersonateTokenService;
 import com.innovationandtrust.utils.encryption.TokenParam;
@@ -57,13 +57,13 @@ class UpdatingProcessingServiceTest {
             .token(token)
             .build();
 
-    context = ProcessControlUtils.getProject(flowId, uuid);
+    context = UnitTestProvider.getContext();
     context.put(SignProcessConstant.JSON_FILE_PROCESS_ACTION, JsonFileProcessAction.READ);
   }
 
   @Test
   @DisplayName("Refuse project test")
-  void refuse_project_test() {
+  void testRefuseProjectTest() {
     // when
     this.refusingProcessExecutionManager.execute(context);
     this.updatingProcessingService.refuse(flowId, uuid, COMMENT);
@@ -73,9 +73,10 @@ class UpdatingProcessingServiceTest {
 
   @Test
   @DisplayName("[Public] Recipient retrieved project test")
-  void retrieved_external_project_test() {
+  void testRetrievedExternalProjectTest() {
     // when
     when(this.impersonateTokenService.validateImpersonateToken(any(), any())).thenReturn(param);
+    this.refusingProcessExecutionManager.execute(context);
     this.updatingProcessingService.refuseExternal(
         param.getCompanyUuid(), COMMENT, param.getToken());
     verify(updatingProcessingService, times(1))
@@ -84,7 +85,7 @@ class UpdatingProcessingServiceTest {
 
   @Test
   @DisplayName("Cancel project test")
-  void cancel_project_test() {
+  void testCancelProjectTest() {
     // when
     this.cancelProcessExecutionManager.execute(context);
     this.updatingProcessingService.cancel(flowId);

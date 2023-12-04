@@ -2,12 +2,14 @@ package com.innovationandtrust.process.chain.handler.refuse;
 
 import com.innovationandtrust.process.constant.JsonFileProcessAction;
 import com.innovationandtrust.process.constant.SignProcessConstant;
+import com.innovationandtrust.process.exception.ProjectRefuseExceptionHandler;
 import com.innovationandtrust.process.model.email.EmailParametersModel;
 import com.innovationandtrust.process.model.email.RefuseNotification;
 import com.innovationandtrust.process.restclient.ProfileFeignClient;
 import com.innovationandtrust.process.restclient.ProjectFeignClient;
 import com.innovationandtrust.process.utils.ProcessControlUtils;
 import com.innovationandtrust.share.constant.DocumentStatus;
+import com.innovationandtrust.share.constant.ProjectEventConstant;
 import com.innovationandtrust.share.constant.ProjectStatus;
 import com.innovationandtrust.share.enums.ScenarioStep;
 import com.innovationandtrust.share.model.project.Participant;
@@ -25,50 +27,58 @@ import com.innovationandtrust.utils.mail.model.MailRequest;
 import com.innovationandtrust.utils.notification.feignclient.NotificationFeignClient;
 import com.innovationandtrust.utils.schedule.handler.SchedulerHandler;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Executors;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.TriggerKey;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 
 /** Refusing process handler. */
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class RefusingProcessHandler extends AbstractExecutionHandler {
 
   private final TemplateEngine templateEngine;
-
   private final ProjectFeignClient projectFeignClient;
-
   private final CorporateProfileFeignClient corporateProfileFeignClient;
-
   private final ProfileFeignClient profileFeignClient;
-
   private final SchedulerHandler schedulerHandler;
-
   private final NotificationFeignClient notificationFeignClient;
-
   private final ApiNgFeignClientFacade apiNgFeignClient;
 
-  private Resource logoFile;
+  public RefusingProcessHandler(
+      TemplateEngine templateEngine,
+      ProjectFeignClient projectFeignClient,
+      CorporateProfileFeignClient corporateProfileFeignClient,
+      ProfileFeignClient profileFeignClient,
+      SchedulerHandler schedulerHandler,
+      NotificationFeignClient notificationFeignClient,
+      ApiNgFeignClientFacade apiNgFeignClient) {
+    this.templateEngine = templateEngine;
+    this.projectFeignClient = projectFeignClient;
+    this.corporateProfileFeignClient = corporateProfileFeignClient;
+    this.profileFeignClient = profileFeignClient;
+    this.schedulerHandler = schedulerHandler;
+    this.notificationFeignClient = notificationFeignClient;
+    this.apiNgFeignClient = apiNgFeignClient;
+  }
 
   @Override
   public ExecutionState execute(ExecutionContext context) {
     var project = context.get(SignProcessConstant.PROJECT_KEY, Project.class);
     ProcessControlUtils.checkIsCanceled(project.getStatus());
 
+    if (Objects.equals(project.getStatus(), ProjectStatus.REFUSED.name())) {
+      throw new ProjectRefuseExceptionHandler("The project has been refused.");
+    }
+
     if (!Objects.equals(project.getStatus(), ProjectStatus.IN_PROGRESS.name())) {
       throw new InvalidRequestException(
           "Cannot refuse project which not " + ProjectStatus.IN_PROGRESS.name());
     }
-
-    this.logoFile =
-        corporateProfileFeignClient.viewFileContent(project.getCorporateInfo().getLogo());
 
     this.refuse(
         project,
@@ -85,6 +95,7 @@ public class RefusingProcessHandler extends AbstractExecutionHandler {
 
     project.setStatus(ProjectStatus.REFUSED.name());
     context.put(SignProcessConstant.PROJECT_KEY, project);
+    context.put(SignProcessConstant.WEBHOOK_EVENT, ProjectEventConstant.REFUSED_DOCUMENT);
     context.put(SignProcessConstant.JSON_FILE_PROCESS_ACTION, JsonFileProcessAction.UPDATE);
     return ExecutionState.NEXT;
   }
@@ -99,9 +110,10 @@ public class RefusingProcessHandler extends AbstractExecutionHandler {
                       ? project.getTemplate().getSignProcess().getVal()
                       : project.getTemplate().getApprovalProcess().getVal();
 
-              this.apiNgFeignClient.refuseDocuments(
+              this.apiNgFeignClient.refuseDocumentsWithLevel(
                   project.getSessionId(),
-                  new RefuseRequest(person.getActorUrl(), project.getDocumentUrls(), tag, comment));
+                  new RefuseRequest(person.getActorUrl(), project.getDocumentUrls(), tag, comment),
+                  project.getSignatureLevel());
 
               this.projectFeignClient.updateProjectAfterSigned(
                   new ProjectAfterSignRequest(
@@ -109,6 +121,7 @@ public class RefusingProcessHandler extends AbstractExecutionHandler {
                       List.of()));
               person.setComment(comment);
               person.setRefused(true);
+              person.setActionedDate(new Date());
               this.sendEmail(project, person);
             });
   }
@@ -134,8 +147,7 @@ public class RefusingProcessHandler extends AbstractExecutionHandler {
               participant.getFullName(),
               participant.getComment(),
               company.getCompanyName(),
-              company.getMainColor(),
-              this.logoFile);
+              company.getMainColor());
       request.setEndUser(true);
       mailRequests.add(request.getMailRequest(templateEngine));
     }
@@ -153,8 +165,7 @@ public class RefusingProcessHandler extends AbstractExecutionHandler {
                       signer.getFullName(),
                       participant.getComment(),
                       company.getCompanyName(),
-                      company.getMainColor(),
-                      this.logoFile);
+                      company.getMainColor());
               request.setRefuser(Objects.equals(signer.getId(), participant.getId()));
 
               mailRequests.add(request.getMailRequest(templateEngine));

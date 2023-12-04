@@ -1,7 +1,6 @@
 package com.innovationandtrust.process.model.email;
 
 import com.innovationandtrust.process.constant.InvitationTemplateConstant;
-import org.springframework.core.io.Resource;
 import org.thymeleaf.TemplateEngine;
 
 public class ExpiredProjectMailModel extends EmailInvitationModel {
@@ -11,9 +10,8 @@ public class ExpiredProjectMailModel extends EmailInvitationModel {
       String subject,
       String email,
       String companyName,
-      String theme,
-      Resource logo) {
-    super(fullName, projectName, null, subject, null, email, companyName, theme, logo);
+      String theme) {
+    super(fullName, projectName, null, subject, null, email, companyName, theme);
   }
 
   @Override

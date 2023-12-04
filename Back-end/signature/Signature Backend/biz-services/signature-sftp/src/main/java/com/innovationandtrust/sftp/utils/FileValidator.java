@@ -23,6 +23,9 @@ public final class FileValidator {
   public static final String ZIP_EXTENSION = "zip";
   public static final String XML_EXTENSION = "xml";
   public static final String PDF_EXTENSION = "pdf";
+  public static final String ANNEXE_FOLDER = "annexe_folder";
+  public static final String SIGNED_FOLDER = "signed file(s)";
+  public static final String MERGED_FOLDER = "merged file";
 
   public static final Pattern FILENAME_REGEX_PATTERN =
       Pattern.compile("[a-f0-9]{8}(?:-[a-f0-9]{4}){4}[a-f0-9]{8}_[^\\\\]+$");

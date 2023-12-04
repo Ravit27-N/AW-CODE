@@ -16,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 public class ProcessControlProperty {
   private String frontEndUrl;
   private String invitationContextPath;
+  private String videoVerifiedContextPath;
   private String approvalContextPath;
   private String recipientContextPath;
   private String viewContextPath;

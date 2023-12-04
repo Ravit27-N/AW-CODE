@@ -4,6 +4,7 @@ import com.innovationandtrust.utils.aping.exception.ServiceRequestException;
 import com.innovationandtrust.utils.encryption.exception.EncryptionException;
 import com.innovationandtrust.utils.encryption.exception.InvalidUserTokenException;
 import com.innovationandtrust.utils.exception.config.CommonExceptionHandler;
+import com.innovationandtrust.utils.exception.config.HandledException;
 import com.innovationandtrust.utils.exception.config.ResponseErrorHandler;
 import com.innovationandtrust.utils.exception.exceptions.ApiRequestException;
 import com.innovationandtrust.utils.exception.exceptions.BadRequestException;
@@ -115,6 +116,17 @@ public class ProcessControlExceptionHandler extends CommonExceptionHandler {
     errorHandler.setMessage(e.getMessage());
     errorHandler.setDebugMessage(e.getMessage());
     log.error(DEFAULT_MESSAGE, e);
+    return buildResponseEntity(errorHandler);
+  }
+
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  @ExceptionHandler(ProjectRefuseExceptionHandler.class)
+  protected ResponseEntity<Object> handleProjectRefusedException(RuntimeException ex) {
+
+    var errorHandler = new ResponseErrorHandler(HttpStatus.BAD_REQUEST, ex);
+    errorHandler.setMessage(ex.getMessage());
+    errorHandler.setKey("PROJECT_REFUSED");
+    log.error(DEFAULT_MESSAGE, ex.getMessage());
     return buildResponseEntity(errorHandler);
   }
 }

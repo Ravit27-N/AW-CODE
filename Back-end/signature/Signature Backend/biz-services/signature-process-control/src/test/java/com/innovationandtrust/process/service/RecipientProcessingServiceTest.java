@@ -1,6 +1,7 @@
 package com.innovationandtrust.process.service;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
@@ -11,20 +12,18 @@ import com.innovationandtrust.process.chain.execution.RecipientExecutionManager;
 import com.innovationandtrust.process.chain.handler.CompleteSigningProcessHandler;
 import com.innovationandtrust.process.chain.handler.JsonFileProcessHandler;
 import com.innovationandtrust.process.chain.handler.RecipientHandler;
+import com.innovationandtrust.process.chain.handler.sign.UploadSignedDocument;
+import com.innovationandtrust.process.chain.handler.webhook.ProjectWebHookHandler;
 import com.innovationandtrust.process.constant.UnitTestConstant;
+import com.innovationandtrust.process.constant.UnitTestProvider;
 import com.innovationandtrust.process.restclient.ProfileFeignClient;
 import com.innovationandtrust.process.restclient.ProjectFeignClient;
-import com.innovationandtrust.process.restclient.SignatoryFeignClient;
 import com.innovationandtrust.utils.aping.feignclient.ApiNgFeignClientFacade;
 import com.innovationandtrust.utils.chain.ExecutionContext;
 import com.innovationandtrust.utils.companySetting.CompanySettingUtils;
-import com.innovationandtrust.utils.corporateprofile.feignclient.CorporateProfileFeignClient;
 import com.innovationandtrust.utils.encryption.ImpersonateTokenService;
 import com.innovationandtrust.utils.encryption.TokenParam;
 import com.innovationandtrust.utils.keycloak.provider.impl.KeycloakProvider;
-import com.innovationandtrust.utils.notification.feignclient.NotificationFeignClient;
-import com.innovationandtrust.utils.tdcservice.TdcFeignClient;
-import com.innovationandtrust.utils.tdcservice.TdcProperty;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -42,14 +41,11 @@ class RecipientProcessingServiceTest {
   @Mock private ImpersonateTokenService impersonateTokenService;
   @Mock private KeycloakProvider keycloakProvider;
   @Mock private ProfileFeignClient profileFeignClient;
-  @Mock private CorporateProfileFeignClient corporateProfileFeignClient;
   @Mock private ApiNgFeignClientFacade apiNgFeignClient;
   @Mock private ProjectFeignClient projectFeignClient;
-  @Mock private TdcFeignClient tdcFeignClient;
-  @Mock private TdcProperty tdcProperty;
-  private EmailService emailService;
+  @Mock private ProjectWebHookHandler projectWebHookHandler;
   private ExecutionContext context;
-  private final TokenParam param = UnitTestConstant.getParam();
+  private final TokenParam param = UnitTestProvider.getParam();
   private final String flowId = UnitTestConstant.FLOW_ID;
   private final String uuid = UnitTestConstant.UUID;
 
@@ -62,40 +58,35 @@ class RecipientProcessingServiceTest {
   public void setup() {
     JsonFileProcessHandler jsonFileProcessHandler =
         new JsonFileProcessHandler(
-            projectFeignClient,
-            UnitTestConstant.fileProvider(),
-            keycloakProvider,
-            profileFeignClient,
-            corporateProfileFeignClient);
+            UnitTestProvider.fileProvider(), keycloakProvider, profileFeignClient);
 
     RecipientHandler recipientHandler = new RecipientHandler(apiNgFeignClient, projectFeignClient);
 
     CompleteSigningProcessHandler completeSigningProcessHandler =
         new CompleteSigningProcessHandler(
-            corporateProfileFeignClient,
             new TemplateEngine(),
-            emailService,
+            mock(EmailService.class),
             projectFeignClient,
-            profileFeignClient,
-            tdcFeignClient,
-            apiNgFeignClient,
-            tdcProperty);
+            mock(UploadSignedDocument.class));
 
     recipientExecutionManager =
         spy(
             new RecipientExecutionManager(
-                jsonFileProcessHandler, recipientHandler, completeSigningProcessHandler));
+                jsonFileProcessHandler,
+                recipientHandler,
+                projectWebHookHandler,
+                completeSigningProcessHandler));
     this.recipientExecutionManager.afterPropertiesSet();
 
     recipientProcessingService =
         spy(new RecipientProcessingService(recipientExecutionManager, impersonateTokenService));
 
-    context = UnitTestConstant.getContext();
+    context = UnitTestProvider.getContext();
   }
 
   @Test
   @DisplayName("Recipient retrieved project test")
-  void retrieved_project_test() {
+  void testRetrievedProjectTest() {
     // when
     this.recipientExecutionManager.execute(context);
     this.recipientProcessingService.recipient(flowId, uuid);
@@ -105,7 +96,7 @@ class RecipientProcessingServiceTest {
 
   @Test
   @DisplayName("[Public] Recipient retrieved project test")
-  void retrieved_external_project_test() {
+  void testRetrievedExternalProjectTest() {
     // when
     when(this.impersonateTokenService.validateImpersonateToken(any(), any())).thenReturn(param);
     this.recipientExecutionManager.execute(context);

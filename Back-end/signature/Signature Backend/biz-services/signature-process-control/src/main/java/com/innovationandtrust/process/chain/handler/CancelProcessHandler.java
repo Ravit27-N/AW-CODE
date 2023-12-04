@@ -2,25 +2,29 @@ package com.innovationandtrust.process.chain.handler;
 
 import com.innovationandtrust.process.constant.JsonFileProcessAction;
 import com.innovationandtrust.process.constant.SignProcessConstant;
+import com.innovationandtrust.share.constant.ProjectEventConstant;
 import com.innovationandtrust.share.constant.ProjectStatus;
 import com.innovationandtrust.share.model.project.Project;
 import com.innovationandtrust.utils.chain.ExecutionContext;
 import com.innovationandtrust.utils.chain.ExecutionState;
 import com.innovationandtrust.utils.chain.handler.AbstractExecutionHandler;
 import com.innovationandtrust.utils.schedule.handler.SchedulerHandler;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.TriggerKey;
 import org.springframework.stereotype.Component;
 
-@Component
-@RequiredArgsConstructor
+/**
+ * This class is about process canceling current active project.
+ */
 @Slf4j
+@Component
 public class CancelProcessHandler extends AbstractExecutionHandler {
-
   private static final String EXPIRE = "EXPIRE-";
-
   private final SchedulerHandler schedulerHandler;
+
+  public CancelProcessHandler(SchedulerHandler schedulerHandler) {
+    this.schedulerHandler = schedulerHandler;
+  }
 
   @Override
   public ExecutionState execute(ExecutionContext context) {
@@ -29,6 +33,7 @@ public class CancelProcessHandler extends AbstractExecutionHandler {
     this.unScheduleJob(project);
     project.setStatus(ProjectStatus.ABANDON.name());
     context.put(SignProcessConstant.PROJECT_KEY, project);
+    context.put(SignProcessConstant.WEBHOOK_EVENT, ProjectEventConstant.PROJECT_CANCELED);
     context.put(SignProcessConstant.JSON_FILE_PROCESS_ACTION, JsonFileProcessAction.UPDATE);
     return ExecutionState.NEXT;
   }

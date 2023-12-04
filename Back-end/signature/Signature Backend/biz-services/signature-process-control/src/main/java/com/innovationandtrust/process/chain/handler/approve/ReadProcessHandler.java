@@ -11,14 +11,17 @@ import com.innovationandtrust.share.model.project.SignatoryRequest;
 import com.innovationandtrust.utils.chain.ExecutionContext;
 import com.innovationandtrust.utils.chain.ExecutionState;
 import com.innovationandtrust.utils.chain.handler.AbstractExecutionHandler;
-import lombok.RequiredArgsConstructor;
+import java.util.Date;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 public class ReadProcessHandler extends AbstractExecutionHandler {
 
   private final ProjectFeignClient projectFeignClient;
+
+  public ReadProcessHandler(ProjectFeignClient projectFeignClient) {
+    this.projectFeignClient = projectFeignClient;
+  }
 
   public ExecutionState execute(ExecutionContext context) {
     var project = context.get(SignProcessConstant.PROJECT_KEY, Project.class);
@@ -32,6 +35,7 @@ public class ReadProcessHandler extends AbstractExecutionHandler {
                   new ProjectUpdateRequest(
                       new SignatoryRequest(person.getId(), DocumentStatus.READ)));
               person.setApproved(true);
+              person.setActionedDate(new Date());
             });
     context.put(SignProcessConstant.PROJECT_KEY, project);
     context.put(SignProcessConstant.JSON_FILE_PROCESS_ACTION, JsonFileProcessAction.UPDATE);

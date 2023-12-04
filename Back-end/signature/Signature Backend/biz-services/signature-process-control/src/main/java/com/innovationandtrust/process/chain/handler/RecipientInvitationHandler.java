@@ -1,36 +1,49 @@
 package com.innovationandtrust.process.chain.handler;
 
 import com.innovationandtrust.process.constant.SignProcessConstant;
-import com.innovationandtrust.process.restclient.SignatoryFeignClient;
+import com.innovationandtrust.process.restclient.ProjectFeignClient;
 import com.innovationandtrust.process.service.EmailService;
 import com.innovationandtrust.process.utils.ProcessControlUtils;
 import com.innovationandtrust.share.constant.InvitationStatus;
 import com.innovationandtrust.share.constant.RoleConstant;
+import com.innovationandtrust.share.model.project.Participant;
 import com.innovationandtrust.share.model.project.Project;
 import com.innovationandtrust.share.model.project.SignatoryRequest;
 import com.innovationandtrust.utils.chain.ExecutionContext;
 import com.innovationandtrust.utils.chain.ExecutionState;
 import com.innovationandtrust.utils.chain.handler.AbstractExecutionHandler;
-import com.innovationandtrust.utils.corporateprofile.feignclient.CorporateProfileFeignClient;
 import com.innovationandtrust.utils.mail.model.MailRequest;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 
+/** This class handle on sending invitation to recipient. */
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class RecipientInvitationHandler extends AbstractExecutionHandler {
   private final TemplateEngine templateEngine;
-  private final SignatoryFeignClient signatoryFeignClient;
-  private final CorporateProfileFeignClient corporateProfileFeignClient;
+  private final ProjectFeignClient projectFeignClient;
   private final EmailService emailService;
-  private Resource logoFile;
+
+  /**
+   * Contractor of the class.
+   *
+   * @param templateEngine configured template engine of thymeleaf
+   * @param emailService email template builder
+   * @param projectFeignClient open feign endpoints of project-management service
+   */
+  public RecipientInvitationHandler(
+      TemplateEngine templateEngine,
+      ProjectFeignClient projectFeignClient,
+      EmailService emailService) {
+    this.templateEngine = templateEngine;
+    this.projectFeignClient = projectFeignClient;
+    this.emailService = emailService;
+  }
 
   @Override
   public ExecutionState execute(ExecutionContext context) {
@@ -39,8 +52,6 @@ public class RecipientInvitationHandler extends AbstractExecutionHandler {
     var company = project.getCorporateInfo();
     ProcessControlUtils.checkCompanyInfo(company, project.getFlowId());
 
-    this.logoFile =
-        this.corporateProfileFeignClient.viewFileContent(project.getCorporateInfo().getLogo());
     this.inviteRecipient(project);
 
     context.put(SignProcessConstant.PROJECT_KEY, project);
@@ -59,21 +70,19 @@ public class RecipientInvitationHandler extends AbstractExecutionHandler {
     project
         .getParticipantsToInviteBy(RoleConstant.ROLE_RECEIPT)
         .forEach(
-            participant -> {
+            (Participant participant) -> {
               recipients.add(
                   new SignatoryRequest(
                       participant.getId(), InvitationStatus.SENT, participant.getUuid()));
               participant.setInvited(true);
-              participant.setInvitationDate(new Date());
+              participant.setInvitationDate(Date.from(Instant.now()));
 
-              var request =
-                  this.emailService.prepareParticipantMail(
-                      project, participant, company, this.logoFile);
+              var request = this.emailService.prepareParticipantMail(project, participant, company);
+              request.setRole(participant.getRole());
               mailRequests.add(request.getMailRequest(templateEngine));
             });
 
     this.emailService.sendInvitationMail(mailRequests, project.getCorporateInfo().getLogo());
-
-    this.signatoryFeignClient.updateStatus(project.getId(), recipients);
+    this.projectFeignClient.updateStatus(project.getId(), recipients);
   }
 }

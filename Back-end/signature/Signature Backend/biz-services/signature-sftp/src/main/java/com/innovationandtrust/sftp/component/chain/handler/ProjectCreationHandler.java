@@ -32,6 +32,8 @@ public class ProjectCreationHandler extends AbstractExecutionHandler {
   }
 
   private void createProject(ProjectModel project, SftpFileRequest request) {
+    project.setSftpZipFile(request.getFilename());
+    project.setCorporateFolder(request.getCorporateUuid());
     var createdProject = this.projectService.createProject(project);
     if (!createdProject) {
       // Do action for failed creation
@@ -49,10 +51,10 @@ public class ProjectCreationHandler extends AbstractExecutionHandler {
   private void createProjectFailed(SftpFileRequest request) {
     request.setMessage("Échec de la création du projet");
     var errorEmail =
-            EmailModel.builder()
-                    .subject("Échec de la création du projet")
-                    .message("Échec de la création du projet: ")
-                    .build();
+        EmailModel.builder()
+            .subject("Échec de la création du projet")
+            .message("Échec de la création du projet: ")
+            .build();
 
     this.fileErrorHandler.processErrorFileAndSendMail(request, errorEmail);
   }

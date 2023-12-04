@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.innovationandtrust.process.constant.UnitTestConstant;
 import com.innovationandtrust.process.service.ApprovalProcessingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,10 +24,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @ExtendWith(MockitoExtension.class)
 @ContextConfiguration("classpath:application-test.yml")
 class ExternalApprovingProcessControllerTests {
-  @InjectMocks
-  ExternalApprovingProcessController controller;
-  @Mock
-  ApprovalProcessingService service;
+  @InjectMocks ExternalApprovingProcessController controller;
+  @Mock ApprovalProcessingService approvalProcessingService;
   private MockMvc mockMvc;
 
   @BeforeEach
@@ -37,16 +36,34 @@ class ExternalApprovingProcessControllerTests {
 
   @DisplayName("Approve processing")
   @Test
-  void approve_testing() throws Exception {
-    service.approve("123", "123");
+  void testApproveProcessing() throws Exception {
+    approvalProcessingService.approveExternal(
+        UnitTestConstant.COMPANY_UUID, UnitTestConstant.TOKEN);
     mockMvc
         .perform(
-            post("/approval/{flowId}/approve", "123")
+            post("/approval/approve/{companyUuid}", UnitTestConstant.COMPANY_UUID)
                 .contentType(MediaType.APPLICATION_JSON)
-                .param("uuid", "123"))
+                .param("token", UnitTestConstant.TOKEN))
         .andExpect(status().isOk());
 
     // then
-    verify(service, times(2)).approve("123", "123");
+    verify(approvalProcessingService, times(2))
+        .approveExternal(UnitTestConstant.COMPANY_UUID, UnitTestConstant.TOKEN);
+  }
+
+  @DisplayName("Read external")
+  @Test
+  void testReadExternal() throws Exception {
+    approvalProcessingService.readExternal(UnitTestConstant.COMPANY_UUID, UnitTestConstant.TOKEN);
+    mockMvc
+        .perform(
+            post("/approval/read/{companyUuid}", UnitTestConstant.COMPANY_UUID)
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("token", UnitTestConstant.TOKEN))
+        .andExpect(status().isOk());
+
+    // then
+    verify(approvalProcessingService, times(2))
+        .readExternal(UnitTestConstant.COMPANY_UUID, UnitTestConstant.TOKEN);
   }
 }

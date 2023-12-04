@@ -42,6 +42,12 @@ signature:
       profile-context-path: ${SIGNATURE_PROFILE_CONTEXT_PATH}
       project-context-path: ${SIGNATURE_PROJECT_CONTEXT_PATH}
       notification-context-path: ${SIGNATURE_NOTIFICATION_CONTEXT_PATH}
+  sftpgo-service:
+    url: ${SIGNATURE_SFTPGO_SERVICE_URL}
+    api-key: ${SIGNATURE_SFTPGO_SERVICE_API_KEY}
+    context-path: ${SIGNATURE_SFTPGO_SERVICE_CONTEXT_PATH}
+    home-dir: ${SIGNATURE_SFTPGO_SERVICE_HOME_DIR}
+    source-path: ${SIGNATURE_SFTPGO_FOLDER_SOURCE_PATH}
   swagger:
     info:
       securityKey: signature-sftp

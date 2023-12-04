@@ -22,6 +22,8 @@ public final class InvitationTemplateConstant {
   public static final String SIGN_REMINDER_TEMPLATE = "sign-reminder-mail-template.html";
   public static final String MODIFICATION_PROJECT_TEMPLATE =
       "modification-project-mail-template.html";
-  public static final String SIGN_COMPLETED_TEMPLATE =
-          "sign-completed-mail-template.html";
+  public static final String SIGN_COMPLETED_TEMPLATE = "sign-completed-mail-template.html";
+  public static final String VIDEO_ACCEPTED_TEMPLATE = "video-accepted-mail-template.html";
+  public static final String VIDEO_REJECTED_TEMPLATE = "video-rejected-mail-template.html";
+  public static final String SFTP_INSERT_FILE_FAIL = "sftp-insert-file-fail-mail-template.html";
 }

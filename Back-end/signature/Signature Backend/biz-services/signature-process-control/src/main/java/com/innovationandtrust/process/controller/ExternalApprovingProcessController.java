@@ -1,7 +1,6 @@
 package com.innovationandtrust.process.controller;
 
 import com.innovationandtrust.process.service.ApprovalProcessingService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,10 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/approval")
-@RequiredArgsConstructor
 public class ExternalApprovingProcessController {
 
   private final ApprovalProcessingService approvalProcessingService;
+
+  public ExternalApprovingProcessController(ApprovalProcessingService approvalProcessingService) {
+    this.approvalProcessingService = approvalProcessingService;
+  }
 
   @PostMapping("/approve/{companyUuid}")
   public ResponseEntity<Void> approve(
